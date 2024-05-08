@@ -27,7 +27,55 @@ Material:
         m_Texture: {fileID: 2800000, guid: 4ccd39d91311d4b479cebba0f41b1d58, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BaseAlbedo:
+        m_Texture: {fileID: 2800000, guid: 4ccd39d91311d4b479cebba0f41b1d58, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseEmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMetallicMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseNormalMap:
+        m_Texture: {fileID: 2800000, guid: cdf5fae1b9a5cc0438d38c8e5d8ea38e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseRoughnessMap:
+        m_Texture: {fileID: 2800000, guid: c16f3b1f06ca7e9438d5d9ce402bc3ed, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseSmoothnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FarAlbedo:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FarEmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FarMetallicMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FarNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FarRoughnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FarSmoothnessMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -44,7 +92,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SmoothnessMap:
-        m_Texture: {fileID: 2800000, guid: abe0a420271706a48b62771323b1e9ef, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
@@ -55,24 +103,56 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2D_Array:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
+    - _BaseEmission: 0
+    - _BaseMetallic: 0
+    - _BaseRoughness: 0
+    - _BaseSmoothness: 0
+    - _BaseSmoothnessEnabled: 1
+    - _Distance: 100
+    - _DistanceBlendingEnabled: 0
+    - _DistanceFade: 0
     - _Emission: 0
+    - _FarDistance: 100
+    - _FarDistanceFade: 10
+    - _FarEmission: 0
+    - _FarMetallic: 0
+    - _FarRoughness: 0
+    - _FarSmoothness: 0
+    - _FarSmoothnessEnabled: 1
+    - _FarTextureScale: 0.3
     - _Float: 0
     - _MaxRotation: 360
     - _Metallic: 0
     - _NoiseAngleOffset: 2
+    - _NoiseEdgeTextureScale: 1.17
     - _NoiseScale: 5
+    - _RandomiseNoiseScaling: 1
     - _RandomiseScaling: 1
     - _Rotation: 0
+    - _Roughness: 0
     - _Smoothness: 0
+    - _SmoothnessEnabled: 1
     m_Colors:
+    - _BaseEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _BaseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _BaseTiling: {r: 4, g: 4, b: 0, a: 0}
+    - _DistanceBlendMinMax: {r: 50, g: 100, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _FarEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _FarOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _FarTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _NoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _ScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
-    - _Tiling: {r: 2, g: 2, b: 0, a: 0}
+    - _Tiling: {r: 4, g: 4, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6940397157033256701
 MonoBehaviour:
