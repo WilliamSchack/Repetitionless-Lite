@@ -18,11 +18,11 @@ void CustomVoronoi_float(float2 UV, float AngleOffset, float CellDensity, out fl
     float2 closestOffset;
     float2 closestCell;
     
-    for(int y = -1; y <= 1; ++y)
+    for(int y1 = -1; y1 <= 1; ++y1)
     {
-        for (int x = -1; x <= 1; ++x)
+        for (int x1 = -1; x1 <= 1; ++x1)
         {
-            int2 cellToCheck = int2(x, y);
+            int2 cellToCheck = int2(x1, y1);
             float2 cellOffset = float2(cellToCheck) - posInCell + randomVector(cell + cellToCheck, AngleOffset);
             
             float distToPoint = dot(cellOffset, cellOffset);
@@ -36,15 +36,15 @@ void CustomVoronoi_float(float2 UV, float AngleOffset, float CellDensity, out fl
         }
     }
     
-    Cells = randomVector(cell + closestCell, AngleOffset);
+    Cells = randomVector(cell + closestCell, AngleOffset).x;
     
     DistFromEdge = 8.0f;
 
-    for(int y = -1; y <= 1; ++y)
+    for(int y2 = -1; y2 <= 1; ++y2)
     {
-        for(int x = -1; x <= 1; ++x)
+        for(int x2 = -1; x2 <= 1; ++x2)
         {
-            int2 cellToCheck = int2(x, y);
+            int2 cellToCheck = int2(x2, y2);
             float2 cellOffset = float2(cellToCheck) - posInCell + randomVector(cell + cellToCheck, AngleOffset);
             
             float distToEdge = dot(0.5f * (closestOffset + cellOffset), normalize(cellOffset - closestOffset));

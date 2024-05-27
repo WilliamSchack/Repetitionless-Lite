@@ -37,13 +37,22 @@ float3 UnpackNormalmap(float4 PackedNormal, float Strength = 1.0)
     return normal;
 }
 
-float4 SampleTexture(UnityTexture2D Texture, UnitySamplerState SS, float EdgeMask, float2 EdgeUV, float2 TransformedUV, bool NormalMap = false, float NormalStrength = 1.0)
+float4 SampleTexture(UnityTexture2D Texture, SamplerState SS, float EdgeMask, float2 EdgeUV, float2 TransformedUV, bool NoiseEnabled, bool NormalMap = false, float NormalStrength = 1.0)
 {
+    // Only sample required textures is noise disabled
+    if (!NoiseEnabled) {
+        float4 baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
+        
+        if (NormalMap)
+            baseTextureColor.rgb = UnpackNormalmap(baseTextureColor, NormalStrength);
+        
+        return baseTextureColor;
+    }
+    
     float4 baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
     float4 edgeTextureColor = SAMPLE_TEXTURE2D(Texture, SS, EdgeUV);
 
-    if (NormalMap)
-    {
+    if (NormalMap) {
         baseTextureColor.rgb = UnpackNormalmap(baseTextureColor, NormalStrength);
         edgeTextureColor.rgb = UnpackNormalmap(edgeTextureColor, NormalStrength);
     }

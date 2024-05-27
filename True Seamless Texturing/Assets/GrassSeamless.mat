@@ -11,13 +11,16 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 29910ba4e1bdb43449ff3224579434bf, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _DISTANCEBLENDMODE_TILING_OFFSET
+  - _SURFACETYPE_OPAQUE
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    TerrainCompatible: true
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -40,7 +43,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseNormalMap:
-        m_Texture: {fileID: 2800000, guid: 3c1855e63c3bf314995f39546f925082, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseOcclussionMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseRoughnessMap:
@@ -68,6 +75,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FarNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FarOcclussionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -105,28 +116,46 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BUILTIN_AlphaClip: 0
+    - _BUILTIN_Blend: 0
+    - _BUILTIN_CullMode: 2
+    - _BUILTIN_DstBlend: 0
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _BaseAssignedTextures: 12
+    - _BUILTIN_SrcBlend: 1
+    - _BUILTIN_Surface: 0
+    - _BUILTIN_ZTest: 4
+    - _BUILTIN_ZWrite: 1
+    - _BUILTIN_ZWriteControl: 0
+    - _BaseAlphaClipping: 0.5
+    - _BaseAssignedTextures: 4
     - _BaseDebuggingIndex: 0
     - _BaseDebuggingValues: 0
     - _BaseEmission: 0
     - _BaseEmissionEnabled: 0
     - _BaseMetallic: 0
     - _BaseNoiseAngleOffset: 2
+    - _BaseNoiseEnabled: 1
     - _BaseNoiseScale: 5
     - _BaseNormalScale: 1
-    - _BaseRandomiseNoiseScaling: 0
+    - _BaseOcclussion: 0
+    - _BaseOcclussionStrength: 0
+    - _BaseRandomiseNoiseScaling: 1
+    - _BaseRandomiseRotation: 1
     - _BaseRoughness: 0
+    - _BaseSettingToggles: 7
     - _BaseSmoothness: 0
-    - _BaseSmoothnessEnabled: 1
+    - _BaseSmoothnessEnabled: 0
     - _BaseTexturesAssigned: 0
+    - _BaseTransparentEnabled: 0
     - _Boolean: 0
+    - _DISTANCEBLENDMODE: 0
     - _DebuggingIndex: -1
     - _Distance: 1
     - _DistanceBlendingEnabled: 0
     - _DistanceFade: 0
     - _Emission: 0
+    - _FarAlphaClipping: 0.5
     - _FarAssignedTextures: 0
     - _FarDebuggingIndex: 0
     - _FarDebuggingValues: 0
@@ -136,14 +165,19 @@ Material:
     - _FarEmissionEnabled: 0
     - _FarMetallic: 0
     - _FarNoiseAngleOffset: 2
+    - _FarNoiseEnabled: 0
     - _FarNoiseScale: 5
     - _FarNormalScale: 1
+    - _FarOcclussionStrength: 0
     - _FarRandomiseNoiseScaling: 1
+    - _FarRandomiseRotation: 0
     - _FarRoughness: 0
+    - _FarSettingToggles: 0
     - _FarSmoothness: 0
     - _FarSmoothnessEnabled: 0
     - _FarTextureScale: 0.1
     - _FarTexturesAssigned: 0
+    - _FarTransparentEnabled: 0
     - _Float: 0
     - _MaxRotation: 360
     - _Metallic: 0
@@ -154,13 +188,17 @@ Material:
     - _RandomiseScaling: 1
     - _Rotation: 0
     - _Roughness: 0
+    - _SURFACETYPE: 0
     - _Smoothness: 0
     - _SmoothnessEnabled: 0
+    - _Transparent: 0
     m_Colors:
     - _BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 0}
     - _BaseEmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _BaseNoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
+    - _BaseOcclussionMap: {r: 0, g: 0, b: 0, a: 0}
     - _BaseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _BaseRandomiseRotationMinMax: {r: 0, g: 360, b: 0, a: 0}
     - _BaseScale: {r: 4, g: 4, b: 0, a: 0}
     - _BaseTiling: {r: 4, g: 4, b: 0, a: 0}
     - _DistanceBlendMinMax: {r: 20, g: 40, b: 0, a: 0}
@@ -169,6 +207,7 @@ Material:
     - _FarEmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _FarNoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
     - _FarOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _FarRandomiseRotationMinMax: {r: 0, g: 0, b: 0, a: 0}
     - _FarScale: {r: 1, g: 1, b: 0, a: 0}
     - _FarTiling: {r: 1, g: 1, b: 0, a: 0}
     - _NoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
