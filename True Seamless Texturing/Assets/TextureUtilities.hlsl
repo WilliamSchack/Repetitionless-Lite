@@ -1,11 +1,6 @@
 #ifndef TEXTUREUTILITIES_INCLUDED
 #define TEXTUREUTILITIES_INCLUDED
 
-float4 BlendOverwrite(float4 Base, float4 Blend, float Opacity)
-{
-    return lerp(Base, Blend, Opacity);
-}
-
 float Remap(float In, float2 InMinMax, float2 OutMinMax)
 {
     return OutMinMax.x + (In - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);
@@ -57,7 +52,7 @@ float4 SampleTexture(UnityTexture2D Texture, SamplerState SS, float EdgeMask, fl
         edgeTextureColor.rgb = UnpackNormalmap(edgeTextureColor, NormalStrength);
     }
     
-    return BlendOverwrite(baseTextureColor, edgeTextureColor, EdgeMask);
+    return lerp(baseTextureColor, edgeTextureColor, EdgeMask);
 }
 
 #endif

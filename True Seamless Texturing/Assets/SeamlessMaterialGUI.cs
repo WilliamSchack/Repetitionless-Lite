@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEditor;
@@ -106,7 +104,6 @@ public class SeamlessMaterialGUI : ShaderGUI
         // Assign Material Helpers
         _material = (Material)materialEditor.target;
         _editor = materialEditor;
-        _properties = properties;
 
         // Make Terrain Compatable (removes warning)
         // Note: Will still have warning complaining about tangeont geometry but it still works fine
@@ -138,8 +135,13 @@ public class SeamlessMaterialGUI : ShaderGUI
         _debugBackgroundHeight = debuggingEnabled ? DEFAULT_DEBUG_BACKGROUND_HEIGHT : DEFAULT_DISABLED_SETTING_BACKGROUND_HEIGHT;
     }
 
+
+
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
+        // Properties can change between calls
+        _properties = properties;
+
         // OnEnable if first call
         if (_firstSetup) {
             OnEnable(materialEditor, properties);
@@ -307,7 +309,7 @@ public class SeamlessMaterialGUI : ShaderGUI
                     GUILayout.Space(10);
 
                     // Material GUI
-                    DrawMaterialGUI("Far");
+                    DrawMaterialGUI("Far"); 
                     break;
             }
         }

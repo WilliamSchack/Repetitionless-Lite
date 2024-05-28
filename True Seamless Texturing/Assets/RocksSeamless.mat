@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FarAlbedo:
-        m_Texture: {fileID: 2800000, guid: 4ccd39d91311d4b479cebba0f41b1d58, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FarEmissionMap:
@@ -76,7 +76,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FarNormalMap:
-        m_Texture: {fileID: 2800000, guid: cdf5fae1b9a5cc0438d38c8e5d8ea38e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FarOcclussionMap:
@@ -157,11 +157,11 @@ Material:
     - _DISTANCEBLENDMODE: 0
     - _DebuggingIndex: -1
     - _Distance: 100
-    - _DistanceBlendingEnabled: 0
+    - _DistanceBlendingEnabled: 1
     - _DistanceFade: 0
     - _Emission: 0
     - _FarAlphaClipping: 0.5
-    - _FarAssignedTextures: 12
+    - _FarAssignedTextures: 4
     - _FarDebuggingIndex: 0
     - _FarDebuggingValues: 0
     - _FarDistance: 100
@@ -177,7 +177,7 @@ Material:
     - _FarRandomiseNoiseScaling: 1
     - _FarRandomiseRotation: 1
     - _FarRoughness: 0
-    - _FarSettingToggles: 7
+    - _FarSettingToggles: 15
     - _FarSmoothness: 0
     - _FarSmoothnessEnabled: 0
     - _FarTextureScale: 0.3

@@ -59,11 +59,11 @@ void GetSeamlessMaterialColor(
     UnityTexture2D SmoothnessMap, float Smoothness, // Smoothness
     UnityTexture2D RoughnessMap, float Roughness, // Roughness
     UnityTexture2D OcclussionMap, float OcclussionStrength, // Occlussion
-    UnityTexture2D EmissionMap, float4 EmissionColor, // Emission
+    UnityTexture2D EmissionMap, float3 EmissionColor, // Emission
 
     float DebuggingIndex, // Debugging
 
-    out float4 AlbedoColorOut, out float4 NormalColorOut, out float4 MetallicColorOut, out float4 SmoothnessColorOut, out float4 OcclussionColorOut, out float4 EmissionColorOut) // Outputs
+    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut) // Outputs
 {
     // Get Setting Toggles
     bool noiseEnabled =          ((int)SettingToggles & 1) != 0;
@@ -78,6 +78,14 @@ void GetSeamlessMaterialColor(
     bool normalAssigned =     ((int)AssignedTextures & 8) != 0;
     bool occlussionAssigned = ((int)AssignedTextures & 16) != 0;
     bool emissionAssigned =   ((int)AssignedTextures & 32) != 0;
+    
+    // Default values
+    AlbedoColorOut = 1;
+    NormalVectorOut = TangentNormalVector;
+    MetallicOut = 0;
+    SmoothnessOut = 0;
+    OcclussionOut = 1;
+    EmissionColorOut = 0;
     
     // Setup UVs
     UV = UV * Tiling + Offset;
@@ -110,13 +118,6 @@ void GetSeamlessMaterialColor(
                 break;
         }
         
-        // Set default values on everything but albedo
-        float3 normal = TangentNormalVector;
-        NormalColorOut = float4(normal.x, normal.y, normal.z, 0);
-        MetallicColorOut = 0;
-        SmoothnessColorOut = 0;
-        EmissionColorOut = float4(0, 0, 0, 0);
-        
         return;
     }
     
@@ -126,42 +127,41 @@ void GetSeamlessMaterialColor(
     
     // Normal Map
     if (normalAssigned) {
-        NormalColorOut = SampleTexture(NormalMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled, true, NormalScale);
+        NormalVectorOut = SampleTexture(NormalMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled, true, NormalScale).rgb;
     } else {
-        float3 normal = TangentNormalVector;
-        NormalColorOut = float4(normal.x, normal.y, normal.z, 0);
+        NormalVectorOut = TangentNormalVector;
     }
         
     
     // Metallic
     if (metallicAssigned)
-        MetallicColorOut = SampleTexture(MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+        MetallicOut = SampleTexture(MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).r;
     else
-        MetallicColorOut = Metallic;
+        MetallicOut = Metallic;
     
     // Smoothness / Roughness
     if (smoothnessEnabled) {
         if (smoothnessAssigned)
-            SmoothnessColorOut = SampleTexture(SmoothnessMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+            SmoothnessOut = SampleTexture(SmoothnessMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).r;
         else
-            SmoothnessColorOut = Smoothness;
+            SmoothnessOut = Smoothness;
     } else {
         if(roughnessAssigned)
-            SmoothnessColorOut = 1 - SampleTexture(RoughnessMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled); // Roughness = 1 - Smoothness
+            SmoothnessOut = 1 - SampleTexture(RoughnessMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).r; // Roughness = 1 - Smoothness
         else
-            SmoothnessColorOut = 1 - Roughness;
+            SmoothnessOut = 1 - Roughness;
     }
         
     // Occlussion
     if (occlussionAssigned) {
-        OcclussionColorOut = SampleTexture(OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
-        OcclussionColorOut = lerp(OcclussionColorOut, 1, 1 - OcclussionStrength);
+        OcclussionOut = SampleTexture(OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).r;
+        OcclussionOut = lerp(OcclussionOut, 1, 1 - OcclussionStrength);
     } else
-        OcclussionColorOut = 1;
+        OcclussionOut = 1;
     
     // Emission
     if (emissionAssigned)
-        EmissionColorOut = SampleTexture(EmissionMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled) * EmissionColor;
+        EmissionColorOut = SampleTexture(EmissionMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).rbg * EmissionColor;
     else
         EmissionColorOut = EmissionColor;
 }
@@ -183,7 +183,7 @@ void SampleSeamlessMaterial_float(
     UnityTexture2D BaseRoughnessMap, float BaseRoughness, // Roughness
     UnityTexture2D BaseNormalMap, float BaseNormalScale, // Normal
     UnityTexture2D BaseOcclussionMap, float BaseOcclussionStrength, // Occlussion
-    UnityTexture2D BaseEmissionMap, float4 BaseEmissionColor, // Emission
+    UnityTexture2D BaseEmissionMap, float3 BaseEmissionColor, // Emission
 
     // Far Material
     float2 FarTiling, float2 FarOffset,
@@ -196,21 +196,21 @@ void SampleSeamlessMaterial_float(
     UnityTexture2D FarRoughnessMap, float FarRoughness, // Roughness
     UnityTexture2D FarNormalMap, float FarNormalScale, // Normal
     UnityTexture2D FarOcclussionMap, float FarOcclussionStrength, // Occlussion
-    UnityTexture2D FarEmissionMap, float4 FarEmissionColor, // Emission
+    UnityTexture2D FarEmissionMap, float3 FarEmissionColor, // Emission
 
     float DebuggingIndex, // Debugging
 
     // Outputs
-    out float4 AlbedoColorOut, out float4 NormalColorOut, out float4 MetallicColorOut, out float4 SmoothnessColorOut, out float4 OcclussionColorOut, out float4 EmissionColorOut)
+    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut)
 {
     // ----------------------- Base Material ------------------------- //
     
     float4 albedoColor = 1;
-    float4 normalColor = float4(TangentNormalVector.x, TangentNormalVector.y, TangentNormalVector.z, 0);
-    float4 metallicColor = 0;
-    float4 smoothnessColor = 0;
-    float4 occlussionColor = 0;
-    float4 emissionColor = 0;
+    float3 normalVector = TangentNormalVector;
+    float metallic = 0;
+    float smoothness = 0;
+    float occlussion = 0;
+    float3 emissionColor = 0;
     
     GetSeamlessMaterialColor(
         sampler_BaseAlbedo, UV, TangentNormalVector, BaseTiling, BaseOffset,
@@ -225,7 +225,7 @@ void SampleSeamlessMaterial_float(
         BaseOcclussionMap, BaseOcclussionStrength,
         BaseEmissionMap, BaseEmissionColor,
         DebuggingIndex,
-        albedoColor, normalColor, metallicColor, smoothnessColor, occlussionColor, emissionColor);
+        albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor);
     
     // --------------------- Distance Blending ----------------------- //
     
@@ -236,11 +236,11 @@ void SampleSeamlessMaterial_float(
         farDistance = clamp(farDistance, 0, 1);
         
         float4 farAlbedoColor = 1;
-        float4 farNormalColor = float4(TangentNormalVector.x, TangentNormalVector.y, TangentNormalVector.z, 0);
-        float4 farMetallicColor = 0;
-        float4 farSmoothnessColor = 0;
-        float4 farOcclussionColor = 0;
-        float4 farEmissionColor = 0;
+        float3 farNormalVector = TangentNormalVector;
+        float farMetallic = 0;
+        float farSmoothness = 0;
+        float farOcclussion = 0;
+        float3 farEmissionColor = 0;
         
         switch (DistanceBlendingMode) {
             case 0: // Tiling & Offset
@@ -258,7 +258,7 @@ void SampleSeamlessMaterial_float(
                     BaseOcclussionMap, BaseOcclussionStrength,
                     BaseEmissionMap, BaseEmissionColor,
                     DebuggingIndex,
-                    farAlbedoColor, farNormalColor, farMetallicColor, farSmoothnessColor, farOcclussionColor, farEmissionColor);
+                    farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor);
             
                 break;
             case 1: // Material
@@ -276,7 +276,7 @@ void SampleSeamlessMaterial_float(
                     FarOcclussionMap, FarOcclussionStrength,
                     FarEmissionMap, FarEmissionColor,
                     DebuggingIndex,
-                    farAlbedoColor, farNormalColor, farMetallicColor, farSmoothnessColor, farOcclussionColor, farEmissionColor);
+                    farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor);
             
                 break;
         }
@@ -286,12 +286,12 @@ void SampleSeamlessMaterial_float(
             albedoColor = farDistance;
         
         // Combine Far with Base
-        albedoColor = BlendOverwrite(albedoColor, farAlbedoColor, farDistance);
-        normalColor = BlendOverwrite(normalColor, farNormalColor, farDistance);
-        metallicColor = BlendOverwrite(metallicColor, farMetallicColor, farDistance);
-        smoothnessColor = BlendOverwrite(smoothnessColor, farSmoothnessColor, farDistance);
-        occlussionColor = BlendOverwrite(occlussionColor, farOcclussionColor, farDistance);
-        emissionColor = BlendOverwrite(emissionColor, farEmissionColor, farDistance);
+        albedoColor = lerp(albedoColor, farAlbedoColor, farDistance);
+        normalVector = lerp(normalVector, farNormalVector, farDistance);
+        metallic = lerp(metallic, farMetallic, farDistance);
+        smoothness = lerp(smoothness, farSmoothness, farDistance);
+        occlussion = lerp(occlussion, farOcclussion, farDistance);
+        emissionColor = lerp(emissionColor, farEmissionColor, farDistance);
     }
     
     // --------------------------------------------------------------- //
@@ -301,10 +301,10 @@ void SampleSeamlessMaterial_float(
         albedoColor.a = 1;
     
     AlbedoColorOut = albedoColor;
-    NormalColorOut = normalColor;
-    MetallicColorOut = metallicColor;
-    SmoothnessColorOut = smoothnessColor;
-    OcclussionColorOut = occlussionColor;
+    NormalVectorOut = normalVector;
+    MetallicOut = metallic;
+    SmoothnessOut = smoothness;
+    OcclussionOut = occlussion;
     EmissionColorOut = emissionColor;
 }
 

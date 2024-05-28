@@ -208,7 +208,7 @@ Material:
     - _FarNoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
     - _FarOffset: {r: 0, g: 0, b: 0, a: 0}
     - _FarRandomiseRotationMinMax: {r: 0, g: 0, b: 0, a: 0}
-    - _FarScale: {r: 1, g: 1, b: 0, a: 0}
+    - _FarScale: {r: 2, g: 2, b: 0, a: 0}
     - _FarTiling: {r: 1, g: 1, b: 0, a: 0}
     - _NoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
