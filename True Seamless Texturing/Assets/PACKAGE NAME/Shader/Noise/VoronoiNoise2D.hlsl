@@ -9,7 +9,7 @@ inline float2 randomVector (float2 UV, float offset)
 }
 
 // Based on code by Inigo Quilez: https://iquilezles.org/articles/voronoilines/
-void CustomVoronoi_float(float2 UV, float AngleOffset, float CellDensity, out float DistFromCenter, out float DistFromEdge, out float Cells)
+void VoronoiNoise(float2 UV, float AngleOffset, float CellDensity, out float DistFromCenter, out float DistFromEdge, out float Cells)
 {
     int2 cell = floor(UV * CellDensity);
     float2 posInCell = frac(UV * CellDensity);

@@ -1,8 +1,11 @@
 #ifndef SAMPLESEAMLESSMATERIAL_INCLUDED
 #define SAMPLESEAMLESSMATERIAL_INCLUDED
 
-#include "CustomVoronoi.hlsl"
 #include "TextureUtilities.hlsl"
+
+#include "Noise/VoronoiNoise2D.hlsl"
+#include "Noise/Keijiro/SimplexNoise2D.hlsl"
+#include "Noise/Keijiro/ClassicNoise2D.hlsl"
 
 void GetSeamlessTextureUVs(
     float2 UV, float2 Tiling, float2 Offset, // UV
@@ -14,7 +17,7 @@ void GetSeamlessTextureUVs(
     
     float VoronoiDistFromCenter;
     float VoronoiDistFromEdge;
-    CustomVoronoi_float(UV, NoiseAngleOffset, NoiseScale, VoronoiDistFromCenter, VoronoiDistFromEdge, VoronoiCells);
+    VoronoiNoise(UV, NoiseAngleOffset, NoiseScale, VoronoiDistFromCenter, VoronoiDistFromEdge, VoronoiCells);
     
     // ----------------------- Noise Edge Mask ----------------------- //
     
@@ -101,20 +104,17 @@ void GetSeamlessMaterialColor(
     // Debugging
     if (DebuggingIndex != -1) {
         switch (DebuggingIndex) {
-            case 0: // Voronoi Cells
-                AlbedoColorOut = VoronoiCells;
-                break;
-            case 1: // Edge Mask
-                AlbedoColorOut = EdgeMask;
-                break;
-            case 2: // Distance Mask, handled later
-                AlbedoColorOut = 1;
-                break;
-            case 3: // TransformedUV
+            case 0: // TransformedUV
                 AlbedoColorOut = float4(TransformedUV.x, TransformedUV.y, 0, 1);
                 break;
+            case 1: // Voronoi Cells
+                AlbedoColorOut = VoronoiCells;
+                break;
+            case 2: // Edge Mask
+                AlbedoColorOut = EdgeMask;
+                break;
             default:
-                AlbedoColorOut = 1;
+                AlbedoColorOut = 0;
                 break;
         }
         
@@ -168,12 +168,11 @@ void GetSeamlessMaterialColor(
 
 void SampleSeamlessMaterial_float(
     float2 UV, float3 TangentNormalVector,
-    bool DistanceBlendingEnabled, float2 DistanceBlendMinMax, // Distance Blending
     float3 WorldPosition, float3 CameraPosition, // Positions
-    int SurfaceType, int DistanceBlendingMode, // Enums
+    int SurfaceType, float DebuggingIndex, // Enums
 
     // Base Material
-    float2 BaseTiling, float2 BaseOffset,
+    float2 BaseTiling, float2 BaseOffset, // Tiling & Offset
     float BaseAlphaClipping, // Alpha Clipping
     float BaseSettingToggles, float BaseAssignedTextures, // Settings
     float BaseNoiseAngleOffset, float BaseNoiseScale, float2 BaseNoiseScalingMinMax, float2 BaseRandomiseRotationMinMax, // Noise
@@ -186,7 +185,9 @@ void SampleSeamlessMaterial_float(
     UnityTexture2D BaseEmissionMap, float3 BaseEmissionColor, // Emission
 
     // Far Material
-    float2 FarTiling, float2 FarOffset,
+    bool DistanceBlendingEnabled, float2 DistanceBlendMinMax, int DistanceBlendingMode, // Distance Blending
+
+    float2 FarTiling, float2 FarOffset, // Tiling & Offset
     float FarAlphaClipping, // Alpha Clipping
     float FarSettingToggles, float FarAssignedTextures, // Settings
     float FarNoiseAngleOffset, float FarNoiseScale, float2 FarNoiseScalingMinMax, float2 FarRandomiseRotationMinMax, // Noise
@@ -198,7 +199,22 @@ void SampleSeamlessMaterial_float(
     UnityTexture2D FarOcclussionMap, float FarOcclussionStrength, // Occlussion
     UnityTexture2D FarEmissionMap, float3 FarEmissionColor, // Emission
 
-    float DebuggingIndex, // Debugging
+    // Blend Material
+    bool MaterialBlendEnabled, int BlendMaskType, float BlendMaskOpacity, float BlendMaskStrength, // Material Blending
+    float BlendMaskNoiseScale, float2 BlendMaskNoiseOffset, // Noise Blend Mask
+    UnityTexture2D BlendMaskTexture, float2 BlendMaskTextureScale, float2 BlendMaskTextureOffset, // Texture Blend Mask
+
+    float2 BlendTiling, float2 BlendOffset, // Tiling & Offset
+    float BlendAlphaClipping, // Alpha Clipping
+    float BlendSettingToggles, float BlendAssignedTextures, // Settings
+    float BlendNoiseAngleOffset, float BlendNoiseScale, float2 BlendNoiseScalingMinMax, float2 BlendRandomiseRotationMinMax, // Noise
+    UnityTexture2D BlendAlbedo, float4 BlendAlbedoTint, // Albedo
+    UnityTexture2D BlendMetallicMap, float BlendMetallic, // Metallic
+    UnityTexture2D BlendSmoothnessMap, float BlendSmoothness, // Smoothness
+    UnityTexture2D BlendRoughnessMap, float BlendRoughness, // Roughness
+    UnityTexture2D BlendNormalMap, float BlendNormalScale, // Normal
+    UnityTexture2D BlendOcclussionMap, float BlendOcclussionStrength, // Occlussion
+    UnityTexture2D BlendEmissionMap, float3 BlendEmissionColor, // Emission
 
     // Outputs
     out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut)
@@ -282,7 +298,7 @@ void SampleSeamlessMaterial_float(
         }
         
         // Distance Mask Debug
-        if (DebuggingIndex == 2)
+        if (DebuggingIndex == 3)
             albedoColor = farDistance;
         
         // Combine Far with Base
@@ -292,6 +308,64 @@ void SampleSeamlessMaterial_float(
         smoothness = lerp(smoothness, farSmoothness, farDistance);
         occlussion = lerp(occlussion, farOcclussion, farDistance);
         emissionColor = lerp(emissionColor, farEmissionColor, farDistance);
+    }
+    
+    // --------------------- Material Blending ----------------------- //
+    
+    if (MaterialBlendEnabled) {
+        // Get mask of blended material
+        float materialMask= 0;
+        switch (BlendMaskType) {
+            case 0: // Perlin Noise
+                materialMask = ClassicNoise(UV * BlendMaskNoiseScale + BlendMaskNoiseOffset);
+                break;
+            case 1: // Simplex Noise
+                materialMask = SimplexNoise(UV * BlendMaskNoiseScale + BlendMaskNoiseOffset) * 2;
+                break;
+            case 2: // Custom Texture
+                materialMask = SAMPLE_TEXTURE2D(BlendMaskTexture, sampler_BlendMaskTexture, UV * BlendMaskTextureScale + BlendMaskTextureOffset);
+                break;
+        }
+        materialMask *= BlendMaskStrength;
+        materialMask = clamp(materialMask, 0, 1);
+        materialMask *= BlendMaskOpacity;
+        
+        if (materialMask != 0) {
+            float4 blendAlbedoColor = 1;
+            float3 blendNormalVector = TangentNormalVector;
+            float blendMetallic = 0;
+            float blendSmoothness = 0;
+            float blendOcclussion = 0;
+            float3 blendEmissionColor = 0;
+            
+            // Sample Blend Material
+            GetSeamlessMaterialColor(
+                    sampler_BlendAlbedo, UV, TangentNormalVector, BlendTiling, BlendOffset,
+                    SurfaceType, BlendAlphaClipping,
+                    BlendSettingToggles, BlendAssignedTextures,
+                    BlendNoiseAngleOffset, BlendNoiseScale, BlendNoiseScalingMinMax, BlendRandomiseRotationMinMax,
+                    BlendAlbedo, BlendAlbedoTint,
+                    BlendNormalMap, BlendNormalScale,
+                    BlendMetallicMap, BlendMetallic,
+                    BlendSmoothnessMap, BlendSmoothness,
+                    BlendRoughnessMap, BlendRoughness,
+                    BlendOcclussionMap, BlendOcclussionStrength,
+                    BlendEmissionMap, BlendEmissionColor,
+                    DebuggingIndex,
+                    blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor);
+            
+            // Combine Blend with Base
+            albedoColor = lerp(albedoColor, blendAlbedoColor, materialMask);
+            normalVector = lerp(normalVector, blendNormalVector, materialMask);
+            metallic = lerp(metallic, blendMetallic, materialMask);
+            smoothness = lerp(smoothness, blendSmoothness, materialMask);
+            occlussion = lerp(occlussion, blendOcclussion, materialMask);
+            emissionColor = lerp(emissionColor, blendEmissionColor, materialMask);
+        }
+        
+        // Material mask debugging
+        if (DebuggingIndex == 4)
+            albedoColor = materialMask;
     }
     
     // --------------------------------------------------------------- //

@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8263710395087972115
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 0
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RocksSeamless
+  m_Name: TerrainTest
   m_Shader: {fileID: -6465566751694194690, guid: 29910ba4e1bdb43449ff3224579434bf, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -19,25 +32,20 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
-    TerrainCompatible: true
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 4ccd39d91311d4b479cebba0f41b1d58, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseAlbedo:
-        m_Texture: {fileID: 2800000, guid: 4ccd39d91311d4b479cebba0f41b1d58, type: 3}
+        m_Texture: {fileID: 2800000, guid: ea45f0a9b95ba6f46ac88da3ecd75c43, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseEmissionMap:
-        m_Texture: {fileID: 2800000, guid: ea45f0a9b95ba6f46ac88da3ecd75c43, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMetallicMap:
@@ -45,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseNormalMap:
-        m_Texture: {fileID: 2800000, guid: cdf5fae1b9a5cc0438d38c8e5d8ea38e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3c1855e63c3bf314995f39546f925082, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseOcclussionMap:
@@ -53,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseRoughnessMap:
-        m_Texture: {fileID: 2800000, guid: c16f3b1f06ca7e9438d5d9ce402bc3ed, type: 3}
+        m_Texture: {fileID: 2800000, guid: abe0a420271706a48b62771323b1e9ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseSmoothnessMap:
@@ -61,7 +69,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendAlbedo:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 57bb8def7c2a8e74887892d92f1bdf4e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendEmissionMap:
@@ -92,6 +100,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -117,38 +141,26 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FarRoughnessMap:
-        m_Texture: {fileID: 2800000, guid: c16f3b1f06ca7e9438d5d9ce402bc3ed, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FarSmoothnessMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MetallicMap:
+    - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: cdf5fae1b9a5cc0438d38c8e5d8ea38e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _RoughnessMap:
-        m_Texture: {fileID: 2800000, guid: c16f3b1f06ca7e9438d5d9ce402bc3ed, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SmoothnessMap:
+    - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture:
-        m_Texture: {fileID: 2800000, guid: e45be6b504e9577469d55c289d8b4e4a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texture2D:
+    - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture2D_Array:
+    - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -167,31 +179,20 @@ Material:
     - _BUILTIN_ZWrite: 1
     - _BUILTIN_ZWriteControl: 0
     - _BaseAlphaClipping: 0.5
-    - _BaseAssignedTextures: 44
-    - _BaseDebuggingIndex: 0
-    - _BaseDebuggingValues: 0
-    - _BaseEmission: 0
-    - _BaseEmissionEnabled: 0
+    - _BaseAssignedTextures: 12
     - _BaseMetallic: 0
     - _BaseNoiseAngleOffset: 2
-    - _BaseNoiseEnabled: 1
     - _BaseNoiseScale: 5
     - _BaseNormalScale: 1
-    - _BaseOcclussion: 0
-    - _BaseOcclussionStrength: 0
-    - _BaseRandomiseNoiseScaling: 1
-    - _BaseRandomiseRotation: 1
+    - _BaseOcclussionStrength: 1
     - _BaseRoughness: 0
     - _BaseSettingToggles: 7
     - _BaseSmoothness: 0
-    - _BaseSmoothnessEnabled: 0
-    - _BaseTexturesAssigned: 0
-    - _BaseTransparentEnabled: 0
     - _BlendAlphaClipping: 0.5
     - _BlendAssignedTextures: 0
-    - _BlendMaskNoiseScale: 1
+    - _BlendMaskNoiseScale: 10.29
     - _BlendMaskOpacity: 1
-    - _BlendMaskStrength: 5
+    - _BlendMaskStrength: 1
     - _BlendMetallic: 0
     - _BlendNoiseAngleOffset: 2
     - _BlendNoiseScale: 5
@@ -200,60 +201,44 @@ Material:
     - _BlendRoughness: 0
     - _BlendSettingToggles: 15
     - _BlendSmoothness: 0
-    - _Boolean: 0
+    - _BumpScale: 1
+    - _Cutoff: 0.5
     - _DISTANCEBLENDMODE: 0
     - _DebuggingIndex: -1
-    - _Distance: 100
+    - _DetailNormalMapScale: 1
     - _DistanceBlendingEnabled: 1
-    - _DistanceFade: 0
-    - _Emission: 0
+    - _DstBlend: 0
     - _FarAlphaClipping: 0.5
-    - _FarAssignedTextures: 4
-    - _FarDebuggingIndex: 0
-    - _FarDebuggingValues: 0
-    - _FarDistance: 100
-    - _FarDistanceFade: 10
-    - _FarEmission: 0
-    - _FarEmissionEnabled: 0
+    - _FarAssignedTextures: 0
     - _FarMetallic: 0
     - _FarNoiseAngleOffset: 2
-    - _FarNoiseEnabled: 1
     - _FarNoiseScale: 5
     - _FarNormalScale: 1
-    - _FarOcclussionStrength: 0
-    - _FarRandomiseNoiseScaling: 1
-    - _FarRandomiseRotation: 1
+    - _FarOcclussionStrength: 1
     - _FarRoughness: 0
     - _FarSettingToggles: 15
     - _FarSmoothness: 0
-    - _FarSmoothnessEnabled: 0
-    - _FarTextureScale: 0.3
-    - _FarTexturesAssigned: 0
-    - _FarTransparentEnabled: 0
-    - _Float: 5
-    - _MaterialBlendEnabled: 0
-    - _MaxRotation: 360
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _MaterialBlendEnabled: 1
     - _Metallic: 0
-    - _NoiseAngleOffset: 2
-    - _NoiseEdgeTextureScale: 1.17
-    - _NoiseScale: 3
-    - _RandomiseNoiseScaling: 1
-    - _RandomiseScaling: 1
-    - _Rotation: 0
-    - _Roughness: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
     - _SURFACETYPE: 0
-    - _Smoothness: 0
-    - _SmoothnessEnabled: 1
-    - _Transparent: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
     m_Colors:
     - _BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseEmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BaseEmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _BaseNoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
-    - _BaseOcclussionMap: {r: 0, g: 0, b: 0, a: 0}
     - _BaseOffset: {r: 0, g: 0, b: 0, a: 0}
     - _BaseRandomiseRotationMinMax: {r: 0, g: 360, b: 0, a: 0}
-    - _BaseScale: {r: 4, g: 4, b: 0, a: 0}
-    - _BaseTiling: {r: 4, g: 4, b: 0, a: 0}
+    - _BaseScale: {r: 20, g: 20, b: 0, a: 0}
     - _BlendAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _BlendMaskNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
@@ -262,32 +247,14 @@ Material:
     - _BlendNoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
     - _BlendOffset: {r: 0, g: 0, b: 0, a: 0}
     - _BlendRandomiseRotationMinMax: {r: 0, g: 360, b: 0, a: 0}
-    - _BlendScale: {r: 1, g: 1, b: 0, a: 0}
-    - _DistanceBlendMinMax: {r: 60, g: 80, b: 0, a: 0}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _BlendScale: {r: 5, g: 5, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DistanceBlendMinMax: {r: 100, g: 150, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FarAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
-    - _FarEmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FarEmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _FarNoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
     - _FarOffset: {r: 0, g: 0, b: 0, a: 0}
     - _FarRandomiseRotationMinMax: {r: 0, g: 360, b: 0, a: 0}
-    - _FarScale: {r: 2, g: 2, b: 0, a: 0}
-    - _FarTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _NoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
-    - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _ScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
-    - _Tiling: {r: 4, g: 4, b: 0, a: 0}
-    - _Vector2: {r: 0.23, g: -1.5, b: 0, a: 0}
+    - _FarScale: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &6940397157033256701
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 0

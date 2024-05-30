@@ -25,6 +25,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _BLENDMASKTYPE_SIMPLEX_NOISE
   - _DISTANCEBLENDMODE_TILING_OFFSET
   - _SURFACETYPE_OPAQUE
   m_InvalidKeywords: []
@@ -67,6 +68,34 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BlendAlbedo:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BlendEmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BlendMetallicMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BlendNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BlendOcclussionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BlendRoughnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BlendSmoothnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _FarAlbedo:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -97,6 +126,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BLENDMASKTYPE: 0
     - _BUILTIN_AlphaClip: 0
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 2
@@ -122,6 +152,12 @@ Material:
     - _BaseSettingToggles: 7
     - _BaseSmoothness: 0
     - _BaseSmoothnessEnabled: 0
+    - _BlendAlphaClipping: 0.5
+    - _BlendMetallic: 0
+    - _BlendNormalScale: 1
+    - _BlendOcclussionStrength: 1
+    - _BlendRoughness: 0
+    - _BlendSmoothness: 0
     - _DISTANCEBLENDMODE: 0
     - _DebuggingIndex: -1
     - _DistanceBlendingEnabled: 0
@@ -148,8 +184,12 @@ Material:
     - _BaseNoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
     - _BaseOcclussionMap: {r: 0, g: 0, b: 0, a: 0}
     - _BaseOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseRandomiseRotationMinMax: {r: -20, g: 20, b: 0, a: 0}
+    - _BaseRandomiseRotationMinMax: {r: -20, g: 0, b: 0, a: 0}
     - _BaseScale: {r: 4, g: 4, b: 0, a: 0}
+    - _BlendAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
+    - _BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _BlendOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _BlendScale: {r: 1, g: 1, b: 0, a: 0}
     - _DistanceBlendMinMax: {r: 60, g: 80, b: 0, a: 0}
     - _FarAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _FarEmissionColor: {r: 0, g: 0, b: 0, a: 0}
