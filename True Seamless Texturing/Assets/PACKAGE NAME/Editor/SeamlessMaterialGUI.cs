@@ -368,9 +368,34 @@ public class SeamlessMaterialGUI : ShaderGUI
 
         if (materialBlendingEnabled) {
             // Material Property
+            MaterialProperty blendOverrideDistanceBlendingProp = FindProperty($"_BlendOverrideDistanceBlending");
+            MaterialProperty blendOverrideDistanceBlendingTOProp = FindProperty($"_BlendOverrideDistanceBlendingTO");
             MaterialProperty blendMaskTypeProp = FindProperty($"_BLENDMASKTYPE");
             MaterialProperty blendMaskOpacityProp = FindProperty($"_BlendMaskOpacity");
             MaterialProperty blendMaskStrengthProp = FindProperty($"_BlendMaskStrength");
+
+            MaterialProperty distanceBlendingModeProp = FindProperty($"_DISTANCEBLENDMODE");
+            int distanceBlendingMode = (int)distanceBlendingModeProp.floatValue;
+
+            // Distance Blending Enabled
+            GUILayout.BeginHorizontal();
+
+            EditorGUI.BeginChangeCheck();
+            bool blendDistanceBlending = blendOverrideDistanceBlendingProp.floatValue == 1 ? true : false;
+            string distanceBlendingEnabledStyle = blendDistanceBlending && distanceBlendingMode == 0 ? "ButtonLeft" : "Button";
+            blendDistanceBlending = GUILayout.Toggle(blendDistanceBlending, "Override Distance Blending", distanceBlendingEnabledStyle);
+            if (EditorGUI.EndChangeCheck())
+                blendOverrideDistanceBlendingProp.floatValue = blendDistanceBlending ? 1 : 0;
+
+            if (blendDistanceBlending && distanceBlendingMode == 0) {
+                EditorGUI.BeginChangeCheck();
+                bool blendDistanceBlendingTO = blendOverrideDistanceBlendingTOProp.floatValue == 1 ? true : false;
+                blendDistanceBlendingTO = GUILayout.Toggle(blendDistanceBlendingTO, "Override Tiling & Offset", "ButtonRight");
+                if (EditorGUI.EndChangeCheck())
+                    blendOverrideDistanceBlendingTOProp.floatValue = blendDistanceBlendingTO ? 1 : 0;
+            }
+
+            GUILayout.EndHorizontal();
 
             GUILayout.Space(5);
 
@@ -378,13 +403,13 @@ public class SeamlessMaterialGUI : ShaderGUI
             DrawHeaderLabel("Mask");
 
             _editor.ShaderProperty(blendMaskTypeProp, "Mask Type");
-            int distanceBlendingMode = (int)blendMaskTypeProp.floatValue;
+            int blendMaskType = (int)blendMaskTypeProp.floatValue;
 
             _editor.RangeProperty(blendMaskOpacityProp, "Mask Opacity");
 
             _editor.FloatProperty(blendMaskStrengthProp, "Mask Strength");
 
-            if (distanceBlendingMode < 2) { // Noise
+            if (blendMaskType < 2) { // Noise
                 // Material Properties
                 MaterialProperty blendMaskNoiseScaleProp = FindProperty($"_BlendMaskNoiseScale");
                 MaterialProperty blendMaskNoiseOffsetProp = FindProperty($"_BlendMaskNoiseOffset");
