@@ -12,7 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _BLENDMASKTYPE_SIMPLEX_NOISE
+  - _BLENDMASKTYPE_PERLIN_NOISE
   - _BUILTIN_SURFACE_TYPE_TRANSPARENT
   - _DISTANCEBLENDMODE_TILING_OFFSET
   - _SURFACETYPE_TRANSPARENT
@@ -63,6 +63,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendEmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BlendMaskTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -145,10 +149,19 @@ Material:
     - _BaseSmoothnessEnabled: 1
     - _BaseTransparentEnabled: 0
     - _BlendAlphaClipping: 0.5
+    - _BlendAssignedTextures: 0
+    - _BlendMaskNoiseScale: 10
+    - _BlendMaskOpacity: 1
+    - _BlendMaskStrength: 1
     - _BlendMetallic: 0
+    - _BlendNoiseAngleOffset: 2
+    - _BlendNoiseScale: 5
     - _BlendNormalScale: 1
     - _BlendOcclussionStrength: 1
+    - _BlendOverrideDistanceBlending: 0
+    - _BlendOverrideDistanceBlendingTO: 1
     - _BlendRoughness: 0
+    - _BlendSettingToggles: 15
     - _BlendSmoothness: 0
     - _Boolean: 0
     - _DISTANCEBLENDMODE: 0
@@ -170,6 +183,7 @@ Material:
     - _FarSmoothnessEnabled: 1
     - _FarTransparentEnabled: 0
     - _Float: 0
+    - _MaterialBlendEnabled: 0
     - _SURFACETYPE: 2
     - _Transparent: 0
     m_Colors:
@@ -182,7 +196,12 @@ Material:
     - _BaseScale: {r: 1, g: 1, b: 0, a: 0}
     - _BlendAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _BlendMaskNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _BlendMaskTextureOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _BlendMaskTextureScale: {r: 1, g: 1, b: 0, a: 0}
+    - _BlendNoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
     - _BlendOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _BlendRandomiseRotationMinMax: {r: 0, g: 360, b: 0, a: 0}
     - _BlendScale: {r: 1, g: 1, b: 0, a: 0}
     - _DistanceBlendMinMax: {r: 40, g: 60, b: 0, a: 0}
     - _FarAlbedoTint: {r: 1, g: 1, b: 1, a: 1}

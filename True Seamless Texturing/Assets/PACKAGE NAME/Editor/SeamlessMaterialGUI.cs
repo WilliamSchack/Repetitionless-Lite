@@ -9,6 +9,9 @@ public class SeamlessMaterialGUI : ShaderGUI
 
     #region Variables
     // Constants
+    private const float LINE_HEIGHT = 18.0f;
+    private const float LINE_SPACING = 1.5f;
+
     private const int HEADER_PADDING = 4;
     private const int SETTING_SPACING = 4;
 
@@ -25,8 +28,7 @@ public class SeamlessMaterialGUI : ShaderGUI
 
     private const int BACKGROUND_CORNER_RADIUS = 10;
 
-    private const float LINE_HEIGHT = 18.0f;
-    private const float LINE_SPACING = 1.5f;
+    private const int SMALL_TEXT_MAX_WIDTH = 450;
 
     // Material Helpers
     private Material _material;
@@ -57,6 +59,11 @@ public class SeamlessMaterialGUI : ShaderGUI
     private MaterialProperty FindProperty(string name)
     {
         return FindProperty(name, _properties);
+    }
+
+    private string GetScaledText(string largeText, string smallText)
+    {
+        return Screen.width <= SMALL_TEXT_MAX_WIDTH ? smallText : largeText;
     }
 
     private void DrawHeaderLabel(string text)
@@ -367,37 +374,14 @@ public class SeamlessMaterialGUI : ShaderGUI
         bool materialBlendingEnabled = DrawMajorToggleButton(materialBlendingEnabledProp, "Material Blending");
 
         if (materialBlendingEnabled) {
-            // Material Property
+            // Material Properties
             MaterialProperty blendOverrideDistanceBlendingProp = FindProperty($"_BlendOverrideDistanceBlending");
             MaterialProperty blendOverrideDistanceBlendingTOProp = FindProperty($"_BlendOverrideDistanceBlendingTO");
             MaterialProperty blendMaskTypeProp = FindProperty($"_BLENDMASKTYPE");
             MaterialProperty blendMaskOpacityProp = FindProperty($"_BlendMaskOpacity");
             MaterialProperty blendMaskStrengthProp = FindProperty($"_BlendMaskStrength");
 
-            MaterialProperty distanceBlendingModeProp = FindProperty($"_DISTANCEBLENDMODE");
-            int distanceBlendingMode = (int)distanceBlendingModeProp.floatValue;
-
-            // Distance Blending Enabled
-            GUILayout.BeginHorizontal();
-
-            EditorGUI.BeginChangeCheck();
-            bool blendDistanceBlending = blendOverrideDistanceBlendingProp.floatValue == 1 ? true : false;
-            string distanceBlendingEnabledStyle = blendDistanceBlending && distanceBlendingMode == 0 ? "ButtonLeft" : "Button";
-            blendDistanceBlending = GUILayout.Toggle(blendDistanceBlending, "Override Distance Blending", distanceBlendingEnabledStyle);
-            if (EditorGUI.EndChangeCheck())
-                blendOverrideDistanceBlendingProp.floatValue = blendDistanceBlending ? 1 : 0;
-
-            if (blendDistanceBlending && distanceBlendingMode == 0) {
-                EditorGUI.BeginChangeCheck();
-                bool blendDistanceBlendingTO = blendOverrideDistanceBlendingTOProp.floatValue == 1 ? true : false;
-                blendDistanceBlendingTO = GUILayout.Toggle(blendDistanceBlendingTO, "Override Tiling & Offset", "ButtonRight");
-                if (EditorGUI.EndChangeCheck())
-                    blendOverrideDistanceBlendingTOProp.floatValue = blendDistanceBlendingTO ? 1 : 0;
-            }
-
-            GUILayout.EndHorizontal();
-
-            GUILayout.Space(5);
+            MaterialProperty distanceBlendingEnabledProp = FindProperty($"_DistanceBlendingEnabled");
 
             // Mask
             DrawHeaderLabel("Mask");
@@ -416,7 +400,7 @@ public class SeamlessMaterialGUI : ShaderGUI
 
                 // Scale
                 _editor.FloatProperty(blendMaskNoiseScaleProp, "Noise Scale");
-                
+
                 // Offset
                 EditorGUI.BeginChangeCheck();
                 Vector2 randomiseRotationMinMax = new Vector2(blendMaskNoiseOffsetProp.vectorValue.x, blendMaskNoiseOffsetProp.vectorValue.y);
@@ -438,6 +422,49 @@ public class SeamlessMaterialGUI : ShaderGUI
             }
 
             GUILayout.Space(10);
+
+            // Distance Blending
+            bool distanceBlendingEnabled = distanceBlendingEnabledProp.floatValue == 1 ? true : false;
+
+            if (distanceBlendingEnabled) {
+                MaterialProperty distanceBlendingModeProp = FindProperty($"_DISTANCEBLENDMODE");
+                int distanceBlendingMode = (int)distanceBlendingModeProp.floatValue;
+
+                DrawHeaderLabel("Distance Blending");
+
+                GUILayout.BeginHorizontal();
+
+                EditorGUI.BeginChangeCheck();
+                bool blendDistanceBlending = blendOverrideDistanceBlendingProp.floatValue == 1 ? true : false;
+                string distanceBlendingEnabledStyle = blendDistanceBlending && distanceBlendingMode == 0 ? "ButtonLeft" : "Button";
+                blendDistanceBlending = GUILayout.Toggle(blendDistanceBlending, GetScaledText("Override Distance Blending", "ODB"), distanceBlendingEnabledStyle);
+                if (EditorGUI.EndChangeCheck())
+                    blendOverrideDistanceBlendingProp.floatValue = blendDistanceBlending ? 1 : 0;
+
+                bool endedHorizontal = false;
+                if (blendDistanceBlending && distanceBlendingMode == 0) {
+                    EditorGUI.BeginChangeCheck();
+                    bool blendDistanceBlendingTO = blendOverrideDistanceBlendingTOProp.floatValue == 1 ? true : false;
+                    blendDistanceBlendingTO = GUILayout.Toggle(blendDistanceBlendingTO, GetScaledText("Override Tiling & Offset", "OTO"), "ButtonRight");
+                    if (EditorGUI.EndChangeCheck())
+                        blendOverrideDistanceBlendingTOProp.floatValue = blendDistanceBlendingTO ? 1 : 0;
+
+                    endedHorizontal = true;
+                    GUILayout.EndHorizontal();
+
+                    if (blendDistanceBlendingTO) {
+                        MaterialProperty blendDistanceBlendScaleProp = FindProperty($"_BlendDistanceBlendingScale");
+                        MaterialProperty blendDistanceBlendOffsetProp = FindProperty($"_BlendDistanceBlendingOffset");
+
+                        DrawTilingOffset(blendDistanceBlendScaleProp, blendDistanceBlendOffsetProp);
+                    }
+                }
+
+                if(!endedHorizontal)
+                    GUILayout.EndHorizontal();
+
+                GUILayout.Space(10);
+            }
 
             // Material
             DrawMaterialGUI("Blend");
@@ -474,7 +501,6 @@ public class SeamlessMaterialGUI : ShaderGUI
 
             // Selection Grid
             string[] debugValues = new string[] {
-                "Transformed UV",
                 "Voronoi Cells",
                 "Edge Mask",
                 "Distance Mask",
@@ -515,14 +541,14 @@ public class SeamlessMaterialGUI : ShaderGUI
 
         // Noise Enabled
         string noiseEnabledStyle = noiseEnabled ? "ButtonLeft" : "Button";
-        noiseEnabled = GUILayout.Toggle(noiseEnabled, "Noise", noiseEnabledStyle);
+        noiseEnabled = GUILayout.Toggle(noiseEnabled, GetScaledText("Noise", "N"), noiseEnabledStyle);
 
         if (noiseEnabled) {
             // Noise Scaling Enabled
-            randomiseNoiseScaling = GUILayout.Toggle(randomiseNoiseScaling, "Random Scaling", "ButtonMid");
+            randomiseNoiseScaling = GUILayout.Toggle(randomiseNoiseScaling, GetScaledText("Random Scaling", "RS"), "ButtonMid");
 
             // Randomise Rotation Enabled
-            randomiseRotation = GUILayout.Toggle(randomiseRotation, "Random Rotation", "ButtonRight");
+            randomiseRotation = GUILayout.Toggle(randomiseRotation, GetScaledText("Random Rotation", "RR"), "ButtonRight");
         }
 
         GUILayout.FlexibleSpace();
@@ -530,7 +556,7 @@ public class SeamlessMaterialGUI : ShaderGUI
         // Smoothness/Roughness Toggle
         EditorGUI.BeginChangeCheck();
         float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
-        srSelected = GUILayout.Toolbar((int)srSelected, new string[] { "Smooth", "Rough" });
+        srSelected = GUILayout.Toolbar((int)srSelected, new string[] { GetScaledText("Smooth", "S"), GetScaledText("Rough", "R") });
         if (EditorGUI.EndChangeCheck())
             smoothnessEnabled = srSelected == 1.0f ? false : true;
 

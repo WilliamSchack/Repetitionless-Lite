@@ -104,13 +104,10 @@ void GetSeamlessMaterialColor(
     // Debugging
     if (DebuggingIndex != -1) {
         switch (DebuggingIndex) {
-            case 0: // TransformedUV
-                AlbedoColorOut = float4(TransformedUV.x, TransformedUV.y, 0, 1);
-                break;
-            case 1: // Voronoi Cells
+            case 0: // Voronoi Cells
                 AlbedoColorOut = VoronoiCells;
                 break;
-            case 2: // Edge Mask
+            case 1: // Edge Mask
                 AlbedoColorOut = EdgeMask;
                 break;
             default:
@@ -200,7 +197,9 @@ void SampleSeamlessMaterial_float(
     UnityTexture2D FarEmissionMap, float3 FarEmissionColor, // Emission
 
     // Blend Material
-    bool MaterialBlendEnabled, bool BlendOverrideDistanceBlending, bool BlendOverrideDistanceBlendingTO, int BlendMaskType, float BlendMaskOpacity, float BlendMaskStrength, // Material Blending
+    bool MaterialBlendEnabled,
+    bool BlendOverrideDistanceBlending, bool BlendOverrideDistanceBlendingTO, float2 BlendDistanceBlendingScale, float2 BlendDistanceBlendingOffset,
+    int BlendMaskType, float BlendMaskOpacity, float BlendMaskStrength,
     float BlendMaskNoiseScale, float2 BlendMaskNoiseOffset, // Noise Blend Mask
     UnityTexture2D BlendMaskTexture, float2 BlendMaskTextureScale, float2 BlendMaskTextureOffset, // Texture Blend Mask
 
@@ -369,10 +368,10 @@ void SampleSeamlessMaterial_float(
                 
                 float2 Tiling = BlendTiling;
                 float2 Offset = BlendOffset;
-                if (DistanceBlendingMode == 0 && !BlendOverrideDistanceBlendingTO)
+                if (DistanceBlendingMode == 0)
                 {
-                    Tiling = FarTiling;
-                    Offset = FarOffset;
+                    Tiling = BlendOverrideDistanceBlendingTO ? BlendDistanceBlendingScale : FarTiling;
+                    Offset = BlendOverrideDistanceBlendingTO ? BlendDistanceBlendingOffset : FarOffset;
                 }
                 
                 // Sample Material Blending Material
@@ -414,10 +413,10 @@ void SampleSeamlessMaterial_float(
     
     // Debugging
     switch (DebuggingIndex) {
-        case 3: // Distance Mask
+        case 2: // Distance Mask
             albedoColor = farDistance;
             break;
-        case 4: // Blend Material mask
+        case 3: // Blend Material mask
             albedoColor = materialMask;
             break;
     }
