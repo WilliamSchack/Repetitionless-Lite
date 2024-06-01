@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEditor;
+using Unity.VisualScripting;
 
 #if UNITY_EDITOR
 public class SeamlessMaterialGUI : ShaderGUI
@@ -10,7 +11,7 @@ public class SeamlessMaterialGUI : ShaderGUI
     #region Variables
     // Constants
     private const float LINE_HEIGHT = 18.0f;
-    private const float LINE_SPACING = 1.5f;
+    private const float LINE_SPACING = 2.0f;
 
     private const int HEADER_PADDING = 4;
     private const int SETTING_SPACING = 4;
@@ -61,6 +62,14 @@ public class SeamlessMaterialGUI : ShaderGUI
         return FindProperty(name, _properties);
     }
 
+    private Rect GetLineRect(float ?heightOverride = null)
+    {
+        if (heightOverride != null)
+            return EditorGUILayout.GetControlRect(true, heightOverride.Value, EditorStyles.layerMaskField);
+        else
+            return EditorGUILayout.GetControlRect(true, LINE_HEIGHT + LINE_SPACING, EditorStyles.layerMaskField);
+    }
+
     private string GetScaledText(string largeText, string smallText)
     {
         return Screen.width <= SMALL_TEXT_MAX_WIDTH ? smallText : largeText;
@@ -70,11 +79,11 @@ public class SeamlessMaterialGUI : ShaderGUI
     {
         GUIContent textGUIContent = new GUIContent(text);
         float height = _boldHeaderStyle.CalcHeight(textGUIContent, Screen.width);
-        Rect rect = EditorGUILayout.GetControlRect(true, height, EditorStyles.layerMaskField);
+        Rect rect = GetLineRect(height);
         GUI.Label(rect, textGUIContent, _boldHeaderStyle);
     }
 
-    private bool DrawMajorToggleButton(MaterialProperty property, string Label)
+    private bool DrawMajorToggleButton(MaterialProperty property, string label)
     {
         EditorGUI.BeginChangeCheck();
         bool enabled = property.floatValue == 1 ? true : false;
@@ -82,7 +91,7 @@ public class SeamlessMaterialGUI : ShaderGUI
         Color prevBackgroundColor = GUI.backgroundColor;
         GUI.backgroundColor = enabled ? Color.green : Color.red;
 
-        enabled = GUILayout.Toggle(enabled, Label, _majorToggleButton);
+        enabled = GUILayout.Toggle(enabled, label, _majorToggleButton);
         if (EditorGUI.EndChangeCheck())
             property.floatValue = enabled ? 1.0f : 0.0f;
 
@@ -91,14 +100,51 @@ public class SeamlessMaterialGUI : ShaderGUI
         return enabled;
     }
 
-    private bool DrawMajorToggleButton(bool enabled, string Label)
+    private bool DrawMajorToggleButton(bool enabled, string label)
     {
         Color prevBackgroundColor = GUI.backgroundColor;
         GUI.backgroundColor = enabled ? Color.green : Color.red;
-        enabled = GUILayout.Toggle(enabled, Label, _majorToggleButton);
+        enabled = GUILayout.Toggle(enabled, label, _majorToggleButton);
         GUI.backgroundColor = prevBackgroundColor;
 
         return enabled;
+    }
+
+    private float DrawTextureWithSlider(MaterialProperty textureProperty, bool sliderCondition, float sliderValue, string label)
+    {
+        Rect rect = GetLineRect();
+        _editor.TexturePropertyMiniThumbnail(rect, textureProperty, label, "");
+        if (sliderCondition) {
+            sliderValue = EditorGUI.Slider(MaterialEditor.GetRectAfterLabelWidth(rect), sliderValue, 0, 1);
+        }
+
+        return sliderValue;
+    }
+
+    private Vector2 DrawVector2Field(Vector2 value, string label)
+    {
+        return EditorGUI.Vector2Field(GetLineRect(), label, value);
+    }
+
+    private void DrawTilingOffset(MaterialProperty tilingOffsetProperty)
+    {
+        Vector4 tilingOffset = tilingOffsetProperty.vectorValue;
+        Vector4 oriTilingOffset = tilingOffset;
+
+        EditorGUI.BeginChangeCheck();
+        Vector2 scale = new Vector2(tilingOffset.x, tilingOffset.y);
+        scale = EditorGUI.Vector2Field(GetLineRect(), "Scale", scale);
+        if (EditorGUI.EndChangeCheck())
+            tilingOffset = new Vector4(scale.x, scale.y, tilingOffset.z, tilingOffset.w);
+
+        EditorGUI.BeginChangeCheck();
+        Vector2 offset = new Vector2(tilingOffset.z, tilingOffset.w);
+        offset = EditorGUI.Vector2Field(GetLineRect(), "Offset", offset);
+        if (EditorGUI.EndChangeCheck())
+            tilingOffset = new Vector4(tilingOffset.x, tilingOffset.y, offset.x, offset.y);
+
+        if (tilingOffset != oriTilingOffset)
+            tilingOffsetProperty.vectorValue = tilingOffset;
     }
 
     private void DrawTilingOffset(MaterialProperty tilingProperty, MaterialProperty offsetProperty)
@@ -107,7 +153,8 @@ public class SeamlessMaterialGUI : ShaderGUI
         Vector2 scaleVal = tilingProperty.vectorValue;
         Vector2 offsetVal = offsetProperty.vectorValue;
         Vector4 scaleOffset = new Vector4(scaleVal.x, scaleVal.y, offsetVal.x, offsetVal.y);
-        Rect rect = EditorGUILayout.GetControlRect(true, 2 * (LINE_HEIGHT + LINE_SPACING), EditorStyles.layerMaskField);
+        Rect rect = GetLineRect();
+        rect.height *= 2;
 
         EditorGUI.BeginChangeCheck();
         scaleOffset = MaterialEditor.TextureScaleOffsetProperty(rect, scaleOffset, false);
@@ -122,7 +169,7 @@ public class SeamlessMaterialGUI : ShaderGUI
         GUILayout.Space(GROUP_TOP_PADDING);
 
         // Background, get height from previous OnGUI call
-        Rect borderRect = EditorGUILayout.GetControlRect(false, 0.0f, EditorStyles.layerMaskField);
+        Rect borderRect = GetLineRect(0);
         float startingYPosition = borderRect.position.y;
         borderRect.position += new Vector2(0, -GROUP_TOP_PADDING);
         borderRect.height = backgroundHeight + GROUP_TOP_PADDING + GROUP_BOTTOM_PADDING;
@@ -144,7 +191,7 @@ public class SeamlessMaterialGUI : ShaderGUI
         GUILayout.EndHorizontal();
 
         // Set background height for next OnGUI call
-        Rect endRect = EditorGUILayout.GetControlRect(false, 0.0f, EditorStyles.layerMaskField);
+        Rect endRect = GetLineRect(0);
         float heightDifference = endRect.position.y - startingYPos;
 
         GUILayout.Space(GROUP_BOTTOM_PADDING);
@@ -191,8 +238,6 @@ public class SeamlessMaterialGUI : ShaderGUI
         _debugBackgroundHeight = debuggingEnabled ? DEFAULT_DEBUG_BACKGROUND_HEIGHT : DEFAULT_DISABLED_SETTING_BACKGROUND_HEIGHT;
     }
 
-
-
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
         // Properties can change between calls
@@ -211,24 +256,24 @@ public class SeamlessMaterialGUI : ShaderGUI
 
         // Material Properties
         DrawMaterialPropertiesGUI();
-
+        
         GUILayout.Space(SETTING_SPACING);
-
+        
         // Base Material
         DrawBaseMaterialGUI();
-
+        
         GUILayout.Space(SETTING_SPACING);
-
+        
         // Distance Blend Material
         DrawDistanceBlendGUI();
-
+        
         GUILayout.Space(SETTING_SPACING);
-
+        
         // Material Blend
         DrawMaterialBlendGUI();
-
+        
         GUILayout.Space(SETTING_SPACING);
-
+        
         // Footer Settings
         DrawDebugGUI();
     }
@@ -256,6 +301,7 @@ public class SeamlessMaterialGUI : ShaderGUI
                 case 0: // Opaque
                     _material.renderQueue = (int)RenderQueue.Geometry;
                     _material.SetOverrideTag("RenderType", "Opaque");
+                    _material.DisableKeyword("_BUILTIN_SURFACE_TYPE_TRANSPARENT");
 
                     _material.SetFloat("_BUILTIN_Surface", 0.0f);
                     _material.SetInt("_BUILTIN_SrcBlend", (int)BlendMode.One);
@@ -265,6 +311,7 @@ public class SeamlessMaterialGUI : ShaderGUI
                 case 1: // Cutout
                     _material.renderQueue = (int)RenderQueue.AlphaTest;
                     _material.SetOverrideTag("RenderType", "TransparentCutout");
+                    _material.DisableKeyword("_BUILTIN_SURFACE_TYPE_TRANSPARENT");
 
                     _material.SetFloat("_BUILTIN_Surface", 0.0f);
                     _material.SetInt("_BUILTIN_SrcBlend", (int)BlendMode.One);
@@ -274,6 +321,7 @@ public class SeamlessMaterialGUI : ShaderGUI
                 case 2: // Transparent
                     _material.renderQueue = (int)RenderQueue.Transparent;
                     _material.SetOverrideTag("RenderType", "Transparent");
+                    _material.EnableKeyword("_BUILTIN_SURFACE_TYPE_TRANSPARENT");
 
                     _material.SetFloat("_BUILTIN_Surface", 1.0f);
                     _material.SetInt("_BUILTIN_SrcBlend", (int)BlendMode.SrcAlpha);
@@ -330,8 +378,7 @@ public class SeamlessMaterialGUI : ShaderGUI
             // Distance Blend Min Max
             EditorGUI.BeginChangeCheck();
             Vector2 distanceBlendMinMax = new Vector2(distanceBlendMinMaxProp.vectorValue.x, distanceBlendMinMaxProp.vectorValue.y);
-            Rect rect = EditorGUILayout.GetControlRect(true, LINE_HEIGHT + LINE_SPACING, EditorStyles.layerMaskField);
-            distanceBlendMinMax = EditorGUI.Vector2Field(rect, "Distance Blend Min Max", distanceBlendMinMax);
+            distanceBlendMinMax = EditorGUI.Vector2Field(GetLineRect(), "Distance Blend Min Max", distanceBlendMinMax);
             if (EditorGUI.EndChangeCheck()) {
                 if (distanceBlendMinMax.x < 0) distanceBlendMinMax.x = 0;
                 if (distanceBlendMinMax.y < 0) distanceBlendMinMax.y = 0;
@@ -341,11 +388,10 @@ public class SeamlessMaterialGUI : ShaderGUI
 
             switch (distanceBlendingMode) {
                 case 0: // Tiling & Offset
-                    MaterialProperty scaleProp = FindProperty($"_FarScale");
-                    MaterialProperty offsetProp = FindProperty($"_FarOffset");
+                    MaterialProperty tilingOffsetProp = FindProperty("_FarTilingOffset");
 
                     // Tiling & Offset GUI
-                    DrawTilingOffset(scaleProp, offsetProp);
+                    DrawTilingOffset(tilingOffsetProp);
                     break;
                 case 1: // Material
                     GUILayout.Space(10);
@@ -368,20 +414,25 @@ public class SeamlessMaterialGUI : ShaderGUI
         float backgroundStartingYPos = StartBackground(_materialBlendBackgroundHeight);
 
         // Material Property
-        MaterialProperty materialBlendingEnabledProp = FindProperty($"_MaterialBlendEnabled");
+        MaterialProperty materialBlendingSettingsProp = FindProperty($"_MaterialBlendSettings");
+
+        int materialBlendingSettings = (int)materialBlendingSettingsProp.floatValue;
+        bool materialBlendingEnabled    = (materialBlendingSettings & 1) != 0;
+        bool overrideDistanceBlending   = (materialBlendingSettings & 2) != 0;
+        bool overrideDistanceBlendingTO = (materialBlendingSettings & 4) != 0;
 
         // Material Blend Enabled Toggle
-        bool materialBlendingEnabled = DrawMajorToggleButton(materialBlendingEnabledProp, "Material Blending");
+        materialBlendingEnabled = DrawMajorToggleButton(materialBlendingEnabled, "Material Blending");
 
         if (materialBlendingEnabled) {
             // Material Properties
-            MaterialProperty blendOverrideDistanceBlendingProp = FindProperty($"_BlendOverrideDistanceBlending");
-            MaterialProperty blendOverrideDistanceBlendingTOProp = FindProperty($"_BlendOverrideDistanceBlendingTO");
             MaterialProperty blendMaskTypeProp = FindProperty($"_BLENDMASKTYPE");
-            MaterialProperty blendMaskOpacityProp = FindProperty($"_BlendMaskOpacity");
-            MaterialProperty blendMaskStrengthProp = FindProperty($"_BlendMaskStrength");
-
             MaterialProperty distanceBlendingEnabledProp = FindProperty($"_DistanceBlendingEnabled");
+
+            MaterialProperty materialBlendPropertiesProp = FindProperty($"_MaterialBlendProperties");
+
+            Vector2 materialBlendProperties = materialBlendPropertiesProp.vectorValue;
+            Vector2 oriMaterialBlendProperties = materialBlendProperties;
 
             // Mask
             DrawHeaderLabel("Mask");
@@ -389,36 +440,36 @@ public class SeamlessMaterialGUI : ShaderGUI
             _editor.ShaderProperty(blendMaskTypeProp, "Mask Type");
             int blendMaskType = (int)blendMaskTypeProp.floatValue;
 
-            _editor.RangeProperty(blendMaskOpacityProp, "Mask Opacity");
-
-            _editor.FloatProperty(blendMaskStrengthProp, "Mask Strength");
+            materialBlendProperties.x = EditorGUI.Slider(GetLineRect(), "Mask Opacity", materialBlendProperties.x, 0, 1);
+            materialBlendProperties.y = EditorGUI.FloatField(GetLineRect(), "Mask Strength", materialBlendProperties.y);
 
             if (blendMaskType < 2) { // Noise
                 // Material Properties
-                MaterialProperty blendMaskNoiseScaleProp = FindProperty($"_BlendMaskNoiseScale");
-                MaterialProperty blendMaskNoiseOffsetProp = FindProperty($"_BlendMaskNoiseOffset");
+                MaterialProperty materialBlendNoiseSettingsProp = FindProperty($"_MaterialBlendNoiseSettings");
+
+                Vector3 materialBlendNoiseSettings = materialBlendNoiseSettingsProp.vectorValue;
+                Vector3 oriMaterialBlendNoiseSettings = materialBlendNoiseSettings;
 
                 // Scale
-                _editor.FloatProperty(blendMaskNoiseScaleProp, "Noise Scale");
+                float noiseScale = EditorGUI.FloatField(GetLineRect(), "Noise Scale", materialBlendNoiseSettings.x);
 
                 // Offset
-                EditorGUI.BeginChangeCheck();
-                Vector2 randomiseRotationMinMax = new Vector2(blendMaskNoiseOffsetProp.vectorValue.x, blendMaskNoiseOffsetProp.vectorValue.y);
-                Rect rect = EditorGUILayout.GetControlRect(true, LINE_HEIGHT + LINE_SPACING, EditorStyles.layerMaskField);
-                randomiseRotationMinMax = EditorGUI.Vector2Field(rect, "Noise Offset", randomiseRotationMinMax);
-                if (EditorGUI.EndChangeCheck())
-                    blendMaskNoiseOffsetProp.vectorValue = randomiseRotationMinMax;
+                Vector2 noiseOffset = DrawVector2Field(new Vector2(materialBlendNoiseSettings.y, materialBlendNoiseSettings.z), "Noise Offset");
+
+                materialBlendNoiseSettings = new Vector3(noiseScale, noiseOffset.x, noiseOffset.y);
+
+                if (materialBlendNoiseSettings != oriMaterialBlendNoiseSettings)
+                    materialBlendNoiseSettingsProp.vectorValue = materialBlendNoiseSettings;
             } else { // Custom Texture
                 // Material Properties
-                MaterialProperty blendMaskTexture = FindProperty($"_BlendMaskTexture");
-                MaterialProperty blendMaskScaleProp = FindProperty($"_BlendMaskTextureScale");
-                MaterialProperty blendMaskOffsetProp = FindProperty($"_BlendMaskTextureOffset");
+                MaterialProperty blendMaskTextureProp = FindProperty($"_BlendMaskTexture");
+                MaterialProperty blendMaskTextureTOProp = FindProperty($"_MaterialBlendTilingOffset");
 
                 // Texture
-                _editor.TexturePropertySingleLine(new GUIContent("Blend Mask"), blendMaskTexture);
+                _editor.TexturePropertySingleLine(new GUIContent("Blend Mask"), blendMaskTextureProp);
 
                 // Scale & Offset
-                DrawTilingOffset(blendMaskScaleProp, blendMaskOffsetProp);
+                DrawTilingOffset(blendMaskTextureTOProp);
             }
 
             GUILayout.Space(10);
@@ -434,29 +485,20 @@ public class SeamlessMaterialGUI : ShaderGUI
 
                 GUILayout.BeginHorizontal();
 
-                EditorGUI.BeginChangeCheck();
-                bool blendDistanceBlending = blendOverrideDistanceBlendingProp.floatValue == 1 ? true : false;
-                string distanceBlendingEnabledStyle = blendDistanceBlending && distanceBlendingMode == 0 ? "ButtonLeft" : "Button";
-                blendDistanceBlending = GUILayout.Toggle(blendDistanceBlending, GetScaledText("Override Distance Blending", "ODB"), distanceBlendingEnabledStyle);
-                if (EditorGUI.EndChangeCheck())
-                    blendOverrideDistanceBlendingProp.floatValue = blendDistanceBlending ? 1 : 0;
+                string distanceBlendingEnabledStyle = overrideDistanceBlending && distanceBlendingMode == 0 ? "ButtonLeft" : "Button";
+                overrideDistanceBlending = GUILayout.Toggle(overrideDistanceBlending, GetScaledText("Override Distance Blending", "ODB"), distanceBlendingEnabledStyle);
 
                 bool endedHorizontal = false;
-                if (blendDistanceBlending && distanceBlendingMode == 0) {
-                    EditorGUI.BeginChangeCheck();
-                    bool blendDistanceBlendingTO = blendOverrideDistanceBlendingTOProp.floatValue == 1 ? true : false;
-                    blendDistanceBlendingTO = GUILayout.Toggle(blendDistanceBlendingTO, GetScaledText("Override Tiling & Offset", "OTO"), "ButtonRight");
-                    if (EditorGUI.EndChangeCheck())
-                        blendOverrideDistanceBlendingTOProp.floatValue = blendDistanceBlendingTO ? 1 : 0;
+                if (overrideDistanceBlending && distanceBlendingMode == 0) {
+                    overrideDistanceBlendingTO = GUILayout.Toggle(overrideDistanceBlendingTO, GetScaledText("Override Tiling & Offset", "OTO"), "ButtonRight");
 
                     endedHorizontal = true;
                     GUILayout.EndHorizontal();
 
-                    if (blendDistanceBlendingTO) {
-                        MaterialProperty blendDistanceBlendScaleProp = FindProperty($"_BlendDistanceBlendingScale");
-                        MaterialProperty blendDistanceBlendOffsetProp = FindProperty($"_BlendDistanceBlendingOffset");
+                    if (overrideDistanceBlendingTO) {
+                        MaterialProperty blendMaskDistanceTOProp = FindProperty($"_BlendMaskDistanceTO");
 
-                        DrawTilingOffset(blendDistanceBlendScaleProp, blendDistanceBlendOffsetProp);
+                        DrawTilingOffset(blendMaskDistanceTOProp);
                     }
                 }
 
@@ -466,9 +508,16 @@ public class SeamlessMaterialGUI : ShaderGUI
                 GUILayout.Space(10);
             }
 
+            if (materialBlendProperties != oriMaterialBlendProperties)
+                materialBlendPropertiesProp.vectorValue = materialBlendProperties;
+
             // Material
             DrawMaterialGUI("Blend");
         }
+        
+        // Save compressed material blend settings
+        int compressedMaterialBlendSettings = (materialBlendingEnabled ? 1 : 0) | (overrideDistanceBlending ? 2 : 0) | (overrideDistanceBlendingTO ? 4 : 0);
+        materialBlendingSettingsProp.floatValue = compressedMaterialBlendSettings;
 
         // End Background
         float heightDiff = EndBackground(backgroundStartingYPos);
@@ -528,14 +577,14 @@ public class SeamlessMaterialGUI : ShaderGUI
     private void DrawMaterialSettingsGUI(string materialPrefix)
     {
         // Material Properties
-        MaterialProperty settingTogglesProp = FindProperty($"_{materialPrefix}SettingToggles");
+        MaterialProperty settingTogglesProp = FindProperty($"_{materialPrefix}Settings");
 
         EditorGUILayout.BeginHorizontal();
 
         // Get variables from settings prop
-        int settingToggles = (int)settingTogglesProp.floatValue;
+        int settingToggles = (int)settingTogglesProp.vectorValue.x;
         bool noiseEnabled = (settingToggles & 1) != 0;
-        bool randomiseNoiseScaling = (settingToggles & 2) != 0;
+        bool randomiseScaling = (settingToggles & 2) != 0;
         bool randomiseRotation = (settingToggles & 4) != 0;
         bool smoothnessEnabled = (settingToggles & 8) != 0;
 
@@ -545,7 +594,7 @@ public class SeamlessMaterialGUI : ShaderGUI
 
         if (noiseEnabled) {
             // Noise Scaling Enabled
-            randomiseNoiseScaling = GUILayout.Toggle(randomiseNoiseScaling, GetScaledText("Random Scaling", "RS"), "ButtonMid");
+            randomiseScaling = GUILayout.Toggle(randomiseScaling, GetScaledText("Random Scaling", "RS"), "ButtonMid");
 
             // Randomise Rotation Enabled
             randomiseRotation = GUILayout.Toggle(randomiseRotation, GetScaledText("Random Rotation", "RR"), "ButtonRight");
@@ -564,8 +613,8 @@ public class SeamlessMaterialGUI : ShaderGUI
 
         // Enabled Settings, for the shader to determine whether to use textures or values
         // Storing inside of int instead of multiple bools so its only one variable, less to manage
-        int compressedSettingToggles = (noiseEnabled ? 1 : 0) | (randomiseNoiseScaling ? 2 : 0) | (randomiseRotation ? 4 : 0) | (smoothnessEnabled ? 8 : 0);
-        settingTogglesProp.floatValue = compressedSettingToggles;
+        int compressedSettingToggles = (noiseEnabled ? 1 : 0) | (randomiseScaling ? 2 : 0) | (randomiseRotation ? 4 : 0) | (smoothnessEnabled ? 8 : 0);
+        settingTogglesProp.vectorValue = new Vector2(compressedSettingToggles, settingTogglesProp.vectorValue.y);
     }
 
     private void DrawMaterialGUI(string materialPrefix)
@@ -578,36 +627,31 @@ public class SeamlessMaterialGUI : ShaderGUI
         // Material Properties
         MaterialProperty surfaceTypeProp = FindProperty("_SURFACETYPE");
 
-        MaterialProperty settingTogglesProp = FindProperty($"_{materialPrefix}SettingToggles");
-        MaterialProperty assignedTexturesProp = FindProperty($"_{materialPrefix}AssignedTextures");
+        MaterialProperty settingsProp = FindProperty($"_{materialPrefix}Settings");
+        MaterialProperty tilingOffsetProp = FindProperty($"_{materialPrefix}TilingOffset");
 
         MaterialProperty albedoTexProp = FindProperty($"_{materialPrefix}Albedo");
-        MaterialProperty abledoTintProp = FindProperty($"_{materialPrefix}AlbedoTint");
-
         MaterialProperty metallicTexProp = FindProperty($"_{materialPrefix}MetallicMap");
-        MaterialProperty metallicProp = FindProperty($"_{materialPrefix}Metallic");
-
         MaterialProperty smoothnessTexProp = FindProperty($"_{materialPrefix}SmoothnessMap");
-        MaterialProperty smoothnessProp = FindProperty($"_{materialPrefix}Smoothness");
         MaterialProperty roughnessTexProp = FindProperty($"_{materialPrefix}RoughnessMap");
-        MaterialProperty roughnessProp = FindProperty($"_{materialPrefix}Roughness");
-
         MaterialProperty normalTexProp = FindProperty($"_{materialPrefix}NormalMap");
-        MaterialProperty normalScaleProp = FindProperty($"_{materialPrefix}NormalScale");
-
         MaterialProperty occlussionTexProp = FindProperty($"_{materialPrefix}OcclussionMap");
-        MaterialProperty occlussionStrengthProp = FindProperty($"_{materialPrefix}OcclussionStrength");
-
         MaterialProperty emissionTexProp = FindProperty($"_{materialPrefix}EmissionMap");
+
+        MaterialProperty abledoTintProp = FindProperty($"_{materialPrefix}AlbedoTint");
         MaterialProperty emissionColorProp = FindProperty($"_{materialPrefix}EmissionColor");
 
-        MaterialProperty alphaClippingProp = FindProperty($"_{materialPrefix}AlphaClipping");
+        MaterialProperty materialProperties1Prop = FindProperty($"_{materialPrefix}MaterialProperties1");
+        MaterialProperty materialProperties2Prop = FindProperty($"_{materialPrefix}MaterialProperties2");
 
-        MaterialProperty scaleProp = FindProperty($"_{materialPrefix}Scale");
-        MaterialProperty offsetProp = FindProperty($"_{materialPrefix}Offset");
+        Vector4 materialProperties1 = materialProperties1Prop.vectorValue;
+        Vector2 materialProperties2 = materialProperties2Prop.vectorValue;
+        Vector4 oriMaterialProperties1 = materialProperties1;
+        Vector2 oriMaterialProperties2 = materialProperties2;
+
 
         // Get variables from settings prop
-        int settingToggles = (int)settingTogglesProp.floatValue;
+        int settingToggles = (int)settingsProp.vectorValue.x;
         bool noiseEnabled = (settingToggles & 1) != 0;
         bool smoothnessEnabled = (settingToggles & 8) != 0;
 
@@ -620,30 +664,32 @@ public class SeamlessMaterialGUI : ShaderGUI
         bool occlussionAssigned = occlussionTexProp.textureValue != null; // (bits & 16) != 0
         bool emissionAssigned = emissionTexProp.textureValue != null;     // (bits & 32) != 0
         int compressedAssignedTextures = (metallicAssigned ? 1 : 0) | (smoothnessAssigned ? 2 : 0) | (roughnessAssigned ? 4 : 0) | (normalAssigned ? 8 : 0) | (occlussionAssigned ? 16 : 0) | (emissionAssigned ? 32 : 0);
-        assignedTexturesProp.floatValue = compressedAssignedTextures;
+        settingsProp.vectorValue = new Vector2(settingToggles, compressedAssignedTextures);
 
         // Albedo
         _editor.TexturePropertySingleLine(new GUIContent("Albedo"), albedoTexProp, abledoTintProp);
 
         // Metallic
-        _editor.TexturePropertySingleLine(new GUIContent("Metallic"), metallicTexProp, metallicAssigned ? null : metallicProp);
+        materialProperties1.x = DrawTextureWithSlider(metallicTexProp, !metallicAssigned, materialProperties1.x, "Metallic");
 
         // Smoothness/Roughness
         float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
         switch (srSelected) {
             case 0: // Smoothness
-                _editor.TexturePropertySingleLine(new GUIContent("Smoothness"), smoothnessTexProp, smoothnessAssigned ? null : smoothnessProp);
+                materialProperties1.y = DrawTextureWithSlider(smoothnessTexProp, !smoothnessAssigned, materialProperties1.y, "Smoothness");
+
                 break;
             case 1: // Roughness
-                _editor.TexturePropertySingleLine(new GUIContent("Roughness"), roughnessTexProp, roughnessAssigned ? null : roughnessProp);
+                materialProperties1.z = DrawTextureWithSlider(roughnessTexProp, !roughnessAssigned, materialProperties1.z, "Roughness");
+
                 break;
         }
 
         // Normal Map
-        _editor.TexturePropertySingleLine(new GUIContent("Normal Map"), normalTexProp, normalAssigned ? normalScaleProp : null);
+        materialProperties1.w = DrawTextureWithSlider(normalTexProp, normalAssigned, materialProperties1.w, "Normal Map");
 
         // Occlussion Map
-        _editor.TexturePropertySingleLine(new GUIContent("Occlussion"), occlussionTexProp, occlussionAssigned ? occlussionStrengthProp : null);
+        materialProperties2.x = DrawTextureWithSlider(occlussionTexProp, occlussionAssigned, materialProperties2.x, "Occlussion");
 
         // Emission
         EditorGUI.BeginChangeCheck();
@@ -659,60 +705,87 @@ public class SeamlessMaterialGUI : ShaderGUI
 
         // Alpha Clipping
         if (surfaceTypeProp.floatValue == 1.0f) {
-            _editor.RangeProperty(alphaClippingProp, "Alpha Clipping");
+            EditorGUI.BeginChangeCheck();
+            float alphaClippingValue = materialProperties2.y;
+            alphaClippingValue = EditorGUI.Slider(GetLineRect(), "Alpha Clipping", alphaClippingValue, 0, 1);
+            if (EditorGUI.EndChangeCheck())
+                materialProperties2.y = alphaClippingValue;
         }
 
-        // Draw noise settings near end, makes things more clean
+        // Draw noise properties
         if(noiseEnabled) DrawMaterialNoiseGUI(materialPrefix);
-        
+
         // Scale & Offset
-        DrawTilingOffset(scaleProp, offsetProp);
+        DrawTilingOffset(tilingOffsetProp);
+
+        // Assign Properties
+        if (materialProperties1 != oriMaterialProperties1)
+            materialProperties1Prop.vectorValue = materialProperties1;
+        if(materialProperties2 != oriMaterialProperties2)
+            materialProperties2Prop.vectorValue = materialProperties2;
     }
 
     private void DrawMaterialNoiseGUI(string materialPrefix)
     {
         // Material Properties
-        MaterialProperty settingTogglesProp = FindProperty($"_{materialPrefix}SettingToggles");
+        MaterialProperty settingsProp = FindProperty($"_{materialPrefix}Settings");
+        
+        MaterialProperty noiseSettingsProp = FindProperty($"_{materialPrefix}NoiseSettings");
+        MaterialProperty noiseMinMaxProp = FindProperty($"_{materialPrefix}NoiseMinMax");
 
-        MaterialProperty noiseAngleOffsetProp = FindProperty($"_{materialPrefix}NoiseAngleOffset");
-        MaterialProperty noiseScaleProp = FindProperty($"_{materialPrefix}NoiseScale");
+        Vector2 noiseSettings = noiseSettingsProp.vectorValue;
+        Vector4 noiseMinMax = noiseMinMaxProp.vectorValue;
+        Vector2 oriNoiseSettings = noiseSettings;
+        Vector4 oriNoiseMinMax = noiseMinMax;
 
-        MaterialProperty noiseScalingMinMaxProp = FindProperty($"_{materialPrefix}NoiseScalingMinMax");
-
-        MaterialProperty randomiseRotationMinMaxProp = FindProperty($"_{materialPrefix}RandomiseRotationMinMax");
 
         // Get variables from settings prop
-        int settingToggles = (int)settingTogglesProp.floatValue;
+        int settingToggles = (int)settingsProp.vectorValue.x;
         bool randomiseNoiseScaling = (settingToggles & 2) != 0;
         bool randomiseRotation = (settingToggles & 4) != 0;
 
-        // Voronoi Noise
-        _editor.FloatProperty(noiseAngleOffsetProp, "Noise Angle Offset");
-        _editor.FloatProperty(noiseScaleProp, "Noise Scale");
+        // Angle Offset
+        EditorGUI.BeginChangeCheck();
+        float noiseAngleOffsetValue = noiseSettings.x;
+        noiseAngleOffsetValue = EditorGUI.FloatField(GetLineRect(), "Noise Angle Offset", noiseAngleOffsetValue);
+        if (EditorGUI.EndChangeCheck())
+            noiseSettings.x = noiseAngleOffsetValue;
 
         // Scale Randomising
         if (randomiseNoiseScaling) {
+            // Scale
             EditorGUI.BeginChangeCheck();
-            Vector2 scalingMinMax = new Vector2(noiseScalingMinMaxProp.vectorValue.x, noiseScalingMinMaxProp.vectorValue.y);
-            Rect rect = EditorGUILayout.GetControlRect(true, LINE_HEIGHT + LINE_SPACING, EditorStyles.layerMaskField);
-            scalingMinMax = EditorGUI.Vector2Field(rect, "Noise Scaling Min Max", scalingMinMax);
+            float noiseScaleValue = noiseSettings.y;
+            noiseScaleValue = EditorGUI.FloatField(GetLineRect(), "Noise Scale", noiseScaleValue);
+            if (EditorGUI.EndChangeCheck())
+                noiseSettings.y = noiseScaleValue;
+
+            // Scaling Min Max
+            EditorGUI.BeginChangeCheck();
+            Vector2 scalingMinMax = new Vector2(noiseMinMax.x, noiseMinMax.y);
+            scalingMinMax = EditorGUI.Vector2Field(GetLineRect(), "Noise Scaling Min Max", scalingMinMax);
             if (EditorGUI.EndChangeCheck()) {
                 if (scalingMinMax.x < 0) scalingMinMax.x = 0;
                 if (scalingMinMax.y < 0) scalingMinMax.y = 0;
 
-                noiseScalingMinMaxProp.vectorValue = scalingMinMax;
+                noiseMinMax = new Vector4(scalingMinMax.x, scalingMinMax.y, noiseMinMax.z, noiseMinMax.w);
             }
         }
 
         // Rotation Randomising
         if (randomiseRotation) {
             EditorGUI.BeginChangeCheck();
-            Vector2 randomiseRotationMinMax = new Vector2(randomiseRotationMinMaxProp.vectorValue.x, randomiseRotationMinMaxProp.vectorValue.y);
-            Rect rect = EditorGUILayout.GetControlRect(true, LINE_HEIGHT + LINE_SPACING, EditorStyles.layerMaskField);
-            randomiseRotationMinMax = EditorGUI.Vector2Field(rect, "Random Rotation Min Max", randomiseRotationMinMax);
+            Vector2 randomiseRotationMinMax = new Vector2(noiseMinMax.z, noiseMinMax.w);
+            randomiseRotationMinMax = EditorGUI.Vector2Field(GetLineRect(), "Random Rotation Min Max", randomiseRotationMinMax);
             if (EditorGUI.EndChangeCheck())
-                randomiseRotationMinMaxProp.vectorValue = randomiseRotationMinMax;
+                noiseMinMax = new Vector4(noiseMinMax.x, noiseMinMax.y, randomiseRotationMinMax.x, randomiseRotationMinMax.y);
         }
+
+        // Assign Properties
+        if (noiseSettings != oriNoiseSettings)
+            noiseSettingsProp.vectorValue = noiseSettings;
+        if (noiseMinMax != oriNoiseMinMax)
+            noiseMinMaxProp.vectorValue = noiseMinMax;
     }
     #endregion
 }

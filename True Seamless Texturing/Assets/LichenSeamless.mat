@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6732106075017758233
+--- !u!114 &-6150064653153860296
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LichenSeamless
-  m_Shader: {fileID: -6465566751694194690, guid: 29910ba4e1bdb43449ff3224579434bf, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: ca02fc908c211d84bb0c6a1480ec6539, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -32,7 +32,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
@@ -100,6 +100,26 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _FarAlbedo:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -128,6 +148,26 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: aff512b44ce58cf4288d274c08a5d9a6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BLENDMASKTYPE: 0
@@ -142,78 +182,62 @@ Material:
     - _BUILTIN_ZTest: 4
     - _BUILTIN_ZWrite: 1
     - _BUILTIN_ZWriteControl: 0
-    - _BaseAlphaClipping: 0.5
-    - _BaseAssignedTextures: 28
-    - _BaseMetallic: 0
-    - _BaseNoiseAngleOffset: 2
-    - _BaseNoiseEnabled: 1
-    - _BaseNoiseScale: 5
-    - _BaseNormalScale: 1
-    - _BaseOcclussionStrength: 1
-    - _BaseRandomiseNoiseScaling: 1
-    - _BaseRandomiseRotation: 1
-    - _BaseRoughness: 0
-    - _BaseSettingToggles: 7
-    - _BaseSmoothness: 0
-    - _BaseSmoothnessEnabled: 0
-    - _BlendAlphaClipping: 0.5
-    - _BlendAssignedTextures: 0
-    - _BlendMaskNoiseScale: 10
-    - _BlendMaskOpacity: 1
-    - _BlendMaskStrength: 1
-    - _BlendMetallic: 0
-    - _BlendNoiseAngleOffset: 2
-    - _BlendNoiseScale: 5
-    - _BlendNormalScale: 1
-    - _BlendOcclussionStrength: 1
-    - _BlendOverrideDistanceBlending: 0
-    - _BlendOverrideDistanceBlendingTO: 1
-    - _BlendRoughness: 0
-    - _BlendSettingToggles: 15
-    - _BlendSmoothness: 0
+    - _BumpScale: 1
+    - _Contrast: 0.5
+    - _Cutoff: 0.5
     - _DISTANCEBLENDMODE: 0
     - _DebuggingIndex: -1
+    - _DetailNormalMapScale: 1
     - _DistanceBlendingEnabled: 0
-    - _FarAlphaClipping: 0.5
-    - _FarAssignedTextures: 0
-    - _FarMetallic: 0
-    - _FarNoiseAngleOffset: 2
-    - _FarNoiseEnabled: 1
-    - _FarNoiseScale: 5
-    - _FarNormalScale: 1
-    - _FarOcclussionStrength: 0
-    - _FarRandomiseNoiseScaling: 1
-    - _FarRandomiseRotation: 0
-    - _FarRoughness: 0
-    - _FarSettingToggles: 0
-    - _FarSmoothness: 0
-    - _FarSmoothnessEnabled: 1
-    - _Float: 0
-    - _MaterialBlendEnabled: 0
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Large_Scale: 0.002
+    - _MaterialBlendSettings: 4
+    - _Medium_Scale: 0.05
+    - _Metallic: 0
+    - _Mode: 0
+    - _NoiseScale: 500
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
     - _SURFACETYPE: 0
-    - _Transparent: 0
+    - _Small_Scale: 0.2
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
     m_Colors:
     - _BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _BaseEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseNoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
-    - _BaseOcclussionMap: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseRandomiseRotationMinMax: {r: -20, g: 0, b: 0, a: 0}
-    - _BaseScale: {r: 4, g: 4, b: 0, a: 0}
+    - _BaseMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
+    - _BaseMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
+    - _BaseNoiseMinMax: {r: 0.8, g: 1.2, b: -20, a: 20}
+    - _BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
+    - _BaseSettings: {r: 7, g: 28, b: 0, a: 0}
+    - _BaseTilingOffset: {r: 4, g: 4, b: 0, a: 0}
     - _BlendAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _BlendMaskNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _BlendMaskTextureOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _BlendMaskTextureScale: {r: 1, g: 1, b: 0, a: 0}
-    - _BlendNoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
-    - _BlendOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _BlendRandomiseRotationMinMax: {r: 0, g: 360, b: 0, a: 0}
-    - _BlendScale: {r: 1, g: 1, b: 0, a: 0}
+    - _BlendMaskDistanceTO: {r: 1, g: 1, b: 0, a: 0}
+    - _BlendMaskTextureTO: {r: 1, g: 1, b: 0, a: 0}
+    - _BlendMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
+    - _BlendMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
+    - _BlendNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
+    - _BlendNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
+    - _BlendSettings: {r: 15, g: 0, b: 0, a: 0}
+    - _BlendTilingOffset: {r: 1, g: 1, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DistanceBlendMinMax: {r: 60, g: 80, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FarAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _FarEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _FarNoiseScalingMinMax: {r: 0.8, g: 1.2, b: 0, a: 0}
-    - _FarOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _FarRandomiseRotationMinMax: {r: 0, g: 0, b: 0, a: 0}
-    - _FarScale: {r: 1, g: 1, b: 0, a: 0}
+    - _FarMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
+    - _FarMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
+    - _FarNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
+    - _FarNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
+    - _FarSettings: {r: 15, g: 0, b: 0, a: 0}
+    - _FarTilingOffset: {r: 1, g: 1, b: 0, a: 0}
+    - _MaterialBlendNoiseSettings: {r: 10, g: 0, b: 0, a: 0}
+    - _MaterialBlendProperties: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
