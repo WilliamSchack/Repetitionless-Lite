@@ -106,12 +106,12 @@ void SampleSeamlessMaterial_float(
     
     int materialBlendSettings = (int)MaterialBlendSettings;
     
-    bool materialBlendEnabled =       (materialBlendSettings & 1) != 0;
-    bool overrideDistanceBlending =   (materialBlendSettings & 2) != 0;
+    bool materialBlendEnabled       = (materialBlendSettings & 1) != 0;
+    bool overrideDistanceBlending   = (materialBlendSettings & 2) != 0;
     bool overrideDistanceBlendingTO = (materialBlendSettings & 4) != 0;
     
     if (materialBlendEnabled)
-    {
+    {   
         float blendMaskNoiseScale = MaterialBlendNoiseSettings.x;
         float2 blendMaskNoiseOffset = MaterialBlendNoiseSettings.yz;
         
