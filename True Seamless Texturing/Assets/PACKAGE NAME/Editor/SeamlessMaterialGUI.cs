@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEditor;
 using Unity.VisualScripting;
+using System.Collections.Generic;
+using TMPro.EditorUtilities;
 
 #if UNITY_EDITOR
 public class SeamlessMaterialGUI : ShaderGUI
@@ -48,7 +50,7 @@ public class SeamlessMaterialGUI : ShaderGUI
     // Material Helpers
     private Material _material;
     private MaterialEditor _editor;
-    private MaterialProperty[] _properties;
+    private Dictionary<string, MaterialProperty> _cachedProperties = new Dictionary<string, MaterialProperty>();
 
     // GUI Styles
     private GUIStyle _boldHeaderSmallStyle;
@@ -74,7 +76,8 @@ public class SeamlessMaterialGUI : ShaderGUI
     #region Helpers
     private MaterialProperty FindProperty(string name)
     {
-        return FindProperty(name, _properties);
+        return _cachedProperties[name];
+        //return FindProperty(name, _properties);
     }
 
     private Rect GetLineRect(float ?heightOverride = null)
@@ -144,47 +147,65 @@ public class SeamlessMaterialGUI : ShaderGUI
         return sliderValue;
     }
 
+    // More performant and fills whole area instead of leaving gap at the end. win win
     private Vector2 DrawVector2Field(Vector2 value, string label)
     {
-        return EditorGUI.Vector2Field(GetLineRect(), label, value);
+        float vector2FieldPadding = 4f;
+        float floatFieldLabelPadding = 2f;
+
+        // Get Line Rect
+        Rect lineRect = GetLineRect();
+        Rect fieldsRect = MaterialEditor.GetRectAfterLabelWidth(lineRect);
+        float halfWidth = fieldsRect.width / 2;
+
+        // Get Left Float Rect
+        Rect leftRect = fieldsRect;
+        leftRect.width = halfWidth - vector2FieldPadding;
+
+        // Get Right Float Rect
+        Rect rightRect = fieldsRect;
+        rightRect.width = halfWidth - vector2FieldPadding;
+        rightRect.x += halfWidth + vector2FieldPadding;
+
+        GUI.Label(lineRect, new GUIContent(label));
+
+        // Set Label Width (Shortens regular label padding)
+        float labelWidth = EditorGUIUtility.labelWidth;
+        EditorGUIUtility.labelWidth = EditorStyles.label.CalcSize(new GUIContent("X")).x + floatFieldLabelPadding;
+
+        // Draw Float Fields
+        float xVal = EditorGUI.FloatField(leftRect, new GUIContent("X"), value.x);
+        float yVal = EditorGUI.FloatField(rightRect, new GUIContent("Y"), value.y);
+
+        // Reset Label Width
+        EditorGUIUtility.labelWidth = labelWidth;
+
+        return new Vector2(xVal, yVal);
     }
 
-    private void DrawTilingOffset(MaterialProperty tilingOffsetProperty)
+    private void DrawTilingOffset(MaterialProperty tilingOffsetProperty, string tilingLabel = "Scale", string offsetLabel = "Tiling")
     {
         Vector4 tilingOffset = tilingOffsetProperty.vectorValue;
-        Vector4 oriTilingOffset = tilingOffset;
+        bool tilingOffsetChanged = false;
 
         EditorGUI.BeginChangeCheck();
         Vector2 scale = new Vector2(tilingOffset.x, tilingOffset.y);
-        scale = EditorGUI.Vector2Field(GetLineRect(), "Scale", scale);
-        if (EditorGUI.EndChangeCheck())
+        scale = DrawVector2Field(scale, tilingLabel);
+        if (EditorGUI.EndChangeCheck()) {
             tilingOffset = new Vector4(scale.x, scale.y, tilingOffset.z, tilingOffset.w);
+            tilingOffsetChanged = true;
+        }
 
         EditorGUI.BeginChangeCheck();
         Vector2 offset = new Vector2(tilingOffset.z, tilingOffset.w);
-        offset = EditorGUI.Vector2Field(GetLineRect(), "Offset", offset);
-        if (EditorGUI.EndChangeCheck())
-            tilingOffset = new Vector4(tilingOffset.x, tilingOffset.y, offset.x, offset.y);
-
-        if (tilingOffset != oriTilingOffset)
-            tilingOffsetProperty.vectorValue = tilingOffset;
-    }
-
-    private void DrawTilingOffset(MaterialProperty tilingProperty, MaterialProperty offsetProperty)
-    {
-        // Scale & Offset, manually setting scaleOffset and rect because using Albedo Tiling & Offset doesn't like the noise applied to the UV
-        Vector2 scaleVal = tilingProperty.vectorValue;
-        Vector2 offsetVal = offsetProperty.vectorValue;
-        Vector4 scaleOffset = new Vector4(scaleVal.x, scaleVal.y, offsetVal.x, offsetVal.y);
-        Rect rect = GetLineRect();
-        rect.height *= 2;
-
-        EditorGUI.BeginChangeCheck();
-        scaleOffset = MaterialEditor.TextureScaleOffsetProperty(rect, scaleOffset, false);
+        offset = DrawVector2Field(offset, offsetLabel);
         if (EditorGUI.EndChangeCheck()) {
-            tilingProperty.vectorValue = new Vector2(scaleOffset.x, scaleOffset.y);
-            offsetProperty.vectorValue = new Vector2(scaleOffset.z, scaleOffset.w);
+            tilingOffset = new Vector4(tilingOffset.x, tilingOffset.y, offset.x, offset.y);
+            tilingOffsetChanged = true;
         }
+
+        if (tilingOffsetChanged)
+            tilingOffsetProperty.vectorValue = tilingOffset;
     }
 
     private float StartBackground(float backgroundHeight)
@@ -266,10 +287,21 @@ public class SeamlessMaterialGUI : ShaderGUI
         _debugBackgroundHeight = debuggingEnabled ? DEFAULT_DEBUG_BACKGROUND_HEIGHT : DEFAULT_DISABLED_SETTING_BACKGROUND_HEIGHT;
     }
 
+    private Dictionary<string, MaterialProperty> GetMaterialProperties(MaterialProperty[] properties)
+    {
+        Dictionary<string, MaterialProperty> cachedProperties = new Dictionary<string, MaterialProperty>();
+
+        foreach(MaterialProperty property in properties) {
+            cachedProperties.Add(property.name, property);
+        }
+
+        return cachedProperties;
+    }
+
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
-        // Properties can change between calls
-        _properties = properties;
+        // Cache properties into dict, can change each call, faster than FindProperty (loops through all properties each call)
+        _cachedProperties = GetMaterialProperties(properties);
 
         // OnEnable if first call
         if (_firstSetup) {
@@ -382,7 +414,7 @@ public class SeamlessMaterialGUI : ShaderGUI
 
     private void DrawDistanceBlendGUI()
     {
-        // Material Properties
+        // Material Property
         MaterialProperty distanceBlendingEnabledProp = FindProperty($"_DistanceBlendingEnabled");
 
         // Start Background
@@ -409,7 +441,7 @@ public class SeamlessMaterialGUI : ShaderGUI
             // Distance Blend Min Max
             EditorGUI.BeginChangeCheck();
             Vector2 distanceBlendMinMax = new Vector2(distanceBlendMinMaxProp.vectorValue.x, distanceBlendMinMaxProp.vectorValue.y);
-            distanceBlendMinMax = EditorGUI.Vector2Field(GetLineRect(), "Distance Blend Min Max", distanceBlendMinMax);
+            distanceBlendMinMax = DrawVector2Field(distanceBlendMinMax, "Distance Blend Min Max");
             if (EditorGUI.EndChangeCheck()) {
                 if (distanceBlendMinMax.x < 0) distanceBlendMinMax.x = 0;
                 if (distanceBlendMinMax.y < 0) distanceBlendMinMax.y = 0;
@@ -803,7 +835,7 @@ public class SeamlessMaterialGUI : ShaderGUI
             // Scaling Min Max
             EditorGUI.BeginChangeCheck();
             Vector2 scalingMinMax = new Vector2(noiseMinMax.x, noiseMinMax.y);
-            scalingMinMax = EditorGUI.Vector2Field(GetLineRect(), "Noise Scaling Min Max", scalingMinMax);
+            scalingMinMax = DrawVector2Field(scalingMinMax, "Noise Scaling Min Max");
             if (EditorGUI.EndChangeCheck()) {
                 if (scalingMinMax.x < 0) scalingMinMax.x = 0;
                 if (scalingMinMax.y < 0) scalingMinMax.y = 0;
@@ -816,7 +848,7 @@ public class SeamlessMaterialGUI : ShaderGUI
         if (randomiseRotation) {
             EditorGUI.BeginChangeCheck();
             Vector2 randomiseRotationMinMax = new Vector2(noiseMinMax.z, noiseMinMax.w);
-            randomiseRotationMinMax = EditorGUI.Vector2Field(GetLineRect(), "Random Rotation Min Max", randomiseRotationMinMax);
+            randomiseRotationMinMax = DrawVector2Field(randomiseRotationMinMax, "Random Rotation Min Max");
             if (EditorGUI.EndChangeCheck())
                 noiseMinMax = new Vector4(noiseMinMax.x, noiseMinMax.y, randomiseRotationMinMax.x, randomiseRotationMinMax.y);
         }
@@ -880,7 +912,7 @@ public class SeamlessMaterialGUI : ShaderGUI
             // Offset
             EditorGUI.BeginChangeCheck();
             Vector2 noiseOffset = new Vector2(variationNoiseSettings.z, variationNoiseSettings.w);
-            noiseOffset = EditorGUI.Vector2Field(GetLineRect(), "Noise Offset", noiseOffset);
+            noiseOffset = DrawVector2Field(noiseOffset, "Noise Offset");
             if(EditorGUI.EndChangeCheck())
                 variationNoiseSettings = new Vector4(variationNoiseSettings.x, variationNoiseSettings.y, noiseOffset.x, noiseOffset.y);
 
@@ -896,7 +928,7 @@ public class SeamlessMaterialGUI : ShaderGUI
             _editor.TexturePropertySingleLine(new GUIContent("Variation Teture"), variationTexturesProp);
 
             // Tiling & Offset
-            DrawTilingOffset(variationTextureTOProp);
+            DrawTilingOffset(variationTextureTOProp, "Variation Scale", "Variation Offset");
         }
 
         // Assign Property

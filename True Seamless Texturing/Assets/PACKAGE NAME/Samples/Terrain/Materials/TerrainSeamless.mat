@@ -194,7 +194,7 @@ Material:
     - _DebuggingIndex: -1
     - _DetailNormalMapScale: 1
     - _DistanceBlendMode: 0
-    - _DistanceBlendingEnabled: 1
+    - _DistanceBlendingEnabled: 0
     - _DstBlend: 0
     - _FarVariationBrightness: 0.25
     - _FarVariationMode: 0

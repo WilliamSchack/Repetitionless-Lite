@@ -231,7 +231,7 @@ Material:
     m_Colors:
     - _BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _BaseEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
+    - _BaseMaterialProperties1: {r: 0, g: 0, b: 0.5, a: 1}
     - _BaseMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _BaseNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
