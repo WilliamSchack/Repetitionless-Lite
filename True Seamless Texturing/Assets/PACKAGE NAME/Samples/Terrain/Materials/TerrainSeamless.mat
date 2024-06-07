@@ -198,7 +198,7 @@ Material:
     - _DistanceBlendingEnabled: 0
     - _DstBlend: 0
     - _FarVariationBrightness: 0.25
-    - _FarVariationMode: 0
+    - _FarVariationMode: 2
     - _Float: 500
     - _Float_1: 0.5
     - _Float_2: 0.2
@@ -208,7 +208,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Large_Scale: 0.002
-    - _MaterialBlendSettings: 3
+    - _MaterialBlendSettings: 7
     - _Medium_Scale: 0.05
     - _Metallic: 0
     - _Mode: 0
@@ -263,6 +263,7 @@ Material:
     - _FarTilingOffset: {r: 10, g: 10, b: 0, a: 0}
     - _FarVariationNoiseSettings: {r: 500, g: 0, b: 0, a: 0}
     - _FarVariationSettings: {r: 0.2, g: 0.05, b: 0.002, a: 1}
+    - _FarVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _FarVariationTextureTo: {r: 1, g: 1, b: 0, a: 0}
     - _MaterialBlendNoiseSettings: {r: 20, g: 0, b: 0, a: 0}
     - _MaterialBlendProperties: {r: 0.3, g: 1, b: 0, a: 0}

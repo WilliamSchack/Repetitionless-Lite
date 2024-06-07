@@ -560,7 +560,7 @@
             "m_Id": "5e3e11c86d3b4ac88a80f1d8cb0b7f2a"
         },
         {
-            "m_Id": "69eade6bc64546b2bb183e16ffc07a5d"
+            "m_Id": "aef34f278b2b46ac8a509823224f75d2"
         },
         {
             "m_Id": "0001a354ae1f4d79a765e70b67690fb7"
@@ -674,19 +674,6 @@
     "m_StageCapability": 3,
     "m_Value": false,
     "m_DefaultValue": false
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.SamplerStateMaterialSlot",
-    "m_ObjectId": "69eade6bc64546b2bb183e16ffc07a5d",
-    "m_Id": 2,
-    "m_DisplayName": "SS",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "SS",
-    "m_StageCapability": 3,
-    "m_BareResource": false
 }
 
 {
@@ -1079,6 +1066,19 @@
     "m_Property": {
         "m_Id": "3bcdebb4637f4509b398158ee4fe3d56"
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.SamplerStateMaterialSlot",
+    "m_ObjectId": "aef34f278b2b46ac8a509823224f75d2",
+    "m_Id": 2,
+    "m_DisplayName": "SS",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "SS",
+    "m_StageCapability": 3,
+    "m_BareResource": true
 }
 
 {

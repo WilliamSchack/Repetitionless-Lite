@@ -8,29 +8,22 @@ namespace SeamlessMaterial.Editor
     public static class GUIUtilities
     {
         // Constants
-        private const float LINE_HEIGHT = 18.0f;
-        private const float LINE_SPACING = 2.0f;
+        public const int SIDE_EMPTY_SPACE_WIDTH = 35; // 33: Left Space + 2: Right Space
 
-        private const int BACKGROUND_SIDE_PADDING = 8;
-        private const int BACKGROUND_TOP_PADDING = 4;
-        private const int BACKGROUND_BOTTOM_PADDING = 4;
-        private const int BACKGROUND_CORNER_RADIUS = 10;
+        public const int LINE_HEIGHT = 18;
+        public const int LINE_SPACING = 2;
+
+        public const int FOLDOUT_INDENT = 10;
+
+        public const int BACKGROUND_SIDE_PADDING = 8;
+        public const int BACKGROUND_TOP_PADDING = 4;
+        public const int BACKGROUND_BOTTOM_PADDING = 4;
+        public const int BACKGROUND_CORNER_RADIUS = 10;
 
         // Styles
-        private static GUIStyle _boldHeaderSmallStyle = null;
         private static GUIStyle _boldHeaderLargeStyle = null;
         private static GUIStyle _majorToggleButtonStyle = null;
-
-        public static GUIStyle BoldHeaderSmallStyle { get {
-                if (_boldHeaderSmallStyle != null)
-                    return _boldHeaderSmallStyle;
-
-                _boldHeaderSmallStyle = new GUIStyle("label");
-                _boldHeaderSmallStyle.fontStyle = FontStyle.Bold;
-                _boldHeaderSmallStyle.fontSize = 12;
-                _boldHeaderSmallStyle.alignment = TextAnchor.MiddleLeft;
-                return _boldHeaderSmallStyle;
-        } }
+        private static GUIStyle _boldFoldoutStyle = null;
 
         public static GUIStyle BoldHeaderLargeStyle { get {
                 if (_boldHeaderLargeStyle != null)
@@ -52,7 +45,18 @@ namespace SeamlessMaterial.Editor
                 _majorToggleButtonStyle.fontSize = 18;
                 _majorToggleButtonStyle.alignment = TextAnchor.MiddleCenter;
                 return _majorToggleButtonStyle;
-            } }
+        } }
+
+        public static GUIStyle BoldFoldoutStyle { get {
+                if (_boldFoldoutStyle != null)
+                    return _boldFoldoutStyle;
+
+                _boldFoldoutStyle = EditorStyles.foldout;
+                _boldFoldoutStyle.fontStyle = FontStyle.Bold;
+                _boldFoldoutStyle.fontSize = 12;
+                _boldFoldoutStyle.alignment = TextAnchor.MiddleLeft;
+                return _boldFoldoutStyle;
+        } }
 
         public static Rect GetLineRect(float? heightOverride = null)
         {
@@ -60,14 +64,6 @@ namespace SeamlessMaterial.Editor
                 return EditorGUILayout.GetControlRect(true, heightOverride.Value, EditorStyles.layerMaskField);
             else
                 return EditorGUILayout.GetControlRect(true, LINE_HEIGHT + LINE_SPACING, EditorStyles.layerMaskField);
-        }
-
-        public static void DrawHeaderLabelSmall(string text)
-        {
-            GUIContent textGUIContent = new GUIContent(text);
-            float height = BoldHeaderSmallStyle.CalcHeight(textGUIContent, Screen.width);
-            Rect rect = GetLineRect(height);
-            GUI.Label(rect, textGUIContent, BoldHeaderSmallStyle);
         }
 
         public static void DrawHeaderLabelLarge(string text)
@@ -175,6 +171,15 @@ namespace SeamlessMaterial.Editor
 
             if (tilingOffsetChanged)
                 tilingOffsetProperty.vectorValue = tilingOffset;
+        }
+
+        public static bool DrawFoldout(bool foldout, string label)
+        {
+            Rect rect = GetLineRect();
+            rect.x += FOLDOUT_INDENT;
+            rect.width -= FOLDOUT_INDENT;
+
+            return EditorGUI.Foldout(rect, foldout, label, true, BoldFoldoutStyle);
         }
 
         public static float StartBackground(float backgroundHeight)

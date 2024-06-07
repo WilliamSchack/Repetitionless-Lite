@@ -6339,7 +6339,7 @@
     "m_AlphaMode": 0,
     "m_RenderFace": 2,
     "m_AlphaClip": false,
-    "m_CustomEditorGUI": "SeamlessMaterialGUI"
+    "m_CustomEditorGUI": "SeamlessMaterial.Editor.SeamlessMaterialMasterGUI"
 }
 
 {
@@ -7431,7 +7431,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "x": 31.0,
+        "x": 15.0,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
@@ -7459,7 +7459,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "x": 31.0,
+        "x": 15.0,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
@@ -8195,7 +8195,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "x": 31.0,
+        "x": 15.0,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
@@ -11575,7 +11575,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "7daac34cbdfd4b5383b01f8f61c1ae83",
     "m_Id": 0,
-    "m_DisplayName": "FarVariationTextureTo",
+    "m_DisplayName": "FarVariationTextureTO",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -19663,10 +19663,10 @@
     "m_Guid": {
         "m_GuidSerialized": "a3164ee3-4327-464d-bdce-1aa0328cee44"
     },
-    "m_Name": "FarVariationTextureTo",
+    "m_Name": "FarVariationTextureTO",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "FarVariationTextureTo",
-    "m_DefaultReferenceName": "_FarVariationTextureTo",
+    "m_RefNameGeneratedByDisplayName": "FarVariationTextureTO",
+    "m_DefaultReferenceName": "_FarVariationTextureTO",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

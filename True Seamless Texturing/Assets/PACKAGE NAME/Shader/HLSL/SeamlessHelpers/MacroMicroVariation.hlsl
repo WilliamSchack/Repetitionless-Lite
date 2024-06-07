@@ -9,27 +9,7 @@
 #include "../Noise/Keijiro/ClassicNoise2D.hlsl"
 
 // Samples a given texture and turns it into a variation multiplier
-float MacroMicroVariationTexture(float SmallScale, float MediumScale, float LargeScale, float VariationBrightness, UnityTexture2D Texture, SamplerState SS, float2 UV, float2 Tiling = float2(1, 1), float2 Offset = float2(0, 0)) // SamplerState
-{
-    // Get UVs
-    float2 smallUV = UV * Tiling * SmallScale + Offset;
-    float2 mediumUV = UV * Tiling * MediumScale + Offset;
-    float2 largeUV = UV * Tiling * LargeScale + Offset;
-    
-    // Sample Texture
-    float smallColor = SAMPLE_TEXTURE2D(Texture, SS, smallUV).r;
-    float mediumColor = SAMPLE_TEXTURE2D(Texture, SS, mediumUV).r;
-    float largeColor = SAMPLE_TEXTURE2D(Texture, SS, largeUV).r;
-    
-    // Add Brightness
-    smallColor += VariationBrightness;
-    mediumColor += VariationBrightness;
-    largeColor += VariationBrightness;
-        
-    return smallColor * mediumColor * largeColor;
-}
-
-float MacroMicroVariationTexture(float SmallScale, float MediumScale, float LargeScale, float VariationBrightness, UnityTexture2D Texture, UnitySamplerState SS, float2 UV, float2 Tiling = float2(1, 1), float2 Offset = float2(0, 0)) // UnitySamplerState
+float MacroMicroVariationTexture(float SmallScale, float MediumScale, float LargeScale, float VariationBrightness, UnityTexture2D Texture, SamplerState SS, float2 UV, float2 Tiling = float2(1, 1), float2 Offset = float2(0, 0))
 {
     // Get UVs
     float2 smallUV = UV * Tiling * SmallScale + Offset;
@@ -101,7 +81,7 @@ float MacroMicroVariationSimplexNoise(float SmallScale, float MediumScale, float
     return smallColor * mediumColor * largeColor;
 }
 
-void MacroMicroVariationTexture_float(float4 InputColor, float SmallScale, float MediumScale, float LargeScale, float VariationBrightness, float VariationOpacity, UnityTexture2D VariationTexture, UnitySamplerState SS, float2 UV, float2 Tiling, float2 Offset, out float4 OutputColor)
+void MacroMicroVariationTexture_float(float4 InputColor, float SmallScale, float MediumScale, float LargeScale, float VariationBrightness, float VariationOpacity, UnityTexture2D VariationTexture, SamplerState SS, float2 UV, float2 Tiling, float2 Offset, out float4 OutputColor)
 {
     VariationOpacity = clamp(VariationOpacity, 0, 1);
     VariationBrightness = clamp(VariationBrightness, 0, 1);
