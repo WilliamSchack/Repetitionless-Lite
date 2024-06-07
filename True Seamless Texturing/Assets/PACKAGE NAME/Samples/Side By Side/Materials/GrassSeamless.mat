@@ -24,12 +24,12 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: ca02fc908c211d84bb0c6a1480ec6539, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _SURFACETYPE_OPAQUE
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _BLENDMASKTYPE_PERLIN_NOISE
   - _DISTANCEBLENDMODE_TILING_OFFSET
-  m_LightmapFlags: 4
+  - _SURFACETYPE_OPAQUE
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -227,16 +227,17 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _SurfaceType: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _BaseEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
+    - _BaseMaterialProperties1: {r: 0, g: 0.5, b: 1, a: 1}
     - _BaseMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _BaseNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _BaseSettings: {r: 7, g: 12, b: 0, a: 0}
+    - _BaseSettings: {r: 23, g: 12, b: 0, a: 0}
     - _BaseTilingOffset: {r: 4, g: 4, b: 0, a: 0}
     - _BaseVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _BaseVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
@@ -267,6 +268,7 @@ Material:
     - _FarTilingOffset: {r: 1, g: 1, b: 0, a: 0}
     - _FarVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _FarVariationSettings: {r: 0.5, g: 6, b: 4, a: 2}
+    - _FarVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _FarVariationTextureTo: {r: 5, g: 5, b: 0, a: 0}
     - _MaterialBlendNoiseSettings: {r: 10, g: 0, b: 0, a: 0}
     - _MaterialBlendProperties: {r: 1, g: 1, b: 0, a: 0}

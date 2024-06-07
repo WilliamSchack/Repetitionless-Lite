@@ -24,11 +24,11 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: ca02fc908c211d84bb0c6a1480ec6539, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _SURFACETYPE_OPAQUE
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _BLENDMASKTYPE_PERLIN_NOISE
   - _DISTANCEBLENDMODE_TILING_OFFSET
+  - _SURFACETYPE_OPAQUE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -205,7 +205,7 @@ Material:
     - _DebuggingIndex: -1
     - _DetailNormalMapScale: 1
     - _DistanceBlendMode: 0
-    - _DistanceBlendingEnabled: 0
+    - _DistanceBlendingEnabled: 1
     - _DstBlend: 0
     - _FarVariationBrightness: 0.25
     - _FarVariationMode: 2
@@ -226,6 +226,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _SurfaceType: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
@@ -266,6 +267,7 @@ Material:
     - _FarTilingOffset: {r: 1, g: 1, b: 0, a: 0}
     - _FarVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _FarVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
+    - _FarVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _FarVariationTextureTo: {r: 5, g: 5, b: 0, a: 0}
     - _MaterialBlendNoiseSettings: {r: 10, g: 0, b: 0, a: 0}
     - _MaterialBlendProperties: {r: 1, g: 1, b: 0, a: 0}

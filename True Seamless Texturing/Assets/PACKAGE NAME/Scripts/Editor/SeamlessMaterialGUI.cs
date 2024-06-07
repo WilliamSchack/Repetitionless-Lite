@@ -26,12 +26,13 @@ namespace SeamlessMaterial.Editor
         internal const int SETTING_SPACING = 4;
 
         internal const int BACKGROUND_HEIGHT_DISABLED_SETTING = 29;
-        internal const int BACKGROUND_HEIGHT_PROPERTIES = 96;
+        internal const int BACKGROUND_HEIGHT_PROPERTIES = 116;
 
         internal const int BACKGROUND_HEIGHT_HEADERSETTINGS = 47;
 
         internal const int BACKGROUND_HEIGHT_COLLAPSED_FOLDOUT = 24;
-        internal const int BACKGROUND_HEIGHT_MAIN_FOLDOUT = 200;
+        internal const int BACKGROUND_HEIGHT_MAIN_FOLDOUT_EMISSION_DISABLED = 178;
+        internal const int BACKGROUND_HEIGHT_MAIN_FOLDOUT_EMISSION_ENABLED = 200;
         internal const int BACKGROUND_HEIGHT_NOISE_FOLDOUT = 112;
         internal const int BACKGROUND_HEIGHT_VARIATION_FOLDOUT = 222;
 
@@ -109,7 +110,7 @@ namespace SeamlessMaterial.Editor
             EditorGUIUtility.wideMode = true;
             
             GUILayout.Space(HEADER_PADDING);
-            
+
             // Material Properties
             DrawMaterialPropertiesGUI();
             
@@ -173,6 +174,7 @@ namespace SeamlessMaterial.Editor
             }
 
             // Advanced Options
+            _editor.LightmapEmissionProperty();
             _editor.RenderQueueField();
             _editor.DoubleSidedGIField();
 
@@ -252,11 +254,15 @@ namespace SeamlessMaterial.Editor
             bool randomiseRotation = BooleanCompression.GetCompressedValue(settingToggles, 2);
             bool smoothnessEnabled = BooleanCompression.GetCompressedValue(settingToggles, 3);
             bool variationEnabled = BooleanCompression.GetCompressedValue(settingToggles, 4);
+            bool packedTexture = BooleanCompression.GetCompressedValue(settingToggles, 5);
+            bool emissionEnabled = BooleanCompression.GetCompressedValue(settingToggles, 6);
 
             // Calculate scaled text min width
             int minScaledTextWidth = 0;
             minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Noise")).x;
             minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Variation")).x;
+            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Packed Texture")).x;
+            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Emission")).x;
             minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Smooth")).x;
             minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Rough")).x;
             if (noiseEnabled) {
@@ -268,25 +274,31 @@ namespace SeamlessMaterial.Editor
 
             // Noise Enabled
             string noiseEnabledStyle = noiseEnabled ? "ButtonLeft" : "Button";
-            noiseEnabled = GUILayout.Toggle(noiseEnabled, GetScaledText(minScaledTextWidth, "Noise", "N"), noiseEnabledStyle);
+            noiseEnabled = GUILayout.Toggle(noiseEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Noise", "N"), "Adds random scaling & rotation based on voronoi noise"), noiseEnabledStyle);
 
             if (noiseEnabled) {
                 // Noise Scaling Enabled
-                randomiseScaling = GUILayout.Toggle(randomiseScaling, GetScaledText(minScaledTextWidth, "Random Scaling", "RS"), "ButtonMid");
+                randomiseScaling = GUILayout.Toggle(randomiseScaling, new GUIContent(GetScaledText(minScaledTextWidth, "Random Scaling", "RS"), "Adds random scaling to each voronoi cell"), "ButtonMid");
 
                 // Randomise Rotation Enabled
-                randomiseRotation = GUILayout.Toggle(randomiseRotation, GetScaledText(minScaledTextWidth, "Random Rotation", "RR"), "ButtonRight");
+                randomiseRotation = GUILayout.Toggle(randomiseRotation, new GUIContent(GetScaledText(minScaledTextWidth, "Random Rotation", "RR"), "Adds random rotation to each voronoi cell"), "ButtonRight");
             }
 
             // Variation toggle
-            variationEnabled = GUILayout.Toggle(variationEnabled, GetScaledText(minScaledTextWidth, "Variation", "V"), "Button");
+            variationEnabled = GUILayout.Toggle(variationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color"), "Button");
 
             GUILayout.FlexibleSpace();
+
+            // Packed Texture Toggle
+            packedTexture = GUILayout.Toggle(packedTexture, new GUIContent(GetScaledText(minScaledTextWidth, "Packed Texture", "PT"), "If you are using a packed texture of multiple regular ones (Enabled is default unity material behaviour)\n\nPacked: (R: Metallic, G: Occlussion, A: Smoothness/Roughness)\n\nNon-Packed uses Red channel for each texture"), "Button");
+
+            // Emission Toggle
+            emissionEnabled = GUILayout.Toggle(emissionEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Emission", "E"), "If Emission is enabled"), "Button");
 
             // Smoothness/Roughness Toggle
             EditorGUI.BeginChangeCheck();
             float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
-            srSelected = GUILayout.Toolbar((int)srSelected, new string[] { GetScaledText(minScaledTextWidth, "Smooth", "S"), GetScaledText(minScaledTextWidth, "Rough", "R") });
+            srSelected = GUILayout.Toolbar((int)srSelected, new GUIContent[] { new GUIContent(GetScaledText(minScaledTextWidth, "Smooth", "S"), "Using smoothness for material (Default unity material behaviour)"), new GUIContent(GetScaledText(minScaledTextWidth, "Rough", "R"), "Uses roughness for material (1 - smoothness)") });
             if (EditorGUI.EndChangeCheck())
                 smoothnessEnabled = srSelected == 1.0f ? false : true;
 
@@ -294,7 +306,7 @@ namespace SeamlessMaterial.Editor
 
             // Enabled Settings, for the shader to determine whether to use textures or values
             // Storing inside of int instead of multiple bools so its only one variable, less to manage
-            int compressedSettingToggles = BooleanCompression.CompressValues(noiseEnabled, randomiseScaling, randomiseRotation, smoothnessEnabled, variationEnabled);
+            int compressedSettingToggles = BooleanCompression.CompressValues(noiseEnabled, randomiseScaling, randomiseRotation, smoothnessEnabled, variationEnabled, packedTexture, emissionEnabled);
             settingTogglesProp.vectorValue = new Vector2(compressedSettingToggles, settingTogglesProp.vectorValue.y);
         }
 
@@ -328,6 +340,8 @@ namespace SeamlessMaterial.Editor
             // Get variables from settings prop
             int settingToggles = (int)settingsProp.vectorValue.x;
             bool smoothnessEnabled = BooleanCompression.GetCompressedValue(settingToggles, 3);
+            bool packedTexture = BooleanCompression.GetCompressedValue(settingToggles, 5);
+            bool emissionEnabled = BooleanCompression.GetCompressedValue(settingToggles, 6);
 
             // Assigned Textures, for the shader to determine whether to use textures or values
             // Storing inside of int instead of multiple bools so its only one variable, less to manage
@@ -341,39 +355,41 @@ namespace SeamlessMaterial.Editor
             settingsProp.vectorValue = new Vector2(settingToggles, compressedAssignedTextures);
 
             // Albedo
-            _editor.TexturePropertySingleLine(new GUIContent("Albedo"), albedoTexProp, abledoTintProp);
+            _editor.TexturePropertySingleLine(new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), albedoTexProp, abledoTintProp);
 
             // Metallic
-            materialProperties1.x = GUIUtilities.DrawTextureWithSlider(_editor, metallicTexProp, !metallicAssigned, materialProperties1.x, "Metallic");
+            materialProperties1.x = GUIUtilities.DrawTextureWithSlider(_editor, metallicTexProp, !metallicAssigned, materialProperties1.x, new GUIContent("Metallic", "Metallic (R), other channels are ignored"));
 
             // Smoothness/Roughness
             float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
             switch (srSelected) {
                 case 0: // Smoothness
-                    materialProperties1.y = GUIUtilities.DrawTextureWithSlider(_editor, smoothnessTexProp, !smoothnessAssigned, materialProperties1.y, "Smoothness");
+                    materialProperties1.y = GUIUtilities.DrawTextureWithSlider(_editor, smoothnessTexProp, !smoothnessAssigned, materialProperties1.y, new GUIContent("Smoothness", $"Smoothness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
 
                     break;
                 case 1: // Roughness
-                    materialProperties1.z = GUIUtilities.DrawTextureWithSlider(_editor, roughnessTexProp, !roughnessAssigned, materialProperties1.z, "Roughness");
+                    materialProperties1.z = GUIUtilities.DrawTextureWithSlider(_editor, roughnessTexProp, !roughnessAssigned, materialProperties1.z, new GUIContent("Roughness", $"Roughness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
 
                     break;
             }
 
             // Normal Map
-            materialProperties1.w = GUIUtilities.DrawTextureWithSlider(_editor, normalTexProp, normalAssigned, materialProperties1.w, "Normal Map");
+            materialProperties1.w = GUIUtilities.DrawTextureWithSlider(_editor, normalTexProp, normalAssigned, materialProperties1.w, new GUIContent("Normal Map"));
 
             // Occlussion Map
-            materialProperties2.x = GUIUtilities.DrawTextureWithSlider(_editor, occlussionTexProp, occlussionAssigned, materialProperties2.x, "Occlussion");
+            materialProperties2.x = GUIUtilities.DrawTextureWithSlider(_editor, occlussionTexProp, occlussionAssigned, materialProperties2.x, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"));
 
             // Emission
-            EditorGUI.BeginChangeCheck();
-            Texture oldEmissionTex = emissionTexProp.textureValue;
-            _editor.TexturePropertyWithHDRColor(new GUIContent("Emission"), emissionTexProp, emissionColorProp, false);
-            // Change color to white if currently black when setting texture
-            if (EditorGUI.EndChangeCheck() && oldEmissionTex != emissionTexProp.textureValue) {
-                Color blackColor = new Color(0, 0, 0, emissionTexProp.colorValue.a);
-                if (emissionColorProp.colorValue == blackColor && emissionTexProp.textureValue != null) {
-                    emissionColorProp.colorValue = Color.white;
+            if (emissionEnabled) {
+                EditorGUI.BeginChangeCheck();
+                Texture oldEmissionTex = emissionTexProp.textureValue;
+                _editor.TexturePropertyWithHDRColor(new GUIContent("Emission", "Emission (RGB)"), emissionTexProp, emissionColorProp, false);
+                // Change color to white if currently black when setting texture
+                if (EditorGUI.EndChangeCheck() && oldEmissionTex != emissionTexProp.textureValue) {
+                    Color blackColor = new Color(0, 0, 0, emissionTexProp.colorValue.a);
+                    if (emissionColorProp.colorValue == blackColor && emissionTexProp.textureValue != null) {
+                        emissionColorProp.colorValue = Color.white;
+                    }
                 }
             }
 
@@ -425,7 +441,7 @@ namespace SeamlessMaterial.Editor
                 // Scaling Min Max
                 EditorGUI.BeginChangeCheck();
                 Vector2 scalingMinMax = new Vector2(noiseMinMax.x, noiseMinMax.y);
-                scalingMinMax = GUIUtilities.DrawVector2Field(scalingMinMax, "Noise Scaling Min Max");
+                scalingMinMax = GUIUtilities.DrawVector2Field(scalingMinMax, new GUIContent("Noise Scaling Min Max", "(x: Min Scale, y: Max Scale)\n\nRange that each voronoi cell is randomly scaled by"));
                 if (EditorGUI.EndChangeCheck()) {
                     if (scalingMinMax.x < 0) scalingMinMax.x = 0;
                     if (scalingMinMax.y < 0) scalingMinMax.y = 0;
@@ -438,7 +454,7 @@ namespace SeamlessMaterial.Editor
             if (randomiseRotation) {
                 EditorGUI.BeginChangeCheck();
                 Vector2 randomiseRotationMinMax = new Vector2(noiseMinMax.z, noiseMinMax.w);
-                randomiseRotationMinMax = GUIUtilities.DrawVector2Field(randomiseRotationMinMax, "Random Rotation Min Max");
+                randomiseRotationMinMax = GUIUtilities.DrawVector2Field(randomiseRotationMinMax, new GUIContent("Random Rotation Min Max", "(x: Min Rotation Degrees, y: Max Rotation Degrees)\n\nRange that each voronoi cell is randomly rotated by"));
                 if (EditorGUI.EndChangeCheck())
                     noiseMinMax = new Vector4(noiseMinMax.x, noiseMinMax.y, randomiseRotationMinMax.x, randomiseRotationMinMax.y);
             }
@@ -468,19 +484,19 @@ namespace SeamlessMaterial.Editor
                 variationModeProp.floatValue = (int)variationMode;
 
             // Opacity
-            variationSettings.x = EditorGUI.Slider(GUIUtilities.GetLineRect(), "Opacity", variationSettings.x, 0, 1);
+            variationSettings.x = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Opacity", "Transparency of the variation"), variationSettings.x, 0, 1);
 
             // Brightness
             EditorGUI.BeginChangeCheck();
             float variationBrightness = variationBrightnessProp.floatValue;
-            variationBrightness = EditorGUI.Slider(GUIUtilities.GetLineRect(), "Brightness", variationBrightness, 0, 1);
+            variationBrightness = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Brightness", "Intensity of the variation"), variationBrightness, 0, 1);
             if (EditorGUI.EndChangeCheck())
                 variationBrightnessProp.floatValue = variationBrightness;
 
             // Scaling
-            variationSettings.y = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Small Scale", variationSettings.y);
-            variationSettings.z = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Medium Scale", variationSettings.z);
-            variationSettings.w = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Large Scale", variationSettings.w);
+            variationSettings.y = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Small Scale", "Scale of the small variation sample"), variationSettings.y);
+            variationSettings.z = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Medium Scale", "Scale of the medium variation sample"), variationSettings.z);
+            variationSettings.w = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Large Scale", "Scale of the large variation sample"), variationSettings.w);
 
             if (variationMode != TextureType.CustomTexture) { // Noise
                 // Material Property
@@ -498,7 +514,7 @@ namespace SeamlessMaterial.Editor
                 // Offset
                 EditorGUI.BeginChangeCheck();
                 Vector2 noiseOffset = new Vector2(variationNoiseSettings.z, variationNoiseSettings.w);
-                noiseOffset = GUIUtilities.DrawVector2Field(noiseOffset, "Noise Offset");
+                noiseOffset = GUIUtilities.DrawVector2Field(noiseOffset, new GUIContent("Noise Offset"));
                 if (EditorGUI.EndChangeCheck())
                     variationNoiseSettings = new Vector4(variationNoiseSettings.x, variationNoiseSettings.y, noiseOffset.x, noiseOffset.y);
 
@@ -511,7 +527,7 @@ namespace SeamlessMaterial.Editor
                 MaterialProperty variationTextureTOProp = FindProperty($"_{materialPrefix}VariationTextureTO");
 
                 // Texture
-                _editor.TexturePropertySingleLine(new GUIContent("Variation Teture"), variationTexturesProp);
+                _editor.TexturePropertySingleLine(new GUIContent("Variation Teture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials"), variationTexturesProp);
 
                 // Tiling & Offset
                 GUIUtilities.DrawTilingOffset(variationTextureTOProp, "Variation Scale", "Variation Offset");

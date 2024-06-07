@@ -4432,7 +4432,7 @@
     "m_Position": {
         "serializedVersion": "2",
         "x": 500.0,
-        "y": 2692.0,
+        "y": 2715.0,
         "width": 253.0,
         "height": 100.0
     },
@@ -4770,7 +4770,7 @@
     "m_Position": {
         "serializedVersion": "2",
         "x": 500.0,
-        "y": 2794.0,
+        "y": 2817.0,
         "width": 273.0,
         "height": 100.0
     },
@@ -4867,7 +4867,7 @@
     "m_Position": {
         "serializedVersion": "2",
         "x": 500.0,
-        "y": 2590.0,
+        "y": 2613.0,
         "width": 279.0,
         "height": 100.0
     },
@@ -6936,15 +6936,15 @@
     "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
     "m_ObjectId": "3598382b208d497a835a79ce503bb688",
     "m_Title": "Settings (vec2)",
-    "m_Content": "x: Setting Toggles\n    > Noise Enabled            = (value & 1) != 0\n    > Randomise Scaling    = (value & 2) != 0\n    > Randomise Rotation   = (value & 4) != 0\n    > Smoothness Enabled = (value & 8) != 0\n    > Variation Enabled       = (value & 16) != 0\ny: Assigned Textures\n    > Metallic         = (value & 1) != 0\n    > Smoothness = (value & 2) != 0\n    > Roughness   = (value & 4) != 0\n    > Normal          = (value & 8) != 0\n    > Occlussion   = (value & 16) != 0\n    > Emission       = (value & 32) != 0\n",
+    "m_Content": "x: Setting Toggles\n    > Noise Enabled            = (value & 1) != 0\n    > Randomise Scaling    = (value & 2) != 0\n    > Randomise Rotation   = (value & 4) != 0\n    > Smoothness Enabled = (value & 8) != 0\n    > Variation Enabled       = (value & 16) != 0\n    > Packed Texture          = (value & 32) != 0\n    > Emission Enabled       = (value & 64) != 0\ny: Assigned Textures\n    > Metallic         = (value & 1) != 0\n    > Smoothness = (value & 2) != 0\n    > Roughness   = (value & 4) != 0\n    > Normal          = (value & 8) != 0\n    > Occlussion   = (value & 16) != 0\n    > Emission       = (value & 32) != 0\n",
     "m_TextSize": 0,
     "m_Theme": 0,
     "m_Position": {
         "serializedVersion": "2",
         "x": 500.0,
         "y": 2376.0,
-        "width": 250.0,
-        "height": 212.0
+        "width": 250.98068237304688,
+        "height": 234.912841796875
     },
     "m_Group": {
         "m_Id": "187afd410a4047f5b3274f5ce0e98c4a"
@@ -7431,7 +7431,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "x": 15.0,
+        "x": 47.0,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
@@ -7459,7 +7459,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "x": 15.0,
+        "x": 47.0,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
@@ -7850,7 +7850,7 @@
     "m_Position": {
         "serializedVersion": "2",
         "x": 755.0,
-        "y": 2692.0,
+        "y": 2715.0,
         "width": 303.0,
         "height": 100.0
     },
@@ -8195,7 +8195,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "x": 15.0,
+        "x": 47.0,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
@@ -11764,7 +11764,7 @@
     "m_Position": {
         "serializedVersion": "2",
         "x": 781.0,
-        "y": 2590.0,
+        "y": 2613.0,
         "width": 273.0,
         "height": 100.0
     },
@@ -14992,10 +14992,10 @@
     "m_Theme": 0,
     "m_Position": {
         "serializedVersion": "2",
-        "x": 973.0,
+        "x": 974.0,
         "y": 2478.0,
         "width": 236.0,
-        "height": 110.0
+        "height": 132.807861328125
     },
     "m_Group": {
         "m_Id": "187afd410a4047f5b3274f5ce0e98c4a"
@@ -15244,10 +15244,10 @@
     "m_Theme": 0,
     "m_Position": {
         "serializedVersion": "2",
-        "x": 752.0,
+        "x": 753.0,
         "y": 2478.0,
         "width": 219.0,
-        "height": 110.0
+        "height": 133.2939453125
     },
     "m_Group": {
         "m_Id": "187afd410a4047f5b3274f5ce0e98c4a"
@@ -19256,7 +19256,7 @@
     "m_Theme": 0,
     "m_Position": {
         "serializedVersion": "2",
-        "x": 752.0,
+        "x": 753.0,
         "y": 2376.0,
         "width": 236.0,
         "height": 100.0

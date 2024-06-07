@@ -38,6 +38,8 @@ void GetSeamlessMaterialColor(
     bool randomiseRotation = (settingToggles & 4) != 0;
     bool smoothnessEnabled = (settingToggles & 8) != 0;
     bool variationEnabled = (settingToggles & 16) != 0;
+    bool packedTexture = (settingToggles & 32) != 0;
+    bool emissionEnabled = (settingToggles & 64) != 0;
     
     // Get Assigned Textures
     int assignedTextures = (int) Settings.y;
@@ -152,29 +154,35 @@ void GetSeamlessMaterialColor(
     
     // Smoothness / Roughness
     if (smoothnessEnabled) {
-        if (smoothnessAssigned)
-            SmoothnessOut = SampleSeamlessTexture(SmoothnessMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).r;
-        else
+        if (smoothnessAssigned) {
+            float4 smoothnessColor = SampleSeamlessTexture(SmoothnessMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+            SmoothnessOut = packedTexture ? smoothnessColor.a : smoothnessColor.r;
+        } else
             SmoothnessOut = smoothness;
     } else {
-        if (roughnessAssigned)
-            SmoothnessOut = 1 - SampleSeamlessTexture(RoughnessMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).r; // Roughness = 1 - Smoothness
-        else
+        if (roughnessAssigned) {
+            float4 roughnessColor = 1 - SampleSeamlessTexture(RoughnessMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled); // Roughness = 1 - Smoothness
+            SmoothnessOut = packedTexture ? roughnessColor.a : roughnessColor.r;
+        } else
             SmoothnessOut = 1 - roughness;
     }
         
     // Occlussion
     if (occlussionAssigned) {
-        OcclussionOut = SampleSeamlessTexture(OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).r;
+        float4 occlussionColor = SampleSeamlessTexture(OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+        OcclussionOut = packedTexture ? occlussionColor.g : occlussionColor.r;
         OcclussionOut = lerp(OcclussionOut, 1, 1 - occlussionStrength);
     } else
         OcclussionOut = 1;
     
     // Emission
-    if (emissionAssigned)
-        EmissionColorOut = SampleSeamlessTexture(EmissionMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).rgb * EmissionColor;
-    else
-        EmissionColorOut = EmissionColor;
+    if(emissionEnabled) {
+        if (emissionAssigned)
+            EmissionColorOut = SampleSeamlessTexture(EmissionMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).rgb * EmissionColor;
+        else
+            EmissionColorOut = EmissionColor;
+    } else
+        EmissionColorOut = 0;
 }
 
 #endif

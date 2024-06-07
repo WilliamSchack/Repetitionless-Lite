@@ -101,10 +101,10 @@ namespace SeamlessMaterial.Editor
             return enabled;
         }
 
-        public static float DrawTextureWithSlider(MaterialEditor editor, MaterialProperty textureProperty, bool sliderCondition, float sliderValue, string label)
+        public static float DrawTextureWithSlider(MaterialEditor editor, MaterialProperty textureProperty, bool sliderCondition, float sliderValue, GUIContent content)
         {
             Rect rect = GetLineRect();
-            editor.TexturePropertyMiniThumbnail(rect, textureProperty, label, "");
+            editor.TexturePropertyMiniThumbnail(rect, textureProperty, content.text, content.tooltip);
             if (sliderCondition) {
                 sliderValue = EditorGUI.Slider(MaterialEditor.GetRectAfterLabelWidth(rect), sliderValue, 0, 1);
             }
@@ -113,7 +113,7 @@ namespace SeamlessMaterial.Editor
         }
 
         // More performant and fills whole area instead of leaving gap at the end. win win
-        public static Vector2 DrawVector2Field(Vector2 value, string label)
+        public static Vector2 DrawVector2Field(Vector2 value, GUIContent content)
         {
             float vector2FieldPadding = 4f;
             float floatFieldLabelPadding = 2f;
@@ -132,7 +132,7 @@ namespace SeamlessMaterial.Editor
             rightRect.width = halfWidth - vector2FieldPadding;
             rightRect.x += halfWidth + vector2FieldPadding;
 
-            GUI.Label(lineRect, new GUIContent(label));
+            GUI.Label(lineRect, content);
 
             // Set Label Width (Shortens regular label padding)
             float labelWidth = EditorGUIUtility.labelWidth;
@@ -155,7 +155,7 @@ namespace SeamlessMaterial.Editor
 
             EditorGUI.BeginChangeCheck();
             Vector2 scale = new Vector2(tilingOffset.x, tilingOffset.y);
-            scale = DrawVector2Field(scale, tilingLabel);
+            scale = DrawVector2Field(scale, new GUIContent(tilingLabel));
             if (EditorGUI.EndChangeCheck()) {
                 tilingOffset = new Vector4(scale.x, scale.y, tilingOffset.z, tilingOffset.w);
                 tilingOffsetChanged = true;
@@ -163,7 +163,7 @@ namespace SeamlessMaterial.Editor
 
             EditorGUI.BeginChangeCheck();
             Vector2 offset = new Vector2(tilingOffset.z, tilingOffset.w);
-            offset = DrawVector2Field(offset, offsetLabel);
+            offset = DrawVector2Field(offset, new GUIContent(offsetLabel));
             if (EditorGUI.EndChangeCheck()) {
                 tilingOffset = new Vector4(tilingOffset.x, tilingOffset.y, offset.x, offset.y);
                 tilingOffsetChanged = true;
