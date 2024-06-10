@@ -86,12 +86,6 @@ namespace SeamlessMaterial.Editor
             _material = (Material)materialEditor.target;
             _editor = materialEditor;
 
-            // Make Terrain Compatable (removes warning)
-            // Note: Will still have warning complaining about tangeont geometry but it still works fine
-            //_material.SetOverrideTag("TerrainCompatible", "True");
-            // CREATE SEPERATE SHADER FOR TERRAIN
-            // REQUIRES TEXTURE PAINTING AND THOSE SHENANIGANS
-
             _propertiesBackgroundHeight = BACKGROUND_HEIGHT_PROPERTIES;
         }
 
@@ -285,7 +279,7 @@ namespace SeamlessMaterial.Editor
             }
 
             // Variation toggle
-            variationEnabled = GUILayout.Toggle(variationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color"), "Button");
+            variationEnabled = GUILayout.Toggle(variationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color\n\nUsing a custom texture can cause visible tiling"), "Button");
 
             GUILayout.FlexibleSpace();
 
@@ -479,7 +473,7 @@ namespace SeamlessMaterial.Editor
             // Variation Mode
             EditorGUI.BeginChangeCheck();
             TextureType variationMode = (TextureType)variationModeProp.floatValue;
-            variationMode = (TextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), "Variation Mode", variationMode);
+            variationMode = (TextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Variation Mode", "Using a custom texture can cause visible tiling"), variationMode);
             if (EditorGUI.EndChangeCheck())
                 variationModeProp.floatValue = (int)variationMode;
 
@@ -527,7 +521,7 @@ namespace SeamlessMaterial.Editor
                 MaterialProperty variationTextureTOProp = FindProperty($"_{materialPrefix}VariationTextureTO");
 
                 // Texture
-                _editor.TexturePropertySingleLine(new GUIContent("Variation Teture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials"), variationTexturesProp);
+                _editor.TexturePropertySingleLine(new GUIContent("Variation Teture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), variationTexturesProp);
 
                 // Tiling & Offset
                 GUIUtilities.DrawTilingOffset(variationTextureTOProp, "Variation Scale", "Variation Offset");
