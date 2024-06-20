@@ -184,7 +184,7 @@ void SampleSeamlessMaterial_float(
         farDistance = Remap(farDistance, DistanceBlendMinMax, float2(0, 1));
         farDistance = clamp(farDistance, 0, 1);
         
-        // Only calculate far distance if required
+        // Only sample far material if required
         if (farDistance > 0)
         {
             float4 farAlbedoColor = 1;
@@ -218,7 +218,7 @@ void SampleSeamlessMaterial_float(
                     );
                     break;
                 case 1: // Material
-                // Sample Far Material
+                    // Sample Far Material
                     GetSeamlessMaterialColor(
                         sampler_FarAlbedo, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                         FarSettings, FarTilingOffset,
@@ -260,7 +260,7 @@ void SampleSeamlessMaterial_float(
                 
                 float4 tilingOffset = float4(tiling.x, tiling.y, offset.x, offset.y);
                 
-                // Sample Material Blending Material
+                // Sample Blend Material
                 GetSeamlessMaterialColor(
                         sampler_BlendAlbedo, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                         BlendSettings, tilingOffset,
@@ -302,20 +302,18 @@ void SampleSeamlessMaterial_float(
     // --------------------------------------------------------------- //
     
     // Debugging
-    switch (DebuggingIndex)
-    {
-        case 2: // Distance Mask
-            albedoColor = farDistance;
-            break;
-        case 3: // Blend Material mask
-            albedoColor = materialMask;
-            break;
-    }
+    // Would use a switch statement here but it bugs out the material on my laptop so I assume it would happen to others also
+    // Really weird bug that should not be happening but better safe than sorry :/
+    if (DebuggingIndex == 2)
+        albedoColor = farDistance;
+    else if (DebuggingIndex == 3)
+        albedoColor = materialMask;
     
     // If Transparency Disabled
     if (SurfaceType == 0 || DebuggingIndex != -1)
         albedoColor.a = 1;
     
+    // Output
     AlbedoColorOut = albedoColor;
     NormalVectorOut = normalVector;
     MetallicOut = metallic;

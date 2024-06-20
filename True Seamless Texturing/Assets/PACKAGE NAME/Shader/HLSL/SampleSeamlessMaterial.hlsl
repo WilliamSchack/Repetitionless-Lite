@@ -119,7 +119,7 @@ void GetSeamlessMaterialColor(
             case 1: // Edge Mask
                 AlbedoColorOut = EdgeMask;
                 break;
-            case 4:
+            case 4: // Variation Colour
                 AlbedoColorOut = variationColor;
                 break;
             default:
@@ -183,6 +183,32 @@ void GetSeamlessMaterialColor(
             EmissionColorOut = EmissionColor;
     } else
         EmissionColorOut = 0;
+}
+
+void GetSeamlessMaterialColor_float(
+    SamplerState SS, float2 UV, float3 TangentNormalVector,
+    float DebuggingIndex, // Material Properties
+
+    float2 Settings, float4 TilingOffset, // Tiling & Offset
+    UnityTexture2D Albedo, // Albedo
+    UnityTexture2D MetallicMap, // Metallic
+    UnityTexture2D SmoothnessMap, // Smoothness
+    UnityTexture2D RoughnessMap, // Roughness
+    UnityTexture2D NormalMap, // Normal
+    UnityTexture2D OcclussionMap, // Occlussion
+    UnityTexture2D EmissionMap, // Emission
+    float4 AlbedoTint, float3 EmissionColor, // Colors
+    float4 MaterialProperties1, float2 MaterialProperties2, // Material Properties
+
+    float2 NoiseSettings, float4 NoiseMinMax, // Noise
+
+    float VariationMode, float4 VariationSettings, float VariationBrightness, // Variation Settings
+    float4 VariationNoiseSettings, // Variation Noise
+    UnityTexture2D VariationTexture, float4 VariationTextureTO, // Variation Texture
+
+    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut) // Outputs)
+{
+    
 }
 
 #endif
