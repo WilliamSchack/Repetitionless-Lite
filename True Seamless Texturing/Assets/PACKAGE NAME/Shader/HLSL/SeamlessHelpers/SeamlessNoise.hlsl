@@ -41,7 +41,7 @@ void GetSeamlessNoiseUVs(
     }
 }
 
-void AddNoise_float(
+void AddSeamlessNoise_float(
     UnityTexture2D InputTexture, SamplerState SS, // Texture
     float2 UV, // UV
     float NoiseAngleOffset, float NoiseScale, bool RandomiseNoiseScaling, float2 NoiseScalingMinMax, // Noise

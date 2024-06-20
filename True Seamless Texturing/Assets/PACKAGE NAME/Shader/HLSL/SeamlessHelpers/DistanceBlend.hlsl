@@ -33,7 +33,7 @@ void DistanceBlendTilingOffset_float(
     // Only calculate if required
     if (farDistance == 0)
         return;
-
+    
     // Resample base texture with far tiling & offset
     float4 farColour = SAMPLE_TEXTURE2D(Texture, SS, UV * FarTilingOffset.xy + FarTilingOffset.zw);
     
