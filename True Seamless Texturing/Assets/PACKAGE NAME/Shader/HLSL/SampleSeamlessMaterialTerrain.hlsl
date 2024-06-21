@@ -6,6 +6,7 @@
 void SampleSeamlessMaterial_float(
     float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition, // Positions
+    UnityTexture2D Holes, UnityTexture2D Control,
     float DebuggingIndex, // Enums
 
     // Layer 1
@@ -19,58 +20,86 @@ void SampleSeamlessMaterial_float(
     float Layer1Smoothness,
     float4 Layer1_ST,
 
-    float2 BaseNoiseSettings, float4 BaseNoiseMinMax, // Noise
+    float2 Layer1NoiseSettings, float4 Layer1NoiseMinMax, // Noise
 
-    float BaseVariationMode, float4 BaseVariationSettings, float BaseVariationBrightness, // Variation Settings
-    float4 BaseVariationNoiseSettings, // Variation Noise
-    UnityTexture2D BaseVariationTexture, float4 BaseVariationTextureTO, // Variation Texture
+    float Layer1VariationMode, float4 Layer1VariationSettings, float Layer1VariationBrightness, // Variation Settings
+    float4 Layer1VariationNoiseSettings, // Variation Noise
+    UnityTexture2D Layer1VariationTexture, float4 Layer1VariationTextureTO, // Variation Texture
 
-    // Far Material
-    bool DistanceBlendingEnabled, int DistanceBlendingMode, float2 DistanceBlendMinMax, // Distance Blending
+    float2 Layer1DistanceBlendMinMax, float4 Layer1DistanceBlendTO, // Distance Blend
 
-    float2 FarSettings, float4 FarTilingOffset, // Tiling & Offset
-    UnityTexture2D FarAlbedo, // Albedo
-    UnityTexture2D FarMetallicMap, // Metallic
-    UnityTexture2D FarSmoothnessMap, // Smoothness
-    UnityTexture2D FarRoughnessMap, // Roughness
-    UnityTexture2D FarNormalMap, // Normal
-    UnityTexture2D FarOcclussionMap, // Occlussion
-    UnityTexture2D FarEmissionMap, // Emission
-    float4 FarAlbedoTint, float3 FarEmissionColor, // Colors
-    float4 FarMaterialProperties1, float2 FarMaterialProperties2, // Material Properties
+    // Layer 2
+    float Layer2Settings,
+    UnityTexture2D Layer2Albedo,
+    UnityTexture2D Layer2Normal,
+    float Layer2NormalScale,
+    UnityTexture2D Layer2Mask,
+    float Layer2HasMask,
+    float Layer2Metallic,
+    float Layer2Smoothness,
+    float4 Layer2_ST,
 
-    float2 FarNoiseSettings, float4 FarNoiseMinMax, // Noise
+    float2 Layer2NoiseSettings, float4 Layer2NoiseMinMax, // Noise
 
-    float FarVariationMode, float4 FarVariationSettings, float FarVariationBrightness, // Variation Settings
-    float4 FarVariationNoiseSettings, // Variation Noise
-    UnityTexture2D FarVariationTexture, float4 FarVariationTextureTO, // Variation Texture
+    float Layer2VariationMode, float4 Layer2VariationSettings, float Layer2VariationBrightness, // Variation Settings
+    float4 Layer2VariationNoiseSettings, // Variation Noise
+    UnityTexture2D Layer2VariationTexture, float4 Layer2VariationTextureTO, // Variation Texture
 
-    // Blend Material
-    float MaterialBlendSettings, int BlendMaskType, float4 BlendMaskDistanceTO,
-    float2 MaterialBlendProperties, float3 MaterialBlendNoiseSettings,
-    UnityTexture2D BlendMaskTexture, float4 BlendMaskTextureTO,
+    float2 Layer2DistanceBlendMinMax, float4 Layer2DistanceBlendTO, // Distance Blend
 
-    float2 BlendSettings, float4 BlendTilingOffset, // Tiling & Offset
-    UnityTexture2D BlendAlbedo, // Albedo
-    UnityTexture2D BlendMetallicMap, // Metallic
-    UnityTexture2D BlendSmoothnessMap, // Smoothness
-    UnityTexture2D BlendRoughnessMap, // Roughness
-    UnityTexture2D BlendNormalMap, // Normal
-    UnityTexture2D BlendOcclussionMap, // Occlussion
-    UnityTexture2D BlendEmissionMap, // Emission
-    float4 BlendAlbedoTint, float3 BlendEmissionColor, // Colors
-    float4 BlendMaterialProperties1, float2 BlendMaterialProperties2, // Material Properties
+    // Layer 3
+    float Layer3Settings,
+    UnityTexture2D Layer3Albedo,
+    UnityTexture2D Layer3Normal,
+    float Layer3NormalScale,
+    UnityTexture2D Layer3Mask,
+    float Layer3HasMask,
+    float Layer3Metallic,
+    float Layer3Smoothness,
+    float4 Layer3_ST,
 
-    float2 BlendNoiseSettings, float4 BlendNoiseMinMax, // Noise
+    float2 Layer3NoiseSettings, float4 Layer3NoiseMinMax, // Noise
 
-    float BlendVariationMode, float4 BlendVariationSettings, float BlendVariationBrightness, // Variation Settings
-    float4 BlendVariationNoiseSettings, // Variation Noise
-    UnityTexture2D BlendVariationTexture, float4 BlendVariationTextureTO, // Variation Texture
+    float Layer3VariationMode, float4 Layer3VariationSettings, float Layer3VariationBrightness, // Variation Settings
+    float4 Layer3VariationNoiseSettings, // Variation Noise
+    UnityTexture2D Layer3VariationTexture, float4 Layer3VariationTextureTO, // Variation Texture
+
+    float2 Layer3DistanceBlendMinMax, float4 Layer3DistanceBlendTO, // Distance Blend
+
+    // Layer 4
+    float Layer4Settings,
+    UnityTexture2D Layer4Albedo,
+    UnityTexture2D Layer4Normal,
+    float Layer4NormalScale,
+    UnityTexture2D Layer4Mask,
+    float Layer4HasMask,
+    float Layer4Metallic,
+    float Layer4Smoothness,
+    float4 Layer4_ST,
+
+    float2 Layer4NoiseSettings, float4 Layer4NoiseMinMax, // Noise
+
+    float Layer4VariationMode, float4 Layer4VariationSettings, float Layer4VariationBrightness, // Variation Settings
+    float4 Layer4VariationNoiseSettings, // Variation Noise
+    UnityTexture2D Layer4VariationTexture, float4 Layer4VariationTextureTO, // Variation Texture
+
+    float2 Layer4DistanceBlendMinMax, float4 Layer4DistanceBlendTO, // Distance Blend
 
     // Outputs
-    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut)
+    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut)
 {
+    float4 albedoColor = 1;
+    float3 normalVector = TangentNormalVector;
+    float metallic = 0;
+    float smoothness = 0;
+    float occlussion = 0;
     
+    // Output
+    AlbedoColorOut = albedoColor;
+    NormalVectorOut = normalVector;
+    MetallicOut = metallic;
+    SmoothnessOut = smoothness;
+    OcclussionOut = occlussion;
 }
 
 #endif
