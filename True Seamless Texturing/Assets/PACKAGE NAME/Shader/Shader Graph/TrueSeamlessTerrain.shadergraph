@@ -58,6 +58,24 @@
             "m_Id": "503678f2de4f48d499b25030f4fd6f1e"
         },
         {
+            "m_Id": "ff76bdd5e19545e9923fcc62145163e7"
+        },
+        {
+            "m_Id": "458c323f167940ad92e91f2ae983729d"
+        },
+        {
+            "m_Id": "a67574abb8124c9a9034f005e5d780e1"
+        },
+        {
+            "m_Id": "dc68ac009e9443e9a84c3d93ffba7588"
+        },
+        {
+            "m_Id": "490427d6af5444d89dcae12f64e16f4d"
+        },
+        {
+            "m_Id": "25b67cf6750746eb8d9650651cf7e513"
+        },
+        {
             "m_Id": "2754e51b1fb048c8b078e82bf2310746"
         },
         {
@@ -215,6 +233,12 @@
         },
         {
             "m_Id": "ee0f1ac758594da4a2222d35cbc11d92"
+        },
+        {
+            "m_Id": "8f7692fd396e48088241e0ec9c78a771"
+        },
+        {
+            "m_Id": "54f89fc048ac43feae720c5f192ccc00"
         }
     ],
     "m_Keywords": [],
@@ -6895,6 +6919,12 @@
         },
         {
             "m_Id": "9ff5ed0ed3b1483baf07a32acf8f3e76"
+        },
+        {
+            "m_Id": "a67574abb8124c9a9034f005e5d780e1"
+        },
+        {
+            "m_Id": "dc68ac009e9443e9a84c3d93ffba7588"
         }
     ]
 }
@@ -8421,6 +8451,34 @@
     "m_DefaultValue": {
         "x": 0.0,
         "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector4ShaderProperty",
+    "m_ObjectId": "25b67cf6750746eb8d9650651cf7e513",
+    "m_Guid": {
+        "m_GuidSerialized": "5f66ac67-31ea-4228-a8c8-6bc839772851"
+    },
+    "m_Name": "Layer2DistanceBlendTO",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Layer2DistanceBlendTO",
+    "m_DefaultReferenceName": "_Layer2DistanceBlendTO",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 5.0,
+        "y": 5.0,
         "z": 0.0,
         "w": 0.0
     }
@@ -10442,6 +10500,12 @@
         },
         {
             "m_Id": "57462457286140eebedf5742bb84afc3"
+        },
+        {
+            "m_Id": "8f7692fd396e48088241e0ec9c78a771"
+        },
+        {
+            "m_Id": "54f89fc048ac43feae720c5f192ccc00"
         }
     ]
 }
@@ -11602,6 +11666,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector4ShaderProperty",
+    "m_ObjectId": "458c323f167940ad92e91f2ae983729d",
+    "m_Guid": {
+        "m_GuidSerialized": "84d3f066-b979-4588-beab-e711717000a5"
+    },
+    "m_Name": "Layer4DistanceBlendTO",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Layer4DistanceBlendTO",
+    "m_DefaultReferenceName": "_Layer4DistanceBlendTO",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 5.0,
+        "y": 5.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
     "m_ObjectId": "45955d88b3ec481a80479b2699c52cf8",
@@ -11984,6 +12076,34 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "VertexDescription.Normal"
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector2ShaderProperty",
+    "m_ObjectId": "490427d6af5444d89dcae12f64e16f4d",
+    "m_Guid": {
+        "m_GuidSerialized": "92bf5a39-7fef-4974-9ce0-a5c621e07079"
+    },
+    "m_Name": "Layer2DistanceBlendMinMax",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Layer2DistanceBlendMinMax",
+    "m_DefaultReferenceName": "_Layer2DistanceBlendMinMax",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 100.0,
+        "y": 150.0,
+        "z": 0.0,
+        "w": 0.0
+    }
 }
 
 {
@@ -13136,6 +13256,34 @@
     },
     "m_Property": {
         "m_Id": "2e4ea92a246e41da84d5faf273d75639"
+    }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector4ShaderProperty",
+    "m_ObjectId": "54f89fc048ac43feae720c5f192ccc00",
+    "m_Guid": {
+        "m_GuidSerialized": "79898f1b-3ab0-4804-a4f6-629071ee4a91"
+    },
+    "m_Name": "Layer1DistanceBlendTO",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Layer1DistanceBlendTO",
+    "m_DefaultReferenceName": "_Layer1DistanceBlendTO",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 5.0,
+        "y": 5.0,
+        "z": 0.0,
+        "w": 0.0
     }
 }
 
@@ -18478,6 +18626,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector2ShaderProperty",
+    "m_ObjectId": "8f7692fd396e48088241e0ec9c78a771",
+    "m_Guid": {
+        "m_GuidSerialized": "a0be22e5-d810-4505-b4bb-e19b9f7ee7ae"
+    },
+    "m_Name": "Layer1DistanceBlendMinMax",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Layer1DistanceBlendMinMax",
+    "m_DefaultReferenceName": "_Layer1DistanceBlendMinMax",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 100.0,
+        "y": 150.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.RedirectNodeData",
     "m_ObjectId": "8f9c271c6a9346d7bd8b3b4cceaa5a30",
@@ -20466,6 +20642,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector2ShaderProperty",
+    "m_ObjectId": "a67574abb8124c9a9034f005e5d780e1",
+    "m_Guid": {
+        "m_GuidSerialized": "c4bc1723-d6fb-4842-8911-7e48e58e2699"
+    },
+    "m_Name": "Layer3DistanceBlendMinMax",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Layer3DistanceBlendMinMax",
+    "m_DefaultReferenceName": "_Layer3DistanceBlendMinMax",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 100.0,
+        "y": 150.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.RedirectNodeData",
     "m_ObjectId": "a6acf40c1aaf4dfdb9b851f7ade12b9a",
@@ -21986,6 +22190,12 @@
         },
         {
             "m_Id": "2754e51b1fb048c8b078e82bf2310746"
+        },
+        {
+            "m_Id": "ff76bdd5e19545e9923fcc62145163e7"
+        },
+        {
+            "m_Id": "458c323f167940ad92e91f2ae983729d"
         }
     ]
 }
@@ -22896,6 +23106,12 @@
         },
         {
             "m_Id": "d45af0e80621499a921cc86240d79a32"
+        },
+        {
+            "m_Id": "490427d6af5444d89dcae12f64e16f4d"
+        },
+        {
+            "m_Id": "25b67cf6750746eb8d9650651cf7e513"
         }
     ]
 }
@@ -25844,6 +26060,34 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector4ShaderProperty",
+    "m_ObjectId": "dc68ac009e9443e9a84c3d93ffba7588",
+    "m_Guid": {
+        "m_GuidSerialized": "f89b4300-5445-464d-a008-775b9756956e"
+    },
+    "m_Name": "Layer3DistanceBlendTO",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Layer3DistanceBlendTO",
+    "m_DefaultReferenceName": "_Layer3DistanceBlendTO",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 5.0,
+        "y": 5.0,
+        "z": 0.0,
+        "w": 0.0
     }
 }
 
@@ -29633,6 +29877,34 @@
     "m_DefaultValue": {
         "x": 0.0,
         "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector2ShaderProperty",
+    "m_ObjectId": "ff76bdd5e19545e9923fcc62145163e7",
+    "m_Guid": {
+        "m_GuidSerialized": "6062224f-322a-4966-8126-34eb81187a28"
+    },
+    "m_Name": "Layer4DistanceBlendMinMax",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Layer4DistanceBlendMinMax",
+    "m_DefaultReferenceName": "_Layer4DistanceBlendMinMax",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 100.0,
+        "y": 150.0,
         "z": 0.0,
         "w": 0.0
     }
