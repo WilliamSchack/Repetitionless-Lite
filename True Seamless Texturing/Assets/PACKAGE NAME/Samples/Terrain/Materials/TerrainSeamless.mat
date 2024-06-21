@@ -238,13 +238,13 @@ Material:
     - _BaseVariationTextureTO: {r: 10, g: 10, b: 0, a: 0}
     - _BlendAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _BlendMaskDistanceTO: {r: 1, g: 1, b: 0, a: 0}
+    - _BlendMaskDistanceTO: {r: 5, g: 5, b: 0, a: 0}
     - _BlendMaskTextureTO: {r: 1, g: 1, b: 0, a: 0}
     - _BlendMaterialProperties1: {r: 0, g: 0, b: 0, a: 1}
     - _BlendMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _BlendNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BlendNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _BlendSettings: {r: 23, g: 28, b: 0, a: 0}
+    - _BlendSettings: {r: 7, g: 28, b: 0, a: 0}
     - _BlendTilingOffset: {r: 30, g: 30, b: 0, a: 0}
     - _BlendVariationNoiseSettings: {r: 500, g: 0, b: 0, a: 0}
     - _BlendVariationSettings: {r: 0.5, g: 6, b: 4, a: 2}
