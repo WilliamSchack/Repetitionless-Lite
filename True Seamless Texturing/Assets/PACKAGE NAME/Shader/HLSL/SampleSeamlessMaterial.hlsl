@@ -220,7 +220,6 @@ void GetSeamlessTerrainLayerColor(
     bool randomiseNoiseScaling = (settingToggles & 2) != 0;
     bool randomiseRotation = (settingToggles & 4) != 0;
     bool variationEnabled = (settingToggles & 8) != 0;
-    bool distanceBlendEnabled = (settingToggles & 16) != 0;
     
     // Noise Settings
     float noiseAngleOffset = NoiseSettings.x;

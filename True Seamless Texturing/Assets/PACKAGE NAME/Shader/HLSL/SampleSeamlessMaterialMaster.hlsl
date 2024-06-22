@@ -4,7 +4,7 @@
 #include "SampleSeamlessMaterial.hlsl"
 
 void SampleSeamlessMaterialMaster_float(
-    float2 UV, float3 TangentNormalVector,
+    SamplerState SS, float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition, // Positions
     int SurfaceType, float DebuggingIndex, // Enums
 
@@ -84,7 +84,7 @@ void SampleSeamlessMaterialMaster_float(
     float farDistance = 0;
     
     GetSeamlessMaterialColor(
-        sampler_BaseAlbedo, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
         BaseSettings, BaseTilingOffset,
         BaseAlbedo,
         BaseMetallicMap,
@@ -125,7 +125,7 @@ void SampleSeamlessMaterialMaster_float(
                 materialMask = SimplexNoise(UV * blendMaskNoiseScale + blendMaskNoiseOffset) * 2;
                 break;
             case 2: // Custom Texture
-                materialMask = SAMPLE_TEXTURE2D(BlendMaskTexture, sampler_BlendMaskTexture, UV * blendMaskNoiseScale + blendMaskNoiseOffset).r;
+                materialMask = SAMPLE_TEXTURE2D(BlendMaskTexture, SS, UV * blendMaskNoiseScale + blendMaskNoiseOffset).r;
                 break;
         }
         
@@ -147,7 +147,7 @@ void SampleSeamlessMaterialMaster_float(
             
             // Sample Blend Material
             GetSeamlessMaterialColor(
-                sampler_BaseAlbedo, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+                SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                 BlendSettings, BlendTilingOffset,
                 BlendAlbedo,
                 BlendMetallicMap,
@@ -199,7 +199,7 @@ void SampleSeamlessMaterialMaster_float(
                 case 0: // Tiling & Offset
                     // Sample Base Material
                     GetSeamlessMaterialColor(
-                        sampler_BaseAlbedo, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+                        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                         BaseSettings, FarTilingOffset,
                         BaseAlbedo,
                         BaseMetallicMap,
@@ -220,7 +220,7 @@ void SampleSeamlessMaterialMaster_float(
                 case 1: // Material
                     // Sample Far Material
                     GetSeamlessMaterialColor(
-                        sampler_FarAlbedo, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+                        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                         FarSettings, FarTilingOffset,
                         FarAlbedo,
                         FarMetallicMap,
@@ -262,7 +262,7 @@ void SampleSeamlessMaterialMaster_float(
                 
                 // Sample Blend Material
                 GetSeamlessMaterialColor(
-                        sampler_BlendAlbedo, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+                        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                         BlendSettings, tilingOffset,
                         BlendAlbedo,
                         BlendMetallicMap,

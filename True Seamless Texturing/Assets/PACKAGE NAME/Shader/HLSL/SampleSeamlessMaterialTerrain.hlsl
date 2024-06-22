@@ -110,7 +110,7 @@ void SampleSeamlessMaterialTerrain_float(
     SamplerState SS, SamplerState ControlSS, float2 UV, float3 TangentNormalVector, // Control requires clamped sampler state, otherwise fades off at edges of terrain
     float3 WorldPosition, float3 CameraPosition, // Positions
     UnityTexture2D Holes, UnityTexture2D Control,
-    float DebuggingIndex, // Enums
+    float SurfaceType, float DebuggingIndex, // Enums
 
     bool DistanceBlendEnabled, float2 DistanceBlendMinMax, float4 DistanceBlendTO, // Distance Blending
 
@@ -356,10 +356,22 @@ void SampleSeamlessMaterialTerrain_float(
     }
     
     // Debugging
-    // Would use a switch statement here but it bugs out the material on my laptop so I assume it would happen to others also
-    // Really weird bug that should not be happening but better safe than sorry :/
     if (DebuggingIndex == 2)
         albedoColor = farDistance;
+    
+    // ------------------------------------------------------------------------------------- FIX TRANSPARENCY WHEN GUI IS SETUP
+    
+    // If Transparency Disabled
+    if (SurfaceType == 0)
+        albedoColor.a = 0.9; // 0.9 to allow for holes clipping
+    if (DebuggingIndex != -1)
+        albedoColor.a = 1.0;
+    
+    // Holes
+    float4 holesColor = SAMPLE_TEXTURE2D(Holes, SS, UV);
+    clip(albedoColor.a - (1 - holesColor.r));
+    
+    // ------------------------------------------------------------------------------------- FIX TRANSPARENCY WHEN GUI IS SETUP
     
     // Output
     AlbedoColorOut = albedoColor;
