@@ -30,7 +30,15 @@ void GetSeamlessMaterialColor(
 
     out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut) // Outputs
 {
-    // Get Setting Toggles
+    // Default values
+    AlbedoColorOut = 1;
+    NormalVectorOut = TangentNormalVector;
+    MetallicOut = 0;
+    SmoothnessOut = 0;
+    OcclussionOut = 1;
+    EmissionColorOut = 0;
+    
+    // Setting Toggles
     int settingToggles = (int) Settings.x;
     
     bool noiseEnabled = (settingToggles & 1) != 0;
@@ -50,14 +58,6 @@ void GetSeamlessMaterialColor(
     bool normalAssigned = (assignedTextures & 8) != 0;
     bool occlussionAssigned = (assignedTextures & 16) != 0;
     bool emissionAssigned = (assignedTextures & 32) != 0;
-    
-    // Default values
-    AlbedoColorOut = 1;
-    NormalVectorOut = TangentNormalVector;
-    MetallicOut = 0;
-    SmoothnessOut = 0;
-    OcclussionOut = 1;
-    EmissionColorOut = 0;
     
     // Material Properties
     float metallic = MaterialProperties1.x;
@@ -185,20 +185,18 @@ void GetSeamlessMaterialColor(
         EmissionColorOut = 0;
 }
 
-void GetSeamlessMaterialColor_float(
+void GetSeamlessTerrainLayerColor(
     SamplerState SS, float2 UV, float3 TangentNormalVector,
-    float DebuggingIndex, // Material Properties
+    float DebuggingIndex,
 
-    float2 Settings, float4 TilingOffset, // Tiling & Offset
-    UnityTexture2D Albedo, // Albedo
-    UnityTexture2D MetallicMap, // Metallic
-    UnityTexture2D SmoothnessMap, // Smoothness
-    UnityTexture2D RoughnessMap, // Roughness
-    UnityTexture2D NormalMap, // Normal
-    UnityTexture2D OcclussionMap, // Occlussion
-    UnityTexture2D EmissionMap, // Emission
-    float4 AlbedoTint, float3 EmissionColor, // Colors
-    float4 MaterialProperties1, float2 MaterialProperties2, // Material Properties
+    // Layer Visuals
+    float Settings,
+    UnityTexture2D AlbedoTexture,
+    UnityTexture2D NormalTexture, float NormalScale,
+    UnityTexture2D Mask, float HasMask,
+    float Metallic,
+    float Smoothness,
+    float4 TilingOffset,
 
     float2 NoiseSettings, float4 NoiseMinMax, // Noise
 
@@ -206,9 +204,118 @@ void GetSeamlessMaterialColor_float(
     float4 VariationNoiseSettings, // Variation Noise
     UnityTexture2D VariationTexture, float4 VariationTextureTO, // Variation Texture
 
-    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut) // Outputs)
+    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut) // Outputs
 {
+    // Default values
+    AlbedoColorOut = 1;
+    NormalVectorOut = TangentNormalVector;
+    MetallicOut = 0;
+    SmoothnessOut = 0;
+    OcclussionOut = 1;
     
+    // Setting Toggles
+    int settingToggles = (int) Settings.x;
+    
+    bool noiseEnabled = (settingToggles & 1) != 0;
+    bool randomiseNoiseScaling = (settingToggles & 2) != 0;
+    bool randomiseRotation = (settingToggles & 4) != 0;
+    bool variationEnabled = (settingToggles & 8) != 0;
+    bool distanceBlendEnabled = (settingToggles & 16) != 0;
+    
+    // Noise Settings
+    float noiseAngleOffset = NoiseSettings.x;
+    float noiseScale = NoiseSettings.y;
+    float2 noiseScalingMinMax = NoiseMinMax.xy;
+    float2 randomiseRotationMinMax = NoiseMinMax.zw;
+    
+    // Variation Settings
+    float variationOpacity = VariationSettings.x;
+    float variationNoiseStrength = VariationNoiseSettings.x;
+    float variationNoiseScale = VariationNoiseSettings.y;
+    float2 variationNoiseOffset = VariationNoiseSettings.zw;
+    
+    // Setup UVs
+    float2 tiling = TilingOffset.xy;
+    float2 offset = TilingOffset.zw;
+    float2 oriUV = UV;
+    UV = UV * TilingOffset.xy + TilingOffset.zw;
+    
+    // Change UVs & Get Edge Mask
+    float VoronoiCells = 1;
+    float EdgeMask = 0;
+    float2 EdgeUV = UV;
+    float2 TransformedUV = UV;
+    if (noiseEnabled)
+        GetSeamlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, randomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, TransformedUV);
+    
+    // Get Macro/Micro Variation Multiplier
+    float variationColor = 0;
+    if (variationEnabled && variationOpacity > 0) {
+        switch (VariationMode) {
+            case 0: // Perlin Noise
+                variationColor = MacroMicroVariationPerlinNoise(VariationSettings.y, VariationSettings.z, VariationSettings.w, VariationBrightness, VariationNoiseSettings.x, oriUV, VariationNoiseSettings.y, VariationNoiseSettings.z);
+                break;
+            case 1: // Simplex Noise
+                variationColor = MacroMicroVariationSimplexNoise(VariationSettings.y, VariationSettings.z, VariationSettings.w, VariationBrightness, VariationNoiseSettings.x, oriUV, VariationNoiseSettings.y, VariationNoiseSettings.z);
+                break;
+            case 2: // Custom Texture
+                variationColor = MacroMicroVariationTexture(VariationSettings.y, VariationSettings.z, VariationSettings.w, VariationBrightness, VariationTexture, SS, oriUV, VariationTextureTO.xy, VariationTextureTO.zw);
+                break;
+        }
+    }
+    
+    // Debugging
+    if (DebuggingIndex != -1) {
+        switch (DebuggingIndex) {
+            case 0: // Voronoi Cells
+                AlbedoColorOut = VoronoiCells;
+                break;
+            case 1: // Edge Mask
+                AlbedoColorOut = EdgeMask;
+                break;
+            case 4: // Variation Colour
+                AlbedoColorOut = variationColor;
+                break;
+            default:
+                AlbedoColorOut = 0;
+                break;
+        }
+        
+        return;
+    }
+    
+    // Mask
+    float4 maskColor = 0;
+    if (HasMask == 1)
+        maskColor = SampleSeamlessTexture(Mask, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+    
+    // Albedo
+    AlbedoColorOut = SampleSeamlessTexture(AlbedoTexture, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+    
+    // Macro/Micro Variation
+    if (variationEnabled && variationOpacity > 0)
+        AlbedoColorOut = lerp(AlbedoColorOut, variationColor * AlbedoColorOut, variationOpacity);
+    
+    // Normal
+    NormalVectorOut = SampleSeamlessTexture(NormalTexture, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled, true, NormalScale).rgb;
+    
+    // Metallic
+    if (HasMask == 1)
+        MetallicOut = maskColor.r;
+    else
+        MetallicOut = Metallic;
+    
+    // Smoothness
+    if (HasMask == 1)
+        SmoothnessOut = maskColor.a;
+    else
+        SmoothnessOut = Smoothness;
+    
+    // Occlussion
+    if (HasMask == 1)
+        OcclussionOut = maskColor.b;
+    else
+        OcclussionOut = 1;
 }
 
 #endif

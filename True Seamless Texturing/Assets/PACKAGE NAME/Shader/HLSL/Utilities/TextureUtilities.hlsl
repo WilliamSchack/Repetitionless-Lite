@@ -21,7 +21,7 @@ float2 RotateUVDegrees(float2 UV, float2 Center, float Rotation)
     return UV;
 }
 
-float3 UnpackNormalmap(float4 PackedNormal, float Strength = 1.0)
+float3 UnpackNormalMap(float4 PackedNormal, float Strength = 1.0)
 {
     float3 normal;
     
@@ -30,29 +30,6 @@ float3 UnpackNormalmap(float4 PackedNormal, float Strength = 1.0)
     normal.z = sqrt(1.0 - saturate(dot(normal.xy, normal.xy)));
     
     return normal;
-}
-
-float4 SampleTexture(UnityTexture2D Texture, SamplerState SS, float EdgeMask, float2 EdgeUV, float2 TransformedUV, bool NoiseEnabled, bool NormalMap = false, float NormalStrength = 1.0)
-{
-    // Only sample required textures is noise disabled
-    if (!NoiseEnabled) {
-        float4 baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
-        
-        if (NormalMap)
-            baseTextureColor.rgb = UnpackNormalmap(baseTextureColor, NormalStrength);
-        
-        return SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
-    }
-    
-    float4 baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
-    float4 edgeTextureColor = SAMPLE_TEXTURE2D(Texture, SS, EdgeUV);
-
-    if (NormalMap) {
-        baseTextureColor.rgb = UnpackNormalmap(baseTextureColor, NormalStrength);
-        edgeTextureColor.rgb = UnpackNormalmap(edgeTextureColor, NormalStrength);
-    }
-    
-    return lerp(baseTextureColor, edgeTextureColor, EdgeMask);
 }
 
 #endif

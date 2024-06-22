@@ -49,13 +49,13 @@ namespace SeamlessMaterial.Editor
             _baseBackgroundHeight -= GUIUtilities.BACKGROUND_BOTTOM_PADDING;
 
             // Distance Blend
-            MaterialProperty distanceBlendingEnabledProp = FindProperty("_DistanceBlendingEnabled");
+            MaterialProperty distanceBlendEnabledProp = FindProperty("_DistanceBlendEnabled");
             MaterialProperty distanceBlendModeProp = FindProperty("_DistanceBlendMode");
 
-            bool distanceBlendingEnabled = distanceBlendingEnabledProp.floatValue == 1 ? true : false;
+            bool distanceBlendEnabled = distanceBlendEnabledProp.floatValue == 1 ? true : false;
             DistanceBlendMode distanceBlendMode = (DistanceBlendMode)distanceBlendModeProp.floatValue;
 
-            if (distanceBlendingEnabled) {
+            if (distanceBlendEnabled) {
                 if (distanceBlendMode == DistanceBlendMode.TilingOffset) {
                     // Tiling & Offset Settings
                     _distanceBlendBackgroundHeight = BACKGROUND_HEIGHT_DISTANCE_BLEND_TO;
@@ -92,10 +92,10 @@ namespace SeamlessMaterial.Editor
                 _materialBlendBackgroundHeight -= GUIUtilities.BACKGROUND_BOTTOM_PADDING;
 
                 // Distance Blend Settings
-                if (distanceBlendingEnabled) {
-                    bool overrideDistanceBlending = BooleanCompression.GetCompressedValue(materialBlendingSettings, 1);
-                    bool overrideDistanceBlendingTO = BooleanCompression.GetCompressedValue(materialBlendingSettings, 2);
-                    _materialBlendBackgroundHeight += overrideDistanceBlending && overrideDistanceBlendingTO ? BACKGROUND_HEIGHT_MATERIAL_BLEND_DB_TO_ENABLED : BACKGROUND_HEIGHT_MATERIAL_BLEND_DB_TO_DISABLED;
+                if (distanceBlendEnabled) {
+                    bool overrideDistanceBlend = BooleanCompression.GetCompressedValue(materialBlendingSettings, 1);
+                    bool overrideDistanceBlendTO = BooleanCompression.GetCompressedValue(materialBlendingSettings, 2);
+                    _materialBlendBackgroundHeight += overrideDistanceBlend && overrideDistanceBlendTO ? BACKGROUND_HEIGHT_MATERIAL_BLEND_DB_TO_ENABLED : BACKGROUND_HEIGHT_MATERIAL_BLEND_DB_TO_DISABLED;
                     _materialBlendBackgroundHeight -= GUIUtilities.BACKGROUND_BOTTOM_PADDING;
                 }
 
@@ -171,16 +171,16 @@ namespace SeamlessMaterial.Editor
         private void DrawDistanceBlendGUI()
         {
             // Material Property
-            MaterialProperty distanceBlendingEnabledProp = FindProperty("_DistanceBlendingEnabled");
+            MaterialProperty distanceBlendEnabledProp = FindProperty("_DistanceBlendEnabled");
 
             // Start Background
             float backgroundStartingYPos = GUIUtilities.StartBackground(_distanceBlendBackgroundHeight);
 
             // Distance Blend Enabled Toggle
-            bool distanceBlendingEnabled = GUIUtilities.DrawMajorToggleButton(distanceBlendingEnabledProp, "Distance Blending");
+            bool distanceBlendEnabled = GUIUtilities.DrawMajorToggleButton(distanceBlendEnabledProp, "Distance Blending");
 
             // Draw distance blending settings
-            if (distanceBlendingEnabled) {
+            if (distanceBlendEnabled) {
                 // Material Properties
                 MaterialProperty distanceBlendModeProp = FindProperty("_DistanceBlendMode");
                 MaterialProperty distanceBlendMinMaxProp = FindProperty("_DistanceBlendMinMax");
@@ -237,8 +237,8 @@ namespace SeamlessMaterial.Editor
 
             int materialBlendingSettings = (int)materialBlendingSettingsProp.floatValue;
             bool materialBlendingEnabled = BooleanCompression.GetCompressedValue(materialBlendingSettings, 0);
-            bool overrideDistanceBlending = BooleanCompression.GetCompressedValue(materialBlendingSettings, 1);
-            bool overrideDistanceBlendingTO = BooleanCompression.GetCompressedValue(materialBlendingSettings, 2);
+            bool overrideDistanceBlend = BooleanCompression.GetCompressedValue(materialBlendingSettings, 1);
+            bool overrideDistanceBlendTO = BooleanCompression.GetCompressedValue(materialBlendingSettings, 2);
 
             // Material Blend Enabled Toggle
             materialBlendingEnabled = GUIUtilities.DrawMajorToggleButton(materialBlendingEnabled, "Material Blending");
@@ -246,7 +246,7 @@ namespace SeamlessMaterial.Editor
             if (materialBlendingEnabled) {
                 // Material Properties
                 MaterialProperty blendMaskTypeProp = FindProperty("_BlendMaskType");
-                MaterialProperty distanceBlendingEnabledProp = FindProperty("_DistanceBlendingEnabled");
+                MaterialProperty distanceBlendEnabledProp = FindProperty("_DistanceBlendEnabled");
 
                 MaterialProperty materialBlendPropertiesProp = FindProperty("_MaterialBlendProperties");
 
@@ -297,17 +297,17 @@ namespace SeamlessMaterial.Editor
                 GUILayout.Space(10);
 
                 // Distance Blending
-                bool distanceBlendingEnabled = distanceBlendingEnabledProp.floatValue == 1 ? true : false;
+                bool distanceBlendEnabled = distanceBlendEnabledProp.floatValue == 1 ? true : false;
 
-                if (distanceBlendingEnabled) {
+                if (distanceBlendEnabled) {
                     // Material Property
-                    MaterialProperty distanceBlendingModeProp = FindProperty("_DistanceBlendMode");
-                    DistanceBlendMode distanceBlendingMode = (DistanceBlendMode)distanceBlendingModeProp.floatValue;
+                    MaterialProperty distanceBlendModeProp = FindProperty("_DistanceBlendMode");
+                    DistanceBlendMode distanceBlendMode = (DistanceBlendMode)distanceBlendModeProp.floatValue;
 
                     // Calculate scaled text min width
                     int minScaledTextWidth = 0;
                     minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Override Distance Blending")).x;
-                    if (overrideDistanceBlending && distanceBlendingMode == DistanceBlendMode.TilingOffset)
+                    if (overrideDistanceBlend && distanceBlendMode == DistanceBlendMode.TilingOffset)
                         minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Override Tiling & Offset")).x;
 
                     // Header
@@ -316,20 +316,20 @@ namespace SeamlessMaterial.Editor
                     GUILayout.BeginHorizontal();
 
                     // Override Distance Blending Toggle
-                    string distanceBlendingEnabledStyle = overrideDistanceBlending && distanceBlendingMode == 0 ? "ButtonLeft" : "Button";
-                    overrideDistanceBlending = GUILayout.Toggle(overrideDistanceBlending, new GUIContent(GetScaledText(minScaledTextWidth, "Override Distance Blending", "ODB"), "Draws the blend material on top of the far material"), distanceBlendingEnabledStyle);
+                    string distanceBlendEnabledStyle = overrideDistanceBlend && distanceBlendMode == 0 ? "ButtonLeft" : "Button";
+                    overrideDistanceBlend = GUILayout.Toggle(overrideDistanceBlend, new GUIContent(GetScaledText(minScaledTextWidth, "Override Distance Blending", "ODB"), "Draws the blend material on top of the far material"), distanceBlendEnabledStyle);
 
                     // Override Tiling & Offset Options
                     bool endedHorizontal = false;
-                    if (overrideDistanceBlending && distanceBlendingMode == DistanceBlendMode.TilingOffset) {
+                    if (overrideDistanceBlend && distanceBlendMode == DistanceBlendMode.TilingOffset) {
                         // Override Tiling & Offset Toggle
-                        overrideDistanceBlendingTO = GUILayout.Toggle(overrideDistanceBlendingTO, new GUIContent(GetScaledText(minScaledTextWidth, "Override Tiling & Offset", "OTO"), "Uses defined Tiling & Offset rather than distance blend Tiling & Offset"), "ButtonRight");
+                        overrideDistanceBlendTO = GUILayout.Toggle(overrideDistanceBlendTO, new GUIContent(GetScaledText(minScaledTextWidth, "Override Tiling & Offset", "OTO"), "Uses defined Tiling & Offset rather than distance blend Tiling & Offset"), "ButtonRight");
 
                         endedHorizontal = true;
                         GUILayout.EndHorizontal();
 
                         // Override Tiling & Offset
-                        if (overrideDistanceBlendingTO) {
+                        if (overrideDistanceBlendTO) {
                             MaterialProperty blendMaskDistanceTOProp = FindProperty("_BlendMaskDistanceTO");
 
                             GUIUtilities.DrawTilingOffset(blendMaskDistanceTOProp);
@@ -350,7 +350,7 @@ namespace SeamlessMaterial.Editor
             }
 
             // Save compressed material blend settings
-            int compressedMaterialBlendSettings = BooleanCompression.CompressValues(materialBlendingEnabled, overrideDistanceBlending, overrideDistanceBlendingTO);
+            int compressedMaterialBlendSettings = BooleanCompression.CompressValues(materialBlendingEnabled, overrideDistanceBlend, overrideDistanceBlendTO);
             materialBlendingSettingsProp.floatValue = compressedMaterialBlendSettings;
 
             // End Background

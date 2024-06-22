@@ -10,7 +10,7 @@ float4 SampleSeamlessTexture(UnityTexture2D Texture, SamplerState SS, float Edge
         float4 baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
         
         if (NormalMap)
-            baseTextureColor.rgb = UnpackNormalmap(baseTextureColor, NormalStrength);
+            baseTextureColor.rgb = UnpackNormalMap(baseTextureColor, NormalStrength);
         
         return baseTextureColor;
     }
@@ -19,8 +19,8 @@ float4 SampleSeamlessTexture(UnityTexture2D Texture, SamplerState SS, float Edge
     float4 edgeTextureColor = SAMPLE_TEXTURE2D(Texture, SS, EdgeUV);
 
     if (NormalMap) {
-        baseTextureColor.rgb = UnpackNormalmap(baseTextureColor, NormalStrength);
-        edgeTextureColor.rgb = UnpackNormalmap(edgeTextureColor, NormalStrength);
+        baseTextureColor.rgb = UnpackNormalMap(baseTextureColor, NormalStrength);
+        edgeTextureColor.rgb = UnpackNormalMap(edgeTextureColor, NormalStrength);
     }
     
     return lerp(baseTextureColor, edgeTextureColor, EdgeMask);

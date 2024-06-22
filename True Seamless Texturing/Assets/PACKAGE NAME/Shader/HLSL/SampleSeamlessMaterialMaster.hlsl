@@ -3,7 +3,7 @@
 
 #include "SampleSeamlessMaterial.hlsl"
 
-void SampleSeamlessMaterial_float(
+void SampleSeamlessMaterialMaster_float(
     float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition, // Positions
     int SurfaceType, float DebuggingIndex, // Enums
@@ -27,7 +27,7 @@ void SampleSeamlessMaterial_float(
     UnityTexture2D BaseVariationTexture, float4 BaseVariationTextureTO, // Variation Texture
 
     // Far Material
-    bool DistanceBlendingEnabled, int DistanceBlendingMode, float2 DistanceBlendMinMax, // Distance Blending
+    bool DistanceBlendEnabled, int DistanceBlendingMode, float2 DistanceBlendMinMax, // Distance Blending
 
     float2 FarSettings, float4 FarTilingOffset, // Tiling & Offset
     UnityTexture2D FarAlbedo, // Albedo
@@ -177,7 +177,7 @@ void SampleSeamlessMaterial_float(
     
     // --------------------- Distance Blending ----------------------- //
     
-    if (DistanceBlendingEnabled)
+    if (DistanceBlendEnabled)
     {
         // Distance Mask
         farDistance = distance(WorldPosition, CameraPosition);

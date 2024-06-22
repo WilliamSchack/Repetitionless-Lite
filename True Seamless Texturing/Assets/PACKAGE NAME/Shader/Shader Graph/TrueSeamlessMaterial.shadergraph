@@ -5755,6 +5755,20 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
+    "m_ObjectId": "21acc1ea53a543309b4420f940659aff",
+    "m_Id": 89,
+    "m_DisplayName": "DistanceBlendEnabled",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "DistanceBlendEnabled",
+    "m_StageCapability": 3,
+    "m_Value": false,
+    "m_DefaultValue": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "227bf200a9454ea5afddfc114165267d",
     "m_Id": 1,
@@ -6682,6 +6696,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "32dced8eefe74379a7ffe9cbc209f40b",
+    "m_Id": 90,
+    "m_DisplayName": "DistanceBlendMode",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "DistanceBlendMode",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "32f6766e942c41f3ab9ef3cc378e5aaa",
     "m_Group": {
@@ -7375,21 +7404,6 @@
         "m_Guid": ""
     },
     "m_DefaultType": 0
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "3aa54dd3e3f24344bf10eeed42cb1145",
-    "m_Id": 90,
-    "m_DisplayName": "DistanceBlendingMode",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "DistanceBlendingMode",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
 }
 
 {
@@ -9107,7 +9121,7 @@
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "5bd5b9f6f76142d89738ece16166bcea",
-    "m_Name": "Distance Blending Settings",
+    "m_Name": "Distance Blend Settings",
     "m_ChildObjectList": [
         {
             "m_Id": "7a0d1a20f5f74fab8082d17d794a81e9"
@@ -11234,10 +11248,10 @@
     "m_Guid": {
         "m_GuidSerialized": "4af90d99-9cb9-442b-8e7d-92feabad7acf"
     },
-    "m_Name": "DistanceBlendingEnabled",
+    "m_Name": "DistanceBlendEnabled",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "DistanceBlendingEnabled",
-    "m_DefaultReferenceName": "_DistanceBlendingEnabled",
+    "m_RefNameGeneratedByDisplayName": "DistanceBlendEnabled",
+    "m_DefaultReferenceName": "_DistanceBlendEnabled",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -12336,20 +12350,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
-    "m_ObjectId": "889490c093b74343b45010128b4ad5e6",
-    "m_Id": 89,
-    "m_DisplayName": "DistanceBlendingEnabled",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "DistanceBlendingEnabled",
-    "m_StageCapability": 3,
-    "m_Value": false,
-    "m_DefaultValue": false
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "88d2bd16193943009365d51c626b5bee",
     "m_Id": 23,
@@ -12899,7 +12899,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "90f5a53592c44df6b6c4bd7de4796b22",
     "m_Id": 0,
-    "m_DisplayName": "DistanceBlendingEnabled",
+    "m_DisplayName": "DistanceBlendEnabled",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -13026,13 +13026,13 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "SampleSeamlessMaterial (Custom Function)",
+    "m_Name": "SampleSeamlessMaterialMaster (Custom Function)",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 2121.0,
-            "y": 2461.0,
+            "x": 2109.0,
+            "y": 2464.0,
             "width": 343.0,
             "height": 1966.0
         }
@@ -13120,10 +13120,10 @@
             "m_Id": "b514ad8e5f8f43609f22afa4733c6105"
         },
         {
-            "m_Id": "889490c093b74343b45010128b4ad5e6"
+            "m_Id": "21acc1ea53a543309b4420f940659aff"
         },
         {
-            "m_Id": "3aa54dd3e3f24344bf10eeed42cb1145"
+            "m_Id": "32dced8eefe74379a7ffe9cbc209f40b"
         },
         {
             "m_Id": "d88f2df5dbf44573a5462cecdaba9ae7"
@@ -13306,7 +13306,7 @@
         "m_SerializableColors": []
     },
     "m_SourceType": 0,
-    "m_FunctionName": "SampleSeamlessMaterial",
+    "m_FunctionName": "SampleSeamlessMaterialMaster",
     "m_FunctionSource": "7af0c08ba462be149a307c673de77eaa",
     "m_FunctionBody": "Enter function body here..."
 }

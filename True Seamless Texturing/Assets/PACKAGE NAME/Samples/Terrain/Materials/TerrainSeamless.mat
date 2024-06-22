@@ -194,6 +194,7 @@ Material:
     - _DISTANCEBLENDMODE: 0
     - _DebuggingIndex: -1
     - _DetailNormalMapScale: 1
+    - _DistanceBlendEnabled: 1
     - _DistanceBlendMode: 0
     - _DistanceBlendingEnabled: 1
     - _DstBlend: 0
@@ -232,7 +233,7 @@ Material:
     - _BaseNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
     - _BaseSettings: {r: 19, g: 12, b: 0, a: 0}
-    - _BaseTilingOffset: {r: 30, g: 30, b: 0, a: 0}
+    - _BaseTilingOffset: {r: 25, g: 25, b: 0, a: 0}
     - _BaseVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _BaseVariationSettings: {r: 0.5, g: 6, b: 4, a: 2}
     - _BaseVariationTextureTO: {r: 10, g: 10, b: 0, a: 0}
@@ -245,7 +246,7 @@ Material:
     - _BlendNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BlendNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
     - _BlendSettings: {r: 7, g: 28, b: 0, a: 0}
-    - _BlendTilingOffset: {r: 30, g: 30, b: 0, a: 0}
+    - _BlendTilingOffset: {r: 25, g: 25, b: 0, a: 0}
     - _BlendVariationNoiseSettings: {r: 500, g: 0, b: 0, a: 0}
     - _BlendVariationSettings: {r: 0.5, g: 6, b: 4, a: 2}
     - _BlendVariationTextureTO: {r: 10, g: 10, b: 0, a: 0}
