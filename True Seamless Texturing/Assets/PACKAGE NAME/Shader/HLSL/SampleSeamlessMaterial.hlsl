@@ -292,8 +292,8 @@ void GetSeamlessTerrainLayerColor(
     AlbedoColorOut = SampleSeamlessTexture(AlbedoTexture, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
     
     // Macro/Micro Variation
-    if (variationEnabled && variationOpacity > 0)
-        AlbedoColorOut = lerp(AlbedoColorOut, variationColor * AlbedoColorOut, variationOpacity);
+    //if (variationEnabled && variationOpacity > 0)
+    //    AlbedoColorOut = lerp(AlbedoColorOut, variationColor * AlbedoColorOut, variationOpacity);
     
     // Normal
     NormalVectorOut = SampleSeamlessTexture(NormalTexture, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled, true, NormalScale).rgb;

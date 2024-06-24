@@ -29,7 +29,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
     SplatCount: 8
@@ -115,6 +115,7 @@ Material:
     - _Layer4VariationBrightness: 0.3
     - _Layer4VariationMode: 2
     - _Mask_Slider: 0.5
+    - _SurfaceType: 0
     m_Colors:
     - _DistanceBlendMinMax: {r: 300, g: 400, b: 0, a: 0}
     - _DistanceBlendTO: {r: 1, g: 1, b: 0, a: 0}

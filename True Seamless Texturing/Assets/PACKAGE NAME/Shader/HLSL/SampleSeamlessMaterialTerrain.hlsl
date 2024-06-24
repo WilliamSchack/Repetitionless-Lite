@@ -362,8 +362,8 @@ void SampleSeamlessMaterialTerrain_float(
     // ------------------------------------------------------------------------------------- FIX TRANSPARENCY WHEN GUI IS SETUP
     
     // If Transparency Disabled
-    if (SurfaceType == 0)
-        albedoColor.a = 0.9; // 0.9 to allow for holes clipping
+    if (SurfaceType < 2)
+        albedoColor.a = 0.99; // 0.99 to allow for holes clipping
     if (DebuggingIndex != -1)
         albedoColor.a = 1.0;
     
