@@ -8,6 +8,7 @@ using UnityEditor;
 namespace SeamlessMaterial.Editor
 {
     using Compression;
+    using UnityEditor.Rendering;
     using Variables;
 
     public class SeamlessMaterialGUI : ShaderGUI
@@ -47,9 +48,14 @@ namespace SeamlessMaterial.Editor
         // Rough solution as it only works properly on second call of OnGUI but its better then estimating and fiddling around with the height
         // Drawing a box after calculating height of area would draw ontop of other fields, this will draw behind
         internal float _propertiesBackgroundHeight;
+        internal float _debugBackgroundHeight;
 
         // Foldout States, dynamically adds new materialPrefixes
         private Dictionary<string, MaterialFoldoutState> _foldoutStates = new Dictionary<string, MaterialFoldoutState>();
+
+        // Debug
+        private int _prevDebugIndex = 0;
+        internal string[] _debugSettings; // Must be set in child class
 
         // ShaderGUI doesnt have an OnEnable function, using this instead
         private bool _firstSetup = true;
@@ -79,6 +85,19 @@ namespace SeamlessMaterial.Editor
         }
         #endregion
 
+        #region Setup
+        public virtual void SetupInitialBackgroundHeights()
+        {
+            // Debug
+            MaterialProperty debuggingIndexProp = FindProperty("_DebuggingIndex");
+            bool debuggingEnabled = debuggingIndexProp.floatValue != -1 ? true : false;
+
+            // Calculate debug area from gui instead of constant, allows for dynamic number of debug settings
+            float debugAreaHeight = GUIUtilities.BACKGROUND_TOP_PADDING + GUIUtilities.BACKGROUND_BOTTOM_PADDING + GUIUtilities.MajorToggleButtonStyle.lineHeight + GUIUtilities.BoldHeaderLargeStyle.lineHeight + _debugSettings.Length * (GUIUtilities.LINE_HEIGHT + GUIUtilities.LINE_SPACING) + 2 * GUIUtilities.LINE_SPACING + 10;
+            _debugBackgroundHeight = debuggingEnabled ? debugAreaHeight : BACKGROUND_HEIGHT_DISABLED_SETTING;
+        }
+        #endregion
+
         #region GUI Calls
         public virtual void OnEnable(MaterialEditor materialEditor)
         {
@@ -87,6 +106,8 @@ namespace SeamlessMaterial.Editor
             _editor = materialEditor;
 
             _propertiesBackgroundHeight = BACKGROUND_HEIGHT_PROPERTIES;
+
+            SetupInitialBackgroundHeights();
         }
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
@@ -176,6 +197,46 @@ namespace SeamlessMaterial.Editor
             float heightDiff = GUIUtilities.EndBackground(backgroundStartingYPos);
             if (heightDiff > 0)
                 _propertiesBackgroundHeight = heightDiff;
+        }
+
+        internal void DrawDebugGUI()
+        {
+            // Start Background
+            float backgroundStartingYPos = GUIUtilities.StartBackground(_debugBackgroundHeight);
+
+            // Material Property
+            MaterialProperty debuggingIndexProp = FindProperty("_DebuggingIndex");
+
+            // Debug Toggle
+            bool prevDebugging = debuggingIndexProp.floatValue != -1;
+            bool debugging = GUIUtilities.DrawMajorToggleButton(prevDebugging, "Debug");
+
+            if (debugging) {
+                GUILayout.Space(5);
+
+                // If just started debugging, get previous debugging index
+                if (!prevDebugging) {
+                    debuggingIndexProp.floatValue = _prevDebugIndex;
+                }
+
+                // Title Label
+                GUIUtilities.DrawHeaderLabelLarge("Debug Texture");
+
+                // Selection Grid
+                EditorGUI.BeginChangeCheck();
+                float debuggingIndex = debuggingIndexProp.floatValue;
+                debuggingIndex = GUILayout.SelectionGrid((int)debuggingIndex, _debugSettings, 1);
+                if (EditorGUI.EndChangeCheck())
+                    debuggingIndexProp.floatValue = debuggingIndex;
+            } else if (debuggingIndexProp.floatValue != -1) {
+                _prevDebugIndex = (int)debuggingIndexProp.floatValue;
+                debuggingIndexProp.floatValue = -1;
+            }
+
+            // End Background
+            float heightDiff = GUIUtilities.EndBackground(backgroundStartingYPos);
+            if (heightDiff > 0)
+                _debugBackgroundHeight = heightDiff;
         }
 
         internal void DrawMaterialGUI(string materialPrefix)

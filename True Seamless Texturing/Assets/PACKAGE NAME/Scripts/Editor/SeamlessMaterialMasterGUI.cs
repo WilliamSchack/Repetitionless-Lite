@@ -22,19 +22,17 @@ namespace SeamlessMaterial.Editor
 
         private const int BACKGROUND_HEIGHT_DEBUG = 163;
 
-        // Debug
-        private int _prevDebugIndex = 0;
-
         // Background Heights
         private float _baseBackgroundHeight;
         private float _distanceBlendBackgroundHeight;
         private float _materialBlendBackgroundHeight;
-        private float _debugBackgroundHeight;
         #endregion
 
         #region Setup
-        private void SetupInitialBackgroundHeights()
+        public override void SetupInitialBackgroundHeights()
         {
+            base.SetupInitialBackgroundHeights();
+
             // Base Material
             MaterialProperty baseSettingTogglesProp = FindProperty("_BaseSettings");
             int baseSettingToggles = (int)baseSettingTogglesProp.vectorValue.x;
@@ -115,21 +113,21 @@ namespace SeamlessMaterial.Editor
             } else {
                 _materialBlendBackgroundHeight = BACKGROUND_HEIGHT_DISABLED_SETTING;
             }
-
-            // Debug
-            MaterialProperty debuggingIndexProp = FindProperty("_DebuggingIndex");
-            bool debuggingEnabled = debuggingIndexProp.floatValue != -1 ? true : false;
-
-            _debugBackgroundHeight = debuggingEnabled ? BACKGROUND_HEIGHT_DEBUG : BACKGROUND_HEIGHT_DISABLED_SETTING;
         }
         #endregion
 
         #region GUI Calls
         public override void OnEnable(MaterialEditor materialEditor)
         {
-            base.OnEnable(materialEditor);
+            _debugSettings = new string[] {
+                "Voronoi Cells",
+                "Edge Mask",
+                "Distance Mask",
+                "Blend Material Mask",
+                "Variation Multiplier"
+            };
 
-            SetupInitialBackgroundHeights();
+            base.OnEnable(materialEditor);
         }
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
@@ -357,54 +355,6 @@ namespace SeamlessMaterial.Editor
             float heightDiff = GUIUtilities.EndBackground(backgroundStartingYPos);
             if (heightDiff > 0)
                 _materialBlendBackgroundHeight = heightDiff;
-        }
-
-        private void DrawDebugGUI()
-        {
-            // Start Background
-            float backgroundStartingYPos = GUIUtilities.StartBackground(_debugBackgroundHeight);
-
-            // Material Property
-            MaterialProperty debuggingIndexProp = FindProperty("_DebuggingIndex");
-
-            // Debug Toggle
-            bool prevDebugging = debuggingIndexProp.floatValue != -1;
-            bool debugging = GUIUtilities.DrawMajorToggleButton(prevDebugging, "Debug");
-
-            if (debugging) {
-                GUILayout.Space(5);
-
-                // If just started debugging, get previous debugging index
-                if (!prevDebugging) {
-                    debuggingIndexProp.floatValue = _prevDebugIndex;
-                }
-
-                // Title Label
-                GUIUtilities.DrawHeaderLabelLarge("Debug Texture");
-
-                // Selection Grid
-                string[] debugValues = new string[] {
-                "Voronoi Cells",
-                "Edge Mask",
-                "Distance Mask",
-                "Blend Material Mask",
-                "Variation Multiplier"
-            };
-
-                EditorGUI.BeginChangeCheck();
-                float debuggingIndex = debuggingIndexProp.floatValue;
-                debuggingIndex = GUILayout.SelectionGrid((int)debuggingIndex, debugValues, 1);
-                if (EditorGUI.EndChangeCheck())
-                    debuggingIndexProp.floatValue = debuggingIndex;
-            } else if (debuggingIndexProp.floatValue != -1) {
-                _prevDebugIndex = (int)debuggingIndexProp.floatValue;
-                debuggingIndexProp.floatValue = -1;
-            }
-
-            // End Background
-            float heightDiff = GUIUtilities.EndBackground(backgroundStartingYPos);
-            if (heightDiff > 0)
-                _debugBackgroundHeight = heightDiff;
         }
         #endregion
 

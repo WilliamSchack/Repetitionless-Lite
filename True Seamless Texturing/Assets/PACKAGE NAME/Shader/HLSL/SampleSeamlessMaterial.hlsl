@@ -272,7 +272,7 @@ void GetSeamlessTerrainLayerColor(
             case 1: // Edge Mask
                 AlbedoColorOut = EdgeMask;
                 break;
-            case 4: // Variation Colour
+            case 3: // Variation Colour
                 AlbedoColorOut = variationColor;
                 break;
             default:

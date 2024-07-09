@@ -192,7 +192,7 @@ Material:
     - _Contrast: 0.5
     - _Cutoff: 0.5
     - _DISTANCEBLENDMODE: 0
-    - _DebuggingIndex: -1
+    - _DebuggingIndex: 0
     - _DetailNormalMapScale: 1
     - _DistanceBlendEnabled: 1
     - _DistanceBlendMode: 0
