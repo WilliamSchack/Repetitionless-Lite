@@ -336,7 +336,7 @@ public class MaskMaker : EditorWindow {
 
     Texture2D duplicateTexture(Texture2D source)
     {
-        RenderTexture renderTex = RenderTexture.GetTemporary(source.width,source.height,0,RenderTextureFormat.ARGBFloat,RenderTextureReadWrite.sRGB);
+        RenderTexture renderTex = RenderTexture.GetTemporary(source.width, source.height, 0, RenderTextureFormat.ARGBFloat, RenderTextureReadWrite.sRGB);
 
         Graphics.Blit(source, renderTex);
         RenderTexture previous = RenderTexture.active;
