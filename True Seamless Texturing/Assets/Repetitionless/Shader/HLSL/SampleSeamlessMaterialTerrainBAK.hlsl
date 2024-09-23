@@ -359,13 +359,19 @@ void SampleSeamlessMaterialTerrain_float(
     if (DebuggingIndex == 2)
         albedoColor = farDistance;
     
-    // Holes
-    float4 holesColor = SAMPLE_TEXTURE2D(Holes, SS, UV);
-    clip(holesColor.r - 0.001); // If hole value will be 0, subtract small value to get it below 0, will not clip otherwise
+    // ------------------------------------------------------------------------------------- FIX TRANSPARENCY WHEN GUI IS SETUP
     
     // If Transparency Disabled
-    if (SurfaceType == 0 || DebuggingIndex != -1)
+    if (SurfaceType < 2)
+        albedoColor.a = 1;
+    if (DebuggingIndex != -1)
         albedoColor.a = 1.0;
+    
+    // Holes
+    float4 holesColor = SAMPLE_TEXTURE2D(Holes, SS, UV);
+    clip(albedoColor.a - (1 - (holesColor.r - 0.01))); // Remove 1 from holes otherwise it will equal 0, not clipping the pixel
+    
+    // ------------------------------------------------------------------------------------- FIX TRANSPARENCY WHEN GUI IS SETUP
     
     // Output
     AlbedoColorOut = albedoColor;
