@@ -263,7 +263,7 @@ void SampleSeamlessMaterialTerrain_float(
     UnityTexture2D Layer4BlendVariationTexture, float4 Layer4BlendVariationTextureTO, // Variation Texture
 
     // Outputs
-    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut)
+    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut)
 {
     // Setup control for additive blending (Using over lerp as it removes white borders)
     float4 controlColor = SAMPLE_TEXTURE2D(Control, ControlSS, UV);
@@ -278,7 +278,7 @@ void SampleSeamlessMaterialTerrain_float(
     float metallic = 0;
     float smoothness = 0;
     float occlussion = backgroundControl;
-    float farDistance = 0;
+    float3 emission = 0;
     
     // ----------------------- Layer 1 ------------------------- //
 
@@ -289,7 +289,7 @@ void SampleSeamlessMaterialTerrain_float(
         float layerMetallic = metallic;
         float layerSmoothness = smoothness;
         float layerOcclussion = occlussion;
-        float layerFarDistance = farDistance;
+        float3 layerEmission = emission;
         
         // Sample layer
         SampleSeamlessMaterialMaster_float(
@@ -358,7 +358,7 @@ void SampleSeamlessMaterialTerrain_float(
             Layer1BlendVariationTexture, Layer1BlendVariationTextureTO, // Variation Texture
         
             // Outputs
-            layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerFarDistance
+            layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
         );
         
         //SampleTerrainLayer(
@@ -385,7 +385,7 @@ void SampleSeamlessMaterialTerrain_float(
         metallic += layerMetallic * layer1Control;
         smoothness += layerSmoothness * layer1Control;
         occlussion += layerOcclussion * layer1Control;
-        farDistance += layerFarDistance * layer1Control;
+        emission += layerEmission * layer1Control;
     }
     
     // ----------------------- Layer 2 ------------------------- //
@@ -398,7 +398,7 @@ void SampleSeamlessMaterialTerrain_float(
         float layerMetallic = metallic;
         float layerSmoothness = smoothness;
         float layerOcclussion = occlussion;
-        float layerFarDistance = farDistance;
+        float3 layerEmission = emission;
         
         // Sample layer
         SampleSeamlessMaterialMaster_float(
@@ -467,7 +467,7 @@ void SampleSeamlessMaterialTerrain_float(
             Layer2BlendVariationTexture, Layer2BlendVariationTextureTO, // Variation Texture
         
             // Outputs
-            layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerFarDistance
+            layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
         );
         
         //SampleTerrainLayer(
@@ -494,7 +494,7 @@ void SampleSeamlessMaterialTerrain_float(
         metallic += layerMetallic * layer2Control;
         smoothness += layerSmoothness * layer2Control;
         occlussion += layerOcclussion * layer2Control;
-        farDistance += layerFarDistance * layer2Control;
+        emission += layerEmission * layer2Control;
     }
     
     // ----------------------- Layer 3 ------------------------- //
@@ -507,7 +507,7 @@ void SampleSeamlessMaterialTerrain_float(
         float layerMetallic = metallic;
         float layerSmoothness = smoothness;
         float layerOcclussion = occlussion;
-        float layerFarDistance = farDistance;
+        float3 layerEmission = emission;
         
         // Sample layer
         SampleSeamlessMaterialMaster_float(
@@ -576,7 +576,7 @@ void SampleSeamlessMaterialTerrain_float(
             Layer3BlendVariationTexture, Layer3BlendVariationTextureTO, // Variation Texture
         
             // Outputs
-            layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerFarDistance
+            layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
         );
         
         //SampleTerrainLayer(
@@ -603,7 +603,7 @@ void SampleSeamlessMaterialTerrain_float(
         metallic += layerMetallic * layer3Control;
         smoothness += layerSmoothness * layer3Control;
         occlussion += layerOcclussion * layer3Control;
-        farDistance += layerFarDistance * layer3Control;
+        emission += layerEmission * layer3Control;
     }
     
     // ----------------------- Layer 4 ------------------------- //
@@ -616,7 +616,7 @@ void SampleSeamlessMaterialTerrain_float(
         float layerMetallic = metallic;
         float layerSmoothness = smoothness;
         float layerOcclussion = occlussion;
-        float layerFarDistance = farDistance;
+        float3 layerEmission = emission;
         
         // Sample layer
         SampleSeamlessMaterialMaster_float(
@@ -685,7 +685,7 @@ void SampleSeamlessMaterialTerrain_float(
             Layer4BlendVariationTexture, Layer4BlendVariationTextureTO, // Variation Texture
         
             // Outputs
-            layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerFarDistance
+            layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
         );
         
         //SampleTerrainLayer(
@@ -712,12 +712,12 @@ void SampleSeamlessMaterialTerrain_float(
         metallic += layerMetallic * layer4Control;
         smoothness += layerSmoothness * layer4Control;
         occlussion += layerOcclussion * layer4Control;
-        farDistance += layerFarDistance * layer4Control;
+        emission += layerEmission * layer4Control;
     }
     
     // Debugging
-    if (DebuggingIndex == 2)
-        albedoColor = farDistance;
+    //if (DebuggingIndex == 2)
+    //    albedoColor = farDistance;
     
     // ------------------------------------------------------------------------------------- FIX TRANSPARENCY WHEN GUI IS SETUP
     
@@ -739,5 +739,6 @@ void SampleSeamlessMaterialTerrain_float(
     MetallicOut = metallic;
     SmoothnessOut = smoothness;
     OcclussionOut = occlussion;
+    EmissionColorOut = emission;
 }
 #endif
