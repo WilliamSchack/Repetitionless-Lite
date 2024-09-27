@@ -1,14 +1,40 @@
+using System.Linq;
 using UnityEngine;
 
 namespace SeamlessMaterial.Utilities
 {
     public static class Texture2DArrayUtilities
     {
-        public static Texture2DArray CreateArray(Texture2D[] textures, TextureFormat format = TextureFormat.ARGB32, bool mipChain = false)
+        // Unsupported texture formats by Texture2DArray
+        static readonly TextureFormat[] crunchCompressedFormats = {
+            TextureFormat.DXT1,
+            TextureFormat.DXT1Crunched,
+            TextureFormat.DXT5,
+            TextureFormat.DXT5Crunched,
+            TextureFormat.ETC2_RGB,
+            TextureFormat.ETC2_RGBA1,
+            TextureFormat.ETC2_RGBA8,
+            TextureFormat.ETC2_RGBA8Crunched,
+            TextureFormat.ETC_RGB4,
+            TextureFormat.ETC_RGB4Crunched
+        };
+
+        public static Texture2DArray Create(Texture2D[] textures)
         {
-            Texture2DArray array = new Texture2DArray(textures[0].width, textures[0].height, textures.Length, format, mipChain);
-            for (int i = 0; i < textures.Length; i++)
+            // Check if first texture used unsupported format, if it does use ARGB32
+            TextureFormat format = textures[0].format;
+            if (crunchCompressedFormats.Contains(format)) {
+                Debug.LogWarning("Texture 1 uses unsupported format, automatically assigning Texture Array format to ARGB32");
+                format = TextureFormat.ARGB32;
+            }
+
+            // Create array and assign textures to it
+            Texture2DArray array = new Texture2DArray(textures[0].width, textures[0].height, textures.Length, format, textures[0].mipmapCount > 1);
+            for (int i = 0; i < textures.Length; i++) {
+                if (textures[i] == null) continue;
+
                 array.SetPixels(textures[i].GetPixels(), i);
+            }
 
             array.filterMode = textures[0].filterMode;
             array.wrapMode = textures[0].wrapMode;

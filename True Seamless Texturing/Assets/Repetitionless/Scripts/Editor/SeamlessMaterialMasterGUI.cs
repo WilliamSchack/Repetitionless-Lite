@@ -30,6 +30,11 @@ namespace SeamlessMaterial.Editor
         private float _distanceBlendBackgroundHeight;
         private float _materialBlendBackgroundHeight;
         private float _debugBackgroundHeight;
+
+        // Textures
+        private Texture2D[] _baseTextures = new Texture2D[8];
+        private Texture2D[] _farTextures = new Texture2D[8];
+        private Texture2D[] _blendTextures = new Texture2D[9];
         #endregion
 
         #region Setup
@@ -131,6 +136,13 @@ namespace SeamlessMaterial.Editor
             base.OnEnable(materialEditor);
 
             SetupInitialBackgroundHeights();
+
+
+        }
+
+        private void LoadTextures()
+        {
+
         }
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
@@ -239,6 +251,7 @@ namespace SeamlessMaterial.Editor
             minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Emission")).x;
             minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Smooth")).x;
             minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Rough")).x;
+            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Clear Tex")).x;
             if (noiseEnabled) {
                 minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Random Scaling")).x;
                 minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Random Rotation")).x;
@@ -275,6 +288,23 @@ namespace SeamlessMaterial.Editor
             srSelected = GUILayout.Toolbar((int)srSelected, new GUIContent[] { new GUIContent(GetScaledText(minScaledTextWidth, "Smooth", "S"), "Using smoothness for material (Default unity material behaviour)"), new GUIContent(GetScaledText(minScaledTextWidth, "Rough", "R"), "Uses roughness for material (1 - smoothness)") });
             if (EditorGUI.EndChangeCheck())
                 smoothnessEnabled = srSelected == 1.0f ? false : true;
+
+            Debug.Log("CLEARNING TEXTURE2DARRAY HERE");
+            if (GUILayout.Button(new GUIContent(GetScaledText(minScaledTextWidth, "Clear Tex", "X"), "Clear the Texture2DArray holding the textures")) && EditorUtility.DisplayDialog("Clear Texture2DArray", $"Are you sure?\nYou will have to reassign all the {materialPrefix} textures\nCan be used to change the resolution of your textures", "Clear", "Cancel")) {
+                string assetsPath = Application.dataPath;
+                assetsPath = assetsPath.Substring(0, assetsPath.LastIndexOf("/")); // Remove "/Assets", included in filePath
+
+                string filePath = AssetDatabase.GetAssetPath(_editor.target);
+                filePath = filePath.Substring(0, filePath.LastIndexOf("/"));
+                filePath = $"{filePath}/SeamlessMaterialData/TextureArray.asset";
+
+                if (System.IO.File.Exists($"{assetsPath}/{filePath}")) {
+                    AssetDatabase.DeleteAsset(filePath);
+                    //for (int i = 0; i < textures.Length; i++) {
+                    //    textures[i] = null;
+                    //}
+                }
+            }
 
             EditorGUILayout.EndHorizontal();
 

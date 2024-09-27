@@ -12,19 +12,7 @@ using UnityEditor;
 
 public class TestEditor : ShaderGUI
 {
-    // Unsupported texture formats by Texture2DArray
-    readonly TextureFormat[] crunchCompressedFormats = {
-        TextureFormat.DXT1,
-        TextureFormat.DXT1Crunched,
-        TextureFormat.DXT5,
-        TextureFormat.DXT5Crunched,
-        TextureFormat.ETC2_RGB,
-        TextureFormat.ETC2_RGBA1,
-        TextureFormat.ETC2_RGBA8,
-        TextureFormat.ETC2_RGBA8Crunched,
-        TextureFormat.ETC_RGB4,
-        TextureFormat.ETC_RGB4Crunched
-    };
+
 
     Texture2D[] textures = new Texture2D[4];
 
@@ -36,7 +24,8 @@ public class TestEditor : ShaderGUI
         string folderPath = AssetDatabase.GetAssetPath(materialEditor.target);
         folderPath = folderPath.Substring(0, folderPath.LastIndexOf("/"));
         Texture2DArray array = (Texture2DArray)AssetDatabase.LoadAssetAtPath($"{folderPath}/SeamlessMaterialData/TextureArray.asset", typeof(Texture2DArray));
-        textures = Texture2DArrayUtilities.GetTextures(array);
+        if(array != null)
+            textures = Texture2DArrayUtilities.GetTextures(array);
     }
 
 
@@ -92,8 +81,6 @@ public class TestEditor : ShaderGUI
                 }
             }
 
-            bool mipMapEnabled = newTextures[0].mipmapCount > 1;
-
             string folderPath = AssetDatabase.GetAssetPath(materialEditor.target);
             folderPath = folderPath.Substring(0, folderPath.LastIndexOf("/"));
             
@@ -109,16 +96,9 @@ public class TestEditor : ShaderGUI
                     array = Texture2DArrayUtilities.UpdateTexture(array, newTextures[changedIndex], changedIndex);
 
             } else {
-                // Check if first texture used unsupported format, if it does use ARGB32
-                TextureFormat format = newTextures[0].format;
-                if (crunchCompressedFormats.Contains(format)) {
-                    Debug.LogWarning("Texture 1 uses unsupported format, automatically assigning Texture Array format to ARGB32");
-                    format = TextureFormat.ARGB32;
-                }
+                array = Texture2DArrayUtilities.Create(newTextures);
 
-                array = Texture2DArrayUtilities.CreateArray(newTextures, format, mipMapEnabled);
-
-                if(!AssetDatabase.IsValidFolder(folderPath))
+                if(!AssetDatabase.IsValidFolder($"{folderPath}/SeamlessMaterialData"))
                     AssetDatabase.CreateFolder(folderPath, "SeamlessMaterialData");
 
                 AssetDatabase.CreateAsset(array, $"{folderPath}/SeamlessMaterialData/TextureArray.asset");

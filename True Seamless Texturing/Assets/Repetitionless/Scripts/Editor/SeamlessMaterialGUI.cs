@@ -36,7 +36,7 @@ namespace SeamlessMaterial.Editor
         internal const int BACKGROUND_HEIGHT_NOISE_FOLDOUT = 112;
         internal const int BACKGROUND_HEIGHT_VARIATION_FOLDOUT = 222;
 
-        internal const int SCALED_TEXT_PADDING = 5;
+        internal const int SCALED_TEXT_PADDING = 10;
 
         // Material Helpers
         internal Material _material;
