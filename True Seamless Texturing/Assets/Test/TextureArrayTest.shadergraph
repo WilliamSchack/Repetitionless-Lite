@@ -17,6 +17,12 @@
         },
         {
             "m_Id": "6d2557eec7cc476fb30c9569815f1984"
+        },
+        {
+            "m_Id": "8a8dce9a3a5d45fab9385e0c71a92cdb"
+        },
+        {
+            "m_Id": "c93b3faa6395420b95a9764e78a76d3a"
         }
     ],
     "m_Keywords": [],
@@ -3690,6 +3696,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "8a8dce9a3a5d45fab9385e0c71a92cdb",
+    "m_Guid": {
+        "m_GuidSerialized": "4e33641e-a97e-44c6-b329-e0de43d20a19"
+    },
+    "m_Name": "TextureIndexes",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "TextureIndexes",
+    "m_DefaultReferenceName": "_TextureIndexes",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": -1.0,
+    "m_FloatType": 2,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.GradientNode",
     "m_ObjectId": "8b9e735f75c940799b922bc0db972097",
@@ -4506,6 +4540,12 @@
         },
         {
             "m_Id": "6d2557eec7cc476fb30c9569815f1984"
+        },
+        {
+            "m_Id": "8a8dce9a3a5d45fab9385e0c71a92cdb"
+        },
+        {
+            "m_Id": "c93b3faa6395420b95a9764e78a76d3a"
         }
     ]
 }
@@ -4928,6 +4968,34 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "c93b3faa6395420b95a9764e78a76d3a",
+    "m_Guid": {
+        "m_GuidSerialized": "9678822e-e2f9-495c-bef6-c7eb9a9304d6"
+    },
+    "m_Name": "TexturesAssigned",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "TexturesAssigned",
+    "m_DefaultReferenceName": "_TexturesAssigned",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
     }
 }
 

@@ -48,7 +48,7 @@ namespace SeamlessMaterial.Utilities
         {
             if (texture.width != array.width) {
                 Debug.LogError("Texture is not the same size as the array, cannot be assigned. Please use a texture with the same resolution as the rest");
-                return array;
+                return null;
             }
 
             array.SetPixels(texture.GetPixels(), index);

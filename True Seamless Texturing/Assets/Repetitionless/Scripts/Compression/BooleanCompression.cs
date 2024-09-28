@@ -19,6 +19,19 @@ namespace SeamlessMaterial.Compression
             return compressedValues;
         }
 
+        public static bool[] GetCompressedValues(int compressedValues, int valueCount)
+        {
+            bool[] values = new bool[valueCount];
+
+            int current = 1; 
+            for (int i = 0; i < valueCount; i++) {
+                values[i] = (compressedValues & current) != 0;
+                current *= 2;
+            }
+
+            return values;
+        }
+
         public static bool GetCompressedValue(int compressedValues, int index)
         {
             int current = (int)(1 * Mathf.Pow(2, index));
