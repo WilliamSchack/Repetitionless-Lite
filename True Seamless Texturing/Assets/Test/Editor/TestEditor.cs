@@ -1,12 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using System;
 
 using SeamlessMaterial.Utilities;
 using SeamlessMaterial.Compression;
-
+using SeamlessMaterial.Editor;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -14,39 +12,43 @@ using UnityEditor;
 public class TestEditor : ShaderGUI
 {
     Texture2D[] _textures = new Texture2D[8];
-    string _indexes = "";
+    bool[] _assignedTextures = new bool[8];
 
     // ShaderGUI doesnt have an OnEnable function, using this instead
-    private bool _firstSetup = true;
+    private bool _firstSetup = false; // <-------------------------------------------------------------- set to true
 
     public void OnEnable(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
         string folderPath = AssetDatabase.GetAssetPath(materialEditor.target);
         folderPath = folderPath.Substring(0, folderPath.LastIndexOf("/"));
-        Texture2DArray array = (Texture2DArray)AssetDatabase.LoadAssetAtPath($"{folderPath}/SeamlessMaterialData/TextureArray.asset", typeof(Texture2DArray));
+        Texture2DArray array = (Texture2DArray)AssetDatabase.LoadAssetAtPath(ArrayPath(properties), typeof(Texture2DArray));
         if (array != null) {
             Texture2D[] textures = Texture2DArrayUtilities.GetTextures(array);
 
             int compressedAssignedTextures = (int)FindProperty("_TexturesAssigned", properties).floatValue;
             Debug.Log(compressedAssignedTextures);
 
-            bool[] texturesAssigned = BooleanCompression.GetCompressedValues(compressedAssignedTextures, _textures.Length);
+            bool[] assignedTextures = BooleanCompression.GetCompressedValues(compressedAssignedTextures, _textures.Length);
 
             int currentIndex = 0;
-            for (int i = 0; i < texturesAssigned.Length; i++) {
-                if (texturesAssigned[i]) {
+            for (int i = 0; i < assignedTextures.Length; i++) {
+                if (assignedTextures[i]) {
                     _textures[i] = textures[currentIndex];
                     currentIndex++;
                 }
             }
 
-            _indexes = string.Join("", texturesAssigned.Select(x => x ? "1" : "0"));
+            _assignedTextures = assignedTextures;
         }
     }
 
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
+        //Debug.LogError("FIGURE OUT NORMALS");
+
         base.OnGUI(materialEditor, properties);
+
+        GUILayout.Space(30);
 
         // OnEnable if first call
         if (_firstSetup) {
@@ -54,16 +56,15 @@ public class TestEditor : ShaderGUI
             _firstSetup = false;
         }
 
-        if (GUILayout.Button(new GUIContent("Clear Texture2DArray"))) {
-            string assetsPath = Application.dataPath;
-            assetsPath = assetsPath.Substring(0, assetsPath.LastIndexOf("/")); // Remove "/Assets", included in filePath
-            
-            string filePath = AssetDatabase.GetAssetPath(materialEditor.target);
-            filePath = filePath.Substring(0, filePath.LastIndexOf("/"));
-            filePath = $"{filePath}/SeamlessMaterialData/TextureArray.asset";
+        materialEditor.TexturePropertySingleLine(new GUIContent("LABEL"), FindProperty("_1", properties), FindProperty("_TestSlider", properties));
+        FindProperty("_TestSlider", properties).floatValue = GUIUtilities.DrawTextureWithSlider(materialEditor, FindProperty("_1", properties), true, FindProperty("_TestSlider", properties).floatValue, new GUIContent("LABEL 2"));
+        FindProperty("_TestSlider", properties).floatValue = EditorGUILayout.Slider(FindProperty("_TestSlider", properties).floatValue, 0, 1);
 
-            if (System.IO.File.Exists($"{assetsPath}/{filePath}")) {
-                AssetDatabase.DeleteAsset(filePath);
+        if (GUILayout.Button(new GUIContent("Clear Texture2DArray"))) {
+            string arrayPath = ArrayPath(properties);
+
+            if (System.IO.File.Exists(arrayPath)) {
+                AssetDatabase.DeleteAsset(arrayPath);
                 for(int i = 0;i < _textures.Length; i++) {
                     _textures[i] = null;
                 }
@@ -115,10 +116,7 @@ public class TestEditor : ShaderGUI
                 }
             }
 
-            string folderPath = AssetDatabase.GetAssetPath(materialEditor.target);
-            folderPath = folderPath.Substring(0, folderPath.LastIndexOf("/"));
-
-            Texture2DArray array = (Texture2DArray)AssetDatabase.LoadAssetAtPath($"{folderPath}/SeamlessMaterialData/TextureArray.asset", typeof(Texture2DArray));
+            Texture2DArray array = (Texture2DArray)AssetDatabase.LoadAssetAtPath(ArrayPath(properties), typeof(Texture2DArray));
             if (array != null) {
                 int changedIndex = -1;
                 for (int i = 0; i < newTextures.Length; i++) {
@@ -129,7 +127,7 @@ public class TestEditor : ShaderGUI
                 }
 
                 if (changedIndex != -1) {
-                    bool textureAssigned = (int)char.GetNumericValue(_indexes[changedIndex]) == 1;
+                    bool textureAssigned = _assignedTextures[changedIndex];
 
                     if (textureAssigned) {
                         int newTextureIndex = assignedTextures.Substring(0, changedIndex).Count(x => x == '1');
@@ -141,27 +139,44 @@ public class TestEditor : ShaderGUI
                         array = updatedArray;
                     } else {
                         array = Texture2DArrayUtilities.Create(arrayTextures.ToArray());
-                        AssetDatabase.CreateAsset(array, $"{folderPath}/SeamlessMaterialData/TextureArray.asset");
+                        AssetDatabase.CreateAsset(array, ArrayPath(properties));
                     }
                 }
 
             } else {
                 array = Texture2DArrayUtilities.Create(arrayTextures.ToArray());
 
-                if (!AssetDatabase.IsValidFolder($"{folderPath}/SeamlessMaterialData"))
-                    AssetDatabase.CreateFolder(folderPath, "SeamlessMaterialData");
+                string folderPath = AssetDatabase.GetAssetPath(materialEditor.target);
+                folderPath = folderPath.Substring(0, folderPath.LastIndexOf("/"));
 
-                AssetDatabase.CreateAsset(array, $"{folderPath}/SeamlessMaterialData/TextureArray.asset");
+                if (!AssetDatabase.IsValidFolder($"{folderPath}/{FolderName(materialEditor)}"))
+                    AssetDatabase.CreateFolder(folderPath, FolderName(materialEditor));
+
+                AssetDatabase.CreateAsset(array, $"{folderPath}/{FolderName(materialEditor)}/TextureArray.asset");
             }
 
             // Set Property
             FindProperty("_Array", properties).textureValue = array;
             FindProperty("_TexturesAssigned", properties).floatValue = BooleanCompression.CompressValues(assignedTexturesArray);
 
-            _indexes = assignedTextures;
+            _assignedTextures = assignedTexturesArray;
         }
 
         _textures = newTextures;
+    }
+
+    private string ArrayPath(MaterialProperty[] properties)
+    {
+        return AssetDatabase.GetAssetPath(FindProperty("_Array", properties).textureValue);
+    }
+
+    private string FolderName(MaterialEditor editor)
+    {
+        string path = AssetDatabase.GetAssetPath(editor.target);
+        int lastIndex = path.LastIndexOf("/");
+        string fileName = path.Substring(lastIndex + 1, path.Length - lastIndex - 1).Split(".")[0];
+
+        return fileName + "_TextureData";
     }
 }
 #endif

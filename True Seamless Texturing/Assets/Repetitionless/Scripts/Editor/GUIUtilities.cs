@@ -104,6 +104,8 @@ namespace SeamlessMaterial.Editor
         public static float DrawTextureWithSlider(MaterialEditor editor, MaterialProperty textureProperty, bool sliderCondition, float sliderValue, GUIContent content)
         {
             Rect rect = GetLineRect();
+            EditorGUI.DrawRect(rect, Color.green);
+
             editor.TexturePropertyMiniThumbnail(rect, textureProperty, content.text, content.tooltip);
             if (sliderCondition) {
                 sliderValue = EditorGUI.Slider(MaterialEditor.GetRectAfterLabelWidth(rect), sliderValue, 0, 1);

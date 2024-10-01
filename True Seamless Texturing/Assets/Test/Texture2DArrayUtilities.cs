@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ namespace SeamlessMaterial.Utilities
 
         public static Texture2DArray Create(Texture2D[] textures)
         {
-            // Check if first texture used unsupported format, if it does use ARGB32
+            // Check if first texture used unsupported format, if it is use ARGB32
             TextureFormat format = textures[0].format;
             if (crunchCompressedFormats.Contains(format)) {
                 Debug.LogWarning("Texture 1 uses unsupported format, automatically assigning Texture Array format to ARGB32");
@@ -32,6 +33,13 @@ namespace SeamlessMaterial.Utilities
             Texture2DArray array = new Texture2DArray(textures[0].width, textures[0].height, textures.Length, format, textures[0].mipmapCount > 1);
             for (int i = 0; i < textures.Length; i++) {
                 if (textures[i] == null) continue;
+
+                if (textures[i].width != array.width || textures[i].height != array.height) {
+                    Debug.LogWarning("Texture size is not the same as the array, resizing to array size. Please use a texture with the same resolution as the initially assigned");
+
+                    // Scale texture to array resolution
+                    textures[i] = ResizeTexture(textures[i], array.width, array.height);
+                }
 
                 array.SetPixels(textures[i].GetPixels(), i);
             }
@@ -46,9 +54,11 @@ namespace SeamlessMaterial.Utilities
 
         public static Texture2DArray UpdateTexture(Texture2DArray array, Texture2D texture, int index)
         {
-            if (texture.width != array.width) {
-                Debug.LogError("Texture is not the same size as the array, cannot be assigned. Please use a texture with the same resolution as the rest");
-                return null;
+            if(texture.width != array.width || texture.height != array.height) {
+                Debug.LogWarning("Texture size is not the same as the array, resizing to array size. Please use a texture with the same resolution as the initially assigned");
+
+                // Scale texture to array resolution
+                texture = ResizeTexture(texture, array.width, array.height);
             }
 
             array.SetPixels(texture.GetPixels(), index);
@@ -70,6 +80,24 @@ namespace SeamlessMaterial.Utilities
             }
 
             return textures;
+        }
+
+        private static Texture2D ResizeTexture(Texture2D texture, int newWidth, int newHeight)
+        {
+            RenderTexture rt = RenderTexture.GetTemporary(newWidth, newHeight);
+            rt.filterMode = FilterMode.Bilinear;
+            RenderTexture.active = rt;
+
+            Graphics.Blit(texture, rt);
+            Texture2D result = new Texture2D(newWidth, newHeight);
+
+            result.ReadPixels(new Rect(0, 0, newWidth, newHeight), 0, 0);
+            result.Apply();
+
+            RenderTexture.active = null;
+            RenderTexture.ReleaseTemporary(rt);
+
+            return result;
         }
     }
 }
