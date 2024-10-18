@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -101,11 +103,55 @@ namespace SeamlessMaterial.Editor
             return enabled;
         }
 
-        public static float DrawTextureWithSlider(MaterialEditor editor, MaterialProperty textureProperty, bool sliderCondition, float sliderValue, GUIContent content)
+        public static Texture2D DrawTexture(Texture2D texture, GUIContent content)
+        {
+            Rect lineRect = GetLineRect();
+
+            // Get Rects
+            Rect thumbRect = EditorGUI.IndentedRect(lineRect);
+            thumbRect.y -= 0f;
+            thumbRect.height = 18f;
+            thumbRect.width = 32f;
+            float num = thumbRect.x + 30f;
+            Rect labelRect = new Rect(num, lineRect.y, thumbRect.x + EditorGUIUtility.labelWidth - num, lineRect.height);
+
+            EditorGUI.HandlePrefixLabel(lineRect, labelRect, content, 0, EditorStyles.label);
+
+            return (Texture2D)EditorGUI.ObjectField(thumbRect, texture, typeof(Texture2D), false);
+        }
+
+        public static Texture2D DrawTexture(Rect rect, Texture2D texture, GUIContent content)
+        {
+            // Get Rects
+            Rect thumbRect = EditorGUI.IndentedRect(rect);
+            thumbRect.y -= 0f;
+            thumbRect.height = 18f;
+            thumbRect.width = 32f;
+            float num = thumbRect.x + 30f;
+            Rect labelRect = new Rect(num, rect.y, thumbRect.x + EditorGUIUtility.labelWidth - num, rect.height);
+
+            EditorGUI.HandlePrefixLabel(rect, labelRect, content, 0, EditorStyles.label);
+
+            return (Texture2D)EditorGUI.ObjectField(thumbRect, texture, typeof(Texture2D), false);
+        }
+
+        public static (Texture2D, float) DrawTextureWithSlider(Texture2D texture, float sliderValue, GUIContent content)
+        {
+            Rect lineRect = GetLineRect();
+
+            // Texture
+            Texture2D newTexture = DrawTexture(lineRect, texture, content);
+
+            // Slider
+            Rect valueRect = MaterialEditor.GetRectAfterLabelWidth(lineRect);
+            float newValue = EditorGUI.Slider(valueRect, sliderValue, 0, 1);
+
+            return (newTexture, newValue);
+        }
+
+        public static float DrawTexturePropertyWithSlider(MaterialEditor editor, MaterialProperty textureProperty, bool sliderCondition, float sliderValue, GUIContent content)
         {
             Rect rect = GetLineRect();
-            EditorGUI.DrawRect(rect, Color.green);
-
             editor.TexturePropertyMiniThumbnail(rect, textureProperty, content.text, content.tooltip);
             if (sliderCondition) {
                 sliderValue = EditorGUI.Slider(MaterialEditor.GetRectAfterLabelWidth(rect), sliderValue, 0, 1);

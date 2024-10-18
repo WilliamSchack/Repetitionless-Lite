@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -6,8 +7,6 @@ using UnityEditor;
 namespace SeamlessMaterial.Editor
 {
     using Compression;
-    using System.Collections.Generic;
-    using Utilities;
     using Variables;
 
     public class SeamlessMaterialMasterGUI : SeamlessMaterialGUI
@@ -404,26 +403,26 @@ namespace SeamlessMaterial.Editor
             _editor.TexturePropertySingleLine(new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), albedoTexProp, abledoTintProp);
 
             // Metallic
-            materialProperties1.x = GUIUtilities.DrawTextureWithSlider(_editor, metallicTexProp, !metallicAssigned, materialProperties1.x, new GUIContent("Metallic", "Metallic (R), other channels are ignored"));
+            materialProperties1.x = GUIUtilities.DrawTexturePropertyWithSlider(_editor, metallicTexProp, !metallicAssigned, materialProperties1.x, new GUIContent("Metallic", "Metallic (R), other channels are ignored"));
 
             // Smoothness/Roughness
             float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
             switch (srSelected) {
                 case 0: // Smoothness
-                    materialProperties1.y = GUIUtilities.DrawTextureWithSlider(_editor, smoothnessTexProp, !smoothnessAssigned, materialProperties1.y, new GUIContent("Smoothness", $"Smoothness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
+                    materialProperties1.y = GUIUtilities.DrawTexturePropertyWithSlider(_editor, smoothnessTexProp, !smoothnessAssigned, materialProperties1.y, new GUIContent("Smoothness", $"Smoothness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
 
                     break;
                 case 1: // Roughness
-                    materialProperties1.z = GUIUtilities.DrawTextureWithSlider(_editor, roughnessTexProp, !roughnessAssigned, materialProperties1.z, new GUIContent("Roughness", $"Roughness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
+                    materialProperties1.z = GUIUtilities.DrawTexturePropertyWithSlider(_editor, roughnessTexProp, !roughnessAssigned, materialProperties1.z, new GUIContent("Roughness", $"Roughness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
 
                     break;
             }
 
             // Normal Map
-            materialProperties1.w = GUIUtilities.DrawTextureWithSlider(_editor, normalTexProp, normalAssigned, materialProperties1.w, new GUIContent("Normal Map"));
+            materialProperties1.w = GUIUtilities.DrawTexturePropertyWithSlider(_editor, normalTexProp, normalAssigned, materialProperties1.w, new GUIContent("Normal Map"));
 
             // Occlussion Map
-            materialProperties2.x = GUIUtilities.DrawTextureWithSlider(_editor, occlussionTexProp, occlussionAssigned, materialProperties2.x, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"));
+            materialProperties2.x = GUIUtilities.DrawTexturePropertyWithSlider(_editor, occlussionTexProp, occlussionAssigned, materialProperties2.x, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"));
 
             // Emission
             if (emissionEnabled) {

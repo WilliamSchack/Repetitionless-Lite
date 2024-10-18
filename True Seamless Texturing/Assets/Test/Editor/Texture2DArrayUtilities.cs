@@ -1,8 +1,13 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using System.Threading.Tasks;
 
-namespace SeamlessMaterial.Utilities
+
+#if UNITY_EDITOR
+using UnityEditor;
+
+namespace SeamlessMaterial.Editor
 {
     public static class Texture2DArrayUtilities
     {
@@ -52,11 +57,14 @@ namespace SeamlessMaterial.Utilities
             return array;
         }
 
+        /// <summary>
+        /// Overwrites the texture at a given index to the input texture
+        /// Automatically resizes the input texture to the array size if it is a different resolution
+        /// </summary>
         public static Texture2DArray UpdateTexture(Texture2DArray array, Texture2D texture, int index)
         {
-            if(texture.width != array.width || texture.height != array.height) {
+            if (texture.width != array.width || texture.height != array.height) {
                 Debug.LogWarning("Texture size is not the same as the array, resizing to array size. Please use a texture with the same resolution as the initially assigned");
-
                 // Scale texture to array resolution
                 texture = ResizeTexture(texture, array.width, array.height);
             }
@@ -65,6 +73,62 @@ namespace SeamlessMaterial.Utilities
             array.Apply();
 
             return array;
+        }
+
+        /// <summary>
+        /// Returns: Array, User Cancelled
+        /// Overwrites the texture at a given index to the input texture
+        /// Waits for the user to input the outcome when a texture is a different resolution to the array
+        /// </summary>
+        public static async Task<(Texture2DArray, bool)> UpdateTextureAsync(Texture2DArray array, Texture2D texture, int index)
+        {
+            if(texture.width != array.width || texture.height != array.height) {
+
+                // Get user input to determine what to do with the texture
+                int returned = await EditableDisplayDialog.Show(
+                    texture,
+                    "Texture Resolution Difference",
+                    $"Texture: {texture.width}x{texture.height} Array: {array.width}x{array.height}",
+                    "Texture size is not the same as they array. Would you like to resize this texture to the array resolution, or resize the array to this texture resolution?",
+                    "Resize Texture", "Resize Array", "Cancel"
+                );
+
+                switch (returned) {
+                    case 0:
+                        // Scale texture to array resolution
+                        texture = ResizeTexture(texture, array.width, array.height);
+
+                        break;
+                    case 1:
+                        // Scale array to texture resolution
+                        // Create new array, resizing all textures except for this one
+                        // This is a decently slow operation though so expect it to take some depending on the depth and resolution
+
+                        Texture2D[] textures = GetTextures(array);
+                        for (int i = 0; i < textures.Length; i++) {
+                            if (i == index) {
+                                textures[i] = texture;
+                                continue;
+                            }
+
+                            textures[i] = ResizeTexture(textures[i], texture.width, texture.height);
+                        }
+
+                        array = Create(textures);
+
+                        // Return resized array
+                        return (array, false);
+                    
+                    case 2:
+                        // Cancel
+                        return (array, true);
+                }
+            }
+
+            array.SetPixels(texture.GetPixels(), index);
+            array.Apply();
+
+            return (array, false);
         }
 
         public static Texture2D[] GetTextures(Texture2DArray array)
@@ -101,3 +165,4 @@ namespace SeamlessMaterial.Utilities
         }
     }
 }
+#endif

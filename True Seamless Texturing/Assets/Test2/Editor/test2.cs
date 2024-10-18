@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using SeamlessMaterial.Editor;
 using UnityEngine;
-using SeamlessMaterial.Utilities;
 using System.Linq;
 using SeamlessMaterial.Compression;
 

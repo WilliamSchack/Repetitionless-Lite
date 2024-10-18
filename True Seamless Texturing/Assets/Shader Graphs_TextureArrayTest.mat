@@ -53,19 +53,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Array:
-        m_Texture: {fileID: 18700000, guid: fb9449fe5067f044c9c90e3b0e78c64b, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _array:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 0ea3df604a634484e92b04c3904bbaa0, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _TestSlider: 0.561
+    - _TestSlider: 0.589
     - _TextureIndexes: 9123994
-    - _TexturesAssigned: 1
+    - _TexturesAssigned: 116
     m_Colors: []
   m_BuildTextureStacks: []
