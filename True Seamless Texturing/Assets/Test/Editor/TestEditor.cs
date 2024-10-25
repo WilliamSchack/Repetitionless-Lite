@@ -16,6 +16,8 @@ public class TestEditor : ShaderGUI
     // ShaderGUI doesnt have an OnEnable function, using this instead
     private bool _firstSetup = true;
 
+    Texture2D _normalPreview;
+
     // Texture setting not working OnEnable
     public void OnEnable(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
@@ -42,6 +44,8 @@ public class TestEditor : ShaderGUI
 
     public override async void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
+        //base.OnGUI(materialEditor, properties);
+
         GUILayout.Space(30);
 
         // OnEnable if first call
@@ -71,6 +75,13 @@ public class TestEditor : ShaderGUI
         Texture2D[] newTextures = new Texture2D[8];
 
         newTextures[0] = GUIUtilities.DrawTexture(_textures[0], new GUIContent("Texture 1"));
+
+        // Convert red normal map to blue for the inspector
+        //if (_normalPreview == null && _textures[1] != null) {
+        //    _normalPreview = TextureUtilities.ConvertFromCompressedNormal(_textures[1]);
+        //}
+        
+        //newTextures[1] = GUIUtilities.DrawTexture(_normalPreview, new GUIContent("Texture 2 | NORMAL TEST"));
         newTextures[1] = GUIUtilities.DrawTexture(_textures[1], new GUIContent("Texture 2"));
         newTextures[2] = GUIUtilities.DrawTexture(_textures[2], new GUIContent("Texture 3"));
         newTextures[3] = GUIUtilities.DrawTexture(_textures[3], new GUIContent("Texture 4"));
@@ -117,7 +128,7 @@ public class TestEditor : ShaderGUI
                     if (texturePath == "") continue;
 
                     TextureImporter ti = (TextureImporter)AssetImporter.GetAtPath(texturePath);
-                    if (!ti.isReadable) {
+                    if (ti != null && !ti.isReadable) {
                         Debug.LogWarning($"Texture {i} is not readable, setting Read/Write to true...");
                         ti.isReadable = true;
                         ti.SaveAndReimport();
@@ -149,13 +160,18 @@ public class TestEditor : ShaderGUI
 
                             // If array is resized to texture, update file
                             if(array != updatedArray.Item1) {
-                                AssetDatabase.CreateAsset(updatedArray.Item1, ArrayPath(properties));
+                                string path = ArrayPath(properties);
+                                AssetDatabase.DeleteAsset(path);
+                                AssetDatabase.CreateAsset(updatedArray.Item1, path);
                             }
 
                             array = updatedArray.Item1;
                         } else {
                             array = Texture2DArrayUtilities.Create(arrayTextures.ToArray());
-                            AssetDatabase.CreateAsset(array, ArrayPath(properties));
+
+                            string path = ArrayPath(properties);
+                            AssetDatabase.DeleteAsset(path);
+                            AssetDatabase.CreateAsset(array, path);
                         }
                     }
 
@@ -171,8 +187,6 @@ public class TestEditor : ShaderGUI
                     AssetDatabase.CreateAsset(array, $"{folderPath}/{FolderName(materialEditor)}/TextureArray.asset");
                 }
             }
-
-
 
             // Set Property
             FindProperty("_Array", properties).textureValue = array;

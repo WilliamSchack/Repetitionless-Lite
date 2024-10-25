@@ -107,6 +107,8 @@ namespace SeamlessMaterial.Editor
         
             // Draw Buttons
             for (int i = 0; i < 3; i++) {
+                if (_buttonTexts[i] == "") continue;
+
                 GUI.SetNextControlName(i.ToString());
         
                 GUI.backgroundColor = _currentFocus == i ? _focusedBackgroundColour : _defaultBackgroundColour;

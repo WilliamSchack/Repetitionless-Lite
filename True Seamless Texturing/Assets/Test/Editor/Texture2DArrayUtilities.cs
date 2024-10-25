@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using UnityEngine;
 using System.Threading.Tasks;
 
@@ -11,73 +9,75 @@ namespace SeamlessMaterial.Editor
 {
     public static class Texture2DArrayUtilities
     {
-        // Unsupported texture formats by Texture2DArray
-        static readonly TextureFormat[] crunchCompressedFormats = {
-            TextureFormat.DXT1,
-            TextureFormat.DXT1Crunched,
-            TextureFormat.DXT5,
-            TextureFormat.DXT5Crunched,
-            TextureFormat.ETC2_RGB,
-            TextureFormat.ETC2_RGBA1,
-            TextureFormat.ETC2_RGBA8,
-            TextureFormat.ETC2_RGBA8Crunched,
-            TextureFormat.ETC_RGB4,
-            TextureFormat.ETC_RGB4Crunched
-        };
-
-        public static Texture2DArray Create(Texture2D[] textures)
+        private static Texture2DArray SetTextureAtIndex(Texture2DArray array, Texture2D texture, int index)
         {
-            // Check if first texture used unsupported format, if it is use ARGB32
-            TextureFormat format = textures[0].format;
-            if (crunchCompressedFormats.Contains(format)) {
-                Debug.LogWarning("Texture 1 uses unsupported format, automatically assigning Texture Array format to ARGB32");
-                format = TextureFormat.ARGB32;
+            // Change texture format if not the same as array
+            if (texture.format != array.format) {
+                // Convert to RGBA32 first, supports more formats
+                Texture2D temp = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, texture.mipmapCount > 1);
+                Color[] pixels = texture.GetPixels();
+                temp.SetPixels(pixels);
+                temp.Apply();
+
+                // Compress texture down to array if not 
+                if(array.format != TextureFormat.RGBA32)
+                    EditorUtility.CompressTexture(temp, array.format, TextureCompressionQuality.Normal);
+
+                texture = temp;
             }
 
-            // Create array and assign textures to it
+            // Copy texture to array
+            for (int mip = 0; mip < texture.mipmapCount; mip++) {
+                Graphics.CopyTexture(texture, 0, mip, array, index, mip);
+            }
+
+            return array;
+        }
+
+        /// <summary>
+        /// Creates a new Texture2DArray with the given textures <br />
+        /// Takes into account unsupported formats and automatically rescales textures at different resolutions <br />
+        /// Automatically resizes input textures to the array size if they are a different resolution
+        /// </summary>
+        public static Texture2DArray Create(Texture2D[] textures, bool compressed = true)
+        {
+            // Set format depending on if it is compressed or not, compress with dxt5 for best compression with all channels
+            TextureFormat format = compressed ? TextureFormat.DXT5 : TextureFormat.RGBA32;
+
+            // Create array and assign textures to it 
             Texture2DArray array = new Texture2DArray(textures[0].width, textures[0].height, textures.Length, format, textures[0].mipmapCount > 1);
             for (int i = 0; i < textures.Length; i++) {
                 if (textures[i] == null) continue;
 
-                if (textures[i].width != array.width || textures[i].height != array.height) {
-                    Debug.LogWarning("Texture size is not the same as the array, resizing to array size. Please use a texture with the same resolution as the initially assigned");
-
-                    // Scale texture to array resolution
-                    textures[i] = ResizeTexture(textures[i], array.width, array.height);
-                }
-
-                array.SetPixels(textures[i].GetPixels(), i);
+                array = UpdateTexture(array, textures[i], i);
             }
 
             array.filterMode = textures[0].filterMode;
             array.wrapMode = textures[0].wrapMode;
 
-            array.Apply();
-
             return array;
         }
 
         /// <summary>
-        /// Overwrites the texture at a given index to the input texture
+        /// Overwrites the texture at a given index to the input texture <br />
         /// Automatically resizes the input texture to the array size if it is a different resolution
         /// </summary>
         public static Texture2DArray UpdateTexture(Texture2DArray array, Texture2D texture, int index)
         {
             if (texture.width != array.width || texture.height != array.height) {
-                Debug.LogWarning("Texture size is not the same as the array, resizing to array size. Please use a texture with the same resolution as the initially assigned");
+                Debug.LogWarning($"Texture at index {index} is not the same resolution as the array, resizing to array size. Please use a texture with the same resolution as the array");
                 // Scale texture to array resolution
-                texture = ResizeTexture(texture, array.width, array.height);
+                texture = TextureUtilities.ResizeTexture(texture, array.width, array.height);
             }
 
-            array.SetPixels(texture.GetPixels(), index);
-            array.Apply();
+            SetTextureAtIndex(array, texture, index);
 
             return array;
         }
 
         /// <summary>
-        /// Returns: Array, User Cancelled
-        /// Overwrites the texture at a given index to the input texture
+        /// Returns: Array, User Cancelled <br />
+        /// Overwrites the texture at a given index to the input texture <br />
         /// Waits for the user to input the outcome when a texture is a different resolution to the array
         /// </summary>
         public static async Task<(Texture2DArray, bool)> UpdateTextureAsync(Texture2DArray array, Texture2D texture, int index)
@@ -96,22 +96,21 @@ namespace SeamlessMaterial.Editor
                 switch (returned) {
                     case 0:
                         // Scale texture to array resolution
-                        texture = ResizeTexture(texture, array.width, array.height);
+                        texture = TextureUtilities.ResizeTexture(texture, array.width, array.height);
 
                         break;
                     case 1:
                         // Scale array to texture resolution
                         // Create new array, resizing all textures except for this one
-                        // This is a decently slow operation though so expect it to take some depending on the depth and resolution
+                        // This is a decently slow operation though so expect it to take some depending on the array depth and resolution
 
                         Texture2D[] textures = GetTextures(array);
-                        for (int i = 0; i < textures.Length; i++) {
-                            if (i == index) {
-                                textures[i] = texture;
-                                continue;
-                            }
+                        textures[index] = texture;
 
-                            textures[i] = ResizeTexture(textures[i], texture.width, texture.height);
+                        for (int i = 0; i < textures.Length; i++) {
+                            if (i == index) continue;
+
+                            textures[i] = TextureUtilities.ResizeTexture(textures[i], texture.width, texture.height);
                         }
 
                         array = Create(textures);
@@ -125,43 +124,26 @@ namespace SeamlessMaterial.Editor
                 }
             }
 
-            array.SetPixels(texture.GetPixels(), index);
-            array.Apply();
+            SetTextureAtIndex(array, texture, index);
 
             return (array, false);
         }
 
+        /// <summary>
+        /// Returns all the textures from the input array
+        /// </summary>
         public static Texture2D[] GetTextures(Texture2DArray array)
         {
             Texture2D[] textures = new Texture2D[array.depth];
 
             for (int i = 0; i < array.depth; i++) {
-                Texture2D texture = new Texture2D(array.width, array.height);
-                texture.SetPixels(array.GetPixels(i));
-                texture.Apply();
-
-                textures[i] = texture;
+                textures[i] = new Texture2D(array.width, array.height, array.format, array.mipmapCount > 1);
+                for (int mip = 0; mip < array.mipmapCount; mip++) {
+                    Graphics.CopyTexture(array, i, mip, textures[i], 0, mip);
+                }
             }
 
             return textures;
-        }
-
-        private static Texture2D ResizeTexture(Texture2D texture, int newWidth, int newHeight)
-        {
-            RenderTexture rt = RenderTexture.GetTemporary(newWidth, newHeight);
-            rt.filterMode = FilterMode.Bilinear;
-            RenderTexture.active = rt;
-
-            Graphics.Blit(texture, rt);
-            Texture2D result = new Texture2D(newWidth, newHeight);
-
-            result.ReadPixels(new Rect(0, 0, newWidth, newHeight), 0, 0);
-            result.Apply();
-
-            RenderTexture.active = null;
-            RenderTexture.ReleaseTemporary(rt);
-
-            return result;
         }
     }
 }
