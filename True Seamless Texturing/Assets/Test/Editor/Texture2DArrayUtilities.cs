@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Threading.Tasks;
-
+using System.Linq;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -19,7 +19,7 @@ namespace SeamlessMaterial.Editor
                 temp.SetPixels(pixels);
                 temp.Apply();
 
-                // Compress texture down to array if not 
+                // Compress texture down to array format if array is compressed
                 if(array.format != TextureFormat.RGBA32)
                     EditorUtility.CompressTexture(temp, array.format, TextureCompressionQuality.Normal);
 
@@ -39,17 +39,96 @@ namespace SeamlessMaterial.Editor
         /// Takes into account unsupported formats and automatically rescales textures at different resolutions <br />
         /// Automatically resizes input textures to the array size if they are a different resolution
         /// </summary>
-        public static Texture2DArray Create(Texture2D[] textures, bool compressed = true)
+        public static Texture2DArray Create(Texture2D[] textures, bool compressed = true, bool linear = true)
         {
             // Set format depending on if it is compressed or not, compress with dxt5 for best compression with all channels
             TextureFormat format = compressed ? TextureFormat.DXT5 : TextureFormat.RGBA32;
 
-            // Create array and assign textures to it 
-            Texture2DArray array = new Texture2DArray(textures[0].width, textures[0].height, textures.Length, format, textures[0].mipmapCount > 1);
+            // Create array and assign textures to it
+            Texture2DArray array = new Texture2DArray(textures[0].width, textures[0].height, textures.Length, format, textures[0].mipmapCount > 1, linear);
             for (int i = 0; i < textures.Length; i++) {
                 if (textures[i] == null) continue;
 
                 array = UpdateTexture(array, textures[i], i);
+            }
+
+            array.filterMode = textures[0].filterMode;
+            array.wrapMode = textures[0].wrapMode;
+
+            return array;
+        }
+
+        /// <summary>
+        /// Creates a new Texture2DArray with the given textures <br />
+        /// Takes into account unsupported formats and automatically rescales textures at different resolutions <br />
+        /// Check for user input to decide whether to resize the texture or array if a texture is at a different resolution to the array
+        /// </summary>
+        /// <param name="autoResizeIndexes">
+        /// Automatically resizes all input indexes instead of showing a prompt to the user
+        /// </param>
+        /// <returns></returns>
+        public static async Task<Texture2DArray> CreateAsync(Texture2D[] textures, int[] autoResizeIndexes = null, bool compressed = true, bool linear = true)
+        {
+            // Set format depending on if it is compressed or not, compress with dxt5 for best compression with all channels
+            TextureFormat format = compressed ? TextureFormat.DXT5 : TextureFormat.RGBA32;
+
+            // Initial resolution
+            Vector2Int resolution = new Vector2Int(textures[0].width, textures[0].height);
+
+            // Check if any texture is a different resolution
+            Texture2D[] differentResTextures = textures.Where(x => x.width != resolution.x || x.height != resolution.y).ToArray();
+            for (int i = 0; i < textures.Length; i++) {
+                if (textures[i] == null) continue;
+
+                Texture2D texture = textures[i];
+
+                if (texture.width != resolution.x || texture.height != resolution.y) {
+                    // Automatically resize and skip popup if specified
+                    if (autoResizeIndexes.Contains(i)) {
+                        textures[i] = TextureUtilities.ResizeTexture(texture, resolution.x, resolution.y);
+                        continue;
+                    }
+
+                    // Get user input to determine what to do with the texture
+                    int returned = await EditableDisplayDialog.Show(
+                        texture,
+                        "Texture Resolution Difference",
+                        $"Texture: {texture.width}x{texture.height} Array: {resolution.x}x{resolution.y}",
+                        "Texture size is not the same as they array. Would you like to resize this texture to the array resolution, or resize the array to this texture resolution?",
+                        "Resize Texture", "Resize Array", "" // Don't allow cancel
+                    );
+
+                    // If resizing array, skip the next textures and move onto resizing all of them
+                    if(returned == 1) {
+                        resolution = new Vector2Int(texture.width, texture.height);
+                        break;
+                    }
+
+                    // If resizing texture, resize it and assign back to the texture array
+                    if (returned == 0) {
+                        textures[i] = TextureUtilities.ResizeTexture(texture, resolution.x, resolution.y);
+                    }
+                }
+            }
+
+            // If resolution has changed, resize all textures to the new resolution
+            if(resolution != new Vector2Int(textures[0].width, textures[0].height)) {
+                for (int i = 0; i < textures.Length; i++) {
+                    if (textures[i] == null) continue;
+
+                    Texture2D texture = textures[i];
+                    if (texture.width != resolution.x || texture.height != resolution.y) {
+                        textures[i] = TextureUtilities.ResizeTexture(texture, resolution.x, resolution.y);
+                    }
+                }
+            }
+
+            // Create array and assign textures to it
+            Texture2DArray array = new Texture2DArray(resolution.x, resolution.y, textures.Length, format, textures[0].mipmapCount > 1, linear);
+            for (int i = 0; i < textures.Length; i++) {
+                if (textures[i] == null) continue;
+
+                SetTextureAtIndex(array, textures[i], i);
             }
 
             array.filterMode = textures[0].filterMode;
@@ -82,6 +161,13 @@ namespace SeamlessMaterial.Editor
         /// </summary>
         public static async Task<(Texture2DArray, bool)> UpdateTextureAsync(Texture2DArray array, Texture2D texture, int index)
         {
+            // If array has a depth of one, the only texture is being replaced, create a new array as it will cause mipmap or format errors otherwise
+            if(array.depth == 1) {
+                array = Create(new Texture2D[] { texture }, array.format == TextureFormat.DXT5);
+                return (array, false);
+            }
+
+            // Only give user option if texture differs from its resolution
             if(texture.width != array.width || texture.height != array.height) {
 
                 // Get user input to determine what to do with the texture
@@ -101,19 +187,7 @@ namespace SeamlessMaterial.Editor
                         break;
                     case 1:
                         // Scale array to texture resolution
-                        // Create new array, resizing all textures except for this one
-                        // This is a decently slow operation though so expect it to take some depending on the array depth and resolution
-
-                        Texture2D[] textures = GetTextures(array);
-                        textures[index] = texture;
-
-                        for (int i = 0; i < textures.Length; i++) {
-                            if (i == index) continue;
-
-                            textures[i] = TextureUtilities.ResizeTexture(textures[i], texture.width, texture.height);
-                        }
-
-                        array = Create(textures);
+                        array = ResizeArray(array, texture.width, texture.height);
 
                         // Return resized array
                         return (array, false);
@@ -144,6 +218,18 @@ namespace SeamlessMaterial.Editor
             }
 
             return textures;
+        }
+
+        public static Texture2DArray ResizeArray(Texture2DArray array, int newWidth, int newHeight)
+        {
+            Texture2D[] textures = GetTextures(array);
+            for (int i = 0; i < textures.Length; i++) {
+                // Only resize texture if resolution is not the target
+                if (textures[i].width != newWidth && textures[i].height != newHeight)
+                    textures[i] = TextureUtilities.ResizeTexture(textures[i], newWidth, newHeight);
+            }
+
+            return Create(textures, array.format == TextureFormat.DXT5);
         }
     }
 }

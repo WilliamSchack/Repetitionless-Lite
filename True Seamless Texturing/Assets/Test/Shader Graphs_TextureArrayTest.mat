@@ -62,6 +62,6 @@ Material:
     - _BUILTIN_QueueOffset: 0
     - _TestSlider: 0.332
     - _TextureIndexes: 9123994
-    - _TexturesAssigned: 15
+    - _TexturesAssigned: 1
     m_Colors: []
   m_BuildTextureStacks: []
