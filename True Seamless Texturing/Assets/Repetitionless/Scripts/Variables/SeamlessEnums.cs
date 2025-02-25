@@ -1,20 +1,20 @@
 namespace SeamlessMaterial.Variables
 {
-    public enum SurfaceType
+    public enum ESurfaceType
     {
         Opaque,
         Cutout,
         Transparent
     }
     
-    public enum TextureType
+    public enum ETextureType
     {
         PerlinNoise,
         SimplexNoise,
         CustomTexture
     }
 
-    public enum DistanceBlendMode
+    public enum EDistanceBlendMode
     {
         TilingOffset,
         Material

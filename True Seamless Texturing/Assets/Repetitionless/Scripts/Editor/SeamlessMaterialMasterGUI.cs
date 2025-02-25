@@ -12,178 +12,55 @@ namespace SeamlessMaterial.Editor
     public class SeamlessMaterialMasterGUI : SeamlessMaterialGUI
     {
         #region Variables
-        // Constants
-        private const int BACKGROUND_HEIGHT_DISTANCE_BLEND_TO = 128;
-        private const int BACKGROUND_HEIGHT_DISTANCE_BLEND_MATERIAL = 84;
-
-        private const int BACKGROUND_HEIGHT_MATERIAL_BLEND_NOISE = 179;
-        private const int BACKGROUND_HEIGHT_MATERIAL_BLEND_TEXTURE = 201;
-        private const int BACKGROUND_HEIGHT_MATERIAL_BLEND_DB_TO_DISABLED = 57;
-        private const int BACKGROUND_HEIGHT_MATERIAL_BLEND_DB_TO_ENABLED = 101;
-
-        private const int BACKGROUND_HEIGHT_DEBUG = 163;
-
         // Debug
         private int _prevDebugIndex = 0;
-
-        // Background Heights
-        private float _baseBackgroundHeight;
-        private float _distanceBlendBackgroundHeight;
-        private float _materialBlendBackgroundHeight;
-        private float _debugBackgroundHeight;
-
-        // Textures
-        private Dictionary<string, KeyValuePair<Texture2D[], bool[]>> _textures = new Dictionary<string, KeyValuePair<Texture2D[], bool[]>> {
-            { "Base", new KeyValuePair<Texture2D[], bool[]> (new Texture2D[8], new bool[8]) },
-            { "Far", new KeyValuePair<Texture2D[], bool[]> (new Texture2D[8], new bool[8]) },
-            { "Blend", new KeyValuePair<Texture2D[], bool[]> (new Texture2D[9], new bool[9]) }
-        };
         #endregion
 
-        #region Utilities
-        private void LoadTextureGroup(string textureGroup)
-        {
-            KeyValuePair<Texture2D[], bool[]> texturesKeyValuePair = _textures[textureGroup];
-
-            // Get the array storing the textures
-            string arrayPath = AssetDatabase.GetAssetPath(FindProperty($"_{textureGroup}Textures").textureValue);
-            Texture2DArray array = (Texture2DArray)AssetDatabase.LoadAssetAtPath(arrayPath, typeof(Texture2DArray));
-            if (array != null) {
-                // Read the textures from the array
-                Texture2D[] arrayTextures = Texture2DArrayUtilities.GetTextures(array);
-
-                // Get which textures are assigned
-                int compressedAssignedTextures = (int)FindProperty($"_{textureGroup}AssignedTextures").floatValue;
-                bool[] currentAssignedTextures = BooleanCompression.GetCompressedValues(compressedAssignedTextures, texturesKeyValuePair.Key.Length);
-
-                // Figure out which texture in the array goes to which texture here
-                Texture2D[] textures = texturesKeyValuePair.Key;
-
-                int currentIndex = 0;
-                for (int i = 0; i < currentAssignedTextures.Length; i++) {
-                    if (currentAssignedTextures[i]) {
-                        textures[i] = arrayTextures[currentIndex];
-                        currentIndex++;
-                    }
-                }
-
-                texturesKeyValuePair = new KeyValuePair<Texture2D[], bool[]>(textures, currentAssignedTextures);
-            }
-
-            _textures[textureGroup] = texturesKeyValuePair;
-        }
-        #endregion
-
-        #region Setup
-        private void SetupInitialBackgroundHeights()
-        {
-            // Base Material
-            MaterialProperty baseSettingTogglesProp = FindProperty("_BaseSettings");
-            Debug.Log(baseSettingTogglesProp.vectorValue.y);
-            int baseSettingToggles = (int)baseSettingTogglesProp.vectorValue.x;
-            bool baseNoiseEnabled = BooleanCompression.GetCompressedValue(baseSettingToggles, 0);
-            bool baseVariationEnabled = BooleanCompression.GetCompressedValue(baseSettingToggles, 4);
-            bool baseEmissionEnabled = BooleanCompression.GetCompressedValue(baseSettingToggles, 6);
-
-            _baseBackgroundHeight = BACKGROUND_HEIGHT_HEADERSETTINGS;
-            _baseBackgroundHeight += baseEmissionEnabled ? BACKGROUND_HEIGHT_MAIN_FOLDOUT_EMISSION_ENABLED : BACKGROUND_HEIGHT_MAIN_FOLDOUT_EMISSION_DISABLED;
-            if (baseNoiseEnabled) _baseBackgroundHeight += BACKGROUND_HEIGHT_NOISE_FOLDOUT;
-            if (baseVariationEnabled) _baseBackgroundHeight += BACKGROUND_HEIGHT_VARIATION_FOLDOUT;
-            _baseBackgroundHeight -= GUIUtilities.BACKGROUND_BOTTOM_PADDING;
-
-            // Distance Blend
-            MaterialProperty distanceBlendEnabledProp = FindProperty("_DistanceBlendEnabled");
-            MaterialProperty distanceBlendModeProp = FindProperty("_DistanceBlendMode");
-
-            bool distanceBlendEnabled = distanceBlendEnabledProp.floatValue == 1 ? true : false;
-            DistanceBlendMode distanceBlendMode = (DistanceBlendMode)distanceBlendModeProp.floatValue;
-
-            if (distanceBlendEnabled) {
-                if (distanceBlendMode == DistanceBlendMode.TilingOffset) {
-                    // Tiling & Offset Settings
-                    _distanceBlendBackgroundHeight = BACKGROUND_HEIGHT_DISTANCE_BLEND_TO;
-                } else {
-                    // Main Material
-                    MaterialProperty farSettingTogglesProp = FindProperty("_FarSettings");
-                    int farSettingToggles = (int)farSettingTogglesProp.vectorValue.x;
-                    bool farNoiseEnabled = BooleanCompression.GetCompressedValue(farSettingToggles, 0);
-                    bool farVariationEnabled = BooleanCompression.GetCompressedValue(farSettingToggles, 4);
-                    bool farEmissionEnabled = BooleanCompression.GetCompressedValue(farSettingToggles, 6);
-
-                    _distanceBlendBackgroundHeight = BACKGROUND_HEIGHT_DISTANCE_BLEND_MATERIAL + BACKGROUND_HEIGHT_HEADERSETTINGS;
-                    _distanceBlendBackgroundHeight += farEmissionEnabled ? BACKGROUND_HEIGHT_MAIN_FOLDOUT_EMISSION_ENABLED : BACKGROUND_HEIGHT_MAIN_FOLDOUT_EMISSION_DISABLED;
-                    if (farNoiseEnabled) _distanceBlendBackgroundHeight += BACKGROUND_HEIGHT_NOISE_FOLDOUT;
-                    if (farVariationEnabled) _distanceBlendBackgroundHeight += BACKGROUND_HEIGHT_VARIATION_FOLDOUT;
-                }
-
-                _distanceBlendBackgroundHeight -= GUIUtilities.BACKGROUND_BOTTOM_PADDING;
-            } else {
-                _distanceBlendBackgroundHeight = BACKGROUND_HEIGHT_DISABLED_SETTING;
-            }
-
-            // Material Blend
-            MaterialProperty materialBlendingSettingsProp = FindProperty("_MaterialBlendSettings");
-
-            int materialBlendingSettings = (int)materialBlendingSettingsProp.floatValue;
-            bool materialBlendingEnabled = BooleanCompression.GetCompressedValue(materialBlendingSettings, 0);
-
-            if (materialBlendingEnabled) {
-                // Mask Settings
-                MaterialProperty blendMaskTypeProp = FindProperty("_BlendMaskType");
-                TextureType blendMaskType = (TextureType)blendMaskTypeProp.floatValue;
-                _materialBlendBackgroundHeight = blendMaskType == TextureType.CustomTexture ? BACKGROUND_HEIGHT_MATERIAL_BLEND_TEXTURE : BACKGROUND_HEIGHT_MATERIAL_BLEND_NOISE;
-                _materialBlendBackgroundHeight -= GUIUtilities.BACKGROUND_BOTTOM_PADDING;
-
-                // Distance Blend Settings
-                if (distanceBlendEnabled) {
-                    bool overrideDistanceBlend = BooleanCompression.GetCompressedValue(materialBlendingSettings, 1);
-                    bool overrideDistanceBlendTO = BooleanCompression.GetCompressedValue(materialBlendingSettings, 2);
-                    _materialBlendBackgroundHeight += overrideDistanceBlend && overrideDistanceBlendTO ? BACKGROUND_HEIGHT_MATERIAL_BLEND_DB_TO_ENABLED : BACKGROUND_HEIGHT_MATERIAL_BLEND_DB_TO_DISABLED;
-                    _materialBlendBackgroundHeight -= GUIUtilities.BACKGROUND_BOTTOM_PADDING;
-                }
-
-                // Main Material
-                MaterialProperty blendSettingTogglesProp = FindProperty("_BlendSettings");
-                int blendSettingToggles = (int)blendSettingTogglesProp.vectorValue.x;
-                bool blendNoiseEnabled = BooleanCompression.GetCompressedValue(blendSettingToggles, 0);
-                bool blendVariationEnabled = BooleanCompression.GetCompressedValue(blendSettingToggles, 4);
-                bool blendEmissionEnabled = BooleanCompression.GetCompressedValue(blendSettingToggles, 6);
-
-                _materialBlendBackgroundHeight += BACKGROUND_HEIGHT_HEADERSETTINGS + BACKGROUND_HEIGHT_MAIN_FOLDOUT_EMISSION_ENABLED;
-                _materialBlendBackgroundHeight += blendEmissionEnabled ? BACKGROUND_HEIGHT_MAIN_FOLDOUT_EMISSION_ENABLED : BACKGROUND_HEIGHT_MAIN_FOLDOUT_EMISSION_DISABLED;
-                if (blendNoiseEnabled) _materialBlendBackgroundHeight += BACKGROUND_HEIGHT_NOISE_FOLDOUT;
-                if (blendVariationEnabled) _materialBlendBackgroundHeight += BACKGROUND_HEIGHT_VARIATION_FOLDOUT;
-
-                _materialBlendBackgroundHeight -= GUIUtilities.BACKGROUND_BOTTOM_PADDING;
-            } else {
-                _materialBlendBackgroundHeight = BACKGROUND_HEIGHT_DISABLED_SETTING;
-            }
-
-            // Debug
-            MaterialProperty debuggingIndexProp = FindProperty("_DebuggingIndex");
-            bool debuggingEnabled = debuggingIndexProp.floatValue != -1 ? true : false;
-
-            _debugBackgroundHeight = debuggingEnabled ? BACKGROUND_HEIGHT_DEBUG : BACKGROUND_HEIGHT_DISABLED_SETTING;
-        }
-
-        private void LoadTextures()
-        {
-            Debug.LogWarning("Make it load only needed textures and load other textures when needed");
-
-            LoadTextureGroup("Base");
-            LoadTextureGroup("Far");
-            LoadTextureGroup("Blend");
-        }
-        #endregion
+        //// Textures
+        //private Dictionary<string, KeyValuePair<Texture2D[], bool[]>> _textures = new Dictionary<string, KeyValuePair<Texture2D[], bool[]>> {
+        //    { "Base", new KeyValuePair<Texture2D[], bool[]> (new Texture2D[8], new bool[8]) },
+        //    { "Far", new KeyValuePair<Texture2D[], bool[]> (new Texture2D[8], new bool[8]) },
+        //    { "Blend", new KeyValuePair<Texture2D[], bool[]> (new Texture2D[9], new bool[9]) }
+        //};
+        //
+        //#region Utilities
+        //private void LoadTextureGroup(string textureGroup)
+        //{
+        //    KeyValuePair<Texture2D[], bool[]> texturesKeyValuePair = _textures[textureGroup];
+        //
+        //    // Get the array storing the textures
+        //    string arrayPath = AssetDatabase.GetAssetPath(FindProperty($"_{textureGroup}Textures").textureValue);
+        //    Texture2DArray array = (Texture2DArray)AssetDatabase.LoadAssetAtPath(arrayPath, typeof(Texture2DArray));
+        //    if (array != null) {
+        //        // Read the textures from the array
+        //        Texture2D[] arrayTextures = Texture2DArrayUtilities.GetTextures(array);
+        //
+        //        // Get which textures are assigned
+        //        int compressedAssignedTextures = (int)FindProperty($"_{textureGroup}AssignedTextures").floatValue;
+        //        bool[] currentAssignedTextures = BooleanCompression.GetCompressedValues(compressedAssignedTextures, texturesKeyValuePair.Key.Length);
+        //
+        //        // Figure out which texture in the array goes to which texture here
+        //        Texture2D[] textures = texturesKeyValuePair.Key;
+        //
+        //        int currentIndex = 0;
+        //        for (int i = 0; i < currentAssignedTextures.Length; i++) {
+        //            if (currentAssignedTextures[i]) {
+        //                textures[i] = arrayTextures[currentIndex];
+        //                currentIndex++;
+        //            }
+        //        }
+        //
+        //        texturesKeyValuePair = new KeyValuePair<Texture2D[], bool[]>(textures, currentAssignedTextures);
+        //    }
+        //
+        //    _textures[textureGroup] = texturesKeyValuePair;
+        //}
+        //#endregion
 
         #region GUI Calls
         public override void OnEnable(MaterialEditor materialEditor)
         {
             base.OnEnable(materialEditor);
-
-            SetupInitialBackgroundHeights();
-
-            LoadTextures();
         }
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
@@ -330,22 +207,22 @@ namespace SeamlessMaterial.Editor
             if (EditorGUI.EndChangeCheck())
                 smoothnessEnabled = srSelected == 1.0f ? false : true;
 
-            Debug.Log("CLEARNING TEXTURE2DARRAY HERE");
-            if (GUILayout.Button(new GUIContent(GetScaledText(minScaledTextWidth, "Clear Tex", "X"), "Clear the Texture2DArray holding the textures")) && EditorUtility.DisplayDialog("Clear Texture2DArray", $"Are you sure?\nYou will have to reassign all the {materialPrefix} textures\nCan be used to change the resolution of your textures", "Clear", "Cancel")) {
-                string assetsPath = Application.dataPath;
-                assetsPath = assetsPath.Substring(0, assetsPath.LastIndexOf("/")); // Remove "/Assets", included in filePath
-
-                string filePath = AssetDatabase.GetAssetPath(_editor.target);
-                filePath = filePath.Substring(0, filePath.LastIndexOf("/"));
-                filePath = $"{filePath}/SeamlessMaterialData/TextureArray.asset";
-
-                if (System.IO.File.Exists($"{assetsPath}/{filePath}")) {
-                    AssetDatabase.DeleteAsset(filePath);
-                    //for (int i = 0; i < textures.Length; i++) {
-                    //    textures[i] = null;
-                    //}
-                }
-            }
+            //Debug.Log("CLEARNING TEXTURE2DARRAY HERE");
+            //if (GUILayout.Button(new GUIContent(GetScaledText(minScaledTextWidth, "Clear Tex", "X"), "Clear the Texture2DArray holding the textures")) && EditorUtility.DisplayDialog("Clear Texture2DArray", $"Are you sure?\nYou will have to reassign all the {materialPrefix} textures\nCan be used to change the resolution of your textures", "Clear", "Cancel")) {
+            //    string assetsPath = Application.dataPath;
+            //    assetsPath = assetsPath.Substring(0, assetsPath.LastIndexOf("/")); // Remove "/Assets", included in filePath
+            //
+            //    string filePath = AssetDatabase.GetAssetPath(_editor.target);
+            //    filePath = filePath.Substring(0, filePath.LastIndexOf("/"));
+            //    filePath = $"{filePath}/SeamlessMaterialData/TextureArray.asset";
+            //
+            //    if (System.IO.File.Exists($"{assetsPath}/{filePath}")) {
+            //        AssetDatabase.DeleteAsset(filePath);
+            //        //for (int i = 0; i < textures.Length; i++) {
+            //        //    textures[i] = null;
+            //        //}
+            //    }
+            //}
 
             EditorGUILayout.EndHorizontal();
 
@@ -523,8 +400,8 @@ namespace SeamlessMaterial.Editor
 
             // Variation Mode
             EditorGUI.BeginChangeCheck();
-            TextureType variationMode = (TextureType)variationModeProp.floatValue;
-            variationMode = (TextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Variation Mode", "Using a custom texture can cause visible tiling"), variationMode);
+            ETextureType variationMode = (ETextureType)variationModeProp.floatValue;
+            variationMode = (ETextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Variation Mode", "Using a custom texture can cause visible tiling"), variationMode);
             if (EditorGUI.EndChangeCheck())
                 variationModeProp.floatValue = (int)variationMode;
 
@@ -543,7 +420,7 @@ namespace SeamlessMaterial.Editor
             variationSettings.z = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Medium Scale", "Scale of the medium variation sample"), variationSettings.z);
             variationSettings.w = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Large Scale", "Scale of the large variation sample"), variationSettings.w);
 
-            if (variationMode != TextureType.CustomTexture) { // Noise
+            if (variationMode != ETextureType.CustomTexture) { // Noise
                 // Material Property
                 MaterialProperty variationNoiseSettingsProp = FindProperty($"_{materialPrefix}VariationNoiseSettings");
 
@@ -585,13 +462,11 @@ namespace SeamlessMaterial.Editor
 
         private void DrawBaseMaterialGUI()
         {
-            float backgroundStartingYPos = GUIUtilities.StartBackground(_baseBackgroundHeight);
+            GUIUtilities.BeginBackgroundVertical();
 
             DrawMaterialGUI("Base");
 
-            float heightDiff = GUIUtilities.EndBackground(backgroundStartingYPos);
-            if (heightDiff > 0)
-                _baseBackgroundHeight = heightDiff;
+            GUIUtilities.EndBackgroundVertical();
         }
 
         private void DrawDistanceBlendGUI()
@@ -600,7 +475,7 @@ namespace SeamlessMaterial.Editor
             MaterialProperty distanceBlendEnabledProp = FindProperty("_DistanceBlendEnabled");
 
             // Start Background
-            float backgroundStartingYPos = GUIUtilities.StartBackground(_distanceBlendBackgroundHeight);
+            GUIUtilities.BeginBackgroundVertical();
 
             // Distance Blend Enabled Toggle
             bool distanceBlendEnabled = GUIUtilities.DrawMajorToggleButton(distanceBlendEnabledProp, "Distance Blending");
@@ -615,8 +490,8 @@ namespace SeamlessMaterial.Editor
 
                 // Distance Blend Mode
                 EditorGUI.BeginChangeCheck();
-                DistanceBlendMode distanceBlendMode = (DistanceBlendMode)distanceBlendModeProp.floatValue;
-                distanceBlendMode = (DistanceBlendMode)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Blend Mode", "Tiling & Offset: Resamples materials with defined Tiling & Offset\nMaterial: Samples far material"), distanceBlendMode);
+                EDistanceBlendMode distanceBlendMode = (EDistanceBlendMode)distanceBlendModeProp.floatValue;
+                distanceBlendMode = (EDistanceBlendMode)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Blend Mode", "Tiling & Offset: Resamples materials with defined Tiling & Offset\nMaterial: Samples far material"), distanceBlendMode);
                 if (EditorGUI.EndChangeCheck())
                     distanceBlendModeProp.floatValue = (int)distanceBlendMode;
 
@@ -632,13 +507,13 @@ namespace SeamlessMaterial.Editor
                 }
 
                 switch (distanceBlendMode) {
-                    case DistanceBlendMode.TilingOffset:
+                    case EDistanceBlendMode.TilingOffset:
                         MaterialProperty tilingOffsetProp = FindProperty("_FarTilingOffset");
 
                         // Tiling & Offset GUI
                         GUIUtilities.DrawTilingOffset(tilingOffsetProp);
                         break;
-                    case DistanceBlendMode.Material:
+                    case EDistanceBlendMode.Material:
                         GUILayout.Space(10);
 
                         // Material GUI
@@ -648,15 +523,13 @@ namespace SeamlessMaterial.Editor
             }
 
             // End Background
-            float heightDiff = GUIUtilities.EndBackground(backgroundStartingYPos);
-            if (heightDiff > 0)
-                _distanceBlendBackgroundHeight = heightDiff;
+            GUIUtilities.EndBackgroundVertical();
         }
 
         private void DrawMaterialBlendGUI()
         {
             // Start Background
-            float backgroundStartingYPos = GUIUtilities.StartBackground(_materialBlendBackgroundHeight);
+            GUIUtilities.BeginBackgroundVertical();
 
             // Material Property
             MaterialProperty materialBlendingSettingsProp = FindProperty("_MaterialBlendSettings");
@@ -683,15 +556,15 @@ namespace SeamlessMaterial.Editor
                 GUIUtilities.DrawHeaderLabelLarge("Mask");
 
                 EditorGUI.BeginChangeCheck();
-                TextureType blendMaskType = (TextureType)blendMaskTypeProp.floatValue;
-                blendMaskType = (TextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), "Mask Type", blendMaskType);
+                ETextureType blendMaskType = (ETextureType)blendMaskTypeProp.floatValue;
+                blendMaskType = (ETextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), "Mask Type", blendMaskType);
                 if (EditorGUI.EndChangeCheck())
                     blendMaskTypeProp.floatValue = (int)blendMaskType;
 
                 materialBlendProperties.x = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Mask Opacity", "Opacity of the mask and in response the blend material"), materialBlendProperties.x, 0, 1);
                 materialBlendProperties.y = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Mask Strength", "The higher the value, the sharper the edges and vice versa"), materialBlendProperties.y);
 
-                if (blendMaskType != TextureType.CustomTexture) { // Noise
+                if (blendMaskType != ETextureType.CustomTexture) { // Noise
                                                                   // Material Properties
                     MaterialProperty materialBlendNoiseSettingsProp = FindProperty("_MaterialBlendNoiseSettings");
 
@@ -728,12 +601,12 @@ namespace SeamlessMaterial.Editor
                 if (distanceBlendEnabled) {
                     // Material Property
                     MaterialProperty distanceBlendModeProp = FindProperty("_DistanceBlendMode");
-                    DistanceBlendMode distanceBlendMode = (DistanceBlendMode)distanceBlendModeProp.floatValue;
+                    EDistanceBlendMode distanceBlendMode = (EDistanceBlendMode)distanceBlendModeProp.floatValue;
 
                     // Calculate scaled text min width
                     int minScaledTextWidth = 0;
                     minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Override Distance Blending")).x;
-                    if (overrideDistanceBlend && distanceBlendMode == DistanceBlendMode.TilingOffset)
+                    if (overrideDistanceBlend && distanceBlendMode == EDistanceBlendMode.TilingOffset)
                         minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Override Tiling & Offset")).x;
 
                     // Header
@@ -747,7 +620,7 @@ namespace SeamlessMaterial.Editor
 
                     // Override Tiling & Offset Options
                     bool endedHorizontal = false;
-                    if (overrideDistanceBlend && distanceBlendMode == DistanceBlendMode.TilingOffset) {
+                    if (overrideDistanceBlend && distanceBlendMode == EDistanceBlendMode.TilingOffset) {
                         // Override Tiling & Offset Toggle
                         overrideDistanceBlendTO = GUILayout.Toggle(overrideDistanceBlendTO, new GUIContent(GetScaledText(minScaledTextWidth, "Override Tiling & Offset", "OTO"), "Uses defined Tiling & Offset rather than distance blend Tiling & Offset"), "ButtonRight");
 
@@ -780,15 +653,13 @@ namespace SeamlessMaterial.Editor
             materialBlendingSettingsProp.floatValue = compressedMaterialBlendSettings;
 
             // End Background
-            float heightDiff = GUIUtilities.EndBackground(backgroundStartingYPos);
-            if (heightDiff > 0)
-                _materialBlendBackgroundHeight = heightDiff;
+            GUIUtilities.EndBackgroundVertical();
         }
 
         private void DrawDebugGUI()
         {
             // Start Background
-            float backgroundStartingYPos = GUIUtilities.StartBackground(_debugBackgroundHeight);
+            GUIUtilities.BeginBackgroundVertical();
 
             // Material Property
             MaterialProperty debuggingIndexProp = FindProperty("_DebuggingIndex");
@@ -828,9 +699,7 @@ namespace SeamlessMaterial.Editor
             }
 
             // End Background
-            float heightDiff = GUIUtilities.EndBackground(backgroundStartingYPos);
-            if (heightDiff > 0)
-                _debugBackgroundHeight = heightDiff;
+            GUIUtilities.EndBackgroundVertical();
         }
         #endregion
 

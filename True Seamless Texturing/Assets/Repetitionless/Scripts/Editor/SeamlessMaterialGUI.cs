@@ -25,28 +25,12 @@ namespace SeamlessMaterial.Editor
         internal const int HEADER_PADDING = 4;
         internal const int SETTING_SPACING = 4;
 
-        internal const int BACKGROUND_HEIGHT_DISABLED_SETTING = 29;
-        internal const int BACKGROUND_HEIGHT_PROPERTIES = 116;
-
-        internal const int BACKGROUND_HEIGHT_HEADERSETTINGS = 47;
-
-        internal const int BACKGROUND_HEIGHT_COLLAPSED_FOLDOUT = 24;
-        internal const int BACKGROUND_HEIGHT_MAIN_FOLDOUT_EMISSION_DISABLED = 178;
-        internal const int BACKGROUND_HEIGHT_MAIN_FOLDOUT_EMISSION_ENABLED = 200;
-        internal const int BACKGROUND_HEIGHT_NOISE_FOLDOUT = 112;
-        internal const int BACKGROUND_HEIGHT_VARIATION_FOLDOUT = 222;
-
         internal const int SCALED_TEXT_PADDING = 10;
 
         // Material Helpers
         internal Material _material;
         internal MaterialEditor _editor;
         internal Dictionary<string, MaterialProperty> _cachedProperties = new Dictionary<string, MaterialProperty>();
-
-        // Background Heights
-        // Rough solution as it only works properly on second call of OnGUI but its better then estimating and fiddling around with the height
-        // Drawing a box after calculating height of area would draw ontop of other fields, this will draw behind
-        internal float _propertiesBackgroundHeight;
 
         // Foldout States, dynamically adds new materialPrefixes
         internal Dictionary<string, MaterialFoldoutState> _foldoutStates = new Dictionary<string, MaterialFoldoutState>();
@@ -64,8 +48,7 @@ namespace SeamlessMaterial.Editor
         internal string GetScaledText(int minWidth, string largeText, string smallText)
         {
             // Using screen width so it is accurate in both layout and repaint events
-            float areaWidth = Screen.width - GUIUtilities.BACKGROUND_SIDE_PADDING * 6 - GUIUtilities.SIDE_EMPTY_SPACE_WIDTH; // Multiplying side padding by 2 would make sense but only 6 is accurate for some reason idk
-            return areaWidth <= minWidth + SCALED_TEXT_PADDING ? smallText : largeText;
+            return Screen.width <= minWidth + SCALED_TEXT_PADDING ? smallText : largeText;
         }
 
         private Dictionary<string, MaterialProperty> GetMaterialProperties(MaterialProperty[] properties)
@@ -85,8 +68,6 @@ namespace SeamlessMaterial.Editor
             // Assign Material Helpers
             _material = (Material)materialEditor.target;
             _editor = materialEditor;
-
-            _propertiesBackgroundHeight = BACKGROUND_HEIGHT_PROPERTIES;
         }
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
@@ -116,7 +97,7 @@ namespace SeamlessMaterial.Editor
         private void DrawMaterialPropertiesGUI()
         {
             // Start Background
-            float backgroundStartingYPos = GUIUtilities.StartBackground(_propertiesBackgroundHeight);
+            GUIUtilities.BeginBackgroundVertical();
 
             // Header
             GUIUtilities.DrawHeaderLabelLarge($"Material Properties");
@@ -127,14 +108,14 @@ namespace SeamlessMaterial.Editor
             MaterialProperty surfaceTypeProp = FindProperty("_SurfaceType");
 
             EditorGUI.BeginChangeCheck();
-            SurfaceType surfaceType = (SurfaceType)surfaceTypeProp.floatValue;
-            surfaceType = (SurfaceType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), "Surface Type", surfaceType);
+            ESurfaceType surfaceType = (ESurfaceType)surfaceTypeProp.floatValue;
+            surfaceType = (ESurfaceType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), "Surface Type", surfaceType);
 
             if (EditorGUI.EndChangeCheck()) {
                 surfaceTypeProp.floatValue = (int)surfaceType;
 
                 switch (surfaceType) {
-                    case SurfaceType.Opaque:
+                    case ESurfaceType.Opaque:
                         _material.renderQueue = (int)RenderQueue.Geometry;
                         _material.SetOverrideTag("RenderType", "Opaque");
                         _material.DisableKeyword("_BUILTIN_SURFACE_TYPE_TRANSPARENT");
@@ -144,7 +125,7 @@ namespace SeamlessMaterial.Editor
                         _material.SetInt("_BUILTIN_DstBlend", (int)BlendMode.Zero);
                         _material.SetInt("_BUILTIN_ZWrite", 1);
                         break;
-                    case SurfaceType.Cutout:
+                    case ESurfaceType.Cutout:
                         _material.renderQueue = (int)RenderQueue.AlphaTest;
                         _material.SetOverrideTag("RenderType", "TransparentCutout");
                         _material.DisableKeyword("_BUILTIN_SURFACE_TYPE_TRANSPARENT");
@@ -154,7 +135,7 @@ namespace SeamlessMaterial.Editor
                         _material.SetInt("_BUILTIN_DstBlend", (int)BlendMode.Zero);
                         _material.SetInt("_BUILTIN_ZWrite", 1);
                         break;
-                    case SurfaceType.Transparent:
+                    case ESurfaceType.Transparent:
                         _material.renderQueue = (int)RenderQueue.Transparent;
                         _material.SetOverrideTag("RenderType", "Transparent");
                         _material.EnableKeyword("_BUILTIN_SURFACE_TYPE_TRANSPARENT");
@@ -173,9 +154,7 @@ namespace SeamlessMaterial.Editor
             _editor.DoubleSidedGIField();
 
             // End Background
-            float heightDiff = GUIUtilities.EndBackground(backgroundStartingYPos);
-            if (heightDiff > 0)
-                _propertiesBackgroundHeight = heightDiff;
+            GUIUtilities.EndBackgroundVertical();
         }
         #endregion
     }

@@ -10,17 +10,10 @@ namespace SeamlessMaterial.Editor
     public static class GUIUtilities
     {
         // Constants
-        public const int SIDE_EMPTY_SPACE_WIDTH = 35; // 33: Left Space + 2: Right Space
-
         public const int LINE_HEIGHT = 18;
         public const int LINE_SPACING = 2;
 
         public const int FOLDOUT_INDENT = 10;
-
-        public const int BACKGROUND_SIDE_PADDING = 8;
-        public const int BACKGROUND_TOP_PADDING = 4;
-        public const int BACKGROUND_BOTTOM_PADDING = 4;
-        public const int BACKGROUND_CORNER_RADIUS = 10;
 
         // Styles
         private static GUIStyle _boldHeaderLargeStyle = null;
@@ -230,39 +223,42 @@ namespace SeamlessMaterial.Editor
             return EditorGUI.Foldout(rect, foldout, label, true, BoldFoldoutStyle);
         }
 
-        public static float StartBackground(float backgroundHeight)
+        /// <summary>
+        /// Begins a background in the same style as a HelpBox using GUILayout.BeginVertical
+        /// </summary>
+        public static void BeginBackgroundVertical()
         {
-            GUILayout.Space(BACKGROUND_TOP_PADDING);
+            GUIStyle backgroundStyle = new GUIStyle("HelpBox");
+            backgroundStyle.padding = new RectOffset(5, 5, 5, 5);
 
-            // Background, get height from previous OnGUI call
-            Rect borderRect = GetLineRect(0);
-            float startingYPosition = borderRect.position.y;
-            borderRect.position += new Vector2(0, -BACKGROUND_TOP_PADDING);
-            borderRect.height = backgroundHeight + BACKGROUND_TOP_PADDING + BACKGROUND_BOTTOM_PADDING;
-            GUI.DrawTexture(borderRect, EditorGUIUtility.whiteTexture, ScaleMode.StretchToFill, true, 0, new Color(0, 0, 0, 0.2f), 0, BACKGROUND_CORNER_RADIUS);
-
-            // Start Padding
-            GUILayout.BeginHorizontal();
-            GUILayout.Space(BACKGROUND_SIDE_PADDING);
-            GUILayout.BeginVertical();
-
-            return startingYPosition;
+            GUILayout.BeginVertical(backgroundStyle);
         }
 
-        public static float EndBackground(float startingYPos)
+        /// <summary>
+        /// Ends the vertical background, same as calling GUILayout.EndVertical
+        /// </summary>
+        public static void EndBackgroundVertical()
         {
-            // End Padding
             GUILayout.EndVertical();
-            GUILayout.Space(BACKGROUND_SIDE_PADDING);
+        }
+
+        /// <summary>
+        /// Begins a background in the same style as a HelpBox using GUILayout.BeginHorizontal
+        /// </summary>
+        public static void BeginBackgroundHorizontal()
+        {
+            GUIStyle backgroundStyle = new GUIStyle("HelpBox");
+            backgroundStyle.padding = new RectOffset(5, 5, 5, 5);
+
+            GUILayout.BeginHorizontal(backgroundStyle);
+        }
+
+        /// <summary>
+        /// Ends the horizontal background, same as calling GUILayout.EndHorizontal
+        /// </summary>
+        public static void EndBackgroundHorizontal()
+        {
             GUILayout.EndHorizontal();
-
-            // Set background height for next OnGUI call
-            Rect endRect = GetLineRect(0);
-            float heightDifference = endRect.position.y - startingYPos;
-
-            GUILayout.Space(BACKGROUND_BOTTOM_PADDING);
-
-            return heightDifference;
         }
     }
 }
