@@ -5,7 +5,7 @@
 
 float4 SampleSeamlessTexture(UnityTexture2D Texture, SamplerState SS, float EdgeMask, float2 EdgeUV, float2 TransformedUV, bool NoiseEnabled, bool NormalMap = false, float NormalStrength = 1.0)
 {
-    // Only sample required textures is noise disabled
+    // Only sample required textures if noise disabled
     if (!NoiseEnabled) {
         float4 baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
         
