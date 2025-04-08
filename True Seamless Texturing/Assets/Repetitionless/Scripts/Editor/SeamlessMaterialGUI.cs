@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using TextureArrayEssentials.Compression;
 
 #if UNITY_EDITOR
 using UnityEditor;
 
 namespace SeamlessMaterial.Editor
 {
-    using Compression;
     using Variables;
 
     public class SeamlessMaterialGUI : ShaderGUI
@@ -62,6 +62,18 @@ namespace SeamlessMaterial.Editor
             }
 
             return cachedProperties;
+        }
+
+        // Helper to draw textures for child classes
+        // Require section and texture indexes for child classes to modify individual texture drawing
+        protected virtual Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, MaterialProperty textureProperty)
+        {
+            // Draw texture property
+            Rect lineRect = _editor.TexturePropertySingleLine(content, textureProperty);
+
+            // Get and return rect after texture
+            lineRect = MaterialEditor.GetRectAfterLabelWidth(lineRect);
+            return lineRect;
         }
         #endregion
 
@@ -159,7 +171,7 @@ namespace SeamlessMaterial.Editor
         #endregion
 
         #region Base Material
-        protected virtual void DrawMaterialGUI(string materialPrefix)
+        protected virtual void DrawMaterialGUI(string materialPrefix, int sectionIndex)
         {
             // Setup Foldouts
             if (!_foldoutStates.ContainsKey(materialPrefix))
@@ -180,13 +192,13 @@ namespace SeamlessMaterial.Editor
 
             // Draw Main Properties
             if (mainPropertiesFoldout)
-                DrawMaterialMainProperties(materialPrefix);
+                DrawMaterialMainProperties(materialPrefix, sectionIndex);
 
             // Settings
             MaterialProperty settingsProp = FindProperty($"_{materialPrefix}Settings");
             int settingToggles = (int)settingsProp.vectorValue.x;
-            bool noiseEnabled = BooleanCompression.GetCompressedValue(settingToggles, 0);
-            bool variationEnabled = BooleanCompression.GetCompressedValue(settingToggles, 4);
+            bool noiseEnabled = BooleanCompression.GetValue(settingToggles, 0);
+            bool variationEnabled = BooleanCompression.GetValue(settingToggles, 4);
 
             // Draw Noise Properties
             if (noiseEnabled) {
@@ -213,7 +225,7 @@ namespace SeamlessMaterial.Editor
 
                 // Properties
                 if (variationPropertiesFoldout)
-                    DrawMaterialVariationProperties(materialPrefix);
+                    DrawMaterialVariationProperties(materialPrefix, sectionIndex);
             }
         }
 
@@ -224,13 +236,13 @@ namespace SeamlessMaterial.Editor
 
             // Get variables from settings prop
             int settingToggles = (int)settingTogglesProp.vectorValue.x;
-            bool noiseEnabled = BooleanCompression.GetCompressedValue(settingToggles, 0);
-            bool randomiseScaling = BooleanCompression.GetCompressedValue(settingToggles, 1);
-            bool randomiseRotation = BooleanCompression.GetCompressedValue(settingToggles, 2);
-            bool smoothnessEnabled = BooleanCompression.GetCompressedValue(settingToggles, 3);
-            bool variationEnabled = BooleanCompression.GetCompressedValue(settingToggles, 4);
-            bool packedTexture = BooleanCompression.GetCompressedValue(settingToggles, 5);
-            bool emissionEnabled = BooleanCompression.GetCompressedValue(settingToggles, 6);
+            bool noiseEnabled = BooleanCompression.GetValue(settingToggles, 0);
+            bool randomiseScaling = BooleanCompression.GetValue(settingToggles, 1);
+            bool randomiseRotation = BooleanCompression.GetValue(settingToggles, 2);
+            bool smoothnessEnabled = BooleanCompression.GetValue(settingToggles, 3);
+            bool variationEnabled = BooleanCompression.GetValue(settingToggles, 4);
+            bool packedTexture = BooleanCompression.GetValue(settingToggles, 5);
+            bool emissionEnabled = BooleanCompression.GetValue(settingToggles, 6);
 
             // Calculate scaled text min width
             int minScaledTextWidth = 0;
@@ -303,7 +315,7 @@ namespace SeamlessMaterial.Editor
             settingTogglesProp.vectorValue = new Vector2(compressedSettingToggles, settingTogglesProp.vectorValue.y);
         }
 
-        protected virtual void DrawMaterialMainProperties(string materialPrefix)
+        protected virtual void DrawMaterialMainProperties(string materialPrefix, int sectionIndex)
         {
             // Material Properties
             MaterialProperty surfaceTypeProp = FindProperty("_SurfaceType");
@@ -332,9 +344,9 @@ namespace SeamlessMaterial.Editor
 
             // Get variables from settings prop
             int settingToggles = (int)settingsProp.vectorValue.x;
-            bool smoothnessEnabled = BooleanCompression.GetCompressedValue(settingToggles, 3);
-            bool packedTexture = BooleanCompression.GetCompressedValue(settingToggles, 5);
-            bool emissionEnabled = BooleanCompression.GetCompressedValue(settingToggles, 6);
+            bool smoothnessEnabled = BooleanCompression.GetValue(settingToggles, 3);
+            bool packedTexture = BooleanCompression.GetValue(settingToggles, 5);
+            bool emissionEnabled = BooleanCompression.GetValue(settingToggles, 6);
 
             // Assigned Textures, for the shader to determine whether to use textures or values
             // Storing inside of int instead of multiple bools so its only one variable, less to manage
@@ -348,40 +360,73 @@ namespace SeamlessMaterial.Editor
             settingsProp.vectorValue = new Vector2(settingToggles, compressedAssignedTextures);
 
             // Albedo
-            _editor.TexturePropertySingleLine(new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), albedoTexProp, abledoTintProp);
+            Rect albedoTintRect = DrawTexture(sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), albedoTexProp);
+            _editor.ColorProperty(albedoTintRect, abledoTintProp, "");
+
+            //_editor.TexturePropertySingleLine(new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), albedoTexProp, abledoTintProp);
 
             // Metallic
-            materialProperties1.x = GUIUtilities.DrawTexturePropertyWithSlider(_editor, metallicTexProp, !metallicAssigned, materialProperties1.x, new GUIContent("Metallic", "Metallic (R), other channels are ignored"));
+            Rect metallicSliderRect = DrawTexture(sectionIndex, 1, new GUIContent("Metallic", "Metallic (R), other channels are ignored"), metallicTexProp);
+            if (!metallicAssigned)
+                materialProperties1.x = EditorGUI.Slider(metallicSliderRect, materialProperties1.x, 0, 1);
+
+            //materialProperties1.x = GUIUtilities.DrawTexturePropertyWithSlider(_editor, metallicTexProp, !metallicAssigned, materialProperties1.x, new GUIContent("Metallic", "Metallic (R), other channels are ignored"));
 
             // Smoothness/Roughness
             float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
             switch (srSelected) {
                 case 0: // Smoothness
-                    materialProperties1.y = GUIUtilities.DrawTexturePropertyWithSlider(_editor, smoothnessTexProp, !smoothnessAssigned, materialProperties1.y, new GUIContent("Smoothness", $"Smoothness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
+                    Rect smoothnessSliderRect = DrawTexture(sectionIndex, 2, new GUIContent("Smoothness", $"Smoothness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"), smoothnessTexProp);
+                    if (!smoothnessAssigned)
+                        materialProperties1.y = EditorGUI.Slider(smoothnessSliderRect, materialProperties1.y, 0, 1);
+
+                    //materialProperties1.y = GUIUtilities.DrawTexturePropertyWithSlider(_editor, smoothnessTexProp, !smoothnessAssigned, materialProperties1.y, new GUIContent("Smoothness", $"Smoothness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
 
                     break;
                 case 1: // Roughness
-                    materialProperties1.z = GUIUtilities.DrawTexturePropertyWithSlider(_editor, roughnessTexProp, !roughnessAssigned, materialProperties1.z, new GUIContent("Roughness", $"Roughness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
+                    Rect roughnessSliderRect = DrawTexture(sectionIndex, 3, new GUIContent("Roughness", $"Roughness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"), roughnessTexProp);
+                    if (!roughnessAssigned)
+                        materialProperties1.z = EditorGUI.Slider(roughnessSliderRect, materialProperties1.z, 0, 1);
+
+                    //materialProperties1.z = GUIUtilities.DrawTexturePropertyWithSlider(_editor, roughnessTexProp, !roughnessAssigned, materialProperties1.z, new GUIContent("Roughness", $"Roughness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
 
                     break;
             }
 
             // Normal Map
-            materialProperties1.w = GUIUtilities.DrawTexturePropertyWithSlider(_editor, normalTexProp, normalAssigned, materialProperties1.w, new GUIContent("Normal Map"));
+            Rect normalStrengthSliderRect = DrawTexture(sectionIndex, 4, new GUIContent("Normal Map"), normalTexProp);
+            if (normalAssigned)
+                materialProperties1.w = EditorGUI.Slider(normalStrengthSliderRect, materialProperties1.w, 0, 1);
+
+            //materialProperties1.w = GUIUtilities.DrawTexturePropertyWithSlider(_editor, normalTexProp, normalAssigned, materialProperties1.w, new GUIContent("Normal Map"));
 
             // Occlussion Map
-            materialProperties2.x = GUIUtilities.DrawTexturePropertyWithSlider(_editor, occlussionTexProp, occlussionAssigned, materialProperties2.x, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"));
+            Rect occlussionStrengthSliderRect = DrawTexture(sectionIndex, 5, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"), occlussionTexProp);
+            if (occlussionAssigned)
+                materialProperties2.x = EditorGUI.Slider(occlussionStrengthSliderRect, materialProperties2.x, 0, 1);
+
+            //materialProperties2.x = GUIUtilities.DrawTexturePropertyWithSlider(_editor, occlussionTexProp, occlussionAssigned, materialProperties2.x, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"));
 
             // Emission
             if (emissionEnabled) {
                 EditorGUI.BeginChangeCheck();
                 Texture oldEmissionTex = emissionTexProp.textureValue;
-                _editor.TexturePropertyWithHDRColor(new GUIContent("Emission", "Emission (RGB)"), emissionTexProp, emissionColorProp, false);
-                // Change color to white if currently black when setting texture
-                if (EditorGUI.EndChangeCheck() && oldEmissionTex != emissionTexProp.textureValue) {
-                    Color blackColor = new Color(0, 0, 0, emissionTexProp.colorValue.a);
-                    if (emissionColorProp.colorValue == blackColor && emissionTexProp.textureValue != null) {
-                        emissionColorProp.colorValue = Color.white;
+
+                Rect emissionColourRect = DrawTexture(sectionIndex, 6, new GUIContent("Emission", "Emission (RGB)"), emissionTexProp);
+                Color emissionColour = EditorGUI.ColorField(emissionColourRect, GUIContent.none, emissionColorProp.colorValue, true, false, true);
+
+                //_editor.TexturePropertyWithHDRColor(new GUIContent("Emission", "Emission (RGB)"), emissionTexProp, emissionColorProp, false);
+                
+                if (EditorGUI.EndChangeCheck()) {
+                    // Update emission colour
+                    emissionColorProp.colorValue = emissionColour;
+
+                    // Change color to white if currently black when setting texture
+                    if (oldEmissionTex != emissionTexProp.textureValue) {
+                        Color blackColor = new Color(0, 0, 0, emissionTexProp.colorValue.a);
+                        if (emissionColorProp.colorValue == blackColor && emissionTexProp.textureValue != null) {
+                            emissionColorProp.colorValue = Color.white;
+                        }
                     }
                 }
             }
@@ -459,7 +504,7 @@ namespace SeamlessMaterial.Editor
                 noiseMinMaxProp.vectorValue = noiseMinMax;
         }
 
-        protected virtual void DrawMaterialVariationProperties(string materialPrefix)
+        protected virtual void DrawMaterialVariationProperties(string materialPrefix, int sectionIndex)
         {
             // Material Properties
             MaterialProperty variationModeProp = FindProperty($"_{materialPrefix}VariationMode");
@@ -520,7 +565,9 @@ namespace SeamlessMaterial.Editor
                 MaterialProperty variationTextureTOProp = FindProperty($"_{materialPrefix}VariationTextureTO");
 
                 // Texture
-                _editor.TexturePropertySingleLine(new GUIContent("Variation Teture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), variationTexturesProp);
+                DrawTexture(sectionIndex, 7, new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), variationTexturesProp);
+                
+                //_editor.TexturePropertySingleLine(new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), variationTexturesProp);
 
                 // Tiling & Offset
                 GUIUtilities.DrawTilingOffset(variationTextureTOProp, "Variation Scale", "Variation Offset");
@@ -536,7 +583,7 @@ namespace SeamlessMaterial.Editor
         {
             GUIUtilities.BeginBackgroundVertical();
 
-            DrawMaterialGUI("Base");
+            DrawMaterialGUI("Base", 0);
 
             GUIUtilities.EndBackgroundVertical();
         }
@@ -589,7 +636,7 @@ namespace SeamlessMaterial.Editor
                         GUILayout.Space(10);
 
                         // Material GUI
-                        DrawMaterialGUI("Far");
+                        DrawMaterialGUI("Far", 1);
                         break;
                 }
             }
@@ -607,9 +654,9 @@ namespace SeamlessMaterial.Editor
             MaterialProperty materialBlendingSettingsProp = FindProperty("_MaterialBlendSettings");
 
             int materialBlendingSettings = (int)materialBlendingSettingsProp.floatValue;
-            bool materialBlendingEnabled = BooleanCompression.GetCompressedValue(materialBlendingSettings, 0);
-            bool overrideDistanceBlend = BooleanCompression.GetCompressedValue(materialBlendingSettings, 1);
-            bool overrideDistanceBlendTO = BooleanCompression.GetCompressedValue(materialBlendingSettings, 2);
+            bool materialBlendingEnabled = BooleanCompression.GetValue(materialBlendingSettings, 0);
+            bool overrideDistanceBlend = BooleanCompression.GetValue(materialBlendingSettings, 1);
+            bool overrideDistanceBlendTO = BooleanCompression.GetValue(materialBlendingSettings, 2);
 
             // Material Blend Enabled Toggle
             materialBlendingEnabled = GUIUtilities.DrawMajorToggleButton(materialBlendingEnabled, "Material Blending");
@@ -717,7 +764,7 @@ namespace SeamlessMaterial.Editor
                     materialBlendPropertiesProp.vectorValue = materialBlendProperties;
 
                 // Material
-                DrawMaterialGUI("Blend");
+                DrawMaterialGUI("Blend", 2);
             }
 
             // Save compressed material blend settings

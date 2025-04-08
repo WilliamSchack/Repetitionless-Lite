@@ -1,0 +1,20 @@
+{
+    "name": "com.williamschack.Repetitionless.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:270b8cf06d3bf4b4facee1c89b5880bc",
+        "GUID:d02cf1824e6894948b0484482e484769",
+        "GUID:40189b8325ffbca47ba7514216873135"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

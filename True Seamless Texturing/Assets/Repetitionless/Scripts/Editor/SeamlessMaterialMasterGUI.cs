@@ -6,7 +6,6 @@ using UnityEditor;
 
 namespace SeamlessMaterial.Editor
 {
-    using Compression;
     using Variables;
 
     public class SeamlessMaterialMasterGUI : SeamlessMaterialGUI
@@ -79,7 +78,6 @@ namespace SeamlessMaterial.Editor
             // Footer Settings
             DrawDebugGUI();
         }
-
     }
 }
 #endif

@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SeamlessMaterial.Compression;
-
+using TextureArrayEssentials.GUIUtilities;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -55,6 +54,8 @@ namespace SeamlessMaterial.Editor
             base.OnGUI(materialEditor, properties);
 
             DrawLayerSelectionGUI();
+
+            DrawLayerGUI(_currentLayer);
         }
 
         private void DrawLayerSelectionGUI()
@@ -63,10 +64,7 @@ namespace SeamlessMaterial.Editor
             GUIUtilities.BeginBackgroundVertical();
 
             // Title Label
-            GUIUtilities.DrawHeaderLabelLarge($"Layer Selection");
-
-            // Info Label
-            EditorGUILayout.LabelField("Uses Terrain Layers for the base textures. Assign them in the terrain component", _labelStyle);
+            GUIUtilities.DrawHeaderLabelLarge($"Layer");
 
             // Layer Selection Toolbar
             _currentLayer = GUILayout.Toolbar(_currentLayer, _layerStrings);
