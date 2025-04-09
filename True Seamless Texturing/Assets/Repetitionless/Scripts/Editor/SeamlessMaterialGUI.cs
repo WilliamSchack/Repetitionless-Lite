@@ -229,7 +229,7 @@ namespace SeamlessMaterial.Editor
             }
         }
 
-        protected virtual void DrawMaterialSettingsGUI(string materialPrefix)
+        protected virtual void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true)
         {
             // Material Properties
             MaterialProperty settingTogglesProp = FindProperty($"_{materialPrefix}Settings");
@@ -261,34 +261,41 @@ namespace SeamlessMaterial.Editor
             EditorGUILayout.BeginHorizontal();
 
             // Noise Enabled
-            string noiseEnabledStyle = noiseEnabled ? "ButtonLeft" : "Button";
-            noiseEnabled = GUILayout.Toggle(noiseEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Noise", "N"), "Adds random scaling & rotation based on voronoi noise"), noiseEnabledStyle);
+            if (showNoise) {
+                string noiseEnabledStyle = noiseEnabled ? "ButtonLeft" : "Button";
+                noiseEnabled = GUILayout.Toggle(noiseEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Noise", "N"), "Adds random scaling & rotation based on voronoi noise"), noiseEnabledStyle);
 
-            if (noiseEnabled) {
-                // Noise Scaling Enabled
-                randomiseScaling = GUILayout.Toggle(randomiseScaling, new GUIContent(GetScaledText(minScaledTextWidth, "Random Scaling", "RS"), "Adds random scaling to each voronoi cell"), "ButtonMid");
+                if (noiseEnabled) {
+                    // Noise Scaling Enabled
+                    randomiseScaling = GUILayout.Toggle(randomiseScaling, new GUIContent(GetScaledText(minScaledTextWidth, "Random Scaling", "RS"), "Adds random scaling to each voronoi cell"), "ButtonMid");
 
-                // Randomise Rotation Enabled
-                randomiseRotation = GUILayout.Toggle(randomiseRotation, new GUIContent(GetScaledText(minScaledTextWidth, "Random Rotation", "RR"), "Adds random rotation to each voronoi cell"), "ButtonRight");
+                    // Randomise Rotation Enabled
+                    randomiseRotation = GUILayout.Toggle(randomiseRotation, new GUIContent(GetScaledText(minScaledTextWidth, "Random Rotation", "RR"), "Adds random rotation to each voronoi cell"), "ButtonRight");
+                }
             }
 
             // Variation toggle
-            variationEnabled = GUILayout.Toggle(variationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color\n\nUsing a custom texture can cause visible tiling"), "Button");
+            if(showVariation)
+                variationEnabled = GUILayout.Toggle(variationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color\n\nUsing a custom texture can cause visible tiling"), "Button");
 
             GUILayout.FlexibleSpace();
 
             // Packed Texture Toggle
-            packedTexture = GUILayout.Toggle(packedTexture, new GUIContent(GetScaledText(minScaledTextWidth, "Packed Texture", "PT"), "If you are using a packed texture of multiple regular ones (Enabled is default unity material behaviour)\n\nPacked: (R: Metallic, G: Occlussion, A: Smoothness/Roughness)\n\nNon-Packed uses Red channel for each texture"), "Button");
+            if(showPT)
+                packedTexture = GUILayout.Toggle(packedTexture, new GUIContent(GetScaledText(minScaledTextWidth, "Packed Texture", "PT"), "If you are using a packed texture of multiple regular ones (Enabled is default unity material behaviour)\n\nPacked: (R: Metallic, G: Occlussion, A: Smoothness/Roughness)\n\nNon-Packed uses Red channel for each texture"), "Button");
 
             // Emission Toggle
-            emissionEnabled = GUILayout.Toggle(emissionEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Emission", "E"), "If Emission is enabled"), "Button");
+            if(showEmission)
+                emissionEnabled = GUILayout.Toggle(emissionEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Emission", "E"), "If Emission is enabled"), "Button");
 
             // Smoothness/Roughness Toggle
-            EditorGUI.BeginChangeCheck();
-            float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
-            srSelected = GUILayout.Toolbar((int)srSelected, new GUIContent[] { new GUIContent(GetScaledText(minScaledTextWidth, "Smooth", "S"), "Using smoothness for material (Default unity material behaviour)"), new GUIContent(GetScaledText(minScaledTextWidth, "Rough", "R"), "Uses roughness for material (1 - smoothness)") });
-            if (EditorGUI.EndChangeCheck())
-                smoothnessEnabled = srSelected == 1.0f ? false : true;
+            if (showSR) {
+                EditorGUI.BeginChangeCheck();
+                float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
+                srSelected = GUILayout.Toolbar((int)srSelected, new GUIContent[] { new GUIContent(GetScaledText(minScaledTextWidth, "Smooth", "S"), "Using smoothness for material (Default unity material behaviour)"), new GUIContent(GetScaledText(minScaledTextWidth, "Rough", "R"), "Uses roughness for material (1 - smoothness)") });
+                if (EditorGUI.EndChangeCheck())
+                    smoothnessEnabled = srSelected == 1.0f ? false : true;
+            }
 
             //Debug.Log("CLEARNING TEXTURE2DARRAY HERE");
             //if (GUILayout.Button(new GUIContent(GetScaledText(minScaledTextWidth, "Clear Tex", "X"), "Clear the Texture2DArray holding the textures")) && EditorUtility.DisplayDialog("Clear Texture2DArray", $"Are you sure?\nYou will have to reassign all the {materialPrefix} textures\nCan be used to change the resolution of your textures", "Clear", "Cancel")) {
@@ -579,19 +586,19 @@ namespace SeamlessMaterial.Editor
         }
         #endregion
 
-        protected virtual void DrawBaseMaterialGUI()
+        protected virtual void DrawBaseMaterialGUI(string propertiesPrefix = "")
         {
             GUIUtilities.BeginBackgroundVertical();
 
-            DrawMaterialGUI("Base", 0);
+            DrawMaterialGUI($"{propertiesPrefix}Base", 0);
 
             GUIUtilities.EndBackgroundVertical();
         }
 
-        protected virtual void DrawDistanceBlendGUI()
+        protected virtual void DrawDistanceBlendGUI(string propertiesPrefix = "")
         {
             // Material Property
-            MaterialProperty distanceBlendEnabledProp = FindProperty("_DistanceBlendEnabled");
+            MaterialProperty distanceBlendEnabledProp = FindProperty($"_{propertiesPrefix}DistanceBlendEnabled");
 
             // Start Background
             GUIUtilities.BeginBackgroundVertical();
@@ -602,8 +609,8 @@ namespace SeamlessMaterial.Editor
             // Draw distance blending settings
             if (distanceBlendEnabled) {
                 // Material Properties
-                MaterialProperty distanceBlendModeProp = FindProperty("_DistanceBlendMode");
-                MaterialProperty distanceBlendMinMaxProp = FindProperty("_DistanceBlendMinMax");
+                MaterialProperty distanceBlendModeProp = FindProperty($"_{propertiesPrefix}DistanceBlendMode");
+                MaterialProperty distanceBlendMinMaxProp = FindProperty($"_{propertiesPrefix}DistanceBlendMinMax");
 
                 GUILayout.Space(5);
 
@@ -627,7 +634,7 @@ namespace SeamlessMaterial.Editor
 
                 switch (distanceBlendMode) {
                     case EDistanceBlendMode.TilingOffset:
-                        MaterialProperty tilingOffsetProp = FindProperty("_FarTilingOffset");
+                        MaterialProperty tilingOffsetProp = FindProperty($"_{propertiesPrefix}FarTilingOffset");
 
                         // Tiling & Offset GUI
                         GUIUtilities.DrawTilingOffset(tilingOffsetProp);
@@ -636,7 +643,7 @@ namespace SeamlessMaterial.Editor
                         GUILayout.Space(10);
 
                         // Material GUI
-                        DrawMaterialGUI("Far", 1);
+                        DrawMaterialGUI($"{propertiesPrefix}Far", 1);
                         break;
                 }
             }
@@ -645,13 +652,13 @@ namespace SeamlessMaterial.Editor
             GUIUtilities.EndBackgroundVertical();
         }
 
-        protected virtual void DrawMaterialBlendGUI()
+        protected virtual void DrawMaterialBlendGUI(string propertiesPrefix = "")
         {
             // Start Background
             GUIUtilities.BeginBackgroundVertical();
 
             // Material Property
-            MaterialProperty materialBlendingSettingsProp = FindProperty("_MaterialBlendSettings");
+            MaterialProperty materialBlendingSettingsProp = FindProperty($"_{propertiesPrefix}MaterialBlendSettings");
 
             int materialBlendingSettings = (int)materialBlendingSettingsProp.floatValue;
             bool materialBlendingEnabled = BooleanCompression.GetValue(materialBlendingSettings, 0);
@@ -663,10 +670,10 @@ namespace SeamlessMaterial.Editor
 
             if (materialBlendingEnabled) {
                 // Material Properties
-                MaterialProperty blendMaskTypeProp = FindProperty("_BlendMaskType");
-                MaterialProperty distanceBlendEnabledProp = FindProperty("_DistanceBlendEnabled");
+                MaterialProperty blendMaskTypeProp = FindProperty($"_{propertiesPrefix}BlendMaskType");
+                MaterialProperty distanceBlendEnabledProp = FindProperty($"_{propertiesPrefix}DistanceBlendEnabled");
 
-                MaterialProperty materialBlendPropertiesProp = FindProperty("_MaterialBlendProperties");
+                MaterialProperty materialBlendPropertiesProp = FindProperty($"_{propertiesPrefix}MaterialBlendProperties");
 
                 Vector2 materialBlendProperties = materialBlendPropertiesProp.vectorValue;
                 Vector2 oriMaterialBlendProperties = materialBlendProperties;
@@ -685,7 +692,7 @@ namespace SeamlessMaterial.Editor
 
                 if (blendMaskType != ETextureType.CustomTexture) { // Noise
                     // Material Properties
-                    MaterialProperty materialBlendNoiseSettingsProp = FindProperty("_MaterialBlendNoiseSettings");
+                    MaterialProperty materialBlendNoiseSettingsProp = FindProperty($"_{propertiesPrefix}MaterialBlendNoiseSettings");
 
                     Vector3 materialBlendNoiseSettings = materialBlendNoiseSettingsProp.vectorValue;
                     Vector3 oriMaterialBlendNoiseSettings = materialBlendNoiseSettings;
@@ -702,8 +709,8 @@ namespace SeamlessMaterial.Editor
                         materialBlendNoiseSettingsProp.vectorValue = materialBlendNoiseSettings;
                 } else { // Custom Texture
                     // Material Properties
-                    MaterialProperty blendMaskTextureProp = FindProperty("_BlendMaskTexture");
-                    MaterialProperty blendMaskTextureTOProp = FindProperty("_BlendMaskTextureTO");
+                    MaterialProperty blendMaskTextureProp = FindProperty($"_{propertiesPrefix}BlendMaskTexture");
+                    MaterialProperty blendMaskTextureTOProp = FindProperty($"_{propertiesPrefix}BlendMaskTextureTO");
 
                     // Texture
                     _editor.TexturePropertySingleLine(new GUIContent("Blend Mask", "Blend Mask (R), other channels are ignored\n\nTexture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)"), blendMaskTextureProp);
@@ -719,7 +726,7 @@ namespace SeamlessMaterial.Editor
 
                 if (distanceBlendEnabled) {
                     // Material Property
-                    MaterialProperty distanceBlendModeProp = FindProperty("_DistanceBlendMode");
+                    MaterialProperty distanceBlendModeProp = FindProperty($"_{propertiesPrefix}DistanceBlendMode");
                     EDistanceBlendMode distanceBlendMode = (EDistanceBlendMode)distanceBlendModeProp.floatValue;
 
                     // Calculate scaled text min width
@@ -748,7 +755,7 @@ namespace SeamlessMaterial.Editor
 
                         // Override Tiling & Offset
                         if (overrideDistanceBlendTO) {
-                            MaterialProperty blendMaskDistanceTOProp = FindProperty("_BlendMaskDistanceTO");
+                            MaterialProperty blendMaskDistanceTOProp = FindProperty($"_{propertiesPrefix}BlendMaskDistanceTO");
 
                             GUIUtilities.DrawTilingOffset(blendMaskDistanceTOProp);
                         }
@@ -764,7 +771,7 @@ namespace SeamlessMaterial.Editor
                     materialBlendPropertiesProp.vectorValue = materialBlendProperties;
 
                 // Material
-                DrawMaterialGUI("Blend", 2);
+                DrawMaterialGUI($"{propertiesPrefix}Blend", 2);
             }
 
             // Save compressed material blend settings
