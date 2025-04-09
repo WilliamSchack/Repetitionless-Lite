@@ -4,7 +4,6 @@ using UnityEngine;
 using TextureArrayEssentials.GUIUtilities;
 using TextureArrayEssentials.Compression;
 
-
 #if UNITY_EDITOR
 using UnityEditor;
 

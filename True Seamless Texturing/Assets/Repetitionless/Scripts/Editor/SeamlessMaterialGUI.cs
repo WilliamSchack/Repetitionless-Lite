@@ -171,14 +171,17 @@ namespace SeamlessMaterial.Editor
         #endregion
 
         #region Base Material
-        protected virtual void DrawMaterialGUI(string materialPrefix, int sectionIndex)
+        protected virtual void DrawMaterialGUI(string materialPrefix, int sectionIndex, string headerText = "")
         {
             // Setup Foldouts
             if (!_foldoutStates.ContainsKey(materialPrefix))
                 _foldoutStates.Add(materialPrefix, new MaterialFoldoutState());
 
             // Title Label
-            GUIUtilities.DrawHeaderLabelLarge($"{materialPrefix} Material");
+            if (headerText == "")
+                headerText = $"{materialPrefix} Material";
+
+            GUIUtilities.DrawHeaderLabelLarge(headerText);
 
             // Draw Settings Toggles
             DrawMaterialSettingsGUI(materialPrefix);
@@ -590,7 +593,7 @@ namespace SeamlessMaterial.Editor
         {
             GUIUtilities.BeginBackgroundVertical();
 
-            DrawMaterialGUI($"{propertiesPrefix}Base", 0);
+            DrawMaterialGUI($"{propertiesPrefix}Base", 0, "Base Material");
 
             GUIUtilities.EndBackgroundVertical();
         }
@@ -643,7 +646,7 @@ namespace SeamlessMaterial.Editor
                         GUILayout.Space(10);
 
                         // Material GUI
-                        DrawMaterialGUI($"{propertiesPrefix}Far", 1);
+                        DrawMaterialGUI($"{propertiesPrefix}Far", 1, "Far Material");
                         break;
                 }
             }
@@ -771,7 +774,7 @@ namespace SeamlessMaterial.Editor
                     materialBlendPropertiesProp.vectorValue = materialBlendProperties;
 
                 // Material
-                DrawMaterialGUI($"{propertiesPrefix}Blend", 2);
+                DrawMaterialGUI($"{propertiesPrefix}Blend", 2, "Blend Material");
             }
 
             // Save compressed material blend settings

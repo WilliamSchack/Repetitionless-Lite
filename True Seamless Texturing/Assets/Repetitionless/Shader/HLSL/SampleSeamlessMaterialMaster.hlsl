@@ -302,8 +302,6 @@ void SampleSeamlessMaterialMaster_float(
     // --------------------------------------------------------------- //
     
     // Debugging
-    // Would use a switch statement here but it bugs out the material on my laptop so I assume it would happen to others also
-    // Really weird bug that should not be happening but better safe than sorry :/
     if (DebuggingIndex == 2)
         albedoColor = farDistance;
     else if (DebuggingIndex == 3)

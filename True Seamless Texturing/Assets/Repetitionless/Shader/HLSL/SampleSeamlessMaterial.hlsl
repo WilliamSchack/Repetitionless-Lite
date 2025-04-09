@@ -192,136 +192,136 @@ void GetSeamlessMaterialColor(
         EmissionColorOut = 0;
 }
 
-void GetSeamlessTerrainLayerColor(
-    SamplerState SS, float2 UV, float3 TangentNormalVector,
-    float DebuggingIndex,
-
-    // Layer Visuals
-    float Settings,
-    UnityTexture2D AlbedoTexture,
-    UnityTexture2D NormalTexture, float NormalScale,
-    UnityTexture2D Mask, float HasMask,
-    float Metallic,
-    float Smoothness,
-    float4 TilingOffset,
-
-    float2 NoiseSettings, float4 NoiseMinMax, // Noise
-
-    float VariationMode, float4 VariationSettings, float VariationBrightness, // Variation Settings
-    float4 VariationNoiseSettings, // Variation Noise
-    UnityTexture2D VariationTexture, float4 VariationTextureTO, // Variation Texture
-
-    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut) // Outputs
-{
-    // Default values
-    AlbedoColorOut = 1;
-    NormalVectorOut = TangentNormalVector;
-    MetallicOut = 0;
-    SmoothnessOut = 0;
-    OcclussionOut = 1;
-    
-    // Setting Toggles
-    int settingToggles = (int) Settings.x;
-    
-    bool noiseEnabled = (settingToggles & 1) != 0;
-    bool randomiseNoiseScaling = (settingToggles & 2) != 0;
-    bool randomiseRotation = (settingToggles & 4) != 0;
-    bool variationEnabled = (settingToggles & 8) != 0;
-    
-    // Noise Settings
-    float noiseAngleOffset = NoiseSettings.x;
-    float noiseScale = NoiseSettings.y;
-    float2 noiseScalingMinMax = NoiseMinMax.xy;
-    float2 randomiseRotationMinMax = NoiseMinMax.zw;
-    
-    // Variation Settings
-    float variationOpacity = VariationSettings.x;
-    float variationNoiseStrength = VariationNoiseSettings.x;
-    float variationNoiseScale = VariationNoiseSettings.y;
-    float2 variationNoiseOffset = VariationNoiseSettings.zw;
-    
-    // Setup UVs
-    float2 tiling = TilingOffset.xy;
-    float2 offset = TilingOffset.zw;
-    float2 oriUV = UV;
-    UV = UV * TilingOffset.xy + TilingOffset.zw;
-    
-    // Change UVs & Get Edge Mask
-    float VoronoiCells = 1;
-    float EdgeMask = 0;
-    float2 EdgeUV = UV;
-    float2 TransformedUV = UV;
-    if (noiseEnabled)
-        GetSeamlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, randomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, TransformedUV);
-    
-    // Get Macro/Micro Variation Multiplier
-    float variationColor = 0;
-    if (variationEnabled && variationOpacity > 0) {
-        switch (VariationMode) {
-            case 0: // Perlin Noise
-                variationColor = MacroMicroVariationPerlinNoise(VariationSettings.y, VariationSettings.z, VariationSettings.w, VariationBrightness, VariationNoiseSettings.x, oriUV, VariationNoiseSettings.y, VariationNoiseSettings.z);
-                break;
-            case 1: // Simplex Noise
-                variationColor = MacroMicroVariationSimplexNoise(VariationSettings.y, VariationSettings.z, VariationSettings.w, VariationBrightness, VariationNoiseSettings.x, oriUV, VariationNoiseSettings.y, VariationNoiseSettings.z);
-                break;
-            case 2: // Custom Texture
-                variationColor = MacroMicroVariationTexture(VariationSettings.y, VariationSettings.z, VariationSettings.w, VariationBrightness, VariationTexture, SS, oriUV, VariationTextureTO.xy, VariationTextureTO.zw);
-                break;
-        }
-    }
-    
-    // Debugging
-    if (DebuggingIndex != -1) {
-        switch (DebuggingIndex) {
-            case 0: // Voronoi Cells
-                AlbedoColorOut = VoronoiCells;
-                break;
-            case 1: // Edge Mask
-                AlbedoColorOut = EdgeMask;
-                break;
-            case 4: // Variation Colour
-                AlbedoColorOut = variationColor;
-                break;
-            default:
-                AlbedoColorOut = 0;
-                break;
-        }
-        
-        return;
-    }
-    
-    // Mask
-    float4 maskColor = 0;
-    if (HasMask == 1)
-        maskColor = SampleSeamlessTexture(Mask, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
-    
-    // Albedo
-    AlbedoColorOut = SampleSeamlessTexture(AlbedoTexture, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
-    
-    // Macro/Micro Variation
-    //if (variationEnabled && variationOpacity > 0)
-    //    AlbedoColorOut = lerp(AlbedoColorOut, variationColor * AlbedoColorOut, variationOpacity);
-    
-    // Normal
-    NormalVectorOut = SampleSeamlessTexture(NormalTexture, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled, true, NormalScale).rgb;
-    
-    // Metallic
-    if (HasMask == 1)
-        MetallicOut = maskColor.r;
-    else
-        MetallicOut = Metallic;
-    
-    // Smoothness
-    if (HasMask == 1)
-        SmoothnessOut = maskColor.a;
-    else
-        SmoothnessOut = Smoothness;
-    
-    // Occlussion
-    if (HasMask == 1)
-        OcclussionOut = maskColor.g;
-    else
-        OcclussionOut = 1;
-}
+//void GetSeamlessTerrainLayerColor(
+//    SamplerState SS, float2 UV, float3 TangentNormalVector,
+//    float DebuggingIndex,
+//
+//    // Layer Visuals
+//    float Settings,
+//    UnityTexture2D AlbedoTexture,
+//    UnityTexture2D NormalTexture, float NormalScale,
+//    UnityTexture2D Mask, float HasMask,
+//    float Metallic,
+//    float Smoothness,
+//    float4 TilingOffset,
+//
+//    float2 NoiseSettings, float4 NoiseMinMax, // Noise
+//
+//    float VariationMode, float4 VariationSettings, float VariationBrightness, // Variation Settings
+//    float4 VariationNoiseSettings, // Variation Noise
+//    UnityTexture2D VariationTexture, float4 VariationTextureTO, // Variation Texture
+//
+//    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut) // Outputs
+//{
+//    // Default values
+//    AlbedoColorOut = 1;
+//    NormalVectorOut = TangentNormalVector;
+//    MetallicOut = 0;
+//    SmoothnessOut = 0;
+//    OcclussionOut = 1;
+//    
+//    // Setting Toggles
+//    int settingToggles = (int) Settings.x;
+//    
+//    bool noiseEnabled = (settingToggles & 1) != 0;
+//    bool randomiseNoiseScaling = (settingToggles & 2) != 0;
+//    bool randomiseRotation = (settingToggles & 4) != 0;
+//    bool variationEnabled = (settingToggles & 8) != 0;
+//    
+//    // Noise Settings
+//    float noiseAngleOffset = NoiseSettings.x;
+//    float noiseScale = NoiseSettings.y;
+//    float2 noiseScalingMinMax = NoiseMinMax.xy;
+//    float2 randomiseRotationMinMax = NoiseMinMax.zw;
+//    
+//    // Variation Settings
+//    float variationOpacity = VariationSettings.x;
+//    float variationNoiseStrength = VariationNoiseSettings.x;
+//    float variationNoiseScale = VariationNoiseSettings.y;
+//    float2 variationNoiseOffset = VariationNoiseSettings.zw;
+//    
+//    // Setup UVs
+//    float2 tiling = TilingOffset.xy;
+//    float2 offset = TilingOffset.zw;
+//    float2 oriUV = UV;
+//    UV = UV * TilingOffset.xy + TilingOffset.zw;
+//    
+//    // Change UVs & Get Edge Mask
+//    float VoronoiCells = 1;
+//    float EdgeMask = 0;
+//    float2 EdgeUV = UV;
+//    float2 TransformedUV = UV;
+//    if (noiseEnabled)
+//        GetSeamlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, randomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, TransformedUV);
+//    
+//    // Get Macro/Micro Variation Multiplier
+//    float variationColor = 0;
+//    if (variationEnabled && variationOpacity > 0) {
+//        switch (VariationMode) {
+//            case 0: // Perlin Noise
+//                variationColor = MacroMicroVariationPerlinNoise(VariationSettings.y, VariationSettings.z, VariationSettings.w, VariationBrightness, VariationNoiseSettings.x, oriUV, VariationNoiseSettings.y, VariationNoiseSettings.z);
+//                break;
+//            case 1: // Simplex Noise
+//                variationColor = MacroMicroVariationSimplexNoise(VariationSettings.y, VariationSettings.z, VariationSettings.w, VariationBrightness, VariationNoiseSettings.x, oriUV, VariationNoiseSettings.y, VariationNoiseSettings.z);
+//                break;
+//            case 2: // Custom Texture
+//                variationColor = MacroMicroVariationTexture(VariationSettings.y, VariationSettings.z, VariationSettings.w, VariationBrightness, VariationTexture, SS, oriUV, VariationTextureTO.xy, VariationTextureTO.zw);
+//                break;
+//        }
+//    }
+//    
+//    // Debugging
+//    if (DebuggingIndex != -1) {
+//        switch (DebuggingIndex) {
+//            case 0: // Voronoi Cells
+//                AlbedoColorOut = VoronoiCells;
+//                break;
+//            case 1: // Edge Mask
+//                AlbedoColorOut = EdgeMask;
+//                break;
+//            case 4: // Variation Colour
+//                AlbedoColorOut = variationColor;
+//                break;
+//            default:
+//                AlbedoColorOut = 0;
+//                break;
+//        }
+//        
+//        return;
+//    }
+//    
+//    // Mask
+//    float4 maskColor = 0;
+//    if (HasMask == 1)
+//        maskColor = SampleSeamlessTexture(Mask, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+//    
+//    // Albedo
+//    AlbedoColorOut = SampleSeamlessTexture(AlbedoTexture, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+//    
+//    // Macro/Micro Variation
+//    //if (variationEnabled && variationOpacity > 0)
+//    //    AlbedoColorOut = lerp(AlbedoColorOut, variationColor * AlbedoColorOut, variationOpacity);
+//    
+//    // Normal
+//    NormalVectorOut = SampleSeamlessTexture(NormalTexture, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled, true, NormalScale).rgb;
+//    
+//    // Metallic
+//    if (HasMask == 1)
+//        MetallicOut = maskColor.r;
+//    else
+//        MetallicOut = Metallic;
+//    
+//    // Smoothness
+//    if (HasMask == 1)
+//        SmoothnessOut = maskColor.a;
+//    else
+//        SmoothnessOut = Smoothness;
+//    
+//    // Occlussion
+//    if (HasMask == 1)
+//        OcclussionOut = maskColor.g;
+//    else
+//        OcclussionOut = 1;
+//}
 
 #endif
