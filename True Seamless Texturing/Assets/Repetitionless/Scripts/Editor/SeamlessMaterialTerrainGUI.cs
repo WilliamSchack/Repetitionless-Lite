@@ -11,34 +11,50 @@ namespace SeamlessMaterial.Editor
 {
     public class SeamlessMaterialTerrainGUI : SeamlessMaterialGUI
     {
-        //public override void OnEnable(MaterialEditor materialEditor)
-        //{
-        //    base.OnEnable(materialEditor);
-        //
-        //    // Material Properties
-        //    MaterialProperty settingTogglesProp = FindProperty($"_Layer1BaseSettings");
-        //
-        //    // Get variables from settings prop
-        //    int settingToggles = (int)settingTogglesProp.vectorValue.x;
-        //    bool noiseEnabled = BooleanCompression.GetCompressedValue(settingToggles, 0);
-        //    bool randomiseScaling = BooleanCompression.GetCompressedValue(settingToggles, 1);
-        //    bool randomiseRotation = BooleanCompression.GetCompressedValue(settingToggles, 2);
-        //    bool smoothnessEnabled = BooleanCompression.GetCompressedValue(settingToggles, 3);
-        //    bool variationEnabled = BooleanCompression.GetCompressedValue(settingToggles, 4);
-        //    bool packedTexture = BooleanCompression.GetCompressedValue(settingToggles, 5);
-        //    bool emissionEnabled = BooleanCompression.GetCompressedValue(settingToggles, 6);
-        //
-        //    Debug.Log("TERRAIN ENABLED:" + " || " + noiseEnabled + " || " + randomiseScaling + " || " + randomiseRotation + " || " + smoothnessEnabled + " || " + variationEnabled + " || " + packedTexture + " || " + emissionEnabled);
-        //
-        //    int ahhh = (int)settingTogglesProp.vectorValue.y;
-        //    Debug.Log("AHHH: " + ahhh);
-        //}
+        private class TerrainLayerTextureDrawers
+        {
+            public TextureArrayGUIDrawer FarTexturesDrawer;
+            public TextureArrayGUIDrawer BlendTexturesDrawer;
+        }
 
         private GUIStyle _labelStyle;
 
         private int _currentLayer = 0;
 
         private string[] _layerStrings = { "1", "2", "3", "4" };
+        private List<TerrainLayerTextureDrawers> _textureDrawers;
+
+        private TextureArrayGUIDrawer GetTextureDrawer(int sectionIndex)
+        {
+            // Get texture array drawer based on current selected layer and section, far if section is 1, blend if 2
+            TerrainLayerTextureDrawers textureDrawers = _textureDrawers[_currentLayer];
+            return sectionIndex == 1 ? textureDrawers.FarTexturesDrawer : textureDrawers.BlendTexturesDrawer;
+        }
+
+        protected override int HandleAssignedTextures(string materialPrefix, int sectionIndex, MaterialProperty settingsProp)
+        {
+            // If the base material, return true for each texture as that information cannot be got, textures in the Texture Layer
+            if (sectionIndex == 0) {
+                // Emission is the only texture assigned in the inspected, handle that properly
+                MaterialProperty emissionTexProp = FindProperty($"_{materialPrefix}EmissionMap");
+
+                return BooleanCompression.CompressValues(true, true, true, true, true, emissionTexProp.textureValue != null);
+            }
+
+            // Get texture array drawer
+            TextureArrayGUIDrawer textureDrawer = GetTextureDrawer(sectionIndex);
+
+            // Compress Assigned Textures
+            bool metallicAssigned = textureDrawer.TextureAssignedAt(0);
+            bool smoothnessAssigned = textureDrawer.TextureAssignedAt(1);
+            bool roughnessAssigned = textureDrawer.TextureAssignedAt(2);
+            bool normalAssigned = textureDrawer.TextureAssignedAt(3);
+            bool occlussionAssigned = textureDrawer.TextureAssignedAt(4);
+            bool emissionAssigned = textureDrawer.TextureAssignedAt(5);
+
+            int compressedAssignedTextures = BooleanCompression.CompressValues(metallicAssigned, smoothnessAssigned, roughnessAssigned, normalAssigned, occlussionAssigned, emissionAssigned);
+            return compressedAssignedTextures;
+        }
 
         public override void OnEnable(MaterialEditor materialEditor)
         {
@@ -48,6 +64,27 @@ namespace SeamlessMaterial.Editor
             _labelStyle = new GUIStyle("Label");
             _labelStyle.alignment = TextAnchor.MiddleCenter;
             _labelStyle.wordWrap = true;
+
+            // ---------------------- FIXME ---------------------- //
+            // TEXTURES ARE NOT SAVING PROPERLY, FREEZING ON SAVE  //
+
+            // Setup Texture Array Drawers
+            _textureDrawers = new List<TerrainLayerTextureDrawers>();
+            for (int i = 0; i < _layerStrings.Length; i++) {
+                TerrainLayerTextureDrawers textureData = new TerrainLayerTextureDrawers();
+
+                // Get properties
+                MaterialProperty farTexturesProp = FindProperty($"_Layer{i + 1}FarTextures");
+                MaterialProperty farAssignedTexturesProp = FindProperty($"_Layer{i + 1}FarAssignedTextures");
+
+                MaterialProperty blendTexturesProp = FindProperty($"_Layer{i + 1}BlendTextures");
+                MaterialProperty blendAssignedTexturesProp = FindProperty($"_Layer{i + 1}BlendAssignedTextures");
+
+                textureData.FarTexturesDrawer = new TextureArrayGUIDrawer(farTexturesProp, farAssignedTexturesProp, 7, $"Layer{i + 1}FarTextures");
+                textureData.BlendTexturesDrawer = new TextureArrayGUIDrawer(blendTexturesProp, blendAssignedTexturesProp, 7, $"Layer{i + 1}BlendTextures");
+
+                _textureDrawers.Add(textureData);
+            }
         }
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
@@ -127,28 +164,32 @@ namespace SeamlessMaterial.Editor
             // Get properties
             MaterialProperty settingsProp = FindProperty($"_{materialPrefix}Settings");
 
-            MaterialProperty emissionTexProp = FindProperty($"_{materialPrefix}EmissionMap");
             MaterialProperty emissionColorProp = FindProperty($"_{materialPrefix}EmissionColor");
 
             int settingToggles = (int)settingsProp.vectorValue.x;
+            int compressedAssignedTextures = (int)settingsProp.vectorValue.y;
             bool emissionEnabled = BooleanCompression.GetValue(settingToggles, 6);
 
             // Emission
             if (emissionEnabled) {
+                bool prevEmissionAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 4);
+
+                // Change emission colour to white if texture assigned and texture is black
                 EditorGUI.BeginChangeCheck();
-                Texture oldEmissionTex = emissionTexProp.textureValue;
-
-                Rect emissionColourRect = DrawTexture(sectionIndex, 6, new GUIContent("Emission", "Emission (RGB)"), emissionTexProp);
+                Rect emissionColourRect = DrawTexture(sectionIndex, 6, new GUIContent("Emission", "Emission (RGB)"), $"_{materialPrefix}EmissionMap");
                 Color emissionColour = EditorGUI.ColorField(emissionColourRect, GUIContent.none, emissionColorProp.colorValue, true, false, true);
-
                 if (EditorGUI.EndChangeCheck()) {
+                    // Rehandle assigned textures since the function can be changed in child classes
+                    int afterAssignedTextures = HandleAssignedTextures(materialPrefix, sectionIndex, settingsProp);
+                    bool afterEmissionAssigned = BooleanCompression.GetValue(afterAssignedTextures, 5);
+
                     // Update emission colour
                     emissionColorProp.colorValue = emissionColour;
 
-                    // Change color to white if currently black when setting texture
-                    if (oldEmissionTex != emissionTexProp.textureValue) {
-                        Color blackColor = new Color(0, 0, 0, emissionTexProp.colorValue.a);
-                        if (emissionColorProp.colorValue == blackColor && emissionTexProp.textureValue != null) {
+                    // If texture just assigned and colour is black, change colour to white
+                    if (afterEmissionAssigned && !prevEmissionAssigned) {
+                        Color blackColor = new Color(0, 0, 0, emissionColorProp.colorValue.a);
+                        if (emissionColorProp.colorValue == blackColor) {
                             emissionColorProp.colorValue = Color.white;
                         }
                     }
@@ -156,9 +197,22 @@ namespace SeamlessMaterial.Editor
             }
         }
 
-        protected override Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, MaterialProperty textureProperty)
+        protected override Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, string texturePropertyName)
         {
-            return base.DrawTexture(sectionIndex, textureIndex, content, textureProperty);
+            // If the base material or variation texture, dont use the texture arrays so draw the field normally
+            if(sectionIndex == 0 || textureIndex == 7)
+                return base.DrawTexture(sectionIndex, textureIndex, content, texturePropertyName);
+
+            // Get texture array drawer
+            TextureArrayGUIDrawer textureDrawer = GetTextureDrawer(sectionIndex);
+
+            // Draw texture
+            Rect lineRect = GUIUtilities.GetLineRect();
+            textureDrawer.DrawTexture(lineRect, textureIndex, content);
+
+            // Return rect after texture field
+            lineRect = MaterialEditor.GetRectAfterLabelWidth(lineRect);
+            return lineRect;
         }
     }
 }

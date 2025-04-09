@@ -66,14 +66,39 @@ namespace SeamlessMaterial.Editor
 
         // Helper to draw textures for child classes
         // Require section and texture indexes for child classes to modify individual texture drawing
-        protected virtual Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, MaterialProperty textureProperty)
+        protected virtual Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, string texturePropertyName)
         {
             // Draw texture property
-            Rect lineRect = _editor.TexturePropertySingleLine(content, textureProperty);
+            MaterialProperty property = FindProperty(texturePropertyName);
+            Rect lineRect = _editor.TexturePropertySingleLine(content, property);
 
             // Get and return rect after texture
             lineRect = MaterialEditor.GetRectAfterLabelWidth(lineRect);
             return lineRect;
+        }
+
+        // Assigned Textures, for the shader to determine whether to use textures or values
+        // Storing inside of int instead of multiple bools so its only one variable, less to manage
+        protected virtual int HandleAssignedTextures(string materialPrefix, int sectionIndex, MaterialProperty settingsProp)
+        {
+            // Material Properties
+            MaterialProperty metallicTexProp = FindProperty($"_{materialPrefix}MetallicMap");
+            MaterialProperty smoothnessTexProp = FindProperty($"_{materialPrefix}SmoothnessMap");
+            MaterialProperty roughnessTexProp = FindProperty($"_{materialPrefix}RoughnessMap");
+            MaterialProperty normalTexProp = FindProperty($"_{materialPrefix}NormalMap");
+            MaterialProperty occlussionTexProp = FindProperty($"_{materialPrefix}OcclussionMap");
+            MaterialProperty emissionTexProp = FindProperty($"_{materialPrefix}EmissionMap");
+
+            // Compress Assigned Textures
+            bool metallicAssigned = metallicTexProp.textureValue != null;     // (bits & 1)  != 0
+            bool smoothnessAssigned = smoothnessTexProp.textureValue != null; // (bits & 2)  != 0
+            bool roughnessAssigned = roughnessTexProp.textureValue != null;   // (bits & 4)  != 0
+            bool normalAssigned = normalTexProp.textureValue != null;         // (bits & 8)  != 0
+            bool occlussionAssigned = occlussionTexProp.textureValue != null; // (bits & 16) != 0
+            bool emissionAssigned = emissionTexProp.textureValue != null;     // (bits & 32) != 0
+
+            int compressedAssignedTextures = BooleanCompression.CompressValues(metallicAssigned, smoothnessAssigned, roughnessAssigned, normalAssigned, occlussionAssigned, emissionAssigned);
+            return compressedAssignedTextures;
         }
         #endregion
 
@@ -333,14 +358,6 @@ namespace SeamlessMaterial.Editor
             MaterialProperty settingsProp = FindProperty($"_{materialPrefix}Settings");
             MaterialProperty tilingOffsetProp = FindProperty($"_{materialPrefix}TilingOffset");
 
-            MaterialProperty albedoTexProp = FindProperty($"_{materialPrefix}Albedo");
-            MaterialProperty metallicTexProp = FindProperty($"_{materialPrefix}MetallicMap");
-            MaterialProperty smoothnessTexProp = FindProperty($"_{materialPrefix}SmoothnessMap");
-            MaterialProperty roughnessTexProp = FindProperty($"_{materialPrefix}RoughnessMap");
-            MaterialProperty normalTexProp = FindProperty($"_{materialPrefix}NormalMap");
-            MaterialProperty occlussionTexProp = FindProperty($"_{materialPrefix}OcclussionMap");
-            MaterialProperty emissionTexProp = FindProperty($"_{materialPrefix}EmissionMap");
-
             MaterialProperty abledoTintProp = FindProperty($"_{materialPrefix}AlbedoTint");
             MaterialProperty emissionColorProp = FindProperty($"_{materialPrefix}EmissionColor");
 
@@ -360,23 +377,35 @@ namespace SeamlessMaterial.Editor
 
             // Assigned Textures, for the shader to determine whether to use textures or values
             // Storing inside of int instead of multiple bools so its only one variable, less to manage
-            bool metallicAssigned = metallicTexProp.textureValue != null;     // (bits & 1)  != 0
-            bool smoothnessAssigned = smoothnessTexProp.textureValue != null; // (bits & 2)  != 0
-            bool roughnessAssigned = roughnessTexProp.textureValue != null;   // (bits & 4)  != 0
-            bool normalAssigned = normalTexProp.textureValue != null;         // (bits & 8)  != 0
-            bool occlussionAssigned = occlussionTexProp.textureValue != null; // (bits & 16) != 0
-            bool emissionAssigned = emissionTexProp.textureValue != null;     // (bits & 32) != 0
-            int compressedAssignedTextures = BooleanCompression.CompressValues(metallicAssigned, smoothnessAssigned, roughnessAssigned, normalAssigned, occlussionAssigned, emissionAssigned);
+
+
+
+
+            // ------------------------------------------------ FIGURE THIS OUT ------------------------------------------------ //
+            // - ASSIGNED TEXTURES ARE ALREADY SET, FIND OUT HOW TO USE THIS INSTEAD OF A NEW VARIABLE IN THE TERRAIN MATERIAL - //
+
+            int compressedAssignedTextures = HandleAssignedTextures(materialPrefix, sectionIndex, settingsProp);
             settingsProp.vectorValue = new Vector2(settingToggles, compressedAssignedTextures);
 
+            // ------------------------------------------------ FIGURE THIS OUT ------------------------------------------------ //
+
+
+
+
+            bool metallicAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 0);
+            bool smoothnessAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 1);
+            bool roughnessAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 2);
+            bool normalAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 3);
+            bool occlussionAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 4);
+
             // Albedo
-            Rect albedoTintRect = DrawTexture(sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), albedoTexProp);
+            Rect albedoTintRect = DrawTexture(sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), $"_{materialPrefix}Albedo");
             _editor.ColorProperty(albedoTintRect, abledoTintProp, "");
 
             //_editor.TexturePropertySingleLine(new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), albedoTexProp, abledoTintProp);
 
             // Metallic
-            Rect metallicSliderRect = DrawTexture(sectionIndex, 1, new GUIContent("Metallic", "Metallic (R), other channels are ignored"), metallicTexProp);
+            Rect metallicSliderRect = DrawTexture(sectionIndex, 1, new GUIContent("Metallic", "Metallic (R), other channels are ignored"), $"_{materialPrefix}MetallicMap");
             if (!metallicAssigned)
                 materialProperties1.x = EditorGUI.Slider(metallicSliderRect, materialProperties1.x, 0, 1);
 
@@ -386,7 +415,7 @@ namespace SeamlessMaterial.Editor
             float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
             switch (srSelected) {
                 case 0: // Smoothness
-                    Rect smoothnessSliderRect = DrawTexture(sectionIndex, 2, new GUIContent("Smoothness", $"Smoothness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"), smoothnessTexProp);
+                    Rect smoothnessSliderRect = DrawTexture(sectionIndex, 2, new GUIContent("Smoothness", $"Smoothness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"), $"_{materialPrefix}SmoothnessMap");
                     if (!smoothnessAssigned)
                         materialProperties1.y = EditorGUI.Slider(smoothnessSliderRect, materialProperties1.y, 0, 1);
 
@@ -394,7 +423,7 @@ namespace SeamlessMaterial.Editor
 
                     break;
                 case 1: // Roughness
-                    Rect roughnessSliderRect = DrawTexture(sectionIndex, 3, new GUIContent("Roughness", $"Roughness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"), roughnessTexProp);
+                    Rect roughnessSliderRect = DrawTexture(sectionIndex, 3, new GUIContent("Roughness", $"Roughness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"), $"_{materialPrefix}RoughnessMap");
                     if (!roughnessAssigned)
                         materialProperties1.z = EditorGUI.Slider(roughnessSliderRect, materialProperties1.z, 0, 1);
 
@@ -404,14 +433,14 @@ namespace SeamlessMaterial.Editor
             }
 
             // Normal Map
-            Rect normalStrengthSliderRect = DrawTexture(sectionIndex, 4, new GUIContent("Normal Map"), normalTexProp);
+            Rect normalStrengthSliderRect = DrawTexture(sectionIndex, 4, new GUIContent("Normal Map"), $"_{materialPrefix}NormalMap");
             if (normalAssigned)
                 materialProperties1.w = EditorGUI.Slider(normalStrengthSliderRect, materialProperties1.w, 0, 1);
 
             //materialProperties1.w = GUIUtilities.DrawTexturePropertyWithSlider(_editor, normalTexProp, normalAssigned, materialProperties1.w, new GUIContent("Normal Map"));
 
             // Occlussion Map
-            Rect occlussionStrengthSliderRect = DrawTexture(sectionIndex, 5, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"), occlussionTexProp);
+            Rect occlussionStrengthSliderRect = DrawTexture(sectionIndex, 5, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"), $"_{materialPrefix}OcclussionMap");
             if (occlussionAssigned)
                 materialProperties2.x = EditorGUI.Slider(occlussionStrengthSliderRect, materialProperties2.x, 0, 1);
 
@@ -419,26 +448,43 @@ namespace SeamlessMaterial.Editor
 
             // Emission
             if (emissionEnabled) {
+                bool prevEmissionAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 4);
+
+                // Change emission colour to white if texture assigned and texture is black
                 EditorGUI.BeginChangeCheck();
-                Texture oldEmissionTex = emissionTexProp.textureValue;
-
-                Rect emissionColourRect = DrawTexture(sectionIndex, 6, new GUIContent("Emission", "Emission (RGB)"), emissionTexProp);
+                Rect emissionColourRect = DrawTexture(sectionIndex, 6, new GUIContent("Emission", "Emission (RGB)"), $"_{materialPrefix}EmissionMap");
                 Color emissionColour = EditorGUI.ColorField(emissionColourRect, GUIContent.none, emissionColorProp.colorValue, true, false, true);
-
-                //_editor.TexturePropertyWithHDRColor(new GUIContent("Emission", "Emission (RGB)"), emissionTexProp, emissionColorProp, false);
-                
                 if (EditorGUI.EndChangeCheck()) {
+                    // Rehandle assigned textures since the function can be changed in child classes
+                    int afterAssignedTextures = HandleAssignedTextures(materialPrefix, sectionIndex, settingsProp);
+                    bool afterEmissionAssigned = BooleanCompression.GetValue(afterAssignedTextures, 5);
+
                     // Update emission colour
                     emissionColorProp.colorValue = emissionColour;
 
-                    // Change color to white if currently black when setting texture
-                    if (oldEmissionTex != emissionTexProp.textureValue) {
-                        Color blackColor = new Color(0, 0, 0, emissionTexProp.colorValue.a);
-                        if (emissionColorProp.colorValue == blackColor && emissionTexProp.textureValue != null) {
+                    // If texture just assigned and colour is black, change colour to white
+                    if (afterEmissionAssigned && !prevEmissionAssigned) {
+                        Color blackColor = new Color(0, 0, 0, emissionColorProp.colorValue.a);
+                        if (emissionColorProp.colorValue == blackColor) {
                             emissionColorProp.colorValue = Color.white;
                         }
                     }
                 }
+
+                //Texture oldEmissionTex = emissionTexProp.textureValue;
+                
+                //if (EditorGUI.EndChangeCheck()) {
+                //    // Update emission colour
+                //    emissionColorProp.colorValue = emissionColour;
+                //
+                //    // Change color to white if currently black when setting texture
+                //    if (oldEmissionTex != emissionTexProp.textureValue) {
+                //        Color blackColor = new Color(0, 0, 0, emissionColorProp.colorValue.a);
+                //        if (emissionColorProp.colorValue == blackColor && emissionTexProp.textureValue != null) {
+                //            emissionColorProp.colorValue = Color.white;
+                //        }
+                //    }
+                //}
             }
 
             // Alpha Clipping
@@ -575,7 +621,7 @@ namespace SeamlessMaterial.Editor
                 MaterialProperty variationTextureTOProp = FindProperty($"_{materialPrefix}VariationTextureTO");
 
                 // Texture
-                DrawTexture(sectionIndex, 7, new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), variationTexturesProp);
+                DrawTexture(sectionIndex, 7, new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), variationTexturesProp.name);
                 
                 //_editor.TexturePropertySingleLine(new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), variationTexturesProp);
 
