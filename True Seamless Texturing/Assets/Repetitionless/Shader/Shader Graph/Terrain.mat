@@ -70,6 +70,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Layer1BlendTextures:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Layer1BlendVariationTexture:
         m_Texture: {fileID: 2800000, guid: aff512b44ce58cf4288d274c08a5d9a6, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -99,6 +103,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1FarSmoothnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Layer1FarTextures:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -150,6 +158,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Layer2BlendTextures:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Layer2BlendVariationTexture:
         m_Texture: {fileID: 2800000, guid: aff512b44ce58cf4288d274c08a5d9a6, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -179,6 +191,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer2FarSmoothnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Layer2FarTextures:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -230,6 +246,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Layer3BlendTextures:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Layer3BlendVariationTexture:
         m_Texture: {fileID: 2800000, guid: aff512b44ce58cf4288d274c08a5d9a6, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -259,6 +279,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer3FarSmoothnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Layer3FarTextures:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -310,6 +334,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Layer4BlendTextures:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Layer4BlendVariationTexture:
         m_Texture: {fileID: 2800000, guid: aff512b44ce58cf4288d274c08a5d9a6, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -342,8 +370,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Layer4FarTextures:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Layer4FarVariationTexture:
         m_Texture: {fileID: 2800000, guid: aff512b44ce58cf4288d274c08a5d9a6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _test1:
+        m_Texture: {fileID: 18700000, guid: bc9ed6ec833e4b642a8e30842c2b3275, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -362,45 +398,54 @@ Material:
     - _DebuggingIndex: -1
     - _Layer1BaseVariationBrightness: 0.3
     - _Layer1BaseVariationMode: 2
+    - _Layer1BlendAssignedTextures: 0
     - _Layer1BlendMaskType: 0
     - _Layer1BlendVariationBrightness: 0.3
     - _Layer1BlendVariationMode: 2
-    - _Layer1DistanceBlendEnabled: 0
-    - _Layer1DistanceBlendMode: 0
+    - _Layer1DistanceBlendEnabled: 1
+    - _Layer1DistanceBlendMode: 1
+    - _Layer1FarAssignedTextures: 0
     - _Layer1FarVariationBrightness: 0.3
     - _Layer1FarVariationMode: 2
     - _Layer1MaterialBlendSettings: 7
     - _Layer2BaseVariationBrightness: 0.3
     - _Layer2BaseVariationMode: 2
+    - _Layer2BlendAssignedTextures: 0
     - _Layer2BlendMaskType: 0
     - _Layer2BlendVariationBrightness: 0.3
     - _Layer2BlendVariationMode: 2
     - _Layer2DistanceBlendEnabled: 0
     - _Layer2DistanceBlendMode: 0
+    - _Layer2FarAssignedTextures: 0
     - _Layer2FarVariationBrightness: 0.3
     - _Layer2FarVariationMode: 2
     - _Layer2MaterialBlendSettings: 6
     - _Layer3BaseVariationBrightness: 0.3
     - _Layer3BaseVariationMode: 2
+    - _Layer3BlendAssignedTextures: 0
     - _Layer3BlendMaskType: 0
     - _Layer3BlendVariationBrightness: 0.3
     - _Layer3BlendVariationMode: 2
     - _Layer3DistanceBlendEnabled: 0
     - _Layer3DistanceBlendMode: 0
+    - _Layer3FarAssignedTextures: 0
     - _Layer3FarVariationBrightness: 0.3
     - _Layer3FarVariationMode: 2
     - _Layer3MaterialBlendSettings: 6
     - _Layer4BaseVariationBrightness: 0.3
     - _Layer4BaseVariationMode: 2
+    - _Layer4BlendAssignedTextures: 0
     - _Layer4BlendMaskType: 0
     - _Layer4BlendVariationBrightness: 0.3
     - _Layer4BlendVariationMode: 2
     - _Layer4DistanceBlendEnabled: 0
     - _Layer4DistanceBlendMode: 0
+    - _Layer4FarAssignedTextures: 0
     - _Layer4FarVariationBrightness: 0.3
     - _Layer4FarVariationMode: 2
     - _Layer4MaterialBlendSettings: 6
     - _SurfaceType: 0
+    - _test2: 1
     m_Colors:
     - _Layer1BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _Layer1BaseEmissionColor: {r: 0, g: 0, b: 0, a: 0}

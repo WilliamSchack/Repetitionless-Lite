@@ -65,9 +65,6 @@ namespace SeamlessMaterial.Editor
             _labelStyle.alignment = TextAnchor.MiddleCenter;
             _labelStyle.wordWrap = true;
 
-            // ---------------------- FIXME ---------------------- //
-            // TEXTURES ARE NOT SAVING PROPERLY, FREEZING ON SAVE  //
-
             // Setup Texture Array Drawers
             _textureDrawers = new List<TerrainLayerTextureDrawers>();
             for (int i = 0; i < _layerStrings.Length; i++) {
