@@ -41,6 +41,9 @@ namespace SeamlessMaterial.Editor
                 return BooleanCompression.CompressValues(true, true, true, true, true, emissionTexProp.textureValue != null);
             }
 
+            // Material Properties
+            MaterialProperty normalTexProp = FindProperty($"_{materialPrefix}NormalMap");
+
             // Get texture array drawer
             TextureArrayGUIDrawer textureDrawer = GetTextureDrawer(sectionIndex);
 
@@ -48,9 +51,9 @@ namespace SeamlessMaterial.Editor
             bool metallicAssigned = textureDrawer.TextureAssignedAt(0);
             bool smoothnessAssigned = textureDrawer.TextureAssignedAt(1);
             bool roughnessAssigned = textureDrawer.TextureAssignedAt(2);
-            bool normalAssigned = textureDrawer.TextureAssignedAt(3);
-            bool occlussionAssigned = textureDrawer.TextureAssignedAt(4);
-            bool emissionAssigned = textureDrawer.TextureAssignedAt(5);
+            bool normalAssigned = normalTexProp.textureValue != null;
+            bool occlussionAssigned = textureDrawer.TextureAssignedAt(3);
+            bool emissionAssigned = textureDrawer.TextureAssignedAt(4);
 
             int compressedAssignedTextures = BooleanCompression.CompressValues(metallicAssigned, smoothnessAssigned, roughnessAssigned, normalAssigned, occlussionAssigned, emissionAssigned);
             return compressedAssignedTextures;
@@ -77,8 +80,8 @@ namespace SeamlessMaterial.Editor
                 MaterialProperty blendTexturesProp = FindProperty($"_Layer{i + 1}BlendTextures");
                 MaterialProperty blendAssignedTexturesProp = FindProperty($"_Layer{i + 1}BlendAssignedTextures");
 
-                textureData.FarTexturesDrawer = new TextureArrayGUIDrawer(farTexturesProp, farAssignedTexturesProp, 7, $"Layer{i + 1}FarTextures");
-                textureData.BlendTexturesDrawer = new TextureArrayGUIDrawer(blendTexturesProp, blendAssignedTexturesProp, 7, $"Layer{i + 1}BlendTextures");
+                textureData.FarTexturesDrawer = new TextureArrayGUIDrawer(farTexturesProp, farAssignedTexturesProp, 6, $"Layer{i + 1}FarTextures");
+                textureData.BlendTexturesDrawer = new TextureArrayGUIDrawer(blendTexturesProp, blendAssignedTexturesProp, 6, $"Layer{i + 1}BlendTextures");
 
                 _textureDrawers.Add(textureData);
             }
@@ -196,9 +199,13 @@ namespace SeamlessMaterial.Editor
 
         protected override Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, string texturePropertyName)
         {
-            // If the base material or variation texture, dont use the texture arrays so draw the field normally
-            if(sectionIndex == 0 || textureIndex == 7)
+            // If the base material, normal map, or variation texture, dont use the texture arrays so draw the field normally
+            if(sectionIndex == 0 || textureIndex == 4 || textureIndex == 7)
                 return base.DrawTexture(sectionIndex, textureIndex, content, texturePropertyName);
+
+            // If greater than the normal map, go back an index (skip the normal map)
+            if (textureIndex >= 4)
+                textureIndex--;
 
             // Get texture array drawer
             TextureArrayGUIDrawer textureDrawer = GetTextureDrawer(sectionIndex);

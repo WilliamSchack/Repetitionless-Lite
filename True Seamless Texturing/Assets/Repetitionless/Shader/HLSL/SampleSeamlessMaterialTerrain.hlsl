@@ -38,7 +38,7 @@ void SampleSeamlessMaterialTerrain_float(
     bool Layer1DistanceBlendEnabled, int Layer1DistanceBlendingMode, float2 Layer1DistanceBlendMinMax, // Distance Blending
 
     float2 Layer1FarSettings, float4 Layer1FarTilingOffset, // Tiling & Offset
-    UnityTexture2DArray Layer1FarTextures, // Textures
+    UnityTexture2DArray Layer1FarTextures, UnityTexture2D Layer1FarNormalMap, // Textures
     int Layer1FarAssignedTextures, // Assigned Textures
     float4 Layer1FarAlbedoTint, float3 Layer1FarEmissionColor, // Colors
     float4 Layer1FarMaterialProperties1, float2 Layer1FarMaterialProperties2, // Material Properties
@@ -55,7 +55,7 @@ void SampleSeamlessMaterialTerrain_float(
     UnityTexture2D Layer1BlendMaskTexture, float4 Layer1BlendMaskTextureTO,
 
     float2 Layer1BlendSettings, float4 Layer1BlendTilingOffset, // Tiling & Offset
-    UnityTexture2DArray Layer1BlendTextures, // Textures
+    UnityTexture2DArray Layer1BlendTextures, UnityTexture2D Layer1BlendNormalMap, // Textures
     int Layer1BlendAssignedTextures, // Assigned Textures
     float4 Layer1BlendAlbedoTint, float3 Layer1BlendEmissionColor, // Colors
     float4 Layer1BlendMaterialProperties1, float2 Layer1BlendMaterialProperties2, // Material Properties
@@ -90,7 +90,7 @@ void SampleSeamlessMaterialTerrain_float(
     bool Layer2DistanceBlendEnabled, int Layer2DistanceBlendingMode, float2 Layer2DistanceBlendMinMax, // Distance Blending
 
     float2 Layer2FarSettings, float4 Layer2FarTilingOffset, // Tiling & Offset
-    UnityTexture2DArray Layer2FarTextures, // Textures
+    UnityTexture2DArray Layer2FarTextures, UnityTexture2D Layer2FarNormalMap, // Textures
     int Layer2FarAssignedTextures, // Assigned Textures
     float4 Layer2FarAlbedoTint, float3 Layer2FarEmissionColor, // Colors
     float4 Layer2FarMaterialProperties1, float2 Layer2FarMaterialProperties2, // Material Properties
@@ -107,7 +107,7 @@ void SampleSeamlessMaterialTerrain_float(
     UnityTexture2D Layer2BlendMaskTexture, float4 Layer2BlendMaskTextureTO,
 
     float2 Layer2BlendSettings, float4 Layer2BlendTilingOffset, // Tiling & Offset
-    UnityTexture2DArray Layer2BlendTextures, // Textures
+    UnityTexture2DArray Layer2BlendTextures, UnityTexture2D Layer2BlendNormalMap, // Textures
     int Layer2BlendAssignedTextures, // Assigned Textures
     float4 Layer2BlendAlbedoTint, float3 Layer2BlendEmissionColor, // Colors
     float4 Layer2BlendMaterialProperties1, float2 Layer2BlendMaterialProperties2, // Material Properties
@@ -142,7 +142,7 @@ void SampleSeamlessMaterialTerrain_float(
     bool Layer3DistanceBlendEnabled, int Layer3DistanceBlendingMode, float2 Layer3DistanceBlendMinMax, // Distance Blending
 
     float2 Layer3FarSettings, float4 Layer3FarTilingOffset, // Tiling & Offset
-    UnityTexture2DArray Layer3FarTextures, // Textures
+    UnityTexture2DArray Layer3FarTextures, UnityTexture2D Layer3FarNormalMap, // Textures
     int Layer3FarAssignedTextures, // Assigned Textures
     float4 Layer3FarAlbedoTint, float3 Layer3FarEmissionColor, // Colors
     float4 Layer3FarMaterialProperties1, float2 Layer3FarMaterialProperties2, // Material Properties
@@ -159,7 +159,7 @@ void SampleSeamlessMaterialTerrain_float(
     UnityTexture2D Layer3BlendMaskTexture, float4 Layer3BlendMaskTextureTO,
 
     float2 Layer3BlendSettings, float4 Layer3BlendTilingOffset, // Tiling & Offset
-    UnityTexture2DArray Layer3BlendTextures, // Textures
+    UnityTexture2DArray Layer3BlendTextures, UnityTexture2D Layer3BlendNormalMap, // Textures
     int Layer3BlendAssignedTextures, // Assigned Textures
     float4 Layer3BlendAlbedoTint, float3 Layer3BlendEmissionColor, // Colors
     float4 Layer3BlendMaterialProperties1, float2 Layer3BlendMaterialProperties2, // Material Properties
@@ -194,7 +194,7 @@ void SampleSeamlessMaterialTerrain_float(
     bool Layer4DistanceBlendEnabled, int Layer4DistanceBlendingMode, float2 Layer4DistanceBlendMinMax, // Distance Blending
 
     float2 Layer4FarSettings, float4 Layer4FarTilingOffset, // Tiling & Offset
-    UnityTexture2DArray Layer4FarTextures, // Textures
+    UnityTexture2DArray Layer4FarTextures, UnityTexture2D Layer4FarNormalMap, // Textures
     int Layer4FarAssignedTextures, // Assigned Textures
     float4 Layer4FarAlbedoTint, float3 Layer4FarEmissionColor, // Colors
     float4 Layer4FarMaterialProperties1, float2 Layer4FarMaterialProperties2, // Material Properties
@@ -211,7 +211,7 @@ void SampleSeamlessMaterialTerrain_float(
     UnityTexture2D Layer4BlendMaskTexture, float4 Layer4BlendMaskTextureTO,
 
     float2 Layer4BlendSettings, float4 Layer4BlendTilingOffset, // Tiling & Offset
-    UnityTexture2DArray Layer4BlendTextures, // Textures
+    UnityTexture2DArray Layer4BlendTextures, UnityTexture2D Layer4BlendNormalMap, // Textures
     int Layer4BlendAssignedTextures, // Assigned Textures
     float4 Layer4BlendAlbedoTint, float3 Layer4BlendEmissionColor, // Colors
     float4 Layer4BlendMaterialProperties1, float2 Layer4BlendMaterialProperties2, // Material Properties

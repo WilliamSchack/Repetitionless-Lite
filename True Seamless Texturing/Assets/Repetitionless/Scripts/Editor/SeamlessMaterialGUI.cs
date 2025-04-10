@@ -377,20 +377,8 @@ namespace SeamlessMaterial.Editor
 
             // Assigned Textures, for the shader to determine whether to use textures or values
             // Storing inside of int instead of multiple bools so its only one variable, less to manage
-
-
-
-
-            // ------------------------------------------------ FIGURE THIS OUT ------------------------------------------------ //
-            // - ASSIGNED TEXTURES ARE ALREADY SET, FIND OUT HOW TO USE THIS INSTEAD OF A NEW VARIABLE IN THE TERRAIN MATERIAL - //
-
             int compressedAssignedTextures = HandleAssignedTextures(materialPrefix, sectionIndex, settingsProp);
             settingsProp.vectorValue = new Vector2(settingToggles, compressedAssignedTextures);
-
-            // ------------------------------------------------ FIGURE THIS OUT ------------------------------------------------ //
-
-
-
 
             bool metallicAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 0);
             bool smoothnessAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 1);
