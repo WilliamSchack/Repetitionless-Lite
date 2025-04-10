@@ -48,12 +48,12 @@ namespace SeamlessMaterial.Editor
             TextureArrayGUIDrawer textureDrawer = GetTextureDrawer(sectionIndex);
 
             // Compress Assigned Textures
-            bool metallicAssigned = textureDrawer.TextureAssignedAt(0);
-            bool smoothnessAssigned = textureDrawer.TextureAssignedAt(1);
-            bool roughnessAssigned = textureDrawer.TextureAssignedAt(2);
+            bool metallicAssigned = textureDrawer.TextureAssignedAt(1);
+            bool smoothnessAssigned = textureDrawer.TextureAssignedAt(2);
+            bool roughnessAssigned = textureDrawer.TextureAssignedAt(3);
             bool normalAssigned = normalTexProp.textureValue != null;
-            bool occlussionAssigned = textureDrawer.TextureAssignedAt(3);
-            bool emissionAssigned = textureDrawer.TextureAssignedAt(4);
+            bool occlussionAssigned = textureDrawer.TextureAssignedAt(4);
+            bool emissionAssigned = textureDrawer.TextureAssignedAt(5);
 
             int compressedAssignedTextures = BooleanCompression.CompressValues(metallicAssigned, smoothnessAssigned, roughnessAssigned, normalAssigned, occlussionAssigned, emissionAssigned);
             return compressedAssignedTextures;
@@ -74,11 +74,13 @@ namespace SeamlessMaterial.Editor
                 TerrainLayerTextureDrawers textureData = new TerrainLayerTextureDrawers();
 
                 // Get properties
+                // Have specific assigned textures for the texture arrays as the main one includes other textures as well
+                // Combine the two in the HandleAssignedTextures function above
                 MaterialProperty farTexturesProp = FindProperty($"_Layer{i + 1}FarTextures");
-                MaterialProperty farAssignedTexturesProp = FindProperty($"_Layer{i + 1}FarAssignedTextures");
+                MaterialProperty farAssignedTexturesProp = FindProperty($"_Layer{i + 1}FarArrayAssignedTextures");
 
                 MaterialProperty blendTexturesProp = FindProperty($"_Layer{i + 1}BlendTextures");
-                MaterialProperty blendAssignedTexturesProp = FindProperty($"_Layer{i + 1}BlendAssignedTextures");
+                MaterialProperty blendAssignedTexturesProp = FindProperty($"_Layer{i + 1}BlendArrayAssignedTextures");
 
                 textureData.FarTexturesDrawer = new TextureArrayGUIDrawer(farTexturesProp, farAssignedTexturesProp, 6, $"Layer{i + 1}FarTextures");
                 textureData.BlendTexturesDrawer = new TextureArrayGUIDrawer(blendTexturesProp, blendAssignedTexturesProp, 6, $"Layer{i + 1}BlendTextures");
@@ -93,6 +95,8 @@ namespace SeamlessMaterial.Editor
 
             // Layer Selection
             DrawLayerSelectionGUI();
+
+            GUILayout.Space(SETTING_SPACING);
 
             // Layer
             DrawLayerGUI(_currentLayer);
