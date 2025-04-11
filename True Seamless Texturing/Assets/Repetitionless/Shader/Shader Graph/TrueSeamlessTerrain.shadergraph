@@ -3048,9 +3048,6 @@
     ],
     "m_GroupDatas": [
         {
-            "m_Id": "1e0c22d032cb4b2db38a402bc413a0b1"
-        },
-        {
             "m_Id": "2b5151c6a5074bb8af3cd544ed33e32e"
         },
         {
@@ -3139,33 +3136,6 @@
         }
     ],
     "m_StickyNoteDatas": [
-        {
-            "m_Id": "c65115b250ec47f38e6b0918d0742cf5"
-        },
-        {
-            "m_Id": "ced40c18fc0044e9adbdc273dd0c038a"
-        },
-        {
-            "m_Id": "f01116ee78b24d4888bdfa8dd2f020e4"
-        },
-        {
-            "m_Id": "cda9af747c59474b98bf10cb7d241918"
-        },
-        {
-            "m_Id": "88025713348f4d94b3a6c53f3a760295"
-        },
-        {
-            "m_Id": "ecb13d5f2ce5485d9232d1ed9f9fce12"
-        },
-        {
-            "m_Id": "d1d651e291d0444790209fd7f37fb71b"
-        },
-        {
-            "m_Id": "d1ba6779ba574a91b72fcb1fd3592e41"
-        },
-        {
-            "m_Id": "3e7029129d5a4c12a09d81f75fb40ecb"
-        },
         {
             "m_Id": "c66d3936f4ec42319dfbc6e3fe2bc912"
         },
@@ -21926,17 +21896,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.GroupData",
-    "m_ObjectId": "1e0c22d032cb4b2db38a402bc413a0b1",
-    "m_Title": "Material Compression",
-    "m_Position": {
-        "x": 6415.0,
-        "y": 1754.0
-    }
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "1e0c8f0a1396432e8be518f4d41c09f0",
     "m_Id": 1,
@@ -30092,26 +30051,6 @@
     },
     "isMainColor": false,
     "m_ColorMode": 0
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "3e7029129d5a4c12a09d81f75fb40ecb",
-    "m_Title": "Sample Material In Custom Function",
-    "m_Content": "Using custom function to only calculate what is enabled by the user, better performance\n\nAlso easier to do the same calculations for multiple sub-materials, this material is way too complicated for its own good\n\nComments in hlsl file if you want to step through it\n\nIf only we could have arrays.....",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": 6615.0,
-        "y": 1531.0,
-        "width": 368.0,
-        "height": 156.0
-    },
-    "m_Group": {
-        "m_Id": ""
-    }
 }
 
 {
@@ -45080,8 +45019,8 @@
     "m_ObjectId": "79f32e51b43f44b09bcdaacb9cad9f8c",
     "m_Title": "Far Material",
     "m_Position": {
-        "x": -4629.99951171875,
-        "y": 2689.999755859375
+        "x": -4630.0,
+        "y": 2690.0
     }
 }
 
@@ -48545,26 +48484,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "88025713348f4d94b3a6c53f3a760295",
-    "m_Title": "VariationNoiseSettings (vec4)",
-    "m_Content": "x: Noise Strength\ny: Noise Scale\nz/w: Noise Offset (vec2)\n",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": 6695.0,
-        "y": 2146.0,
-        "width": 303.0,
-        "height": 100.0
-    },
-    "m_Group": {
-        "m_Id": "1e0c22d032cb4b2db38a402bc413a0b1"
-    }
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "882fc6bdee184a4bb565b1ac7d7438c2",
     "m_Id": 1,
@@ -49815,7 +49734,7 @@
     "m_Title": "Blend Material",
     "m_Position": {
         "x": -4637.0,
-        "y": 1071.9998779296875
+        "y": 1072.0
     }
 }
 
@@ -64900,26 +64819,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "c65115b250ec47f38e6b0918d0742cf5",
-    "m_Title": "Settings (int)",
-    "m_Content": "> Noise Enabled                                 = (value & 1) != 0\n> Randomise Scaling                          = (value & 2) != 0\n> Randomise Rotation                        = (value & 4) != 0\n> Variation Enabled                            = (value & 8) != 0\n> Override Distance Blend Min/Max = (value & 16) != 0\n> Override Distance Blend TO           = (value & 32) != 0",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": 6440.0,
-        "y": 1926.0,
-        "width": 305.0,
-        "height": 116.0
-    },
-    "m_Group": {
-        "m_Id": "1e0c22d032cb4b2db38a402bc413a0b1"
-    }
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "c65cea94faf74aec8ca667a4d100ebe9",
     "m_Id": 0,
@@ -67063,26 +66962,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "cda9af747c59474b98bf10cb7d241918",
-    "m_Title": "VariationSettings (vec4)",
-    "m_Content": "x: Opacity\ny: Small Scale\nz: Medium Scale\nw: Large Scale",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": 6440.0,
-        "y": 2146.0,
-        "width": 253.0,
-        "height": 100.0
-    },
-    "m_Group": {
-        "m_Id": "1e0c22d032cb4b2db38a402bc413a0b1"
-    }
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "cdabac35eefb4728b7729b7f19fe0fe9",
     "m_Id": -969128209,
@@ -67399,26 +67278,6 @@
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
     "m_BareResource": false
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "ced40c18fc0044e9adbdc273dd0c038a",
-    "m_Title": "NoiseSettings (vec2)",
-    "m_Content": "x: Noise Angle Offset\ny: Noise Scale\n",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": 6440.0,
-        "y": 2044.0,
-        "width": 219.0,
-        "height": 100.0
-    },
-    "m_Group": {
-        "m_Id": "1e0c22d032cb4b2db38a402bc413a0b1"
-    }
 }
 
 {
@@ -68202,46 +68061,6 @@
     "m_RangeValues": {
         "x": 0.0,
         "y": 1.0
-    }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "d1ba6779ba574a91b72fcb1fd3592e41",
-    "m_Title": "",
-    "m_Content": "Materials are compressed to reduce the amount of variables in a material, would get out of hand otherwise",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": 6547.0,
-        "y": 1813.0,
-        "width": 362.0,
-        "height": 100.0
-    },
-    "m_Group": {
-        "m_Id": "1e0c22d032cb4b2db38a402bc413a0b1"
-    }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "d1d651e291d0444790209fd7f37fb71b",
-    "m_Title": "TilingOffset (vec4)",
-    "m_Content": "x/y: Scale (vec2)\nz/w: Offset (vec2)",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": 6747.0,
-        "y": 1926.0,
-        "width": 236.0,
-        "height": 117.0
-    },
-    "m_Group": {
-        "m_Id": "1e0c22d032cb4b2db38a402bc413a0b1"
     }
 }
 
@@ -74953,26 +74772,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "ecb13d5f2ce5485d9232d1ed9f9fce12",
-    "m_Title": "VariationTextureTO (vec4)",
-    "m_Content": "x/y: Texture Tiling (vec2)\nz/w: Texture Offset (vec2)",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": 6440.0,
-        "y": 2248.0,
-        "width": 273.0,
-        "height": 100.0
-    },
-    "m_Group": {
-        "m_Id": "1e0c22d032cb4b2db38a402bc413a0b1"
-    }
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "ecf5669e89844c9a904ae730c7ad22a7",
     "m_Id": 182,
@@ -75945,26 +75744,6 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
-    }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "f01116ee78b24d4888bdfa8dd2f020e4",
-    "m_Title": "NoiseMinMax (vec4)",
-    "m_Content": "x/y: Noise Scaling Min Max (vec2)\nz/w: Randomise Rotation Min Max (vec2)",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": 6661.0,
-        "y": 2044.0,
-        "width": 236.0,
-        "height": 100.0
-    },
-    "m_Group": {
-        "m_Id": "1e0c22d032cb4b2db38a402bc413a0b1"
     }
 }
 

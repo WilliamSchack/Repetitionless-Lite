@@ -63,6 +63,9 @@ namespace SeamlessMaterial.Editor
         {
             base.OnEnable(materialEditor);
 
+            // Set terrain compatible tag
+            _material.SetOverrideTag("TerrainCompatible", "True");
+
             // Initialize styles
             _labelStyle = new GUIStyle("Label");
             _labelStyle.alignment = TextAnchor.MiddleCenter;

@@ -430,48 +430,56 @@ Material:
     - _DebuggingIndex: -1
     - _Layer1BaseVariationBrightness: 0.3
     - _Layer1BaseVariationMode: 2
+    - _Layer1BlendArrayAssignedTextures: 0
     - _Layer1BlendAssignedTextures: 0
     - _Layer1BlendMaskType: 0
     - _Layer1BlendVariationBrightness: 0.3
     - _Layer1BlendVariationMode: 2
-    - _Layer1DistanceBlendEnabled: 1
+    - _Layer1DistanceBlendEnabled: 0
     - _Layer1DistanceBlendMode: 1
+    - _Layer1FarArrayAssignedTextures: 0
     - _Layer1FarAssignedTextures: 63
     - _Layer1FarVariationBrightness: 0.3
     - _Layer1FarVariationMode: 2
-    - _Layer1MaterialBlendSettings: 7
+    - _Layer1MaterialBlendSettings: 6
     - _Layer2BaseVariationBrightness: 0.3
     - _Layer2BaseVariationMode: 2
+    - _Layer2BlendArrayAssignedTextures: 0
     - _Layer2BlendAssignedTextures: 0
     - _Layer2BlendMaskType: 0
     - _Layer2BlendVariationBrightness: 0.3
     - _Layer2BlendVariationMode: 2
     - _Layer2DistanceBlendEnabled: 0
     - _Layer2DistanceBlendMode: 0
+    - _Layer2FarArrayAssignedTextures: 0
     - _Layer2FarAssignedTextures: 0
     - _Layer2FarVariationBrightness: 0.3
     - _Layer2FarVariationMode: 2
     - _Layer2MaterialBlendSettings: 6
     - _Layer3BaseVariationBrightness: 0.3
     - _Layer3BaseVariationMode: 2
+    - _Layer3BlendArrayAssignedTextures: 0
     - _Layer3BlendAssignedTextures: 0
     - _Layer3BlendMaskType: 0
     - _Layer3BlendVariationBrightness: 0.3
     - _Layer3BlendVariationMode: 2
     - _Layer3DistanceBlendEnabled: 0
     - _Layer3DistanceBlendMode: 0
+    - _Layer3FarArrayAssignedTextures: 0
     - _Layer3FarAssignedTextures: 0
     - _Layer3FarVariationBrightness: 0.3
     - _Layer3FarVariationMode: 2
     - _Layer3MaterialBlendSettings: 6
     - _Layer4BaseVariationBrightness: 0.3
     - _Layer4BaseVariationMode: 2
+    - _Layer4BlendArrayAssignedTextures: 0
     - _Layer4BlendAssignedTextures: 0
     - _Layer4BlendMaskType: 0
     - _Layer4BlendVariationBrightness: 0.3
     - _Layer4BlendVariationMode: 2
     - _Layer4DistanceBlendEnabled: 0
     - _Layer4DistanceBlendMode: 0
+    - _Layer4FarArrayAssignedTextures: 0
     - _Layer4FarAssignedTextures: 0
     - _Layer4FarVariationBrightness: 0.3
     - _Layer4FarVariationMode: 2
@@ -509,7 +517,7 @@ Material:
     - _Layer1FarMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _Layer1FarNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer1FarNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _Layer1FarSettings: {r: 119, g: 63, b: 0, a: 0}
+    - _Layer1FarSettings: {r: 119, g: 8, b: 0, a: 0}
     - _Layer1FarTilingOffset: {r: 1, g: 1, b: 0, a: 0}
     - _Layer1FarVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _Layer1FarVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
