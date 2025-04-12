@@ -8,7 +8,7 @@
 // It does do more things and the function is modified for texture arrays but you get the idea
 
 void SampleSeamlessMaterialTerrain_float(
-    SamplerState SS, SamplerState ControlSS, float2 UV, float3 TangentNormalVector, // Control requires clamped sampler state, otherwise fades off at edges of terrain
+    SamplerState SS, float2 UV, float3 TangentNormalVector, // Control requires clamped sampler state, otherwise fades off at edges of terrain
     float3 WorldPosition, float3 CameraPosition, // Positions
     UnityTexture2D Holes, UnityTexture2D Control,
     float SurfaceType, float DebuggingIndex, // Enums
@@ -225,7 +225,8 @@ void SampleSeamlessMaterialTerrain_float(
     out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut)
 {
     // Setup control for additive blending (Using over lerp as it removes white borders)
-    float4 controlColor = SAMPLE_TEXTURE2D(Control, ControlSS, UV);
+    // Use control sampler as a custom one will cause layers above 0 to fade out at the edge of terrains
+    float4 controlColor = SAMPLE_TEXTURE2D(Control, sampler_Control, UV);
     float controlSum = dot(controlColor, 1.0);
     float backgroundControl = saturate(1 - controlSum);
     if (controlSum > 1.0)
@@ -558,10 +559,6 @@ void SampleSeamlessMaterialTerrain_float(
         emission += layerEmission * layer4Control;
     }
     
-    // Debugging
-    //if (DebuggingIndex == 2)
-    //    albedoColor = farDistance;
-    
     // ------------------------------------------------------------------------------------- FIX TRANSPARENCY WHEN GUI IS SETUP
     
     // If Transparency Disabled
@@ -571,7 +568,8 @@ void SampleSeamlessMaterialTerrain_float(
         albedoColor.a = 1.0;
     
     // Holes
-    float4 holesColor = SAMPLE_TEXTURE2D(Holes, SS, UV);
+    // Use holes sampler as a custom one will cause a line at the edge of terrains
+    float4 holesColor = SAMPLE_TEXTURE2D(Holes, sampler_TerrainHolesTexture, UV);
     clip(albedoColor.a - (1 - (holesColor.r - 0.01))); // Remove 1 from holes otherwise it will equal 0, not clipping the pixel
     
     // ------------------------------------------------------------------------------------- FIX TRANSPARENCY WHEN GUI IS SETUP
