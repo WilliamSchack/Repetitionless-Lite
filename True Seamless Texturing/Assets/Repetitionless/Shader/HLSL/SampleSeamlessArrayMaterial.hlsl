@@ -191,11 +191,16 @@ void SampleSeamlessArrayMaterial(
             {
                 case 0: // Tiling & Offset
                     // Sample Base Material
-                    GetSeamlessArrayMaterialColor(
+                    GetSeamlessMaterialColor(
                         SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                         BaseSettings, FarTilingOffset,
-                        FarTextures, FarNormalMap,
-                        FarArrayAssignedTextures,
+                        BaseAlbedo,
+                        BaseMetallicMap,
+                        BaseSmoothnessMap,
+                        BaseRoughnessMap,
+                        BaseNormalMap,
+                        BaseOcclussionMap,
+                        BaseEmissionMap,
                         BaseAlbedoTint, BaseEmissionColor,
                         BaseMaterialProperties1, BaseMaterialProperties2,
                         BaseNoiseSettings, BaseNoiseMinMax,
