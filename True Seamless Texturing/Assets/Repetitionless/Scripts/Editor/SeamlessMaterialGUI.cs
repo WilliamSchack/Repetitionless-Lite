@@ -1,14 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using TextureArrayEssentials.Compression;
 
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace SeamlessMaterial.Editor
+namespace Repetitionless.Editor
 {
+    using Compression;
     using Variables;
+    using GUIUtilities;
 
     public class SeamlessMaterialGUI : ShaderGUI
     {
@@ -325,23 +326,6 @@ namespace SeamlessMaterial.Editor
                     smoothnessEnabled = srSelected == 1.0f ? false : true;
             }
 
-            //Debug.Log("CLEARNING TEXTURE2DARRAY HERE");
-            //if (GUILayout.Button(new GUIContent(GetScaledText(minScaledTextWidth, "Clear Tex", "X"), "Clear the Texture2DArray holding the textures")) && EditorUtility.DisplayDialog("Clear Texture2DArray", $"Are you sure?\nYou will have to reassign all the {materialPrefix} textures\nCan be used to change the resolution of your textures", "Clear", "Cancel")) {
-            //    string assetsPath = Application.dataPath;
-            //    assetsPath = assetsPath.Substring(0, assetsPath.LastIndexOf("/")); // Remove "/Assets", included in filePath
-            //
-            //    string filePath = AssetDatabase.GetAssetPath(_editor.target);
-            //    filePath = filePath.Substring(0, filePath.LastIndexOf("/"));
-            //    filePath = $"{filePath}/SeamlessMaterialData/TextureArray.asset";
-            //
-            //    if (System.IO.File.Exists($"{assetsPath}/{filePath}")) {
-            //        AssetDatabase.DeleteAsset(filePath);
-            //        //for (int i = 0; i < textures.Length; i++) {
-            //        //    textures[i] = null;
-            //        //}
-            //    }
-            //}
-
             EditorGUILayout.EndHorizontal();
 
             // Enabled Settings, for the shader to determine whether to use textures or values
@@ -390,14 +374,10 @@ namespace SeamlessMaterial.Editor
             Rect albedoTintRect = DrawTexture(sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), $"_{materialPrefix}Albedo");
             _editor.ColorProperty(albedoTintRect, abledoTintProp, "");
 
-            //_editor.TexturePropertySingleLine(new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), albedoTexProp, abledoTintProp);
-
             // Metallic
             Rect metallicSliderRect = DrawTexture(sectionIndex, 1, new GUIContent("Metallic", "Metallic (R), other channels are ignored"), $"_{materialPrefix}MetallicMap");
             if (!metallicAssigned)
                 materialProperties1.x = EditorGUI.Slider(metallicSliderRect, materialProperties1.x, 0, 1);
-
-            //materialProperties1.x = GUIUtilities.DrawTexturePropertyWithSlider(_editor, metallicTexProp, !metallicAssigned, materialProperties1.x, new GUIContent("Metallic", "Metallic (R), other channels are ignored"));
 
             // Smoothness/Roughness
             float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
@@ -407,15 +387,11 @@ namespace SeamlessMaterial.Editor
                     if (!smoothnessAssigned)
                         materialProperties1.y = EditorGUI.Slider(smoothnessSliderRect, materialProperties1.y, 0, 1);
 
-                    //materialProperties1.y = GUIUtilities.DrawTexturePropertyWithSlider(_editor, smoothnessTexProp, !smoothnessAssigned, materialProperties1.y, new GUIContent("Smoothness", $"Smoothness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
-
                     break;
                 case 1: // Roughness
                     Rect roughnessSliderRect = DrawTexture(sectionIndex, 3, new GUIContent("Roughness", $"Roughness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"), $"_{materialPrefix}RoughnessMap");
                     if (!roughnessAssigned)
                         materialProperties1.z = EditorGUI.Slider(roughnessSliderRect, materialProperties1.z, 0, 1);
-
-                    //materialProperties1.z = GUIUtilities.DrawTexturePropertyWithSlider(_editor, roughnessTexProp, !roughnessAssigned, materialProperties1.z, new GUIContent("Roughness", $"Roughness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"));
 
                     break;
             }
@@ -425,14 +401,10 @@ namespace SeamlessMaterial.Editor
             if (normalAssigned)
                 materialProperties1.w = EditorGUI.Slider(normalStrengthSliderRect, materialProperties1.w, 0, 1);
 
-            //materialProperties1.w = GUIUtilities.DrawTexturePropertyWithSlider(_editor, normalTexProp, normalAssigned, materialProperties1.w, new GUIContent("Normal Map"));
-
             // Occlussion Map
             Rect occlussionStrengthSliderRect = DrawTexture(sectionIndex, 5, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"), $"_{materialPrefix}OcclussionMap");
             if (occlussionAssigned)
                 materialProperties2.x = EditorGUI.Slider(occlussionStrengthSliderRect, materialProperties2.x, 0, 1);
-
-            //materialProperties2.x = GUIUtilities.DrawTexturePropertyWithSlider(_editor, occlussionTexProp, occlussionAssigned, materialProperties2.x, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"));
 
             // Emission
             if (emissionEnabled) {
@@ -458,21 +430,6 @@ namespace SeamlessMaterial.Editor
                         }
                     }
                 }
-
-                //Texture oldEmissionTex = emissionTexProp.textureValue;
-                
-                //if (EditorGUI.EndChangeCheck()) {
-                //    // Update emission colour
-                //    emissionColorProp.colorValue = emissionColour;
-                //
-                //    // Change color to white if currently black when setting texture
-                //    if (oldEmissionTex != emissionTexProp.textureValue) {
-                //        Color blackColor = new Color(0, 0, 0, emissionColorProp.colorValue.a);
-                //        if (emissionColorProp.colorValue == blackColor && emissionTexProp.textureValue != null) {
-                //            emissionColorProp.colorValue = Color.white;
-                //        }
-                //    }
-                //}
             }
 
             // Alpha Clipping
@@ -611,8 +568,6 @@ namespace SeamlessMaterial.Editor
                 // Texture
                 DrawTexture(sectionIndex, 7, new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), variationTexturesProp.name);
                 
-                //_editor.TexturePropertySingleLine(new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), variationTexturesProp);
-
                 // Tiling & Offset
                 GUIUtilities.DrawTilingOffset(variationTextureTOProp, "Variation Scale", "Variation Offset");
             }

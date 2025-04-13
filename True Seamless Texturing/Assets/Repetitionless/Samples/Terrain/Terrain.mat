@@ -437,7 +437,7 @@ Material:
     - _Layer1BlendVariationBrightness: 0.3
     - _Layer1BlendVariationMode: 2
     - _Layer1DistanceBlendEnabled: 0
-    - _Layer1DistanceBlendMode: 1
+    - _Layer1DistanceBlendMode: 0
     - _Layer1FarArrayAssignedTextures: 0
     - _Layer1FarAssignedTextures: 63
     - _Layer1FarVariationBrightness: 0.3

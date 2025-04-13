@@ -1,11 +1,7 @@
 {
-    "name": "com.williamschack.Repetitionless.Editor",
-    "rootNamespace": "",
-    "references": [
-        "GUID:270b8cf06d3bf4b4facee1c89b5880bc",
-        "GUID:d02cf1824e6894948b0484482e484769",
-        "GUID:c0c7f9355a4e01c4d823d628863c7958"
-    ],
+    "name": "com.williamschack.Repetitionless.CustomDialog",
+    "rootNamespace": "TextureArrayEssentials",
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],

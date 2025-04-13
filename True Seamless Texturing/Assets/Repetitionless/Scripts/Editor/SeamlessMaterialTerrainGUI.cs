@@ -1,14 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TextureArrayEssentials.GUIUtilities;
-using TextureArrayEssentials.Compression;
 
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace SeamlessMaterial.Editor
+namespace Repetitionless.Editor
 {
+    using Compression;
+    using GUIUtilities;
+
     public class SeamlessMaterialTerrainGUI : SeamlessMaterialGUI
     {
         private class TerrainLayerTextureDrawers
