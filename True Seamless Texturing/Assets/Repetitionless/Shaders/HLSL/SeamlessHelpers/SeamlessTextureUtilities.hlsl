@@ -36,14 +36,14 @@ float4 SampleSeamlessArrayTexture(UnityTexture2DArray TextureArray, int Assigned
     // Only sample required textures if noise disabled
     if (!NoiseEnabled)
     {
-        float4 baseTextureColor = 0;
+        float4 baseTextureColor = 1;
         SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, TransformedUV, 0, SS, baseTextureColor);
         
         return baseTextureColor;
     }
     
-    float4 baseTextureColor = 0;
-    float4 edgeTextureColor = 0;
+    float4 baseTextureColor = 1;
+    float4 edgeTextureColor = 1;
     SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, TransformedUV, 0, SS, baseTextureColor);
     SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, EdgeUV, 0, SS, edgeTextureColor);
     

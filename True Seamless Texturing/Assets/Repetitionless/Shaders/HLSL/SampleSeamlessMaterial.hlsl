@@ -233,6 +233,7 @@ void GetSeamlessArrayMaterialColor(
     // Get Assigned Textures
     int assignedTextures = (int) Settings.y;
     
+    bool albedoAssigned = (ArrayAssignedTextures & 1) != 0;
     bool metallicAssigned = (assignedTextures & 1) != 0;
     bool smoothnessAssigned = (assignedTextures & 2) != 0;
     bool roughnessAssigned = (assignedTextures & 4) != 0;
@@ -316,7 +317,11 @@ void GetSeamlessArrayMaterialColor(
     }
     
     // Albedo
-    AlbedoColorOut = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 0, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled) * AlbedoTint;
+    // Directly return colour when not assigned, sampling an empty texture array index will return 0, cancelling out the colour otherwise
+    if(albedoAssigned)
+        AlbedoColorOut = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 0, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled) * AlbedoTint;
+    else
+        AlbedoColorOut = AlbedoTint;
     if (SurfaceType == 1)
         clip(AlbedoColorOut.a - alphaClipping);
     

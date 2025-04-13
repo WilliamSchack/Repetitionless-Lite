@@ -14606,7 +14606,7 @@
     "m_AlphaMode": 0,
     "m_RenderFace": 2,
     "m_AlphaClip": true,
-    "m_CustomEditorGUI": "SeamlessMaterial.Editor.SeamlessMaterialTerrainGUI"
+    "m_CustomEditorGUI": "Repetitionless.Inspectors.SeamlessMaterialTerrainGUI"
 }
 
 {
@@ -43318,8 +43318,8 @@
     "m_ObjectId": "85db13dc4e114bb0aafc8c24f57750f2",
     "m_Title": "Base Material",
     "m_Position": {
-        "x": -4633.99951171875,
-        "y": 1717.9998779296875
+        "x": -4634.0,
+        "y": 1718.0
     }
 }
 
@@ -47413,8 +47413,8 @@
     "m_ObjectId": "96ac6b7580d34db28b0f9d76357182cc",
     "m_Title": "Check For Mask",
     "m_Position": {
-        "x": -5364.00048828125,
-        "y": 1672.0001220703125
+        "x": -5364.0,
+        "y": 1672.0
     }
 }
 
@@ -48367,8 +48367,8 @@
     "m_ObjectId": "9bbd8e61815047a9842794059156034b",
     "m_Title": "Check For Mask",
     "m_Position": {
-        "x": -5362.00048828125,
-        "y": -950.0001220703125
+        "x": -5362.0,
+        "y": -950.0
     }
 }
 
@@ -63649,8 +63649,8 @@
     "m_ObjectId": "d91ef160e1df43749864341e4201b9ee",
     "m_Title": "Base Material",
     "m_Position": {
-        "x": -4632.00048828125,
-        "y": -905.0001220703125
+        "x": -4632.0,
+        "y": -905.0
     }
 }
 

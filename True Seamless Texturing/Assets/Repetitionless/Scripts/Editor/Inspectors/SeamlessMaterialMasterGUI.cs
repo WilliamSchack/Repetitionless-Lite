@@ -3,9 +3,9 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace Repetitionless.Editor
+namespace Repetitionless.Inspectors
 {
-    public class SeamlessMaterialMasterGUI : SeamlessMaterialGUI
+    public class SeamlessMaterialMasterGUI : SeamlessMaterialGUIBase
     {
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
         {

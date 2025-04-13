@@ -5,13 +5,13 @@ using UnityEngine.Rendering;
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace Repetitionless.Editor
+namespace Repetitionless.Inspectors
 {
     using Compression;
     using Variables;
     using GUIUtilities;
 
-    public class SeamlessMaterialGUI : ShaderGUI
+    public class SeamlessMaterialGUIBase : ShaderGUI
     {
         #region Variables
         

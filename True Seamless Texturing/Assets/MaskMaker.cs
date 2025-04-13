@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.IO;
+
+#if UNITY_EDITOR
+using UnityEditor;
 
 public class MaskMaker : EditorWindow {
 
@@ -349,3 +351,5 @@ public class MaskMaker : EditorWindow {
         return readableText;
     }
 }
+
+#endif

@@ -4,12 +4,12 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace Repetitionless.Editor
+namespace Repetitionless.Inspectors
 {
     using Compression;
     using GUIUtilities;
 
-    public class SeamlessMaterialTerrainGUI : SeamlessMaterialGUI
+    public class SeamlessMaterialTerrainGUI : SeamlessMaterialGUIBase
     {
         private class TerrainLayerTextureDrawers
         {

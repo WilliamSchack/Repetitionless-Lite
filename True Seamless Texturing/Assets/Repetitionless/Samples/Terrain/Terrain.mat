@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1BlendMaskTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1BlendMetallicMap:
@@ -72,7 +72,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1BlendTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: b54eea1174f7e6e4f91342425f39522a, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1BlendVariationTexture:
@@ -92,7 +92,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1FarNormalMap:
-        m_Texture: {fileID: 2800000, guid: 3c1855e63c3bf314995f39546f925082, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1FarOcclussionMap:
@@ -518,7 +518,7 @@ Material:
     - _Layer1FarMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _Layer1FarNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer1FarNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _Layer1FarSettings: {r: 119, g: 8, b: 0, a: 0}
+    - _Layer1FarSettings: {r: 119, g: 0, b: 0, a: 0}
     - _Layer1FarTilingOffset: {r: 1, g: 1, b: 0, a: 0}
     - _Layer1FarVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _Layer1FarVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
