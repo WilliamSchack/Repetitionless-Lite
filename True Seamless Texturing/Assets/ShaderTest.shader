@@ -93,7 +93,98 @@ Shader "Custom/ShaderTest"
     HLSLINCLUDE
 
     // CHANGE INCLUDE TO RELATIVE PATH AFTER CLEANUP/COMPLETION
-    #include "Assets/Repetitionless/Shaders/HLSL/SampleSeamlessMaterialMaster.hlsl"
+    #include "Assets/Repetitionless/Shaders/HLSL/Structs/RepetitionlessStructs.hlsl"
+    #include "Assets/Repetitionless/Shaders/HLSL/SampleSeamlessMaterialMaster_CODE.hlsl" // CHANGE CODE NAMES TO PROPER AFTERWARDS
+
+    // Properties
+    CBUFFER_START(UnityPerMaterial)
+        // Material Properties
+        int _SurfaceType;
+        int _DebuggingIndex;
+
+        // Base Material
+        float2 _BaseSettings;
+        float4 _BaseTilingOffset;
+        sampler2D _BaseAlbedo;
+        sampler2D _BaseMetallicMap;
+        sampler2D _BaseSmoothnessMap;
+        sampler2D _BaseRoughnessMap;
+        sampler2D _BaseNormalMap;
+        sampler2D _BaseOcclussionMap;
+        sampler2D _BaseEmissionMap;
+        float4 _BaseAlbedoTint;
+        float3 _BaseEmissionColor;
+        float4 _BaseMaterialProperties1;
+        float2 _BaseMaterialProperties2;
+        float2 _BaseNoiseSettings;
+        float4 _BaseNoiseMinMax;
+        float _BaseVariationMode;
+        float4 _BaseVariationSettings;
+        float4 _BaseVariationNoiseSettings;
+        float _BaseVariationBrightness;
+        sampler2D _BaseVariationTexture;
+        float4 _BaseVariationTextureTO;
+
+        // Distance Blend Settings
+        bool _DistanceBlendEnabled;
+        int _DistanceBlendMode;
+        float2 _DistanceBlendMinMax;
+
+        // Far Material
+        float2 _FarSettings;
+        float4 _FarTilingOffset;
+        sampler2D _FarAlbedo;
+        sampler2D _FarMetallicMap;
+        sampler2D _FarSmoothnessMap;
+        sampler2D _FarRoughnessMap;
+        sampler2D _FarNormalMap;
+        sampler2D _FarOcclussionMap;
+        sampler2D _FarEmissionMap;
+        float4 _FarAlbedoTint;
+        float3 _FarEmissionColor;
+        float4 _FarMaterialProperties1;
+        float2 _FarMaterialProperties2;
+        float2 _FarNoiseSettings;
+        float4 _FarNoiseMinMax;
+        float _FarVariationMode;
+        float4 _FarVariationSettings;
+        float4 _FarVariationNoiseSettings;
+        float _FarVariationBrightness;
+        sampler2D _FarVariationTexture;
+        float4 _FarVariationTextureTO;
+
+        // Material Blend Settings
+        float _MaterialBlendSettings;
+        int _BlendMaskType;
+        float4 _BlendMaskDistanceTO;
+        float2 _MaterialBlendProperties;
+        float3 _MaterialBlendNoiseSettings;
+        sampler2D _BlendMaskTexture;
+        float4 _BlendMaskTextureTO;
+
+        // Blend Material
+        float2 _BlendSettings;
+        float4 _BlendTilingOffset;
+        sampler2D _BlendAlbedo;
+        sampler2D _BlendMetallicMap;
+        sampler2D _BlendSmoothnessMap;
+        sampler2D _BlendRoughnessMap;
+        sampler2D _BlendNormalMap;
+        sampler2D _BlendOcclussionMap;
+        sampler2D _BlendEmissionMap;
+        float4 _BlendAlbedoTint;
+        float3 _BlendEmissionColor;
+        float4 _BlendMaterialProperties1;
+        float2 _BlendMaterialProperties2;
+        float2 _BlendNoiseSettings;
+        float4 _BlendNoiseMinMax;
+        float _BlendVariationMode;
+        float4 _BlendVariationSettings;
+        float4 _BlendVariationNoiseSettings;
+        float _BlendVariationBrightness;
+        sampler2D _BlendVariationTexture;
+        float4 _BlendVariationTextureTO;
+    CBUFFER_END
 
     ENDHLSL
 
@@ -107,32 +198,123 @@ Shader "Custom/ShaderTest"
         LOD 200
 
         HLSLPROGRAM
-            // CANT USE SURFACE IN URP
-            // ALSO INCLUDES ALL THE VARIANTS THAT SHADER GRPAH DOES
-            // JUST LEARN REGULAR SHADERS
-            // AHHHHHHHHHHHHHHHHHHHHHHHHHHH
-
             #pragma surface surf Standard fullforwardshadows
 
+            #include "UnityCG.cginc"
+            #include "HLSLSupport.cginc"
             #include "Lighting.cginc"
 
             struct Input {
                 float2 uv_MainTex;
                 float3 worldPos;
                 float3 worldNormal;
+                INTERNAL_DATA
             };
-
-            sampler2D _MainTexture;
-            fixed4 _Color;
 
             void surf (Input IN, inout SurfaceOutputStandard o)
             {
+                // Create Materials
+                RepetitionlessMaterial baseMaterial = {
+                    _BaseSettings,
+                    _BaseTilingOffset,
+                    _BaseAlbedo,
+                    _BaseMetallicMap,
+                    _BaseSmoothnessMap,
+                    _BaseRoughnessMap,
+                    _BaseNormalMap,
+                    _BaseOcclussionMap,
+                    _BaseEmissionMap,
+                    _BaseAlbedoTint,
+                    _BaseEmissionColor,
+                    _BaseMaterialProperties1,
+                    _BaseMaterialProperties2,
+                    _BaseNoiseSettings,
+                    _BaseNoiseMinMax,
+                    _BaseVariationMode,
+                    _BaseVariationSettings,
+                    _BaseVariationNoiseSettings,
+                    _BaseVariationBrightness,
+                    _BaseVariationTexture,
+                    _BaseVariationTextureTO
+                };
+
+                RepetitionlessMaterial farMaterial = {
+                    _FarSettings,
+                    _FarTilingOffset,
+                    _FarAlbedo,
+                    _FarMetallicMap,
+                    _FarSmoothnessMap,
+                    _FarRoughnessMap,
+                    _FarNormalMap,
+                    _FarOcclussionMap,
+                    _FarEmissionMap,
+                    _FarAlbedoTint,
+                    _FarEmissionColor,
+                    _FarMaterialProperties1,
+                    _FarMaterialProperties2,
+                    _FarNoiseSettings,
+                    _FarNoiseMinMax,
+                    _FarVariationMode,
+                    _FarVariationSettings,
+                    _FarVariationNoiseSettings,
+                    _FarVariationBrightness,
+                    _FarVariationTexture,
+                    _FarVariationTextureTO
+                };
+
+                RepetitionlessMaterial blendMaterial = {
+                    _BlendSettings,
+                    _BlendTilingOffset,
+                    _BlendAlbedo,
+                    _BlendMetallicMap,
+                    _BlendSmoothnessMap,
+                    _BlendRoughnessMap,
+                    _BlendNormalMap,
+                    _BlendOcclussionMap,
+                    _BlendEmissionMap,
+                    _BlendAlbedoTint,
+                    _BlendEmissionColor,
+                    _BlendMaterialProperties1,
+                    _BlendMaterialProperties2,
+                    _BlendNoiseSettings,
+                    _BlendNoiseMinMax,
+                    _BlendVariationMode,
+                    _BlendVariationSettings,
+                    _BlendVariationNoiseSettings,
+                    _BlendVariationBrightness,
+                    _BlendVariationTexture,
+                    _BlendVariationTextureTO
+                };
+
+                // Create layer
+                RepetitionlessLayer layer = {
+                    baseMaterial,
+                    farMaterial,
+                    blendMaterial
+                };
+
+                // Sample materials
                 fixed4 albedoOut = 0;
                 float3 normalOut = 0;
                 float metallicOut = 0;
                 float smoothnessOut = 0;
                 float occlussionOut = 0;
                 fixed3 emissionOut = 0;
+
+                SampleSeamlessMaterialMaster(
+                    IN.uv_MainTex, IN.worldNormal,
+                    IN.worldPos, _WorldSpaceCameraPos,
+                    _SurfaceType, _DebuggingIndex,
+                    baseMaterial, farMaterial, blendMaterial,
+                    _DistanceBlendEnabled, _DistanceBlendMode, _DistanceBlendMinMax,
+                    _MaterialBlendSettings, _BlendMaskType, _BlendMaskDistanceTO,
+                    _MaterialBlendProperties, _MaterialBlendNoiseSettings,
+                    _BlendMaskTexture, _BlendMaskTextureTO,
+                    albedoOut, normalOut, metallicOut, smoothnessOut, occlussionOut, emissionOut
+                );
+
+                o.Albedo = albedoOut;
+                o.Normal = normalOut;
             }
         ENDHLSL
     }
