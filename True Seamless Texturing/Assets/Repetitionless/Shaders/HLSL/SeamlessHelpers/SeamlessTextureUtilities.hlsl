@@ -5,27 +5,42 @@
 #include "../TextureArrayEssentials/TextureArrayUtilities.hlsl" // CHANGE TO PROPER PATH WHEN CLEANING UP
 
 // Sample from Regular Texture
-float4 SampleSeamlessTexture(UnityTexture2D Texture, SamplerState SS, float EdgeMask, float2 EdgeUV, float2 TransformedUV, bool NoiseEnabled, bool NormalMap = false, float NormalStrength = 1.0)
+float4 SampleSeamlessTexture(UnityTexture2D Texture, SamplerState SS, float EdgeMask, float2 EdgeUV, float2 TransformedUV, bool SampleEdge, bool NormalMap = false, float NormalStrength = 1.0)
 {
-    // Only sample required textures if noise disabled
-    if (!NoiseEnabled) {
-        float4 baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
-        
-        if (NormalMap)
-            baseTextureColor.rgb = UnpackNormalMap(baseTextureColor, NormalStrength);
-        
-        return baseTextureColor;
-    }
-    
     float4 baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
-    float4 edgeTextureColor = SAMPLE_TEXTURE2D(Texture, SS, EdgeUV);
 
-    if (NormalMap) {
-        baseTextureColor.rgb = UnpackNormalMap(baseTextureColor, NormalStrength);
-        edgeTextureColor.rgb = UnpackNormalMap(edgeTextureColor, NormalStrength);
+    if (NormalMap) baseTextureColor.rgb = UnpackNormalMap(baseTextureColor, NormalStrength);
+
+    // Only sample edges if required
+    if (SampleEdge) {
+        float4 edgeTextureColor = SAMPLE_TEXTURE2D(Texture, SS, EdgeUV);
+        if (NormalMap) edgeTextureColor.rgb = UnpackNormalMap(edgeTextureColor, NormalStrength);
+        baseTextureColor = lerp(baseTextureColor, edgeTextureColor, EdgeMask);
     }
-    
-    return lerp(baseTextureColor, edgeTextureColor, EdgeMask);
+
+    return baseTextureColor;
+
+
+
+    //// Only sample required textures if noise disabled
+    //if (!NoiseEnabled) {
+    //    float4 baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
+    //    
+    //    if (NormalMap)
+    //        baseTextureColor.rgb = UnpackNormalMap(baseTextureColor, NormalStrength);
+    //    
+    //    return baseTextureColor;
+    //}
+    //
+    //float4 baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
+    //float4 edgeTextureColor = SAMPLE_TEXTURE2D(Texture, SS, EdgeUV);
+//
+    //if (NormalMap) {
+    //    baseTextureColor.rgb = UnpackNormalMap(baseTextureColor, NormalStrength);
+    //    edgeTextureColor.rgb = UnpackNormalMap(edgeTextureColor, NormalStrength);
+    //}
+    //
+    //return lerp(baseTextureColor, edgeTextureColor, EdgeMask);
 }
 
 // Sample from Texture Array

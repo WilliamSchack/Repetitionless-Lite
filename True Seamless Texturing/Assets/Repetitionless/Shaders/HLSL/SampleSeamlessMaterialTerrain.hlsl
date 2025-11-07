@@ -9,7 +9,6 @@
 
 void SampleSeamlessMaterialTerrain_float(
     SamplerState SS, float2 UV, float3 WorldNormalVector, // Control requires clamped sampler state, otherwise fades off at edges of terrain
-    float3 WorldTangent, float3 WorldBitangent, // For world normals
     float3 WorldPosition, float3 CameraPosition, // Positions
     UnityTexture2D Holes, UnityTexture2D Control,
     float SurfaceType, float DebuggingIndex, // Enums

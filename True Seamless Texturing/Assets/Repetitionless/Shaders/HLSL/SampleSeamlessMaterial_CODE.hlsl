@@ -80,6 +80,8 @@ void GetSeamlessMaterialColor(
     if (noiseEnabled)
         GetSeamlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, randomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, TransformedUV);
     
+    return EdgeMask;
+
     // Get Macro/Micro Variation Multiplier
     float variationColor = 0;
     if (variationEnabled && variationOpacity > 0) {

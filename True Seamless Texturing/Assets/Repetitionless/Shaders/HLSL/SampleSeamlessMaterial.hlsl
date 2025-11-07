@@ -94,6 +94,8 @@ void GetSeamlessMaterialColor(
     if (noiseEnabled)
         GetSeamlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, randomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, TransformedUV);
     
+    bool sampleEdges = EdgeMask > 0;
+
     // Get Macro/Micro Variation Multiplier
     float variationColor = 0;
     if (variationEnabled && variationOpacity > 0) {
@@ -131,7 +133,7 @@ void GetSeamlessMaterialColor(
     }
     
     // Albedo
-    AlbedoColorOut = SampleSeamlessTexture(Albedo, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled) * AlbedoTint;
+    AlbedoColorOut = SampleSeamlessTexture(Albedo, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges) * AlbedoTint;
     if (SurfaceType == 1)
         clip(AlbedoColorOut.a - alphaClipping);
     
@@ -141,7 +143,7 @@ void GetSeamlessMaterialColor(
     
     // Normal Map
     if (normalAssigned) {
-        NormalVectorOut = SampleSeamlessTexture(NormalMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled, true, normalScale).rgb;
+        NormalVectorOut = SampleSeamlessTexture(NormalMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges, true, normalScale).rgb;
         
         // Hacky fix to check if normal is assigned, values set in TextureUtilities::UnpackNormalMap. If not assigned, used default tangent normal vector
         // Implemented to check for terrain data normal maps as there is no variable to tell if its assigned or not
@@ -154,20 +156,20 @@ void GetSeamlessMaterialColor(
     
     // Metallic
     if (metallicAssigned)
-        MetallicOut = SampleSeamlessTexture(MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).r;
+        MetallicOut = SampleSeamlessTexture(MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
     else
         MetallicOut = metallic;
     
     // Smoothness / Roughness
     if (smoothnessEnabled) {
         if (smoothnessAssigned) {
-            float4 smoothnessColor = SampleSeamlessTexture(SmoothnessMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+            float4 smoothnessColor = SampleSeamlessTexture(SmoothnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
             SmoothnessOut = packedTexture ? smoothnessColor.a : smoothnessColor.r;
         } else
             SmoothnessOut = smoothness;
     } else {
         if (roughnessAssigned) {
-            float4 roughnessColor = 1 - SampleSeamlessTexture(RoughnessMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled); // Roughness = 1 - Smoothness
+            float4 roughnessColor = 1 - SampleSeamlessTexture(RoughnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges); // Roughness = 1 - Smoothness
             SmoothnessOut = packedTexture ? roughnessColor.a : roughnessColor.r;
         } else
             SmoothnessOut = 1 - roughness;
@@ -175,7 +177,7 @@ void GetSeamlessMaterialColor(
         
     // Occlussion
     if (occlussionAssigned) {
-        float4 occlussionColor = SampleSeamlessTexture(OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+        float4 occlussionColor = SampleSeamlessTexture(OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
         OcclussionOut = packedTexture ? occlussionColor.g : occlussionColor.r;
         OcclussionOut = lerp(OcclussionOut, 1, 1 - occlussionStrength);
     } else
@@ -184,7 +186,7 @@ void GetSeamlessMaterialColor(
     // Emission
     if(emissionEnabled) {
         if (emissionAssigned)
-            EmissionColorOut = SampleSeamlessTexture(EmissionMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).rgb * EmissionColor;
+            EmissionColorOut = SampleSeamlessTexture(EmissionMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).rgb * EmissionColor;
         else
             EmissionColorOut = EmissionColor;
     } else
@@ -276,6 +278,8 @@ void GetSeamlessArrayMaterialColor(
     if (noiseEnabled)
         GetSeamlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, randomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, TransformedUV);
     
+    bool sampleEdges = EdgeMask > 0;
+
     // Get Macro/Micro Variation Multiplier
     float variationColor = 0;
     if (variationEnabled && variationOpacity > 0)
@@ -319,9 +323,10 @@ void GetSeamlessArrayMaterialColor(
     // Albedo
     // Directly return colour when not assigned, sampling an empty texture array index will return 0, cancelling out the colour otherwise
     if(albedoAssigned)
-        AlbedoColorOut = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 0, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled) * AlbedoTint;
+        AlbedoColorOut = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 0, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges) * AlbedoTint;
     else
         AlbedoColorOut = AlbedoTint;
+    
     if (SurfaceType == 1)
         clip(AlbedoColorOut.a - alphaClipping);
     
@@ -332,12 +337,11 @@ void GetSeamlessArrayMaterialColor(
     // Normal Map
     if (normalAssigned)
     {
-        NormalVectorOut = SampleSeamlessTexture(NormalMap, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled, true, normalScale).rgb;
+        NormalVectorOut = SampleSeamlessTexture(NormalMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges, true, normalScale).rgb;
         
-        // Hacky fix to check if normal is assigned, values set in TextureUtilities::UnpackNormalMap. If not assigned, used default tangent normal vector
+        // Check if normal is assigned. If not assigned, used default normal vector
         // Implemented to check for terrain data normal maps as there is no variable to tell if its assigned or not
-        if (NormalVectorOut.x == 0.5 && NormalVectorOut.y == 0.5 && NormalVectorOut.z == 1)
-        {
+        if (NormalVectorOut.x == 0.5 && NormalVectorOut.y == 0.5 && NormalVectorOut.z == 1) {
             NormalVectorOut = TangentNormalVector;
         }
     }
@@ -348,7 +352,7 @@ void GetSeamlessArrayMaterialColor(
     
     // Metallic
     if (metallicAssigned)
-        MetallicOut = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 1, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).r;
+        MetallicOut = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 1, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
     else
         MetallicOut = metallic;
     
@@ -357,7 +361,7 @@ void GetSeamlessArrayMaterialColor(
     {
         if (smoothnessAssigned)
         {
-            float4 smoothnessColor = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 2, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+            float4 smoothnessColor = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 2, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
             SmoothnessOut = packedTexture ? smoothnessColor.a : smoothnessColor.r;
         }
         else
@@ -367,7 +371,7 @@ void GetSeamlessArrayMaterialColor(
     {
         if (roughnessAssigned)
         {
-            float4 roughnessColor = 1 - SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 3, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled); // Roughness = 1 - Smoothness
+            float4 roughnessColor = 1 - SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 3, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges); // Roughness = 1 - Smoothness
             SmoothnessOut = packedTexture ? roughnessColor.a : roughnessColor.r;
         }
         else
@@ -377,7 +381,7 @@ void GetSeamlessArrayMaterialColor(
     // Occlussion
     if (occlussionAssigned)
     {
-        float4 occlussionColor = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 4, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled);
+        float4 occlussionColor = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 4, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
         OcclussionOut = packedTexture ? occlussionColor.g : occlussionColor.r;
         OcclussionOut = lerp(OcclussionOut, 1, 1 - occlussionStrength);
     }
@@ -388,7 +392,7 @@ void GetSeamlessArrayMaterialColor(
     if (emissionEnabled)
     {
         if (emissionAssigned)
-            EmissionColorOut = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 5, SS, EdgeMask, EdgeUV, TransformedUV, noiseEnabled).rgb * EmissionColor;
+            EmissionColorOut = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 5, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).rgb * EmissionColor;
         else
             EmissionColorOut = EmissionColor;
     }
