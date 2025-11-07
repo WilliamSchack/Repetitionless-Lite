@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Repetitionless/Samples/Terrain/Terrain.unity
     guid: 8ea6710235f18d744ae6e01dcff9b621
   - enabled: 1
-    path: Assets/ShaderTest.unity
+    path: Assets/Code Testing/ShaderTest.unity
     guid: dff63d0b657fba04597298dda40414a5
   m_configObjects: {}

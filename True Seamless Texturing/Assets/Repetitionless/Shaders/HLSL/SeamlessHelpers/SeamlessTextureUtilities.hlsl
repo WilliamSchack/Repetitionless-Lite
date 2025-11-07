@@ -2,7 +2,7 @@
 #define SEAMLESSTEXTUREUTILITIES_INCLUDED
 
 #include "../Utilities/TextureUtilities.hlsl"
-#include "../TextureArrayEssentials/TextureArrayUtilities.hlsl" // CHANGE TO PROPER PATH WHEN CLEANING UP
+#include "../TextureArrayEssentials/TextureArrayUtilities.hlsl"
 
 // Sample from Regular Texture
 float4 SampleSeamlessTexture(UnityTexture2D Texture, SamplerState SS, float EdgeMask, float2 EdgeUV, float2 TransformedUV, bool SampleEdge, bool NormalMap = false, float NormalStrength = 1.0)
