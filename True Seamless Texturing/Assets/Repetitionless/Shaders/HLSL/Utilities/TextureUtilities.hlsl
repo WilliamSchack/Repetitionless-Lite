@@ -23,18 +23,18 @@ float2 RotateUVDegrees(float2 UV, float2 Center, float Rotation)
 
 float3 UnpackNormalMap(float4 PackedNormal, float Strength = 1.0)
 {
-    float3 normal;
+    float3 normal = float3(0.5, 0.5, 1);
+
+    // Check if the normal is assigned by checking if each xyz component of the PackedNormal is within a +-.002 range of the default normal
+    // (An unassigned normal value is roughly rgba(0.498..., 0.498..., 1, 1))
+    bool normalUnassigned = all(abs(PackedNormal.xyz - normal) < 0.002) && PackedNormal.w == 1;
+    if (normalUnassigned)
+        return normal;
     
-    // Hacky fix to check if normal is assigned. Unnasigned value is rgba(0.498..., 0.498..., 1, 1). Any decimals past 0.498 get unstable to check so this works
-    // This doesnt effect any normal maps that I have tried so hopefully it doesnt give any issues
-    if ((int) (PackedNormal.x * 1000) == 498 && (int)(PackedNormal.y * 1000) == 498 && PackedNormal.z == 1 && PackedNormal.w == 1)
-        return float3(0.5, 0.5, 1); // Check for this later to see if unnasigned
-    
-    normal.
-    xy = PackedNormal.wy * 2 - 1;
+    normal.xy = PackedNormal.wy * 2 - 1;
     normal.xy *= Strength;
     normal.z = sqrt(1.0 - saturate(dot(normal.xy, normal.xy)));
-    
+
     return normal;
 }
 

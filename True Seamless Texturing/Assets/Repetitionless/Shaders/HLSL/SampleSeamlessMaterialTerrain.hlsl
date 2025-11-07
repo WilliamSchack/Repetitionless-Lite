@@ -8,7 +8,8 @@
 // It does do more things and the function is modified for texture arrays but you get the idea
 
 void SampleSeamlessMaterialTerrain_float(
-    SamplerState SS, float2 UV, float3 TangentNormalVector, // Control requires clamped sampler state, otherwise fades off at edges of terrain
+    SamplerState SS, float2 UV, float3 WorldNormalVector, // Control requires clamped sampler state, otherwise fades off at edges of terrain
+    float3 WorldTangent, float3 WorldBitangent, // For world normals
     float3 WorldPosition, float3 CameraPosition, // Positions
     UnityTexture2D Holes, UnityTexture2D Control,
     float SurfaceType, float DebuggingIndex, // Enums
@@ -232,9 +233,12 @@ void SampleSeamlessMaterialTerrain_float(
     if (controlSum > 1.0)
         controlColor /= controlSum;
     
+    // Matrix for transforming tangent to world normals
+    //float3x3 TBN = float3x3(WorldTangent, WorldBitangent, WorldNormalVector);
+
     // Variables
     float4 albedoColor = backgroundControl;
-    float3 normalVector = TangentNormalVector * backgroundControl;
+    float3 normalVector = WorldNormalVector * backgroundControl;
     float metallic = 0;
     float smoothness = 0;
     float occlussion = backgroundControl;
@@ -253,7 +257,7 @@ void SampleSeamlessMaterialTerrain_float(
         
         // Sample layer
         SampleSeamlessArrayMaterial(
-            SS, UV, TangentNormalVector,
+            SS, UV, WorldNormalVector,
             WorldPosition, CameraPosition, // Positions
             SurfaceType, DebuggingIndex, // Enums
         
@@ -310,7 +314,7 @@ void SampleSeamlessMaterialTerrain_float(
             // Outputs
             layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
         );
-        
+
         albedoColor += layerAlbedo * layer1Control;
         normalVector += layerNormal * layer1Control;
         metallic += layerMetallic * layer1Control;
@@ -333,7 +337,7 @@ void SampleSeamlessMaterialTerrain_float(
         
         // Sample layer
         SampleSeamlessArrayMaterial(
-            SS, UV, TangentNormalVector,
+            SS, UV, WorldNormalVector,
             WorldPosition, CameraPosition, // Positions
             SurfaceType, DebuggingIndex, // Enums
         
@@ -413,7 +417,7 @@ void SampleSeamlessMaterialTerrain_float(
         
         // Sample layer
         SampleSeamlessArrayMaterial(
-            SS, UV, TangentNormalVector,
+            SS, UV, WorldNormalVector,
             WorldPosition, CameraPosition, // Positions
             SurfaceType, DebuggingIndex, // Enums
         
@@ -493,7 +497,7 @@ void SampleSeamlessMaterialTerrain_float(
         
         // Sample layer
         SampleSeamlessArrayMaterial(
-            SS, UV, TangentNormalVector,
+            SS, UV, WorldNormalVector,
             WorldPosition, CameraPosition, // Positions
             SurfaceType, DebuggingIndex, // Enums
         
@@ -558,9 +562,10 @@ void SampleSeamlessMaterialTerrain_float(
         occlussion += layerOcclussion * layer4Control;
         emission += layerEmission * layer4Control;
     }
-    
-    // ------------------------------------------------------------------------------------- FIX TRANSPARENCY WHEN GUI IS SETUP
-    
+
+    // Transform tangent normals to world normals
+    //normalVector = normalize(mul(normalVector, TBN));
+
     // If Transparency Disabled
     if (SurfaceType < 2)
         albedoColor.a = 1;
@@ -571,8 +576,6 @@ void SampleSeamlessMaterialTerrain_float(
     // Use holes sampler as a custom one will cause a line at the edge of terrains
     float4 holesColor = SAMPLE_TEXTURE2D(Holes, sampler_TerrainHolesTexture, UV);
     clip(albedoColor.a - (1 - (holesColor.r - 0.01))); // Remove 1 from holes otherwise it will equal 0, not clipping the pixel
-    
-    // ------------------------------------------------------------------------------------- FIX TRANSPARENCY WHEN GUI IS SETUP
     
     // Output
     AlbedoColorOut = albedoColor;
