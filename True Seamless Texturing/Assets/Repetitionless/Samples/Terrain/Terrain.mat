@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1BlendNormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 75b8468d20b2fe947a1ac2d279f8076f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1BlendOcclussionMap:
@@ -72,7 +72,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1BlendTextures:
-        m_Texture: {fileID: 18700000, guid: b54eea1174f7e6e4f91342425f39522a, type: 2}
+        m_Texture: {fileID: 18700000, guid: cd2b6587ebf4267b18b266c5f0acde3d, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1BlendVariationTexture:
@@ -431,7 +431,7 @@ Material:
     - _DebuggingIndex: -1
     - _Layer1BaseVariationBrightness: 0.3
     - _Layer1BaseVariationMode: 2
-    - _Layer1BlendArrayAssignedTextures: 0
+    - _Layer1BlendArrayAssignedTextures: 25
     - _Layer1BlendAssignedTextures: 0
     - _Layer1BlendMaskType: 0
     - _Layer1BlendVariationBrightness: 0.3
@@ -442,7 +442,7 @@ Material:
     - _Layer1FarAssignedTextures: 63
     - _Layer1FarVariationBrightness: 0.3
     - _Layer1FarVariationMode: 2
-    - _Layer1MaterialBlendSettings: 6
+    - _Layer1MaterialBlendSettings: 7
     - _Layer2BaseVariationBrightness: 0.3
     - _Layer2BaseVariationMode: 2
     - _Layer2BlendArrayAssignedTextures: 0
@@ -494,24 +494,24 @@ Material:
     - _Layer1BaseMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _Layer1BaseNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer1BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _Layer1BaseSettings: {r: 47, g: 0, b: 0, a: 0}
+    - _Layer1BaseSettings: {r: 43, g: 0, b: 0, a: 0}
     - _Layer1BaseVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _Layer1BaseVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _Layer1BaseVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _Layer1BlendAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _Layer1BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Layer1BlendMaskDistanceTO: {r: 1, g: 1, b: 0, a: 0}
+    - _Layer1BlendMaskDistanceTO: {r: 5, g: 5, b: 0, a: 0}
     - _Layer1BlendMaskTextureTO: {r: 1, g: 1, b: 0, a: 0}
     - _Layer1BlendMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
     - _Layer1BlendMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _Layer1BlendNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer1BlendNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _Layer1BlendSettings: {r: 47, g: 0, b: 0, a: 0}
-    - _Layer1BlendTilingOffset: {r: 1, g: 1, b: 0, a: 0}
+    - _Layer1BlendSettings: {r: 7, g: 28, b: 0, a: 0}
+    - _Layer1BlendTilingOffset: {r: 25, g: 25, b: 0, a: 0}
     - _Layer1BlendVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _Layer1BlendVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _Layer1BlendVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
-    - _Layer1DistanceBlendMinMax: {r: 100, g: 150, b: 0, a: 0}
+    - _Layer1DistanceBlendMinMax: {r: 300, g: 400, b: 0, a: 0}
     - _Layer1FarAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _Layer1FarEmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Layer1FarMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
@@ -519,12 +519,12 @@ Material:
     - _Layer1FarNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer1FarNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
     - _Layer1FarSettings: {r: 119, g: 0, b: 0, a: 0}
-    - _Layer1FarTilingOffset: {r: 1, g: 1, b: 0, a: 0}
+    - _Layer1FarTilingOffset: {r: 10, g: 10, b: 0, a: 0}
     - _Layer1FarVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _Layer1FarVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _Layer1FarVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
-    - _Layer1MaterialBlendNoiseSettings: {r: 10, g: 0, b: 0, a: 0}
-    - _Layer1MaterialBlendProperties: {r: 1, g: 1, b: 0, a: 0}
+    - _Layer1MaterialBlendNoiseSettings: {r: 20, g: 0, b: 0, a: 0}
+    - _Layer1MaterialBlendProperties: {r: 0.3, g: 1, b: 0, a: 0}
     - _Layer2BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _Layer2BaseEmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _Layer2BaseMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
