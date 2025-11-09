@@ -429,14 +429,14 @@ Material:
     - _BUILTIN_ZWrite: 1
     - _BUILTIN_ZWriteControl: 0
     - _DebuggingIndex: -1
-    - _Layer1BaseVariationBrightness: 0.3
+    - _Layer1BaseVariationBrightness: 0.181
     - _Layer1BaseVariationMode: 2
     - _Layer1BlendArrayAssignedTextures: 25
     - _Layer1BlendAssignedTextures: 0
     - _Layer1BlendMaskType: 0
     - _Layer1BlendVariationBrightness: 0.3
     - _Layer1BlendVariationMode: 2
-    - _Layer1DistanceBlendEnabled: 0
+    - _Layer1DistanceBlendEnabled: 1
     - _Layer1DistanceBlendMode: 0
     - _Layer1FarArrayAssignedTextures: 0
     - _Layer1FarAssignedTextures: 63
@@ -494,24 +494,24 @@ Material:
     - _Layer1BaseMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _Layer1BaseNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer1BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _Layer1BaseSettings: {r: 43, g: 0, b: 0, a: 0}
+    - _Layer1BaseSettings: {r: 47, g: 0, b: 0, a: 0}
     - _Layer1BaseVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
-    - _Layer1BaseVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
+    - _Layer1BaseVariationSettings: {r: 0.1, g: 2, b: 1, a: 0.5}
     - _Layer1BaseVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _Layer1BlendAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _Layer1BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Layer1BlendMaskDistanceTO: {r: 5, g: 5, b: 0, a: 0}
+    - _Layer1BlendMaskDistanceTO: {r: 10, g: 10, b: 0, a: 0}
     - _Layer1BlendMaskTextureTO: {r: 1, g: 1, b: 0, a: 0}
     - _Layer1BlendMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
     - _Layer1BlendMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _Layer1BlendNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer1BlendNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _Layer1BlendSettings: {r: 7, g: 28, b: 0, a: 0}
-    - _Layer1BlendTilingOffset: {r: 25, g: 25, b: 0, a: 0}
+    - _Layer1BlendSettings: {r: 3, g: 28, b: 0, a: 0}
+    - _Layer1BlendTilingOffset: {r: 50, g: 50, b: 0, a: 0}
     - _Layer1BlendVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _Layer1BlendVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _Layer1BlendVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
-    - _Layer1DistanceBlendMinMax: {r: 300, g: 400, b: 0, a: 0}
+    - _Layer1DistanceBlendMinMax: {r: 200, g: 300, b: 0, a: 0}
     - _Layer1FarAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _Layer1FarEmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Layer1FarMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
@@ -519,19 +519,19 @@ Material:
     - _Layer1FarNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer1FarNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
     - _Layer1FarSettings: {r: 119, g: 0, b: 0, a: 0}
-    - _Layer1FarTilingOffset: {r: 10, g: 10, b: 0, a: 0}
+    - _Layer1FarTilingOffset: {r: 20, g: 20, b: 0, a: 0}
     - _Layer1FarVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _Layer1FarVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _Layer1FarVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _Layer1MaterialBlendNoiseSettings: {r: 20, g: 0, b: 0, a: 0}
-    - _Layer1MaterialBlendProperties: {r: 0.3, g: 1, b: 0, a: 0}
+    - _Layer1MaterialBlendProperties: {r: 0.2, g: 1, b: 0, a: 0}
     - _Layer2BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _Layer2BaseEmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _Layer2BaseMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
     - _Layer2BaseMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _Layer2BaseNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer2BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _Layer2BaseSettings: {r: 47, g: 0, b: 0, a: 0}
+    - _Layer2BaseSettings: {r: 43, g: 0, b: 0, a: 0}
     - _Layer2BaseVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _Layer2BaseVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _Layer2BaseVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
@@ -605,7 +605,7 @@ Material:
     - _Layer4BaseMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _Layer4BaseNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer4BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _Layer4BaseSettings: {r: 47, g: 0, b: 0, a: 0}
+    - _Layer4BaseSettings: {r: 46, g: 0, b: 0, a: 0}
     - _Layer4BaseVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _Layer4BaseVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _Layer4BaseVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
