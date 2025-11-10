@@ -3,3 +3,11 @@ EZ Tree is free and open source under the MIT License
 
 Website: https://www.eztree.dev
 Github: https://github.com/dgreenheck/ez-tree
+
+---
+
+HDRI and Textures are from Polyhaven
+Polyhaven assets are under the CC0 License
+
+Website: https://polyhaven.com/
+License: https://polyhaven.com/license
