@@ -1,6 +1,8 @@
-#if UNITY_EDITOR
 using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 namespace Repetitionless.Samples
 {
@@ -11,12 +13,14 @@ namespace Repetitionless.Samples
         [SerializeField] private Material _repetitionlessMaterial;
         [SerializeField] private Material _litMaterial;
 
-        internal bool TerrainUsingRepetitionless = true;
+        [HideInInspector] public bool TerrainUsingRepetitionless = true;
 
-        internal void ToggleTerrainRepetitionless()
+#if UNITY_EDITOR
+        public void ToggleTerrainRepetitionless()
         {
             Material currentMaterial = TerrainUsingRepetitionless ? _litMaterial : _repetitionlessMaterial;
-            for (uint i = 0; i < _terrains.Length; i++) {
+            for (uint i = 0; i < _terrains.Length; i++)
+            {
                 _terrains[i].materialTemplate = currentMaterial;
             }
 
@@ -26,10 +30,10 @@ namespace Repetitionless.Samples
             UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
         }
 
-        internal void SelectRepetitionlessMaterial()
+        public void SelectRepetitionlessMaterial()
         {
             Selection.activeObject = _repetitionlessMaterial;
         }
+#endif
     }
 }
-#endif
