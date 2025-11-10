@@ -33,7 +33,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Repetitionless 3
+  m_Name: URP_Repetitionless_Flat_Repetitionless 3
   m_Shader: {fileID: -6465566751694194690, guid: ca5620d817bef71c08865ca0ac0d092f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
