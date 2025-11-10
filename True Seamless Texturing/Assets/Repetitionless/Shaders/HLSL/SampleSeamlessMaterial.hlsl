@@ -159,7 +159,7 @@ void GetSeamlessMaterialColor(
         MetallicOut = SampleSeamlessTexture(MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
     else
         MetallicOut = metallic;
-    
+
     // Smoothness / Roughness
     if (smoothnessEnabled) {
         if (smoothnessAssigned) {
@@ -179,10 +179,10 @@ void GetSeamlessMaterialColor(
     if (occlussionAssigned) {
         float4 occlussionColor = SampleSeamlessTexture(OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
         OcclussionOut = packedTexture ? occlussionColor.g : occlussionColor.r;
-        OcclussionOut = lerp(OcclussionOut, 1, 1 - occlussionStrength);
+        OcclussionOut = lerp(1, OcclussionOut, occlussionStrength);
     } else
         OcclussionOut = 1;
-    
+
     // Emission
     if(emissionEnabled) {
         if (emissionAssigned)
@@ -383,7 +383,7 @@ void GetSeamlessArrayMaterialColor(
     {
         float4 occlussionColor = SampleSeamlessArrayTexture(Textures, ArrayAssignedTextures, 4, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
         OcclussionOut = packedTexture ? occlussionColor.g : occlussionColor.r;
-        OcclussionOut = lerp(OcclussionOut, 1, 1 - occlussionStrength);
+        OcclussionOut = lerp(1, OcclussionOut, occlussionStrength);
     }
     else
         OcclussionOut = 1;

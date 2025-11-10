@@ -15,7 +15,6 @@ namespace Repetitionless.Samples
 
         [HideInInspector] public bool TerrainUsingRepetitionless = true;
 
-#if UNITY_EDITOR
         public void ToggleTerrainRepetitionless()
         {
             Material currentMaterial = TerrainUsingRepetitionless ? _litMaterial : _repetitionlessMaterial;
@@ -26,10 +25,13 @@ namespace Repetitionless.Samples
 
             TerrainUsingRepetitionless = !TerrainUsingRepetitionless;
 
+#if UNITY_EDITOR
             // Repaint scene and game view
             UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
+#endif
         }
 
+#if UNITY_EDITOR
         public void SelectRepetitionlessMaterial()
         {
             Selection.activeObject = _repetitionlessMaterial;
