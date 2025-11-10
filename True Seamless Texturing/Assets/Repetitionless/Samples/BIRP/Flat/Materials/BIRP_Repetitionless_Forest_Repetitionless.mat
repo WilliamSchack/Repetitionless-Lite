@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8760393924324164942
+--- !u!114 &-7397306632752405526
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Repetitionless 2
+  m_Name: BIRP_Repetitionless_Forest_Repetitionless
   m_Shader: {fileID: -6465566751694194690, guid: ca02fc908c211d84bb0c6a1480ec6539, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -30,15 +30,14 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseAlbedo:
-        m_Texture: {fileID: 2800000, guid: 17d48558206aa69ca9ccda683287932f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6be8323d23cf45a1cbae0d93cc522c98, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseEmissionMap:
@@ -50,15 +49,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseNormalMap:
-        m_Texture: {fileID: 2800000, guid: 0d09d45bdca6b892ababaa1cc0a3b68f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2b5ae3149b4556623b251e31caea52b1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseOcclussionMap:
-        m_Texture: {fileID: 2800000, guid: 85570cb4ed6ab1378b9cdbadc30c5b90, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1d1709b46366f82b6b202b3b0ea65fb1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseRoughnessMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f4b828faa92ce43aa8c672abc25e14c8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseSmoothnessMap:
@@ -70,7 +69,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendAlbedo:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b466c861095be377a9aa689d9083b32a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendEmissionMap:
@@ -86,15 +85,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendNormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b3ca0f7d06110e55cb3bed9be7f2e52c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendOcclussionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e3e3065a80243cb7aa759a4ecef29b2b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendRoughnessMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a72dd90981ab3a5c386b8a9875d5ebab, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendSmoothnessMap:
@@ -179,7 +178,7 @@ Material:
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 2
     - _BUILTIN_DstBlend: 0
-    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueControl: -1
     - _BUILTIN_QueueOffset: 0
     - _BUILTIN_SrcBlend: 1
     - _BUILTIN_Surface: 0
@@ -195,7 +194,7 @@ Material:
     - _Cutoff: 0.5
     - _DebuggingIndex: -1
     - _DetailNormalMapScale: 1
-    - _DistanceBlendEnabled: 0
+    - _DistanceBlendEnabled: 1
     - _DistanceBlendMode: 0
     - _DstBlend: 0
     - _FarVariationBrightness: 0.3
@@ -203,7 +202,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaterialBlendSettings: 6
+    - _MaterialBlendSettings: 7
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -217,30 +216,30 @@ Material:
     m_Colors:
     - _BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _BaseEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseMaterialProperties1: {r: 0, g: 0, b: 0.5, a: 1}
+    - _BaseMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
     - _BaseMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _BaseNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _BaseSettings: {r: 47, g: 24, b: 0, a: 0}
-    - _BaseTilingOffset: {r: 3, g: 3, b: 0, a: 0}
+    - _BaseSettings: {r: 35, g: 28, b: 0, a: 0}
+    - _BaseTilingOffset: {r: 50, g: 50, b: 0, a: 0}
     - _BaseVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _BaseVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _BaseVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _BlendAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _BlendMaskDistanceTO: {r: 1, g: 1, b: 0, a: 0}
+    - _BlendMaskDistanceTO: {r: 20, g: 20, b: 0, a: 0}
     - _BlendMaskTextureTO: {r: 1, g: 1, b: 0, a: 0}
     - _BlendMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
     - _BlendMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _BlendNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BlendNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _BlendSettings: {r: 47, g: 0, b: 0, a: 0}
-    - _BlendTilingOffset: {r: 1, g: 1, b: 0, a: 0}
+    - _BlendSettings: {r: 39, g: 28, b: 0, a: 0}
+    - _BlendTilingOffset: {r: 50, g: 50, b: 0, a: 0}
     - _BlendVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _BlendVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _BlendVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DistanceBlendMinMax: {r: 100, g: 150, b: 0, a: 0}
+    - _DistanceBlendMinMax: {r: 100, g: 300, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FarAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _FarEmissionColor: {r: 0, g: 0, b: 0, a: 0}
@@ -249,10 +248,10 @@ Material:
     - _FarNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _FarNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
     - _FarSettings: {r: 47, g: 0, b: 0, a: 0}
-    - _FarTilingOffset: {r: 1, g: 1, b: 0, a: 0}
+    - _FarTilingOffset: {r: 20, g: 20, b: 0, a: 0}
     - _FarVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _FarVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _FarVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
-    - _MaterialBlendNoiseSettings: {r: 10, g: 0, b: 0, a: 0}
-    - _MaterialBlendProperties: {r: 1, g: 1, b: 0, a: 0}
+    - _MaterialBlendNoiseSettings: {r: 100, g: 0, b: 0, a: 0}
+    - _MaterialBlendProperties: {r: 0.05, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

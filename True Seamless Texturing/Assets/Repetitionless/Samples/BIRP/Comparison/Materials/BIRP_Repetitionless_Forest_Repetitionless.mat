@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Repetitionless 1
+  m_Name: BIRP_Repetitionless_Forest_Repetitionless
   m_Shader: {fileID: -6465566751694194690, guid: ca02fc908c211d84bb0c6a1480ec6539, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseAlbedo:
-        m_Texture: {fileID: 2800000, guid: 01c9170015314f0a89ccdeb0b022c705, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3a11752c1f5e5b52c87caef17f4619fc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseEmissionMap:
@@ -50,11 +50,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseNormalMap:
-        m_Texture: {fileID: 2800000, guid: 805a16cde4b4f0cdb97d1e9b656dc380, type: 3}
+        m_Texture: {fileID: 2800000, guid: faea135b59f412f3a9b3cb676ef5e423, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseOcclussionMap:
-        m_Texture: {fileID: 2800000, guid: c43b5a545e282343ea90df34b8d76286, type: 3}
+        m_Texture: {fileID: 2800000, guid: e36daefe1f16a04b8830b72edc365bb7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseRoughnessMap:
@@ -221,7 +221,7 @@ Material:
     - _BaseMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _BaseNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _BaseSettings: {r: 43, g: 24, b: 0, a: 0}
+    - _BaseSettings: {r: 47, g: 24, b: 0, a: 0}
     - _BaseTilingOffset: {r: 3, g: 3, b: 0, a: 0}
     - _BaseVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _BaseVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
