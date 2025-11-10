@@ -146,7 +146,7 @@ namespace Repetitionless.Inspectors
             GUILayout.Space(4);
 
             // Surface Type
-            MaterialProperty surfaceTypeProp = FindProperty("_SurfaceType");
+            MaterialProperty surfaceTypeProp = FindProperty("_SurfaceTypeSetting");
 
             EditorGUI.BeginChangeCheck();
             ESurfaceType surfaceType = (ESurfaceType)surfaceTypeProp.floatValue;
@@ -337,7 +337,7 @@ namespace Repetitionless.Inspectors
         protected virtual void DrawMaterialMainProperties(string materialPrefix, int sectionIndex)
         {
             // Material Properties
-            MaterialProperty surfaceTypeProp = FindProperty("_SurfaceType");
+            MaterialProperty surfaceTypeProp = FindProperty("_SurfaceTypeSetting");
 
             MaterialProperty settingsProp = FindProperty($"_{materialPrefix}Settings");
             MaterialProperty tilingOffsetProp = FindProperty($"_{materialPrefix}TilingOffset");
