@@ -228,7 +228,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaterialBlendSettings: 6
+    - _MaterialBlendSettings: 7
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -256,7 +256,7 @@ Material:
     - _BaseVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _BlendAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _BlendMaskDistanceTO: {r: 20, g: 20, b: 0, a: 0}
+    - _BlendMaskDistanceTO: {r: 1, g: 1, b: 0, a: 0}
     - _BlendMaskTextureTO: {r: 1, g: 1, b: 0, a: 0}
     - _BlendMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
     - _BlendMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
@@ -282,5 +282,5 @@ Material:
     - _FarVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _FarVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _MaterialBlendNoiseSettings: {r: 100, g: 0, b: 0, a: 0}
-    - _MaterialBlendProperties: {r: 0.05, g: 1, b: 0, a: 0}
+    - _MaterialBlendProperties: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

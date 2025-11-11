@@ -71,8 +71,9 @@ void SampleSeamlessMaterialMaster_float(
     // Outputs
     out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut)
 {
-    // ----------------------- Base Material ------------------------- //
-    
+    // ----------------------- Setup ------------------------- //
+
+    // Variables
     float4 albedoColor = 1;
     float3 normalVector = TangentNormalVector;
     float metallic = 0;
@@ -83,41 +84,18 @@ void SampleSeamlessMaterialMaster_float(
     float materialMask = 0;
     float farDistance = 0;
     
-    GetSeamlessMaterialColor(
-        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-        BaseSettings, BaseTilingOffset,
-        BaseAlbedo,
-        BaseMetallicMap,
-        BaseSmoothnessMap,
-        BaseRoughnessMap,
-        BaseNormalMap,
-        BaseOcclussionMap,
-        BaseEmissionMap,
-        BaseAlbedoTint, BaseEmissionColor,
-        BaseMaterialProperties1, BaseMaterialProperties2,
-        BaseNoiseSettings, BaseNoiseMinMax,
-        BaseVariationMode, BaseVariationSettings, BaseVariationBrightness,
-        BaseVariationNoiseSettings,
-        BaseVariationTexture, BaseVariationTextureTO,
-        albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor
-    );
-    
-    // --------------------- Material Blending ----------------------- //
-    
+    // Calculate mask
     int materialBlendSettings = (int)MaterialBlendSettings;
-    
     bool materialBlendEnabled       = (materialBlendSettings & 1) != 0;
     bool overrideDistanceBlending   = (materialBlendSettings & 2) != 0;
     bool overrideDistanceBlendingTO = (materialBlendSettings & 4) != 0;
-    
-    if (materialBlendEnabled)
-    {   
+
+    if (materialBlendEnabled) {
         float blendMaskNoiseScale = MaterialBlendNoiseSettings.x;
         float2 blendMaskNoiseOffset = MaterialBlendNoiseSettings.yz;
         
         // Get mask of blended material
-        switch (BlendMaskType)
-        {
+        switch (BlendMaskType) {
             case 0: // Perlin Noise
                 materialMask = ClassicNoise(UV * blendMaskNoiseScale + blendMaskNoiseOffset) * 3;
                 break;
@@ -128,27 +106,192 @@ void SampleSeamlessMaterialMaster_float(
                 materialMask = SAMPLE_TEXTURE2D(BlendMaskTexture, SS, UV * blendMaskNoiseScale + blendMaskNoiseOffset).r;
                 break;
         }
-        
+
         float blendMaskOpacity = MaterialBlendProperties.x;
         float blendMaskStrength = MaterialBlendProperties.y;
         
         materialMask *= blendMaskStrength;
         materialMask = clamp(materialMask, 0, 1);
         materialMask *= blendMaskOpacity;
+    }
+
+    // ----------------------- Get Materials To Sample ------------------------- //
+
+    // At most two materials will be sampled when blending between
+    // Get the material(s) to be sampled
+    bool samplingBase = false;
+    bool samplingBlend = false;
+    bool samplingDistance = false;
+    bool samplingDistanceBlend = false;
+
+    // Check distance blend
+    if (DistanceBlendEnabled) {
+        // Distance Mask
+        farDistance = distance(WorldPosition, CameraPosition);
+        farDistance = Remap(farDistance, DistanceBlendMinMax, float2(0, 1));
+        farDistance = clamp(farDistance, 0, 1);
+
+        samplingDistance = farDistance > 0 && materialMask != 1;
+        samplingDistanceBlend = farDistance > 0 && materialBlendEnabled && materialMask > 0 && overrideDistanceBlending;
+    }
+
+    // Check material blend
+    if (materialBlendEnabled) {
+        samplingBlend = materialMask > 0;
+        if (DistanceBlendEnabled && overrideDistanceBlending && farDistance >= 1)
+            samplingBlend = false;
+    }
+
+    // Check base material
+    samplingBase = farDistance != 1 && materialMask != 1;
+
+    // ----------------------- Base Material ------------------------- //
+    if (samplingBase) {
+        GetSeamlessMaterialColor(
+            SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+            BaseSettings, BaseTilingOffset,
+            BaseAlbedo,
+            BaseMetallicMap,
+            BaseSmoothnessMap,
+            BaseRoughnessMap,
+            BaseNormalMap,
+            BaseOcclussionMap,
+            BaseEmissionMap,
+            BaseAlbedoTint, BaseEmissionColor,
+            BaseMaterialProperties1, BaseMaterialProperties2,
+            BaseNoiseSettings, BaseNoiseMinMax,
+            BaseVariationMode, BaseVariationSettings, BaseVariationBrightness,
+            BaseVariationNoiseSettings,
+            BaseVariationTexture, BaseVariationTextureTO,
+            albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor
+        );
+    }
+
+    // ----------------------- Blend Material ------------------------- //
+    if (samplingBlend) {
+        float4 blendAlbedoColor = 1;
+        float3 blendNormalVector = TangentNormalVector;
+        float blendMetallic = 0;
+        float blendSmoothness = 0;
+        float blendOcclussion = 0;
+        float3 blendEmissionColor = 0;
         
-        if (materialMask > 0)
+        // Sample Blend Material
+        GetSeamlessMaterialColor(
+            SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+            BlendSettings, BlendTilingOffset,
+            BlendAlbedo,
+            BlendMetallicMap,
+            BlendSmoothnessMap,
+            BlendRoughnessMap,
+            BlendNormalMap,
+            BlendOcclussionMap,
+            BlendEmissionMap,
+            BlendAlbedoTint, BlendEmissionColor,
+            BlendMaterialProperties1, BlendMaterialProperties2,
+            BlendNoiseSettings, BlendNoiseMinMax,
+            BlendVariationMode, BlendVariationSettings, BlendVariationBrightness,
+            BlendVariationNoiseSettings,
+            BlendVariationTexture, BlendVariationTextureTO,
+            blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
+        );
+        
+        // Combine Blend with Base
+        albedoColor = lerp(albedoColor, blendAlbedoColor, materialMask);
+        normalVector = lerp(normalVector, blendNormalVector, materialMask);
+        metallic = lerp(metallic, blendMetallic, materialMask);
+        smoothness = lerp(smoothness, blendSmoothness, materialMask);
+        occlussion = lerp(occlussion, blendOcclussion, materialMask);
+        emissionColor = lerp(emissionColor, blendEmissionColor, materialMask);
+    }
+    
+    // ----------------------- Distance Material ------------------------- //
+    if (samplingDistance) {
+        float4 farAlbedoColor = 1;
+        float3 farNormalVector = TangentNormalVector;
+        float farMetallic = 0;
+        float farSmoothness = 0;
+        float farOcclussion = 0;
+        float3 farEmissionColor = 0;
+    
+        switch (DistanceBlendingMode)
         {
-            float4 blendAlbedoColor = 1;
-            float3 blendNormalVector = TangentNormalVector;
-            float blendMetallic = 0;
-            float blendSmoothness = 0;
-            float blendOcclussion = 0;
-            float3 blendEmissionColor = 0;
-            
-            // Sample Blend Material
-            GetSeamlessMaterialColor(
+            case 0: // Tiling & Offset
+                // Sample Base Material
+                GetSeamlessMaterialColor(
+                    SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+                    BaseSettings, FarTilingOffset,
+                    BaseAlbedo,
+                    BaseMetallicMap,
+                    BaseSmoothnessMap,
+                    BaseRoughnessMap,
+                    BaseNormalMap,
+                    BaseOcclussionMap,
+                    BaseEmissionMap,
+                    BaseAlbedoTint, BaseEmissionColor,
+                    BaseMaterialProperties1, BaseMaterialProperties2,
+                    BaseNoiseSettings, BaseNoiseMinMax,
+                    BaseVariationMode, BaseVariationSettings, BaseVariationBrightness,
+                    BaseVariationNoiseSettings,
+                    BaseVariationTexture, BaseVariationTextureTO,
+                    farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
+                );
+                break;
+            case 1: // Material
+                // Sample Far Material
+                GetSeamlessMaterialColor(
+                    SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+                    FarSettings, FarTilingOffset,
+                    FarAlbedo,
+                    FarMetallicMap,
+                    FarSmoothnessMap,
+                    FarRoughnessMap,
+                    FarNormalMap,
+                    FarOcclussionMap,
+                    FarEmissionMap,
+                    FarAlbedoTint, FarEmissionColor,
+                    FarMaterialProperties1, FarMaterialProperties2,
+                    FarNoiseSettings, FarNoiseMinMax,
+                    FarVariationMode, FarVariationSettings, FarVariationBrightness,
+                    FarVariationNoiseSettings,
+                    FarVariationTexture, FarVariationTextureTO,
+                    farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
+                );
+                break;
+        }
+
+        // Combine Far with Base
+        albedoColor = lerp(albedoColor, farAlbedoColor, farDistance);
+        normalVector = lerp(normalVector, farNormalVector, farDistance);
+        metallic = lerp(metallic, farMetallic, farDistance);
+        smoothness = lerp(smoothness, farSmoothness, farDistance);
+        occlussion = lerp(occlussion, farOcclussion, farDistance);
+        emissionColor = lerp(emissionColor, farEmissionColor, farDistance);
+    }
+
+    // ----------------------- Distance Blend Material ------------------------- //
+    if (samplingDistanceBlend) {
+        float4 blendAlbedoColor = 1;
+        float3 blendNormalVector = TangentNormalVector;
+        float blendMetallic = 0;
+        float blendSmoothness = 0;
+        float blendOcclussion = 0;
+        float3 blendEmissionColor = 0;
+        
+        float2 tiling = BlendTilingOffset.xy;
+        float2 offset = BlendTilingOffset.zw;
+        if (DistanceBlendingMode == 0)
+        {
+            tiling = overrideDistanceBlendingTO ? BlendMaskDistanceTO.xy : FarTilingOffset.xy;
+            offset = overrideDistanceBlendingTO ? BlendMaskDistanceTO.zw : FarTilingOffset.zw;
+        }
+        
+        float4 tilingOffset = float4(tiling.x, tiling.y, offset.x, offset.y);
+        
+        // Sample Blend Material
+        GetSeamlessMaterialColor(
                 SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                BlendSettings, BlendTilingOffset,
+                BlendSettings, tilingOffset,
                 BlendAlbedo,
                 BlendMetallicMap,
                 BlendSmoothnessMap,
@@ -164,139 +307,15 @@ void SampleSeamlessMaterialMaster_float(
                 BlendVariationTexture, BlendVariationTextureTO,
                 blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
             );
-            
-            // Combine Blend with Base
-            albedoColor = lerp(albedoColor, blendAlbedoColor, materialMask);
-            normalVector = lerp(normalVector, blendNormalVector, materialMask);
-            metallic = lerp(metallic, blendMetallic, materialMask);
-            smoothness = lerp(smoothness, blendSmoothness, materialMask);
-            occlussion = lerp(occlussion, blendOcclussion, materialMask);
-            emissionColor = lerp(emissionColor, blendEmissionColor, materialMask);
-        }
-    }
-    
-    // --------------------- Distance Blending ----------------------- //
-    
-    if (DistanceBlendEnabled)
-    {
-        // Distance Mask
-        farDistance = distance(WorldPosition, CameraPosition);
-        farDistance = Remap(farDistance, DistanceBlendMinMax, float2(0, 1));
-        farDistance = clamp(farDistance, 0, 1);
         
-        // Only sample far material if required
-        if (farDistance > 0)
-        {
-            float4 farAlbedoColor = 1;
-            float3 farNormalVector = TangentNormalVector;
-            float farMetallic = 0;
-            float farSmoothness = 0;
-            float farOcclussion = 0;
-            float3 farEmissionColor = 0;
-        
-            switch (DistanceBlendingMode)
-            {
-                case 0: // Tiling & Offset
-                    // Sample Base Material
-                    GetSeamlessMaterialColor(
-                        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                        BaseSettings, FarTilingOffset,
-                        BaseAlbedo,
-                        BaseMetallicMap,
-                        BaseSmoothnessMap,
-                        BaseRoughnessMap,
-                        BaseNormalMap,
-                        BaseOcclussionMap,
-                        BaseEmissionMap,
-                        BaseAlbedoTint, BaseEmissionColor,
-                        BaseMaterialProperties1, BaseMaterialProperties2,
-                        BaseNoiseSettings, BaseNoiseMinMax,
-                        BaseVariationMode, BaseVariationSettings, BaseVariationBrightness,
-                        BaseVariationNoiseSettings,
-                        BaseVariationTexture, BaseVariationTextureTO,
-                        farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
-                    );
-                    break;
-                case 1: // Material
-                    // Sample Far Material
-                    GetSeamlessMaterialColor(
-                        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                        FarSettings, FarTilingOffset,
-                        FarAlbedo,
-                        FarMetallicMap,
-                        FarSmoothnessMap,
-                        FarRoughnessMap,
-                        FarNormalMap,
-                        FarOcclussionMap,
-                        FarEmissionMap,
-                        FarAlbedoTint, FarEmissionColor,
-                        FarMaterialProperties1, FarMaterialProperties2,
-                        FarNoiseSettings, FarNoiseMinMax,
-                        FarVariationMode, FarVariationSettings, FarVariationBrightness,
-                        FarVariationNoiseSettings,
-                        FarVariationTexture, FarVariationTextureTO,
-                        farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
-                    );
-                    break;
-            }
-        
-            // Blend material
-            if (materialMask > 0 && overrideDistanceBlending)
-            {
-                float4 blendAlbedoColor = 1;
-                float3 blendNormalVector = TangentNormalVector;
-                float blendMetallic = 0;
-                float blendSmoothness = 0;
-                float blendOcclussion = 0;
-                float3 blendEmissionColor = 0;
-                
-                float2 tiling = BlendTilingOffset.xy;
-                float2 offset = BlendTilingOffset.zw;
-                if (DistanceBlendingMode == 0)
-                {
-                    tiling = overrideDistanceBlendingTO ? BlendMaskDistanceTO.xy : FarTilingOffset.xy;
-                    offset = overrideDistanceBlendingTO ? BlendMaskDistanceTO.zw : FarTilingOffset.zw;
-                }
-                
-                float4 tilingOffset = float4(tiling.x, tiling.y, offset.x, offset.y);
-                
-                // Sample Blend Material
-                GetSeamlessMaterialColor(
-                        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                        BlendSettings, tilingOffset,
-                        BlendAlbedo,
-                        BlendMetallicMap,
-                        BlendSmoothnessMap,
-                        BlendRoughnessMap,
-                        BlendNormalMap,
-                        BlendOcclussionMap,
-                        BlendEmissionMap,
-                        BlendAlbedoTint, BlendEmissionColor,
-                        BlendMaterialProperties1, BlendMaterialProperties2,
-                        BlendNoiseSettings, BlendNoiseMinMax,
-                        BlendVariationMode, BlendVariationSettings, BlendVariationBrightness,
-                        BlendVariationNoiseSettings,
-                        BlendVariationTexture, BlendVariationTextureTO,
-                        blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
-                    );
-                
-                // Combine Blend with Base 
-                farAlbedoColor = lerp(farAlbedoColor, blendAlbedoColor, materialMask);
-                farNormalVector = lerp(farNormalVector, blendNormalVector, materialMask);
-                farMetallic = lerp(farMetallic, blendMetallic, materialMask);
-                farSmoothness = lerp(farSmoothness, blendSmoothness, materialMask);
-                farOcclussion = lerp(farOcclussion, blendOcclussion, materialMask);
-                farEmissionColor = lerp(farEmissionColor, blendEmissionColor, materialMask);
-            }
-            
-            // Combine Far with Base
-            albedoColor = lerp(albedoColor, farAlbedoColor, farDistance);
-            normalVector = lerp(normalVector, farNormalVector, farDistance);
-            metallic = lerp(metallic, farMetallic, farDistance);
-            smoothness = lerp(smoothness, farSmoothness, farDistance);
-            occlussion = lerp(occlussion, farOcclussion, farDistance);
-            emissionColor = lerp(emissionColor, farEmissionColor, farDistance);
-        }
+        // Combine Far Blend with Base 
+        float lerpFactor = farDistance * materialMask;
+        albedoColor = lerp(albedoColor, blendAlbedoColor, lerpFactor);
+        normalVector = lerp(normalVector, blendNormalVector, lerpFactor);
+        metallic = lerp(metallic, blendMetallic, lerpFactor);
+        smoothness = lerp(smoothness, blendSmoothness, lerpFactor);
+        occlussion = lerp(occlussion, blendOcclussion, lerpFactor);
+        emissionColor = lerp(emissionColor, blendEmissionColor, lerpFactor);
     }
     
     // --------------------------------------------------------------- //
@@ -310,7 +329,7 @@ void SampleSeamlessMaterialMaster_float(
     // If Transparency Disabled
     if (SurfaceType == 0 || DebuggingIndex != -1)
         albedoColor.a = 1;
-    
+
     // Output
     AlbedoColorOut = albedoColor;
     NormalVectorOut = normalVector;

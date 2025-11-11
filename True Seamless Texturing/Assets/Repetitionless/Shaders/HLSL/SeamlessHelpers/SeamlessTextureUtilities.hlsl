@@ -7,7 +7,11 @@
 // Sample from Regular Texture
 float4 SampleSeamlessTexture(UnityTexture2D Texture, SamplerState SS, float EdgeMask, float2 EdgeUV, float2 TransformedUV, bool SampleEdge, bool NormalMap = false, float NormalStrength = 1.0)
 {
-    float4 baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
+    float4 baseTextureColor = 1;
+
+    // Only sample base material if visible
+    if (!SampleEdge || (SampleEdge && EdgeMask != 1))
+        baseTextureColor = SAMPLE_TEXTURE2D(Texture, SS, TransformedUV);
 
     if (NormalMap) baseTextureColor.rgb = UnpackNormalMap(baseTextureColor, NormalStrength);
 
@@ -25,7 +29,10 @@ float4 SampleSeamlessTexture(UnityTexture2D Texture, SamplerState SS, float Edge
 float4 SampleSeamlessArrayTexture(UnityTexture2DArray TextureArray, int AssignedTextures, int ConstantIndex, SamplerState SS, float EdgeMask, float2 EdgeUV, float2 TransformedUV, bool SampleEdge)
 {
     float4 baseTextureColor = 1;
-    SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, TransformedUV, 0, SS, baseTextureColor);
+    
+    // Only sample base material if visible
+    if (!SampleEdge || (SampleEdge && EdgeMask != 1))
+        SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, TransformedUV, 0, SS, baseTextureColor);
 
     if (SampleEdge) {
         float4 edgeTextureColor = 1;

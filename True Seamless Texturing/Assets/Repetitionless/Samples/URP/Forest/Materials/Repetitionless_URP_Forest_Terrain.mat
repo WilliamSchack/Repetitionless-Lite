@@ -494,7 +494,7 @@ Material:
     - _Layer3FarAssignedTextures: 0
     - _Layer3FarVariationBrightness: 0.3
     - _Layer3FarVariationMode: 2
-    - _Layer3MaterialBlendSettings: 7
+    - _Layer3MaterialBlendSettings: 6
     - _Layer4BaseVariationBrightness: 0.3
     - _Layer4BaseVariationMode: 2
     - _Layer4BlendArrayAssignedTextures: 0
@@ -512,6 +512,7 @@ Material:
     - _QueueControl: -1
     - _QueueOffset: 0
     - _SurfaceType: 0
+    - _SurfaceTypeSetting: 0
     - _test2: 1
     m_Colors:
     - _Layer1BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
