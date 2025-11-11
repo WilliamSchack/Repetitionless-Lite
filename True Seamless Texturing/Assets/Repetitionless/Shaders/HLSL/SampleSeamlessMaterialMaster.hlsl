@@ -1,6 +1,8 @@
 #ifndef SAMPLESEAMLESSMATERIALMASTER_INCLUDED
 #define SAMPLESEAMLESSMATERIALMASTER_INCLUDED
 
+#include "Structs/RepetitionlessMaterial.hlsl"
+
 #include "SampleSeamlessMaterial.hlsl"
 
 void SampleSeamlessMaterialMaster_float(
@@ -73,6 +75,58 @@ void SampleSeamlessMaterialMaster_float(
 {
     // ----------------------- Setup ------------------------- //
 
+    // Create materials
+    RepetitionlessMaterial baseMaterial = {
+        BaseSettings, BaseTilingOffset,
+        BaseAlbedo,
+        BaseMetallicMap,
+        BaseSmoothnessMap,
+        BaseRoughnessMap,
+        BaseNormalMap,
+        BaseOcclussionMap,
+        BaseEmissionMap,
+        BaseAlbedoTint, BaseEmissionColor,
+        BaseMaterialProperties1, BaseMaterialProperties2,
+        BaseNoiseSettings, BaseNoiseMinMax,
+        BaseVariationMode, BaseVariationSettings, BaseVariationBrightness,
+        BaseVariationNoiseSettings,
+        BaseVariationTexture, BaseVariationTextureTO
+    };
+
+    RepetitionlessMaterial blendMaterial = {
+        BlendSettings, BlendTilingOffset,
+        BlendAlbedo,
+        BlendMetallicMap,
+        BlendSmoothnessMap,
+        BlendRoughnessMap,
+        BlendNormalMap,
+        BlendOcclussionMap,
+        BlendEmissionMap,
+        BlendAlbedoTint, BlendEmissionColor,
+        BlendMaterialProperties1, BlendMaterialProperties2,
+        BlendNoiseSettings, BlendNoiseMinMax,
+        BlendVariationMode, BlendVariationSettings, BlendVariationBrightness,
+        BlendVariationNoiseSettings,
+        BlendVariationTexture, BlendVariationTextureTO
+    };
+
+    RepetitionlessMaterial farMaterial = {
+        FarSettings, FarTilingOffset,
+        FarAlbedo,
+        FarMetallicMap,
+        FarSmoothnessMap,
+        FarRoughnessMap,
+        FarNormalMap,
+        FarOcclussionMap,
+        FarEmissionMap,
+        FarAlbedoTint, FarEmissionColor,
+        FarMaterialProperties1, FarMaterialProperties2,
+        FarNoiseSettings, FarNoiseMinMax,
+        FarVariationMode, FarVariationSettings, FarVariationBrightness,
+        FarVariationNoiseSettings,
+        FarVariationTexture, FarVariationTextureTO
+    };
+
     // Variables
     float4 albedoColor = 1;
     float3 normalVector = TangentNormalVector;
@@ -83,7 +137,7 @@ void SampleSeamlessMaterialMaster_float(
     
     float materialMask = 0;
     float farDistance = 0;
-    
+
     // Calculate mask
     int materialBlendSettings = (int)MaterialBlendSettings;
     bool materialBlendEnabled       = (materialBlendSettings & 1) != 0;
@@ -147,22 +201,9 @@ void SampleSeamlessMaterialMaster_float(
 
     // ----------------------- Base Material ------------------------- //
     if (samplingBase) {
-        GetSeamlessMaterialColor(
+        GetSeamlessMaterialColorNEW(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-            BaseSettings, BaseTilingOffset,
-            BaseAlbedo,
-            BaseMetallicMap,
-            BaseSmoothnessMap,
-            BaseRoughnessMap,
-            BaseNormalMap,
-            BaseOcclussionMap,
-            BaseEmissionMap,
-            BaseAlbedoTint, BaseEmissionColor,
-            BaseMaterialProperties1, BaseMaterialProperties2,
-            BaseNoiseSettings, BaseNoiseMinMax,
-            BaseVariationMode, BaseVariationSettings, BaseVariationBrightness,
-            BaseVariationNoiseSettings,
-            BaseVariationTexture, BaseVariationTextureTO,
+            baseMaterial,
             albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor
         );
     }
@@ -175,24 +216,10 @@ void SampleSeamlessMaterialMaster_float(
         float blendSmoothness = 0;
         float blendOcclussion = 0;
         float3 blendEmissionColor = 0;
-        
-        // Sample Blend Material
-        GetSeamlessMaterialColor(
+
+        GetSeamlessMaterialColorNEW(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-            BlendSettings, BlendTilingOffset,
-            BlendAlbedo,
-            BlendMetallicMap,
-            BlendSmoothnessMap,
-            BlendRoughnessMap,
-            BlendNormalMap,
-            BlendOcclussionMap,
-            BlendEmissionMap,
-            BlendAlbedoTint, BlendEmissionColor,
-            BlendMaterialProperties1, BlendMaterialProperties2,
-            BlendNoiseSettings, BlendNoiseMinMax,
-            BlendVariationMode, BlendVariationSettings, BlendVariationBrightness,
-            BlendVariationNoiseSettings,
-            BlendVariationTexture, BlendVariationTextureTO,
+            blendMaterial,
             blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
         );
         
@@ -218,43 +245,20 @@ void SampleSeamlessMaterialMaster_float(
         {
             case 0: // Tiling & Offset
                 // Sample Base Material
-                GetSeamlessMaterialColor(
+                // Set far TO, no need to change back it wont be used again
+                baseMaterial.TilingOffset = FarTilingOffset;
+
+                GetSeamlessMaterialColorNEW(
                     SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                    BaseSettings, FarTilingOffset,
-                    BaseAlbedo,
-                    BaseMetallicMap,
-                    BaseSmoothnessMap,
-                    BaseRoughnessMap,
-                    BaseNormalMap,
-                    BaseOcclussionMap,
-                    BaseEmissionMap,
-                    BaseAlbedoTint, BaseEmissionColor,
-                    BaseMaterialProperties1, BaseMaterialProperties2,
-                    BaseNoiseSettings, BaseNoiseMinMax,
-                    BaseVariationMode, BaseVariationSettings, BaseVariationBrightness,
-                    BaseVariationNoiseSettings,
-                    BaseVariationTexture, BaseVariationTextureTO,
+                    baseMaterial,
                     farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
                 );
                 break;
             case 1: // Material
                 // Sample Far Material
-                GetSeamlessMaterialColor(
+                GetSeamlessMaterialColorNEW(
                     SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                    FarSettings, FarTilingOffset,
-                    FarAlbedo,
-                    FarMetallicMap,
-                    FarSmoothnessMap,
-                    FarRoughnessMap,
-                    FarNormalMap,
-                    FarOcclussionMap,
-                    FarEmissionMap,
-                    FarAlbedoTint, FarEmissionColor,
-                    FarMaterialProperties1, FarMaterialProperties2,
-                    FarNoiseSettings, FarNoiseMinMax,
-                    FarVariationMode, FarVariationSettings, FarVariationBrightness,
-                    FarVariationNoiseSettings,
-                    FarVariationTexture, FarVariationTextureTO,
+                    farMaterial,
                     farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
                 );
                 break;
@@ -289,24 +293,14 @@ void SampleSeamlessMaterialMaster_float(
         float4 tilingOffset = float4(tiling.x, tiling.y, offset.x, offset.y);
         
         // Sample Blend Material
-        GetSeamlessMaterialColor(
-                SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                BlendSettings, tilingOffset,
-                BlendAlbedo,
-                BlendMetallicMap,
-                BlendSmoothnessMap,
-                BlendRoughnessMap,
-                BlendNormalMap,
-                BlendOcclussionMap,
-                BlendEmissionMap,
-                BlendAlbedoTint, BlendEmissionColor,
-                BlendMaterialProperties1, BlendMaterialProperties2,
-                BlendNoiseSettings, BlendNoiseMinMax,
-                BlendVariationMode, BlendVariationSettings, BlendVariationBrightness,
-                BlendVariationNoiseSettings,
-                BlendVariationTexture, BlendVariationTextureTO,
-                blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
-            );
+        // Set blend TO, no need to change back it wont be used again
+        blendMaterial.TilingOffset = tilingOffset;
+
+        GetSeamlessMaterialColorNEW(
+            SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+            blendMaterial,
+            blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
+        );
         
         // Combine Far Blend with Base 
         float lerpFactor = farDistance * materialMask;

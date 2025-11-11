@@ -282,5 +282,5 @@ Material:
     - _FarVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _FarVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _MaterialBlendNoiseSettings: {r: 100, g: 0, b: 0, a: 0}
-    - _MaterialBlendProperties: {r: 1, g: 1, b: 0, a: 0}
+    - _MaterialBlendProperties: {r: 0.05, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
