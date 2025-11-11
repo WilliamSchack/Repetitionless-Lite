@@ -45,10 +45,10 @@ namespace Repetitionless.Samples
 
             GUILayout.Space(5);
 
-            if (GUILayout.Button("Toggle Repetitionless Material"))
+            if (GUILayout.Button("Toggle Repetitionless Material", GUILayout.Height(30)))
                 _main.ToggleTerrainRepetitionless();
 
-            if (GUILayout.Button("Modify Repetitionless Material"))
+            if (GUILayout.Button("Modify Repetitionless Material", GUILayout.Height(30)))
                 _main.SelectRepetitionlessMaterial();
         }
     }
