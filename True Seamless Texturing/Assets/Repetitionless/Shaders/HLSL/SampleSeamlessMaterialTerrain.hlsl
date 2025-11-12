@@ -1,6 +1,8 @@
 #ifndef SAMPLESEAMLESSMATERIALTERRAIN_INCLUDED
 #define SAMPLESEAMLESSMATERIALTERRAIN_INCLUDED
 
+#include "SampleRepetitionlessLayer.hlsl"
+
 #include "SampleSeamlessArrayMaterial.hlsl"
 #include "Utilities/TextureUtilities.hlsl"
 
@@ -8,7 +10,7 @@
 // It does do more things and the function is modified for texture arrays but you get the idea
 
 void SampleSeamlessMaterialTerrain_float(
-    SamplerState SS, float2 UV, float3 WorldNormalVector, // Control requires clamped sampler state, otherwise fades off at edges of terrain
+    SamplerState SS, float2 UV, float3 TangentNormalVector, // Control requires clamped sampler state, otherwise fades off at edges of terrain
     float3 WorldPosition, float3 CameraPosition, // Positions
     UnityTexture2D Holes, UnityTexture2D Control,
     int SurfaceType, int DebuggingIndex, // Enums
@@ -234,7 +236,7 @@ void SampleSeamlessMaterialTerrain_float(
 
     // Variables
     float4 albedoColor = backgroundControl;
-    float3 normalVector = WorldNormalVector * backgroundControl;
+    float3 normalVector = TangentNormalVector * backgroundControl;
     float metallic = 0;
     float smoothness = 0;
     float occlussion = backgroundControl;
@@ -251,63 +253,66 @@ void SampleSeamlessMaterialTerrain_float(
         float layerOcclussion = occlussion;
         float3 layerEmission = emission;
         
+        // Create layer from inputs
+        RepetitionlessLayerTerrain layer = {
+            {   // Base Material
+                Layer1BaseAlbedo,
+                Layer1BaseMetallicMap,
+                Layer1BaseSmoothnessMap,
+                Layer1BaseRoughnessMap,
+                Layer1BaseNormalMap,
+                Layer1BaseOcclussionMap,
+                Layer1BaseEmissionMap,
+                {
+                    Layer1BaseSettings, Layer1BaseTilingOffset,
+                    Layer1BaseAlbedoTint, Layer1BaseEmissionColor,
+                    Layer1BaseMaterialProperties1, Layer1BaseMaterialProperties2,
+                    Layer1BaseNoiseSettings, Layer1BaseNoiseMinMax,
+                    Layer1BaseVariationMode, Layer1BaseVariationSettings, Layer1BaseVariationBrightness,
+                    Layer1BaseVariationNoiseSettings,
+                    Layer1BaseVariationTexture, Layer1BaseVariationTextureTO
+                }
+            },
+            {   // Far Material
+                Layer1FarTextures, Layer1FarNormalMap,
+                Layer1FarArrayAssignedTextures,
+                {
+                    Layer1FarSettings, Layer1FarTilingOffset,
+                    Layer1FarAlbedoTint, Layer1FarEmissionColor,
+                    Layer1FarMaterialProperties1, Layer1FarMaterialProperties2,
+                    Layer1FarNoiseSettings, Layer1FarNoiseMinMax,
+                    Layer1FarVariationMode, Layer1FarVariationSettings, Layer1FarVariationBrightness,
+                    Layer1FarVariationNoiseSettings,
+                    Layer1FarVariationTexture, Layer1FarVariationTextureTO
+                }
+            },
+            {   // Blend Material
+                Layer1BlendTextures, Layer1BlendNormalMap,
+                Layer1BlendArrayAssignedTextures,
+                {
+                    Layer1BlendSettings, Layer1BlendTilingOffset,
+                    Layer1BlendAlbedoTint, Layer1BlendEmissionColor,
+                    Layer1BlendMaterialProperties1, Layer1BlendMaterialProperties2,
+                    Layer1BlendNoiseSettings, Layer1BlendNoiseMinMax,
+                    Layer1BlendVariationMode, Layer1BlendVariationSettings, Layer1BlendVariationBrightness,
+                    Layer1BlendVariationNoiseSettings,
+                    Layer1BlendVariationTexture, Layer1BlendVariationTextureTO
+                }
+            },
+            {   // Data
+                Layer1DistanceBlendEnabled, Layer1DistanceBlendingMode, Layer1DistanceBlendMinMax,
+                Layer1MaterialBlendSettings, Layer1BlendMaskType, Layer1BlendMaskDistanceTO,
+                Layer1MaterialBlendProperties, Layer1MaterialBlendNoiseSettings,
+                Layer1BlendMaskTexture, Layer1BlendMaskTextureTO
+            }
+        };
+
         // Sample layer
-        SampleSeamlessArrayMaterial(
-            SS, UV, WorldNormalVector,
-            WorldPosition, CameraPosition, // Positions
-            SurfaceType, DebuggingIndex, // Enums
-        
-            // Base Material
-            Layer1BaseSettings, Layer1BaseTilingOffset, // Tiling & Offset
-            Layer1BaseAlbedo, // Albedo
-            Layer1BaseMetallicMap, // Metallic
-            Layer1BaseSmoothnessMap, // Smoothness
-            Layer1BaseRoughnessMap, // Roughness
-            Layer1BaseNormalMap, // Normal
-            Layer1BaseOcclussionMap, // Occlussion
-            Layer1BaseEmissionMap, // Emission
-            Layer1BaseAlbedoTint, Layer1BaseEmissionColor, // Colors
-            Layer1BaseMaterialProperties1, Layer1BaseMaterialProperties2, // Material Properties
-        
-            Layer1BaseNoiseSettings, Layer1BaseNoiseMinMax, // Noise
-        
-            Layer1BaseVariationMode, Layer1BaseVariationSettings, Layer1BaseVariationBrightness, // Variation Settings
-            Layer1BaseVariationNoiseSettings, // Variation Noise
-            Layer1BaseVariationTexture, Layer1BaseVariationTextureTO, // Variation Texture
-        
-            // Far Material
-            Layer1DistanceBlendEnabled, Layer1DistanceBlendingMode, Layer1DistanceBlendMinMax, // Distance Blending
-        
-            Layer1FarSettings, Layer1FarTilingOffset, // Tiling & Offset
-            Layer1FarTextures, Layer1FarNormalMap, // Textures
-            Layer1FarArrayAssignedTextures, // Array Assigned Textures
-            Layer1FarAlbedoTint, Layer1FarEmissionColor, // Colors
-            Layer1FarMaterialProperties1, Layer1FarMaterialProperties2, // Material Properties
-        
-            Layer1FarNoiseSettings, Layer1FarNoiseMinMax, // Noise
-        
-            Layer1FarVariationMode, Layer1FarVariationSettings, Layer1FarVariationBrightness, // Variation Settings
-            Layer1FarVariationNoiseSettings, // Variation Noise
-            Layer1FarVariationTexture, Layer1FarVariationTextureTO, // Variation Texture
-        
-            // Blend Material
-            Layer1MaterialBlendSettings, Layer1BlendMaskType, Layer1BlendMaskDistanceTO,
-            Layer1MaterialBlendProperties, Layer1MaterialBlendNoiseSettings,
-            Layer1BlendMaskTexture, Layer1BlendMaskTextureTO,
-        
-            Layer1BlendSettings, Layer1BlendTilingOffset, // Tiling & Offset
-            Layer1BlendTextures, Layer1BlendNormalMap, // Textures
-            Layer1BlendArrayAssignedTextures, // Array Assigned Textures
-            Layer1BlendAlbedoTint, Layer1BlendEmissionColor, // Colors
-            Layer1BlendMaterialProperties1, Layer1BlendMaterialProperties2, // Material Properties
-        
-            Layer1BlendNoiseSettings, Layer1BlendNoiseMinMax, // Noise
-        
-            Layer1BlendVariationMode, Layer1BlendVariationSettings, Layer1BlendVariationBrightness, // Variation Settings
-            Layer1BlendVariationNoiseSettings, // Variation Noise
-            Layer1BlendVariationTexture, Layer1BlendVariationTextureTO, // Variation Texture
-        
-            // Outputs
+        SampleRepetitionlessLayerTerrain(
+            SS, UV, TangentNormalVector,
+            WorldPosition, CameraPosition,
+            SurfaceType, DebuggingIndex,
+            layer,
             layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
         );
 
@@ -331,66 +336,69 @@ void SampleSeamlessMaterialTerrain_float(
         float layerOcclussion = occlussion;
         float3 layerEmission = emission;
         
+        // Create layer from inputs
+        RepetitionlessLayerTerrain layer = {
+            {   // Base Material
+                Layer2BaseAlbedo,
+                Layer2BaseMetallicMap,
+                Layer2BaseSmoothnessMap,
+                Layer2BaseRoughnessMap,
+                Layer2BaseNormalMap,
+                Layer2BaseOcclussionMap,
+                Layer2BaseEmissionMap,
+                {
+                    Layer2BaseSettings, Layer2BaseTilingOffset,
+                    Layer2BaseAlbedoTint, Layer2BaseEmissionColor,
+                    Layer2BaseMaterialProperties1, Layer2BaseMaterialProperties2,
+                    Layer2BaseNoiseSettings, Layer2BaseNoiseMinMax,
+                    Layer2BaseVariationMode, Layer2BaseVariationSettings, Layer2BaseVariationBrightness,
+                    Layer2BaseVariationNoiseSettings,
+                    Layer2BaseVariationTexture, Layer2BaseVariationTextureTO
+                }
+            },
+            {   // Far Material
+                Layer2FarTextures, Layer2FarNormalMap,
+                Layer2FarArrayAssignedTextures,
+                {
+                    Layer2FarSettings, Layer2FarTilingOffset,
+                    Layer2FarAlbedoTint, Layer2FarEmissionColor,
+                    Layer2FarMaterialProperties1, Layer2FarMaterialProperties2,
+                    Layer2FarNoiseSettings, Layer2FarNoiseMinMax,
+                    Layer2FarVariationMode, Layer2FarVariationSettings, Layer2FarVariationBrightness,
+                    Layer2FarVariationNoiseSettings,
+                    Layer2FarVariationTexture, Layer2FarVariationTextureTO
+                }
+            },
+            {   // Blend Material
+                Layer2BlendTextures, Layer2BlendNormalMap,
+                Layer2BlendArrayAssignedTextures,
+                {
+                    Layer2BlendSettings, Layer2BlendTilingOffset,
+                    Layer2BlendAlbedoTint, Layer2BlendEmissionColor,
+                    Layer2BlendMaterialProperties1, Layer2BlendMaterialProperties2,
+                    Layer2BlendNoiseSettings, Layer2BlendNoiseMinMax,
+                    Layer2BlendVariationMode, Layer2BlendVariationSettings, Layer2BlendVariationBrightness,
+                    Layer2BlendVariationNoiseSettings,
+                    Layer2BlendVariationTexture, Layer2BlendVariationTextureTO
+                }
+            },
+            {   // Data
+                Layer2DistanceBlendEnabled, Layer2DistanceBlendingMode, Layer2DistanceBlendMinMax,
+                Layer2MaterialBlendSettings, Layer2BlendMaskType, Layer2BlendMaskDistanceTO,
+                Layer2MaterialBlendProperties, Layer2MaterialBlendNoiseSettings,
+                Layer2BlendMaskTexture, Layer2BlendMaskTextureTO
+            }
+        };
+
         // Sample layer
-        SampleSeamlessArrayMaterial(
-            SS, UV, WorldNormalVector,
-            WorldPosition, CameraPosition, // Positions
-            SurfaceType, DebuggingIndex, // Enums
-        
-            // Base Material
-            Layer2BaseSettings, Layer2BaseTilingOffset, // Tiling & Offset
-            Layer2BaseAlbedo, // Albedo
-            Layer2BaseMetallicMap, // Metallic
-            Layer2BaseSmoothnessMap, // Smoothness
-            Layer2BaseRoughnessMap, // Roughness
-            Layer2BaseNormalMap, // Normal
-            Layer2BaseOcclussionMap, // Occlussion
-            Layer2BaseEmissionMap, // Emission
-            Layer2BaseAlbedoTint, Layer2BaseEmissionColor, // Colors
-            Layer2BaseMaterialProperties1, Layer2BaseMaterialProperties2, // Material Properties
-        
-            Layer2BaseNoiseSettings, Layer2BaseNoiseMinMax, // Noise
-        
-            Layer2BaseVariationMode, Layer2BaseVariationSettings, Layer2BaseVariationBrightness, // Variation Settings
-            Layer2BaseVariationNoiseSettings, // Variation Noise
-            Layer2BaseVariationTexture, Layer2BaseVariationTextureTO, // Variation Texture
-        
-            // Far Material
-            Layer2DistanceBlendEnabled, Layer2DistanceBlendingMode, Layer2DistanceBlendMinMax, // Distance Blending
-        
-            Layer2FarSettings, Layer2FarTilingOffset, // Tiling & Offset
-            Layer2FarTextures, Layer2FarNormalMap, // Textures
-            Layer2FarArrayAssignedTextures, // Array Assigned Textures
-            Layer2FarAlbedoTint, Layer2FarEmissionColor, // Colors
-            Layer2FarMaterialProperties1, Layer2FarMaterialProperties2, // Material Properties
-        
-            Layer2FarNoiseSettings, Layer2FarNoiseMinMax, // Noise
-        
-            Layer2FarVariationMode, Layer2FarVariationSettings, Layer2FarVariationBrightness, // Variation Settings
-            Layer2FarVariationNoiseSettings, // Variation Noise
-            Layer2FarVariationTexture, Layer2FarVariationTextureTO, // Variation Texture
-        
-            // Blend Material
-            Layer2MaterialBlendSettings, Layer2BlendMaskType, Layer2BlendMaskDistanceTO,
-            Layer2MaterialBlendProperties, Layer2MaterialBlendNoiseSettings,
-            Layer2BlendMaskTexture, Layer2BlendMaskTextureTO,
-        
-            Layer2BlendSettings, Layer2BlendTilingOffset, // Tiling & Offset
-            Layer2BlendTextures, Layer2BlendNormalMap, // Textures
-            Layer2BlendArrayAssignedTextures, // Array Assigned Textures
-            Layer2BlendAlbedoTint, Layer2BlendEmissionColor, // Colors
-            Layer2BlendMaterialProperties1, Layer2BlendMaterialProperties2, // Material Properties
-        
-            Layer2BlendNoiseSettings, Layer2BlendNoiseMinMax, // Noise
-        
-            Layer2BlendVariationMode, Layer2BlendVariationSettings, Layer2BlendVariationBrightness, // Variation Settings
-            Layer2BlendVariationNoiseSettings, // Variation Noise
-            Layer2BlendVariationTexture, Layer2BlendVariationTextureTO, // Variation Texture
-        
-            // Outputs
+        SampleRepetitionlessLayerTerrain(
+            SS, UV, TangentNormalVector,
+            WorldPosition, CameraPosition,
+            SurfaceType, DebuggingIndex,
+            layer,
             layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
         );
-        
+
         albedoColor += layerAlbedo * layer2Control;
         normalVector += layerNormal * layer2Control;
         metallic += layerMetallic * layer2Control;
@@ -411,66 +419,69 @@ void SampleSeamlessMaterialTerrain_float(
         float layerOcclussion = occlussion;
         float3 layerEmission = emission;
         
+        // Create layer from inputs
+        RepetitionlessLayerTerrain layer = {
+            {   // Base Material
+                Layer3BaseAlbedo,
+                Layer3BaseMetallicMap,
+                Layer3BaseSmoothnessMap,
+                Layer3BaseRoughnessMap,
+                Layer3BaseNormalMap,
+                Layer3BaseOcclussionMap,
+                Layer3BaseEmissionMap,
+                {
+                    Layer3BaseSettings, Layer3BaseTilingOffset,
+                    Layer3BaseAlbedoTint, Layer3BaseEmissionColor,
+                    Layer3BaseMaterialProperties1, Layer3BaseMaterialProperties2,
+                    Layer3BaseNoiseSettings, Layer3BaseNoiseMinMax,
+                    Layer3BaseVariationMode, Layer3BaseVariationSettings, Layer3BaseVariationBrightness,
+                    Layer3BaseVariationNoiseSettings,
+                    Layer3BaseVariationTexture, Layer3BaseVariationTextureTO
+                }
+            },
+            {   // Far Material
+                Layer3FarTextures, Layer3FarNormalMap,
+                Layer3FarArrayAssignedTextures,
+                {
+                    Layer3FarSettings, Layer3FarTilingOffset,
+                    Layer3FarAlbedoTint, Layer3FarEmissionColor,
+                    Layer3FarMaterialProperties1, Layer3FarMaterialProperties2,
+                    Layer3FarNoiseSettings, Layer3FarNoiseMinMax,
+                    Layer3FarVariationMode, Layer3FarVariationSettings, Layer3FarVariationBrightness,
+                    Layer3FarVariationNoiseSettings,
+                    Layer3FarVariationTexture, Layer3FarVariationTextureTO
+                }
+            },
+            {   // Blend Material
+                Layer3BlendTextures, Layer3BlendNormalMap,
+                Layer3BlendArrayAssignedTextures,
+                {
+                    Layer3BlendSettings, Layer3BlendTilingOffset,
+                    Layer3BlendAlbedoTint, Layer3BlendEmissionColor,
+                    Layer3BlendMaterialProperties1, Layer3BlendMaterialProperties2,
+                    Layer3BlendNoiseSettings, Layer3BlendNoiseMinMax,
+                    Layer3BlendVariationMode, Layer3BlendVariationSettings, Layer3BlendVariationBrightness,
+                    Layer3BlendVariationNoiseSettings,
+                    Layer3BlendVariationTexture, Layer3BlendVariationTextureTO
+                }
+            },
+            {   // Data
+                Layer3DistanceBlendEnabled, Layer3DistanceBlendingMode, Layer3DistanceBlendMinMax,
+                Layer3MaterialBlendSettings, Layer3BlendMaskType, Layer3BlendMaskDistanceTO,
+                Layer3MaterialBlendProperties, Layer3MaterialBlendNoiseSettings,
+                Layer3BlendMaskTexture, Layer3BlendMaskTextureTO
+            }
+        };
+
         // Sample layer
-        SampleSeamlessArrayMaterial(
-            SS, UV, WorldNormalVector,
-            WorldPosition, CameraPosition, // Positions
-            SurfaceType, DebuggingIndex, // Enums
-        
-            // Base Material
-            Layer3BaseSettings, Layer3BaseTilingOffset, // Tiling & Offset
-            Layer3BaseAlbedo, // Albedo
-            Layer3BaseMetallicMap, // Metallic
-            Layer3BaseSmoothnessMap, // Smoothness
-            Layer3BaseRoughnessMap, // Roughness
-            Layer3BaseNormalMap, // Normal
-            Layer3BaseOcclussionMap, // Occlussion
-            Layer3BaseEmissionMap, // Emission
-            Layer3BaseAlbedoTint, Layer3BaseEmissionColor, // Colors
-            Layer3BaseMaterialProperties1, Layer3BaseMaterialProperties2, // Material Properties
-        
-            Layer3BaseNoiseSettings, Layer3BaseNoiseMinMax, // Noise
-        
-            Layer3BaseVariationMode, Layer3BaseVariationSettings, Layer3BaseVariationBrightness, // Variation Settings
-            Layer3BaseVariationNoiseSettings, // Variation Noise
-            Layer3BaseVariationTexture, Layer3BaseVariationTextureTO, // Variation Texture
-        
-            // Far Material
-            Layer3DistanceBlendEnabled, Layer3DistanceBlendingMode, Layer3DistanceBlendMinMax, // Distance Blending
-        
-            Layer3FarSettings, Layer3FarTilingOffset, // Tiling & Offset
-            Layer3FarTextures, Layer3FarNormalMap, // Textures
-            Layer3FarArrayAssignedTextures, // Array Assigned Textures
-            Layer3FarAlbedoTint, Layer3FarEmissionColor, // Colors
-            Layer3FarMaterialProperties1, Layer3FarMaterialProperties2, // Material Properties
-        
-            Layer3FarNoiseSettings, Layer3FarNoiseMinMax, // Noise
-        
-            Layer3FarVariationMode, Layer3FarVariationSettings, Layer3FarVariationBrightness, // Variation Settings
-            Layer3FarVariationNoiseSettings, // Variation Noise
-            Layer3FarVariationTexture, Layer3FarVariationTextureTO, // Variation Texture
-        
-            // Blend Material
-            Layer3MaterialBlendSettings, Layer3BlendMaskType, Layer3BlendMaskDistanceTO,
-            Layer3MaterialBlendProperties, Layer3MaterialBlendNoiseSettings,
-            Layer3BlendMaskTexture, Layer3BlendMaskTextureTO,
-        
-            Layer3BlendSettings, Layer3BlendTilingOffset, // Tiling & Offset
-            Layer3BlendTextures, Layer3BlendNormalMap, // Textures
-            Layer3BlendArrayAssignedTextures, // Array Assigned Textures
-            Layer3BlendAlbedoTint, Layer3BlendEmissionColor, // Colors
-            Layer3BlendMaterialProperties1, Layer3BlendMaterialProperties2, // Material Properties
-        
-            Layer3BlendNoiseSettings, Layer3BlendNoiseMinMax, // Noise
-        
-            Layer3BlendVariationMode, Layer3BlendVariationSettings, Layer3BlendVariationBrightness, // Variation Settings
-            Layer3BlendVariationNoiseSettings, // Variation Noise
-            Layer3BlendVariationTexture, Layer3BlendVariationTextureTO, // Variation Texture
-        
-            // Outputs
+        SampleRepetitionlessLayerTerrain(
+            SS, UV, TangentNormalVector,
+            WorldPosition, CameraPosition,
+            SurfaceType, DebuggingIndex,
+            layer,
             layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
         );
-        
+
         albedoColor += layerAlbedo * layer3Control;
         normalVector += layerNormal * layer3Control;
         metallic += layerMetallic * layer3Control;
@@ -491,66 +502,69 @@ void SampleSeamlessMaterialTerrain_float(
         float layerOcclussion = occlussion;
         float3 layerEmission = emission;
         
+        // Create layer from inputs
+        RepetitionlessLayerTerrain layer = {
+            {   // Base Material
+                Layer4BaseAlbedo,
+                Layer4BaseMetallicMap,
+                Layer4BaseSmoothnessMap,
+                Layer4BaseRoughnessMap,
+                Layer4BaseNormalMap,
+                Layer4BaseOcclussionMap,
+                Layer4BaseEmissionMap,
+                {
+                    Layer4BaseSettings, Layer4BaseTilingOffset,
+                    Layer4BaseAlbedoTint, Layer4BaseEmissionColor,
+                    Layer4BaseMaterialProperties1, Layer4BaseMaterialProperties2,
+                    Layer4BaseNoiseSettings, Layer4BaseNoiseMinMax,
+                    Layer4BaseVariationMode, Layer4BaseVariationSettings, Layer4BaseVariationBrightness,
+                    Layer4BaseVariationNoiseSettings,
+                    Layer4BaseVariationTexture, Layer4BaseVariationTextureTO
+                }
+            },
+            {   // Far Material
+                Layer4FarTextures, Layer4FarNormalMap,
+                Layer4FarArrayAssignedTextures,
+                {
+                    Layer4FarSettings, Layer4FarTilingOffset,
+                    Layer4FarAlbedoTint, Layer4FarEmissionColor,
+                    Layer4FarMaterialProperties1, Layer4FarMaterialProperties2,
+                    Layer4FarNoiseSettings, Layer4FarNoiseMinMax,
+                    Layer4FarVariationMode, Layer4FarVariationSettings, Layer4FarVariationBrightness,
+                    Layer4FarVariationNoiseSettings,
+                    Layer4FarVariationTexture, Layer4FarVariationTextureTO
+                }
+            },
+            {   // Blend Material
+                Layer4BlendTextures, Layer4BlendNormalMap,
+                Layer4BlendArrayAssignedTextures,
+                {
+                    Layer4BlendSettings, Layer4BlendTilingOffset,
+                    Layer4BlendAlbedoTint, Layer4BlendEmissionColor,
+                    Layer4BlendMaterialProperties1, Layer4BlendMaterialProperties2,
+                    Layer4BlendNoiseSettings, Layer4BlendNoiseMinMax,
+                    Layer4BlendVariationMode, Layer4BlendVariationSettings, Layer4BlendVariationBrightness,
+                    Layer4BlendVariationNoiseSettings,
+                    Layer4BlendVariationTexture, Layer4BlendVariationTextureTO
+                }
+            },
+            {   // Data
+                Layer4DistanceBlendEnabled, Layer4DistanceBlendingMode, Layer4DistanceBlendMinMax,
+                Layer4MaterialBlendSettings, Layer4BlendMaskType, Layer4BlendMaskDistanceTO,
+                Layer4MaterialBlendProperties, Layer4MaterialBlendNoiseSettings,
+                Layer4BlendMaskTexture, Layer4BlendMaskTextureTO
+            }
+        };
+
         // Sample layer
-        SampleSeamlessArrayMaterial(
-            SS, UV, WorldNormalVector,
-            WorldPosition, CameraPosition, // Positions
-            SurfaceType, DebuggingIndex, // Enums
-        
-            // Base Material
-            Layer4BaseSettings, Layer4BaseTilingOffset, // Tiling & Offset
-            Layer4BaseAlbedo, // Albedo
-            Layer4BaseMetallicMap, // Metallic
-            Layer4BaseSmoothnessMap, // Smoothness
-            Layer4BaseRoughnessMap, // Roughness
-            Layer4BaseNormalMap, // Normal
-            Layer4BaseOcclussionMap, // Occlussion
-            Layer4BaseEmissionMap, // Emission
-            Layer4BaseAlbedoTint, Layer4BaseEmissionColor, // Colors
-            Layer4BaseMaterialProperties1, Layer4BaseMaterialProperties2, // Material Properties
-        
-            Layer4BaseNoiseSettings, Layer4BaseNoiseMinMax, // Noise
-        
-            Layer4BaseVariationMode, Layer4BaseVariationSettings, Layer4BaseVariationBrightness, // Variation Settings
-            Layer4BaseVariationNoiseSettings, // Variation Noise
-            Layer4BaseVariationTexture, Layer4BaseVariationTextureTO, // Variation Texture
-        
-            // Far Material
-            Layer4DistanceBlendEnabled, Layer4DistanceBlendingMode, Layer4DistanceBlendMinMax, // Distance Blending
-        
-            Layer4FarSettings, Layer4FarTilingOffset, // Tiling & Offset
-            Layer4FarTextures, Layer4FarNormalMap, // Textures
-            Layer4FarArrayAssignedTextures, // Array Assigned Textures
-            Layer4FarAlbedoTint, Layer4FarEmissionColor, // Colors
-            Layer4FarMaterialProperties1, Layer4FarMaterialProperties2, // Material Properties
-        
-            Layer4FarNoiseSettings, Layer4FarNoiseMinMax, // Noise
-        
-            Layer4FarVariationMode, Layer4FarVariationSettings, Layer4FarVariationBrightness, // Variation Settings
-            Layer4FarVariationNoiseSettings, // Variation Noise
-            Layer4FarVariationTexture, Layer4FarVariationTextureTO, // Variation Texture
-        
-            // Blend Material
-            Layer4MaterialBlendSettings, Layer4BlendMaskType, Layer4BlendMaskDistanceTO,
-            Layer4MaterialBlendProperties, Layer4MaterialBlendNoiseSettings,
-            Layer4BlendMaskTexture, Layer4BlendMaskTextureTO,
-        
-            Layer4BlendSettings, Layer4BlendTilingOffset, // Tiling & Offset
-            Layer4BlendTextures, Layer4BlendNormalMap, // Textures
-            Layer4BlendArrayAssignedTextures, // Array Assigned Textures
-            Layer4BlendAlbedoTint, Layer4BlendEmissionColor, // Colors
-            Layer4BlendMaterialProperties1, Layer4BlendMaterialProperties2, // Material Properties
-        
-            Layer4BlendNoiseSettings, Layer4BlendNoiseMinMax, // Noise
-        
-            Layer4BlendVariationMode, Layer4BlendVariationSettings, Layer4BlendVariationBrightness, // Variation Settings
-            Layer4BlendVariationNoiseSettings, // Variation Noise
-            Layer4BlendVariationTexture, Layer4BlendVariationTextureTO, // Variation Texture
-        
-            // Outputs
+        SampleRepetitionlessLayerTerrain(
+            SS, UV, TangentNormalVector,
+            WorldPosition, CameraPosition,
+            SurfaceType, DebuggingIndex,
+            layer,
             layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
         );
-        
+
         albedoColor += layerAlbedo * layer4Control;
         normalVector += layerNormal * layer4Control;
         metallic += layerMetallic * layer4Control;

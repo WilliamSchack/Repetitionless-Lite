@@ -1,8 +1,6 @@
 #ifndef SAMPLESEAMLESSMATERIALMASTER_INCLUDED
 #define SAMPLESEAMLESSMATERIALMASTER_INCLUDED
 
-#include "Structs/RepetitionlessMaterial.hlsl"
-
 #include "SampleRepetitionlessLayer.hlsl"
 
 void SampleSeamlessMaterialMaster_float(
@@ -73,6 +71,7 @@ void SampleSeamlessMaterialMaster_float(
     // Outputs
     out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut)
 {
+    // Create layer from inputs
     RepetitionlessLayer layer = {
         {   // Base Material
             BaseAlbedo,
@@ -136,6 +135,7 @@ void SampleSeamlessMaterialMaster_float(
         }
     };
 
+    // Sample layer
     SampleRepetitionlessLayer(
         SS, UV, TangentNormalVector,
         WorldPosition, CameraPosition,
@@ -146,6 +146,7 @@ void SampleSeamlessMaterialMaster_float(
 
     return;
 
+    /*
 
     // ----------------------- Setup ------------------------- //
 
@@ -411,6 +412,7 @@ void SampleSeamlessMaterialMaster_float(
     SmoothnessOut = smoothness;
     OcclussionOut = occlussion;
     EmissionColorOut = emissionColor;
+    */
 }
 
 #endif

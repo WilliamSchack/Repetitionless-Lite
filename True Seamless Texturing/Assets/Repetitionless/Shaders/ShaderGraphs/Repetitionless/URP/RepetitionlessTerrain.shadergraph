@@ -31875,6 +31875,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "53bb7ef798ce4212b01d967382fe6470",
+    "m_Id": 53,
+    "m_DisplayName": "TangentNormalVector",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "TangentNormalVector",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "53c06489557d47ee80c29f1002031076",
     "m_Id": 0,
@@ -44699,29 +44722,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
-    "m_ObjectId": "8c7f196d6e3a43c4bc108adc334b108a",
-    "m_Id": 53,
-    "m_DisplayName": "WorldNormalVector",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "WorldNormalVector",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.RedirectNodeData",
     "m_ObjectId": "8c8b0fcf3e1e40ed8147b833e1a5b43f",
     "m_Group": {
@@ -50335,7 +50335,7 @@
             "m_Id": "aa346eba97e04fb5b3660518fcff2052"
         },
         {
-            "m_Id": "8c7f196d6e3a43c4bc108adc334b108a"
+            "m_Id": "53bb7ef798ce4212b01d967382fe6470"
         },
         {
             "m_Id": "f53e072f938446b389beddd43bb9cfbc"
