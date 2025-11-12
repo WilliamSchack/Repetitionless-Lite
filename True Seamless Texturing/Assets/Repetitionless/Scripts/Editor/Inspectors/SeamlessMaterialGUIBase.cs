@@ -258,7 +258,7 @@ namespace Repetitionless.Inspectors
             }
         }
 
-        protected virtual void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true)
+        protected virtual void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true, int extraWidth = 0)
         {
             // Material Properties
             MaterialProperty settingTogglesProp = FindProperty($"_{materialPrefix}Settings");
@@ -266,12 +266,12 @@ namespace Repetitionless.Inspectors
             // Get variables from settings prop
             int settingToggles = (int)settingTogglesProp.vectorValue.x;
             bool noiseEnabled = BooleanCompression.GetValue(settingToggles, 0);
-            bool randomiseScaling = BooleanCompression.GetValue(settingToggles, 1);
-            bool randomiseRotation = BooleanCompression.GetValue(settingToggles, 2);
-            bool smoothnessEnabled = BooleanCompression.GetValue(settingToggles, 3);
-            bool variationEnabled = BooleanCompression.GetValue(settingToggles, 4);
-            bool packedTexture = BooleanCompression.GetValue(settingToggles, 5);
-            bool emissionEnabled = BooleanCompression.GetValue(settingToggles, 6);
+            //bool randomiseScaling = BooleanCompression.GetValue(settingToggles, 1);
+            //bool randomiseRotation = BooleanCompression.GetValue(settingToggles, 2);
+            //bool smoothnessEnabled = BooleanCompression.GetValue(settingToggles, 3);
+            //bool variationEnabled = BooleanCompression.GetValue(settingToggles, 4);
+            //bool packedTexture = BooleanCompression.GetValue(settingToggles, 5);
+            //bool emissionEnabled = BooleanCompression.GetValue(settingToggles, 6);
 
             // Calculate scaled text min width
             int minScaledTextWidth = 0;
@@ -286,8 +286,33 @@ namespace Repetitionless.Inspectors
                 minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Random Scaling")).x;
                 minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Random Rotation")).x;
             }
+            minScaledTextWidth += extraWidth;
 
             EditorGUILayout.BeginHorizontal();
+
+            // Left settings
+            int compressedSettingToggles = 0;
+            compressedSettingToggles = DrawLeftMaterialSettingsGUI(compressedSettingToggles, materialPrefix, settingToggles, minScaledTextWidth, showNoise, showVariation);
+
+            GUILayout.FlexibleSpace();
+
+            // Right Settings
+            compressedSettingToggles = DrawRightMaterialSettingsGUI(compressedSettingToggles, materialPrefix, settingToggles, minScaledTextWidth, showPT, showEmission, showSR);
+
+            EditorGUILayout.EndHorizontal();
+
+            // Enabled Settings, for the shader to determine whether to use textures or values
+            // Storing inside of int instead of multiple bools so its only one variable, less to manage
+            settingTogglesProp.vectorValue = new Vector2(compressedSettingToggles, settingTogglesProp.vectorValue.y);
+        }
+        
+        protected virtual int DrawLeftMaterialSettingsGUI(int compressedValues, string materialPrefix, int settingToggles, int minScaledTextWidth, bool showNoise = true, bool showVariation = true)
+        {
+            // Settings
+            bool noiseEnabled = BooleanCompression.GetValue(settingToggles, 0);
+            bool randomiseScaling = BooleanCompression.GetValue(settingToggles, 1);
+            bool randomiseRotation = BooleanCompression.GetValue(settingToggles, 2);
+            bool variationEnabled = BooleanCompression.GetValue(settingToggles, 4);
 
             // Noise Enabled
             if (showNoise) {
@@ -304,17 +329,30 @@ namespace Repetitionless.Inspectors
             }
 
             // Variation toggle
-            if(showVariation)
+            if (showVariation)
                 variationEnabled = GUILayout.Toggle(variationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color\n\nUsing a custom texture can cause visible tiling"), "Button");
 
-            GUILayout.FlexibleSpace();
+            // Return new settings
+            compressedValues = BooleanCompression.AddValue(compressedValues, 0, noiseEnabled);
+            compressedValues = BooleanCompression.AddValue(compressedValues, 1, randomiseScaling);
+            compressedValues = BooleanCompression.AddValue(compressedValues, 2, randomiseRotation);
+            compressedValues = BooleanCompression.AddValue(compressedValues, 4, variationEnabled);
+            return compressedValues;
+        }
+
+        protected virtual int DrawRightMaterialSettingsGUI(int compressedValues, string materialPrefix, int settingToggles, int minScaledTextWidth, bool showPT = true, bool showEmission = true, bool showSR = true)
+        {
+            // Settings
+            bool smoothnessEnabled = BooleanCompression.GetValue(settingToggles, 3);
+            bool packedTexture = BooleanCompression.GetValue(settingToggles, 5);
+            bool emissionEnabled = BooleanCompression.GetValue(settingToggles, 6);
 
             // Packed Texture Toggle
-            if(showPT)
+            if (showPT)
                 packedTexture = GUILayout.Toggle(packedTexture, new GUIContent(GetScaledText(minScaledTextWidth, "Packed Texture", "PT"), "If you are using a packed texture of multiple regular ones (Enabled is default unity material behaviour)\n\nPacked: (R: Metallic, G: Occlussion, A: Smoothness/Roughness)\n\nNon-Packed uses Red channel for each texture"), "Button");
 
             // Emission Toggle
-            if(showEmission)
+            if (showEmission)
                 emissionEnabled = GUILayout.Toggle(emissionEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Emission", "E"), "If Emission is enabled"), "Button");
 
             // Smoothness/Roughness Toggle
@@ -326,12 +364,11 @@ namespace Repetitionless.Inspectors
                     smoothnessEnabled = srSelected == 1.0f ? false : true;
             }
 
-            EditorGUILayout.EndHorizontal();
-
-            // Enabled Settings, for the shader to determine whether to use textures or values
-            // Storing inside of int instead of multiple bools so its only one variable, less to manage
-            int compressedSettingToggles = BooleanCompression.CompressValues(noiseEnabled, randomiseScaling, randomiseRotation, smoothnessEnabled, variationEnabled, packedTexture, emissionEnabled);
-            settingTogglesProp.vectorValue = new Vector2(compressedSettingToggles, settingTogglesProp.vectorValue.y);
+            // Return new settings
+            compressedValues = BooleanCompression.AddValue(compressedValues, 3, smoothnessEnabled);
+            compressedValues = BooleanCompression.AddValue(compressedValues, 5, packedTexture);
+            compressedValues = BooleanCompression.AddValue(compressedValues, 6, emissionEnabled);
+            return compressedValues;
         }
 
         protected virtual void DrawMaterialMainProperties(string materialPrefix, int sectionIndex)
@@ -381,7 +418,8 @@ namespace Repetitionless.Inspectors
 
             // Smoothness/Roughness
             float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
-            switch (srSelected) {
+            switch (srSelected)
+            {
                 case 0: // Smoothness
                     Rect smoothnessSliderRect = DrawTexture(sectionIndex, 2, new GUIContent("Smoothness", $"Smoothness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"), $"_{materialPrefix}SmoothnessMap");
                     if (!smoothnessAssigned)
@@ -407,14 +445,16 @@ namespace Repetitionless.Inspectors
                 materialProperties2.x = EditorGUI.Slider(occlussionStrengthSliderRect, materialProperties2.x, 0, 1);
 
             // Emission
-            if (emissionEnabled) {
+            if (emissionEnabled)
+            {
                 bool prevEmissionAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 4);
 
                 // Change emission colour to white if texture assigned and texture is black
                 EditorGUI.BeginChangeCheck();
                 Rect emissionColourRect = DrawTexture(sectionIndex, 6, new GUIContent("Emission", "Emission (RGB)"), $"_{materialPrefix}EmissionMap");
                 Color emissionColour = EditorGUI.ColorField(emissionColourRect, GUIContent.none, emissionColorProp.colorValue, true, false, true);
-                if (EditorGUI.EndChangeCheck()) {
+                if (EditorGUI.EndChangeCheck())
+                {
                     // Rehandle assigned textures since the function can be changed in child classes
                     int afterAssignedTextures = HandleAssignedTextures(materialPrefix, sectionIndex, settingsProp);
                     bool afterEmissionAssigned = BooleanCompression.GetValue(afterAssignedTextures, 5);
@@ -423,9 +463,11 @@ namespace Repetitionless.Inspectors
                     emissionColorProp.colorValue = emissionColour;
 
                     // If texture just assigned and colour is black, change colour to white
-                    if (afterEmissionAssigned && !prevEmissionAssigned) {
+                    if (afterEmissionAssigned && !prevEmissionAssigned)
+                    {
                         Color blackColor = new Color(0, 0, 0, emissionColorProp.colorValue.a);
-                        if (emissionColorProp.colorValue == blackColor) {
+                        if (emissionColorProp.colorValue == blackColor)
+                        {
                             emissionColorProp.colorValue = Color.white;
                         }
                     }
@@ -433,7 +475,8 @@ namespace Repetitionless.Inspectors
             }
 
             // Alpha Clipping
-            if (surfaceTypeProp.floatValue == 1.0f) {
+            if (surfaceTypeProp.floatValue == 1.0f)
+            {
                 EditorGUI.BeginChangeCheck();
                 float alphaClippingValue = materialProperties2.y;
                 alphaClippingValue = EditorGUI.Slider(GUIUtilities.GetLineRect(), "Alpha Clipping", alphaClippingValue, 0, 1);

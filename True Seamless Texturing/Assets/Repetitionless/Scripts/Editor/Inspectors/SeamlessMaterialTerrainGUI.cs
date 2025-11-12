@@ -8,7 +8,6 @@ namespace Repetitionless.Inspectors
     using Compression;
     using GUIUtilities;
     using CustomWindows;
-    using UnityEngine.UI;
 
     public class SeamlessMaterialTerrainGUI : SeamlessMaterialGUIBase
     {
@@ -19,6 +18,8 @@ namespace Repetitionless.Inspectors
         }
 
         private GUIStyle _labelStyle;
+        private GUIContent _settingsIconContent;
+        private int _settingsIconWidth;
 
         private int _currentLayer = 0;
 
@@ -72,6 +73,10 @@ namespace Repetitionless.Inspectors
             _labelStyle = new GUIStyle("Label");
             _labelStyle.alignment = TextAnchor.MiddleCenter;
             _labelStyle.wordWrap = true;
+
+            _settingsIconContent = EditorGUIUtility.IconContent("Settings");
+            _settingsIconContent.tooltip = "Texture Array Settings";
+            _settingsIconWidth = (int)GUI.skin.button.CalcSize(_settingsIconContent).x;
 
             // Setup Texture Array Drawers
             _textureDrawers = new List<TerrainLayerTextureDrawers>();
@@ -147,7 +152,7 @@ namespace Repetitionless.Inspectors
             DrawMaterialBlendGUI(layerPropertyPrefix);
         }
 
-        protected override void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true)
+        protected override void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true, int extraWidth = 0)
         {
             // For the base material remove Packed Texture and Smoothness/Roughness settings
             if (materialPrefix.Contains("Base"))
@@ -156,21 +161,37 @@ namespace Repetitionless.Inspectors
                 return;
             }
 
-            base.DrawMaterialSettingsGUI(materialPrefix, showNoise, showVariation, showPT, showEmission, showSR);
+            // Add settings button width as extra width
+            base.DrawMaterialSettingsGUI(materialPrefix, showNoise, showVariation, showPT, showEmission, showSR, _settingsIconWidth);
+        }
+
+        protected override int DrawRightMaterialSettingsGUI(int compressedValues, string materialPrefix, int settingToggles, int minScaledTextWidth, bool showPT = true, bool showEmission = true, bool showSR = true)
+        {
+            int compressedSettingToggles = base.DrawRightMaterialSettingsGUI(compressedValues, materialPrefix, settingToggles, minScaledTextWidth, showPT, showEmission, showSR);
+
+            // Dont draw array settings button for base
+            if (materialPrefix.Contains("Base"))
+                return compressedSettingToggles;
 
             // Array settings button
-            if (GUILayout.Button("ARRAYSETTINGS")) {
+            if (GUILayout.Button(_settingsIconContent))
+            {
                 // Get the texture array for this material
                 int sectionIndex = materialPrefix.Contains("Far") ? 1 : 2;
                 TextureArrayGUIDrawer textureDrawer = GetTextureDrawer(sectionIndex);
 
-                if (textureDrawer.Array != null) {
-                    ConfigureArrayWindowLimited.ShowWindow(textureDrawer.Array, $"{materialPrefix} Array", (Texture2DArray newArray) => {
+                if (textureDrawer.Array != null)
+                {
+                    ConfigureArrayWindowLimited.ShowWindow(textureDrawer.Array, $"{materialPrefix} Array", (Texture2DArray newArray) =>
+                    {
                         textureDrawer.UpdateArray(newArray);
                     });
-                } else
+                }
+                else
                     Debug.LogWarning($"{materialPrefix} has no textures assigned to modify...");
             }
+
+            return compressedSettingToggles;
         }
 
         protected override void DrawMaterialMainProperties(string materialPrefix, int sectionIndex)
