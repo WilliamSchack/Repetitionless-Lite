@@ -3,7 +3,7 @@
 
 #include "RepetitionlessMaterialData.hlsl"
 
-struct RepetitionlessArrayMaterial
+struct RepetitionlessMaterialArray
 {
     UnityTexture2DArray Textures;
     UnityTexture2D NormalMap;

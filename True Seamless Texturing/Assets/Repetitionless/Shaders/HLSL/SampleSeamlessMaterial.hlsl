@@ -2,7 +2,7 @@
 #define SAMPLESEAMLESSMATERIAL_INCLUDED
 
 #include "Structs/RepetitionlessMaterial.hlsl"
-#include "Structs/RepetitionlessArrayMaterial.hlsl"
+#include "Structs/RepetitionlessMaterialArray.hlsl"
 
 #include "SeamlessHelpers/SeamlessNoise.hlsl"
 #include "SeamlessHelpers/MacroMicroVariation.hlsl"
@@ -17,11 +17,11 @@
 
 void GetRepetitionlessMaterialColorBase(
     SamplerState SS, float2 UV, float3 TangentNormalVector,
-    int SurfaceType, float DebuggingIndex,
+    int SurfaceType, int DebuggingIndex,
 
     bool usingArrayMaterial,
     in RepetitionlessMaterial Material,
-    in RepetitionlessArrayMaterial ArrayMaterial,
+    in RepetitionlessMaterialArray ArrayMaterial,
 
     out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
 ){
@@ -210,37 +210,37 @@ void GetRepetitionlessMaterialColorBase(
 
 void GetRepetitionlessMaterialColor(
     SamplerState SS, float2 UV, float3 TangentNormalVector,
-    int SurfaceType, float DebuggingIndex,
+    int SurfaceType, int DebuggingIndex,
 
     in RepetitionlessMaterial Material,
 
     out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
 ){
-    RepetitionlessArrayMaterial emptyMaterialStruct;
+    RepetitionlessMaterialArray emptyMaterial;
 
     GetRepetitionlessMaterialColorBase(
         SS, UV, TangentNormalVector,
         SurfaceType, DebuggingIndex,
-        false, Material, emptyMaterialStruct,
+        false, Material, emptyMaterial,
         AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
     );
 }
 
-void GetRepetitionlessArrayMaterialColor(
+void GetRepetitionlessMaterialArrayColor(
     SamplerState SS, float2 UV, float3 TangentNormalVector,
-    int SurfaceType, float DebuggingIndex,
+    int SurfaceType, int DebuggingIndex,
 
-    in RepetitionlessArrayMaterial Material,
+    in RepetitionlessMaterialArray Material,
 
     out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
 )
 {
-    RepetitionlessMaterial emptyMaterialStruct;
+    RepetitionlessMaterial emptyMaterial;
 
     GetRepetitionlessMaterialColorBase(
         SS, UV, TangentNormalVector,
         SurfaceType, DebuggingIndex,
-        true, emptyMaterialStruct, Material,
+        true, emptyMaterial, Material,
         AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
     );
 }

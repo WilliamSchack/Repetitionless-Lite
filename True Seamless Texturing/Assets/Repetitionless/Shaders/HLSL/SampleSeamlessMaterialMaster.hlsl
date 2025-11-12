@@ -3,12 +3,12 @@
 
 #include "Structs/RepetitionlessMaterial.hlsl"
 
-#include "SampleSeamlessMaterial.hlsl"
+#include "SampleRepetitionlessLayer.hlsl"
 
 void SampleSeamlessMaterialMaster_float(
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition, // Positions
-    int SurfaceType, float DebuggingIndex, // Enums
+    int SurfaceType, int DebuggingIndex, // Enums
 
     // Base Material
     float2 BaseSettings, float4 BaseTilingOffset, // Tiling & Offset
@@ -73,6 +73,80 @@ void SampleSeamlessMaterialMaster_float(
     // Outputs
     out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut)
 {
+    RepetitionlessLayer layer = {
+        {   // Base Material
+            BaseAlbedo,
+            BaseMetallicMap,
+            BaseSmoothnessMap,
+            BaseRoughnessMap,
+            BaseNormalMap,
+            BaseOcclussionMap,
+            BaseEmissionMap,
+            {
+                BaseSettings, BaseTilingOffset,
+                BaseAlbedoTint, BaseEmissionColor,
+                BaseMaterialProperties1, BaseMaterialProperties2,
+                BaseNoiseSettings, BaseNoiseMinMax,
+                BaseVariationMode, BaseVariationSettings, BaseVariationBrightness,
+                BaseVariationNoiseSettings,
+                BaseVariationTexture, BaseVariationTextureTO
+            }
+        },
+        {   // Far Material
+            FarAlbedo,
+            FarMetallicMap,
+            FarSmoothnessMap,
+            FarRoughnessMap,
+            FarNormalMap,
+            FarOcclussionMap,
+            FarEmissionMap,
+            {
+                FarSettings, FarTilingOffset,
+                FarAlbedoTint, FarEmissionColor,
+                FarMaterialProperties1, FarMaterialProperties2,
+                FarNoiseSettings, FarNoiseMinMax,
+                FarVariationMode, FarVariationSettings, FarVariationBrightness,
+                FarVariationNoiseSettings,
+                FarVariationTexture, FarVariationTextureTO
+            }
+        },
+        {   // Blend Material
+            BlendAlbedo,
+            BlendMetallicMap,
+            BlendSmoothnessMap,
+            BlendRoughnessMap,
+            BlendNormalMap,
+            BlendOcclussionMap,
+            BlendEmissionMap,
+            {
+                BlendSettings, BlendTilingOffset,
+                BlendAlbedoTint, BlendEmissionColor,
+                BlendMaterialProperties1, BlendMaterialProperties2,
+                BlendNoiseSettings, BlendNoiseMinMax,
+                BlendVariationMode, BlendVariationSettings, BlendVariationBrightness,
+                BlendVariationNoiseSettings,
+                BlendVariationTexture, BlendVariationTextureTO
+            }
+        },
+        {   // Data
+            DistanceBlendEnabled, DistanceBlendingMode, DistanceBlendMinMax,
+            MaterialBlendSettings, BlendMaskType, BlendMaskDistanceTO,
+            MaterialBlendProperties, MaterialBlendNoiseSettings,
+            BlendMaskTexture, BlendMaskTextureTO
+        }
+    };
+
+    SampleRepetitionlessLayer(
+        SS, UV, TangentNormalVector,
+        WorldPosition, CameraPosition,
+        SurfaceType, DebuggingIndex,
+        layer,
+        AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
+    );
+
+    return;
+
+
     // ----------------------- Setup ------------------------- //
 
     // Create material structs
