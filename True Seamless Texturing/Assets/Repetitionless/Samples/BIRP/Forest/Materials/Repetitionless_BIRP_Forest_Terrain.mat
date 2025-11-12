@@ -486,6 +486,7 @@ Material:
     - _Layer4FarVariationMode: 2
     - _Layer4MaterialBlendSettings: 6
     - _SurfaceType: 0
+    - _SurfaceTypeSetting: 0
     - _test2: 1
     m_Colors:
     - _Layer1BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}

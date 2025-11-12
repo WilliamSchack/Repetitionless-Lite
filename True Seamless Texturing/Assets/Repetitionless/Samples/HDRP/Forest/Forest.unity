@@ -287,7 +287,7 @@ MonoBehaviour:
   - {fileID: 1086690226}
   - {fileID: 1271025815}
   - {fileID: 249448993}
-  _repetitionlessMaterial: {fileID: 2100000, guid: 1238512c3149f3b71b2c5539f58e677e, type: 2}
+  _repetitionlessMaterial: {fileID: 2100000, guid: 4938d8f65f7f9d8de93b76b36ce6d360, type: 2}
   _litMaterial: {fileID: 2100000, guid: 511c2d1e11919ff4b8341576145e6d57, type: 2}
   TerrainUsingRepetitionless: 1
 --- !u!4 &1063131649
