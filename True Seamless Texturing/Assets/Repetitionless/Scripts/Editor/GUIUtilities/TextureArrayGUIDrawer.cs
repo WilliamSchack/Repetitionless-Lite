@@ -3,12 +3,11 @@
 // | Texture Array Essentials (https://u3d.as/3s4d)  |
 // ---------------------------------------------------
 
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using UnityEngine;
-
-#if UNITY_EDITOR
 using UnityEditor;
 
 namespace Repetitionless.GUIUtilities

@@ -3,10 +3,9 @@
 // | Texture Array Essentials (https://u3d.as/3s4d)  |
 // ---------------------------------------------------
 
-using UnityEngine;
-using System.Linq;
-
 #if UNITY_EDITOR
+using System.Linq;
+using UnityEngine;
 using UnityEditor;
 
 namespace Repetitionless.TextureUtilities
