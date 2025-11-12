@@ -145,7 +145,7 @@ void SampleSeamlessMaterialMaster_float(
     float farDistance = 0;
 
     // Calculate mask
-    int materialBlendSettings = (int)MaterialBlendSettings;
+    int materialBlendSettings       = (int)MaterialBlendSettings;
     bool materialBlendEnabled       = (materialBlendSettings & 1) != 0;
     bool overrideDistanceBlending   = (materialBlendSettings & 2) != 0;
     bool overrideDistanceBlendingTO = (materialBlendSettings & 4) != 0;
@@ -207,7 +207,7 @@ void SampleSeamlessMaterialMaster_float(
 
     // ----------------------- Base Material ------------------------- //
     if (samplingBase) {
-        GetSeamlessMaterialColorNEW(
+        GetRepetitionlessMaterialColor(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
             baseMaterial,
             albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor
@@ -223,7 +223,7 @@ void SampleSeamlessMaterialMaster_float(
         float blendOcclussion = 0;
         float3 blendEmissionColor = 0;
 
-        GetSeamlessMaterialColorNEW(
+        GetRepetitionlessMaterialColor(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
             blendMaterial,
             blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
@@ -254,7 +254,7 @@ void SampleSeamlessMaterialMaster_float(
                 // Set far TO, no need to change back it wont be used again
                 baseMaterial.Data.TilingOffset = FarTilingOffset;
 
-                GetSeamlessMaterialColorNEW(
+                GetRepetitionlessMaterialColor(
                     SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                     baseMaterial,
                     farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
@@ -262,7 +262,7 @@ void SampleSeamlessMaterialMaster_float(
                 break;
             case 1: // Material
                 // Sample Far Material
-                GetSeamlessMaterialColorNEW(
+                GetRepetitionlessMaterialColor(
                     SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                     farMaterial,
                     farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
@@ -302,7 +302,7 @@ void SampleSeamlessMaterialMaster_float(
         // Set blend TO, no need to change back it wont be used again
         blendMaterial.Data.TilingOffset = tilingOffset;
 
-        GetSeamlessMaterialColorNEW(
+        GetRepetitionlessMaterialColor(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
             blendMaterial,
             blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
