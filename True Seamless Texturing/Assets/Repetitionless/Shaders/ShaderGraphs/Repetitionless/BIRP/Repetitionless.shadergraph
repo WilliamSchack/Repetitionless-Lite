@@ -13161,15 +13161,15 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "SampleSeamlessMaterialMaster (Custom Function)",
+    "m_Name": "SampleRepetitionlessMaterialRegular (Custom Function)",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 2109.0,
-            "y": 2464.0,
-            "width": 343.0,
-            "height": 1966.0
+            "x": 1956.0,
+            "y": 2463.000244140625,
+            "width": 366.0,
+            "height": 1989.999755859375
         }
     },
     "m_Slots": [
@@ -13444,7 +13444,7 @@
         "m_SerializableColors": []
     },
     "m_SourceType": 0,
-    "m_FunctionName": "SampleSeamlessMaterialMaster",
+    "m_FunctionName": "SampleRepetitionlessMaterialRegular",
     "m_FunctionSource": "7af0c08ba462be149a307c673de77eaa",
     "m_FunctionBody": "Enter function body here..."
 }
@@ -15465,8 +15465,8 @@
     "m_Theme": 0,
     "m_Position": {
         "serializedVersion": "2",
-        "x": 1914.0,
-        "y": 2285.0,
+        "x": 1966.0,
+        "y": 2307.0,
         "width": 368.0,
         "height": 156.0
     },
@@ -18019,8 +18019,8 @@
         "m_Expanded": false,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 2489.000244140625,
-            "y": 2676.000244140625,
+            "x": 2354.0,
+            "y": 2675.0,
             "width": 119.0,
             "height": 77.0
         }

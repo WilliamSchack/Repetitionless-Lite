@@ -13714,6 +13714,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "07c8d0af9b204df288b91531e0df7d40",
+    "m_Id": 53,
+    "m_DisplayName": "TangentNormalVector",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "TangentNormalVector",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.RedirectNodeData",
     "m_ObjectId": "07ce8b66c6f2412294a51b8487fc94a1",
     "m_Group": {
@@ -44692,29 +44715,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
-    "m_ObjectId": "8c7f196d6e3a43c4bc108adc334b108a",
-    "m_Id": 53,
-    "m_DisplayName": "WorldNormalVector",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "WorldNormalVector",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.RedirectNodeData",
     "m_ObjectId": "8c8b0fcf3e1e40ed8147b833e1a5b43f",
     "m_Group": {
@@ -50324,7 +50324,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "SampleSeamlessMaterialTerrain (Custom Function)",
+    "m_Name": "SampleRepetitionlessMaterialTerrain (Custom Function)",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -50343,7 +50343,7 @@
             "m_Id": "aa346eba97e04fb5b3660518fcff2052"
         },
         {
-            "m_Id": "8c7f196d6e3a43c4bc108adc334b108a"
+            "m_Id": "07c8d0af9b204df288b91531e0df7d40"
         },
         {
             "m_Id": "f53e072f938446b389beddd43bb9cfbc"
@@ -51174,7 +51174,7 @@
         "m_SerializableColors": []
     },
     "m_SourceType": 0,
-    "m_FunctionName": "SampleSeamlessMaterialTerrain",
+    "m_FunctionName": "SampleRepetitionlessMaterialTerrain",
     "m_FunctionSource": "fc6c483eb917e014580ee8965fe2eaa3",
     "m_FunctionBody": "Enter function body here..."
 }

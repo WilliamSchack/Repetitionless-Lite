@@ -11371,7 +11371,7 @@
     "m_ObjectId": "78fba43ca02a4f59b78481b0b304f8c3",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 848.0001220703125,
+        "x": 848.0,
         "y": 1415.0
     }
 }
@@ -13347,7 +13347,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "SampleSeamlessMaterialMaster (Custom Function)",
+    "m_Name": "SampleRepetitionlessMaterialRegular (Custom Function)",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -13630,7 +13630,7 @@
         "m_SerializableColors": []
     },
     "m_SourceType": 0,
-    "m_FunctionName": "SampleSeamlessMaterialMaster",
+    "m_FunctionName": "SampleRepetitionlessMaterialRegular",
     "m_FunctionSource": "7af0c08ba462be149a307c673de77eaa",
     "m_FunctionBody": "Enter function body here..."
 }

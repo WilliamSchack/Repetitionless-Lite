@@ -17229,8 +17229,8 @@
     "m_ObjectId": "137d8b21f6c84bd887358c6788cb3a50",
     "m_Title": "Blend Material",
     "m_Position": {
-        "x": -4636.99951171875,
-        "y": 3666.00048828125
+        "x": -4637.0,
+        "y": 3666.0
     }
 }
 
@@ -18675,8 +18675,8 @@
     "m_ObjectId": "1a0627e5730447bcbbd2a5a4cb24153a",
     "m_Title": "Base Material",
     "m_Position": {
-        "x": -4633.99951171875,
-        "y": -3522.999755859375
+        "x": -4634.0,
+        "y": -3523.0
     }
 }
 
@@ -20720,8 +20720,8 @@
     "m_ObjectId": "21b0ea2b60a141f78ae2b229495753f8",
     "m_Title": "Set Material Properties",
     "m_Position": {
-        "x": -5519.99951171875,
-        "y": 1990.9993896484375
+        "x": -5520.0,
+        "y": 1991.0
     }
 }
 
@@ -20964,7 +20964,7 @@
     "m_ObjectId": "23963ea633224256a3b196145b5b97a1",
     "m_Title": "Check For Mask",
     "m_Position": {
-        "x": -5366.99951171875,
+        "x": -5367.0,
         "y": -3569.0
     }
 }
@@ -21892,8 +21892,8 @@
     "m_ObjectId": "28e66ce1f134464db0cb6380ab661cbb",
     "m_Title": "Far Material",
     "m_Position": {
-        "x": -4632.99951171875,
-        "y": 5293.00048828125
+        "x": -4633.0,
+        "y": 5293.0
     }
 }
 
@@ -23482,8 +23482,8 @@
     "m_ObjectId": "2f2801a2664048feb23fda2df936c2e4",
     "m_Title": "Material Blend",
     "m_Position": {
-        "x": -4632.99951171875,
-        "y": -1909.000244140625
+        "x": -4633.0,
+        "y": -1909.0
     }
 }
 
@@ -23800,8 +23800,8 @@
     "m_ObjectId": "309031f49341414d81e1bd9dd687276b",
     "m_Title": "Blend Material",
     "m_Position": {
-        "x": -4638.99951171875,
-        "y": 6292.00048828125
+        "x": -4639.0,
+        "y": 6292.0
     }
 }
 
@@ -32806,8 +32806,8 @@
     "m_ObjectId": "56a33305231b45c088cc8609d36fb211",
     "m_Title": "Distance Blending",
     "m_Position": {
-        "x": -4604.99951171875,
-        "y": -151.00048828125
+        "x": -4605.0,
+        "y": -151.0
     }
 }
 
@@ -33401,8 +33401,8 @@
     "m_ObjectId": "58f5cc790e3b41f98ff42df0192ec626",
     "m_Title": "Material Blend",
     "m_Position": {
-        "x": -4632.99951171875,
-        "y": 5965.00048828125
+        "x": -4633.0,
+        "y": 5965.0
     }
 }
 
@@ -38243,8 +38243,8 @@
     "m_ObjectId": "6e01455ddd9047ccad84b2005657ea99",
     "m_Title": "Far Material",
     "m_Position": {
-        "x": -4628.99951171875,
-        "y": 40.999996185302737
+        "x": -4629.0,
+        "y": 41.0
     }
 }
 
@@ -39227,7 +39227,7 @@
     "m_ObjectId": "7310718358734814a6e2e1dfe17575e6",
     "m_Title": "Distance Blending",
     "m_Position": {
-        "x": -4608.99951171875,
+        "x": -4609.0,
         "y": -2768.0
     }
 }
@@ -40669,8 +40669,8 @@
     "m_ObjectId": "79f32e51b43f44b09bcdaacb9cad9f8c",
     "m_Title": "Far Material",
     "m_Position": {
-        "x": -4629.99951171875,
-        "y": 2665.99951171875
+        "x": -4630.0,
+        "y": 2666.0
     }
 }
 
@@ -43185,8 +43185,8 @@
     "m_ObjectId": "85db13dc4e114bb0aafc8c24f57750f2",
     "m_Title": "Base Material",
     "m_Position": {
-        "x": -4633.99951171875,
-        "y": 1717.99951171875
+        "x": -4634.0,
+        "y": 1718.0
     }
 }
 
@@ -44816,29 +44816,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
-    "m_ObjectId": "8c7f196d6e3a43c4bc108adc334b108a",
-    "m_Id": 53,
-    "m_DisplayName": "WorldNormalVector",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "WorldNormalVector",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.RedirectNodeData",
     "m_ObjectId": "8c8b0fcf3e1e40ed8147b833e1a5b43f",
     "m_Group": {
@@ -45044,7 +45021,7 @@
     "m_ObjectId": "8dbf4d31750b4f06ac58ab73069bf8ad",
     "m_Title": "Blend Material",
     "m_Position": {
-        "x": -4636.99951171875,
+        "x": -4637.0,
         "y": 1048.0
     }
 }
@@ -47317,7 +47294,7 @@
     "m_ObjectId": "96ac6b7580d34db28b0f9d76357182cc",
     "m_Title": "Check For Mask",
     "m_Position": {
-        "x": -5363.99951171875,
+        "x": -5364.0,
         "y": 1672.0
     }
 }
@@ -48271,8 +48248,8 @@
     "m_ObjectId": "9bbd8e61815047a9842794059156034b",
     "m_Title": "Check For Mask",
     "m_Position": {
-        "x": -5361.99951171875,
-        "y": -950.000244140625
+        "x": -5362.0,
+        "y": -950.0
     }
 }
 
@@ -48910,6 +48887,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "9e4cf17f73ad485387ad5c55e127074c",
+    "m_Id": 53,
+    "m_DisplayName": "TangentNormalVector",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "TangentNormalVector",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "9e6d83a762c343d281d8fdec380db4ec",
     "m_Id": 0,
@@ -49094,8 +49094,8 @@
     "m_ObjectId": "9ed8daabc9284bad84bd35c4b1f1c872",
     "m_Title": "Distance Blending",
     "m_Position": {
-        "x": -4608.99951171875,
-        "y": 2473.99951171875
+        "x": -4609.0,
+        "y": 2474.0
     }
 }
 
@@ -50473,7 +50473,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "SampleSeamlessMaterialTerrain (Custom Function)",
+    "m_Name": "SampleRepetitionlessMaterialTerrain (Custom Function)",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -50492,7 +50492,7 @@
             "m_Id": "aa346eba97e04fb5b3660518fcff2052"
         },
         {
-            "m_Id": "8c7f196d6e3a43c4bc108adc334b108a"
+            "m_Id": "9e4cf17f73ad485387ad5c55e127074c"
         },
         {
             "m_Id": "f53e072f938446b389beddd43bb9cfbc"
@@ -51323,7 +51323,7 @@
         "m_SerializableColors": []
     },
     "m_SourceType": 0,
-    "m_FunctionName": "SampleSeamlessMaterialTerrain",
+    "m_FunctionName": "SampleRepetitionlessMaterialTerrain",
     "m_FunctionSource": "fc6c483eb917e014580ee8965fe2eaa3",
     "m_FunctionBody": "Enter function body here..."
 }
@@ -51842,8 +51842,8 @@
     "m_ObjectId": "a653920a45164d65b8f1328b95ca4878",
     "m_Title": "Far Material",
     "m_Position": {
-        "x": -4627.99951171875,
-        "y": -2575.000244140625
+        "x": -4628.0,
+        "y": -2575.0
     }
 }
 
@@ -52668,8 +52668,8 @@
     "m_ObjectId": "a9f762b5353a473e885446079666304d",
     "m_Title": "Check For Mask",
     "m_Position": {
-        "x": -5369.99951171875,
-        "y": 4303.00048828125
+        "x": -5370.0,
+        "y": 4303.0
     }
 }
 
@@ -52855,8 +52855,8 @@
     "m_ObjectId": "aa8b539ea8114b05830662da9cb433cc",
     "m_Title": "Set Material Properties",
     "m_Position": {
-        "x": -5498.99951171875,
-        "y": -632.00048828125
+        "x": -5499.0,
+        "y": -632.0
     }
 }
 
@@ -53416,8 +53416,8 @@
     "m_ObjectId": "aca7698ae9584ecba972e7b5f1137635",
     "m_Title": "Material Blend",
     "m_Position": {
-        "x": -4630.99951171875,
-        "y": 717.99951171875
+        "x": -4631.0,
+        "y": 718.0
     }
 }
 
@@ -57141,8 +57141,8 @@
     "m_ObjectId": "bd78c933e72e427e9217eca2e172f580",
     "m_Title": "Base Material",
     "m_Position": {
-        "x": -4638.99951171875,
-        "y": 4346.00048828125
+        "x": -4639.0,
+        "y": 4346.0
     }
 }
 
@@ -60756,8 +60756,8 @@
     "m_ObjectId": "cc753624c912455398b06a84668e97f4",
     "m_Title": "Blend Material",
     "m_Position": {
-        "x": -4634.99951171875,
-        "y": -1580.000244140625
+        "x": -4635.0,
+        "y": -1580.0
     }
 }
 
@@ -63676,8 +63676,8 @@
     "m_ObjectId": "d91ef160e1df43749864341e4201b9ee",
     "m_Title": "Base Material",
     "m_Position": {
-        "x": -4631.99951171875,
-        "y": -905.00048828125
+        "x": -4632.0,
+        "y": -905.0
     }
 }
 
@@ -63711,8 +63711,8 @@
     "m_ObjectId": "d9d1fb9b364f49ee8dbf0563d0c7744c",
     "m_Title": "Distance Blending",
     "m_Position": {
-        "x": -4612.99951171875,
-        "y": 5101.00048828125
+        "x": -4613.0,
+        "y": 5101.0
     }
 }
 
@@ -70293,7 +70293,7 @@
     "m_ObjectId": "f60b7732d1b642b182eed6027288b775",
     "m_Title": "Set Material Properties",
     "m_Position": {
-        "x": -5472.99951171875,
+        "x": -5473.0,
         "y": -3251.0
     }
 }
@@ -71331,8 +71331,8 @@
     "m_ObjectId": "f9508e5c3e8141c591474f98ebea2633",
     "m_Title": "Material Blend",
     "m_Position": {
-        "x": -4630.99951171875,
-        "y": 3336.99951171875
+        "x": -4631.0,
+        "y": 3337.0
     }
 }
 
@@ -72734,8 +72734,8 @@
     "m_ObjectId": "fe9e7a4eb5034483bb2d21dbf37aaacf",
     "m_Title": "Set Material Properties",
     "m_Position": {
-        "x": -5521.99951171875,
-        "y": 4619.00048828125
+        "x": -5522.0,
+        "y": 4619.0
     }
 }
 
