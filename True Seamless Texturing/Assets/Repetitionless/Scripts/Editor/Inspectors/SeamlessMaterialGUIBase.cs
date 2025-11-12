@@ -9,6 +9,7 @@ namespace Repetitionless.Inspectors
     using Compression;
     using Variables;
     using GUIUtilities;
+    using System;
 
     public class SeamlessMaterialGUIBase : ShaderGUI
     {
@@ -398,7 +399,7 @@ namespace Repetitionless.Inspectors
             // Normal Map
             Rect normalStrengthSliderRect = DrawTexture(sectionIndex, 4, new GUIContent("Normal Map"), $"_{materialPrefix}NormalMap");
             if (normalAssigned)
-                materialProperties1.w = EditorGUI.Slider(normalStrengthSliderRect, materialProperties1.w, 0, 1);
+                materialProperties1.w = EditorGUI.FloatField(normalStrengthSliderRect, materialProperties1.w);
 
             // Occlussion Map
             Rect occlussionStrengthSliderRect = DrawTexture(sectionIndex, 5, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"), $"_{materialPrefix}OcclussionMap");

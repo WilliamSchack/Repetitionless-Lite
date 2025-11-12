@@ -21,6 +21,8 @@ namespace Repetitionless.GUIUtilities
         private Texture2DArray _array; 
         private string _fileName;
 
+        public Texture2DArray Array { get { return _array; } }
+
         // Array Settings
         public TextureFormat TextureFormat = TextureFormat.DXT5;
         public bool TransferMipmaps = true;
@@ -147,8 +149,6 @@ namespace Repetitionless.GUIUtilities
         /// </param>
         private void Init(MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
         {
-            //arrayProperty.type == MaterialProperty.PropType.Texture
-
             // Assign variables
             _arrayProperty = arrayProperty;
             _assignedTexturesProperty = assignedTexturesProperty;
@@ -158,42 +158,61 @@ namespace Repetitionless.GUIUtilities
             _textures = new Texture2D[textureCount];
 
             // Auto assign file name if not set: "TextureArray_ArrayPropertyDisplayName.asset"
-            if (fileName == null) {
+            if (fileName == null)
+            {
                 string legalDisplayName = string.Join("_", arrayProperty.displayName.Split(System.IO.Path.GetInvalidFileNameChars())); // Remove invalid characters
                 legalDisplayName = legalDisplayName.Replace(" ", "_"); // Remove spaces
-            
+
                 fileName = $"TextureArray_{legalDisplayName}.asset";
-            } else if (!fileName.EndsWith(".asset")) {
+            }
+            else if (!fileName.EndsWith(".asset"))
+            {
                 fileName += ".asset";
             }
-            
+
             _fileName = fileName;
 
             // Load array
             Texture2DArray array = (Texture2DArray)AssetDatabase.LoadAssetAtPath(ArrayPath(), typeof(Texture2DArray));
-            
+
             // If array exists load textures and uncompress assigned textures
-            if (array != null) {
+            if (array != null)
+            {
                 // Get textures from array
                 Texture2D[] textures = Texture2DArrayUtilities.GetTextures(array);
 
                 // Get assigned textures
                 int compressedAssignedTextures = (int)assignedTexturesProperty.floatValue;
                 bool[] assignedTextures = BooleanCompression.GetValues(compressedAssignedTextures, _textures.Length);
-                
+
                 // Add textures to array in correct positions
                 int currentIndex = 0;
-                for (int i = 0; i < assignedTextures.Length; i++) {
-                    if (assignedTextures[i]) {
+                for (int i = 0; i < assignedTextures.Length; i++)
+                {
+                    if (assignedTextures[i])
+                    {
                         _textures[i] = textures[currentIndex];
                         currentIndex++;
                     }
                 }
-                
+
                 _assignedTextures = assignedTextures;
             }
 
             _array = array;
+        }
+
+        /// <summary>
+        /// Changes the array to a new one
+        /// !! Assumes no textures were added or removed !!
+        /// </summary>
+        /// <param name="newArray">
+        /// The new array
+        /// </param>
+        public void UpdateArray(Texture2DArray newArray)
+        {
+            _arrayProperty.textureValue = newArray;
+            _array = newArray;
         }
 
         /// <summary>

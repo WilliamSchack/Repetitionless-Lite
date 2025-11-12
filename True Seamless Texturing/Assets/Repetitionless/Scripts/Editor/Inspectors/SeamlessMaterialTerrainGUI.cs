@@ -7,6 +7,8 @@ namespace Repetitionless.Inspectors
 {
     using Compression;
     using GUIUtilities;
+    using CustomWindows;
+    using UnityEngine.UI;
 
     public class SeamlessMaterialTerrainGUI : SeamlessMaterialGUIBase
     {
@@ -33,7 +35,8 @@ namespace Repetitionless.Inspectors
         protected override int HandleAssignedTextures(string materialPrefix, int sectionIndex, MaterialProperty settingsProp)
         {
             // If the base material, return true for each texture as that information cannot be got, textures in the Texture Layer
-            if (sectionIndex == 0) {
+            if (sectionIndex == 0)
+            {
                 // Emission is the only texture assigned in the inspected, handle that properly
                 MaterialProperty emissionTexProp = FindProperty($"_{materialPrefix}EmissionMap");
 
@@ -72,7 +75,8 @@ namespace Repetitionless.Inspectors
 
             // Setup Texture Array Drawers
             _textureDrawers = new List<TerrainLayerTextureDrawers>();
-            for (int i = 0; i < _layerStrings.Length; i++) {
+            for (int i = 0; i < _layerStrings.Length; i++)
+            {
                 TerrainLayerTextureDrawers textureData = new TerrainLayerTextureDrawers();
 
                 // Get properties
@@ -146,18 +150,34 @@ namespace Repetitionless.Inspectors
         protected override void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true)
         {
             // For the base material remove Packed Texture and Smoothness/Roughness settings
-            if (materialPrefix.Contains("Base")) {
+            if (materialPrefix.Contains("Base"))
+            {
                 base.DrawMaterialSettingsGUI(materialPrefix, true, true, false, true, false);
                 return;
             }
 
             base.DrawMaterialSettingsGUI(materialPrefix, showNoise, showVariation, showPT, showEmission, showSR);
+
+            // Array settings button
+            if (GUILayout.Button("ARRAYSETTINGS")) {
+                // Get the texture array for this material
+                int sectionIndex = materialPrefix.Contains("Far") ? 1 : 2;
+                TextureArrayGUIDrawer textureDrawer = GetTextureDrawer(sectionIndex);
+
+                if (textureDrawer.Array != null) {
+                    ConfigureArrayWindowLimited.ShowWindow(textureDrawer.Array, $"{materialPrefix} Array", (Texture2DArray newArray) => {
+                        textureDrawer.UpdateArray(newArray);
+                    });
+                } else
+                    Debug.LogWarning($"{materialPrefix} has no textures assigned to modify...");
+            }
         }
 
         protected override void DrawMaterialMainProperties(string materialPrefix, int sectionIndex)
         {
             // Show regular gui for all gui main properties but the base
-            if (!materialPrefix.Contains("Base")) {
+            if (!materialPrefix.Contains("Base"))
+            {
                 base.DrawMaterialMainProperties(materialPrefix, sectionIndex);
                 return;
             }
@@ -177,14 +197,16 @@ namespace Repetitionless.Inspectors
             bool emissionEnabled = BooleanCompression.GetValue(settingToggles, 6);
 
             // Emission
-            if (emissionEnabled) {
+            if (emissionEnabled)
+            {
                 bool prevEmissionAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 4);
 
                 // Change emission colour to white if texture assigned and texture is black
                 EditorGUI.BeginChangeCheck();
                 Rect emissionColourRect = DrawTexture(sectionIndex, 6, new GUIContent("Emission", "Emission (RGB)"), $"_{materialPrefix}EmissionMap");
                 Color emissionColour = EditorGUI.ColorField(emissionColourRect, GUIContent.none, emissionColorProp.colorValue, true, false, true);
-                if (EditorGUI.EndChangeCheck()) {
+                if (EditorGUI.EndChangeCheck())
+                {
                     // Rehandle assigned textures since the function can be changed in child classes
                     int afterAssignedTextures = HandleAssignedTextures(materialPrefix, sectionIndex, settingsProp);
                     bool afterEmissionAssigned = BooleanCompression.GetValue(afterAssignedTextures, 5);
@@ -193,9 +215,11 @@ namespace Repetitionless.Inspectors
                     emissionColorProp.colorValue = emissionColour;
 
                     // If texture just assigned and colour is black, change colour to white
-                    if (afterEmissionAssigned && !prevEmissionAssigned) {
+                    if (afterEmissionAssigned && !prevEmissionAssigned)
+                    {
                         Color blackColor = new Color(0, 0, 0, emissionColorProp.colorValue.a);
-                        if (emissionColorProp.colorValue == blackColor) {
+                        if (emissionColorProp.colorValue == blackColor)
+                        {
                             emissionColorProp.colorValue = Color.white;
                         }
                     }
@@ -206,7 +230,7 @@ namespace Repetitionless.Inspectors
         protected override Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, string texturePropertyName)
         {
             // If the base material, normal map, or variation texture, dont use the texture arrays so draw the field normally
-            if(sectionIndex == 0 || textureIndex == 4 || textureIndex == 7)
+            if (sectionIndex == 0 || textureIndex == 4 || textureIndex == 7)
                 return base.DrawTexture(sectionIndex, textureIndex, content, texturePropertyName);
 
             // If greater than the normal map, go back an index (skip the normal map)

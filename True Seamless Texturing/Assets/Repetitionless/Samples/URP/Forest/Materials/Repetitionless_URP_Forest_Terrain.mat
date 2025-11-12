@@ -260,7 +260,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer3BlendTextures:
-        m_Texture: {fileID: 18700000, guid: 7d88701e40c453cb3a76e48b20ad9353, type: 2}
+        m_Texture: {fileID: 18700000, guid: a084b9b150f41cabca0af5ecd245943d, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer3BlendVariationTexture:
@@ -483,7 +483,7 @@ Material:
     - _Layer2MaterialBlendSettings: 6
     - _Layer3BaseVariationBrightness: 0.3
     - _Layer3BaseVariationMode: 2
-    - _Layer3BlendArrayAssignedTextures: 25
+    - _Layer3BlendArrayAssignedTextures: 9
     - _Layer3BlendAssignedTextures: 0
     - _Layer3BlendMaskType: 0
     - _Layer3BlendVariationBrightness: 0.3
@@ -603,11 +603,11 @@ Material:
     - _Layer3BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _Layer3BlendMaskDistanceTO: {r: 1, g: 1, b: 0, a: 0}
     - _Layer3BlendMaskTextureTO: {r: 1, g: 1, b: 0, a: 0}
-    - _Layer3BlendMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
+    - _Layer3BlendMaterialProperties1: {r: 0, g: 0, b: 0.5, a: 1}
     - _Layer3BlendMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _Layer3BlendNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer3BlendNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _Layer3BlendSettings: {r: 39, g: 28, b: 0, a: 0}
+    - _Layer3BlendSettings: {r: 7, g: 12, b: 0, a: 0}
     - _Layer3BlendTilingOffset: {r: 2, g: 2, b: 0, a: 0}
     - _Layer3BlendVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _Layer3BlendVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
