@@ -307,26 +307,22 @@ namespace Repetitionless.Inspectors
             // Get variables from settings prop
             int settingToggles = (int)settingTogglesProp.vectorValue.x;
             bool noiseEnabled = BooleanCompression.GetValue(settingToggles, 0);
-            //bool randomiseScaling = BooleanCompression.GetValue(settingToggles, 1);
-            //bool randomiseRotation = BooleanCompression.GetValue(settingToggles, 2);
-            //bool smoothnessEnabled = BooleanCompression.GetValue(settingToggles, 3);
-            //bool variationEnabled = BooleanCompression.GetValue(settingToggles, 4);
-            //bool packedTexture = BooleanCompression.GetValue(settingToggles, 5);
-            //bool emissionEnabled = BooleanCompression.GetValue(settingToggles, 6);
 
             // Calculate scaled text min width
             int minScaledTextWidth = 0;
-            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Noise")).x;
-            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Variation")).x;
-            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Packed Texture")).x;
-            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Emission")).x;
-            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Smooth")).x;
-            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Rough")).x;
-            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Clear Tex")).x;
+            if (showNoise)     minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Noise")).x;
+            if (showVariation) minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Variation")).x;
+            if (showPT)        minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Packed Texture")).x;
+            if (showEmission)  minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Emission")).x;
+            if (showSR) {
+                minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Smooth")).x;
+                minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Rough")).x;
+            }
             if (noiseEnabled) {
                 minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Random Scaling")).x;
                 minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Random Rotation")).x;
             }
+            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("-----------")).x; // Filler space
             minScaledTextWidth += extraWidth;
 
             EditorGUILayout.BeginHorizontal();
