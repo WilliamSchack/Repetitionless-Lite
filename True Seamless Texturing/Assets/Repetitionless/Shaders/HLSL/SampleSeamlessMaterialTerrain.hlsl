@@ -231,9 +231,6 @@ void SampleSeamlessMaterialTerrain_float(
     float backgroundControl = saturate(1 - controlSum);
     if (controlSum > 1.0)
         controlColor /= controlSum;
-    
-    // Matrix for transforming tangent to world normals
-    //float3x3 TBN = float3x3(WorldTangent, WorldBitangent, WorldNormalVector);
 
     // Variables
     float4 albedoColor = backgroundControl;
@@ -561,9 +558,6 @@ void SampleSeamlessMaterialTerrain_float(
         occlussion += layerOcclussion * layer4Control;
         emission += layerEmission * layer4Control;
     }
-
-    // Transform tangent normals to world normals
-    //normalVector = normalize(mul(normalVector, TBN));
 
     // If Transparency Disabled
     if (SurfaceType < 2)

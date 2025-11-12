@@ -75,9 +75,8 @@ void SampleSeamlessMaterialMaster_float(
 {
     // ----------------------- Setup ------------------------- //
 
-    // Create materials
+    // Create material structs
     RepetitionlessMaterial baseMaterial = {
-        BaseSettings, BaseTilingOffset,
         BaseAlbedo,
         BaseMetallicMap,
         BaseSmoothnessMap,
@@ -85,16 +84,18 @@ void SampleSeamlessMaterialMaster_float(
         BaseNormalMap,
         BaseOcclussionMap,
         BaseEmissionMap,
-        BaseAlbedoTint, BaseEmissionColor,
-        BaseMaterialProperties1, BaseMaterialProperties2,
-        BaseNoiseSettings, BaseNoiseMinMax,
-        BaseVariationMode, BaseVariationSettings, BaseVariationBrightness,
-        BaseVariationNoiseSettings,
-        BaseVariationTexture, BaseVariationTextureTO
+        {
+            BaseSettings, BaseTilingOffset,
+            BaseAlbedoTint, BaseEmissionColor,
+            BaseMaterialProperties1, BaseMaterialProperties2,
+            BaseNoiseSettings, BaseNoiseMinMax,
+            BaseVariationMode, BaseVariationSettings, BaseVariationBrightness,
+            BaseVariationNoiseSettings,
+            BaseVariationTexture, BaseVariationTextureTO
+        }
     };
 
     RepetitionlessMaterial blendMaterial = {
-        BlendSettings, BlendTilingOffset,
         BlendAlbedo,
         BlendMetallicMap,
         BlendSmoothnessMap,
@@ -102,16 +103,18 @@ void SampleSeamlessMaterialMaster_float(
         BlendNormalMap,
         BlendOcclussionMap,
         BlendEmissionMap,
-        BlendAlbedoTint, BlendEmissionColor,
-        BlendMaterialProperties1, BlendMaterialProperties2,
-        BlendNoiseSettings, BlendNoiseMinMax,
-        BlendVariationMode, BlendVariationSettings, BlendVariationBrightness,
-        BlendVariationNoiseSettings,
-        BlendVariationTexture, BlendVariationTextureTO
+        {
+            BlendSettings, BlendTilingOffset,
+            BlendAlbedoTint, BlendEmissionColor,
+            BlendMaterialProperties1, BlendMaterialProperties2,
+            BlendNoiseSettings, BlendNoiseMinMax,
+            BlendVariationMode, BlendVariationSettings, BlendVariationBrightness,
+            BlendVariationNoiseSettings,
+            BlendVariationTexture, BlendVariationTextureTO
+        }
     };
 
     RepetitionlessMaterial farMaterial = {
-        FarSettings, FarTilingOffset,
         FarAlbedo,
         FarMetallicMap,
         FarSmoothnessMap,
@@ -119,12 +122,15 @@ void SampleSeamlessMaterialMaster_float(
         FarNormalMap,
         FarOcclussionMap,
         FarEmissionMap,
-        FarAlbedoTint, FarEmissionColor,
-        FarMaterialProperties1, FarMaterialProperties2,
-        FarNoiseSettings, FarNoiseMinMax,
-        FarVariationMode, FarVariationSettings, FarVariationBrightness,
-        FarVariationNoiseSettings,
-        FarVariationTexture, FarVariationTextureTO
+        {
+            FarSettings, FarTilingOffset,
+            FarAlbedoTint, FarEmissionColor,
+            FarMaterialProperties1, FarMaterialProperties2,
+            FarNoiseSettings, FarNoiseMinMax,
+            FarVariationMode, FarVariationSettings, FarVariationBrightness,
+            FarVariationNoiseSettings,
+            FarVariationTexture, FarVariationTextureTO
+        }
     };
 
     // Variables
@@ -246,7 +252,7 @@ void SampleSeamlessMaterialMaster_float(
             case 0: // Tiling & Offset
                 // Sample Base Material
                 // Set far TO, no need to change back it wont be used again
-                baseMaterial.TilingOffset = FarTilingOffset;
+                baseMaterial.Data.TilingOffset = FarTilingOffset;
 
                 GetSeamlessMaterialColorNEW(
                     SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
@@ -294,7 +300,7 @@ void SampleSeamlessMaterialMaster_float(
         
         // Sample Blend Material
         // Set blend TO, no need to change back it wont be used again
-        blendMaterial.TilingOffset = tilingOffset;
+        blendMaterial.Data.TilingOffset = tilingOffset;
 
         GetSeamlessMaterialColorNEW(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
