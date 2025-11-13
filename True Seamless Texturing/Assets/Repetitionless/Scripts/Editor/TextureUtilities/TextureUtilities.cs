@@ -21,10 +21,12 @@ namespace Repetitionless.TextureUtilities
             TextureFormat.BC5,
             TextureFormat.BC6H,
             TextureFormat.BC7,
+#if !UNITY_6000_1_OR_NEWER
             TextureFormat.PVRTC_RGB2,
             TextureFormat.PVRTC_RGB4,
             TextureFormat.PVRTC_RGBA2,
             TextureFormat.PVRTC_RGBA4,
+#endif
             TextureFormat.ETC_RGB4,
             TextureFormat.EAC_R,
             TextureFormat.EAC_RG,

@@ -112,7 +112,13 @@ namespace Repetitionless.GUIUtilities
                 return false;
             }
 
-            if (_arrayProperty.type != MaterialProperty.PropType.Texture || (_arrayProperty.textureValue != null && _arrayProperty.textureValue is not Texture2DArray)) {
+#if !UNITY_6000_2_OR_NEWER
+            if (_arrayProperty.type != MaterialProperty.PropType.Texture
+#else
+            if (_arrayProperty.propertyType != UnityEngine.Rendering.ShaderPropertyType.Texture
+#endif
+                || (_arrayProperty.textureValue != null && _arrayProperty.textureValue is not Texture2DArray))
+            {
                 Debug.LogError($"Array property in ({_material.name}) is not a Texture2DArray. Please change the shader property type or check the property name: \"{arrayPropertyName}\"");
                 return false;
             }
@@ -122,7 +128,12 @@ namespace Repetitionless.GUIUtilities
                 return false;
             }
 
-            if (_assignedTexturesProperty.type != MaterialProperty.PropType.Float) {
+#if !UNITY_6000_2_OR_NEWER
+            if (_assignedTexturesProperty.type != MaterialProperty.PropType.Float)
+#else
+            if (_assignedTexturesProperty.propertyType != UnityEngine.Rendering.ShaderPropertyType.Float)
+#endif
+            {
                 Debug.LogError($"Assigned Textures property in ({_material.name}) is not a float. Please change the shader property type or check the property name: \"{assignedTexturesPropertyName}\"");
                 return false;
             }
