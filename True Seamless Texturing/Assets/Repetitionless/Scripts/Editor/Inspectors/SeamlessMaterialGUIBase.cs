@@ -455,7 +455,7 @@ namespace Repetitionless.Inspectors
 
             if (packedTexture) {
                 // Use metallic as packed texture
-                DrawTexture(sectionIndex, 1, new GUIContent("Packed Texture", $"nSmoothness/Roughness can be toggled above\nIf your material is darker with this enabled, untick \"sRGB\" in the texture import settings\n\nR: Metallic\nG: Occlussion\nA: {(smoothnessEnabled ? "Smoothness" : "Roughness")}"), $"_{materialPrefix}MetallicMap");
+                DrawTexture(sectionIndex, 1, new GUIContent("Packed Texture", $"Smoothness/Roughness can be toggled above.\nIf your material is darker with this enabled, untick \"sRGB\" in the texture import settings\n\nR: Metallic\nG: Occlussion\nA: {(smoothnessEnabled ? "Smoothness" : "Roughness")}"), $"_{materialPrefix}MetallicMap");
 
                 // Occlussion slider
                 // Get rects seperately to make slider same width as others
