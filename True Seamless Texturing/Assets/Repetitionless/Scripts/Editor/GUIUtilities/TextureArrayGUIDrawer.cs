@@ -112,10 +112,10 @@ namespace Repetitionless.GUIUtilities
                 return false;
             }
 
-#if !UNITY_6000_2_OR_NEWER
-            if (_arrayProperty.type != MaterialProperty.PropType.Texture
-#else
+#if UNITY_6000_2_OR_NEWER
             if (_arrayProperty.propertyType != UnityEngine.Rendering.ShaderPropertyType.Texture
+#else
+            if (_arrayProperty.type != MaterialProperty.PropType.Texture
 #endif
                 || (_arrayProperty.textureValue != null && _arrayProperty.textureValue is not Texture2DArray))
             {
@@ -128,10 +128,10 @@ namespace Repetitionless.GUIUtilities
                 return false;
             }
 
-#if !UNITY_6000_2_OR_NEWER
-            if (_assignedTexturesProperty.type != MaterialProperty.PropType.Float)
-#else
+#if UNITY_6000_2_OR_NEWER
             if (_assignedTexturesProperty.propertyType != UnityEngine.Rendering.ShaderPropertyType.Float)
+#else
+            if (_assignedTexturesProperty.type != MaterialProperty.PropType.Float)
 #endif
             {
                 Debug.LogError($"Assigned Textures property in ({_material.name}) is not a float. Please change the shader property type or check the property name: \"{assignedTexturesPropertyName}\"");

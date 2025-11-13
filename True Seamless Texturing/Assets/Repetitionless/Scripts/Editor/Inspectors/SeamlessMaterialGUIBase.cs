@@ -9,13 +9,16 @@ namespace Repetitionless.Inspectors
     using Compression;
     using Variables;
     using GUIUtilities;
-    using System;
 
     public class SeamlessMaterialGUIBase : ShaderGUI
     {
         #region Variables
         
-        internal class MaterialFoldoutState
+
+        /// <summary>
+        /// Holds the state for each property foldout in a material section
+        /// </summary>
+        protected class MaterialFoldoutState
         {
             public bool MainProperties = true;
             public bool NoiseProperties = true;
@@ -23,18 +26,18 @@ namespace Repetitionless.Inspectors
         }
 
         // Constants
-        internal const int HEADER_PADDING = 4;
-        internal const int SETTING_SPACING = 4;
+        protected const int HEADER_PADDING = 4;
+        protected const int SETTING_SPACING = 4;
 
-        internal const int SCALED_TEXT_PADDING = 10;
+        protected const int SCALED_TEXT_PADDING = 10;
 
         // Material Helpers
-        internal Material _material;
-        internal MaterialEditor _editor;
-        internal Dictionary<string, MaterialProperty> _cachedProperties = new Dictionary<string, MaterialProperty>();
+        protected Material _material;
+        protected MaterialEditor _editor;
+        protected Dictionary<string, MaterialProperty> _cachedProperties = new Dictionary<string, MaterialProperty>();
 
         // Foldout States, dynamically adds new materialPrefixes
-        internal Dictionary<string, MaterialFoldoutState> _foldoutStates = new Dictionary<string, MaterialFoldoutState>();
+        protected Dictionary<string, MaterialFoldoutState> _foldoutStates = new Dictionary<string, MaterialFoldoutState>();
 
         // Debug
         private int _prevDebugIndex = 0;
@@ -44,12 +47,36 @@ namespace Repetitionless.Inspectors
         #endregion
 
         #region Helpers
-        internal MaterialProperty FindProperty(string name)
+        /// <summary>
+        /// Gets a property from the cached properties
+        /// </summary>
+        /// <param name="name">
+        /// The name of the material property
+        /// </param>
+        /// <returns>
+        /// The material property requested
+        /// </returns>
+        protected MaterialProperty FindProperty(string name)
         {
             return _cachedProperties[name];
         }
 
-        internal string GetScaledText(int minWidth, string largeText, string smallText)
+        /// <summary>
+        /// Dynamically returns a text if the window width is within the given minWidth 
+        /// </summary>
+        /// <param name="minWidth">
+        /// The minimum width for the window width to be to show the large text
+        /// </param>
+        /// <param name="largeText">
+        /// The text to return if the window width is greater than minWidth
+        /// </param>
+        /// <param name="smallText">
+        /// The text to return if the window width is less than minWidth
+        /// </param>
+        /// <returns>
+        /// The scaled text
+        /// </returns>
+        protected string GetScaledText(int minWidth, string largeText, string smallText)
         {
             // Using screen width so it is accurate in both layout and repaint events
             return Screen.width <= minWidth + SCALED_TEXT_PADDING ? smallText : largeText;
@@ -67,6 +94,26 @@ namespace Repetitionless.Inspectors
 
         // Helper to draw textures for child classes
         // Require section and texture indexes for child classes to modify individual texture drawing
+
+        /// <summary>
+        /// Used to draw all the texture fields
+        /// Can be overrided to change how textures are drawn
+        /// </summary>
+        /// <param name="sectionIndex">
+        /// The section that this texture is in
+        /// </param>
+        /// <param name="textureIndex">
+        /// The index of the texture in this section
+        /// </param>
+        /// <param name="content">
+        /// The GUIContent to use in the field
+        /// </param>
+        /// <param name="texturePropertyName">
+        /// The texture material property name
+        /// </param>
+        /// <returns>
+        /// The rect that the texture field is using
+        /// </returns>
         protected virtual Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, string texturePropertyName)
         {
             // Draw texture property
@@ -78,8 +125,22 @@ namespace Repetitionless.Inspectors
             return lineRect;
         }
 
-        // Assigned Textures, for the shader to determine whether to use textures or values
-        // Storing inside of int instead of multiple bools so its only one variable, less to manage
+        /// <summary>
+        /// Handles assigned textures that the shader uses to determine whether to use textures or values
+        /// Can be overrided to change how the assigned textures are set
+        /// </summary>
+        /// <param name="materialPrefix">
+        /// The material property prefix for the material section
+        /// </param>
+        /// <param name="sectionIndex">
+        /// The section that this texture is in
+        /// </param>
+        /// <param name="settingsProp">
+        /// The settings material property for this material section
+        /// </param>
+        /// <returns>
+        /// The compressed assigned textures
+        /// </returns>
         protected virtual int HandleAssignedTextures(string materialPrefix, int sectionIndex, MaterialProperty settingsProp)
         {
             // Material Properties
@@ -137,7 +198,9 @@ namespace Repetitionless.Inspectors
         #endregion
 
         #region Material GUI
-        // Top properties, general material settings
+        /// <summary>
+        /// Draws the general material settings at the top of the inspector
+        /// </summary>
         protected virtual void DrawMaterialPropertiesGUI()
         {
             // Header
@@ -237,7 +300,19 @@ namespace Repetitionless.Inspectors
         }
         #endregion
 
-        #region Base Material
+        #region Base Material GUI Sections
+        /// <summary>
+        /// Draws a material section GUI
+        /// </summary>
+        /// <param name="materialPrefix">
+        /// The material property prefix for the material section
+        /// </param>
+        /// <param name="sectionIndex">
+        /// The material section index
+        /// </param>
+        /// <param name="headerText">
+        /// The header label text for the section
+        /// </param>
         protected virtual void DrawMaterialGUI(string materialPrefix, int sectionIndex, string headerText = "")
         {
             // Setup Foldouts
@@ -299,6 +374,31 @@ namespace Repetitionless.Inspectors
             }
         }
 
+        /// <summary>
+        /// Draws the settings at the top of each material section
+        /// </summary>
+        /// <param name="materialPrefix">
+        /// The material property prefix for the material section
+        /// </param>
+        /// <param name="showNoise">
+        /// Toggles if the noise settings are enabled
+        /// </param>
+        /// <param name="showVariation">
+        /// Toggles if the variation setting is enabled
+        /// </param>
+        /// <param name="showPT">
+        /// Toggles if the packed texture setting is enabled
+        /// </param>
+        /// <param name="showEmission">
+        /// Toggles if the emission setting is enabled
+        /// </param>
+        /// <param name="showSR">
+        /// Toggles if the smoothness/roughness toggle setting is enabled
+        /// </param>
+        /// <param name="extraWidth">
+        /// Any extra width required for the whole section
+        /// Used to increase the required width for the labels to expand
+        /// </param>
         protected virtual void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true, int extraWidth = 0)
         {
             // Material Properties
@@ -343,6 +443,30 @@ namespace Repetitionless.Inspectors
             settingTogglesProp.vectorValue = new Vector2(compressedSettingToggles, settingTogglesProp.vectorValue.y);
         }
         
+        /// <summary>
+        /// Draws the left section of the material settings
+        /// </summary>
+        /// <param name="compressedValues">
+        /// The compressed setting values to modify
+        /// </param>
+        /// <param name="materialPrefix">
+        /// The material property prefix for the material section
+        /// </param>
+        /// <param name="settingToggles">
+        /// The compressed settings toggles
+        /// </param>
+        /// <param name="minScaledTextWidth">
+        /// The minimum width required for labels to expand
+        /// </param>
+        /// <param name="showNoise">
+        /// Toggles if the noise settings are enabled
+        /// </param>
+        /// <param name="showVariation">
+        /// Toggles if the variation setting is enabled
+        /// </param>
+        /// <returns>
+        /// The modified compressed setting values
+        /// </returns>
         protected virtual int DrawLeftMaterialSettingsGUI(int compressedValues, string materialPrefix, int settingToggles, int minScaledTextWidth, bool showNoise = true, bool showVariation = true)
         {
             // Settings
@@ -377,6 +501,33 @@ namespace Repetitionless.Inspectors
             return compressedValues;
         }
 
+        /// <summary>
+        /// Draws the right section of the material settings
+        /// </summary>
+        /// <param name="compressedValues">
+        /// The compressed setting values to modify
+        /// </param>
+        /// <param name="materialPrefix">
+        /// The material property prefix for the material section
+        /// </param>
+        /// <param name="settingToggles">
+        /// The compressed settings toggles
+        /// </param>
+        /// <param name="minScaledTextWidth">
+        /// The minimum width required for labels to expand
+        /// </param>
+        /// <param name="showPT">
+        /// Toggles if the packed texture setting is enabled
+        /// </param>
+        /// <param name="showEmission">
+        /// Toggles if the emission setting is enabled
+        /// </param>
+        /// <param name="showSR">
+        /// Toggles if the smoothness/roughness toggle setting is enabled
+        /// </param>
+        /// <returns>
+        /// The modified compressed setting values
+        /// </returns>
         protected virtual int DrawRightMaterialSettingsGUI(int compressedValues, string materialPrefix, int settingToggles, int minScaledTextWidth, bool showPT = true, bool showEmission = true, bool showSR = true)
         {
             // Settings
@@ -408,6 +559,15 @@ namespace Repetitionless.Inspectors
             return compressedValues;
         }
 
+        /// <summary>
+        /// Draws the main properties in a material section
+        /// </summary>
+        /// <param name="materialPrefix">
+        /// The material property prefix for the material section
+        /// </param>
+        /// <param name="sectionIndex">
+        /// The material section index
+        /// </param>
         protected virtual void DrawMaterialMainProperties(string materialPrefix, int sectionIndex)
         {
             // Material Properties
@@ -543,6 +703,12 @@ namespace Repetitionless.Inspectors
                 materialProperties2Prop.vectorValue = materialProperties2;
         }
 
+        /// <summary>
+        /// Draws the noise properties in a material section
+        /// </summary>
+        /// <param name="materialPrefix">
+        /// The material property prefix for the material section
+        /// </param>
         protected virtual void DrawMaterialNoiseGUI(string materialPrefix)
         {
             // Material Properties
@@ -597,6 +763,16 @@ namespace Repetitionless.Inspectors
                 noiseMinMaxProp.vectorValue = noiseMinMax;
         }
 
+
+        /// <summary>
+        /// Draws the variation properties in a material section
+        /// </summary>
+        /// <param name="materialPrefix">
+        /// The material property prefix for the material section
+        /// </param>
+        /// <param name="sectionIndex">
+        /// The material section index
+        /// </param>
         protected virtual void DrawMaterialVariationProperties(string materialPrefix, int sectionIndex)
         {
             // Material Properties
@@ -670,6 +846,13 @@ namespace Repetitionless.Inspectors
         }
         #endregion
 
+        #region Materials GUI
+        /// <summary>
+        /// Draws the base material GUI
+        /// </summary>
+        /// <param name="propertiesPrefix">
+        /// The material property prefix for the material
+        /// </param>
         protected virtual void DrawBaseMaterialGUI(string propertiesPrefix = "")
         {
             GUIUtilities.BeginBackgroundVertical();
@@ -679,6 +862,12 @@ namespace Repetitionless.Inspectors
             GUIUtilities.EndBackgroundVertical();
         }
 
+        /// <summary>
+        /// Draws the distance blend GUI
+        /// </summary>
+        /// <param name="propertiesPrefix">
+        /// The material property prefix for the material
+        /// </param>
         protected virtual void DrawDistanceBlendGUI(string propertiesPrefix = "")
         {
             // Material Property
@@ -736,6 +925,12 @@ namespace Repetitionless.Inspectors
             GUIUtilities.EndBackgroundVertical();
         }
 
+        /// <summary>
+        /// Draws the blend material GUI
+        /// </summary>
+        /// <param name="propertiesPrefix">
+        /// The material property prefix for the material
+        /// </param>
         protected virtual void DrawMaterialBlendGUI(string propertiesPrefix = "")
         {
             // Start Background
@@ -865,7 +1060,12 @@ namespace Repetitionless.Inspectors
             // End Background
             GUIUtilities.EndBackgroundVertical();
         }
+        #endregion
 
+        #region Debug GUI
+        /// <summary>
+        /// Draws the debug selection GUI
+        /// </summary>
         protected virtual void DrawDebugGUI()
         {
             // Start Background
@@ -911,6 +1111,7 @@ namespace Repetitionless.Inspectors
             // End Background
             GUIUtilities.EndBackgroundVertical();
         }
+        #endregion
     }
 }
 #endif

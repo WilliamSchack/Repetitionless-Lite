@@ -1,5 +1,8 @@
 namespace Repetitionless.Variables
 {
+    /// <summary>
+    /// Available surface types for Repetitionless Materials
+    /// </summary>
     public enum ESurfaceType
     {
         Opaque,
@@ -7,6 +10,9 @@ namespace Repetitionless.Variables
         Transparent
     }
     
+    /// <summary>
+    /// Available mask texture types for Repetitionless Materials
+    /// </summary>
     public enum ETextureType
     {
         PerlinNoise,
@@ -14,6 +20,9 @@ namespace Repetitionless.Variables
         CustomTexture
     }
 
+    /// <summary>
+    /// Available distance blend modes for Repetitionless Materials
+    /// </summary>
     public enum EDistanceBlendMode
     {
         TilingOffset,

@@ -72,6 +72,12 @@ namespace Repetitionless.GUIUtilities
             }
         }
 
+        /// <summary>
+        /// Draws a Large Header Label
+        /// </summary>
+        /// <param name="text">
+        /// The text to show
+        /// </param>
         public static void DrawHeaderLabelLarge(string text)
         {
             GUIContent textGUIContent = new GUIContent(text);
@@ -80,6 +86,19 @@ namespace Repetitionless.GUIUtilities
             GUI.Label(rect, textGUIContent, BoldHeaderLargeStyle);
         }
 
+        /// <summary>
+        /// Draws a large toggle button that uses and updates the inputted property
+        /// Displays red when disabled, green when enabled
+        /// </summary>
+        /// <param name="property">
+        /// The material property to be used and modified for the toggle state
+        /// </param>
+        /// <param name="label">
+        /// The text to show inside the button
+        /// </param>
+        /// <returns>
+        /// The button toggled state
+        /// </returns>
         public static bool DrawMajorToggleButton(MaterialProperty property, string label)
         {
             EditorGUI.BeginChangeCheck();
@@ -97,6 +116,19 @@ namespace Repetitionless.GUIUtilities
             return enabled;
         }
 
+        /// <summary>
+        /// Draws a large toggle button using an input toggle state value
+        /// Displays red when disabled, green when enabled
+        /// </summary>
+        /// <param name="enabled">
+        /// Toggle state if the button is enabled
+        /// </param>
+        /// <param name="label">
+        /// The text to show inside the button
+        /// </param>
+        /// <returns>
+        /// The button toggled state
+        /// </returns>
         public static bool DrawMajorToggleButton(bool enabled, string label)
         {
             Color prevBackgroundColor = GUI.backgroundColor;
@@ -694,6 +726,19 @@ namespace Repetitionless.GUIUtilities
             return new Vector2Int(xVal, yVal);
         }
 
+        /// <summary>
+        /// Draws tiling offset fields using and updating values in a float4 materialProperty
+        /// Uses the DrawVector2Field function to remove empty space
+        /// </summary>
+        /// <param name="tilingOffsetProperty">
+        /// A float4 property that will be used and updated for the tiling and offset values
+        /// </param>
+        /// <param name="tilingLabel">
+        /// The label to show for the tiling field
+        /// </param>
+        /// <param name="offsetLabel">
+        /// The label to show for the offset field
+        /// </param>
         public static void DrawTilingOffset(MaterialProperty tilingOffsetProperty, string tilingLabel = "Scale", string offsetLabel = "Offset")
         {
             Vector4 tilingOffset = tilingOffsetProperty.vectorValue;
@@ -719,6 +764,18 @@ namespace Repetitionless.GUIUtilities
                 tilingOffsetProperty.vectorValue = tilingOffset;
         }
 
+        /// <summary>
+        /// Draws a foldout and updates the gui layout
+        /// </summary>
+        /// <param name="foldout">
+        /// If the foldout state is enabled
+        /// </param>
+        /// <param name="label">
+        /// The label on the foldout
+        /// </param>
+        /// <returns>
+        /// The foldout state
+        /// </returns>
         public static bool DrawFoldout(bool foldout, string label)
         {
             Rect rect = GetLineRect();

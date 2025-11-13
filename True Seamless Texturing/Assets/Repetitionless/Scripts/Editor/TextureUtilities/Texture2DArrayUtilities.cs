@@ -21,7 +21,6 @@ namespace Repetitionless.TextureUtilities
             TextureFormat.DXT5,
             TextureFormat.RGBA32,
             TextureFormat.ARGB32,
-
             TextureFormat.Alpha8,
             TextureFormat.ARGB4444,
             TextureFormat.RGB24,
