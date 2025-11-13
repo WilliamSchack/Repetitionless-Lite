@@ -10,14 +10,18 @@
 
 void GetIndexInArray_float(int TexturesAssignedCompressed, int Index, out int Out)
 {
+    // Dont loop with no iterations, will cause unrolling errors
+    if (Index == 0) {
+        Out = 0;
+        return;
+    }
+
     // Get the index of the texture in the array
     float arrayIndex = 0;
-    for (int i = 0; i < Index; i++)
-    {
+    for (int i = 0; i < Index; i++) {
         bool assigned = GetCompressedValue(TexturesAssignedCompressed, i);
         
-        if (assigned)
-        {
+        if (assigned) {
             arrayIndex++;
         }
     }

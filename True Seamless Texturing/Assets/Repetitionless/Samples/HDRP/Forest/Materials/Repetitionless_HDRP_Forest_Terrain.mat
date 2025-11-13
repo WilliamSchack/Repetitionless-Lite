@@ -29,8 +29,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
-  m_InvalidKeywords:
-  - _NORMALMAP_TANGENT_SPACE
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -109,7 +108,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1BlendTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 3cc6e1e3828992ca18259fe87811cb98, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layer1BlendVariationTexture:
@@ -496,7 +495,7 @@ Material:
     - _Layer1BaseVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _Layer1BaseVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _Layer1BlendAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
-    - _Layer1BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Layer1BlendEmissionColor: {r: 1, g: 1, b: 1, a: 0}
     - _Layer1BlendMaskDistanceTO: {r: 1, g: 1, b: 0, a: 0}
     - _Layer1BlendMaskTextureTO: {r: 1, g: 1, b: 0, a: 0}
     - _Layer1BlendMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
@@ -570,7 +569,7 @@ Material:
     - _Layer3BaseVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
     - _Layer3BaseVariationTextureTO: {r: 5, g: 5, b: 0, a: 0}
     - _Layer3BlendAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
-    - _Layer3BlendEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Layer3BlendEmissionColor: {r: 1, g: 1, b: 1, a: 0}
     - _Layer3BlendMaskDistanceTO: {r: 1, g: 1, b: 0, a: 0}
     - _Layer3BlendMaskTextureTO: {r: 1, g: 1, b: 0, a: 0}
     - _Layer3BlendMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
