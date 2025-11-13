@@ -32,11 +32,11 @@ float4 SampleSeamlessArrayTexture(UnityTexture2DArray TextureArray, int Assigned
     
     // Only sample base material if visible
     if (!SampleEdge || (SampleEdge && EdgeMask != 1))
-        SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, TransformedUV, 0, SS, baseTextureColor);
+        SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, TransformedUV, 1, SS, baseTextureColor);
 
     if (SampleEdge) {
         float4 edgeTextureColor = 1;
-        SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, EdgeUV, 0, SS, edgeTextureColor);
+        SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, EdgeUV, 1, SS, edgeTextureColor);
         baseTextureColor = lerp(baseTextureColor, edgeTextureColor, EdgeMask);
     }
 

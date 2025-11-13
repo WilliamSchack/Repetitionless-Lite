@@ -132,8 +132,10 @@ void GetRepetitionlessMaterialColorBase(
     }
     
     // Albedo
-    if (usingArrayMaterial) AlbedoColorOut = SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 0, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-    else                    AlbedoColorOut = SampleSeamlessTexture(Material.Albedo, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+    if (usingArrayMaterial) AlbedoColorOut = SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 0, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges)
+                                             * ArrayMaterial.Data.AlbedoTint;
+    else                    AlbedoColorOut = SampleSeamlessTexture(Material.Albedo, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges)
+                                             * Material.Data.AlbedoTint;
 
     if (SurfaceType == 1)
         clip(AlbedoColorOut.a - alphaClipping);

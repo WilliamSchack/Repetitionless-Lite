@@ -503,7 +503,7 @@ Material:
     - _Layer1BlendMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _Layer1BlendNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _Layer1BlendNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _Layer1BlendSettings: {r: 47, g: 0, b: 0, a: 0}
+    - _Layer1BlendSettings: {r: 15, g: 0, b: 0, a: 0}
     - _Layer1BlendTilingOffset: {r: 1, g: 1, b: 0, a: 0}
     - _Layer1BlendVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _Layer1BlendVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
