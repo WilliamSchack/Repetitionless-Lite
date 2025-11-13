@@ -386,7 +386,7 @@ namespace Repetitionless.Inspectors
 
             // Packed Texture Toggle
             if (showPT)
-                packedTexture = GUILayout.Toggle(packedTexture, new GUIContent(GetScaledText(minScaledTextWidth, "Packed Texture", "PT"), "If you are using a packed texture of multiple regular ones (Enabled is default unity material behaviour)\n(R: Metallic, G: Occlussion, A: Smoothness/Roughness)"), "Button");
+                packedTexture = GUILayout.Toggle(packedTexture, new GUIContent(GetScaledText(minScaledTextWidth, "Packed Texture", "PT"), "If you are using a packed texture of multiple regular ones (Better for performance)\nR: Metallic\nG: Occlussion\nA: Smoothness/Roughness"), "Button");
 
             // Emission Toggle
             if (showEmission)
@@ -448,50 +448,64 @@ namespace Repetitionless.Inspectors
             Rect albedoTintRect = DrawTexture(sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), $"_{materialPrefix}Albedo");
             _editor.ColorProperty(albedoTintRect, abledoTintProp, "");
 
-            // Metallic
-            Rect metallicSliderRect = DrawTexture(sectionIndex, 1, new GUIContent("Metallic", "Metallic (R), other channels are ignored"), $"_{materialPrefix}MetallicMap");
-            if (!metallicAssigned)
-                materialProperties1.x = EditorGUI.Slider(metallicSliderRect, materialProperties1.x, 0, 1);
-
-            // Smoothness/Roughness
-            float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
-            switch (srSelected)
-            {
-                case 0: // Smoothness
-                    Rect smoothnessSliderRect = DrawTexture(sectionIndex, 2, new GUIContent("Smoothness", $"Smoothness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"), $"_{materialPrefix}SmoothnessMap");
-                    if (!smoothnessAssigned)
-                        materialProperties1.y = EditorGUI.Slider(smoothnessSliderRect, materialProperties1.y, 0, 1);
-
-                    break;
-                case 1: // Roughness
-                    Rect roughnessSliderRect = DrawTexture(sectionIndex, 3, new GUIContent("Roughness", $"Roughness ({(packedTexture ? 'A' : 'R')}), other channels are ignored"), $"_{materialPrefix}RoughnessMap");
-                    if (!roughnessAssigned)
-                        materialProperties1.z = EditorGUI.Slider(roughnessSliderRect, materialProperties1.z, 0, 1);
-
-                    break;
-            }
-
             // Normal Map
             Rect normalStrengthSliderRect = DrawTexture(sectionIndex, 4, new GUIContent("Normal Map"), $"_{materialPrefix}NormalMap");
             if (normalAssigned)
                 materialProperties1.w = EditorGUI.FloatField(normalStrengthSliderRect, materialProperties1.w);
 
-            // Occlussion Map
-            Rect occlussionStrengthSliderRect = DrawTexture(sectionIndex, 5, new GUIContent("Occlussion", $"Occlussion ({(packedTexture ? 'G' : 'R')}), other channels are ignored"), $"_{materialPrefix}OcclussionMap");
-            if (occlussionAssigned)
+            if (packedTexture) {
+                // Use metallic as packed texture
+                DrawTexture(sectionIndex, 1, new GUIContent("Packed Texture", $"R: Metallic\nG: Occlussion\nA: {(smoothnessEnabled ? "Smoothness" : "Roughness")}\n(Smoothness/Roughness can be toggled above)"), $"_{materialPrefix}MetallicMap");
+
+                // Occlussion slider
+                // Get rects seperately to make slider same width as others
+                Rect occlussionStrengthLabelRect = GUIUtilities.GetLineRect();
+                Rect occlussionStrengthSliderRect = MaterialEditor.GetRectAfterLabelWidth(occlussionStrengthLabelRect);
+                
+                // Push out label to be inline with Packed Texture
+                occlussionStrengthLabelRect.x += 30;
+                occlussionStrengthLabelRect.width -= 30;
+
+                EditorGUI.LabelField(occlussionStrengthLabelRect, "Occlussion Strength");
                 materialProperties2.x = EditorGUI.Slider(occlussionStrengthSliderRect, materialProperties2.x, 0, 1);
+            } else {
+                // Metallic
+                Rect metallicSliderRect = DrawTexture(sectionIndex, 1, new GUIContent("Metallic", "Metallic (R), other channels are ignored"), $"_{materialPrefix}MetallicMap");
+                if (!metallicAssigned)
+                    materialProperties1.x = EditorGUI.Slider(metallicSliderRect, materialProperties1.x, 0, 1);
+
+                // Smoothness/Roughness
+                float srSelected = smoothnessEnabled ? 0.0f : 1.0f; // On GUI S=0,R=1, flip the value
+                switch (srSelected) {
+                    case 0: // Smoothness
+                        Rect smoothnessSliderRect = DrawTexture(sectionIndex, 2, new GUIContent("Smoothness"), $"_{materialPrefix}SmoothnessMap");
+                        if (!smoothnessAssigned)
+                            materialProperties1.y = EditorGUI.Slider(smoothnessSliderRect, materialProperties1.y, 0, 1);
+
+                        break;
+                    case 1: // Roughness
+                        Rect roughnessSliderRect = DrawTexture(sectionIndex, 3, new GUIContent("Roughness"), $"_{materialPrefix}RoughnessMap");
+                        if (!roughnessAssigned)
+                            materialProperties1.z = EditorGUI.Slider(roughnessSliderRect, materialProperties1.z, 0, 1);
+
+                        break;
+                }
+
+                // Occlussion Map
+                Rect occlussionStrengthSliderRect = DrawTexture(sectionIndex, 5, new GUIContent("Occlussion"), $"_{materialPrefix}OcclussionMap");
+                if (occlussionAssigned)
+                    materialProperties2.x = EditorGUI.Slider(occlussionStrengthSliderRect, materialProperties2.x, 0, 1);
+            }
 
             // Emission
-            if (emissionEnabled)
-            {
+            if (emissionEnabled) {
                 bool prevEmissionAssigned = BooleanCompression.GetValue(compressedAssignedTextures, 4);
 
                 // Change emission colour to white if texture assigned and texture is black
                 EditorGUI.BeginChangeCheck();
                 Rect emissionColourRect = DrawTexture(sectionIndex, 6, new GUIContent("Emission", "Emission (RGB)"), $"_{materialPrefix}EmissionMap");
                 Color emissionColour = EditorGUI.ColorField(emissionColourRect, GUIContent.none, emissionColorProp.colorValue, true, false, true);
-                if (EditorGUI.EndChangeCheck())
-                {
+                if (EditorGUI.EndChangeCheck()) {
                     // Rehandle assigned textures since the function can be changed in child classes
                     int afterAssignedTextures = HandleAssignedTextures(materialPrefix, sectionIndex, settingsProp);
                     bool afterEmissionAssigned = BooleanCompression.GetValue(afterAssignedTextures, 5);
@@ -500,11 +514,9 @@ namespace Repetitionless.Inspectors
                     emissionColorProp.colorValue = emissionColour;
 
                     // If texture just assigned and colour is black, change colour to white
-                    if (afterEmissionAssigned && !prevEmissionAssigned)
-                    {
+                    if (afterEmissionAssigned && !prevEmissionAssigned) {
                         Color blackColor = new Color(0, 0, 0, emissionColorProp.colorValue.a);
-                        if (emissionColorProp.colorValue == blackColor)
-                        {
+                        if (emissionColorProp.colorValue == blackColor) {
                             emissionColorProp.colorValue = Color.white;
                         }
                     }

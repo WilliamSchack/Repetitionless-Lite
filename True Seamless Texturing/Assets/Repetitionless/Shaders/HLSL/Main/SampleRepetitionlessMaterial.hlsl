@@ -157,45 +157,57 @@ void GetRepetitionlessMaterialColorBase(
         NormalVectorOut = TangentNormalVector;
     }
     
-    // Metallic
-    if (metallicAssigned) {
-        if (usingArrayMaterial) MetallicOut = SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 1, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
-        else                    MetallicOut = SampleSeamlessTexture(Material.MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
-    } else
-        MetallicOut = metallic;
+    if (packedTexture) {
+        // Packed texture is stored in the metallic slot
+        float4 packedTextureColor = 0;
+        if (usingArrayMaterial) packedTextureColor = SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 1, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+        else                    packedTextureColor = SampleSeamlessTexture(Material.MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
 
-    // Smoothness / Roughness
-    if (smoothnessEnabled) {
-        if (smoothnessAssigned) {
-            float4 smoothnessColor = 0;
-            if (usingArrayMaterial) smoothnessColor = SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 2, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-            else                    smoothnessColor = SampleSeamlessTexture(Material.SmoothnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-
-            SmoothnessOut = packedTexture ? smoothnessColor.a : smoothnessColor.r;
-        } else
-            SmoothnessOut = smoothness;
+        MetallicOut = packedTextureColor.r;
+        OcclussionOut = lerp(1, packedTextureColor.g, occlussionStrength);
+        if (smoothnessEnabled) SmoothnessOut = packedTextureColor.a;
+        else                   SmoothnessOut = 1 - packedTextureColor.a;
     } else {
-        if (roughnessAssigned) {
-            // Roughness = 1 - Smoothness
-            float4 roughnessColor = 1;
-            if (usingArrayMaterial) roughnessColor -= SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 3, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-            else                    roughnessColor -= SampleSeamlessTexture(Material.RoughnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-
-            SmoothnessOut = packedTexture ? roughnessColor.a : roughnessColor.r;
+        // Metallic
+        if (metallicAssigned) {
+            if (usingArrayMaterial) MetallicOut = SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 1, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
+            else                    MetallicOut = SampleSeamlessTexture(Material.MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
         } else
-            SmoothnessOut = 1 - roughness;
-    }
-        
-    // Occlussion
-    if (occlussionAssigned) {
-        float4 occlussionColor = 1;
-        if (usingArrayMaterial) occlussionColor = SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 4, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-        else                    occlussionColor = SampleSeamlessTexture(Material.OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+            MetallicOut = metallic;
 
-        OcclussionOut = packedTexture ? occlussionColor.g : occlussionColor.r;
-        OcclussionOut = lerp(1, OcclussionOut, occlussionStrength);
-    } else
-        OcclussionOut = 1;
+        // Smoothness / Roughness
+        if (smoothnessEnabled) {
+            if (smoothnessAssigned) {
+                float4 smoothnessColor = 0;
+                if (usingArrayMaterial) smoothnessColor = SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 2, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+                else                    smoothnessColor = SampleSeamlessTexture(Material.SmoothnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+
+                SmoothnessOut = packedTexture ? smoothnessColor.a : smoothnessColor.r;
+            } else
+                SmoothnessOut = smoothness;
+        } else {
+            if (roughnessAssigned) {
+                // Roughness = 1 - Smoothness
+                float4 roughnessColor = 1;
+                if (usingArrayMaterial) roughnessColor -= SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 3, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+                else                    roughnessColor -= SampleSeamlessTexture(Material.RoughnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+
+                SmoothnessOut = packedTexture ? roughnessColor.a : roughnessColor.r;
+            } else
+                SmoothnessOut = 1 - roughness;
+        }
+            
+        // Occlussion
+        if (occlussionAssigned) {
+            float4 occlussionColor = 1;
+            if (usingArrayMaterial) occlussionColor = SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 4, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+            else                    occlussionColor = SampleSeamlessTexture(Material.OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+
+            OcclussionOut = packedTexture ? occlussionColor.g : occlussionColor.r;
+            OcclussionOut = lerp(1, OcclussionOut, occlussionStrength);
+        } else
+            OcclussionOut = 1;
+    }
 
     // Emission
     if(emissionEnabled) {
