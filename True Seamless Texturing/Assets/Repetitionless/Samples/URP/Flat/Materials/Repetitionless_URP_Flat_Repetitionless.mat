@@ -59,7 +59,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMetallicMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a4a1f9a04140f39848469607cbf907b2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseNormalMap:
@@ -67,11 +67,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseOcclussionMap:
-        m_Texture: {fileID: 2800000, guid: 1d1709b46366f82b6b202b3b0ea65fb1, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseRoughnessMap:
-        m_Texture: {fileID: 2800000, guid: f4b828faa92ce43aa8c672abc25e14c8, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseSmoothnessMap:
@@ -95,7 +95,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendMetallicMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a369f15f4f225a9f782904938e1b54c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendNormalMap:
@@ -103,11 +103,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendOcclussionMap:
-        m_Texture: {fileID: 2800000, guid: e3e3065a80243cb7aa759a4ecef29b2b, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendRoughnessMap:
-        m_Texture: {fileID: 2800000, guid: a72dd90981ab3a5c386b8a9875d5ebab, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendSmoothnessMap:
@@ -228,7 +228,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaterialBlendSettings: 7
+    - _MaterialBlendSettings: 6
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -245,11 +245,11 @@ Material:
     m_Colors:
     - _BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
     - _BaseEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseMaterialProperties1: {r: 0, g: 0.5, b: 0.5, a: 1}
+    - _BaseMaterialProperties1: {r: 0, g: 0, b: 0.5, a: 1}
     - _BaseMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _BaseNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _BaseSettings: {r: 39, g: 28, b: 0, a: 0}
+    - _BaseSettings: {r: 47, g: 9, b: 0, a: 0}
     - _BaseTilingOffset: {r: 50, g: 50, b: 0, a: 0}
     - _BaseVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _BaseVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
@@ -262,7 +262,7 @@ Material:
     - _BlendMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _BlendNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BlendNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _BlendSettings: {r: 39, g: 28, b: 0, a: 0}
+    - _BlendSettings: {r: 47, g: 9, b: 0, a: 0}
     - _BlendTilingOffset: {r: 50, g: 50, b: 0, a: 0}
     - _BlendVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _BlendVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}

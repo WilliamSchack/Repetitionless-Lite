@@ -182,7 +182,7 @@ void GetRepetitionlessMaterialColorBase(
                 if (usingArrayMaterial) smoothnessColor = SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 2, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
                 else                    smoothnessColor = SampleSeamlessTexture(Material.SmoothnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
 
-                SmoothnessOut = packedTexture ? smoothnessColor.a : smoothnessColor.r;
+                SmoothnessOut = smoothnessColor.r;
             } else
                 SmoothnessOut = smoothness;
         } else {
@@ -192,7 +192,7 @@ void GetRepetitionlessMaterialColorBase(
                 if (usingArrayMaterial) roughnessColor -= SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 3, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
                 else                    roughnessColor -= SampleSeamlessTexture(Material.RoughnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
 
-                SmoothnessOut = packedTexture ? roughnessColor.a : roughnessColor.r;
+                SmoothnessOut = roughnessColor.r;
             } else
                 SmoothnessOut = 1 - roughness;
         }
@@ -203,8 +203,7 @@ void GetRepetitionlessMaterialColorBase(
             if (usingArrayMaterial) occlussionColor = SampleSeamlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 4, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
             else                    occlussionColor = SampleSeamlessTexture(Material.OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
 
-            OcclussionOut = packedTexture ? occlussionColor.g : occlussionColor.r;
-            OcclussionOut = lerp(1, OcclussionOut, occlussionStrength);
+            OcclussionOut = lerp(1, occlussionColor.r, occlussionStrength);
         } else
             OcclussionOut = 1;
     }
