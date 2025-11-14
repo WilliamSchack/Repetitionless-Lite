@@ -23,7 +23,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureUtilities
-    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
     startLine: 11
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -50,7 +50,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: COMPRESSED_TEXTURE_FORMATS
-    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
     startLine: 14
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -77,7 +77,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ResizeTexture
-    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
     startLine: 72
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -127,7 +127,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetReadable
-    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
     startLine: 101
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -165,7 +165,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetReadable
-    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
     startLine: 124
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -203,7 +203,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ConvertFromCompressedNormal
-    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/TextureUtilities.cs
     startLine: 142
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities

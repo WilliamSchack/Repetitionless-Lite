@@ -22,7 +22,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BooleanCompression
-    path: ../Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
     startLine: 9
   assemblies:
   - com.williamschack.Repetitionless.Compression
@@ -49,7 +49,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CompressValues
-    path: ../Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
     startLine: 20
   assemblies:
   - com.williamschack.Repetitionless.Compression
@@ -87,7 +87,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetValues
-    path: ../Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
     startLine: 47
   assemblies:
   - com.williamschack.Repetitionless.Compression
@@ -128,7 +128,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AddValue
-    path: ../Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
     startLine: 75
   assemblies:
   - com.williamschack.Repetitionless.Compression
@@ -172,7 +172,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetValue
-    path: ../Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
     startLine: 93
   assemblies:
   - com.williamschack.Repetitionless.Compression

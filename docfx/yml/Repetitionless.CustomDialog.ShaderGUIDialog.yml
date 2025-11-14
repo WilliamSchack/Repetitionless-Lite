@@ -20,7 +20,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ShaderGUIDialog
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
     startLine: 15
   assemblies:
   - com.williamschack.Repetitionless.CustomDialog
@@ -47,7 +47,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DisplayDialog
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
     startLine: 35
   assemblies:
   - com.williamschack.Repetitionless.CustomDialog
@@ -94,7 +94,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DisplayDialogComplex
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
     startLine: 71
   assemblies:
   - com.williamschack.Repetitionless.CustomDialog

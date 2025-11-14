@@ -40,7 +40,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureArrayGUIDrawer
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 17
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -67,7 +67,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Array
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 23
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -96,7 +96,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureFormat
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 26
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -123,7 +123,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TransferMipmaps
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 27
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -150,7 +150,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ArrayLinear
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 28
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -177,7 +177,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: .ctor
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 57
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -227,7 +227,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: .ctor
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 86
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -280,7 +280,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateArray
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 222
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -315,7 +315,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 398
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -362,7 +362,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 421
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -412,7 +412,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureWithInt
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 451
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -462,7 +462,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureWithInt
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 477
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -515,7 +515,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureWithIntSlider
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 515
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -571,7 +571,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureWithIntSlider
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 547
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -630,7 +630,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureWithFloat
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 579
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -680,7 +680,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureWithFloat
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 605
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -733,7 +733,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureWithSlider
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 643
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -789,7 +789,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureWithSlider
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 675
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -848,7 +848,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureWithColor
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 710
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -901,7 +901,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureWithColor
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 739
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -957,7 +957,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextures
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 765
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -1001,7 +1001,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureAssignedAt
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 796
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
@@ -1039,7 +1039,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DeleteArray
-    path: ../Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/GUIUtilities/TextureArrayGUIDrawer.cs
     startLine: 838
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities

@@ -53,7 +53,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Texture2DArrayWindowBase
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 18
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -85,7 +85,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _textures
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 24
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -112,7 +112,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _texturesResizing
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 25
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -139,7 +139,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _textureErrors
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 26
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -166,7 +166,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayTextureFormatIndex
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 29
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -193,7 +193,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayMipMaps
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 30
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -220,7 +220,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayLinear
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 31
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -247,7 +247,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayWrapMode
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 33
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -274,7 +274,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayFilterMode
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 34
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -301,7 +301,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayAnisoLevel
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 35
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -328,7 +328,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _resizeTextures
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 37
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -355,7 +355,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayResolution
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 38
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -382,7 +382,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _resizeFilterMode
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 39
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -409,7 +409,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _textureFormatSettingEnabled
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 43
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -436,7 +436,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _mipmapsSettingEnabled
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 44
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -463,7 +463,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _linearSettingEnabled
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 45
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -490,7 +490,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _wrapModeSettingEnabled
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 46
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -517,7 +517,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _filterModeSettingEnabled
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 47
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -544,7 +544,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _anisoLevelSettingEnabled
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 48
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -571,7 +571,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _resizeSettingEnabled
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 49
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -598,7 +598,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _canAddRemoveTextures
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 53
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -625,7 +625,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _headerStyle
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 57
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -652,7 +652,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateGUI
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 63
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -683,7 +683,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnGUIUpdate
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 148
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -714,7 +714,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CalculateElementHeight
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 195
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -755,7 +755,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureField
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 227
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -805,7 +805,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawArraySettings
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 329
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -838,7 +838,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawFinalOutputFields
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 388
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -871,7 +871,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DisplayWarnings
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 408
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -904,7 +904,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTextureAdd
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 440
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -939,7 +939,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTextureRemove
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 454
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -974,7 +974,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTexturesReorder
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 479
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -1018,7 +1018,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnDragUpdate
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 502
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -1053,7 +1053,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnDragPerform
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 518
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -1088,7 +1088,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ArrayTexturesExist
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 571
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
@@ -1119,7 +1119,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArray
-    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
     startLine: 592
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows

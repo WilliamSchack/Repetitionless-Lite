@@ -3,7 +3,7 @@
         {
             "src": [
                 {
-                    "src": "..",
+                    "src": "../True Seamless Texturing",
                     "files": [
                         "*.sln"
                     ]
@@ -13,20 +13,19 @@
 				"DefineConstants": "UNITY_EDITOR"
 			},
             "filter": "filterConfig.yml",
-            "dest": "api"
+            "dest": "yml"
         }
     ],
     "build": {
         "content": [
             {
-                "src": "api",
+                "src": "yml",
                 "files": [
                     "*.yml"
                 ]
             }
 		],
-		"generateHtml": false,
         "overwrite": [],
-        "dest": "../_site"
+        "dest": "_site"
     }
 }
