@@ -1,0 +1,108 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Variables.EDistanceBlendMode
+  commentId: T:Repetitionless.Variables.EDistanceBlendMode
+  id: EDistanceBlendMode
+  parent: Repetitionless.Variables
+  children:
+  - Repetitionless.Variables.EDistanceBlendMode.Material
+  - Repetitionless.Variables.EDistanceBlendMode.TilingOffset
+  langs:
+  - csharp
+  - vb
+  name: EDistanceBlendMode
+  nameWithType: EDistanceBlendMode
+  fullName: Repetitionless.Variables.EDistanceBlendMode
+  type: Enum
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: EDistanceBlendMode
+    path: ../Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+    startLine: 25
+  assemblies:
+  - com.williamschack.Repetitionless.Variables
+  namespace: Repetitionless.Variables
+  summary: "\nAvailable distance blend modes for Repetitionless Materials\n"
+  example: []
+  syntax:
+    content: public enum EDistanceBlendMode
+    content.vb: Public Enum EDistanceBlendMode
+- uid: Repetitionless.Variables.EDistanceBlendMode.TilingOffset
+  commentId: F:Repetitionless.Variables.EDistanceBlendMode.TilingOffset
+  id: TilingOffset
+  parent: Repetitionless.Variables.EDistanceBlendMode
+  langs:
+  - csharp
+  - vb
+  name: TilingOffset
+  nameWithType: EDistanceBlendMode.TilingOffset
+  fullName: Repetitionless.Variables.EDistanceBlendMode.TilingOffset
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: TilingOffset
+    path: ../Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+    startLine: 27
+  assemblies:
+  - com.williamschack.Repetitionless.Variables
+  namespace: Repetitionless.Variables
+  syntax:
+    content: TilingOffset = 0
+    return:
+      type: Repetitionless.Variables.EDistanceBlendMode
+- uid: Repetitionless.Variables.EDistanceBlendMode.Material
+  commentId: F:Repetitionless.Variables.EDistanceBlendMode.Material
+  id: Material
+  parent: Repetitionless.Variables.EDistanceBlendMode
+  langs:
+  - csharp
+  - vb
+  name: Material
+  nameWithType: EDistanceBlendMode.Material
+  fullName: Repetitionless.Variables.EDistanceBlendMode.Material
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Material
+    path: ../Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+    startLine: 28
+  assemblies:
+  - com.williamschack.Repetitionless.Variables
+  namespace: Repetitionless.Variables
+  syntax:
+    content: Material = 1
+    return:
+      type: Repetitionless.Variables.EDistanceBlendMode
+references:
+- uid: Repetitionless.Variables
+  commentId: N:Repetitionless.Variables
+  name: Repetitionless.Variables
+  nameWithType: Repetitionless.Variables
+  fullName: Repetitionless.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+- uid: Repetitionless.Variables.EDistanceBlendMode
+  commentId: T:Repetitionless.Variables.EDistanceBlendMode
+  parent: Repetitionless.Variables
+  name: EDistanceBlendMode
+  nameWithType: EDistanceBlendMode
+  fullName: Repetitionless.Variables.EDistanceBlendMode

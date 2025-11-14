@@ -43,7 +43,7 @@ namespace Repetitionless.Compression
         /// The total amount of values stored in the compressedValues
         /// </param>
         /// <returns>
-        /// Array of all the values stored in the input comrpressedValues
+        /// Array of all the values stored in the input compressedValues
         /// </returns>
         public static bool[] GetValues(int compressedValues, int valueCount)
         {

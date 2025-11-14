@@ -1,0 +1,22 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Samples
+  commentId: N:Repetitionless.Samples
+  id: Repetitionless.Samples
+  children:
+  - Repetitionless.Samples.TerrainSceneSettings
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Samples
+  nameWithType: Repetitionless.Samples
+  fullName: Repetitionless.Samples
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless
+references:
+- uid: Repetitionless.Samples.TerrainSceneSettings
+  commentId: T:Repetitionless.Samples.TerrainSceneSettings
+  name: TerrainSceneSettings
+  nameWithType: TerrainSceneSettings
+  fullName: Repetitionless.Samples.TerrainSceneSettings

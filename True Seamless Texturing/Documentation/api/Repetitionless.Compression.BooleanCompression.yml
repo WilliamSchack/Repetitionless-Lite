@@ -1,0 +1,292 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Compression.BooleanCompression
+  commentId: T:Repetitionless.Compression.BooleanCompression
+  id: BooleanCompression
+  parent: Repetitionless.Compression
+  children:
+  - Repetitionless.Compression.BooleanCompression.AddValue(System.Int32,System.Int32,System.Boolean)
+  - Repetitionless.Compression.BooleanCompression.CompressValues(System.Boolean[])
+  - Repetitionless.Compression.BooleanCompression.GetValue(System.Int32,System.Int32)
+  - Repetitionless.Compression.BooleanCompression.GetValues(System.Int32,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: BooleanCompression
+  nameWithType: BooleanCompression
+  fullName: Repetitionless.Compression.BooleanCompression
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BooleanCompression
+    path: ../Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    startLine: 9
+  assemblies:
+  - com.williamschack.Repetitionless.Compression
+  namespace: Repetitionless.Compression
+  syntax:
+    content: public static class BooleanCompression
+    content.vb: Public Module BooleanCompression
+  inheritance:
+  - System.Object
+- uid: Repetitionless.Compression.BooleanCompression.CompressValues(System.Boolean[])
+  commentId: M:Repetitionless.Compression.BooleanCompression.CompressValues(System.Boolean[])
+  id: CompressValues(System.Boolean[])
+  parent: Repetitionless.Compression.BooleanCompression
+  langs:
+  - csharp
+  - vb
+  name: CompressValues(params bool[])
+  nameWithType: BooleanCompression.CompressValues(params bool[])
+  fullName: Repetitionless.Compression.BooleanCompression.CompressValues(params bool[])
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CompressValues
+    path: ../Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    startLine: 20
+  assemblies:
+  - com.williamschack.Repetitionless.Compression
+  namespace: Repetitionless.Compression
+  summary: "\nCompresses the input array of bools into an int\n"
+  example: []
+  syntax:
+    content: public static int CompressValues(params bool[] values)
+    parameters:
+    - id: values
+      type: System.Boolean[]
+      description: "\nBools that will be compressed\n"
+    return:
+      type: System.Int32
+      description: "\nCompressed int of bools\n"
+    content.vb: Public Shared Function CompressValues(ParamArray values As Boolean()) As Integer
+  overload: Repetitionless.Compression.BooleanCompression.CompressValues*
+  nameWithType.vb: BooleanCompression.CompressValues(ParamArray Boolean())
+  fullName.vb: Repetitionless.Compression.BooleanCompression.CompressValues(ParamArray Boolean())
+  name.vb: CompressValues(ParamArray Boolean())
+- uid: Repetitionless.Compression.BooleanCompression.GetValues(System.Int32,System.Int32)
+  commentId: M:Repetitionless.Compression.BooleanCompression.GetValues(System.Int32,System.Int32)
+  id: GetValues(System.Int32,System.Int32)
+  parent: Repetitionless.Compression.BooleanCompression
+  langs:
+  - csharp
+  - vb
+  name: GetValues(int, int)
+  nameWithType: BooleanCompression.GetValues(int, int)
+  fullName: Repetitionless.Compression.BooleanCompression.GetValues(int, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GetValues
+    path: ../Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    startLine: 47
+  assemblies:
+  - com.williamschack.Repetitionless.Compression
+  namespace: Repetitionless.Compression
+  summary: "\nRetrieves all the boolean values stored in a compressed int\n"
+  example: []
+  syntax:
+    content: public static bool[] GetValues(int compressedValues, int valueCount)
+    parameters:
+    - id: compressedValues
+      type: System.Int32
+      description: "\nCompressed int of bool values\n"
+    - id: valueCount
+      type: System.Int32
+      description: "\nThe total amount of values stored in the compressedValues\n"
+    return:
+      type: System.Boolean[]
+      description: "\nArray of all the values stored in the input compressedValues\n"
+    content.vb: Public Shared Function GetValues(compressedValues As Integer, valueCount As Integer) As Boolean()
+  overload: Repetitionless.Compression.BooleanCompression.GetValues*
+  nameWithType.vb: BooleanCompression.GetValues(Integer, Integer)
+  fullName.vb: Repetitionless.Compression.BooleanCompression.GetValues(Integer, Integer)
+  name.vb: GetValues(Integer, Integer)
+- uid: Repetitionless.Compression.BooleanCompression.AddValue(System.Int32,System.Int32,System.Boolean)
+  commentId: M:Repetitionless.Compression.BooleanCompression.AddValue(System.Int32,System.Int32,System.Boolean)
+  id: AddValue(System.Int32,System.Int32,System.Boolean)
+  parent: Repetitionless.Compression.BooleanCompression
+  langs:
+  - csharp
+  - vb
+  name: AddValue(int, int, bool)
+  nameWithType: BooleanCompression.AddValue(int, int, bool)
+  fullName: Repetitionless.Compression.BooleanCompression.AddValue(int, int, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: AddValue
+    path: ../Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    startLine: 75
+  assemblies:
+  - com.williamschack.Repetitionless.Compression
+  namespace: Repetitionless.Compression
+  summary: "\nOverwrites a value at a given index into the input compressedValues\n"
+  example: []
+  syntax:
+    content: public static int AddValue(int compressedValues, int index, bool value)
+    parameters:
+    - id: compressedValues
+      type: System.Int32
+      description: "\nCompressed int of bool values\n"
+    - id: index
+      type: System.Int32
+      description: "\nIndex that the input value will overwrite\n"
+    - id: value
+      type: System.Boolean
+      description: "\nValue inserted into the compressedValue\n"
+    return:
+      type: System.Int32
+      description: "\nNew compressed integer with the added value\n"
+    content.vb: Public Shared Function AddValue(compressedValues As Integer, index As Integer, value As Boolean) As Integer
+  overload: Repetitionless.Compression.BooleanCompression.AddValue*
+  nameWithType.vb: BooleanCompression.AddValue(Integer, Integer, Boolean)
+  fullName.vb: Repetitionless.Compression.BooleanCompression.AddValue(Integer, Integer, Boolean)
+  name.vb: AddValue(Integer, Integer, Boolean)
+- uid: Repetitionless.Compression.BooleanCompression.GetValue(System.Int32,System.Int32)
+  commentId: M:Repetitionless.Compression.BooleanCompression.GetValue(System.Int32,System.Int32)
+  id: GetValue(System.Int32,System.Int32)
+  parent: Repetitionless.Compression.BooleanCompression
+  langs:
+  - csharp
+  - vb
+  name: GetValue(int, int)
+  nameWithType: BooleanCompression.GetValue(int, int)
+  fullName: Repetitionless.Compression.BooleanCompression.GetValue(int, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GetValue
+    path: ../Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    startLine: 93
+  assemblies:
+  - com.williamschack.Repetitionless.Compression
+  namespace: Repetitionless.Compression
+  summary: "\nGets a compressed value at a given index from the input compressedValues\n"
+  example: []
+  syntax:
+    content: public static bool GetValue(int compressedValues, int index)
+    parameters:
+    - id: compressedValues
+      type: System.Int32
+      description: "\nCompressed int of bool values\n"
+    - id: index
+      type: System.Int32
+      description: "\nIndex of which bool value will be returned\n"
+    return:
+      type: System.Boolean
+      description: "\nValue at the given index\n"
+    content.vb: Public Shared Function GetValue(compressedValues As Integer, index As Integer) As Boolean
+  overload: Repetitionless.Compression.BooleanCompression.GetValue*
+  nameWithType.vb: BooleanCompression.GetValue(Integer, Integer)
+  fullName.vb: Repetitionless.Compression.BooleanCompression.GetValue(Integer, Integer)
+  name.vb: GetValue(Integer, Integer)
+references:
+- uid: Repetitionless.Compression
+  commentId: N:Repetitionless.Compression
+  name: Repetitionless.Compression
+  nameWithType: Repetitionless.Compression
+  fullName: Repetitionless.Compression
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Compression
+    name: Compression
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Compression
+    name: Compression
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Repetitionless.Compression.BooleanCompression.CompressValues*
+  commentId: Overload:Repetitionless.Compression.BooleanCompression.CompressValues
+  name: CompressValues
+  nameWithType: BooleanCompression.CompressValues
+  fullName: Repetitionless.Compression.BooleanCompression.CompressValues
+- uid: System.Boolean[]
+  isExternal: true
+  name: bool[]
+  nameWithType: bool[]
+  fullName: bool[]
+  nameWithType.vb: Boolean()
+  fullName.vb: Boolean()
+  name.vb: Boolean()
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: (
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Repetitionless.Compression.BooleanCompression.GetValues*
+  commentId: Overload:Repetitionless.Compression.BooleanCompression.GetValues
+  name: GetValues
+  nameWithType: BooleanCompression.GetValues
+  fullName: Repetitionless.Compression.BooleanCompression.GetValues
+- uid: Repetitionless.Compression.BooleanCompression.AddValue*
+  commentId: Overload:Repetitionless.Compression.BooleanCompression.AddValue
+  name: AddValue
+  nameWithType: BooleanCompression.AddValue
+  fullName: Repetitionless.Compression.BooleanCompression.AddValue
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Repetitionless.Compression.BooleanCompression.GetValue*
+  commentId: Overload:Repetitionless.Compression.BooleanCompression.GetValue
+  name: GetValue
+  nameWithType: BooleanCompression.GetValue
+  fullName: Repetitionless.Compression.BooleanCompression.GetValue

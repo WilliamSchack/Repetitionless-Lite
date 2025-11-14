@@ -1,0 +1,135 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Variables.ETextureType
+  commentId: T:Repetitionless.Variables.ETextureType
+  id: ETextureType
+  parent: Repetitionless.Variables
+  children:
+  - Repetitionless.Variables.ETextureType.CustomTexture
+  - Repetitionless.Variables.ETextureType.PerlinNoise
+  - Repetitionless.Variables.ETextureType.SimplexNoise
+  langs:
+  - csharp
+  - vb
+  name: ETextureType
+  nameWithType: ETextureType
+  fullName: Repetitionless.Variables.ETextureType
+  type: Enum
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: ETextureType
+    path: ../Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+    startLine: 15
+  assemblies:
+  - com.williamschack.Repetitionless.Variables
+  namespace: Repetitionless.Variables
+  summary: "\nAvailable mask texture types for Repetitionless Materials\n"
+  example: []
+  syntax:
+    content: public enum ETextureType
+    content.vb: Public Enum ETextureType
+- uid: Repetitionless.Variables.ETextureType.PerlinNoise
+  commentId: F:Repetitionless.Variables.ETextureType.PerlinNoise
+  id: PerlinNoise
+  parent: Repetitionless.Variables.ETextureType
+  langs:
+  - csharp
+  - vb
+  name: PerlinNoise
+  nameWithType: ETextureType.PerlinNoise
+  fullName: Repetitionless.Variables.ETextureType.PerlinNoise
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: PerlinNoise
+    path: ../Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+    startLine: 17
+  assemblies:
+  - com.williamschack.Repetitionless.Variables
+  namespace: Repetitionless.Variables
+  syntax:
+    content: PerlinNoise = 0
+    return:
+      type: Repetitionless.Variables.ETextureType
+- uid: Repetitionless.Variables.ETextureType.SimplexNoise
+  commentId: F:Repetitionless.Variables.ETextureType.SimplexNoise
+  id: SimplexNoise
+  parent: Repetitionless.Variables.ETextureType
+  langs:
+  - csharp
+  - vb
+  name: SimplexNoise
+  nameWithType: ETextureType.SimplexNoise
+  fullName: Repetitionless.Variables.ETextureType.SimplexNoise
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SimplexNoise
+    path: ../Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+    startLine: 18
+  assemblies:
+  - com.williamschack.Repetitionless.Variables
+  namespace: Repetitionless.Variables
+  syntax:
+    content: SimplexNoise = 1
+    return:
+      type: Repetitionless.Variables.ETextureType
+- uid: Repetitionless.Variables.ETextureType.CustomTexture
+  commentId: F:Repetitionless.Variables.ETextureType.CustomTexture
+  id: CustomTexture
+  parent: Repetitionless.Variables.ETextureType
+  langs:
+  - csharp
+  - vb
+  name: CustomTexture
+  nameWithType: ETextureType.CustomTexture
+  fullName: Repetitionless.Variables.ETextureType.CustomTexture
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CustomTexture
+    path: ../Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+    startLine: 19
+  assemblies:
+  - com.williamschack.Repetitionless.Variables
+  namespace: Repetitionless.Variables
+  syntax:
+    content: CustomTexture = 2
+    return:
+      type: Repetitionless.Variables.ETextureType
+references:
+- uid: Repetitionless.Variables
+  commentId: N:Repetitionless.Variables
+  name: Repetitionless.Variables
+  nameWithType: Repetitionless.Variables
+  fullName: Repetitionless.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+- uid: Repetitionless.Variables.ETextureType
+  commentId: T:Repetitionless.Variables.ETextureType
+  parent: Repetitionless.Variables
+  name: ETextureType
+  nameWithType: ETextureType
+  fullName: Repetitionless.Variables.ETextureType

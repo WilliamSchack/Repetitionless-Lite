@@ -1,0 +1,29 @@
+{
+    "metadata": [
+        {
+            "src": [
+                {
+                    "src": "..",
+                    "files": [
+                        "*.sln"
+                    ]
+                }
+            ],
+            "globalNamespaceId": "Global",
+            "filter": "filterConfig.yml",
+            "dest": "api"
+        }
+    ],
+    "build": {
+        "content": [
+            {
+                "src": "api",
+                "files": [
+                    "*.yml"
+                ]
+            }
+	],
+        "overwrite": [],
+        "dest": "../_site"
+    }
+}
