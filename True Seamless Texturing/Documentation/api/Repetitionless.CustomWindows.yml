@@ -1,0 +1,54 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.CustomWindows
+  commentId: N:Repetitionless.CustomWindows
+  id: Repetitionless.CustomWindows
+  children:
+  - Repetitionless.CustomWindows.ConfigureArrayWindowLimited
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.CustomWindows
+  nameWithType: Repetitionless.CustomWindows
+  fullName: Repetitionless.CustomWindows
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+references:
+- uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited
+  commentId: T:Repetitionless.CustomWindows.ConfigureArrayWindowLimited
+  parent: Repetitionless.CustomWindows
+  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html
+  name: ConfigureArrayWindowLimited
+  nameWithType: ConfigureArrayWindowLimited
+  fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  commentId: T:Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  parent: Repetitionless.CustomWindows
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html
+  name: Texture2DArrayWindowBase
+  nameWithType: Texture2DArrayWindowBase
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+- uid: Repetitionless.CustomWindows
+  commentId: N:Repetitionless.CustomWindows
+  href: Repetitionless.html
+  name: Repetitionless.CustomWindows
+  nameWithType: Repetitionless.CustomWindows
+  fullName: Repetitionless.CustomWindows
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+    href: Repetitionless.html
+  - name: .
+  - uid: Repetitionless.CustomWindows
+    name: CustomWindows
+    href: Repetitionless.CustomWindows.html
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+    href: Repetitionless.html
+  - name: .
+  - uid: Repetitionless.CustomWindows
+    name: CustomWindows
+    href: Repetitionless.CustomWindows.html

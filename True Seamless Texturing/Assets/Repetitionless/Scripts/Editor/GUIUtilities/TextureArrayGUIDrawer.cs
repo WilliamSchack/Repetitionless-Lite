@@ -214,7 +214,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Changes the array to a new one
+        /// Changes the array to a new one<br />
         /// !! Assumes no textures were added or removed !!
         /// </summary>
         /// <param name="newArray">
@@ -383,7 +383,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array
+        /// Draws a texture using the assigned array<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="index">
@@ -403,10 +403,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array
-
-        /// <summary>
-        /// Draws a texture using the assigned array
+        /// Draws a texture using the assigned array<br />
         /// In some situations will request user input when changing textures with a popup
         /// </summary>
         /// <param name="rect">
@@ -436,7 +433,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array along with a integer value
+        /// Draws a texture using the assigned array along with a integer value<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="index">
@@ -459,7 +456,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array along with a integer value
+        /// Draws a texture using the assigned array along with a integer value<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="rect">
@@ -494,7 +491,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array along with a integer slider
+        /// Draws a texture using the assigned array along with a integer slider<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="index">
@@ -523,7 +520,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array along with a integer slider
+        /// Draws a texture using the assigned array along with a integer slider<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="rect">
@@ -564,7 +561,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array along with a float value
+        /// Draws a texture using the assigned array along with a float value<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="index">
@@ -587,7 +584,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array along with a float value
+        /// Draws a texture using the assigned array along with a float value<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="rect">
@@ -622,7 +619,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array along with a slider
+        /// Draws a texture using the assigned array along with a slider<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="index">
@@ -651,7 +648,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array along with a slider
+        /// Draws a texture using the assigned array along with a slider<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="rect">
@@ -692,7 +689,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array along with a color value
+        /// Draws a texture using the assigned array along with a color value<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="index">
@@ -718,7 +715,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a texture using the assigned array along with a color value
+        /// Draws a texture using the assigned array along with a color value<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="rect">
@@ -756,7 +753,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws all the textures in the array using DrawTexture
+        /// Draws all the textures in the array using DrawTexture<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="content">

@@ -87,7 +87,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a large toggle button that uses and updates the inputted property
+        /// Draws a large toggle button that uses and updates the inputted property<br />
         /// Displays red when disabled, green when enabled
         /// </summary>
         /// <param name="property">
@@ -117,7 +117,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws a large toggle button using an input toggle state value
+        /// Draws a large toggle button using an input toggle state value<br />
         /// Displays red when disabled, green when enabled
         /// </summary>
         /// <param name="enabled">
@@ -727,7 +727,7 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Draws tiling offset fields using and updating values in a float4 materialProperty
+        /// Draws tiling offset fields using and updating values in a float4 materialProperty<br />
         /// Uses the DrawVector2Field function to remove empty space
         /// </summary>
         /// <param name="tilingOffsetProperty">

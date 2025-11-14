@@ -150,6 +150,8 @@ namespace Repetitionless.TextureUtilities
                     textures[i] = TextureUtilities.ResizeTexture(texture, resolution.x, resolution.y);
             }
 
+
+
             // Create array
             return CreateArray(textures, textureFormat, transferMipmaps, linear);
         }
@@ -167,7 +169,7 @@ namespace Repetitionless.TextureUtilities
         /// </param>
         /// <param name="autoResizeIndexes">
         /// Automatically resizes all textures at these indexes if required instead of showing a prompt to the user<br />
-        /// Ex.If this is { 0, 2 }, the textures at index 0 & 2 will be automatically resized
+        /// Example: If this is { 0, 2 }, the textures at index 0 and 2 will be automatically resized
         /// </param>
         /// <param name="transferMipmaps">
         /// If mipmaps will be transferred from the textures to the array

@@ -1,0 +1,165 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+  commentId: T:Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+  id: SeamlessMaterialGUIBase.MaterialFoldoutState
+  parent: Repetitionless.Inspectors
+  children:
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.MainProperties
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.NoiseProperties
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.VariationProperties
+  langs:
+  - csharp
+  - vb
+  name: SeamlessMaterialGUIBase.MaterialFoldoutState
+  nameWithType: SeamlessMaterialGUIBase.MaterialFoldoutState
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: MaterialFoldoutState
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 20
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Holds the state for each property foldout in a material section
+  example: []
+  syntax:
+    content: protected class SeamlessMaterialGUIBase.MaterialFoldoutState
+    content.vb: Protected Class SeamlessMaterialGUIBase.MaterialFoldoutState
+  inheritance:
+  - System.Object
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.MainProperties
+  commentId: F:Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.MainProperties
+  id: MainProperties
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+  langs:
+  - csharp
+  - vb
+  name: MainProperties
+  nameWithType: SeamlessMaterialGUIBase.MaterialFoldoutState.MainProperties
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.MainProperties
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: MainProperties
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 22
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: public bool MainProperties
+    return:
+      type: System.Boolean
+    content.vb: Public MainProperties As Boolean
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.NoiseProperties
+  commentId: F:Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.NoiseProperties
+  id: NoiseProperties
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+  langs:
+  - csharp
+  - vb
+  name: NoiseProperties
+  nameWithType: SeamlessMaterialGUIBase.MaterialFoldoutState.NoiseProperties
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.NoiseProperties
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: NoiseProperties
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 23
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: public bool NoiseProperties
+    return:
+      type: System.Boolean
+    content.vb: Public NoiseProperties As Boolean
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.VariationProperties
+  commentId: F:Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.VariationProperties
+  id: VariationProperties
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+  langs:
+  - csharp
+  - vb
+  name: VariationProperties
+  nameWithType: SeamlessMaterialGUIBase.MaterialFoldoutState.VariationProperties
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.VariationProperties
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: VariationProperties
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 24
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: public bool VariationProperties
+    return:
+      type: System.Boolean
+    content.vb: Public VariationProperties As Boolean
+references:
+- uid: Repetitionless.Inspectors
+  commentId: N:Repetitionless.Inspectors
+  href: Repetitionless.html
+  name: Repetitionless.Inspectors
+  nameWithType: Repetitionless.Inspectors
+  fullName: Repetitionless.Inspectors
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+    href: Repetitionless.html
+  - name: .
+  - uid: Repetitionless.Inspectors
+    name: Inspectors
+    href: Repetitionless.Inspectors.html
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+    href: Repetitionless.html
+  - name: .
+  - uid: Repetitionless.Inspectors
+    name: Inspectors
+    href: Repetitionless.Inspectors.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

@@ -1,0 +1,1526 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  commentId: T:Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  id: Texture2DArrayWindowBase
+  parent: Repetitionless.CustomWindows
+  children:
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight(System.Int32)
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray(System.String,System.Boolean)
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField(UnityEngine.Rect,System.Int32,System.Boolean,System.Boolean)
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform(UnityEngine.Object[])
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate(UnityEngine.Object[])
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd(UnityEditorInternal.ReorderableList)
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove(UnityEditorInternal.ReorderableList)
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder(UnityEditorInternal.ReorderableList,System.Int32,System.Int32)
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._anisoLevelSettingEnabled
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayAnisoLevel
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayFilterMode
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayLinear
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayMipMaps
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayResolution
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayTextureFormatIndex
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayWrapMode
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._canAddRemoveTextures
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._filterModeSettingEnabled
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._headerStyle
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._linearSettingEnabled
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._mipmapsSettingEnabled
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeFilterMode
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeSettingEnabled
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeTextures
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureErrors
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureFormatSettingEnabled
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._textures
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._texturesResizing
+  - Repetitionless.CustomWindows.Texture2DArrayWindowBase._wrapModeSettingEnabled
+  langs:
+  - csharp
+  - vb
+  name: Texture2DArrayWindowBase
+  nameWithType: Texture2DArrayWindowBase
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Texture2DArrayWindowBase
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 18
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: 'public class Texture2DArrayWindowBase : EditorWindow'
+    content.vb: Public Class Texture2DArrayWindowBase Inherits EditorWindow
+  inheritance:
+  - System.Object
+  - UnityEngine.Object
+  - UnityEngine.ScriptableObject
+  - UnityEditor.EditorWindow
+  derivedClasses:
+  - Repetitionless.CustomWindows.ConfigureArrayWindowLimited
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textures
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._textures
+  id: _textures
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _textures
+  nameWithType: Texture2DArrayWindowBase._textures
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textures
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _textures
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 24
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected List<Texture2D> _textures
+    return:
+      type: System.Collections.Generic.List{UnityEngine.Texture2D}
+    content.vb: Protected _textures As List(Of Texture2D)
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._texturesResizing
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._texturesResizing
+  id: _texturesResizing
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _texturesResizing
+  nameWithType: Texture2DArrayWindowBase._texturesResizing
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._texturesResizing
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _texturesResizing
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 25
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected List<bool> _texturesResizing
+    return:
+      type: System.Collections.Generic.List{System.Boolean}
+    content.vb: Protected _texturesResizing As List(Of Boolean)
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureErrors
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureErrors
+  id: _textureErrors
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _textureErrors
+  nameWithType: Texture2DArrayWindowBase._textureErrors
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureErrors
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _textureErrors
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 26
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected List<bool> _textureErrors
+    return:
+      type: System.Collections.Generic.List{System.Boolean}
+    content.vb: Protected _textureErrors As List(Of Boolean)
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayTextureFormatIndex
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayTextureFormatIndex
+  id: _arrayTextureFormatIndex
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _arrayTextureFormatIndex
+  nameWithType: Texture2DArrayWindowBase._arrayTextureFormatIndex
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayTextureFormatIndex
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _arrayTextureFormatIndex
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 29
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected int _arrayTextureFormatIndex
+    return:
+      type: System.Int32
+    content.vb: Protected _arrayTextureFormatIndex As Integer
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayMipMaps
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayMipMaps
+  id: _arrayMipMaps
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _arrayMipMaps
+  nameWithType: Texture2DArrayWindowBase._arrayMipMaps
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayMipMaps
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _arrayMipMaps
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 30
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected bool _arrayMipMaps
+    return:
+      type: System.Boolean
+    content.vb: Protected _arrayMipMaps As Boolean
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayLinear
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayLinear
+  id: _arrayLinear
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _arrayLinear
+  nameWithType: Texture2DArrayWindowBase._arrayLinear
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayLinear
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _arrayLinear
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 31
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected bool _arrayLinear
+    return:
+      type: System.Boolean
+    content.vb: Protected _arrayLinear As Boolean
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayWrapMode
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayWrapMode
+  id: _arrayWrapMode
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _arrayWrapMode
+  nameWithType: Texture2DArrayWindowBase._arrayWrapMode
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayWrapMode
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _arrayWrapMode
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 33
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected TextureWrapMode _arrayWrapMode
+    return:
+      type: UnityEngine.TextureWrapMode
+    content.vb: Protected _arrayWrapMode As TextureWrapMode
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayFilterMode
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayFilterMode
+  id: _arrayFilterMode
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _arrayFilterMode
+  nameWithType: Texture2DArrayWindowBase._arrayFilterMode
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayFilterMode
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _arrayFilterMode
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 34
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected FilterMode _arrayFilterMode
+    return:
+      type: UnityEngine.FilterMode
+    content.vb: Protected _arrayFilterMode As FilterMode
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayAnisoLevel
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayAnisoLevel
+  id: _arrayAnisoLevel
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _arrayAnisoLevel
+  nameWithType: Texture2DArrayWindowBase._arrayAnisoLevel
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayAnisoLevel
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _arrayAnisoLevel
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 35
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected int _arrayAnisoLevel
+    return:
+      type: System.Int32
+    content.vb: Protected _arrayAnisoLevel As Integer
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeTextures
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeTextures
+  id: _resizeTextures
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _resizeTextures
+  nameWithType: Texture2DArrayWindowBase._resizeTextures
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeTextures
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _resizeTextures
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 37
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected bool _resizeTextures
+    return:
+      type: System.Boolean
+    content.vb: Protected _resizeTextures As Boolean
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayResolution
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayResolution
+  id: _arrayResolution
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _arrayResolution
+  nameWithType: Texture2DArrayWindowBase._arrayResolution
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayResolution
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _arrayResolution
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 38
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected Vector2Int _arrayResolution
+    return:
+      type: UnityEngine.Vector2Int
+    content.vb: Protected _arrayResolution As Vector2Int
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeFilterMode
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeFilterMode
+  id: _resizeFilterMode
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _resizeFilterMode
+  nameWithType: Texture2DArrayWindowBase._resizeFilterMode
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeFilterMode
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _resizeFilterMode
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 39
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected FilterMode _resizeFilterMode
+    return:
+      type: UnityEngine.FilterMode
+    content.vb: Protected _resizeFilterMode As FilterMode
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureFormatSettingEnabled
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureFormatSettingEnabled
+  id: _textureFormatSettingEnabled
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _textureFormatSettingEnabled
+  nameWithType: Texture2DArrayWindowBase._textureFormatSettingEnabled
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureFormatSettingEnabled
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _textureFormatSettingEnabled
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 43
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected bool _textureFormatSettingEnabled
+    return:
+      type: System.Boolean
+    content.vb: Protected _textureFormatSettingEnabled As Boolean
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._mipmapsSettingEnabled
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._mipmapsSettingEnabled
+  id: _mipmapsSettingEnabled
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _mipmapsSettingEnabled
+  nameWithType: Texture2DArrayWindowBase._mipmapsSettingEnabled
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._mipmapsSettingEnabled
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _mipmapsSettingEnabled
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 44
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected bool _mipmapsSettingEnabled
+    return:
+      type: System.Boolean
+    content.vb: Protected _mipmapsSettingEnabled As Boolean
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._linearSettingEnabled
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._linearSettingEnabled
+  id: _linearSettingEnabled
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _linearSettingEnabled
+  nameWithType: Texture2DArrayWindowBase._linearSettingEnabled
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._linearSettingEnabled
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _linearSettingEnabled
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 45
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected bool _linearSettingEnabled
+    return:
+      type: System.Boolean
+    content.vb: Protected _linearSettingEnabled As Boolean
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._wrapModeSettingEnabled
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._wrapModeSettingEnabled
+  id: _wrapModeSettingEnabled
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _wrapModeSettingEnabled
+  nameWithType: Texture2DArrayWindowBase._wrapModeSettingEnabled
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._wrapModeSettingEnabled
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _wrapModeSettingEnabled
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 46
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected bool _wrapModeSettingEnabled
+    return:
+      type: System.Boolean
+    content.vb: Protected _wrapModeSettingEnabled As Boolean
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._filterModeSettingEnabled
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._filterModeSettingEnabled
+  id: _filterModeSettingEnabled
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _filterModeSettingEnabled
+  nameWithType: Texture2DArrayWindowBase._filterModeSettingEnabled
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._filterModeSettingEnabled
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _filterModeSettingEnabled
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 47
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected bool _filterModeSettingEnabled
+    return:
+      type: System.Boolean
+    content.vb: Protected _filterModeSettingEnabled As Boolean
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._anisoLevelSettingEnabled
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._anisoLevelSettingEnabled
+  id: _anisoLevelSettingEnabled
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _anisoLevelSettingEnabled
+  nameWithType: Texture2DArrayWindowBase._anisoLevelSettingEnabled
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._anisoLevelSettingEnabled
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _anisoLevelSettingEnabled
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 48
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected bool _anisoLevelSettingEnabled
+    return:
+      type: System.Boolean
+    content.vb: Protected _anisoLevelSettingEnabled As Boolean
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeSettingEnabled
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeSettingEnabled
+  id: _resizeSettingEnabled
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _resizeSettingEnabled
+  nameWithType: Texture2DArrayWindowBase._resizeSettingEnabled
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeSettingEnabled
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _resizeSettingEnabled
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 49
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected bool _resizeSettingEnabled
+    return:
+      type: System.Boolean
+    content.vb: Protected _resizeSettingEnabled As Boolean
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._canAddRemoveTextures
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._canAddRemoveTextures
+  id: _canAddRemoveTextures
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _canAddRemoveTextures
+  nameWithType: Texture2DArrayWindowBase._canAddRemoveTextures
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._canAddRemoveTextures
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _canAddRemoveTextures
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 53
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected bool _canAddRemoveTextures
+    return:
+      type: System.Boolean
+    content.vb: Protected _canAddRemoveTextures As Boolean
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._headerStyle
+  commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._headerStyle
+  id: _headerStyle
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: _headerStyle
+  nameWithType: Texture2DArrayWindowBase._headerStyle
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._headerStyle
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _headerStyle
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 57
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  syntax:
+    content: protected GUIStyle _headerStyle
+    return:
+      type: UnityEngine.GUIStyle
+    content.vb: Protected _headerStyle As GUIStyle
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI
+  id: CreateGUI
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: CreateGUI()
+  nameWithType: Texture2DArrayWindowBase.CreateGUI()
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 63
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: >-
+    Called when theGUI is first created<br />
+
+    base.CreateGUI(); Must be called before performing operations
+  example: []
+  syntax:
+    content: protected virtual void CreateGUI()
+    content.vb: Protected Overridable Sub CreateGUI()
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI*
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate
+  id: OnGUIUpdate
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: OnGUIUpdate()
+  nameWithType: Texture2DArrayWindowBase.OnGUIUpdate()
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnGUIUpdate
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 148
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: >-
+    Called every GUI update, used due to other tasks in OnGUI<br />
+
+    base.OnGUI(); Will create the textures, settings, and output sections
+  example: []
+  syntax:
+    content: protected virtual void OnGUIUpdate()
+    content.vb: Protected Overridable Sub OnGUIUpdate()
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate*
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight(System.Int32)
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight(System.Int32)
+  id: CalculateElementHeight(System.Int32)
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: CalculateElementHeight(int)
+  nameWithType: Texture2DArrayWindowBase.CalculateElementHeight(int)
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight(int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CalculateElementHeight
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 195
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: >-
+    Calculates the height of an element for the ReorderableList GUI where the textures are assigned<br />
+
+    base.CalculateElementHeight(); Must be called before performing operations
+  example: []
+  syntax:
+    content: protected virtual float CalculateElementHeight(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+      description: Index of the texture list which the height is being calculated for the ReorderableList GUI
+    return:
+      type: System.Single
+      description: Height that the element will use
+    content.vb: Protected Overridable Function CalculateElementHeight(index As Integer) As Single
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight*
+  nameWithType.vb: Texture2DArrayWindowBase.CalculateElementHeight(Integer)
+  fullName.vb: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight(Integer)
+  name.vb: CalculateElementHeight(Integer)
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField(UnityEngine.Rect,System.Int32,System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField(UnityEngine.Rect,System.Int32,System.Boolean,System.Boolean)
+  id: DrawTextureField(UnityEngine.Rect,System.Int32,System.Boolean,System.Boolean)
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: DrawTextureField(Rect, int, bool, bool)
+  nameWithType: Texture2DArrayWindowBase.DrawTextureField(Rect, int, bool, bool)
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField(UnityEngine.Rect, int, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextureField
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 227
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: >-
+    Draws a texture element in the textures list<br />
+
+    When modifying the height in any way Repaint(); should be called to update it on the same GUI call, otherwise will be updated on the next
+  example: []
+  syntax:
+    content: protected virtual void DrawTextureField(Rect rect, int index, bool isActive, bool isFocused)
+    parameters:
+    - id: rect
+      type: UnityEngine.Rect
+      description: >-
+        Rect with all the available space in the element<br />
+
+        Available space is calculated and can be changed in CalculateElementHeight
+    - id: index
+      type: System.Int32
+      description: The index of the current element in the textures list
+    - id: isActive
+      type: System.Boolean
+      description: If this element is is being moved or interacted with in the GUI
+    - id: isFocused
+      type: System.Boolean
+      description: If this element is selected in the GUI
+    content.vb: Protected Overridable Sub DrawTextureField(rect As Rect, index As Integer, isActive As Boolean, isFocused As Boolean)
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField*
+  nameWithType.vb: Texture2DArrayWindowBase.DrawTextureField(Rect, Integer, Boolean, Boolean)
+  fullName.vb: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField(UnityEngine.Rect, Integer, Boolean, Boolean)
+  name.vb: DrawTextureField(Rect, Integer, Boolean, Boolean)
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings
+  id: DrawArraySettings
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: DrawArraySettings()
+  nameWithType: Texture2DArrayWindowBase.DrawArraySettings()
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawArraySettings
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 329
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: >-
+    Draws the settings of the output array. Settings that are enabled here can be toggles with the respective settingEnabled variables<br />
+
+    All GUI called here will be drawn within the Array Settings section<br />
+
+    base.DrawArraySettings() will draw the settings
+  example: []
+  syntax:
+    content: protected virtual void DrawArraySettings()
+    content.vb: Protected Overridable Sub DrawArraySettings()
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings*
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields
+  id: DrawFinalOutputFields
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: DrawFinalOutputFields()
+  nameWithType: Texture2DArrayWindowBase.DrawFinalOutputFields()
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawFinalOutputFields
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 388
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: >-
+    Draws the details of the output array<br />
+
+    All GUI called here will be drawn within the Final Output section<br />
+
+    base.DrawFinalOutputFields() will draw the final output details
+  example: []
+  syntax:
+    content: protected virtual void DrawFinalOutputFields()
+    content.vb: Protected Overridable Sub DrawFinalOutputFields()
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields*
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings
+  id: DisplayWarnings
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: DisplayWarnings()
+  nameWithType: Texture2DArrayWindowBase.DisplayWarnings()
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DisplayWarnings
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 408
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: >-
+    Displays any warnings for array creation<br />
+
+    All GUI called here will be drawn within and at the bottom of the Final Output section<br />
+
+    base.DrawFinalOutputFields() must be called before showing any extra warnings
+  example: []
+  syntax:
+    content: protected virtual void DisplayWarnings()
+    content.vb: Protected Overridable Sub DisplayWarnings()
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings*
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd(UnityEditorInternal.ReorderableList)
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd(UnityEditorInternal.ReorderableList)
+  id: OnTextureAdd(UnityEditorInternal.ReorderableList)
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: OnTextureAdd(ReorderableList)
+  nameWithType: Texture2DArrayWindowBase.OnTextureAdd(ReorderableList)
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd(UnityEditorInternal.ReorderableList)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnTextureAdd
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 440
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: >-
+    Called when the add button is clicked in the ReorderableList GUI<br />
+
+    base.OnTextureAdd() will add a texture to the texture lists and should be called
+  example: []
+  syntax:
+    content: protected virtual void OnTextureAdd(ReorderableList list)
+    parameters:
+    - id: list
+      type: UnityEditorInternal.ReorderableList
+      description: The ReorderableList used for displaying the GUI
+    content.vb: Protected Overridable Sub OnTextureAdd(list As ReorderableList)
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd*
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove(UnityEditorInternal.ReorderableList)
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove(UnityEditorInternal.ReorderableList)
+  id: OnTextureRemove(UnityEditorInternal.ReorderableList)
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: OnTextureRemove(ReorderableList)
+  nameWithType: Texture2DArrayWindowBase.OnTextureRemove(ReorderableList)
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove(UnityEditorInternal.ReorderableList)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnTextureRemove
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 454
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: >-
+    Called when the remove button or delete key is pressed in the ReorderableList GUI<br />
+
+    base.OnTextureRemove() will remove the selected texture from the texture lists and should be called
+  example: []
+  syntax:
+    content: protected virtual void OnTextureRemove(ReorderableList list)
+    parameters:
+    - id: list
+      type: UnityEditorInternal.ReorderableList
+      description: The ReorderableList used for displaying the GUI
+    content.vb: Protected Overridable Sub OnTextureRemove(list As ReorderableList)
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove*
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder(UnityEditorInternal.ReorderableList,System.Int32,System.Int32)
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder(UnityEditorInternal.ReorderableList,System.Int32,System.Int32)
+  id: OnTexturesReorder(UnityEditorInternal.ReorderableList,System.Int32,System.Int32)
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: OnTexturesReorder(ReorderableList, int, int)
+  nameWithType: Texture2DArrayWindowBase.OnTexturesReorder(ReorderableList, int, int)
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder(UnityEditorInternal.ReorderableList, int, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnTexturesReorder
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 479
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: >-
+    Called when the textures are reordered in the ReorderableList GUI<br />
+
+    base.OnTexturesReorder() will handle reordering the texture lists and should be called
+  example: []
+  syntax:
+    content: protected virtual void OnTexturesReorder(ReorderableList list, int oldActiveElement, int newActiveElement)
+    parameters:
+    - id: list
+      type: UnityEditorInternal.ReorderableList
+      description: The ReorderableList used for displaying the GUI
+    - id: oldActiveElement
+      type: System.Int32
+      description: The previous index of the reordered element
+    - id: newActiveElement
+      type: System.Int32
+      description: The new index of the reordered element
+    content.vb: Protected Overridable Sub OnTexturesReorder(list As ReorderableList, oldActiveElement As Integer, newActiveElement As Integer)
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder*
+  nameWithType.vb: Texture2DArrayWindowBase.OnTexturesReorder(ReorderableList, Integer, Integer)
+  fullName.vb: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder(UnityEditorInternal.ReorderableList, Integer, Integer)
+  name.vb: OnTexturesReorder(ReorderableList, Integer, Integer)
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate(UnityEngine.Object[])
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate(UnityEngine.Object[])
+  id: OnDragUpdate(UnityEngine.Object[])
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: OnDragUpdate(Object[])
+  nameWithType: Texture2DArrayWindowBase.OnDragUpdate(Object[])
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate(UnityEngine.Object[])
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnDragUpdate
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 502
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: Called every update while anything is dragged over the window
+  example: []
+  syntax:
+    content: protected virtual void OnDragUpdate(Object[] objectReferences)
+    parameters:
+    - id: objectReferences
+      type: UnityEngine.Object[]
+      description: The items that are being dragged
+    content.vb: Protected Overridable Sub OnDragUpdate(objectReferences As [Object]())
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate*
+  nameWithType.vb: Texture2DArrayWindowBase.OnDragUpdate(Object())
+  fullName.vb: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate(UnityEngine.Object())
+  name.vb: OnDragUpdate(Object())
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform(UnityEngine.Object[])
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform(UnityEngine.Object[])
+  id: OnDragPerform(UnityEngine.Object[])
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: OnDragPerform(Object[])
+  nameWithType: Texture2DArrayWindowBase.OnDragPerform(Object[])
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform(UnityEngine.Object[])
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnDragPerform
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 518
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: Called when the drag is complete over the window
+  example: []
+  syntax:
+    content: protected virtual void OnDragPerform(Object[] objectReferences)
+    parameters:
+    - id: objectReferences
+      type: UnityEngine.Object[]
+      description: The items that are being dragged
+    content.vb: Protected Overridable Sub OnDragPerform(objectReferences As [Object]())
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform*
+  nameWithType.vb: Texture2DArrayWindowBase.OnDragPerform(Object())
+  fullName.vb: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform(UnityEngine.Object())
+  name.vb: OnDragPerform(Object())
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist
+  id: ArrayTexturesExist
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: ArrayTexturesExist()
+  nameWithType: Texture2DArrayWindowBase.ArrayTexturesExist()
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: ArrayTexturesExist
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 571
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: Checks if any textures exist in the list
+  example: []
+  syntax:
+    content: protected bool ArrayTexturesExist()
+    return:
+      type: System.Boolean
+      description: If any textures exist in the list
+    content.vb: Protected Function ArrayTexturesExist() As Boolean
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist*
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray(System.String,System.Boolean)
+  commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray(System.String,System.Boolean)
+  id: CreateArray(System.String,System.Boolean)
+  parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  langs:
+  - csharp
+  - vb
+  name: CreateArray(string, bool)
+  nameWithType: Texture2DArrayWindowBase.CreateArray(string, bool)
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray(string, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateArray
+    path: ../Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
+    startLine: 592
+  assemblies:
+  - com.williamschack.Repetitionless.CustomWindows
+  namespace: Repetitionless.CustomWindows
+  summary: Creates the array using the specified textures and settings at a given path
+  example: []
+  syntax:
+    content: protected bool CreateArray(string path, bool pingArray = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: >-
+        The file location that the array will be created within the project folder<br />
+
+        Should always start with "Assets/"
+    - id: pingArray
+      type: System.Boolean
+    return:
+      type: System.Boolean
+      description: If the operation was successful
+    content.vb: Protected Function CreateArray(path As String, pingArray As Boolean = True) As Boolean
+  overload: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray*
+  nameWithType.vb: Texture2DArrayWindowBase.CreateArray(String, Boolean)
+  fullName.vb: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray(String, Boolean)
+  name.vb: CreateArray(String, Boolean)
+references:
+- uid: Repetitionless.CustomWindows
+  commentId: N:Repetitionless.CustomWindows
+  href: Repetitionless.html
+  name: Repetitionless.CustomWindows
+  nameWithType: Repetitionless.CustomWindows
+  fullName: Repetitionless.CustomWindows
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+    href: Repetitionless.html
+  - name: .
+  - uid: Repetitionless.CustomWindows
+    name: CustomWindows
+    href: Repetitionless.CustomWindows.html
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+    href: Repetitionless.html
+  - name: .
+  - uid: Repetitionless.CustomWindows
+    name: CustomWindows
+    href: Repetitionless.CustomWindows.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: UnityEngine.Object
+  commentId: T:UnityEngine.Object
+  parent: UnityEngine
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: UnityEngine.Object
+- uid: UnityEngine.ScriptableObject
+  commentId: T:UnityEngine.ScriptableObject
+  parent: UnityEngine
+  isExternal: true
+  name: ScriptableObject
+  nameWithType: ScriptableObject
+  fullName: UnityEngine.ScriptableObject
+- uid: UnityEditor.EditorWindow
+  commentId: T:UnityEditor.EditorWindow
+  parent: UnityEditor
+  isExternal: true
+  name: EditorWindow
+  nameWithType: EditorWindow
+  fullName: UnityEditor.EditorWindow
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: UnityEditor
+  commentId: N:UnityEditor
+  isExternal: true
+  name: UnityEditor
+  nameWithType: UnityEditor
+  fullName: UnityEditor
+- uid: System.Collections.Generic.List{UnityEngine.Texture2D}
+  commentId: T:System.Collections.Generic.List{UnityEngine.Texture2D}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Texture2D>
+  nameWithType: List<Texture2D>
+  fullName: System.Collections.Generic.List<UnityEngine.Texture2D>
+  nameWithType.vb: List(Of Texture2D)
+  fullName.vb: System.Collections.Generic.List(Of UnityEngine.Texture2D)
+  name.vb: List(Of Texture2D)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: <
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+- uid: System.Collections.Generic.List{System.Boolean}
+  commentId: T:System.Collections.Generic.List{System.Boolean}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<bool>
+  nameWithType: List<bool>
+  fullName: System.Collections.Generic.List<bool>
+  nameWithType.vb: List(Of Boolean)
+  fullName.vb: System.Collections.Generic.List(Of Boolean)
+  name.vb: List(Of Boolean)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: UnityEngine.TextureWrapMode
+  commentId: T:UnityEngine.TextureWrapMode
+  parent: UnityEngine
+  isExternal: true
+  name: TextureWrapMode
+  nameWithType: TextureWrapMode
+  fullName: UnityEngine.TextureWrapMode
+- uid: UnityEngine.FilterMode
+  commentId: T:UnityEngine.FilterMode
+  parent: UnityEngine
+  isExternal: true
+  name: FilterMode
+  nameWithType: FilterMode
+  fullName: UnityEngine.FilterMode
+- uid: UnityEngine.Vector2Int
+  commentId: T:UnityEngine.Vector2Int
+  parent: UnityEngine
+  isExternal: true
+  name: Vector2Int
+  nameWithType: Vector2Int
+  fullName: UnityEngine.Vector2Int
+- uid: UnityEngine.GUIStyle
+  commentId: T:UnityEngine.GUIStyle
+  parent: UnityEngine
+  isExternal: true
+  name: GUIStyle
+  nameWithType: GUIStyle
+  fullName: UnityEngine.GUIStyle
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CreateGUI
+  name: CreateGUI
+  nameWithType: Texture2DArrayWindowBase.CreateGUI
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnGUIUpdate
+  name: OnGUIUpdate
+  nameWithType: Texture2DArrayWindowBase.OnGUIUpdate
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CalculateElementHeight_System_Int32_
+  name: CalculateElementHeight
+  nameWithType: Texture2DArrayWindowBase.CalculateElementHeight
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawTextureField_UnityEngine_Rect_System_Int32_System_Boolean_System_Boolean_
+  name: DrawTextureField
+  nameWithType: Texture2DArrayWindowBase.DrawTextureField
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField
+- uid: UnityEngine.Rect
+  commentId: T:UnityEngine.Rect
+  parent: UnityEngine
+  isExternal: true
+  name: Rect
+  nameWithType: Rect
+  fullName: UnityEngine.Rect
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawArraySettings
+  name: DrawArraySettings
+  nameWithType: Texture2DArrayWindowBase.DrawArraySettings
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawFinalOutputFields
+  name: DrawFinalOutputFields
+  nameWithType: Texture2DArrayWindowBase.DrawFinalOutputFields
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DisplayWarnings
+  name: DisplayWarnings
+  nameWithType: Texture2DArrayWindowBase.DisplayWarnings
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTextureAdd_UnityEditorInternal_ReorderableList_
+  name: OnTextureAdd
+  nameWithType: Texture2DArrayWindowBase.OnTextureAdd
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd
+- uid: UnityEditorInternal.ReorderableList
+  commentId: T:UnityEditorInternal.ReorderableList
+  parent: UnityEditorInternal
+  isExternal: true
+  name: ReorderableList
+  nameWithType: ReorderableList
+  fullName: UnityEditorInternal.ReorderableList
+- uid: UnityEditorInternal
+  commentId: N:UnityEditorInternal
+  isExternal: true
+  name: UnityEditorInternal
+  nameWithType: UnityEditorInternal
+  fullName: UnityEditorInternal
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTextureRemove_UnityEditorInternal_ReorderableList_
+  name: OnTextureRemove
+  nameWithType: Texture2DArrayWindowBase.OnTextureRemove
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTexturesReorder_UnityEditorInternal_ReorderableList_System_Int32_System_Int32_
+  name: OnTexturesReorder
+  nameWithType: Texture2DArrayWindowBase.OnTexturesReorder
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnDragUpdate_UnityEngine_Object___
+  name: OnDragUpdate
+  nameWithType: Texture2DArrayWindowBase.OnDragUpdate
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate
+- uid: UnityEngine.Object[]
+  isExternal: true
+  name: Object[]
+  nameWithType: Object[]
+  fullName: UnityEngine.Object[]
+  nameWithType.vb: Object()
+  fullName.vb: UnityEngine.Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: UnityEngine.Object
+    name: Object
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: UnityEngine.Object
+    name: Object
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnDragPerform_UnityEngine_Object___
+  name: OnDragPerform
+  nameWithType: Texture2DArrayWindowBase.OnDragPerform
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_ArrayTexturesExist
+  name: ArrayTexturesExist
+  nameWithType: Texture2DArrayWindowBase.ArrayTexturesExist
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist
+- uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray*
+  commentId: Overload:Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray
+  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CreateArray_System_String_System_Boolean_
+  name: CreateArray
+  nameWithType: Texture2DArrayWindowBase.CreateArray
+  fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

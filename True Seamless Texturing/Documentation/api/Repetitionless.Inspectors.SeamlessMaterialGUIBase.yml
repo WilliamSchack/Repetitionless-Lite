@@ -1,0 +1,1416 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  commentId: T:Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  id: SeamlessMaterialGUIBase
+  parent: Repetitionless.Inspectors
+  children:
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawBaseMaterialGUI(System.String)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDebugGUI
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDistanceBlendGUI(System.String)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialBlendGUI(System.String)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialGUI(System.String,System.Int32,System.String)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialMainProperties(System.String,System.Int32)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialNoiseGUI(System.String)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialPropertiesGUI
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialSettingsGUI(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialVariationProperties(System.String,System.Int32)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent,System.String)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.FindProperty(System.String)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.GetScaledText(System.Int32,System.String,System.String)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.HEADER_PADDING
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.HandleAssignedTextures(System.String,System.Int32,UnityEditor.MaterialProperty)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnEnable(UnityEditor.MaterialEditor)
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.SCALED_TEXT_PADDING
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.SETTING_SPACING
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase._cachedProperties
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase._editor
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase._foldoutStates
+  - Repetitionless.Inspectors.SeamlessMaterialGUIBase._material
+  langs:
+  - csharp
+  - vb
+  name: SeamlessMaterialGUIBase
+  nameWithType: SeamlessMaterialGUIBase
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SeamlessMaterialGUIBase
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 12
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: 'public class SeamlessMaterialGUIBase : ShaderGUI'
+    content.vb: Public Class SeamlessMaterialGUIBase Inherits ShaderGUI
+  inheritance:
+  - System.Object
+  - UnityEditor.ShaderGUI
+  derivedClasses:
+  - Repetitionless.Inspectors.SeamlessMaterialMasterGUI
+  - Repetitionless.Inspectors.SeamlessMaterialTerrainGUI
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.HEADER_PADDING
+  commentId: F:Repetitionless.Inspectors.SeamlessMaterialGUIBase.HEADER_PADDING
+  id: HEADER_PADDING
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: HEADER_PADDING
+  nameWithType: SeamlessMaterialGUIBase.HEADER_PADDING
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.HEADER_PADDING
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: HEADER_PADDING
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 28
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: protected const int HEADER_PADDING = 4
+    return:
+      type: System.Int32
+    content.vb: Protected Const HEADER_PADDING As Integer = 4
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.SETTING_SPACING
+  commentId: F:Repetitionless.Inspectors.SeamlessMaterialGUIBase.SETTING_SPACING
+  id: SETTING_SPACING
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: SETTING_SPACING
+  nameWithType: SeamlessMaterialGUIBase.SETTING_SPACING
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.SETTING_SPACING
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SETTING_SPACING
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 29
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: protected const int SETTING_SPACING = 4
+    return:
+      type: System.Int32
+    content.vb: Protected Const SETTING_SPACING As Integer = 4
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.SCALED_TEXT_PADDING
+  commentId: F:Repetitionless.Inspectors.SeamlessMaterialGUIBase.SCALED_TEXT_PADDING
+  id: SCALED_TEXT_PADDING
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: SCALED_TEXT_PADDING
+  nameWithType: SeamlessMaterialGUIBase.SCALED_TEXT_PADDING
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.SCALED_TEXT_PADDING
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SCALED_TEXT_PADDING
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 31
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: protected const int SCALED_TEXT_PADDING = 10
+    return:
+      type: System.Int32
+    content.vb: Protected Const SCALED_TEXT_PADDING As Integer = 10
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase._material
+  commentId: F:Repetitionless.Inspectors.SeamlessMaterialGUIBase._material
+  id: _material
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: _material
+  nameWithType: SeamlessMaterialGUIBase._material
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase._material
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _material
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 34
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: protected Material _material
+    return:
+      type: UnityEngine.Material
+    content.vb: Protected _material As Material
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase._editor
+  commentId: F:Repetitionless.Inspectors.SeamlessMaterialGUIBase._editor
+  id: _editor
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: _editor
+  nameWithType: SeamlessMaterialGUIBase._editor
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase._editor
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _editor
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 35
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: protected MaterialEditor _editor
+    return:
+      type: UnityEditor.MaterialEditor
+    content.vb: Protected _editor As MaterialEditor
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase._cachedProperties
+  commentId: F:Repetitionless.Inspectors.SeamlessMaterialGUIBase._cachedProperties
+  id: _cachedProperties
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: _cachedProperties
+  nameWithType: SeamlessMaterialGUIBase._cachedProperties
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase._cachedProperties
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _cachedProperties
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 36
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: protected Dictionary<string, MaterialProperty> _cachedProperties
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,UnityEditor.MaterialProperty}
+    content.vb: Protected _cachedProperties As Dictionary(Of String, MaterialProperty)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase._foldoutStates
+  commentId: F:Repetitionless.Inspectors.SeamlessMaterialGUIBase._foldoutStates
+  id: _foldoutStates
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: _foldoutStates
+  nameWithType: SeamlessMaterialGUIBase._foldoutStates
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase._foldoutStates
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _foldoutStates
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 39
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: protected Dictionary<string, SeamlessMaterialGUIBase.MaterialFoldoutState> _foldoutStates
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState}
+    content.vb: Protected _foldoutStates As Dictionary(Of String, SeamlessMaterialGUIBase.MaterialFoldoutState)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.FindProperty(System.String)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.FindProperty(System.String)
+  id: FindProperty(System.String)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: FindProperty(string)
+  nameWithType: SeamlessMaterialGUIBase.FindProperty(string)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.FindProperty(string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: FindProperty
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 58
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Gets a property from the cached properties
+  example: []
+  syntax:
+    content: protected MaterialProperty FindProperty(string name)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the material property
+    return:
+      type: UnityEditor.MaterialProperty
+      description: The material property requested
+    content.vb: Protected Function FindProperty(name As String) As MaterialProperty
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.FindProperty*
+  nameWithType.vb: SeamlessMaterialGUIBase.FindProperty(String)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.FindProperty(String)
+  name.vb: FindProperty(String)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.GetScaledText(System.Int32,System.String,System.String)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.GetScaledText(System.Int32,System.String,System.String)
+  id: GetScaledText(System.Int32,System.String,System.String)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: GetScaledText(int, string, string)
+  nameWithType: SeamlessMaterialGUIBase.GetScaledText(int, string, string)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.GetScaledText(int, string, string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GetScaledText
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 78
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Dynamically returns a text if the window width is within the given minWidth
+  example: []
+  syntax:
+    content: protected string GetScaledText(int minWidth, string largeText, string smallText)
+    parameters:
+    - id: minWidth
+      type: System.Int32
+      description: The minimum width for the window width to be to show the large text
+    - id: largeText
+      type: System.String
+      description: The text to return if the window width is greater than minWidth
+    - id: smallText
+      type: System.String
+      description: The text to return if the window width is less than minWidth
+    return:
+      type: System.String
+      description: The scaled text
+    content.vb: Protected Function GetScaledText(minWidth As Integer, largeText As String, smallText As String) As String
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.GetScaledText*
+  nameWithType.vb: SeamlessMaterialGUIBase.GetScaledText(Integer, String, String)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.GetScaledText(Integer, String, String)
+  name.vb: GetScaledText(Integer, String, String)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent,System.String)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent,System.String)
+  id: DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent,System.String)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawTexture(int, int, GUIContent, string)
+  nameWithType: SeamlessMaterialGUIBase.DrawTexture(int, int, GUIContent, string)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawTexture(int, int, UnityEngine.GUIContent, string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTexture
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 113
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: >-
+    Used to draw all the texture fields<br />
+
+    Can be overrided to change how textures are drawn
+  example: []
+  syntax:
+    content: protected virtual Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, string texturePropertyName)
+    parameters:
+    - id: sectionIndex
+      type: System.Int32
+      description: The section that this texture is in
+    - id: textureIndex
+      type: System.Int32
+      description: The index of the texture in this section
+    - id: content
+      type: UnityEngine.GUIContent
+      description: The GUIContent to use in the field
+    - id: texturePropertyName
+      type: System.String
+      description: The texture material property name
+    return:
+      type: UnityEngine.Rect
+      description: The rect that the texture field is using
+    content.vb: Protected Overridable Function DrawTexture(sectionIndex As Integer, textureIndex As Integer, content As GUIContent, texturePropertyName As String) As Rect
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawTexture*
+  nameWithType.vb: SeamlessMaterialGUIBase.DrawTexture(Integer, Integer, GUIContent, String)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawTexture(Integer, Integer, UnityEngine.GUIContent, String)
+  name.vb: DrawTexture(Integer, Integer, GUIContent, String)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.HandleAssignedTextures(System.String,System.Int32,UnityEditor.MaterialProperty)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.HandleAssignedTextures(System.String,System.Int32,UnityEditor.MaterialProperty)
+  id: HandleAssignedTextures(System.String,System.Int32,UnityEditor.MaterialProperty)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: HandleAssignedTextures(string, int, MaterialProperty)
+  nameWithType: SeamlessMaterialGUIBase.HandleAssignedTextures(string, int, MaterialProperty)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.HandleAssignedTextures(string, int, UnityEditor.MaterialProperty)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: HandleAssignedTextures
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 140
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: >-
+    Handles assigned textures that the shader uses to determine whether to use textures or values<br />
+
+    Can be overrided to change how the assigned textures are set
+  example: []
+  syntax:
+    content: protected virtual int HandleAssignedTextures(string materialPrefix, int sectionIndex, MaterialProperty settingsProp)
+    parameters:
+    - id: materialPrefix
+      type: System.String
+      description: The material property prefix for the material section
+    - id: sectionIndex
+      type: System.Int32
+      description: The section that this texture is in
+    - id: settingsProp
+      type: UnityEditor.MaterialProperty
+      description: The settings material property for this material section
+    return:
+      type: System.Int32
+      description: The compressed assigned textures
+    content.vb: Protected Overridable Function HandleAssignedTextures(materialPrefix As String, sectionIndex As Integer, settingsProp As MaterialProperty) As Integer
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.HandleAssignedTextures*
+  nameWithType.vb: SeamlessMaterialGUIBase.HandleAssignedTextures(String, Integer, MaterialProperty)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.HandleAssignedTextures(String, Integer, UnityEditor.MaterialProperty)
+  name.vb: HandleAssignedTextures(String, Integer, MaterialProperty)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnEnable(UnityEditor.MaterialEditor)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnEnable(UnityEditor.MaterialEditor)
+  id: OnEnable(UnityEditor.MaterialEditor)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: OnEnable(MaterialEditor)
+  nameWithType: SeamlessMaterialGUIBase.OnEnable(MaterialEditor)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnEnable(UnityEditor.MaterialEditor)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnEnable
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 164
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  syntax:
+    content: public virtual void OnEnable(MaterialEditor materialEditor)
+    parameters:
+    - id: materialEditor
+      type: UnityEditor.MaterialEditor
+    content.vb: Public Overridable Sub OnEnable(materialEditor As MaterialEditor)
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnEnable*
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  id: OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: OnGUI(MaterialEditor, MaterialProperty[])
+  nameWithType: SeamlessMaterialGUIBase.OnGUI(MaterialEditor, MaterialProperty[])
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnGUI(UnityEditor.MaterialEditor, UnityEditor.MaterialProperty[])
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 171
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: <p>To define a custom shader GUI use the methods of materialEditor to render controls for the properties array.</p>
+  example: []
+  syntax:
+    content: public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
+    parameters:
+    - id: materialEditor
+      type: UnityEditor.MaterialEditor
+      description: The MaterialEditor that are calling this OnGUI (the 'owner').
+    - id: properties
+      type: UnityEditor.MaterialProperty[]
+      description: Material properties of the current selected shader.
+    content.vb: Public Overrides Sub OnGUI(materialEditor As MaterialEditor, properties As MaterialProperty())
+  overridden: UnityEditor.ShaderGUI.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnGUI*
+  nameWithType.vb: SeamlessMaterialGUIBase.OnGUI(MaterialEditor, MaterialProperty())
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnGUI(UnityEditor.MaterialEditor, UnityEditor.MaterialProperty())
+  name.vb: OnGUI(MaterialEditor, MaterialProperty())
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialPropertiesGUI
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialPropertiesGUI
+  id: DrawMaterialPropertiesGUI
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawMaterialPropertiesGUI()
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialPropertiesGUI()
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialPropertiesGUI()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawMaterialPropertiesGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 200
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws the general material settings at the top of the inspector
+  example: []
+  syntax:
+    content: protected virtual void DrawMaterialPropertiesGUI()
+    content.vb: Protected Overridable Sub DrawMaterialPropertiesGUI()
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialPropertiesGUI*
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialGUI(System.String,System.Int32,System.String)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialGUI(System.String,System.Int32,System.String)
+  id: DrawMaterialGUI(System.String,System.Int32,System.String)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawMaterialGUI(string, int, string)
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialGUI(string, int, string)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialGUI(string, int, string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawMaterialGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 312
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws a material section GUI
+  example: []
+  syntax:
+    content: protected virtual void DrawMaterialGUI(string materialPrefix, int sectionIndex, string headerText = "")
+    parameters:
+    - id: materialPrefix
+      type: System.String
+      description: The material property prefix for the material section
+    - id: sectionIndex
+      type: System.Int32
+      description: The material section index
+    - id: headerText
+      type: System.String
+      description: The header label text for the section
+    content.vb: Protected Overridable Sub DrawMaterialGUI(materialPrefix As String, sectionIndex As Integer, headerText As String = "")
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialGUI*
+  nameWithType.vb: SeamlessMaterialGUIBase.DrawMaterialGUI(String, Integer, String)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialGUI(String, Integer, String)
+  name.vb: DrawMaterialGUI(String, Integer, String)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialSettingsGUI(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialSettingsGUI(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
+  id: DrawMaterialSettingsGUI(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawMaterialSettingsGUI(string, bool, bool, bool, bool, bool, int)
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialSettingsGUI(string, bool, bool, bool, bool, bool, int)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialSettingsGUI(string, bool, bool, bool, bool, bool, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawMaterialSettingsGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 398
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws the settings at the top of each material section
+  example: []
+  syntax:
+    content: protected virtual void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true, int extraWidth = 0)
+    parameters:
+    - id: materialPrefix
+      type: System.String
+      description: The material property prefix for the material section
+    - id: showNoise
+      type: System.Boolean
+      description: Toggles if the noise settings are enabled
+    - id: showVariation
+      type: System.Boolean
+      description: Toggles if the variation setting is enabled
+    - id: showPT
+      type: System.Boolean
+      description: Toggles if the packed texture setting is enabled
+    - id: showEmission
+      type: System.Boolean
+      description: Toggles if the emission setting is enabled
+    - id: showSR
+      type: System.Boolean
+      description: Toggles if the smoothness/roughness toggle setting is enabled
+    - id: extraWidth
+      type: System.Int32
+      description: >-
+        Any extra width required for the whole section<br />
+
+        Used to increase the required width for the labels to expand
+    content.vb: Protected Overridable Sub DrawMaterialSettingsGUI(materialPrefix As String, showNoise As Boolean = True, showVariation As Boolean = True, showPT As Boolean = True, showEmission As Boolean = True, showSR As Boolean = True, extraWidth As Integer = 0)
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialSettingsGUI*
+  nameWithType.vb: SeamlessMaterialGUIBase.DrawMaterialSettingsGUI(String, Boolean, Boolean, Boolean, Boolean, Boolean, Integer)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialSettingsGUI(String, Boolean, Boolean, Boolean, Boolean, Boolean, Integer)
+  name.vb: DrawMaterialSettingsGUI(String, Boolean, Boolean, Boolean, Boolean, Boolean, Integer)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  id: DrawLeftMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawLeftMaterialSettingsGUI(int, string, int, int, bool, bool)
+  nameWithType: SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI(int, string, int, int, bool, bool)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI(int, string, int, int, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawLeftMaterialSettingsGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 466
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws the left section of the material settings
+  example: []
+  syntax:
+    content: protected virtual int DrawLeftMaterialSettingsGUI(int compressedValues, string materialPrefix, int settingToggles, int minScaledTextWidth, bool showNoise = true, bool showVariation = true)
+    parameters:
+    - id: compressedValues
+      type: System.Int32
+      description: The compressed setting values to modify
+    - id: materialPrefix
+      type: System.String
+      description: The material property prefix for the material section
+    - id: settingToggles
+      type: System.Int32
+      description: The compressed settings toggles
+    - id: minScaledTextWidth
+      type: System.Int32
+      description: The minimum width required for labels to expand
+    - id: showNoise
+      type: System.Boolean
+      description: Toggles if the noise settings are enabled
+    - id: showVariation
+      type: System.Boolean
+      description: Toggles if the variation setting is enabled
+    return:
+      type: System.Int32
+      description: The modified compressed setting values
+    content.vb: Protected Overridable Function DrawLeftMaterialSettingsGUI(compressedValues As Integer, materialPrefix As String, settingToggles As Integer, minScaledTextWidth As Integer, showNoise As Boolean = True, showVariation As Boolean = True) As Integer
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI*
+  nameWithType.vb: SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI(Integer, String, Integer, Integer, Boolean, Boolean)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI(Integer, String, Integer, Integer, Boolean, Boolean)
+  name.vb: DrawLeftMaterialSettingsGUI(Integer, String, Integer, Integer, Boolean, Boolean)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  id: DrawRightMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawRightMaterialSettingsGUI(int, string, int, int, bool, bool, bool)
+  nameWithType: SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI(int, string, int, int, bool, bool, bool)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI(int, string, int, int, bool, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawRightMaterialSettingsGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 527
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws the right section of the material settings
+  example: []
+  syntax:
+    content: protected virtual int DrawRightMaterialSettingsGUI(int compressedValues, string materialPrefix, int settingToggles, int minScaledTextWidth, bool showPT = true, bool showEmission = true, bool showSR = true)
+    parameters:
+    - id: compressedValues
+      type: System.Int32
+      description: The compressed setting values to modify
+    - id: materialPrefix
+      type: System.String
+      description: The material property prefix for the material section
+    - id: settingToggles
+      type: System.Int32
+      description: The compressed settings toggles
+    - id: minScaledTextWidth
+      type: System.Int32
+      description: The minimum width required for labels to expand
+    - id: showPT
+      type: System.Boolean
+      description: Toggles if the packed texture setting is enabled
+    - id: showEmission
+      type: System.Boolean
+      description: Toggles if the emission setting is enabled
+    - id: showSR
+      type: System.Boolean
+      description: Toggles if the smoothness/roughness toggle setting is enabled
+    return:
+      type: System.Int32
+      description: The modified compressed setting values
+    content.vb: Protected Overridable Function DrawRightMaterialSettingsGUI(compressedValues As Integer, materialPrefix As String, settingToggles As Integer, minScaledTextWidth As Integer, showPT As Boolean = True, showEmission As Boolean = True, showSR As Boolean = True) As Integer
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI*
+  nameWithType.vb: SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI(Integer, String, Integer, Integer, Boolean, Boolean, Boolean)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI(Integer, String, Integer, Integer, Boolean, Boolean, Boolean)
+  name.vb: DrawRightMaterialSettingsGUI(Integer, String, Integer, Integer, Boolean, Boolean, Boolean)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialMainProperties(System.String,System.Int32)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialMainProperties(System.String,System.Int32)
+  id: DrawMaterialMainProperties(System.String,System.Int32)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawMaterialMainProperties(string, int)
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialMainProperties(string, int)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialMainProperties(string, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawMaterialMainProperties
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 567
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws the main properties in a material section
+  example: []
+  syntax:
+    content: protected virtual void DrawMaterialMainProperties(string materialPrefix, int sectionIndex)
+    parameters:
+    - id: materialPrefix
+      type: System.String
+      description: The material property prefix for the material section
+    - id: sectionIndex
+      type: System.Int32
+      description: The material section index
+    content.vb: Protected Overridable Sub DrawMaterialMainProperties(materialPrefix As String, sectionIndex As Integer)
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialMainProperties*
+  nameWithType.vb: SeamlessMaterialGUIBase.DrawMaterialMainProperties(String, Integer)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialMainProperties(String, Integer)
+  name.vb: DrawMaterialMainProperties(String, Integer)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialNoiseGUI(System.String)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialNoiseGUI(System.String)
+  id: DrawMaterialNoiseGUI(System.String)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawMaterialNoiseGUI(string)
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialNoiseGUI(string)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialNoiseGUI(string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawMaterialNoiseGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 708
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws the noise properties in a material section
+  example: []
+  syntax:
+    content: protected virtual void DrawMaterialNoiseGUI(string materialPrefix)
+    parameters:
+    - id: materialPrefix
+      type: System.String
+      description: The material property prefix for the material section
+    content.vb: Protected Overridable Sub DrawMaterialNoiseGUI(materialPrefix As String)
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialNoiseGUI*
+  nameWithType.vb: SeamlessMaterialGUIBase.DrawMaterialNoiseGUI(String)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialNoiseGUI(String)
+  name.vb: DrawMaterialNoiseGUI(String)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialVariationProperties(System.String,System.Int32)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialVariationProperties(System.String,System.Int32)
+  id: DrawMaterialVariationProperties(System.String,System.Int32)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawMaterialVariationProperties(string, int)
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialVariationProperties(string, int)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialVariationProperties(string, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawMaterialVariationProperties
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 772
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws the variation properties in a material section
+  example: []
+  syntax:
+    content: protected virtual void DrawMaterialVariationProperties(string materialPrefix, int sectionIndex)
+    parameters:
+    - id: materialPrefix
+      type: System.String
+      description: The material property prefix for the material section
+    - id: sectionIndex
+      type: System.Int32
+      description: The material section index
+    content.vb: Protected Overridable Sub DrawMaterialVariationProperties(materialPrefix As String, sectionIndex As Integer)
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialVariationProperties*
+  nameWithType.vb: SeamlessMaterialGUIBase.DrawMaterialVariationProperties(String, Integer)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialVariationProperties(String, Integer)
+  name.vb: DrawMaterialVariationProperties(String, Integer)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawBaseMaterialGUI(System.String)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawBaseMaterialGUI(System.String)
+  id: DrawBaseMaterialGUI(System.String)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawBaseMaterialGUI(string)
+  nameWithType: SeamlessMaterialGUIBase.DrawBaseMaterialGUI(string)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawBaseMaterialGUI(string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawBaseMaterialGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 852
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws the base material GUI
+  example: []
+  syntax:
+    content: protected virtual void DrawBaseMaterialGUI(string propertiesPrefix = "")
+    parameters:
+    - id: propertiesPrefix
+      type: System.String
+      description: The material property prefix for the material
+    content.vb: Protected Overridable Sub DrawBaseMaterialGUI(propertiesPrefix As String = "")
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawBaseMaterialGUI*
+  nameWithType.vb: SeamlessMaterialGUIBase.DrawBaseMaterialGUI(String)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawBaseMaterialGUI(String)
+  name.vb: DrawBaseMaterialGUI(String)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDistanceBlendGUI(System.String)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDistanceBlendGUI(System.String)
+  id: DrawDistanceBlendGUI(System.String)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawDistanceBlendGUI(string)
+  nameWithType: SeamlessMaterialGUIBase.DrawDistanceBlendGUI(string)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDistanceBlendGUI(string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawDistanceBlendGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 867
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws the distance blend GUI
+  example: []
+  syntax:
+    content: protected virtual void DrawDistanceBlendGUI(string propertiesPrefix = "")
+    parameters:
+    - id: propertiesPrefix
+      type: System.String
+      description: The material property prefix for the material
+    content.vb: Protected Overridable Sub DrawDistanceBlendGUI(propertiesPrefix As String = "")
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDistanceBlendGUI*
+  nameWithType.vb: SeamlessMaterialGUIBase.DrawDistanceBlendGUI(String)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDistanceBlendGUI(String)
+  name.vb: DrawDistanceBlendGUI(String)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialBlendGUI(System.String)
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialBlendGUI(System.String)
+  id: DrawMaterialBlendGUI(System.String)
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawMaterialBlendGUI(string)
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialBlendGUI(string)
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialBlendGUI(string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawMaterialBlendGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 930
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws the blend material GUI
+  example: []
+  syntax:
+    content: protected virtual void DrawMaterialBlendGUI(string propertiesPrefix = "")
+    parameters:
+    - id: propertiesPrefix
+      type: System.String
+      description: The material property prefix for the material
+    content.vb: Protected Overridable Sub DrawMaterialBlendGUI(propertiesPrefix As String = "")
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialBlendGUI*
+  nameWithType.vb: SeamlessMaterialGUIBase.DrawMaterialBlendGUI(String)
+  fullName.vb: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialBlendGUI(String)
+  name.vb: DrawMaterialBlendGUI(String)
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDebugGUI
+  commentId: M:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDebugGUI
+  id: DrawDebugGUI
+  parent: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+  langs:
+  - csharp
+  - vb
+  name: DrawDebugGUI()
+  nameWithType: SeamlessMaterialGUIBase.DrawDebugGUI()
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDebugGUI()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawDebugGUI
+    path: ../Assets/Repetitionless/Scripts/Editor/Inspectors/SeamlessMaterialGUIBase.cs
+    startLine: 1065
+  assemblies:
+  - com.williamschack.Repetitionless.Inspectors
+  namespace: Repetitionless.Inspectors
+  summary: Draws the debug selection GUI
+  example: []
+  syntax:
+    content: protected virtual void DrawDebugGUI()
+    content.vb: Protected Overridable Sub DrawDebugGUI()
+  overload: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDebugGUI*
+references:
+- uid: Repetitionless.Inspectors
+  commentId: N:Repetitionless.Inspectors
+  href: Repetitionless.html
+  name: Repetitionless.Inspectors
+  nameWithType: Repetitionless.Inspectors
+  fullName: Repetitionless.Inspectors
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+    href: Repetitionless.html
+  - name: .
+  - uid: Repetitionless.Inspectors
+    name: Inspectors
+    href: Repetitionless.Inspectors.html
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+    href: Repetitionless.html
+  - name: .
+  - uid: Repetitionless.Inspectors
+    name: Inspectors
+    href: Repetitionless.Inspectors.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: UnityEditor.ShaderGUI
+  commentId: T:UnityEditor.ShaderGUI
+  parent: UnityEditor
+  isExternal: true
+  name: ShaderGUI
+  nameWithType: ShaderGUI
+  fullName: UnityEditor.ShaderGUI
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UnityEditor
+  commentId: N:UnityEditor
+  isExternal: true
+  name: UnityEditor
+  nameWithType: UnityEditor
+  fullName: UnityEditor
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: UnityEngine.Material
+  commentId: T:UnityEngine.Material
+  parent: UnityEngine
+  isExternal: true
+  name: Material
+  nameWithType: Material
+  fullName: UnityEngine.Material
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: UnityEditor.MaterialEditor
+  commentId: T:UnityEditor.MaterialEditor
+  parent: UnityEditor
+  isExternal: true
+  name: MaterialEditor
+  nameWithType: MaterialEditor
+  fullName: UnityEditor.MaterialEditor
+- uid: System.Collections.Generic.Dictionary{System.String,UnityEditor.MaterialProperty}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,UnityEditor.MaterialProperty}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<string, MaterialProperty>
+  nameWithType: Dictionary<string, MaterialProperty>
+  fullName: System.Collections.Generic.Dictionary<string, UnityEditor.MaterialProperty>
+  nameWithType.vb: Dictionary(Of String, MaterialProperty)
+  fullName.vb: System.Collections.Generic.Dictionary(Of String, UnityEditor.MaterialProperty)
+  name.vb: Dictionary(Of String, MaterialProperty)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: UnityEditor.MaterialProperty
+    name: MaterialProperty
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: UnityEditor.MaterialProperty
+    name: MaterialProperty
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+- uid: System.Collections.Generic.Dictionary{System.String,Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html
+  name: Dictionary<string, SeamlessMaterialGUIBase.MaterialFoldoutState>
+  nameWithType: Dictionary<string, SeamlessMaterialGUIBase.MaterialFoldoutState>
+  fullName: System.Collections.Generic.Dictionary<string, Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState>
+  nameWithType.vb: Dictionary(Of String, SeamlessMaterialGUIBase.MaterialFoldoutState)
+  fullName.vb: System.Collections.Generic.Dictionary(Of String, Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState)
+  name.vb: Dictionary(Of String, SeamlessMaterialGUIBase.MaterialFoldoutState)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+    name: SeamlessMaterialGUIBase
+    href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html
+  - name: .
+  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+    name: MaterialFoldoutState
+    href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+    name: SeamlessMaterialGUIBase
+    href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html
+  - name: .
+  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+    name: MaterialFoldoutState
+    href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.html
+  - name: )
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.FindProperty*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.FindProperty
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_FindProperty_System_String_
+  name: FindProperty
+  nameWithType: SeamlessMaterialGUIBase.FindProperty
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.FindProperty
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: UnityEditor.MaterialProperty
+  commentId: T:UnityEditor.MaterialProperty
+  parent: UnityEditor
+  isExternal: true
+  name: MaterialProperty
+  nameWithType: MaterialProperty
+  fullName: UnityEditor.MaterialProperty
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.GetScaledText*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.GetScaledText
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_GetScaledText_System_Int32_System_String_System_String_
+  name: GetScaledText
+  nameWithType: SeamlessMaterialGUIBase.GetScaledText
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.GetScaledText
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawTexture*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawTexture
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawTexture_System_Int32_System_Int32_UnityEngine_GUIContent_System_String_
+  name: DrawTexture
+  nameWithType: SeamlessMaterialGUIBase.DrawTexture
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawTexture
+- uid: UnityEngine.GUIContent
+  commentId: T:UnityEngine.GUIContent
+  parent: UnityEngine
+  isExternal: true
+  name: GUIContent
+  nameWithType: GUIContent
+  fullName: UnityEngine.GUIContent
+- uid: UnityEngine.Rect
+  commentId: T:UnityEngine.Rect
+  parent: UnityEngine
+  isExternal: true
+  name: Rect
+  nameWithType: Rect
+  fullName: UnityEngine.Rect
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.HandleAssignedTextures*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.HandleAssignedTextures
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_HandleAssignedTextures_System_String_System_Int32_UnityEditor_MaterialProperty_
+  name: HandleAssignedTextures
+  nameWithType: SeamlessMaterialGUIBase.HandleAssignedTextures
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.HandleAssignedTextures
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnEnable*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnEnable
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_OnEnable_UnityEditor_MaterialEditor_
+  name: OnEnable
+  nameWithType: SeamlessMaterialGUIBase.OnEnable
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnEnable
+- uid: UnityEditor.ShaderGUI.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  commentId: M:UnityEditor.ShaderGUI.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  parent: UnityEditor.ShaderGUI
+  isExternal: true
+  name: OnGUI(MaterialEditor, MaterialProperty[])
+  nameWithType: ShaderGUI.OnGUI(MaterialEditor, MaterialProperty[])
+  fullName: UnityEditor.ShaderGUI.OnGUI(UnityEditor.MaterialEditor, UnityEditor.MaterialProperty[])
+  nameWithType.vb: ShaderGUI.OnGUI(MaterialEditor, MaterialProperty())
+  fullName.vb: UnityEditor.ShaderGUI.OnGUI(UnityEditor.MaterialEditor, UnityEditor.MaterialProperty())
+  name.vb: OnGUI(MaterialEditor, MaterialProperty())
+  spec.csharp:
+  - uid: UnityEditor.ShaderGUI.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+    name: OnGUI
+    isExternal: true
+  - name: (
+  - uid: UnityEditor.MaterialEditor
+    name: MaterialEditor
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: UnityEditor.MaterialProperty
+    name: MaterialProperty
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: UnityEditor.ShaderGUI.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+    name: OnGUI
+    isExternal: true
+  - name: (
+  - uid: UnityEditor.MaterialEditor
+    name: MaterialEditor
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: UnityEditor.MaterialProperty
+    name: MaterialProperty
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnGUI*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnGUI
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_OnGUI_UnityEditor_MaterialEditor_UnityEditor_MaterialProperty___
+  name: OnGUI
+  nameWithType: SeamlessMaterialGUIBase.OnGUI
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.OnGUI
+- uid: UnityEditor.MaterialProperty[]
+  isExternal: true
+  name: MaterialProperty[]
+  nameWithType: MaterialProperty[]
+  fullName: UnityEditor.MaterialProperty[]
+  nameWithType.vb: MaterialProperty()
+  fullName.vb: UnityEditor.MaterialProperty()
+  name.vb: MaterialProperty()
+  spec.csharp:
+  - uid: UnityEditor.MaterialProperty
+    name: MaterialProperty
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: UnityEditor.MaterialProperty
+    name: MaterialProperty
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialPropertiesGUI*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialPropertiesGUI
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawMaterialPropertiesGUI
+  name: DrawMaterialPropertiesGUI
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialPropertiesGUI
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialPropertiesGUI
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialGUI*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialGUI
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawMaterialGUI_System_String_System_Int32_System_String_
+  name: DrawMaterialGUI
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialGUI
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialGUI
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialSettingsGUI*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialSettingsGUI
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawMaterialSettingsGUI_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_
+  name: DrawMaterialSettingsGUI
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialSettingsGUI
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialSettingsGUI
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawLeftMaterialSettingsGUI_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_System_Boolean_
+  name: DrawLeftMaterialSettingsGUI
+  nameWithType: SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawLeftMaterialSettingsGUI
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawRightMaterialSettingsGUI_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_System_Boolean_System_Boolean_
+  name: DrawRightMaterialSettingsGUI
+  nameWithType: SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawRightMaterialSettingsGUI
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialMainProperties*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialMainProperties
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawMaterialMainProperties_System_String_System_Int32_
+  name: DrawMaterialMainProperties
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialMainProperties
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialMainProperties
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialNoiseGUI*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialNoiseGUI
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawMaterialNoiseGUI_System_String_
+  name: DrawMaterialNoiseGUI
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialNoiseGUI
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialNoiseGUI
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialVariationProperties*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialVariationProperties
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawMaterialVariationProperties_System_String_System_Int32_
+  name: DrawMaterialVariationProperties
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialVariationProperties
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialVariationProperties
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawBaseMaterialGUI*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawBaseMaterialGUI
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawBaseMaterialGUI_System_String_
+  name: DrawBaseMaterialGUI
+  nameWithType: SeamlessMaterialGUIBase.DrawBaseMaterialGUI
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawBaseMaterialGUI
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDistanceBlendGUI*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDistanceBlendGUI
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawDistanceBlendGUI_System_String_
+  name: DrawDistanceBlendGUI
+  nameWithType: SeamlessMaterialGUIBase.DrawDistanceBlendGUI
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDistanceBlendGUI
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialBlendGUI*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialBlendGUI
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawMaterialBlendGUI_System_String_
+  name: DrawMaterialBlendGUI
+  nameWithType: SeamlessMaterialGUIBase.DrawMaterialBlendGUI
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawMaterialBlendGUI
+- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDebugGUI*
+  commentId: Overload:Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDebugGUI
+  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html#Repetitionless_Inspectors_SeamlessMaterialGUIBase_DrawDebugGUI
+  name: DrawDebugGUI
+  nameWithType: SeamlessMaterialGUIBase.DrawDebugGUI
+  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.DrawDebugGUI

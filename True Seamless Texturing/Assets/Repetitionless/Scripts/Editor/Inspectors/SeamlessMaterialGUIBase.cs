@@ -92,11 +92,8 @@ namespace Repetitionless.Inspectors
             return cachedProperties;
         }
 
-        // Helper to draw textures for child classes
-        // Require section and texture indexes for child classes to modify individual texture drawing
-
         /// <summary>
-        /// Used to draw all the texture fields
+        /// Used to draw all the texture fields<br />
         /// Can be overrided to change how textures are drawn
         /// </summary>
         /// <param name="sectionIndex">
@@ -126,7 +123,7 @@ namespace Repetitionless.Inspectors
         }
 
         /// <summary>
-        /// Handles assigned textures that the shader uses to determine whether to use textures or values
+        /// Handles assigned textures that the shader uses to determine whether to use textures or values<br />
         /// Can be overrided to change how the assigned textures are set
         /// </summary>
         /// <param name="materialPrefix">
@@ -396,7 +393,7 @@ namespace Repetitionless.Inspectors
         /// Toggles if the smoothness/roughness toggle setting is enabled
         /// </param>
         /// <param name="extraWidth">
-        /// Any extra width required for the whole section
+        /// Any extra width required for the whole section<br />
         /// Used to increase the required width for the labels to expand
         /// </param>
         protected virtual void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true, int extraWidth = 0)

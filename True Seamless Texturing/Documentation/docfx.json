@@ -9,7 +9,9 @@
                     ]
                 }
             ],
-            "globalNamespaceId": "Global",
+			"properties": {
+				"DefineConstants": "UNITY_EDITOR"
+			},
             "filter": "filterConfig.yml",
             "dest": "api"
         }
@@ -22,7 +24,8 @@
                     "*.yml"
                 ]
             }
-	],
+		],
+		"generateHtml": false,
         "overwrite": [],
         "dest": "../_site"
     }

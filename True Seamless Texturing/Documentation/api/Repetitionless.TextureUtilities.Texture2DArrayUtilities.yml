@@ -1,0 +1,780 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  commentId: T:Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  id: Texture2DArrayUtilities
+  parent: Repetitionless.TextureUtilities
+  children:
+  - Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArray(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Boolean,System.Boolean)
+  - Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayAutoResize(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Boolean,System.Boolean)
+  - Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayUserInput(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Int32[],System.Boolean,System.Boolean)
+  - Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTexture(UnityEngine.Texture2DArray,System.Int32)
+  - Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTextures(UnityEngine.Texture2DArray)
+  - Repetitionless.TextureUtilities.Texture2DArrayUtilities.ResizeArrayTextures(UnityEngine.Texture2DArray,System.Int32,System.Int32,UnityEngine.FilterMode)
+  - Repetitionless.TextureUtilities.Texture2DArrayUtilities.SUPPORTED_TEXTURE_FORMATS
+  - Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTexture(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  - Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureAutoResize(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  - Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureUserInput(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: Texture2DArrayUtilities
+  nameWithType: Texture2DArrayUtilities
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Texture2DArrayUtilities
+    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    startLine: 14
+  assemblies:
+  - com.williamschack.Repetitionless.TextureUtilities
+  namespace: Repetitionless.TextureUtilities
+  syntax:
+    content: public static class Texture2DArrayUtilities
+    content.vb: Public Module Texture2DArrayUtilities
+  inheritance:
+  - System.Object
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.SUPPORTED_TEXTURE_FORMATS
+  commentId: F:Repetitionless.TextureUtilities.Texture2DArrayUtilities.SUPPORTED_TEXTURE_FORMATS
+  id: SUPPORTED_TEXTURE_FORMATS
+  parent: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  langs:
+  - csharp
+  - vb
+  name: SUPPORTED_TEXTURE_FORMATS
+  nameWithType: Texture2DArrayUtilities.SUPPORTED_TEXTURE_FORMATS
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.SUPPORTED_TEXTURE_FORMATS
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SUPPORTED_TEXTURE_FORMATS
+    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    startLine: 17
+  assemblies:
+  - com.williamschack.Repetitionless.TextureUtilities
+  namespace: Repetitionless.TextureUtilities
+  syntax:
+    content: public static readonly TextureFormat[] SUPPORTED_TEXTURE_FORMATS
+    return:
+      type: UnityEngine.TextureFormat[]
+    content.vb: Public Shared ReadOnly SUPPORTED_TEXTURE_FORMATS As TextureFormat()
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArray(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArray(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Boolean,System.Boolean)
+  id: CreateArray(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Boolean,System.Boolean)
+  parent: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  langs:
+  - csharp
+  - vb
+  name: CreateArray(Texture2D[], TextureFormat, bool, bool)
+  nameWithType: Texture2DArrayUtilities.CreateArray(Texture2D[], TextureFormat, bool, bool)
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArray(UnityEngine.Texture2D[], UnityEngine.TextureFormat, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateArray
+    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    startLine: 69
+  assemblies:
+  - com.williamschack.Repetitionless.TextureUtilities
+  namespace: Repetitionless.TextureUtilities
+  summary: >-
+    Creates a new Texture2DArray with the given textures taking into account unsupported formats<br />
+
+    Resolution will be the resolution of the first input texture<br />
+
+    Texture will be skipped if it is not the same resolution of the first
+  example: []
+  syntax:
+    content: public static Texture2DArray CreateArray(Texture2D[] textures, TextureFormat textureFormat, bool transferMipmaps = true, bool linear = false)
+    parameters:
+    - id: textures
+      type: UnityEngine.Texture2D[]
+      description: The textures that will be in the array
+    - id: textureFormat
+      type: UnityEngine.TextureFormat
+      description: The texture format of the output array
+    - id: transferMipmaps
+      type: System.Boolean
+      description: If mipmaps will be transferred from the textures to the array
+    - id: linear
+      type: System.Boolean
+      description: >-
+        If the output array will be linear<br />
+
+        Recommended in the Built-In Render Pipeline only when including normal maps<br />
+
+        Not Recommended in URP/HDRP as it will result in brighter textures
+    return:
+      type: UnityEngine.Texture2DArray
+      description: A Texture2DArray with the input textures and settings
+    content.vb: Public Shared Function CreateArray(textures As Texture2D(), textureFormat As TextureFormat, transferMipmaps As Boolean = True, linear As Boolean = False) As Texture2DArray
+  overload: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArray*
+  nameWithType.vb: Texture2DArrayUtilities.CreateArray(Texture2D(), TextureFormat, Boolean, Boolean)
+  fullName.vb: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArray(UnityEngine.Texture2D(), UnityEngine.TextureFormat, Boolean, Boolean)
+  name.vb: CreateArray(Texture2D(), TextureFormat, Boolean, Boolean)
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayAutoResize(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayAutoResize(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Boolean,System.Boolean)
+  id: CreateArrayAutoResize(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Boolean,System.Boolean)
+  parent: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  langs:
+  - csharp
+  - vb
+  name: CreateArrayAutoResize(Texture2D[], TextureFormat, bool, bool)
+  nameWithType: Texture2DArrayUtilities.CreateArrayAutoResize(Texture2D[], TextureFormat, bool, bool)
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayAutoResize(UnityEngine.Texture2D[], UnityEngine.TextureFormat, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateArrayAutoResize
+    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    startLine: 133
+  assemblies:
+  - com.williamschack.Repetitionless.TextureUtilities
+  namespace: Repetitionless.TextureUtilities
+  summary: >-
+    Creates a new Texture2DArray with the given textures taking into account unsupported formats<br />
+
+    Resolution will be the resolution of the first input texture<br />
+
+    Automatically resizes all textures to the resolution of the first
+  example: []
+  syntax:
+    content: public static Texture2DArray CreateArrayAutoResize(Texture2D[] textures, TextureFormat textureFormat, bool transferMipmaps = true, bool linear = false)
+    parameters:
+    - id: textures
+      type: UnityEngine.Texture2D[]
+      description: The textures that will be in the array
+    - id: textureFormat
+      type: UnityEngine.TextureFormat
+      description: The texture format of the output array
+    - id: transferMipmaps
+      type: System.Boolean
+      description: If mipmaps will be transferred from the textures to the array
+    - id: linear
+      type: System.Boolean
+      description: >-
+        If the output array will be linear<br />
+
+        Recommended in the Built-In Render Pipeline only when including normal maps<br />
+
+        Not Recommended in URP/HDRP as it will result in brighter textures
+    return:
+      type: UnityEngine.Texture2DArray
+      description: A Texture2DArray with the input textures and settings
+    content.vb: Public Shared Function CreateArrayAutoResize(textures As Texture2D(), textureFormat As TextureFormat, transferMipmaps As Boolean = True, linear As Boolean = False) As Texture2DArray
+  overload: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayAutoResize*
+  nameWithType.vb: Texture2DArrayUtilities.CreateArrayAutoResize(Texture2D(), TextureFormat, Boolean, Boolean)
+  fullName.vb: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayAutoResize(UnityEngine.Texture2D(), UnityEngine.TextureFormat, Boolean, Boolean)
+  name.vb: CreateArrayAutoResize(Texture2D(), TextureFormat, Boolean, Boolean)
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayUserInput(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Int32[],System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayUserInput(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Int32[],System.Boolean,System.Boolean)
+  id: CreateArrayUserInput(UnityEngine.Texture2D[],UnityEngine.TextureFormat,System.Int32[],System.Boolean,System.Boolean)
+  parent: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  langs:
+  - csharp
+  - vb
+  name: CreateArrayUserInput(Texture2D[], TextureFormat, int[], bool, bool)
+  nameWithType: Texture2DArrayUtilities.CreateArrayUserInput(Texture2D[], TextureFormat, int[], bool, bool)
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayUserInput(UnityEngine.Texture2D[], UnityEngine.TextureFormat, int[], bool, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateArrayUserInput
+    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    startLine: 184
+  assemblies:
+  - com.williamschack.Repetitionless.TextureUtilities
+  namespace: Repetitionless.TextureUtilities
+  summary: >-
+    Creates a new Texture2DArray with the given textures taking into account unsupported formats<br />
+
+    Resolution will be the resolution of the first input texture<br />
+
+    Checks for user input to decide whether to resize the texture or array if a texture is at a different resolution to the array
+  example: []
+  syntax:
+    content: public static Texture2DArray CreateArrayUserInput(Texture2D[] textures, TextureFormat textureFormat, int[] autoResizeIndexes = null, bool transferMipmaps = true, bool linear = false)
+    parameters:
+    - id: textures
+      type: UnityEngine.Texture2D[]
+      description: The textures that will be in the array
+    - id: textureFormat
+      type: UnityEngine.TextureFormat
+      description: The texture format of the output array
+    - id: autoResizeIndexes
+      type: System.Int32[]
+      description: >-
+        Automatically resizes all textures at these indexes if required instead of showing a prompt to the user<br />
+
+        Example: If this is { 0, 2 }, the textures at index 0 and 2 will be automatically resized
+    - id: transferMipmaps
+      type: System.Boolean
+      description: If mipmaps will be transferred from the textures to the array
+    - id: linear
+      type: System.Boolean
+      description: >-
+        If the output array will be linear<br />
+
+        Recommended in the Built-In Render Pipeline only when including normal maps<br />
+
+        Not Recommended in URP/HDRP as it will result in brighter textures
+    return:
+      type: UnityEngine.Texture2DArray
+      description: A Texture2DArray with the input textures and settings
+    content.vb: Public Shared Function CreateArrayUserInput(textures As Texture2D(), textureFormat As TextureFormat, autoResizeIndexes As Integer() = Nothing, transferMipmaps As Boolean = True, linear As Boolean = False) As Texture2DArray
+  overload: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayUserInput*
+  nameWithType.vb: Texture2DArrayUtilities.CreateArrayUserInput(Texture2D(), TextureFormat, Integer(), Boolean, Boolean)
+  fullName.vb: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayUserInput(UnityEngine.Texture2D(), UnityEngine.TextureFormat, Integer(), Boolean, Boolean)
+  name.vb: CreateArrayUserInput(Texture2D(), TextureFormat, Integer(), Boolean, Boolean)
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTexture(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  commentId: M:Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTexture(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  id: UpdateTexture(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  parent: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  langs:
+  - csharp
+  - vb
+  name: UpdateTexture(Texture2DArray, Texture2D, int, bool)
+  nameWithType: Texture2DArrayUtilities.UpdateTexture(Texture2DArray, Texture2D, int, bool)
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTexture(UnityEngine.Texture2DArray, UnityEngine.Texture2D, int, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: UpdateTexture
+    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    startLine: 266
+  assemblies:
+  - com.williamschack.Repetitionless.TextureUtilities
+  namespace: Repetitionless.TextureUtilities
+  summary: >-
+    Overwrites the texture in the input array at a given index to the input texture<br />
+
+    Uses GPU functions to speed up operations<br />
+
+    Update will not be applied if the texture resolution is not the same as the array
+  example: []
+  syntax:
+    content: public static Texture2DArray UpdateTexture(Texture2DArray array, Texture2D texture, int index, bool transferMipmaps = true)
+    parameters:
+    - id: array
+      type: UnityEngine.Texture2DArray
+      description: The array that will be updated
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: The texture that will be inserted into the array
+    - id: index
+      type: System.Int32
+      description: The index which the texture will overwrite
+    - id: transferMipmaps
+      type: System.Boolean
+      description: If mipmaps will be transferred from the texture to the array if possible
+    return:
+      type: UnityEngine.Texture2DArray
+      description: The modified array with the texture inserted
+    content.vb: Public Shared Function UpdateTexture(array As Texture2DArray, texture As Texture2D, index As Integer, transferMipmaps As Boolean = True) As Texture2DArray
+  overload: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTexture*
+  nameWithType.vb: Texture2DArrayUtilities.UpdateTexture(Texture2DArray, Texture2D, Integer, Boolean)
+  fullName.vb: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTexture(UnityEngine.Texture2DArray, UnityEngine.Texture2D, Integer, Boolean)
+  name.vb: UpdateTexture(Texture2DArray, Texture2D, Integer, Boolean)
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureAutoResize(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  commentId: M:Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureAutoResize(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  id: UpdateTextureAutoResize(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  parent: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  langs:
+  - csharp
+  - vb
+  name: UpdateTextureAutoResize(Texture2DArray, Texture2D, int, bool)
+  nameWithType: Texture2DArrayUtilities.UpdateTextureAutoResize(Texture2DArray, Texture2D, int, bool)
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureAutoResize(UnityEngine.Texture2DArray, UnityEngine.Texture2D, int, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: UpdateTextureAutoResize
+    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    startLine: 317
+  assemblies:
+  - com.williamschack.Repetitionless.TextureUtilities
+  namespace: Repetitionless.TextureUtilities
+  summary: >-
+    Overwrites the texture in the input array at a given index to the input texture<br />
+
+    Automatically resizes the input texture to the array size if it is a different resolution
+  example: []
+  syntax:
+    content: public static Texture2DArray UpdateTextureAutoResize(Texture2DArray array, Texture2D texture, int index, bool transferMipmaps = true)
+    parameters:
+    - id: array
+      type: UnityEngine.Texture2DArray
+      description: The array that will be updated
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: The texture that will be inserted into the array
+    - id: index
+      type: System.Int32
+      description: The index which the texture will overwrite
+    - id: transferMipmaps
+      type: System.Boolean
+      description: If mipmaps will be transferred from the texture to the array if possible
+    return:
+      type: UnityEngine.Texture2DArray
+      description: The modified array with the texture inserted
+    content.vb: Public Shared Function UpdateTextureAutoResize(array As Texture2DArray, texture As Texture2D, index As Integer, transferMipmaps As Boolean = True) As Texture2DArray
+  overload: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureAutoResize*
+  nameWithType.vb: Texture2DArrayUtilities.UpdateTextureAutoResize(Texture2DArray, Texture2D, Integer, Boolean)
+  fullName.vb: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureAutoResize(UnityEngine.Texture2DArray, UnityEngine.Texture2D, Integer, Boolean)
+  name.vb: UpdateTextureAutoResize(Texture2DArray, Texture2D, Integer, Boolean)
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureUserInput(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  commentId: M:Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureUserInput(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  id: UpdateTextureUserInput(UnityEngine.Texture2DArray,UnityEngine.Texture2D,System.Int32,System.Boolean)
+  parent: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  langs:
+  - csharp
+  - vb
+  name: UpdateTextureUserInput(Texture2DArray, Texture2D, int, bool)
+  nameWithType: Texture2DArrayUtilities.UpdateTextureUserInput(Texture2DArray, Texture2D, int, bool)
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureUserInput(UnityEngine.Texture2DArray, UnityEngine.Texture2D, int, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: UpdateTextureUserInput
+    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    startLine: 359
+  assemblies:
+  - com.williamschack.Repetitionless.TextureUtilities
+  namespace: Repetitionless.TextureUtilities
+  summary: >-
+    Overwrites the texture in the input array at a given index to the input texture<br />
+
+    Waits for the user to input the outcome when a texture is a different resolution to the array
+  example: []
+  syntax:
+    content: public static (Texture2DArray, bool) UpdateTextureUserInput(Texture2DArray array, Texture2D texture, int index, bool transferMipmaps = true)
+    parameters:
+    - id: array
+      type: UnityEngine.Texture2DArray
+      description: The array that will be updated
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: The texture that will be inserted into the array
+    - id: index
+      type: System.Int32
+      description: The index which the texture will overwrite
+    - id: transferMipmaps
+      type: System.Boolean
+      description: If mipmaps will be transferred from the texture to the array if possible
+    return:
+      type: System.ValueTuple{UnityEngine.Texture2DArray,System.Boolean}
+      description: 'Item1: Modified Array, Item2: User Cancelled'
+    content.vb: Public Shared Function UpdateTextureUserInput(array As Texture2DArray, texture As Texture2D, index As Integer, transferMipmaps As Boolean = True) As (Texture2DArray, Boolean)
+  overload: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureUserInput*
+  nameWithType.vb: Texture2DArrayUtilities.UpdateTextureUserInput(Texture2DArray, Texture2D, Integer, Boolean)
+  fullName.vb: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureUserInput(UnityEngine.Texture2DArray, UnityEngine.Texture2D, Integer, Boolean)
+  name.vb: UpdateTextureUserInput(Texture2DArray, Texture2D, Integer, Boolean)
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTexture(UnityEngine.Texture2DArray,System.Int32)
+  commentId: M:Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTexture(UnityEngine.Texture2DArray,System.Int32)
+  id: GetTexture(UnityEngine.Texture2DArray,System.Int32)
+  parent: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetTexture(Texture2DArray, int)
+  nameWithType: Texture2DArrayUtilities.GetTexture(Texture2DArray, int)
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTexture(UnityEngine.Texture2DArray, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GetTexture
+    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    startLine: 412
+  assemblies:
+  - com.williamschack.Repetitionless.TextureUtilities
+  namespace: Repetitionless.TextureUtilities
+  summary: Gets the texture in an input array at a given index
+  example: []
+  syntax:
+    content: public static Texture2D GetTexture(Texture2DArray array, int index)
+    parameters:
+    - id: array
+      type: UnityEngine.Texture2DArray
+      description: The array that will be searched
+    - id: index
+      type: System.Int32
+      description: The index for which texture will be returned
+    return:
+      type: UnityEngine.Texture2D
+      description: The texture in the array at the specified index
+    content.vb: Public Shared Function GetTexture(array As Texture2DArray, index As Integer) As Texture2D
+  overload: Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTexture*
+  nameWithType.vb: Texture2DArrayUtilities.GetTexture(Texture2DArray, Integer)
+  fullName.vb: Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTexture(UnityEngine.Texture2DArray, Integer)
+  name.vb: GetTexture(Texture2DArray, Integer)
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTextures(UnityEngine.Texture2DArray)
+  commentId: M:Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTextures(UnityEngine.Texture2DArray)
+  id: GetTextures(UnityEngine.Texture2DArray)
+  parent: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetTextures(Texture2DArray)
+  nameWithType: Texture2DArrayUtilities.GetTextures(Texture2DArray)
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTextures(UnityEngine.Texture2DArray)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GetTextures
+    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    startLine: 433
+  assemblies:
+  - com.williamschack.Repetitionless.TextureUtilities
+  namespace: Repetitionless.TextureUtilities
+  summary: Retrieves all the textures in an input array
+  example: []
+  syntax:
+    content: public static Texture2D[] GetTextures(Texture2DArray array)
+    parameters:
+    - id: array
+      type: UnityEngine.Texture2DArray
+      description: The array that will be searched
+    return:
+      type: UnityEngine.Texture2D[]
+      description: An array with all the textures from the given array
+    content.vb: Public Shared Function GetTextures(array As Texture2DArray) As Texture2D()
+  overload: Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTextures*
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.ResizeArrayTextures(UnityEngine.Texture2DArray,System.Int32,System.Int32,UnityEngine.FilterMode)
+  commentId: M:Repetitionless.TextureUtilities.Texture2DArrayUtilities.ResizeArrayTextures(UnityEngine.Texture2DArray,System.Int32,System.Int32,UnityEngine.FilterMode)
+  id: ResizeArrayTextures(UnityEngine.Texture2DArray,System.Int32,System.Int32,UnityEngine.FilterMode)
+  parent: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  langs:
+  - csharp
+  - vb
+  name: ResizeArrayTextures(Texture2DArray, int, int, FilterMode)
+  nameWithType: Texture2DArrayUtilities.ResizeArrayTextures(Texture2DArray, int, int, FilterMode)
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.ResizeArrayTextures(UnityEngine.Texture2DArray, int, int, UnityEngine.FilterMode)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: ResizeArrayTextures
+    path: ../Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    startLine: 466
+  assemblies:
+  - com.williamschack.Repetitionless.TextureUtilities
+  namespace: Repetitionless.TextureUtilities
+  summary: >-
+    Scales all textures in the array to the new specified resolution<br />
+
+    Skips textures already at the new resolution
+  example: []
+  syntax:
+    content: public static Texture2DArray ResizeArrayTextures(Texture2DArray array, int newWidth, int newHeight, FilterMode resizeFilterMode = FilterMode.Bilinear)
+    parameters:
+    - id: array
+      type: UnityEngine.Texture2DArray
+      description: The array that will be searched
+    - id: newWidth
+      type: System.Int32
+      description: The width of the output textures
+    - id: newHeight
+      type: System.Int32
+      description: The height of the output textures
+    - id: resizeFilterMode
+      type: UnityEngine.FilterMode
+      description: The filter mode used when resizing the textures
+    return:
+      type: UnityEngine.Texture2DArray
+      description: The modified array with all the textures at the new resolution
+    content.vb: Public Shared Function ResizeArrayTextures(array As Texture2DArray, newWidth As Integer, newHeight As Integer, resizeFilterMode As FilterMode = FilterMode.Bilinear) As Texture2DArray
+  overload: Repetitionless.TextureUtilities.Texture2DArrayUtilities.ResizeArrayTextures*
+  nameWithType.vb: Texture2DArrayUtilities.ResizeArrayTextures(Texture2DArray, Integer, Integer, FilterMode)
+  fullName.vb: Repetitionless.TextureUtilities.Texture2DArrayUtilities.ResizeArrayTextures(UnityEngine.Texture2DArray, Integer, Integer, UnityEngine.FilterMode)
+  name.vb: ResizeArrayTextures(Texture2DArray, Integer, Integer, FilterMode)
+references:
+- uid: Repetitionless.TextureUtilities
+  commentId: N:Repetitionless.TextureUtilities
+  href: Repetitionless.html
+  name: Repetitionless.TextureUtilities
+  nameWithType: Repetitionless.TextureUtilities
+  fullName: Repetitionless.TextureUtilities
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+    href: Repetitionless.html
+  - name: .
+  - uid: Repetitionless.TextureUtilities
+    name: TextureUtilities
+    href: Repetitionless.TextureUtilities.html
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+    href: Repetitionless.html
+  - name: .
+  - uid: Repetitionless.TextureUtilities
+    name: TextureUtilities
+    href: Repetitionless.TextureUtilities.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UnityEngine.TextureFormat[]
+  isExternal: true
+  name: TextureFormat[]
+  nameWithType: TextureFormat[]
+  fullName: UnityEngine.TextureFormat[]
+  nameWithType.vb: TextureFormat()
+  fullName.vb: UnityEngine.TextureFormat()
+  name.vb: TextureFormat()
+  spec.csharp:
+  - uid: UnityEngine.TextureFormat
+    name: TextureFormat
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: UnityEngine.TextureFormat
+    name: TextureFormat
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArray*
+  commentId: Overload:Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArray
+  href: Repetitionless.TextureUtilities.Texture2DArrayUtilities.html#Repetitionless_TextureUtilities_Texture2DArrayUtilities_CreateArray_UnityEngine_Texture2D___UnityEngine_TextureFormat_System_Boolean_System_Boolean_
+  name: CreateArray
+  nameWithType: Texture2DArrayUtilities.CreateArray
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArray
+- uid: UnityEngine.Texture2D[]
+  isExternal: true
+  name: Texture2D[]
+  nameWithType: Texture2D[]
+  fullName: UnityEngine.Texture2D[]
+  nameWithType.vb: Texture2D()
+  fullName.vb: UnityEngine.Texture2D()
+  name.vb: Texture2D()
+  spec.csharp:
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: (
+  - name: )
+- uid: UnityEngine.TextureFormat
+  commentId: T:UnityEngine.TextureFormat
+  parent: UnityEngine
+  isExternal: true
+  name: TextureFormat
+  nameWithType: TextureFormat
+  fullName: UnityEngine.TextureFormat
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: UnityEngine.Texture2DArray
+  commentId: T:UnityEngine.Texture2DArray
+  parent: UnityEngine
+  isExternal: true
+  name: Texture2DArray
+  nameWithType: Texture2DArray
+  fullName: UnityEngine.Texture2DArray
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayAutoResize*
+  commentId: Overload:Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayAutoResize
+  href: Repetitionless.TextureUtilities.Texture2DArrayUtilities.html#Repetitionless_TextureUtilities_Texture2DArrayUtilities_CreateArrayAutoResize_UnityEngine_Texture2D___UnityEngine_TextureFormat_System_Boolean_System_Boolean_
+  name: CreateArrayAutoResize
+  nameWithType: Texture2DArrayUtilities.CreateArrayAutoResize
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayAutoResize
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayUserInput*
+  commentId: Overload:Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayUserInput
+  href: Repetitionless.TextureUtilities.Texture2DArrayUtilities.html#Repetitionless_TextureUtilities_Texture2DArrayUtilities_CreateArrayUserInput_UnityEngine_Texture2D___UnityEngine_TextureFormat_System_Int32___System_Boolean_System_Boolean_
+  name: CreateArrayUserInput
+  nameWithType: Texture2DArrayUtilities.CreateArrayUserInput
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.CreateArrayUserInput
+- uid: System.Int32[]
+  isExternal: true
+  name: int[]
+  nameWithType: int[]
+  fullName: int[]
+  nameWithType.vb: Integer()
+  fullName.vb: Integer()
+  name.vb: Integer()
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTexture*
+  commentId: Overload:Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTexture
+  href: Repetitionless.TextureUtilities.Texture2DArrayUtilities.html#Repetitionless_TextureUtilities_Texture2DArrayUtilities_UpdateTexture_UnityEngine_Texture2DArray_UnityEngine_Texture2D_System_Int32_System_Boolean_
+  name: UpdateTexture
+  nameWithType: Texture2DArrayUtilities.UpdateTexture
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTexture
+- uid: UnityEngine.Texture2D
+  commentId: T:UnityEngine.Texture2D
+  parent: UnityEngine
+  isExternal: true
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: UnityEngine.Texture2D
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureAutoResize*
+  commentId: Overload:Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureAutoResize
+  href: Repetitionless.TextureUtilities.Texture2DArrayUtilities.html#Repetitionless_TextureUtilities_Texture2DArrayUtilities_UpdateTextureAutoResize_UnityEngine_Texture2DArray_UnityEngine_Texture2D_System_Int32_System_Boolean_
+  name: UpdateTextureAutoResize
+  nameWithType: Texture2DArrayUtilities.UpdateTextureAutoResize
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureAutoResize
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureUserInput*
+  commentId: Overload:Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureUserInput
+  href: Repetitionless.TextureUtilities.Texture2DArrayUtilities.html#Repetitionless_TextureUtilities_Texture2DArrayUtilities_UpdateTextureUserInput_UnityEngine_Texture2DArray_UnityEngine_Texture2D_System_Int32_System_Boolean_
+  name: UpdateTextureUserInput
+  nameWithType: Texture2DArrayUtilities.UpdateTextureUserInput
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.UpdateTextureUserInput
+- uid: System.ValueTuple{UnityEngine.Texture2DArray,System.Boolean}
+  commentId: T:System.ValueTuple{UnityEngine.Texture2DArray,System.Boolean}
+  parent: System
+  definition: System.ValueTuple`2
+  name: (Texture2DArray, bool)
+  nameWithType: (Texture2DArray, bool)
+  fullName: (UnityEngine.Texture2DArray, bool)
+  nameWithType.vb: (Texture2DArray, Boolean)
+  fullName.vb: (UnityEngine.Texture2DArray, Boolean)
+  name.vb: (Texture2DArray, Boolean)
+  spec.csharp:
+  - name: (
+  - uid: UnityEngine.Texture2DArray
+    name: Texture2DArray
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: UnityEngine.Texture2DArray
+    name: Texture2DArray
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTexture*
+  commentId: Overload:Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTexture
+  href: Repetitionless.TextureUtilities.Texture2DArrayUtilities.html#Repetitionless_TextureUtilities_Texture2DArrayUtilities_GetTexture_UnityEngine_Texture2DArray_System_Int32_
+  name: GetTexture
+  nameWithType: Texture2DArrayUtilities.GetTexture
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTexture
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTextures*
+  commentId: Overload:Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTextures
+  href: Repetitionless.TextureUtilities.Texture2DArrayUtilities.html#Repetitionless_TextureUtilities_Texture2DArrayUtilities_GetTextures_UnityEngine_Texture2DArray_
+  name: GetTextures
+  nameWithType: Texture2DArrayUtilities.GetTextures
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.GetTextures
+- uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities.ResizeArrayTextures*
+  commentId: Overload:Repetitionless.TextureUtilities.Texture2DArrayUtilities.ResizeArrayTextures
+  href: Repetitionless.TextureUtilities.Texture2DArrayUtilities.html#Repetitionless_TextureUtilities_Texture2DArrayUtilities_ResizeArrayTextures_UnityEngine_Texture2DArray_System_Int32_System_Int32_UnityEngine_FilterMode_
+  name: ResizeArrayTextures
+  nameWithType: Texture2DArrayUtilities.ResizeArrayTextures
+  fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities.ResizeArrayTextures
+- uid: UnityEngine.FilterMode
+  commentId: T:UnityEngine.FilterMode
+  parent: UnityEngine
+  isExternal: true
+  name: FilterMode
+  nameWithType: FilterMode
+  fullName: UnityEngine.FilterMode

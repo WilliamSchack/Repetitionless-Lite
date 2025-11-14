@@ -1,6 +1,6 @@
 apiRules:
 - include:
-    uidRegex: ^Repetitionless
+    uidRegex: ^Repetitionless(?!\.Samples)
     type: Namespace
 - exclude:
     uidRegex: .*

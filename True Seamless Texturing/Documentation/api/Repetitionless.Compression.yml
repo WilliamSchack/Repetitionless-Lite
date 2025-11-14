@@ -17,6 +17,7 @@ items:
 references:
 - uid: Repetitionless.Compression.BooleanCompression
   commentId: T:Repetitionless.Compression.BooleanCompression
+  href: Repetitionless.Compression.BooleanCompression.html
   name: BooleanCompression
   nameWithType: BooleanCompression
   fullName: Repetitionless.Compression.BooleanCompression

@@ -25,7 +25,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
-  summary: "\nAvailable distance blend modes for Repetitionless Materials\n"
+  summary: Available distance blend modes for Repetitionless Materials
   example: []
   syntax:
     content: public enum EDistanceBlendMode
@@ -85,24 +85,30 @@ items:
 references:
 - uid: Repetitionless.Variables
   commentId: N:Repetitionless.Variables
+  href: Repetitionless.html
   name: Repetitionless.Variables
   nameWithType: Repetitionless.Variables
   fullName: Repetitionless.Variables
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
+    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Variables
     name: Variables
+    href: Repetitionless.Variables.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
+    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Variables
     name: Variables
+    href: Repetitionless.Variables.html
 - uid: Repetitionless.Variables.EDistanceBlendMode
   commentId: T:Repetitionless.Variables.EDistanceBlendMode
   parent: Repetitionless.Variables
+  href: Repetitionless.Variables.EDistanceBlendMode.html
   name: EDistanceBlendMode
   nameWithType: EDistanceBlendMode
   fullName: Repetitionless.Variables.EDistanceBlendMode

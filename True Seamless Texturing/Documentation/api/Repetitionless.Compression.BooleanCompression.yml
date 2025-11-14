@@ -54,17 +54,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Compression
   namespace: Repetitionless.Compression
-  summary: "\nCompresses the input array of bools into an int\n"
+  summary: Compresses the input array of bools into an int
   example: []
   syntax:
     content: public static int CompressValues(params bool[] values)
     parameters:
     - id: values
       type: System.Boolean[]
-      description: "\nBools that will be compressed\n"
+      description: Bools that will be compressed
     return:
       type: System.Int32
-      description: "\nCompressed int of bools\n"
+      description: Compressed int of bools
     content.vb: Public Shared Function CompressValues(ParamArray values As Boolean()) As Integer
   overload: Repetitionless.Compression.BooleanCompression.CompressValues*
   nameWithType.vb: BooleanCompression.CompressValues(ParamArray Boolean())
@@ -92,20 +92,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Compression
   namespace: Repetitionless.Compression
-  summary: "\nRetrieves all the boolean values stored in a compressed int\n"
+  summary: Retrieves all the boolean values stored in a compressed int
   example: []
   syntax:
     content: public static bool[] GetValues(int compressedValues, int valueCount)
     parameters:
     - id: compressedValues
       type: System.Int32
-      description: "\nCompressed int of bool values\n"
+      description: Compressed int of bool values
     - id: valueCount
       type: System.Int32
-      description: "\nThe total amount of values stored in the compressedValues\n"
+      description: The total amount of values stored in the compressedValues
     return:
       type: System.Boolean[]
-      description: "\nArray of all the values stored in the input compressedValues\n"
+      description: Array of all the values stored in the input compressedValues
     content.vb: Public Shared Function GetValues(compressedValues As Integer, valueCount As Integer) As Boolean()
   overload: Repetitionless.Compression.BooleanCompression.GetValues*
   nameWithType.vb: BooleanCompression.GetValues(Integer, Integer)
@@ -133,23 +133,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Compression
   namespace: Repetitionless.Compression
-  summary: "\nOverwrites a value at a given index into the input compressedValues\n"
+  summary: Overwrites a value at a given index into the input compressedValues
   example: []
   syntax:
     content: public static int AddValue(int compressedValues, int index, bool value)
     parameters:
     - id: compressedValues
       type: System.Int32
-      description: "\nCompressed int of bool values\n"
+      description: Compressed int of bool values
     - id: index
       type: System.Int32
-      description: "\nIndex that the input value will overwrite\n"
+      description: Index that the input value will overwrite
     - id: value
       type: System.Boolean
-      description: "\nValue inserted into the compressedValue\n"
+      description: Value inserted into the compressedValue
     return:
       type: System.Int32
-      description: "\nNew compressed integer with the added value\n"
+      description: New compressed integer with the added value
     content.vb: Public Shared Function AddValue(compressedValues As Integer, index As Integer, value As Boolean) As Integer
   overload: Repetitionless.Compression.BooleanCompression.AddValue*
   nameWithType.vb: BooleanCompression.AddValue(Integer, Integer, Boolean)
@@ -177,20 +177,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Compression
   namespace: Repetitionless.Compression
-  summary: "\nGets a compressed value at a given index from the input compressedValues\n"
+  summary: Gets a compressed value at a given index from the input compressedValues
   example: []
   syntax:
     content: public static bool GetValue(int compressedValues, int index)
     parameters:
     - id: compressedValues
       type: System.Int32
-      description: "\nCompressed int of bool values\n"
+      description: Compressed int of bool values
     - id: index
       type: System.Int32
-      description: "\nIndex of which bool value will be returned\n"
+      description: Index of which bool value will be returned
     return:
       type: System.Boolean
-      description: "\nValue at the given index\n"
+      description: Value at the given index
     content.vb: Public Shared Function GetValue(compressedValues As Integer, index As Integer) As Boolean
   overload: Repetitionless.Compression.BooleanCompression.GetValue*
   nameWithType.vb: BooleanCompression.GetValue(Integer, Integer)
@@ -199,21 +199,26 @@ items:
 references:
 - uid: Repetitionless.Compression
   commentId: N:Repetitionless.Compression
+  href: Repetitionless.html
   name: Repetitionless.Compression
   nameWithType: Repetitionless.Compression
   fullName: Repetitionless.Compression
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
+    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Compression
     name: Compression
+    href: Repetitionless.Compression.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
+    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Compression
     name: Compression
+    href: Repetitionless.Compression.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -232,6 +237,7 @@ references:
   fullName: System
 - uid: Repetitionless.Compression.BooleanCompression.CompressValues*
   commentId: Overload:Repetitionless.Compression.BooleanCompression.CompressValues
+  href: Repetitionless.Compression.BooleanCompression.html#Repetitionless_Compression_BooleanCompression_CompressValues_System_Boolean___
   name: CompressValues
   nameWithType: BooleanCompression.CompressValues
   fullName: Repetitionless.Compression.BooleanCompression.CompressValues
@@ -267,11 +273,13 @@ references:
   name.vb: Integer
 - uid: Repetitionless.Compression.BooleanCompression.GetValues*
   commentId: Overload:Repetitionless.Compression.BooleanCompression.GetValues
+  href: Repetitionless.Compression.BooleanCompression.html#Repetitionless_Compression_BooleanCompression_GetValues_System_Int32_System_Int32_
   name: GetValues
   nameWithType: BooleanCompression.GetValues
   fullName: Repetitionless.Compression.BooleanCompression.GetValues
 - uid: Repetitionless.Compression.BooleanCompression.AddValue*
   commentId: Overload:Repetitionless.Compression.BooleanCompression.AddValue
+  href: Repetitionless.Compression.BooleanCompression.html#Repetitionless_Compression_BooleanCompression_AddValue_System_Int32_System_Int32_System_Boolean_
   name: AddValue
   nameWithType: BooleanCompression.AddValue
   fullName: Repetitionless.Compression.BooleanCompression.AddValue
@@ -287,6 +295,7 @@ references:
   name.vb: Boolean
 - uid: Repetitionless.Compression.BooleanCompression.GetValue*
   commentId: Overload:Repetitionless.Compression.BooleanCompression.GetValue
+  href: Repetitionless.Compression.BooleanCompression.html#Repetitionless_Compression_BooleanCompression_GetValue_System_Int32_System_Int32_
   name: GetValue
   nameWithType: BooleanCompression.GetValue
   fullName: Repetitionless.Compression.BooleanCompression.GetValue

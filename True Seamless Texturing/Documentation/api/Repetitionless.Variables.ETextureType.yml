@@ -26,7 +26,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
-  summary: "\nAvailable mask texture types for Repetitionless Materials\n"
+  summary: Available mask texture types for Repetitionless Materials
   example: []
   syntax:
     content: public enum ETextureType
@@ -112,24 +112,30 @@ items:
 references:
 - uid: Repetitionless.Variables
   commentId: N:Repetitionless.Variables
+  href: Repetitionless.html
   name: Repetitionless.Variables
   nameWithType: Repetitionless.Variables
   fullName: Repetitionless.Variables
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
+    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Variables
     name: Variables
+    href: Repetitionless.Variables.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
+    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Variables
     name: Variables
+    href: Repetitionless.Variables.html
 - uid: Repetitionless.Variables.ETextureType
   commentId: T:Repetitionless.Variables.ETextureType
   parent: Repetitionless.Variables
+  href: Repetitionless.Variables.ETextureType.html
   name: ETextureType
   nameWithType: ETextureType
   fullName: Repetitionless.Variables.ETextureType

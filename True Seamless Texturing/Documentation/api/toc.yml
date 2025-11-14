@@ -1,20 +1,76 @@
 ### YamlMime:TableOfContent
+items:
 - uid: Repetitionless.Compression
   name: Repetitionless.Compression
+  type: Namespace
   items:
   - uid: Repetitionless.Compression.BooleanCompression
     name: BooleanCompression
-- uid: Repetitionless.Samples
-  name: Repetitionless.Samples
+    type: Class
+- uid: Repetitionless.CustomDialog
+  name: Repetitionless.CustomDialog
+  type: Namespace
   items:
-  - uid: Repetitionless.Samples.TerrainSceneSettings
-    name: TerrainSceneSettings
+  - uid: Repetitionless.CustomDialog.ShaderGUIDialog
+    name: ShaderGUIDialog
+    type: Class
+- uid: Repetitionless.CustomWindows
+  name: Repetitionless.CustomWindows
+  type: Namespace
+  items:
+  - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited
+    name: ConfigureArrayWindowLimited
+    type: Class
+  - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+    name: Texture2DArrayWindowBase
+    type: Class
+- uid: Repetitionless.GUIUtilities
+  name: Repetitionless.GUIUtilities
+  type: Namespace
+  items:
+  - uid: Repetitionless.GUIUtilities.GUIUtilities
+    name: GUIUtilities
+    type: Class
+  - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer
+    name: TextureArrayGUIDrawer
+    type: Class
+- uid: Repetitionless.Inspectors
+  name: Repetitionless.Inspectors
+  type: Namespace
+  items:
+  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase
+    name: SeamlessMaterialGUIBase
+    type: Class
+  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+    name: SeamlessMaterialGUIBase.MaterialFoldoutState
+    type: Class
+  - uid: Repetitionless.Inspectors.SeamlessMaterialMasterGUI
+    name: SeamlessMaterialMasterGUI
+    type: Class
+  - uid: Repetitionless.Inspectors.SeamlessMaterialTerrainGUI
+    name: SeamlessMaterialTerrainGUI
+    type: Class
+- uid: Repetitionless.TextureUtilities
+  name: Repetitionless.TextureUtilities
+  type: Namespace
+  items:
+  - uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+    name: Texture2DArrayUtilities
+    type: Class
+  - uid: Repetitionless.TextureUtilities.TextureUtilities
+    name: TextureUtilities
+    type: Class
 - uid: Repetitionless.Variables
   name: Repetitionless.Variables
+  type: Namespace
   items:
   - uid: Repetitionless.Variables.EDistanceBlendMode
     name: EDistanceBlendMode
+    type: Enum
   - uid: Repetitionless.Variables.ESurfaceType
     name: ESurfaceType
+    type: Enum
   - uid: Repetitionless.Variables.ETextureType
     name: ETextureType
+    type: Enum
+memberLayout: SamePage
