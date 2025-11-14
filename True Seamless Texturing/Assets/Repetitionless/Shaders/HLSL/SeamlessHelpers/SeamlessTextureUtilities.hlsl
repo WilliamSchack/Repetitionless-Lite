@@ -4,7 +4,8 @@
 #include "../Utilities/TextureUtilities.hlsl"
 #include "../TextureArrayEssentials/TextureArrayUtilities.hlsl"
 
-// Sample from Regular Texture
+// Samples the base and edge colour if required and lerps them together
+// Uses a regular texture
 float4 SampleSeamlessTexture(UnityTexture2D Texture, SamplerState SS, float EdgeMask, float2 EdgeUV, float2 TransformedUV, bool SampleEdge, bool NormalMap = false, float NormalStrength = 1.0)
 {
     float4 baseTextureColor = 1;
@@ -24,7 +25,8 @@ float4 SampleSeamlessTexture(UnityTexture2D Texture, SamplerState SS, float Edge
     return baseTextureColor;
 }
 
-// Sample from Texture Array
+// Samples the base and edge colour if required and lerps them together
+// Uses a texture array
 // Normal maps do not work properly in an array, dont allow them
 float4 SampleSeamlessArrayTexture(UnityTexture2DArray TextureArray, int AssignedTextures, int ConstantIndex, SamplerState SS, float EdgeMask, float2 EdgeUV, float2 TransformedUV, bool SampleEdge)
 {

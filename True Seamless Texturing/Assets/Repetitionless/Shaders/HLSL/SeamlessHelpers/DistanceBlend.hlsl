@@ -3,6 +3,7 @@
 
 #include "../Utilities/TextureUtilities.hlsl"
 
+// Calculates a normalized distance between the inputted min max based on the camera position
 float CalculateFarDistance(float3 WorldPosition, float3 CameraPosition, float2 DistanceBlendMinMax)
 {
     float farDistance = distance(WorldPosition, CameraPosition);
@@ -11,6 +12,7 @@ float CalculateFarDistance(float3 WorldPosition, float3 CameraPosition, float2 D
     return farDistance;
 }
 
+// Blends between a texture with differing tiling offset based on the camera position
 void DistanceBlendTilingOffset_float(
     // Settings
     float3 WorldPosition, float3 CameraPosition,
@@ -41,6 +43,7 @@ void DistanceBlendTilingOffset_float(
     ColourOut = lerp(ColourOut, farColour, farDistance);
 }
 
+// Blends between two inputted colours based on the camera position 
 void DistanceBlendColour_float(
     // Settings
     float3 WorldPosition, float3 CameraPosition,

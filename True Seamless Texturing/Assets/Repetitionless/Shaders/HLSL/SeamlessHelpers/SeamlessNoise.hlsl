@@ -5,6 +5,7 @@
 
 #include "../Noise/VoronoiNoise2D.hlsl"
 
+// Gets UVs based on voronoi noise
 void GetSeamlessNoiseUVs(
     float2 UV, // UV
     float NoiseAngleOffset, float NoiseScale, bool RandomiseNoiseScaling, float2 NoiseScalingMinMax, // Noise
@@ -41,6 +42,8 @@ void GetSeamlessNoiseUVs(
     }
 }
 
+// Samples the given texture using modified UVs based on voronoi noise
+// Samples the voronoi cells base and edge colour if required and lerps them together
 void AddSeamlessNoise_float(
     UnityTexture2D InputTexture, SamplerState SS, // Texture
     float2 UV, // UV
