@@ -1,0 +1,42 @@
+site_name: Repetitionless
+#site_url: https://docs.wilschack.dev/texture-urray-utilities
+nav:
+  - Getting Started: index.md
+theme:
+    name: material
+    logo: Images/Icon.png
+    favicon: Images/Icon_Favicon.png
+    features:
+      - navigation.instant
+      - navigation.instant.progress
+      - search.suggest
+      - search.highlight
+      - content.code.copy
+    palette:
+        # Palette toggle for light mode
+      - scheme: default
+        toggle:
+            icon: material/brightness-7
+            name: Switch to dark mode
+    
+        # Palette toggle for dark mode
+      - scheme: slate
+        toggle:
+            icon: material/brightness-4
+            name: Switch to light mode
+markdown_extensions:
+  - toc:
+      toc_depth: 2
+  - pymdownx.superfences
+plugins:
+  - search
+# Remove comments on all below when building as pdf
+#  - with-pdf:
+#        author: William Schack
+#        copyright: (C) 2025 William Schack
+#        cover: true
+#        cover_title: Texture Array Essentials
+#        cover_subtitle: The offline documentation can be hard to follow so using the online documentation is recommended which you can find at https://docs.wilschack.dev/texture-array-essentials. You can still use this if you need though, it has all the same information
+#        toc_level: 2
+#extra_css:
+#  - pdf-style.css
