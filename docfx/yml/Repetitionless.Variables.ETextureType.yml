@@ -22,7 +22,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ETextureType
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
-    startLine: 15
+    startLine: 26
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
@@ -49,10 +49,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PerlinNoise
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
-    startLine: 17
+    startLine: 31
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
+  summary: Procedurally generated with perlin noise
+  example: []
   syntax:
     content: PerlinNoise = 0
     return:
@@ -75,10 +77,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SimplexNoise
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
-    startLine: 18
+    startLine: 36
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
+  summary: Procedurally generated with simplex noise
+  example: []
   syntax:
     content: SimplexNoise = 1
     return:
@@ -101,10 +105,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CustomTexture
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
-    startLine: 19
+    startLine: 41
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
+  summary: Uses a custom input texture
+  example: []
   syntax:
     content: CustomTexture = 2
     return:

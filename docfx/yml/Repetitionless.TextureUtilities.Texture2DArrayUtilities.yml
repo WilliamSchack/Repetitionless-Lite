@@ -29,10 +29,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Texture2DArrayUtilities
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
-    startLine: 14
+    startLine: 17
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
+  summary: Contains various helper functions for Texture2DArrays
+  example: []
   syntax:
     content: public static class Texture2DArrayUtilities
     content.vb: Public Module Texture2DArrayUtilities
@@ -56,10 +58,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SUPPORTED_TEXTURE_FORMATS
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
-    startLine: 17
+    startLine: 24
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
+  summary: List of all the supported texture formats for Texture2DArrays
+  example: []
   syntax:
     content: public static readonly TextureFormat[] SUPPORTED_TEXTURE_FORMATS
     return:
@@ -83,7 +87,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArray
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
-    startLine: 69
+    startLine: 76
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
@@ -113,7 +117,7 @@ items:
 
         Recommended in the Built-In Render Pipeline only when including normal maps<br />
 
-        Not Recommended in URP/HDRP as it will result in brighter textures
+        <b>Not Recommended in URP/HDRP as it will result in brighter textures</b>
     return:
       type: UnityEngine.Texture2DArray
       description: A Texture2DArray with the input textures and settings
@@ -140,7 +144,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArrayAutoResize
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
-    startLine: 133
+    startLine: 140
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
@@ -170,7 +174,7 @@ items:
 
         Recommended in the Built-In Render Pipeline only when including normal maps<br />
 
-        Not Recommended in URP/HDRP as it will result in brighter textures
+        <b>Not Recommended in URP/HDRP as it will result in brighter textures</b>
     return:
       type: UnityEngine.Texture2DArray
       description: A Texture2DArray with the input textures and settings
@@ -197,7 +201,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArrayUserInput
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
-    startLine: 184
+    startLine: 191
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
@@ -233,7 +237,7 @@ items:
 
         Recommended in the Built-In Render Pipeline only when including normal maps<br />
 
-        Not Recommended in URP/HDRP as it will result in brighter textures
+        <b>Not Recommended in URP/HDRP as it will result in brighter textures</b>
     return:
       type: UnityEngine.Texture2DArray
       description: A Texture2DArray with the input textures and settings
@@ -260,7 +264,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTexture
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
-    startLine: 266
+    startLine: 273
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
@@ -312,7 +316,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTextureAutoResize
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
-    startLine: 317
+    startLine: 324
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
@@ -362,7 +366,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTextureUserInput
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
-    startLine: 359
+    startLine: 366
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
@@ -412,7 +416,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetTexture
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
-    startLine: 412
+    startLine: 419
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
@@ -453,7 +457,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetTextures
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
-    startLine: 433
+    startLine: 440
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
@@ -488,7 +492,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ResizeArrayTextures
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
-    startLine: 466
+    startLine: 473
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities

@@ -215,7 +215,7 @@ items:
   summary: >-
     Called when theGUI is first created<br />
 
-    base.CreateGUI(); Must be called before performing operations
+    <b>base.CreateGUI(); Must be called before performing operations</b>
   example: []
   syntax:
     content: protected override void CreateGUI()
@@ -247,7 +247,7 @@ items:
   summary: >-
     Called every GUI update, used due to other tasks in OnGUI<br />
 
-    base.OnGUI(); Will create the textures, settings, and output sections
+    <b>base.OnGUI(); Will create the textures, settings, and output sections</b>
   example: []
   syntax:
     content: protected override void OnGUIUpdate()
@@ -279,7 +279,7 @@ items:
   summary: >-
     Called when the add button is clicked in the ReorderableList GUI<br />
 
-    base.OnTextureAdd() will add a texture to the texture lists and should be called
+    <b>base.OnTextureAdd() will add a texture to the texture lists and should be called</b>
   example: []
   syntax:
     content: protected override void OnTextureAdd(ReorderableList list)
@@ -351,7 +351,7 @@ items:
   summary: >-
     Called when the textures are reordered in the ReorderableList GUI<br />
 
-    base.OnTexturesReorder() will handle reordering the texture lists and should be called
+    <b>base.OnTexturesReorder() will handle reordering the texture lists and should be called</b>
   example: []
   syntax:
     content: protected override void OnTexturesReorder(ReorderableList list, int oldActiveElement, int newActiveElement)
@@ -393,7 +393,10 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: Called every update while anything is dragged over the window
+  summary: >-
+    Called every update while anything is dragged over the window<br />
+
+    <b>base.OnDragUpdate(); Must be called before performing operations</b>
   example: []
   syntax:
     content: protected override void OnDragUpdate(Object[] objectReferences)
@@ -429,7 +432,10 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: Called when the drag is complete over the window
+  summary: >-
+    Called when the drag is complete over the window<br />
+
+    <b>base.OnDragPerform(); Must be called before performing operations</b>
   example: []
   syntax:
     content: protected override void OnDragPerform(Object[] objectReferences)
@@ -468,7 +474,7 @@ items:
   summary: >-
     Calculates the height of an element for the ReorderableList GUI where the textures are assigned<br />
 
-    base.CalculateElementHeight(); Must be called before performing operations
+    <b>base.CalculateElementHeight(); Must be called before performing operations</b>
   example: []
   syntax:
     content: protected override float CalculateElementHeight(int index)
@@ -510,7 +516,7 @@ items:
   summary: >-
     Draws a texture element in the textures list<br />
 
-    When modifying the height in any way Repaint(); should be called to update it on the same GUI call, otherwise will be updated on the next
+    <b>When modifying the height in any way Repaint(); should be called to update it on the same GUI call, otherwise will be updated on the next</b>
   example: []
   syntax:
     content: protected override void DrawTextureField(Rect rect, int index, bool isActive, bool isFocused)

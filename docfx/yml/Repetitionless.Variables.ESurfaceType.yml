@@ -49,10 +49,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Opaque
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
-    startLine: 7
+    startLine: 10
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
+  summary: Opaque surface with no transparency
+  example: []
   syntax:
     content: Opaque = 0
     return:
@@ -75,10 +77,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Cutout
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
-    startLine: 8
+    startLine: 15
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
+  summary: TransparentCutout surface (Opaque with alpha clipping)
+  example: []
   syntax:
     content: Cutout = 1
     return:
@@ -101,10 +105,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Transparent
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
-    startLine: 9
+    startLine: 20
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
+  summary: Transparent surface
+  example: []
   syntax:
     content: Transparent = 2
     return:

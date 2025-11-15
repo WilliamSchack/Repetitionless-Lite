@@ -54,10 +54,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Texture2DArrayWindowBase
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 18
+    startLine: 21
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: Base class for creating the Create/Configure Array windows in Texture Array Essentials
+  example: []
   syntax:
     content: 'public class Texture2DArrayWindowBase : EditorWindow'
     content.vb: Public Class Texture2DArrayWindowBase Inherits EditorWindow
@@ -86,10 +88,15 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _textures
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 24
+    startLine: 32
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    The textures that are assigned in the window<br />
+
+    Should be updated in tandem with _texturesResizing and _textureErrors
+  example: []
   syntax:
     content: protected List<Texture2D> _textures
     return:
@@ -113,10 +120,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _texturesResizing
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 25
+    startLine: 39
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    <b>AUTOMATICALLY UPDATES</b><br />
+
+    Which textures have been marked as resizing<br />
+
+    Should be updated in tandem with _textures and _textureErrors
+  example: []
   syntax:
     content: protected List<bool> _texturesResizing
     return:
@@ -140,10 +154,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _textureErrors
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 26
+    startLine: 46
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    <b>AUTOMATICALLY UPDATES</b><br />
+
+    Which textures have an error that needs to be addressed<br />
+
+    Should be updated in tandem with _textures and _texturesResizing
+  example: []
   syntax:
     content: protected List<bool> _textureErrors
     return:
@@ -167,10 +188,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayTextureFormatIndex
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 29
+    startLine: 55
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>Index Of TextureFormat.DXT5</b><br />
+
+    The format index of the output array<br />
+
+    <i>Modifiable in the window</i>
+  example: []
   syntax:
     content: protected int _arrayTextureFormatIndex
     return:
@@ -194,10 +222,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayMipMaps
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 30
+    startLine: 62
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>true</b><br />
+
+    If the output array will transfer mipmaps from the inputted textures<br />
+
+    <i>Modifiable in the window</i>
+  example: []
   syntax:
     content: protected bool _arrayMipMaps
     return:
@@ -221,10 +256,21 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayLinear
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 31
+    startLine: 71
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>false</b><br />
+
+    If the output array will be linear<br />
+
+    Recommended in the Built-In Render Pipeline only when including normal maps<br />
+
+    <b>Not Recommended in URP/HDRP as it will result in brighter textures</b><br />
+
+    <i>Modifiable in the window</i>
+  example: []
   syntax:
     content: protected bool _arrayLinear
     return:
@@ -248,10 +294,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayWrapMode
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 33
+    startLine: 78
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>TextureWrapMode.Repeat</b><br />
+
+    The Wrap Mode of the output array<br />
+
+    <i>Modifiable in the window</i>
+  example: []
   syntax:
     content: protected TextureWrapMode _arrayWrapMode
     return:
@@ -275,10 +328,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayFilterMode
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 34
+    startLine: 85
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>FilterMode.Bilinear</b><br />
+
+    The Filter Mode of the output array<br />
+
+    <i>Modifiable in the window</i>
+  example: []
   syntax:
     content: protected FilterMode _arrayFilterMode
     return:
@@ -302,10 +362,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayAnisoLevel
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 35
+    startLine: 92
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>1</b><br />
+
+    The Aniso Level of the output array<br />
+
+    <i>Modifiable in the window</i>
+  example: []
   syntax:
     content: protected int _arrayAnisoLevel
     return:
@@ -329,10 +396,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _resizeTextures
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 37
+    startLine: 99
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>false</b><br />
+
+    If all the inputted textures will be resized to _arrayResolution<br />
+
+    <i>Modifiable in the window</i>
+  example: []
   syntax:
     content: protected bool _resizeTextures
     return:
@@ -356,10 +430,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _arrayResolution
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 38
+    startLine: 106
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>First Assigned Texture Resolution</b><br />
+
+    The resolution that all inputted textures will be resized to if _resizeTextures is enabled<br />
+
+    <i>Displayed and modifiable in the window when _resizeTextures enabled</i>
+  example: []
   syntax:
     content: protected Vector2Int _arrayResolution
     return:
@@ -383,10 +464,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _resizeFilterMode
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 39
+    startLine: 113
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>FilterMode.Bilinear</b><br />
+
+    The filter mode used when resizing textures<br />
+
+    <i>Displayed and modifiable in the window when _resizeTextures enabled or _texturesResizing has any values set to true</i>
+  example: []
   syntax:
     content: protected FilterMode _resizeFilterMode
     return:
@@ -410,10 +498,15 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _textureFormatSettingEnabled
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 43
+    startLine: 123
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>true</b><br />
+
+    If the Texture Format setting appears in the window
+  example: []
   syntax:
     content: protected bool _textureFormatSettingEnabled
     return:
@@ -437,10 +530,15 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _mipmapsSettingEnabled
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 44
+    startLine: 129
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>true</b><br />
+
+    If the Generate Mipmaps setting appears in the window
+  example: []
   syntax:
     content: protected bool _mipmapsSettingEnabled
     return:
@@ -464,10 +562,15 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _linearSettingEnabled
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 45
+    startLine: 135
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>true</b><br />
+
+    If the Linear setting appears in the window
+  example: []
   syntax:
     content: protected bool _linearSettingEnabled
     return:
@@ -491,10 +594,15 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _wrapModeSettingEnabled
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 46
+    startLine: 141
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>true</b><br />
+
+    If the Wrap Mode setting appears in the window
+  example: []
   syntax:
     content: protected bool _wrapModeSettingEnabled
     return:
@@ -518,10 +626,15 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _filterModeSettingEnabled
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 47
+    startLine: 147
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>true</b><br />
+
+    If the Filter Mode setting appears in the window
+  example: []
   syntax:
     content: protected bool _filterModeSettingEnabled
     return:
@@ -545,10 +658,15 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _anisoLevelSettingEnabled
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 48
+    startLine: 153
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>true</b><br />
+
+    If the Aniso Level setting appears in the window
+  example: []
   syntax:
     content: protected bool _anisoLevelSettingEnabled
     return:
@@ -572,10 +690,15 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _resizeSettingEnabled
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 49
+    startLine: 159
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>true</b><br />
+
+    If the Resize Textures setting appears in the window
+  example: []
   syntax:
     content: protected bool _resizeSettingEnabled
     return:
@@ -599,10 +722,15 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _canAddRemoveTextures
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 53
+    startLine: 168
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: >-
+    Default: <b>true</b><br />
+
+    If textures can be added or removed in the window
+  example: []
   syntax:
     content: protected bool _canAddRemoveTextures
     return:
@@ -626,10 +754,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _headerStyle
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 57
+    startLine: 175
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
+  summary: Style used for headers in the GUI
+  example: []
   syntax:
     content: protected GUIStyle _headerStyle
     return:
@@ -653,14 +783,14 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateGUI
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 63
+    startLine: 181
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
   summary: >-
     Called when theGUI is first created<br />
 
-    base.CreateGUI(); Must be called before performing operations
+    <b>base.CreateGUI(); Must be called before performing operations</b>
   example: []
   syntax:
     content: protected virtual void CreateGUI()
@@ -684,14 +814,14 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnGUIUpdate
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 148
+    startLine: 266
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
   summary: >-
     Called every GUI update, used due to other tasks in OnGUI<br />
 
-    base.OnGUI(); Will create the textures, settings, and output sections
+    <b>base.OnGUI(); Will create the textures, settings, and output sections</b>
   example: []
   syntax:
     content: protected virtual void OnGUIUpdate()
@@ -715,14 +845,14 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CalculateElementHeight
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 195
+    startLine: 313
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
   summary: >-
     Calculates the height of an element for the ReorderableList GUI where the textures are assigned<br />
 
-    base.CalculateElementHeight(); Must be called before performing operations
+    <b>base.CalculateElementHeight(); Must be called before performing operations</b>
   example: []
   syntax:
     content: protected virtual float CalculateElementHeight(int index)
@@ -756,14 +886,14 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureField
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 227
+    startLine: 345
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
   summary: >-
     Draws a texture element in the textures list<br />
 
-    When modifying the height in any way Repaint(); should be called to update it on the same GUI call, otherwise will be updated on the next
+    <b>When modifying the height in any way Repaint(); should be called to update it on the same GUI call, otherwise will be updated on the next</b>
   example: []
   syntax:
     content: protected virtual void DrawTextureField(Rect rect, int index, bool isActive, bool isFocused)
@@ -806,7 +936,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawArraySettings
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 329
+    startLine: 447
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
@@ -815,7 +945,7 @@ items:
 
     All GUI called here will be drawn within the Array Settings section<br />
 
-    base.DrawArraySettings() will draw the settings
+    <b>base.DrawArraySettings() will draw the settings</b>
   example: []
   syntax:
     content: protected virtual void DrawArraySettings()
@@ -839,7 +969,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawFinalOutputFields
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 388
+    startLine: 506
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
@@ -848,7 +978,7 @@ items:
 
     All GUI called here will be drawn within the Final Output section<br />
 
-    base.DrawFinalOutputFields() will draw the final output details
+    <b>base.DrawFinalOutputFields() will draw the final output details</b>
   example: []
   syntax:
     content: protected virtual void DrawFinalOutputFields()
@@ -872,7 +1002,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DisplayWarnings
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 408
+    startLine: 526
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
@@ -881,7 +1011,7 @@ items:
 
     All GUI called here will be drawn within and at the bottom of the Final Output section<br />
 
-    base.DrawFinalOutputFields() must be called before showing any extra warnings
+    <b>base.DrawFinalOutputFields() must be called before showing any extra warnings</b>
   example: []
   syntax:
     content: protected virtual void DisplayWarnings()
@@ -905,14 +1035,14 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTextureAdd
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 440
+    startLine: 558
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
   summary: >-
     Called when the add button is clicked in the ReorderableList GUI<br />
 
-    base.OnTextureAdd() will add a texture to the texture lists and should be called
+    <b>base.OnTextureAdd() will add a texture to the texture lists and should be called</b>
   example: []
   syntax:
     content: protected virtual void OnTextureAdd(ReorderableList list)
@@ -940,7 +1070,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTextureRemove
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 454
+    startLine: 572
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
@@ -975,14 +1105,14 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTexturesReorder
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 479
+    startLine: 597
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
   summary: >-
     Called when the textures are reordered in the ReorderableList GUI<br />
 
-    base.OnTexturesReorder() will handle reordering the texture lists and should be called
+    <b>base.OnTexturesReorder() will handle reordering the texture lists and should be called</b>
   example: []
   syntax:
     content: protected virtual void OnTexturesReorder(ReorderableList list, int oldActiveElement, int newActiveElement)
@@ -1019,11 +1149,14 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnDragUpdate
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 502
+    startLine: 621
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: Called every update while anything is dragged over the window
+  summary: >-
+    Called every update while anything is dragged over the window<br />
+
+    <b>base.OnDragUpdate(); Must be called before performing operations</b>
   example: []
   syntax:
     content: protected virtual void OnDragUpdate(Object[] objectReferences)
@@ -1054,11 +1187,14 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnDragPerform
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 518
+    startLine: 638
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: Called when the drag is complete over the window
+  summary: >-
+    Called when the drag is complete over the window<br />
+
+    <b>base.OnDragPerform(); Must be called before performing operations</b>
   example: []
   syntax:
     content: protected virtual void OnDragPerform(Object[] objectReferences)
@@ -1089,7 +1225,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ArrayTexturesExist
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 571
+    startLine: 691
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
@@ -1120,7 +1256,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArray
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomWindows/Texture2DArrayWindowBase.cs
-    startLine: 592
+    startLine: 715
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
@@ -1137,6 +1273,7 @@ items:
         Should always start with "Assets/"
     - id: pingArray
       type: System.Boolean
+      description: If the texture array will be pinged after creation
     return:
       type: System.Boolean
       description: If the operation was successful

@@ -38,17 +38,17 @@ items:
   name: Repetitionless.Inspectors
   type: Namespace
   items:
-  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase
-    name: SeamlessMaterialGUIBase
+  - uid: Repetitionless.Inspectors.RepetitionlessGUIBase
+    name: RepetitionlessGUIBase
     type: Class
-  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
-    name: SeamlessMaterialGUIBase.MaterialFoldoutState
+  - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
+    name: RepetitionlessGUIBase.MaterialFoldoutState
     type: Class
-  - uid: Repetitionless.Inspectors.SeamlessMaterialMasterGUI
-    name: SeamlessMaterialMasterGUI
+  - uid: Repetitionless.Inspectors.RepetitionlessMasterGUI
+    name: RepetitionlessMasterGUI
     type: Class
-  - uid: Repetitionless.Inspectors.SeamlessMaterialTerrainGUI
-    name: SeamlessMaterialTerrainGUI
+  - uid: Repetitionless.Inspectors.RepetitionlessTerrainGUI
+    name: RepetitionlessTerrainGUI
     type: Class
 - uid: Repetitionless.TextureUtilities
   name: Repetitionless.TextureUtilities

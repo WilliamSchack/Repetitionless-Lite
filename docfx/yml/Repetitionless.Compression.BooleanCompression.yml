@@ -23,10 +23,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BooleanCompression
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
-    startLine: 9
+    startLine: 12
   assemblies:
   - com.williamschack.Repetitionless.Compression
   namespace: Repetitionless.Compression
+  summary: Used to compress and extract an array of boolean values in a single integer
+  example: []
   syntax:
     content: public static class BooleanCompression
     content.vb: Public Module BooleanCompression
@@ -50,7 +52,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CompressValues
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
-    startLine: 20
+    startLine: 23
   assemblies:
   - com.williamschack.Repetitionless.Compression
   namespace: Repetitionless.Compression
@@ -88,7 +90,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetValues
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
-    startLine: 47
+    startLine: 50
   assemblies:
   - com.williamschack.Repetitionless.Compression
   namespace: Repetitionless.Compression
@@ -129,7 +131,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AddValue
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
-    startLine: 75
+    startLine: 78
   assemblies:
   - com.williamschack.Repetitionless.Compression
   namespace: Repetitionless.Compression
@@ -173,7 +175,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetValue
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
-    startLine: 93
+    startLine: 96
   assemblies:
   - com.williamschack.Repetitionless.Compression
   namespace: Repetitionless.Compression

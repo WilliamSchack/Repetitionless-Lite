@@ -4,10 +4,10 @@ items:
   commentId: N:Repetitionless.Inspectors
   id: Repetitionless.Inspectors
   children:
-  - Repetitionless.Inspectors.SeamlessMaterialGUIBase
-  - Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
-  - Repetitionless.Inspectors.SeamlessMaterialMasterGUI
-  - Repetitionless.Inspectors.SeamlessMaterialTerrainGUI
+  - Repetitionless.Inspectors.RepetitionlessGUIBase
+  - Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
+  - Repetitionless.Inspectors.RepetitionlessMasterGUI
+  - Repetitionless.Inspectors.RepetitionlessTerrainGUI
   langs:
   - csharp
   - vb
@@ -18,47 +18,47 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
 references:
-- uid: Repetitionless.Inspectors.SeamlessMaterialTerrainGUI
-  commentId: T:Repetitionless.Inspectors.SeamlessMaterialTerrainGUI
-  href: Repetitionless.Inspectors.SeamlessMaterialTerrainGUI.html
-  name: SeamlessMaterialTerrainGUI
-  nameWithType: SeamlessMaterialTerrainGUI
-  fullName: Repetitionless.Inspectors.SeamlessMaterialTerrainGUI
-- uid: Repetitionless.Inspectors.SeamlessMaterialMasterGUI
-  commentId: T:Repetitionless.Inspectors.SeamlessMaterialMasterGUI
-  href: Repetitionless.Inspectors.SeamlessMaterialMasterGUI.html
-  name: SeamlessMaterialMasterGUI
-  nameWithType: SeamlessMaterialMasterGUI
-  fullName: Repetitionless.Inspectors.SeamlessMaterialMasterGUI
-- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase
-  commentId: T:Repetitionless.Inspectors.SeamlessMaterialGUIBase
+- uid: Repetitionless.Inspectors.RepetitionlessTerrainGUI
+  commentId: T:Repetitionless.Inspectors.RepetitionlessTerrainGUI
+  href: Repetitionless.Inspectors.RepetitionlessTerrainGUI.html
+  name: RepetitionlessTerrainGUI
+  nameWithType: RepetitionlessTerrainGUI
+  fullName: Repetitionless.Inspectors.RepetitionlessTerrainGUI
+- uid: Repetitionless.Inspectors.RepetitionlessGUIBase
+  commentId: T:Repetitionless.Inspectors.RepetitionlessGUIBase
   parent: Repetitionless.Inspectors
-  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html
-  name: SeamlessMaterialGUIBase
-  nameWithType: SeamlessMaterialGUIBase
-  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase
-- uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
-  commentId: T:Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
-  href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html
-  name: SeamlessMaterialGUIBase.MaterialFoldoutState
-  nameWithType: SeamlessMaterialGUIBase.MaterialFoldoutState
-  fullName: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
+  name: RepetitionlessGUIBase
+  nameWithType: RepetitionlessGUIBase
+  fullName: Repetitionless.Inspectors.RepetitionlessGUIBase
+- uid: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
+  commentId: T:Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
+  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
+  name: RepetitionlessGUIBase.MaterialFoldoutState
+  nameWithType: RepetitionlessGUIBase.MaterialFoldoutState
+  fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
   spec.csharp:
-  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase
-    name: SeamlessMaterialGUIBase
-    href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html
+  - uid: Repetitionless.Inspectors.RepetitionlessGUIBase
+    name: RepetitionlessGUIBase
+    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
   - name: .
-  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+  - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
     name: MaterialFoldoutState
-    href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.html
+    href: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState.html
   spec.vb:
-  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase
-    name: SeamlessMaterialGUIBase
-    href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.html
+  - uid: Repetitionless.Inspectors.RepetitionlessGUIBase
+    name: RepetitionlessGUIBase
+    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
   - name: .
-  - uid: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState
+  - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
     name: MaterialFoldoutState
-    href: Repetitionless.Inspectors.SeamlessMaterialGUIBase.MaterialFoldoutState.html
+    href: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState.html
+- uid: Repetitionless.Inspectors.RepetitionlessMasterGUI
+  commentId: T:Repetitionless.Inspectors.RepetitionlessMasterGUI
+  href: Repetitionless.Inspectors.RepetitionlessMasterGUI.html
+  name: RepetitionlessMasterGUI
+  nameWithType: RepetitionlessMasterGUI
+  fullName: Repetitionless.Inspectors.RepetitionlessMasterGUI
 - uid: Repetitionless.Inspectors
   commentId: N:Repetitionless.Inspectors
   href: Repetitionless.html

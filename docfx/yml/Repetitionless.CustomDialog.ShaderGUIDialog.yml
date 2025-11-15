@@ -21,10 +21,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ShaderGUIDialog
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
-    startLine: 15
+    startLine: 18
   assemblies:
   - com.williamschack.Repetitionless.CustomDialog
   namespace: Repetitionless.CustomDialog
+  summary: Wrapper to remove the "PropertiesGUI() is being called recursively" warning when calling EditorUtility.DisplayDialog in OnGUI within a ShaderGUI inherited class
+  example: []
   syntax:
     content: public static class ShaderGUIDialog
     content.vb: Public Module ShaderGUIDialog
@@ -48,7 +50,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DisplayDialog
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
-    startLine: 35
+    startLine: 38
   assemblies:
   - com.williamschack.Repetitionless.CustomDialog
   namespace: Repetitionless.CustomDialog
@@ -95,7 +97,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DisplayDialogComplex
     path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
-    startLine: 71
+    startLine: 74
   assemblies:
   - com.williamschack.Repetitionless.CustomDialog
   namespace: Repetitionless.CustomDialog
