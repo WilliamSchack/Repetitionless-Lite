@@ -11,7 +11,7 @@ EXCLUDE_FILES = [
 ]
 
 def HandleClass(data):
-    print (f"> Converting {data["type"]} {data["uid"]}")
+    print (f"  Converting {data["type"]} {data["uid"]}")
 
     mdText = ""
 
@@ -30,12 +30,12 @@ def HandleClass(data):
     return mdText
 
 def HandleVariable(data):
-    print (f"  > Found variable {data["name"]}")
+    print (f"    Found variable {data["name"]}")
 
     return f"| {data["name"]} | {data["summary"].replace("\n", "")} |\n"
 
 def HandleFunction(data):
-    print (f"> Converting function {data["name"]}")
+    print (f"  Converting function {data["name"]}")
 
     syntax = data["syntax"]
 
