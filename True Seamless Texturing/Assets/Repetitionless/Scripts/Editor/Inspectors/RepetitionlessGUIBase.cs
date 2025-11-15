@@ -13,7 +13,7 @@ namespace Repetitionless.Inspectors
     /// <summary>
     /// Base class for creating the Master/Terrain repetitionless inspector windows
     /// </summary>
-    public class SeamlessMaterialGUIBase : ShaderGUI
+    public class RepetitionlessGUIBase : ShaderGUI
     {
         #region Variables
         

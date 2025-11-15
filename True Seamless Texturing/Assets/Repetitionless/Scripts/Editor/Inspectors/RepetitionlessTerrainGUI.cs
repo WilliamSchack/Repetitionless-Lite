@@ -9,7 +9,7 @@ namespace Repetitionless.Inspectors
     using GUIUtilities;
     using CustomWindows;
 
-    public class SeamlessMaterialTerrainGUI : SeamlessMaterialGUIBase
+    public class RepetitionlessTerrainGUI : RepetitionlessGUIBase
     {
         private class TerrainLayerTextureDrawers
         {
