@@ -107,12 +107,12 @@ namespace Repetitionless.Inspectors
             // Layer Selection
             DrawLayerSelectionGUI();
 
-            GUILayout.Space(SETTING_SPACING);
+            GUILayout.Space(SETTING_PADDING);
 
             // Layer
             DrawLayerGUI(_currentLayer);
 
-            GUILayout.Space(SETTING_SPACING);
+            GUILayout.Space(SETTING_PADDING);
 
             // Footer Settings
             DrawDebugGUI();
@@ -141,12 +141,12 @@ namespace Repetitionless.Inspectors
             // Base Material
             DrawBaseMaterialGUI(layerPropertyPrefix);
 
-            GUILayout.Space(SETTING_SPACING);
+            GUILayout.Space(SETTING_PADDING);
 
             // Distance Blend Material
             DrawDistanceBlendGUI(layerPropertyPrefix);
 
-            GUILayout.Space(SETTING_SPACING);
+            GUILayout.Space(SETTING_PADDING);
 
             // Material Blend
             DrawMaterialBlendGUI(layerPropertyPrefix);

@@ -10,11 +10,13 @@ namespace Repetitionless.Inspectors
     using Variables;
     using GUIUtilities;
 
+    /// <summary>
+    /// Base class for creating the Master/Terrain repetitionless inspector windows
+    /// </summary>
     public class SeamlessMaterialGUIBase : ShaderGUI
     {
         #region Variables
         
-
         /// <summary>
         /// Holds the state for each property foldout in a material section
         /// </summary>
@@ -26,17 +28,46 @@ namespace Repetitionless.Inspectors
         }
 
         // Constants
-        protected const int HEADER_PADDING = 4;
-        protected const int SETTING_SPACING = 4;
 
+        /// <summary>
+        /// Amount of padding at the top of the inspector
+        /// </summary>
+        protected const int HEADER_PADDING = 4;
+
+        /// <summary>
+        /// Amount of padding between sections
+        /// </summary>
+        protected const int SETTING_PADDING = 4;
+
+        /// <summary>
+        /// Buffer ontop of minWidth for GetScaledText
+        /// </summary>
         protected const int SCALED_TEXT_PADDING = 10;
 
         // Material Helpers
+
+        /// <summary>
+        /// The material being edited
+        /// </summary>
         protected Material _material;
+
+        /// <summary>
+        /// The material editor being used
+        /// </summary>
         protected MaterialEditor _editor;
+
+        /// <summary>
+        /// <b>Use FindProperty for getting properties</b><br />
+        /// Contains all the material properties<br />
+        /// </summary>
         protected Dictionary<string, MaterialProperty> _cachedProperties = new Dictionary<string, MaterialProperty>();
 
         // Foldout States, dynamically adds new materialPrefixes
+
+        /// <summary>
+        /// Contains the current states for all foldouts<br />
+        /// Keys are the material property prefix for that section
+        /// </summary>
         protected Dictionary<string, MaterialFoldoutState> _foldoutStates = new Dictionary<string, MaterialFoldoutState>();
 
         // Debug
@@ -190,7 +221,7 @@ namespace Repetitionless.Inspectors
             DrawMaterialPropertiesGUI();
             GUIUtilities.EndBackgroundVertical();
 
-            GUILayout.Space(SETTING_SPACING);
+            GUILayout.Space(SETTING_PADDING);
         }
         #endregion
 

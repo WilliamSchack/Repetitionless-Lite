@@ -13,6 +13,9 @@ namespace Repetitionless.CustomDialog
     // Due to multiple errors with the "PropertiesGUI() is being called recursively" error it had to be changed back to the regular DisplayDialog
     // Just a wrapper here to remove this warning that happens only in the ShaderGUI OnGUI for whatever reason
 
+    /// <summary>
+    /// Wrapper to remove the "PropertiesGUI() is being called recursively" warning when calling EditorUtility.DisplayDialog in OnGUI within a ShaderGUI inherited class
+    /// </summary>
     public static class ShaderGUIDialog
     {
         /// <summary>

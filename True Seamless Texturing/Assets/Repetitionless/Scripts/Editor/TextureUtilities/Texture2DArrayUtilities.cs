@@ -12,9 +12,16 @@ namespace Repetitionless.TextureUtilities
 {
     using CustomDialog;
 
+    /// <summary>
+    /// Contains various helper functions for Texture2DArrays 
+    /// </summary>
     public static class Texture2DArrayUtilities
     {
         // Supported texture formats
+
+        /// <summary>
+        /// List of all the supported texture formats for Texture2DArrays
+        /// </summary>
         public static readonly TextureFormat[] SUPPORTED_TEXTURE_FORMATS = {
             // Popular formats first, rest in order
             TextureFormat.DXT1,

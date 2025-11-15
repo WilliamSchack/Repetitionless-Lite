@@ -5,12 +5,26 @@ using UnityEditor;
 
 namespace Repetitionless.GUIUtilities
 {
+    /// <summary>
+    /// Many GUI functions to make inspector creation easier without MaterialProperties
+    /// </summary>
     public static class GUIUtilities
     {
         // Constants
+
+        /// <summary>
+        /// The height that one line takes in the inspector
+        /// </summary>
         public const int LINE_HEIGHT = 18;
+
+        /// <summary>
+        /// The height in-between two lines in the inspector
+        /// </summary>
         public const int LINE_SPACING = 2;
 
+        /// <summary>
+        /// The amount of left padding for foldouts
+        /// </summary>
         public const int FOLDOUT_INDENT = 10;
 
         // Styles
@@ -18,6 +32,9 @@ namespace Repetitionless.GUIUtilities
         private static GUIStyle _majorToggleButtonStyle = null;
         private static GUIStyle _boldFoldoutStyle = null;
 
+        /// <summary>
+        /// Style used for large headers
+        /// </summary>
         public static GUIStyle BoldHeaderLargeStyle { get {
                 if (_boldHeaderLargeStyle != null)
                     return _boldHeaderLargeStyle;
@@ -29,6 +46,9 @@ namespace Repetitionless.GUIUtilities
                 return _boldHeaderLargeStyle;
         } }
 
+        /// <summary>
+        /// Style for major toggle buttons
+        /// </summary>
         public static GUIStyle MajorToggleButtonStyle { get {
                 if (_majorToggleButtonStyle != null)
                     return _majorToggleButtonStyle;
@@ -40,6 +60,9 @@ namespace Repetitionless.GUIUtilities
                 return _majorToggleButtonStyle;
         } }
 
+        /// <summary>
+        /// Style used for foldout headers
+        /// </summary>
         public static GUIStyle BoldFoldoutStyle { get {
                 if (_boldFoldoutStyle != null)
                     return _boldFoldoutStyle;

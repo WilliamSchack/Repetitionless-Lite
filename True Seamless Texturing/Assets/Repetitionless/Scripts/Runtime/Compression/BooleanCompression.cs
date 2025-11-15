@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Repetitionless.Compression
 {
+    /// <summary>
+    /// Used to compress and extract an array of boolean values in a single integer
+    /// </summary>
     public static class BooleanCompression
     {
         /// <summary>

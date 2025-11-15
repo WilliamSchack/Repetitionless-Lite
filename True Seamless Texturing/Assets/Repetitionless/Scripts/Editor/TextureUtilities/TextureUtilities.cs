@@ -9,9 +9,14 @@ using UnityEditor;
 
 namespace Repetitionless.TextureUtilities
 {
+    /// <summary>
+    /// Contains various helper functions for modifying textures
+    /// </summary>
     public static class TextureUtilities
     {
-        // List of the texture formats that are compressed
+        /// <summary>
+        /// List of all the compressed texture formats
+        /// </summary>
         public static readonly TextureFormat[] COMPRESSED_TEXTURE_FORMATS = {
             TextureFormat.DXT1,
             TextureFormat.DXT5,

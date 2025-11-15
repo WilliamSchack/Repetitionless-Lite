@@ -15,6 +15,10 @@ namespace Repetitionless.GUIUtilities
     using Compression;
     using TextureUtilities;
 
+    /// <summary>
+    /// Allows drawing textures stored in a Texture2DArray to the GUI as well as functions for reading and deleting the array<br />
+    /// Automatically creates and manages its own array when textures are modified
+    /// </summary>
     public class TextureArrayGUIDrawer
     {
         // Array

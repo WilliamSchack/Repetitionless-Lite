@@ -16,45 +16,163 @@ namespace Repetitionless.CustomWindows
     using GUIUtilities;
     using TextureUtilities;
 
+    /// <summary>
+    /// Base class for creating the Create/Configure Array windows in Texture Array Essentials
+    /// </summary>
     public class Texture2DArrayWindowBase : EditorWindow
     {
         // Supported texture format names
         private string[] _supportedTextureFormatNames;
 
         // Textures
+
+        /// <summary>
+        /// The textures that are assigned in the window<br />
+        /// Should be updated in tandem with _texturesResizing & _textureErrors
+        /// </summary>
         protected List<Texture2D> _textures;
+
+        /// <summary>
+        /// <b>AUTOMATICALLY UPDATES</b><br />
+        /// Which textures have been marked as resizing<br />
+        /// Should be updated in tandem with _textures & _textureErrors
+        /// </summary>
         protected List<bool> _texturesResizing;
+
+        /// <summary>
+        /// <b>AUTOMATICALLY UPDATES</b><br />
+        /// Which textures have an error that needs to be addressed<br />
+        /// Should be updated in tandem with _textures & _texturesResizing
+        /// </summary>
         protected List<bool> _textureErrors;
 
         // Array Settings
+
+        /// <summary>
+        /// Default: <b>Index Of TextureFormat.DXT5</b><br />
+        /// The format index of the output array<br />
+        /// <i>Modifiable in the window</i>
+        /// </summary>
         protected int _arrayTextureFormatIndex;
+
+        /// <summary>
+        /// Default: <b>true</b><br />
+        /// If the output array will transfer mipmaps from the inputted textures<br />
+        /// <i>Modifiable in the window</i>
+        /// </summary>
         protected bool _arrayMipMaps;
+
+        /// <summary>
+        /// Default: <b>false</b><br />
+        /// If the output array will be linear<br />
+        /// Recommended in the Built-In Render Pipeline only when including normal maps<br />
+        /// <b>Not Recommended in URP/HDRP as it will result in brighter textures</b><br />
+        /// <i>Modifiable in the window</i>
+        /// </summary>
         protected bool _arrayLinear;
 
+        /// <summary>
+        /// Default: <b>TextureWrapMode.Repeat</b><br />
+        /// The Wrap Mode of the output array<br />
+        /// <i>Modifiable in the window</i>
+        /// </summary>
         protected TextureWrapMode _arrayWrapMode;
+
+        /// <summary>
+        /// Default: <b>FilterMode.Bilinear</b><br />
+        /// The Filter Mode of the output array<br />
+        /// <i>Modifiable in the window</i>
+        /// </summary>
         protected FilterMode _arrayFilterMode;
+
+        /// <summary>
+        /// Default: <b>1</b><br />
+        /// The Aniso Level of the output array<br />
+        /// <i>Modifiable in the window</i>
+        /// </summary>
         protected int _arrayAnisoLevel;
 
+        /// <summary>
+        /// Default: <b>false</b><br />
+        /// If all the inputted textures will be resized to _arrayResolution<br />
+        /// <i>Modifiable in the window</i>
+        /// </summary>
         protected bool _resizeTextures;
+
+        /// <summary>
+        /// Default: <b>First Assigned Texture Resolution</b><br />
+        /// The resolution that all inputted textures will be resized to if _resizeTextures is enabled<br />
+        /// <i>Displayed and modifiable in the window when _resizeTextures enabled</i>
+        /// </summary>
         protected Vector2Int _arrayResolution;
+
+        /// <summary>
+        /// Default: <b>FilterMode.Bilinear</b><br />
+        /// The filter mode used when resizing textures<br />
+        /// <i>Displayed and modifiable in the window when _resizeTextures enabled or _texturesResizing has any values set to true</i>
+        /// </summary>
         protected FilterMode _resizeFilterMode;
+
         private Vector2Int _previousResizeResolution;
 
         // Array Settings toggles for child classes
+
+        /// <summary>
+        /// Default: <b>true</b><br />
+        /// If the Texture Format setting appears in the window
+        /// </summary>
         protected bool _textureFormatSettingEnabled = true;
+
+        /// <summary>
+        /// Default: <b>true</b><br />
+        /// If the Generate Mipmaps setting appears in the window
+        /// </summary>
         protected bool _mipmapsSettingEnabled = true;
+
+        /// <summary>
+        /// Default: <b>true</b><br />
+        /// If the Linear setting appears in the window
+        /// </summary>
         protected bool _linearSettingEnabled = true;
+
+        /// <summary>
+        /// Default: <b>true</b><br />
+        /// If the Wrap Mode setting appears in the window
+        /// </summary>
         protected bool _wrapModeSettingEnabled = true;
+
+        /// <summary>
+        /// Default: <b>true</b><br />
+        /// If the Filter Mode setting appears in the window
+        /// </summary>
         protected bool _filterModeSettingEnabled = true;
+
+        /// <summary>
+        /// Default: <b>true</b><br />
+        /// If the Aniso Level setting appears in the window
+        /// </summary>
         protected bool _anisoLevelSettingEnabled = true;
+
+        /// <summary>
+        /// Default: <b>true</b><br />
+        /// If the Resize Textures setting appears in the window
+        /// </summary>
         protected bool _resizeSettingEnabled = true;
 
         // GUI
         private ReorderableList _textureROList;
+
+        /// <summary>
+        /// Default: <b>true</b><br />
+        /// If textures can be added or removed in the window
+        /// </summary>
         protected bool _canAddRemoveTextures = true;
 
         private Vector2 _scrollPosition = new Vector2(0, 0);
 
+        /// <summary>
+        /// Style used for headers in the GUI
+        /// </summary>
         protected GUIStyle _headerStyle;
 
         /// <summary>
