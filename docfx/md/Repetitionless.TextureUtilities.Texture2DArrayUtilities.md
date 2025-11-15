@@ -6,7 +6,7 @@
 
 Contains various helper functions for Texture2DArrays
 
-### Variables
+## Variables
 
 | Variable | Description |
 |----------|-------------|

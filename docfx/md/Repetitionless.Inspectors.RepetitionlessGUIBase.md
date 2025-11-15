@@ -6,7 +6,7 @@
 
 Base class for creating the Master/Terrain repetitionless inspector windows
 
-### Variables
+## Variables
 
 | Variable | Description |
 |----------|-------------|

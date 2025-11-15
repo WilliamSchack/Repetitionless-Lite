@@ -6,7 +6,7 @@
 
 Holds the state for each property foldout in a material section
 
-### Variables
+## Variables
 
 | Variable | Description |
 |----------|-------------|

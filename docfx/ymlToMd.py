@@ -85,38 +85,20 @@ def ConvertYmlToMd(ymlData):
     # If only one item, its the namespace category
     if (len(items) <= 1):
         return ""
-    
-    # If this is an enum, only treat as enum and return
-    if (items[0]["type"] == "Enum"):
-        # A class uses the same variables as an enum
-        mdText += HandleClass(items[0])
-
-        # Sequential elements are available enum members
-        mdText += "## Members\n\n"
-        mdText += "| Member | Description |\n"
-        mdText += "|--------|-------------|\n"
-
-        for item in items[1:]:
-            if "type" not in item:
-                break;
-
-            mdText += HandleVariable(item)
-
-        mdText += "\n---\n\n"
-
-        return mdText
 
     # First element is class
     mdText += HandleClass(items[0])
 
     # Sequential elements are variables until a method
-    mdText += "### Variables\n\n"
-    mdText += "| Variable | Description |\n"
-    mdText += "|----------|-------------|\n"
+    variablesText = "Variable" if items[0]["type"] == "Class" else "Member" # Members for enums
+
+    mdText += f"## {variablesText}s\n\n"
+    mdText += f"| {variablesText} | Description |\n"
+    mdText += f"|{'-' * (len(variablesText) + 2)}|-------------|\n"
 
     methodStartIndex = 1;
     for item in items[1:]:
-        if item["type"] == "Method":
+        if "type" not in item or item["type"] == "Method":
             break;
 
         mdText += HandleVariable(item)
@@ -126,6 +108,9 @@ def ConvertYmlToMd(ymlData):
 
     # Handle methods
     for item in items[methodStartIndex:]:
+        if "type" not in item:
+            continue;
+
         mdText += HandleFunction(item)
 
     return mdText

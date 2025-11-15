@@ -6,7 +6,7 @@
 
 Contains various helper functions for modifying textures
 
-### Variables
+## Variables
 
 | Variable | Description |
 |----------|-------------|

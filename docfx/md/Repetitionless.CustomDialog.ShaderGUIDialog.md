@@ -6,7 +6,7 @@
 
 Wrapper to remove the "PropertiesGUI() is being called recursively" warning when calling EditorUtility.DisplayDialog in OnGUI within a ShaderGUI inherited class
 
-### Variables
+## Variables
 
 | Variable | Description |
 |----------|-------------|

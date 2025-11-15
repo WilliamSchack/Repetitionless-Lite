@@ -4,7 +4,7 @@
 
 Used to compress and extract an array of boolean values in a single integer
 
-### Variables
+## Variables
 
 | Variable | Description |
 |----------|-------------|

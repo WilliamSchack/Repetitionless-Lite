@@ -8,7 +8,7 @@ Allows drawing textures stored in a Texture2DArray to the GUI as well as functio
 
 Automatically creates and manages its own array when textures are modified
 
-### Variables
+## Variables
 
 | Variable | Description |
 |----------|-------------|

@@ -6,7 +6,7 @@
 
 Many GUI functions to make inspector creation easier without MaterialProperties
 
-### Variables
+## Variables
 
 | Variable | Description |
 |----------|-------------|

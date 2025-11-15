@@ -6,7 +6,7 @@
 
 Base class for creating the Create/Configure Array windows in Texture Array Essentials
 
-### Variables
+## Variables
 
 | Variable | Description |
 |----------|-------------|
