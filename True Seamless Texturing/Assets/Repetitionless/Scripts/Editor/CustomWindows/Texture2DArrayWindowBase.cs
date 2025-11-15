@@ -28,21 +28,21 @@ namespace Repetitionless.CustomWindows
 
         /// <summary>
         /// The textures that are assigned in the window<br />
-        /// Should be updated in tandem with _texturesResizing & _textureErrors
+        /// Should be updated in tandem with _texturesResizing and _textureErrors
         /// </summary>
         protected List<Texture2D> _textures;
 
         /// <summary>
         /// <b>AUTOMATICALLY UPDATES</b><br />
         /// Which textures have been marked as resizing<br />
-        /// Should be updated in tandem with _textures & _textureErrors
+        /// Should be updated in tandem with _textures and _textureErrors
         /// </summary>
         protected List<bool> _texturesResizing;
 
         /// <summary>
         /// <b>AUTOMATICALLY UPDATES</b><br />
         /// Which textures have an error that needs to be addressed<br />
-        /// Should be updated in tandem with _textures & _texturesResizing
+        /// Should be updated in tandem with _textures and _texturesResizing
         /// </summary>
         protected List<bool> _textureErrors;
 
@@ -177,7 +177,7 @@ namespace Repetitionless.CustomWindows
 
         /// <summary>
         /// Called when theGUI is first created<br />
-        /// base.CreateGUI(); Must be called before performing operations
+        /// <b>base.CreateGUI(); Must be called before performing operations</b>
         /// </summary>
         protected virtual void CreateGUI()
         {
@@ -262,7 +262,7 @@ namespace Repetitionless.CustomWindows
 
         /// <summary>
         /// Called every GUI update, used due to other tasks in OnGUI<br />
-        /// base.OnGUI(); Will create the textures, settings, and output sections
+        /// <b>base.OnGUI(); Will create the textures, settings, and output sections</b>
         /// </summary>
         protected virtual void OnGUIUpdate()
         {
@@ -303,7 +303,7 @@ namespace Repetitionless.CustomWindows
 
         /// <summary>
         /// Calculates the height of an element for the ReorderableList GUI where the textures are assigned<br />
-        /// base.CalculateElementHeight(); Must be called before performing operations
+        /// <b>base.CalculateElementHeight(); Must be called before performing operations</b>
         /// </summary>
         /// <param name="index">
         /// Index of the texture list which the height is being calculated for the ReorderableList GUI
@@ -328,7 +328,7 @@ namespace Repetitionless.CustomWindows
 
         /// <summary>
         /// Draws a texture element in the textures list<br />
-        /// When modifying the height in any way Repaint(); should be called to update it on the same GUI call, otherwise will be updated on the next
+        /// <b>When modifying the height in any way Repaint(); should be called to update it on the same GUI call, otherwise will be updated on the next</b>
         /// </summary>
         /// <param name="rect">
         /// Rect with all the available space in the element<br />
@@ -443,7 +443,7 @@ namespace Repetitionless.CustomWindows
         /// <summary>
         /// Draws the settings of the output array. Settings that are enabled here can be toggles with the respective settingEnabled variables<br />
         /// All GUI called here will be drawn within the Array Settings section<br />
-        /// base.DrawArraySettings() will draw the settings
+        /// <b>base.DrawArraySettings() will draw the settings</b>
         /// </summary>
         protected virtual void DrawArraySettings()
         {
@@ -502,7 +502,7 @@ namespace Repetitionless.CustomWindows
         /// <summary>
         /// Draws the details of the output array<br />
         /// All GUI called here will be drawn within the Final Output section<br />
-        /// base.DrawFinalOutputFields() will draw the final output details
+        /// <b>base.DrawFinalOutputFields() will draw the final output details</b>
         /// </summary>
         protected virtual void DrawFinalOutputFields()
         {
@@ -522,7 +522,7 @@ namespace Repetitionless.CustomWindows
         /// <summary>
         /// Displays any warnings for array creation<br />
         /// All GUI called here will be drawn within and at the bottom of the Final Output section<br />
-        /// base.DrawFinalOutputFields() must be called before showing any extra warnings
+        /// <b>base.DrawFinalOutputFields() must be called before showing any extra warnings</b>
         /// </summary>
         protected virtual void DisplayWarnings()
         {
@@ -551,7 +551,7 @@ namespace Repetitionless.CustomWindows
 
         /// <summary>
         /// Called when the add button is clicked in the ReorderableList GUI<br />
-        /// base.OnTextureAdd() will add a texture to the texture lists and should be called
+        /// <b>base.OnTextureAdd() will add a texture to the texture lists and should be called</b>
         /// </summary>
         /// <param name="list">
         /// The ReorderableList used for displaying the GUI
@@ -584,7 +584,7 @@ namespace Repetitionless.CustomWindows
 
         /// <summary>
         /// Called when the textures are reordered in the ReorderableList GUI<br />
-        /// base.OnTexturesReorder() will handle reordering the texture lists and should be called
+        /// <b>base.OnTexturesReorder() will handle reordering the texture lists and should be called</b>
         /// </summary>
         /// <param name="list">
         /// The ReorderableList used for displaying the GUI
@@ -613,7 +613,8 @@ namespace Repetitionless.CustomWindows
         }
 
         /// <summary>
-        /// Called every update while anything is dragged over the window
+        /// Called every update while anything is dragged over the window<br />
+        /// <b>base.OnDragUpdate(); Must be called before performing operations</b>
         /// </summary>
         /// <param name="objectReferences">
         /// The items that are being dragged
@@ -629,7 +630,8 @@ namespace Repetitionless.CustomWindows
         }
 
         /// <summary>
-        /// Called when the drag is complete over the window
+        /// Called when the drag is complete over the window<br />
+        /// <b>base.OnDragPerform(); Must be called before performing operations</b>
         /// </summary>
         /// <param name="objectReferences">
         /// The items that are being dragged
@@ -704,6 +706,9 @@ namespace Repetitionless.CustomWindows
         /// <param name="path">
         /// The file location that the array will be created within the project folder<br />
         /// Should always start with "Assets/"
+        /// </param>
+        /// <param name="pingArray">
+        /// If the texture array will be pinged after creation
         /// </param>
         /// <returns>
         /// If the operation was successful

@@ -22,8 +22,19 @@ namespace Repetitionless.Inspectors
         /// </summary>
         protected class MaterialFoldoutState
         {
+            /// <summary>
+            /// Foldout state for the main properties
+            /// </summary>
             public bool MainProperties = true;
+
+            /// <summary>
+            /// Foldout state for the noise properties
+            /// </summary>
             public bool NoiseProperties = true;
+
+            /// <summary>
+            /// Foldout state for the variation properties
+            /// </summary>
             public bool VariationProperties = true;
         }
 
@@ -193,6 +204,12 @@ namespace Repetitionless.Inspectors
         #endregion
 
         #region GUI Calls
+        /// <summary>
+        /// Called when the inspector is first opened
+        /// </summary>
+        /// <param name="materialEditor">
+        /// The material editor being used
+        /// </param>
         public virtual void OnEnable(MaterialEditor materialEditor)
         {
             // Assign Material Helpers
@@ -200,6 +217,15 @@ namespace Repetitionless.Inspectors
             _editor = materialEditor;
         }
 
+        /// <summary>
+        /// Base OnGUI function
+        /// </summary>
+        /// <param name="materialEditor">
+        /// The material editor being used
+        /// </param>
+        /// <param name="properties">
+        /// The material properties
+        /// </param>
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
         {
             // Cache properties into dict, can change each call, faster than FindProperty (loops through all properties each call)

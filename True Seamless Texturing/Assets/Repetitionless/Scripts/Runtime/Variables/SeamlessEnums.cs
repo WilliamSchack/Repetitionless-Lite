@@ -5,8 +5,19 @@ namespace Repetitionless.Variables
     /// </summary>
     public enum ESurfaceType
     {
+        /// <summary>
+        /// Opaque surface with no transparency
+        /// </summary>
         Opaque,
+
+        /// <summary>
+        /// TransparentCutout surface (Opaque with alpha clipping)
+        /// </summary>
         Cutout,
+
+        /// <summary>
+        /// Transparent surface
+        /// </summary>
         Transparent
     }
     
@@ -15,8 +26,19 @@ namespace Repetitionless.Variables
     /// </summary>
     public enum ETextureType
     {
+        /// <summary>
+        /// Procedurally generated with perlin noise
+        /// </summary>
         PerlinNoise,
+
+        /// <summary>
+        /// Procedurally generated with simplex noise
+        /// </summary>
         SimplexNoise,
+
+        /// <summary>
+        /// Uses a custom input texture
+        /// </summary>
         CustomTexture
     }
 
@@ -25,7 +47,14 @@ namespace Repetitionless.Variables
     /// </summary>
     public enum EDistanceBlendMode
     {
+        /// <summary>
+        /// Blends into the same material with a different tiling and offset
+        /// </summary>
         TilingOffset,
+
+        /// <summary>
+        /// Blends into a different material
+        /// </summary>
         Material
     }
 }

@@ -69,7 +69,7 @@ namespace Repetitionless.TextureUtilities
         /// <param name="linear">
         /// If the output array will be linear<br />
         /// Recommended in the Built-In Render Pipeline only when including normal maps<br />
-        /// Not Recommended in URP/HDRP as it will result in brighter textures
+        /// <b>Not Recommended in URP/HDRP as it will result in brighter textures</b>
         /// </param>
         /// <returns>
         /// A Texture2DArray with the input textures and settings
@@ -133,7 +133,7 @@ namespace Repetitionless.TextureUtilities
         /// <param name="linear">
         /// If the output array will be linear<br />
         /// Recommended in the Built-In Render Pipeline only when including normal maps<br />
-        /// Not Recommended in URP/HDRP as it will result in brighter textures
+        /// <b>Not Recommended in URP/HDRP as it will result in brighter textures</b>
         /// </param>
         /// <returns>
         /// A Texture2DArray with the input textures and settings
@@ -184,7 +184,7 @@ namespace Repetitionless.TextureUtilities
         /// <param name="linear">
         /// If the output array will be linear<br />
         /// Recommended in the Built-In Render Pipeline only when including normal maps<br />
-        /// Not Recommended in URP/HDRP as it will result in brighter textures
+        /// <b>Not Recommended in URP/HDRP as it will result in brighter textures</b>
         /// </param>
         /// <returns>
         /// A Texture2DArray with the input textures and settings

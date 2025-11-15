@@ -78,7 +78,8 @@ namespace Repetitionless.GUIUtilities
         /// Gets the rect of a single line, updating the GUILayout accordingly
         /// </summary>
         /// <param name="heightOverride">
-        /// Sets the height of the output rect, defaults to line height
+        /// Default <b>20 (LINE_HEIGHT + LINE_SPACING)</b><br />
+        /// Sets the height of the output rect
         /// </param>
         /// <returns>
         /// The rect of a single line

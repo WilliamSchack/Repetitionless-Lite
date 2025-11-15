@@ -25,12 +25,29 @@ namespace Repetitionless.GUIUtilities
         private Texture2DArray _array; 
         private string _fileName;
 
+        /// <summary>
+        /// The array used for this field
+        /// </summary>
         public Texture2DArray Array { get { return _array; } }
 
         // Array Settings
+
+        /// <summary>
+        /// The texture format of the array
+        /// </summary>
         public TextureFormat TextureFormat = TextureFormat.DXT5;
+
+        /// <summary>
+        /// If mipmaps will be transferred from the texture to the array if possible
+        /// </summary>
         public bool TransferMipmaps = true;
-        public bool ArrayLinear = false; // Not recommended using URP/HDRP as the array will appear brighter
+
+        /// <summary>
+        /// If the output array will be linear<br />
+        /// Recommended in the Built-In Render Pipeline only when including normal maps<br />
+        /// Not Recommended in URP/HDRP as it will result in brighter textures
+        /// </summary>
+        public bool ArrayLinear = false;
 
         // Material
         private Object _material;
