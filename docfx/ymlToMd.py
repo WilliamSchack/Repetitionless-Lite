@@ -11,7 +11,7 @@ EXCLUDE_FILES = [
 ]
 
 def HandleClass(data):
-    print (f"> Converting class {data["uid"]}")
+    print (f"> Converting {data["type"]} {data["uid"]}")
 
     mdText = ""
 
