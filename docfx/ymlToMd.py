@@ -11,6 +11,8 @@ EXCLUDE_FILES = [
 ]
 
 def HandleClass(data):
+    print (f"> Converting class {data["uid"]}")
+
     mdText = ""
 
     # Header
@@ -28,10 +30,13 @@ def HandleClass(data):
     return mdText
 
 def HandleVariable(data):
-    print (data["name"])
+    print (f"  > Found variable {data["name"]}")
+
     return f"| {data["name"]} | {data["summary"].replace("\n", "")} |\n"
 
 def HandleFunction(data):
+    print (f"> Converting function {data["name"]}")
+
     syntax = data["syntax"]
 
     mdText = ""
@@ -46,7 +51,6 @@ def HandleFunction(data):
     mdText += "\n```\n\n"
 
     # Parameters
-    print(data["name"])
     if "parameters" in syntax:
         parameters = syntax["parameters"]
         
@@ -110,8 +114,6 @@ def ConvertYmlToMd(ymlData):
     mdText += "| Variable | Description |\n"
     mdText += "|----------|-------------|\n"
 
-    print(items[0]["uid"])
-
     methodStartIndex = 1;
     for item in items[1:]:
         if item["type"] == "Method":
@@ -138,6 +140,9 @@ for ymlFile in inputFolder.glob("Repetitionless.*.yml"):
     if ymlFile.name in EXCLUDE_FILES:
         continue
 
+    print(f"Generating file {ymlFile.name}...")
+
+    # Get and convert yml data
     ymlData = yaml.safe_load(ymlFile.read_text())
     mdText = ConvertYmlToMd(ymlData)
 
