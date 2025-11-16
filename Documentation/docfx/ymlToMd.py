@@ -93,19 +93,20 @@ def ConvertYmlToMd(ymlData):
     mdText += HandleClass(items[0])
 
     # Sequential elements are variables until a method
-    variablesText = "Variable" if items[0]["type"] == "Class" else "Member" # Members for enums
-
-    mdText += f"## {variablesText}s\n\n"
-    mdText += f"| {variablesText} | Description |\n"
-    mdText += f"|{'-' * (len(variablesText) + 2)}|-------------|\n"
-
     methodStartIndex = 1;
-    for item in items[1:]:
-        if "type" not in item or item["type"] == "Method":
-            break;
+    if items[1]["type"] != "Method":
+        variablesText = "Variable" if items[0]["type"] == "Class" else "Member" # Members for enums
 
-        mdText += HandleVariable(item)
-        methodStartIndex += 1
+        mdText += f"## {variablesText}s\n\n"
+        mdText += f"| {variablesText} | Description |\n"
+        mdText += f"|{'-' * (len(variablesText) + 2)}|-------------|\n"
+
+        for item in items[1:]:
+            if "type" not in item or item["type"] == "Method":
+                break;
+
+            mdText += HandleVariable(item)
+            methodStartIndex += 1
 
     mdText += "\n---\n\n"
 

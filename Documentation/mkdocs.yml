@@ -2,6 +2,27 @@ site_name: Repetitionless
 #site_url: https://docs.wilschack.dev/texture-urray-utilities
 nav:
   - Getting Started: index.md
+  - Scripting API:
+    - Compression:
+      - BooleanCompression: Scripting/Repetitionless.Compression.BooleanCompression.md
+    - CustomDialog:
+      - ShaderGUIDialog: Scripting/Repetitionless.CustomDialog.ShaderGUIDialog.md
+    - CustomWindows:
+      - Texture2DArrayWindowBase: Scripting/Repetitionless.CustomWindows.Texture2DArrayWindowBase.md
+    - GUIUtilities:
+      - TextureArrayGUIDrawer: Scripting/Repetitionless.GUIUtilities.TextureArrayGUIDrawer.md
+      - GUIUtilities: Scripting/Repetitionless.GUIUtilities.GUIUtilities.md
+    - Inspectors:
+      - RepetitionlessGUIBase: Scripting/Repetitionless.Inspectors.RepetitionlessGUIBase.md
+      - Variables:
+        - MaterialFoldoutState: Scripting/Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState.md
+    - TextureUtilities:
+      - Texture2DArrayUtilities: Scripting/Repetitionless.TextureUtilities.Texture2DArrayUtilities.md
+      - TextureUtilities: Scripting/Repetitionless.TextureUtilities.TextureUtilities.md
+    - Variables:
+      - EDistanceBlendMode: Scripting/Repetitionless.Variables.EDistanceBlendMode.md
+      - ESurfaceType: Scripting/Repetitionless.Variables.ESurfaceType.md
+      - ETextureType: Scripting/Repetitionless.Variables.ETextureType.md
 theme:
     name: material
     logo: Images/Icon.png
