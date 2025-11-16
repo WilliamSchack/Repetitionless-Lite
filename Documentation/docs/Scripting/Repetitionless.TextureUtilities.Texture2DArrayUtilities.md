@@ -4,7 +4,7 @@
 
 `Unity Editor Only`
 
-Contains various helper functions for Texture2DArrays
+Contains various helper functions for Texture2DArrays 
 
 ## Variables
 
@@ -29,7 +29,7 @@ public static Texture2DArray CreateArray(Texture2D[] textures, TextureFormat tex
 | textures | The textures that will be in the array |
 | textureFormat | The texture format of the output array |
 | transferMipmaps | If mipmaps will be transferred from the textures to the array |
-| linear | If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br /><b>Not Recommended in URP/HDRP as it will result in brighter textures</b> |
+| linear | If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br /><strong>Not Recommended in URP/HDRP as it will result in brighter textures</strong> |
 
 ### Returns
 
@@ -60,7 +60,7 @@ public static Texture2DArray CreateArrayAutoResize(Texture2D[] textures, Texture
 | textures | The textures that will be in the array |
 | textureFormat | The texture format of the output array |
 | transferMipmaps | If mipmaps will be transferred from the textures to the array |
-| linear | If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br /><b>Not Recommended in URP/HDRP as it will result in brighter textures</b> |
+| linear | If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br /><strong>Not Recommended in URP/HDRP as it will result in brighter textures</strong> |
 
 ### Returns
 
@@ -92,7 +92,7 @@ public static Texture2DArray CreateArrayUserInput(Texture2D[] textures, TextureF
 | textureFormat | The texture format of the output array |
 | autoResizeIndexes | Automatically resizes all textures at these indexes if required instead of showing a prompt to the user<br />Example: If this is { 0, 2 }, the textures at index 0 and 2 will be automatically resized |
 | transferMipmaps | If mipmaps will be transferred from the textures to the array |
-| linear | If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br /><b>Not Recommended in URP/HDRP as it will result in brighter textures</b> |
+| linear | If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br /><strong>Not Recommended in URP/HDRP as it will result in brighter textures</strong> |
 
 ### Returns
 

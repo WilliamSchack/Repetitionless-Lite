@@ -212,11 +212,6 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: >-
-    Called when theGUI is first created<br />
-
-    <b>base.CreateGUI(); Must be called before performing operations</b>
-  example: []
   syntax:
     content: protected override void CreateGUI()
     content.vb: Protected Overrides Sub CreateGUI()
@@ -244,11 +239,6 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: >-
-    Called every GUI update, used due to other tasks in OnGUI<br />
-
-    <b>base.OnGUI(); Will create the textures, settings, and output sections</b>
-  example: []
   syntax:
     content: protected override void OnGUIUpdate()
     content.vb: Protected Overrides Sub OnGUIUpdate()
@@ -276,17 +266,11 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: >-
-    Called when the add button is clicked in the ReorderableList GUI<br />
-
-    <b>base.OnTextureAdd() will add a texture to the texture lists and should be called</b>
-  example: []
   syntax:
     content: protected override void OnTextureAdd(ReorderableList list)
     parameters:
     - id: list
       type: UnityEditorInternal.ReorderableList
-      description: The ReorderableList used for displaying the GUI
     content.vb: Protected Overrides Sub OnTextureAdd(list As ReorderableList)
   overridden: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd(UnityEditorInternal.ReorderableList)
   overload: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTextureAdd*
@@ -312,17 +296,11 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: >-
-    Called when the remove button or delete key is pressed in the ReorderableList GUI<br />
-
-    base.OnTextureRemove() will remove the selected texture from the texture lists and should be called
-  example: []
   syntax:
     content: protected override void OnTextureRemove(ReorderableList list)
     parameters:
     - id: list
       type: UnityEditorInternal.ReorderableList
-      description: The ReorderableList used for displaying the GUI
     content.vb: Protected Overrides Sub OnTextureRemove(list As ReorderableList)
   overridden: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove(UnityEditorInternal.ReorderableList)
   overload: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTextureRemove*
@@ -348,23 +326,15 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: >-
-    Called when the textures are reordered in the ReorderableList GUI<br />
-
-    <b>base.OnTexturesReorder() will handle reordering the texture lists and should be called</b>
-  example: []
   syntax:
     content: protected override void OnTexturesReorder(ReorderableList list, int oldActiveElement, int newActiveElement)
     parameters:
     - id: list
       type: UnityEditorInternal.ReorderableList
-      description: The ReorderableList used for displaying the GUI
     - id: oldActiveElement
       type: System.Int32
-      description: The previous index of the reordered element
     - id: newActiveElement
       type: System.Int32
-      description: The new index of the reordered element
     content.vb: Protected Overrides Sub OnTexturesReorder(list As ReorderableList, oldActiveElement As Integer, newActiveElement As Integer)
   overridden: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder(UnityEditorInternal.ReorderableList,System.Int32,System.Int32)
   overload: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTexturesReorder*
@@ -393,17 +363,11 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: >-
-    Called every update while anything is dragged over the window<br />
-
-    <b>base.OnDragUpdate(); Must be called before performing operations</b>
-  example: []
   syntax:
     content: protected override void OnDragUpdate(Object[] objectReferences)
     parameters:
     - id: objectReferences
       type: UnityEngine.Object[]
-      description: The items that are being dragged
     content.vb: Protected Overrides Sub OnDragUpdate(objectReferences As [Object]())
   overridden: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate(UnityEngine.Object[])
   overload: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnDragUpdate*
@@ -432,17 +396,11 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: >-
-    Called when the drag is complete over the window<br />
-
-    <b>base.OnDragPerform(); Must be called before performing operations</b>
-  example: []
   syntax:
     content: protected override void OnDragPerform(Object[] objectReferences)
     parameters:
     - id: objectReferences
       type: UnityEngine.Object[]
-      description: The items that are being dragged
     content.vb: Protected Overrides Sub OnDragPerform(objectReferences As [Object]())
   overridden: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform(UnityEngine.Object[])
   overload: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnDragPerform*
@@ -471,20 +429,13 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: >-
-    Calculates the height of an element for the ReorderableList GUI where the textures are assigned<br />
-
-    <b>base.CalculateElementHeight(); Must be called before performing operations</b>
-  example: []
   syntax:
     content: protected override float CalculateElementHeight(int index)
     parameters:
     - id: index
       type: System.Int32
-      description: Index of the texture list which the height is being calculated for the ReorderableList GUI
     return:
       type: System.Single
-      description: Height that the element will use
     content.vb: Protected Overrides Function CalculateElementHeight(index As Integer) As Single
   overridden: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight(System.Int32)
   overload: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.CalculateElementHeight*
@@ -513,29 +464,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomWindows
   namespace: Repetitionless.CustomWindows
-  summary: >-
-    Draws a texture element in the textures list<br />
-
-    <b>When modifying the height in any way Repaint(); should be called to update it on the same GUI call, otherwise will be updated on the next</b>
-  example: []
   syntax:
     content: protected override void DrawTextureField(Rect rect, int index, bool isActive, bool isFocused)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: >-
-        Rect with all the available space in the element<br />
-
-        Available space is calculated and can be changed in CalculateElementHeight
     - id: index
       type: System.Int32
-      description: The index of the current element in the textures list
     - id: isActive
       type: System.Boolean
-      description: If this element is is being moved or interacted with in the GUI
     - id: isFocused
       type: System.Boolean
-      description: If this element is selected in the GUI
     content.vb: Protected Overrides Sub DrawTextureField(rect As Rect, index As Integer, isActive As Boolean, isFocused As Boolean)
   overridden: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField(UnityEngine.Rect,System.Int32,System.Boolean,System.Boolean)
   overload: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.DrawTextureField*
@@ -545,26 +484,21 @@ items:
 references:
 - uid: Repetitionless.CustomWindows
   commentId: N:Repetitionless.CustomWindows
-  href: Repetitionless.html
   name: Repetitionless.CustomWindows
   nameWithType: Repetitionless.CustomWindows
   fullName: Repetitionless.CustomWindows
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.CustomWindows
     name: CustomWindows
-    href: Repetitionless.CustomWindows.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.CustomWindows
     name: CustomWindows
-    href: Repetitionless.CustomWindows.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -599,238 +533,203 @@ references:
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase
   commentId: T:Repetitionless.CustomWindows.Texture2DArrayWindowBase
   parent: Repetitionless.CustomWindows
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html
   name: Texture2DArrayWindowBase
   nameWithType: Texture2DArrayWindowBase
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textures
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._textures
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__textures
   name: _textures
   nameWithType: Texture2DArrayWindowBase._textures
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textures
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._texturesResizing
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._texturesResizing
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__texturesResizing
   name: _texturesResizing
   nameWithType: Texture2DArrayWindowBase._texturesResizing
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._texturesResizing
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureErrors
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureErrors
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__textureErrors
   name: _textureErrors
   nameWithType: Texture2DArrayWindowBase._textureErrors
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureErrors
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayTextureFormatIndex
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayTextureFormatIndex
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__arrayTextureFormatIndex
   name: _arrayTextureFormatIndex
   nameWithType: Texture2DArrayWindowBase._arrayTextureFormatIndex
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayTextureFormatIndex
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayMipMaps
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayMipMaps
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__arrayMipMaps
   name: _arrayMipMaps
   nameWithType: Texture2DArrayWindowBase._arrayMipMaps
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayMipMaps
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayLinear
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayLinear
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__arrayLinear
   name: _arrayLinear
   nameWithType: Texture2DArrayWindowBase._arrayLinear
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayLinear
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayWrapMode
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayWrapMode
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__arrayWrapMode
   name: _arrayWrapMode
   nameWithType: Texture2DArrayWindowBase._arrayWrapMode
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayWrapMode
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayFilterMode
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayFilterMode
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__arrayFilterMode
   name: _arrayFilterMode
   nameWithType: Texture2DArrayWindowBase._arrayFilterMode
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayFilterMode
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayAnisoLevel
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayAnisoLevel
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__arrayAnisoLevel
   name: _arrayAnisoLevel
   nameWithType: Texture2DArrayWindowBase._arrayAnisoLevel
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayAnisoLevel
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeTextures
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeTextures
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__resizeTextures
   name: _resizeTextures
   nameWithType: Texture2DArrayWindowBase._resizeTextures
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeTextures
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayResolution
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayResolution
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__arrayResolution
   name: _arrayResolution
   nameWithType: Texture2DArrayWindowBase._arrayResolution
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._arrayResolution
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeFilterMode
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeFilterMode
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__resizeFilterMode
   name: _resizeFilterMode
   nameWithType: Texture2DArrayWindowBase._resizeFilterMode
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeFilterMode
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureFormatSettingEnabled
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureFormatSettingEnabled
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__textureFormatSettingEnabled
   name: _textureFormatSettingEnabled
   nameWithType: Texture2DArrayWindowBase._textureFormatSettingEnabled
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._textureFormatSettingEnabled
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._mipmapsSettingEnabled
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._mipmapsSettingEnabled
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__mipmapsSettingEnabled
   name: _mipmapsSettingEnabled
   nameWithType: Texture2DArrayWindowBase._mipmapsSettingEnabled
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._mipmapsSettingEnabled
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._linearSettingEnabled
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._linearSettingEnabled
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__linearSettingEnabled
   name: _linearSettingEnabled
   nameWithType: Texture2DArrayWindowBase._linearSettingEnabled
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._linearSettingEnabled
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._wrapModeSettingEnabled
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._wrapModeSettingEnabled
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__wrapModeSettingEnabled
   name: _wrapModeSettingEnabled
   nameWithType: Texture2DArrayWindowBase._wrapModeSettingEnabled
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._wrapModeSettingEnabled
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._filterModeSettingEnabled
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._filterModeSettingEnabled
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__filterModeSettingEnabled
   name: _filterModeSettingEnabled
   nameWithType: Texture2DArrayWindowBase._filterModeSettingEnabled
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._filterModeSettingEnabled
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._anisoLevelSettingEnabled
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._anisoLevelSettingEnabled
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__anisoLevelSettingEnabled
   name: _anisoLevelSettingEnabled
   nameWithType: Texture2DArrayWindowBase._anisoLevelSettingEnabled
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._anisoLevelSettingEnabled
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeSettingEnabled
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeSettingEnabled
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__resizeSettingEnabled
   name: _resizeSettingEnabled
   nameWithType: Texture2DArrayWindowBase._resizeSettingEnabled
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._resizeSettingEnabled
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._canAddRemoveTextures
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._canAddRemoveTextures
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__canAddRemoveTextures
   name: _canAddRemoveTextures
   nameWithType: Texture2DArrayWindowBase._canAddRemoveTextures
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._canAddRemoveTextures
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase._headerStyle
   commentId: F:Repetitionless.CustomWindows.Texture2DArrayWindowBase._headerStyle
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase__headerStyle
   name: _headerStyle
   nameWithType: Texture2DArrayWindowBase._headerStyle
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase._headerStyle
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawArraySettings
   name: DrawArraySettings()
   nameWithType: Texture2DArrayWindowBase.DrawArraySettings()
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings()
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings
     name: DrawArraySettings
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawArraySettings
   - name: (
   - name: )
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawArraySettings
     name: DrawArraySettings
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawArraySettings
   - name: (
   - name: )
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawFinalOutputFields
   name: DrawFinalOutputFields()
   nameWithType: Texture2DArrayWindowBase.DrawFinalOutputFields()
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields()
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields
     name: DrawFinalOutputFields
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawFinalOutputFields
   - name: (
   - name: )
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawFinalOutputFields
     name: DrawFinalOutputFields
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawFinalOutputFields
   - name: (
   - name: )
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DisplayWarnings
   name: DisplayWarnings()
   nameWithType: Texture2DArrayWindowBase.DisplayWarnings()
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings()
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings
     name: DisplayWarnings
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DisplayWarnings
   - name: (
   - name: )
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DisplayWarnings
     name: DisplayWarnings
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DisplayWarnings
   - name: (
   - name: )
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_ArrayTexturesExist
   name: ArrayTexturesExist()
   nameWithType: Texture2DArrayWindowBase.ArrayTexturesExist()
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist()
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist
     name: ArrayTexturesExist
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_ArrayTexturesExist
   - name: (
   - name: )
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.ArrayTexturesExist
     name: ArrayTexturesExist
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_ArrayTexturesExist
   - name: (
   - name: )
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray(System.String,System.Boolean)
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray(System.String,System.Boolean)
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
   isExternal: true
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CreateArray_System_String_System_Boolean_
   name: CreateArray(string, bool)
   nameWithType: Texture2DArrayWindowBase.CreateArray(string, bool)
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray(string, bool)
@@ -840,7 +739,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray(System.String,System.Boolean)
     name: CreateArray
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CreateArray_System_String_System_Boolean_
   - name: (
   - uid: System.String
     name: string
@@ -854,7 +752,6 @@ references:
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateArray(System.String,System.Boolean)
     name: CreateArray
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CreateArray_System_String_System_Boolean_
   - name: (
   - uid: System.String
     name: String
@@ -950,7 +847,6 @@ references:
   - name: )
 - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.ShowWindow*
   commentId: Overload:Repetitionless.CustomWindows.ConfigureArrayWindowLimited.ShowWindow
-  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html#Repetitionless_CustomWindows_ConfigureArrayWindowLimited_ShowWindow_UnityEngine_Texture2DArray_System_String_System_Action_UnityEngine_Texture2DArray__
   name: ShowWindow
   nameWithType: ConfigureArrayWindowLimited.ShowWindow
   fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.ShowWindow
@@ -964,57 +860,48 @@ references:
 - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited
   commentId: T:Repetitionless.CustomWindows.ConfigureArrayWindowLimited
   parent: Repetitionless.CustomWindows
-  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html
   name: ConfigureArrayWindowLimited
   nameWithType: ConfigureArrayWindowLimited
   fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CreateGUI
   name: CreateGUI()
   nameWithType: Texture2DArrayWindowBase.CreateGUI()
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI()
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI
     name: CreateGUI
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CreateGUI
   - name: (
   - name: )
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CreateGUI
     name: CreateGUI
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CreateGUI
   - name: (
   - name: )
 - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.CreateGUI*
   commentId: Overload:Repetitionless.CustomWindows.ConfigureArrayWindowLimited.CreateGUI
-  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html#Repetitionless_CustomWindows_ConfigureArrayWindowLimited_CreateGUI
   name: CreateGUI
   nameWithType: ConfigureArrayWindowLimited.CreateGUI
   fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.CreateGUI
 - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnGUIUpdate
   name: OnGUIUpdate()
   nameWithType: Texture2DArrayWindowBase.OnGUIUpdate()
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate()
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate
     name: OnGUIUpdate
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnGUIUpdate
   - name: (
   - name: )
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnGUIUpdate
     name: OnGUIUpdate
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnGUIUpdate
   - name: (
   - name: )
 - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnGUIUpdate*
   commentId: Overload:Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnGUIUpdate
-  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html#Repetitionless_CustomWindows_ConfigureArrayWindowLimited_OnGUIUpdate
   name: OnGUIUpdate
   nameWithType: ConfigureArrayWindowLimited.OnGUIUpdate
   fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnGUIUpdate
@@ -1022,14 +909,12 @@ references:
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd(UnityEditorInternal.ReorderableList)
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
   isExternal: true
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTextureAdd_UnityEditorInternal_ReorderableList_
   name: OnTextureAdd(ReorderableList)
   nameWithType: Texture2DArrayWindowBase.OnTextureAdd(ReorderableList)
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd(UnityEditorInternal.ReorderableList)
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd(UnityEditorInternal.ReorderableList)
     name: OnTextureAdd
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTextureAdd_UnityEditorInternal_ReorderableList_
   - name: (
   - uid: UnityEditorInternal.ReorderableList
     name: ReorderableList
@@ -1038,7 +923,6 @@ references:
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureAdd(UnityEditorInternal.ReorderableList)
     name: OnTextureAdd
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTextureAdd_UnityEditorInternal_ReorderableList_
   - name: (
   - uid: UnityEditorInternal.ReorderableList
     name: ReorderableList
@@ -1046,7 +930,6 @@ references:
   - name: )
 - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTextureAdd*
   commentId: Overload:Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTextureAdd
-  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html#Repetitionless_CustomWindows_ConfigureArrayWindowLimited_OnTextureAdd_UnityEditorInternal_ReorderableList_
   name: OnTextureAdd
   nameWithType: ConfigureArrayWindowLimited.OnTextureAdd
   fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTextureAdd
@@ -1067,14 +950,12 @@ references:
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove(UnityEditorInternal.ReorderableList)
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
   isExternal: true
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTextureRemove_UnityEditorInternal_ReorderableList_
   name: OnTextureRemove(ReorderableList)
   nameWithType: Texture2DArrayWindowBase.OnTextureRemove(ReorderableList)
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove(UnityEditorInternal.ReorderableList)
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove(UnityEditorInternal.ReorderableList)
     name: OnTextureRemove
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTextureRemove_UnityEditorInternal_ReorderableList_
   - name: (
   - uid: UnityEditorInternal.ReorderableList
     name: ReorderableList
@@ -1083,7 +964,6 @@ references:
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTextureRemove(UnityEditorInternal.ReorderableList)
     name: OnTextureRemove
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTextureRemove_UnityEditorInternal_ReorderableList_
   - name: (
   - uid: UnityEditorInternal.ReorderableList
     name: ReorderableList
@@ -1091,7 +971,6 @@ references:
   - name: )
 - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTextureRemove*
   commentId: Overload:Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTextureRemove
-  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html#Repetitionless_CustomWindows_ConfigureArrayWindowLimited_OnTextureRemove_UnityEditorInternal_ReorderableList_
   name: OnTextureRemove
   nameWithType: ConfigureArrayWindowLimited.OnTextureRemove
   fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTextureRemove
@@ -1099,7 +978,6 @@ references:
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder(UnityEditorInternal.ReorderableList,System.Int32,System.Int32)
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
   isExternal: true
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTexturesReorder_UnityEditorInternal_ReorderableList_System_Int32_System_Int32_
   name: OnTexturesReorder(ReorderableList, int, int)
   nameWithType: Texture2DArrayWindowBase.OnTexturesReorder(ReorderableList, int, int)
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder(UnityEditorInternal.ReorderableList, int, int)
@@ -1109,7 +987,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder(UnityEditorInternal.ReorderableList,System.Int32,System.Int32)
     name: OnTexturesReorder
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTexturesReorder_UnityEditorInternal_ReorderableList_System_Int32_System_Int32_
   - name: (
   - uid: UnityEditorInternal.ReorderableList
     name: ReorderableList
@@ -1128,7 +1005,6 @@ references:
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnTexturesReorder(UnityEditorInternal.ReorderableList,System.Int32,System.Int32)
     name: OnTexturesReorder
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnTexturesReorder_UnityEditorInternal_ReorderableList_System_Int32_System_Int32_
   - name: (
   - uid: UnityEditorInternal.ReorderableList
     name: ReorderableList
@@ -1146,7 +1022,6 @@ references:
   - name: )
 - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTexturesReorder*
   commentId: Overload:Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTexturesReorder
-  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html#Repetitionless_CustomWindows_ConfigureArrayWindowLimited_OnTexturesReorder_UnityEditorInternal_ReorderableList_System_Int32_System_Int32_
   name: OnTexturesReorder
   nameWithType: ConfigureArrayWindowLimited.OnTexturesReorder
   fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnTexturesReorder
@@ -1164,7 +1039,6 @@ references:
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate(UnityEngine.Object[])
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
   isExternal: true
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnDragUpdate_UnityEngine_Object___
   name: OnDragUpdate(Object[])
   nameWithType: Texture2DArrayWindowBase.OnDragUpdate(Object[])
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate(UnityEngine.Object[])
@@ -1174,7 +1048,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate(UnityEngine.Object[])
     name: OnDragUpdate
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnDragUpdate_UnityEngine_Object___
   - name: (
   - uid: UnityEngine.Object
     name: Object
@@ -1185,7 +1058,6 @@ references:
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragUpdate(UnityEngine.Object[])
     name: OnDragUpdate
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnDragUpdate_UnityEngine_Object___
   - name: (
   - uid: UnityEngine.Object
     name: Object
@@ -1195,7 +1067,6 @@ references:
   - name: )
 - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnDragUpdate*
   commentId: Overload:Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnDragUpdate
-  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html#Repetitionless_CustomWindows_ConfigureArrayWindowLimited_OnDragUpdate_UnityEngine_Object___
   name: OnDragUpdate
   nameWithType: ConfigureArrayWindowLimited.OnDragUpdate
   fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnDragUpdate
@@ -1223,7 +1094,6 @@ references:
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform(UnityEngine.Object[])
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
   isExternal: true
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnDragPerform_UnityEngine_Object___
   name: OnDragPerform(Object[])
   nameWithType: Texture2DArrayWindowBase.OnDragPerform(Object[])
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform(UnityEngine.Object[])
@@ -1233,7 +1103,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform(UnityEngine.Object[])
     name: OnDragPerform
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnDragPerform_UnityEngine_Object___
   - name: (
   - uid: UnityEngine.Object
     name: Object
@@ -1244,7 +1113,6 @@ references:
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.OnDragPerform(UnityEngine.Object[])
     name: OnDragPerform
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_OnDragPerform_UnityEngine_Object___
   - name: (
   - uid: UnityEngine.Object
     name: Object
@@ -1254,7 +1122,6 @@ references:
   - name: )
 - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnDragPerform*
   commentId: Overload:Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnDragPerform
-  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html#Repetitionless_CustomWindows_ConfigureArrayWindowLimited_OnDragPerform_UnityEngine_Object___
   name: OnDragPerform
   nameWithType: ConfigureArrayWindowLimited.OnDragPerform
   fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.OnDragPerform
@@ -1262,7 +1129,6 @@ references:
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight(System.Int32)
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
   isExternal: true
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CalculateElementHeight_System_Int32_
   name: CalculateElementHeight(int)
   nameWithType: Texture2DArrayWindowBase.CalculateElementHeight(int)
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight(int)
@@ -1272,7 +1138,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight(System.Int32)
     name: CalculateElementHeight
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CalculateElementHeight_System_Int32_
   - name: (
   - uid: System.Int32
     name: int
@@ -1281,7 +1146,6 @@ references:
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.CalculateElementHeight(System.Int32)
     name: CalculateElementHeight
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_CalculateElementHeight_System_Int32_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1289,7 +1153,6 @@ references:
   - name: )
 - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.CalculateElementHeight*
   commentId: Overload:Repetitionless.CustomWindows.ConfigureArrayWindowLimited.CalculateElementHeight
-  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html#Repetitionless_CustomWindows_ConfigureArrayWindowLimited_CalculateElementHeight_System_Int32_
   name: CalculateElementHeight
   nameWithType: ConfigureArrayWindowLimited.CalculateElementHeight
   fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.CalculateElementHeight
@@ -1307,7 +1170,6 @@ references:
   commentId: M:Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField(UnityEngine.Rect,System.Int32,System.Boolean,System.Boolean)
   parent: Repetitionless.CustomWindows.Texture2DArrayWindowBase
   isExternal: true
-  href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawTextureField_UnityEngine_Rect_System_Int32_System_Boolean_System_Boolean_
   name: DrawTextureField(Rect, int, bool, bool)
   nameWithType: Texture2DArrayWindowBase.DrawTextureField(Rect, int, bool, bool)
   fullName: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField(UnityEngine.Rect, int, bool, bool)
@@ -1317,7 +1179,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField(UnityEngine.Rect,System.Int32,System.Boolean,System.Boolean)
     name: DrawTextureField
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawTextureField_UnityEngine_Rect_System_Int32_System_Boolean_System_Boolean_
   - name: (
   - uid: UnityEngine.Rect
     name: Rect
@@ -1341,7 +1202,6 @@ references:
   spec.vb:
   - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase.DrawTextureField(UnityEngine.Rect,System.Int32,System.Boolean,System.Boolean)
     name: DrawTextureField
-    href: Repetitionless.CustomWindows.Texture2DArrayWindowBase.html#Repetitionless_CustomWindows_Texture2DArrayWindowBase_DrawTextureField_UnityEngine_Rect_System_Int32_System_Boolean_System_Boolean_
   - name: (
   - uid: UnityEngine.Rect
     name: Rect
@@ -1364,7 +1224,6 @@ references:
   - name: )
 - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.DrawTextureField*
   commentId: Overload:Repetitionless.CustomWindows.ConfigureArrayWindowLimited.DrawTextureField
-  href: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.html#Repetitionless_CustomWindows_ConfigureArrayWindowLimited_DrawTextureField_UnityEngine_Rect_System_Int32_System_Boolean_System_Boolean_
   name: DrawTextureField
   nameWithType: ConfigureArrayWindowLimited.DrawTextureField
   fullName: Repetitionless.CustomWindows.ConfigureArrayWindowLimited.DrawTextureField

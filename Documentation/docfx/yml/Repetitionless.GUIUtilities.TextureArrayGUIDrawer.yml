@@ -12,6 +12,7 @@ items:
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DeleteArray
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTexture(System.Int32,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTexture(UnityEngine.Rect,System.Int32,UnityEngine.GUIContent)
+  - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextures(UnityEngine.GUIContent[])
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithColor(System.Int32,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithColor(UnityEngine.Rect,System.Int32,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithFloat(System.Int32,System.Single,UnityEngine.GUIContent)
@@ -22,7 +23,6 @@ items:
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithIntSlider(UnityEngine.Rect,System.Int32,System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithSlider(System.Int32,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithSlider(UnityEngine.Rect,System.Int32,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
-  - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextures(UnityEngine.GUIContent[])
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.TextureAssignedAt(System.Int32)
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.TextureFormat
   - Repetitionless.GUIUtilities.TextureArrayGUIDrawer.TransferMipmaps
@@ -45,10 +45,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Allows drawing textures stored in a Texture2DArray to the GUI as well as functions for reading and deleting the array<br />
-
-    Automatically creates and manages its own array when textures are modified
+  summary: "\nAllows drawing textures stored in a Texture2DArray to the GUI as well as functions for reading and deleting the array<br />\nAutomatically creates and manages its own array when textures are modified\n"
   example: []
   syntax:
     content: public class TextureArrayGUIDrawer
@@ -77,7 +74,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: The array used for this field
+  summary: "\nThe array used for this field\n"
   example: []
   syntax:
     content: public Texture2DArray Array { get; }
@@ -108,7 +105,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: The texture format of the array
+  summary: "\nThe texture format of the array\n"
   example: []
   syntax:
     content: public TextureFormat TextureFormat
@@ -137,7 +134,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: If mipmaps will be transferred from the texture to the array if possible
+  summary: "\nIf mipmaps will be transferred from the texture to the array if possible\n"
   example: []
   syntax:
     content: public bool TransferMipmaps
@@ -166,12 +163,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    If the output array will be linear<br />
-
-    Recommended in the Built-In Render Pipeline only when including normal maps<br />
-
-    Not Recommended in URP/HDRP as it will result in brighter textures
+  summary: "\nIf the output array will be linear<br />\nRecommended in the Built-In Render Pipeline only when including normal maps<br />\nNot Recommended in URP/HDRP as it will result in brighter textures\n"
   example: []
   syntax:
     content: public bool ArrayLinear
@@ -200,29 +192,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Create a TextureArrayGUIDrawer using the Array and Assigned Textures properties<br />
-
-    The Texture2DArray asset will be stored in a folder accompanying the material. Can be moved after creation
+  summary: "\nCreate a TextureArrayGUIDrawer using the Array and Assigned Textures properties<br />\nThe Texture2DArray asset will be stored in a folder accompanying the material. Can be moved after creation\n"
   example: []
   syntax:
     content: public TextureArrayGUIDrawer(MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
     parameters:
     - id: arrayProperty
       type: UnityEditor.MaterialProperty
-      description: The material property for the Array (Texture2DArray)
+      description: "\nThe material property for the Array (Texture2DArray)\n"
     - id: assignedTexturesProperty
       type: UnityEditor.MaterialProperty
-      description: The material property for the Assigned Textures (Float)
+      description: "\nThe material property for the Assigned Textures (Float)\n"
     - id: textureCount
       type: System.Int32
-      description: The max amount of textures this array will hold
+      description: "\nThe max amount of textures this array will hold\n"
     - id: fileName
       type: System.String
-      description: >-
-        The filename of the Texture2DArray asset stored in a folder accompanying the material<br />
-
-        Used only on creation of the asset. Array is retrieved from the material afterwards
+      description: "\nThe filename of the Texture2DArray asset stored in a folder accompanying the material<br />\nUsed only on creation of the asset. Array is retrieved from the material afterwards\n"
     content.vb: Public Sub New(arrayProperty As MaterialProperty, assignedTexturesProperty As MaterialProperty, textureCount As Integer, fileName As String = Nothing)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.#ctor*
   nameWithType.vb: TextureArrayGUIDrawer.New(MaterialProperty, MaterialProperty, Integer, String)
@@ -250,32 +236,26 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Create a TextureArrayGUIDrawer using a material and property names<br />
-
-    The Texture2DArray asset will be stored in a folder accompanying the material. Can be moved after creation
+  summary: "\nCreate a TextureArrayGUIDrawer using a material and property names<br />\nThe Texture2DArray asset will be stored in a folder accompanying the material. Can be moved after creation\n"
   example: []
   syntax:
     content: public TextureArrayGUIDrawer(Material material, string arrayPropertyName, string assignedTexturesPropertyName, int textureCount, string fileName = null)
     parameters:
     - id: material
       type: UnityEngine.Material
-      description: The targeted material
+      description: "\nThe targeted material\n"
     - id: arrayPropertyName
       type: System.String
-      description: The reference name for the Array (Texture2DArray) shader property
+      description: "\nThe reference name for the Array (Texture2DArray) shader property\n"
     - id: assignedTexturesPropertyName
       type: System.String
-      description: The reference name for the Assigned Textures (Float) shader property
+      description: "\nThe reference name for the Assigned Textures (Float) shader property\n"
     - id: textureCount
       type: System.Int32
-      description: The max amount of textures this array will hold
+      description: "\nThe max amount of textures this array will hold\n"
     - id: fileName
       type: System.String
-      description: >-
-        The filename of the Texture2DArray asset stored in a folder accompanying the material<br />
-
-        Used only on creation of the asset. Can be changed as long as it is assigned in the material.
+      description: "\nThe filename of the Texture2DArray asset stored in a folder accompanying the material<br />\nUsed only on creation of the asset. Can be changed as long as it is assigned in the material.\n"
     content.vb: Public Sub New(material As Material, arrayPropertyName As String, assignedTexturesPropertyName As String, textureCount As Integer, fileName As String = Nothing)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.#ctor*
   nameWithType.vb: TextureArrayGUIDrawer.New(Material, String, String, Integer, String)
@@ -303,17 +283,14 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Changes the array to a new one<br />
-
-    !! Assumes no textures were added or removed !!
+  summary: "\nChanges the array to a new one<br />\n!! Assumes no textures were added or removed !!\n"
   example: []
   syntax:
     content: public void UpdateArray(Texture2DArray newArray)
     parameters:
     - id: newArray
       type: UnityEngine.Texture2DArray
-      description: The new array
+      description: "\nThe new array\n"
     content.vb: Public Sub UpdateArray(newArray As Texture2DArray)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.UpdateArray*
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTexture(System.Int32,UnityEngine.GUIContent)
@@ -338,26 +315,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public Texture2D DrawTexture(int index, GUIContent content)
     parameters:
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: UnityEngine.Texture2D
-      description: The texture input into the inspector
+      description: "\nThe texture input into the inspector\n"
     content.vb: Public Function DrawTexture(index As Integer, content As GUIContent) As Texture2D
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTexture*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTexture(Integer, GUIContent)
@@ -385,29 +356,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array<br />
-
-    In some situations will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array<br />\nIn some situations will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public Texture2D DrawTexture(Rect rect, int index, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: UnityEngine.Texture2D
-      description: The texture input into the inspector
+      description: "\nThe texture input into the inspector\n"
     content.vb: Public Function DrawTexture(rect As Rect, index As Integer, content As GUIContent) As Texture2D
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTexture*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTexture(Rect, Integer, GUIContent)
@@ -435,29 +400,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array along with a integer value<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array along with a integer value<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public (Texture2D, int) DrawTextureWithInt(int index, int intValue, GUIContent content)
     parameters:
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: intValue
       type: System.Int32
-      description: The input integer value
+      description: "\nThe input integer value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
-      description: 'Item1: Texture, Item2: Int Value'
+      description: "\nItem1: Texture, Item2: Int Value\n"
     content.vb: Public Function DrawTextureWithInt(index As Integer, intValue As Integer, content As GUIContent) As (Texture2D, Integer)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithInt*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTextureWithInt(Integer, Integer, GUIContent)
@@ -485,32 +444,26 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array along with a integer value<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array along with a integer value<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public (Texture2D, int) DrawTextureWithInt(Rect rect, int index, int intValue, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: intValue
       type: System.Int32
-      description: The input integer value
+      description: "\nThe input integer value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
-      description: 'Item1: Texture, Item2: Int Value'
+      description: "\nItem1: Texture, Item2: Int Value\n"
     content.vb: Public Function DrawTextureWithInt(rect As Rect, index As Integer, intValue As Integer, content As GUIContent) As (Texture2D, Integer)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithInt*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTextureWithInt(Rect, Integer, Integer, GUIContent)
@@ -538,35 +491,29 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array along with a integer slider<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array along with a integer slider<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public (Texture2D, int) DrawTextureWithIntSlider(int index, int sliderValue, int sliderMin, int sliderMax, GUIContent content)
     parameters:
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: sliderValue
       type: System.Int32
-      description: The input slider value
+      description: "\nThe input slider value\n"
     - id: sliderMin
       type: System.Int32
-      description: The minimum value that the slider will allow
+      description: "\nThe minimum value that the slider will allow\n"
     - id: sliderMax
       type: System.Int32
-      description: The maximum value that the slider will allow
+      description: "\nThe maximum value that the slider will allow\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
-      description: 'Item1: Texture, Item2: Slider Value'
+      description: "\nItem1: Texture, Item2: Slider Value\n"
     content.vb: Public Function DrawTextureWithIntSlider(index As Integer, sliderValue As Integer, sliderMin As Integer, sliderMax As Integer, content As GUIContent) As (Texture2D, Integer)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithIntSlider*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTextureWithIntSlider(Integer, Integer, Integer, Integer, GUIContent)
@@ -594,38 +541,32 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array along with a integer slider<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array along with a integer slider<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public (Texture2D, int) DrawTextureWithIntSlider(Rect rect, int index, int sliderValue, int sliderMin, int sliderMax, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: sliderValue
       type: System.Int32
-      description: The input slider value
+      description: "\nThe input slider value\n"
     - id: sliderMin
       type: System.Int32
-      description: The minimum value that the slider will allow
+      description: "\nThe minimum value that the slider will allow\n"
     - id: sliderMax
       type: System.Int32
-      description: The maximum value that the slider will allow
+      description: "\nThe maximum value that the slider will allow\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
-      description: 'Item1: Texture, Item2: Slider Value'
+      description: "\nItem1: Texture, Item2: Slider Value\n"
     content.vb: Public Function DrawTextureWithIntSlider(rect As Rect, index As Integer, sliderValue As Integer, sliderMin As Integer, sliderMax As Integer, content As GUIContent) As (Texture2D, Integer)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithIntSlider*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTextureWithIntSlider(Rect, Integer, Integer, Integer, Integer, GUIContent)
@@ -653,29 +594,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array along with a float value<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array along with a float value<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public (Texture2D, float) DrawTextureWithFloat(int index, float floatValue, GUIContent content)
     parameters:
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: floatValue
       type: System.Single
-      description: The input float value
+      description: "\nThe input float value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
-      description: 'Item1: Texture, Item2: Float Value'
+      description: "\nItem1: Texture, Item2: Float Value\n"
     content.vb: Public Function DrawTextureWithFloat(index As Integer, floatValue As Single, content As GUIContent) As (Texture2D, Single)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithFloat*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTextureWithFloat(Integer, Single, GUIContent)
@@ -703,32 +638,26 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array along with a float value<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array along with a float value<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public (Texture2D, float) DrawTextureWithFloat(Rect rect, int index, float floatValue, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: floatValue
       type: System.Single
-      description: The input float value
+      description: "\nThe input float value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
-      description: 'Item1: Texture, Item2: Float Value'
+      description: "\nItem1: Texture, Item2: Float Value\n"
     content.vb: Public Function DrawTextureWithFloat(rect As Rect, index As Integer, floatValue As Single, content As GUIContent) As (Texture2D, Single)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithFloat*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTextureWithFloat(Rect, Integer, Single, GUIContent)
@@ -756,35 +685,29 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array along with a slider<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array along with a slider<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public (Texture2D, float) DrawTextureWithSlider(int index, float sliderValue, float sliderMin, float sliderMax, GUIContent content)
     parameters:
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: sliderValue
       type: System.Single
-      description: The input slider value
+      description: "\nThe input slider value\n"
     - id: sliderMin
       type: System.Single
-      description: The minimum value that the slider will allow
+      description: "\nThe minimum value that the slider will allow\n"
     - id: sliderMax
       type: System.Single
-      description: The maximum value that the slider will allow
+      description: "\nThe maximum value that the slider will allow\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
-      description: 'Item1: Texture, Item2: Slider Value'
+      description: "\nItem1: Texture, Item2: Slider Value\n"
     content.vb: Public Function DrawTextureWithSlider(index As Integer, sliderValue As Single, sliderMin As Single, sliderMax As Single, content As GUIContent) As (Texture2D, Single)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithSlider*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTextureWithSlider(Integer, Single, Single, Single, GUIContent)
@@ -812,38 +735,32 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array along with a slider<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array along with a slider<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public (Texture2D, float) DrawTextureWithSlider(Rect rect, int index, float sliderValue, float sliderMin, float sliderMax, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: sliderValue
       type: System.Single
-      description: The input slider value
+      description: "\nThe input slider value\n"
     - id: sliderMin
       type: System.Single
-      description: The minimum value that the slider will allow
+      description: "\nThe minimum value that the slider will allow\n"
     - id: sliderMax
       type: System.Single
-      description: The maximum value that the slider will allow
+      description: "\nThe maximum value that the slider will allow\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
-      description: 'Item1: Texture, Item2: Slider Value'
+      description: "\nItem1: Texture, Item2: Slider Value\n"
     content.vb: Public Function DrawTextureWithSlider(rect As Rect, index As Integer, sliderValue As Single, sliderMin As Single, sliderMax As Single, content As GUIContent) As (Texture2D, Single)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithSlider*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTextureWithSlider(Rect, Integer, Single, Single, Single, GUIContent)
@@ -871,32 +788,26 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array along with a color value<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array along with a color value<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public (Texture2D, Color) DrawTextureWithColor(int index, Color colorValue, bool hdr, GUIContent content)
     parameters:
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: colorValue
       type: UnityEngine.Color
-      description: The input color value
+      description: "\nThe input color value\n"
     - id: hdr
       type: System.Boolean
-      description: If the color is HDR
+      description: "\nIf the color is HDR\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,UnityEngine.Color}
-      description: 'Item1: Texture, Item2: Color Value'
+      description: "\nItem1: Texture, Item2: Color Value\n"
     content.vb: Public Function DrawTextureWithColor(index As Integer, colorValue As Color, hdr As Boolean, content As GUIContent) As (Texture2D, Color)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithColor*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTextureWithColor(Integer, Color, Boolean, GUIContent)
@@ -924,35 +835,29 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a texture using the assigned array along with a color value<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws a texture using the assigned array along with a color value<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public (Texture2D, Color) DrawTextureWithColor(Rect rect, int index, Color colorValue, bool hdr, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: index
       type: System.Int32
-      description: >-
-        Index of the texture being changed in the desired array layout<br />
-
-        Not the index of the current array layout or textures, think of it as a constant within the set texture count
+      description: "\nIndex of the texture being changed in the desired array layout<br />\nNot the index of the current array layout or textures, think of it as a constant within the set texture count\n"
     - id: colorValue
       type: UnityEngine.Color
-      description: The input color value
+      description: "\nThe input color value\n"
     - id: hdr
       type: System.Boolean
-      description: If the color is HDR
+      description: "\nIf the color is HDR\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,UnityEngine.Color}
-      description: 'Item1: Texture, Item2: Color Value'
+      description: "\nItem1: Texture, Item2: Color Value\n"
     content.vb: Public Function DrawTextureWithColor(rect As Rect, index As Integer, colorValue As Color, hdr As Boolean, content As GUIContent) As (Texture2D, Color)
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithColor*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTextureWithColor(Rect, Integer, Color, Boolean, GUIContent)
@@ -980,23 +885,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws all the textures in the array using DrawTexture<br />
-
-    In some situations this will request user input when changing textures with a popup
+  summary: "\nDraws all the textures in the array using DrawTexture<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
     content: public Texture2D[] DrawTextures(GUIContent[] content = null)
     parameters:
     - id: content
       type: UnityEngine.GUIContent[]
-      description: >-
-        The GUIContent for each texture field in order<br />
-
-        If unassigned each texture will be named "Texture 1", "Texture 2", ...
+      description: "\nThe GUIContent for each texture field in order<br />\nIf unassigned each texture will be named &quot;Texture 1&quot;, &quot;Texture 2&quot;, ...\n"
     return:
       type: UnityEngine.Texture2D[]
-      description: Array of textures input into the inspector
+      description: "\nArray of textures input into the inspector\n"
     content.vb: Public Function DrawTextures(content As GUIContent() = Nothing) As Texture2D()
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextures*
   nameWithType.vb: TextureArrayGUIDrawer.DrawTextures(GUIContent())
@@ -1024,17 +923,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Returns if a texture is assigned at the given index
+  summary: "\nReturns if a texture is assigned at the given index\n"
   example: []
   syntax:
     content: public bool TextureAssignedAt(int index)
     parameters:
     - id: index
       type: System.Int32
-      description: The index of the texture being checked
+      description: "\nThe index of the texture being checked\n"
     return:
       type: System.Boolean
-      description: If the texture at the given index is assigned in the inspector
+      description: "\nIf the texture at the given index is assigned in the inspector\n"
     content.vb: Public Function TextureAssignedAt(index As Integer) As Boolean
   overload: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.TextureAssignedAt*
   nameWithType.vb: TextureArrayGUIDrawer.TextureAssignedAt(Integer)
@@ -1062,7 +961,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Clears the array and deletes its file and folder if empty
+  summary: "\nClears the array and deletes its file and folder if empty\n"
   example: []
   syntax:
     content: public void DeleteArray()
@@ -1071,26 +970,21 @@ items:
 references:
 - uid: Repetitionless.GUIUtilities
   commentId: N:Repetitionless.GUIUtilities
-  href: Repetitionless.html
   name: Repetitionless.GUIUtilities
   nameWithType: Repetitionless.GUIUtilities
   fullName: Repetitionless.GUIUtilities
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.GUIUtilities
     name: GUIUtilities
-    href: Repetitionless.GUIUtilities.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.GUIUtilities
     name: GUIUtilities
-    href: Repetitionless.GUIUtilities.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -1109,7 +1003,6 @@ references:
   fullName: System
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.Array*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.Array
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer_Array
   name: Array
   nameWithType: TextureArrayGUIDrawer.Array
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.Array
@@ -1145,7 +1038,6 @@ references:
   name.vb: Boolean
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.#ctor*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.#ctor
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer__ctor_UnityEditor_MaterialProperty_UnityEditor_MaterialProperty_System_Int32_System_String_
   name: TextureArrayGUIDrawer
   nameWithType: TextureArrayGUIDrawer.TextureArrayGUIDrawer
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.TextureArrayGUIDrawer
@@ -1194,13 +1086,11 @@ references:
   fullName: UnityEngine.Material
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.UpdateArray*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.UpdateArray
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer_UpdateArray_UnityEngine_Texture2DArray_
   name: UpdateArray
   nameWithType: TextureArrayGUIDrawer.UpdateArray
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.UpdateArray
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTexture*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTexture
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer_DrawTexture_System_Int32_UnityEngine_GUIContent_
   name: DrawTexture
   nameWithType: TextureArrayGUIDrawer.DrawTexture
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTexture
@@ -1227,7 +1117,6 @@ references:
   fullName: UnityEngine.Rect
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithInt*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithInt
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer_DrawTextureWithInt_System_Int32_System_Int32_UnityEngine_GUIContent_
   name: DrawTextureWithInt
   nameWithType: TextureArrayGUIDrawer.DrawTextureWithInt
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithInt
@@ -1284,13 +1173,11 @@ references:
   - name: )
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithIntSlider*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithIntSlider
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer_DrawTextureWithIntSlider_System_Int32_System_Int32_System_Int32_System_Int32_UnityEngine_GUIContent_
   name: DrawTextureWithIntSlider
   nameWithType: TextureArrayGUIDrawer.DrawTextureWithIntSlider
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithIntSlider
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithFloat*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithFloat
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer_DrawTextureWithFloat_System_Int32_System_Single_UnityEngine_GUIContent_
   name: DrawTextureWithFloat
   nameWithType: TextureArrayGUIDrawer.DrawTextureWithFloat
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithFloat
@@ -1338,13 +1225,11 @@ references:
   - name: )
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithSlider*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithSlider
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer_DrawTextureWithSlider_System_Int32_System_Single_System_Single_System_Single_UnityEngine_GUIContent_
   name: DrawTextureWithSlider
   nameWithType: TextureArrayGUIDrawer.DrawTextureWithSlider
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithSlider
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithColor*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithColor
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer_DrawTextureWithColor_System_Int32_UnityEngine_Color_System_Boolean_UnityEngine_GUIContent_
   name: DrawTextureWithColor
   nameWithType: TextureArrayGUIDrawer.DrawTextureWithColor
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextureWithColor
@@ -1386,7 +1271,6 @@ references:
   - name: )
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextures*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextures
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer_DrawTextures_UnityEngine_GUIContent___
   name: DrawTextures
   nameWithType: TextureArrayGUIDrawer.DrawTextures
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DrawTextures
@@ -1432,13 +1316,11 @@ references:
   - name: )
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.TextureAssignedAt*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.TextureAssignedAt
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer_TextureAssignedAt_System_Int32_
   name: TextureAssignedAt
   nameWithType: TextureArrayGUIDrawer.TextureAssignedAt
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.TextureAssignedAt
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DeleteArray*
   commentId: Overload:Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DeleteArray
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html#Repetitionless_GUIUtilities_TextureArrayGUIDrawer_DeleteArray
   name: DeleteArray
   nameWithType: TextureArrayGUIDrawer.DeleteArray
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.DeleteArray

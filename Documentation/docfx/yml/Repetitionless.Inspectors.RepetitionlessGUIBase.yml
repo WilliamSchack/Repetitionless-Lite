@@ -5,6 +5,10 @@ items:
   id: RepetitionlessGUIBase
   parent: Repetitionless.Inspectors
   children:
+  - Repetitionless.Inspectors.RepetitionlessGUIBase._cachedProperties
+  - Repetitionless.Inspectors.RepetitionlessGUIBase._editor
+  - Repetitionless.Inspectors.RepetitionlessGUIBase._foldoutStates
+  - Repetitionless.Inspectors.RepetitionlessGUIBase._material
   - Repetitionless.Inspectors.RepetitionlessGUIBase.DrawBaseMaterialGUI(System.String)
   - Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDebugGUI
   - Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDistanceBlendGUI(System.String)
@@ -20,16 +24,12 @@ items:
   - Repetitionless.Inspectors.RepetitionlessGUIBase.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent,System.String)
   - Repetitionless.Inspectors.RepetitionlessGUIBase.FindProperty(System.String)
   - Repetitionless.Inspectors.RepetitionlessGUIBase.GetScaledText(System.Int32,System.String,System.String)
-  - Repetitionless.Inspectors.RepetitionlessGUIBase.HEADER_PADDING
   - Repetitionless.Inspectors.RepetitionlessGUIBase.HandleAssignedTextures(System.String,System.Int32,UnityEditor.MaterialProperty)
+  - Repetitionless.Inspectors.RepetitionlessGUIBase.HEADER_PADDING
   - Repetitionless.Inspectors.RepetitionlessGUIBase.OnEnable(UnityEditor.MaterialEditor)
   - Repetitionless.Inspectors.RepetitionlessGUIBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
   - Repetitionless.Inspectors.RepetitionlessGUIBase.SCALED_TEXT_PADDING
   - Repetitionless.Inspectors.RepetitionlessGUIBase.SETTING_PADDING
-  - Repetitionless.Inspectors.RepetitionlessGUIBase._cachedProperties
-  - Repetitionless.Inspectors.RepetitionlessGUIBase._editor
-  - Repetitionless.Inspectors.RepetitionlessGUIBase._foldoutStates
-  - Repetitionless.Inspectors.RepetitionlessGUIBase._material
   langs:
   - csharp
   - vb
@@ -48,7 +48,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Base class for creating the Master/Terrain repetitionless inspector windows
+  summary: "\nBase class for creating the Master/Terrain repetitionless inspector windows\n"
   example: []
   syntax:
     content: 'public class RepetitionlessGUIBase : ShaderGUI'
@@ -81,7 +81,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Amount of padding at the top of the inspector
+  summary: "\nAmount of padding at the top of the inspector\n"
   example: []
   syntax:
     content: protected const int HEADER_PADDING = 4
@@ -110,7 +110,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Amount of padding between sections
+  summary: "\nAmount of padding between sections\n"
   example: []
   syntax:
     content: protected const int SETTING_PADDING = 4
@@ -139,7 +139,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Buffer ontop of minWidth for GetScaledText
+  summary: "\nBuffer ontop of minWidth for GetScaledText\n"
   example: []
   syntax:
     content: protected const int SCALED_TEXT_PADDING = 10
@@ -168,7 +168,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: The material being edited
+  summary: "\nThe material being edited\n"
   example: []
   syntax:
     content: protected Material _material
@@ -197,7 +197,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: The material editor being used
+  summary: "\nThe material editor being used\n"
   example: []
   syntax:
     content: protected MaterialEditor _editor
@@ -226,10 +226,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: >-
-    <b>Use FindProperty for getting properties</b><br />
-
-    Contains all the material properties<br />
+  summary: "\n<strong>Use FindProperty for getting properties</strong><br />\nContains all the material properties<br />\n"
   example: []
   syntax:
     content: protected Dictionary<string, MaterialProperty> _cachedProperties
@@ -258,10 +255,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: >-
-    Contains the current states for all foldouts<br />
-
-    Keys are the material property prefix for that section
+  summary: "\nContains the current states for all foldouts<br />\nKeys are the material property prefix for that section\n"
   example: []
   syntax:
     content: protected Dictionary<string, RepetitionlessGUIBase.MaterialFoldoutState> _foldoutStates
@@ -290,17 +284,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Gets a property from the cached properties
+  summary: "\nGets a property from the cached properties\n"
   example: []
   syntax:
     content: protected MaterialProperty FindProperty(string name)
     parameters:
     - id: name
       type: System.String
-      description: The name of the material property
+      description: "\nThe name of the material property\n"
     return:
       type: UnityEditor.MaterialProperty
-      description: The material property requested
+      description: "\nThe material property requested\n"
     content.vb: Protected Function FindProperty(name As String) As MaterialProperty
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.FindProperty*
   nameWithType.vb: RepetitionlessGUIBase.FindProperty(String)
@@ -328,23 +322,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Dynamically returns a text if the window width is within the given minWidth
+  summary: "\nDynamically returns a text if the window width is within the given minWidth \n"
   example: []
   syntax:
     content: protected string GetScaledText(int minWidth, string largeText, string smallText)
     parameters:
     - id: minWidth
       type: System.Int32
-      description: The minimum width for the window width to be to show the large text
+      description: "\nThe minimum width for the window width to be to show the large text\n"
     - id: largeText
       type: System.String
-      description: The text to return if the window width is greater than minWidth
+      description: "\nThe text to return if the window width is greater than minWidth\n"
     - id: smallText
       type: System.String
-      description: The text to return if the window width is less than minWidth
+      description: "\nThe text to return if the window width is less than minWidth\n"
     return:
       type: System.String
-      description: The scaled text
+      description: "\nThe scaled text\n"
     content.vb: Protected Function GetScaledText(minWidth As Integer, largeText As String, smallText As String) As String
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.GetScaledText*
   nameWithType.vb: RepetitionlessGUIBase.GetScaledText(Integer, String, String)
@@ -372,29 +366,26 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: >-
-    Used to draw all the texture fields<br />
-
-    Can be overrided to change how textures are drawn
+  summary: "\nUsed to draw all the texture fields<br />\nCan be overrided to change how textures are drawn\n"
   example: []
   syntax:
     content: protected virtual Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, string texturePropertyName)
     parameters:
     - id: sectionIndex
       type: System.Int32
-      description: The section that this texture is in
+      description: "\nThe section that this texture is in\n"
     - id: textureIndex
       type: System.Int32
-      description: The index of the texture in this section
+      description: "\nThe index of the texture in this section\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent to use in the field
+      description: "\nThe GUIContent to use in the field\n"
     - id: texturePropertyName
       type: System.String
-      description: The texture material property name
+      description: "\nThe texture material property name\n"
     return:
       type: UnityEngine.Rect
-      description: The rect that the texture field is using
+      description: "\nThe rect that the texture field is using\n"
     content.vb: Protected Overridable Function DrawTexture(sectionIndex As Integer, textureIndex As Integer, content As GUIContent, texturePropertyName As String) As Rect
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawTexture*
   nameWithType.vb: RepetitionlessGUIBase.DrawTexture(Integer, Integer, GUIContent, String)
@@ -422,26 +413,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: >-
-    Handles assigned textures that the shader uses to determine whether to use textures or values<br />
-
-    Can be overrided to change how the assigned textures are set
+  summary: "\nHandles assigned textures that the shader uses to determine whether to use textures or values<br />\nCan be overrided to change how the assigned textures are set\n"
   example: []
   syntax:
     content: protected virtual int HandleAssignedTextures(string materialPrefix, int sectionIndex, MaterialProperty settingsProp)
     parameters:
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
+      description: "\nThe material property prefix for the material section\n"
     - id: sectionIndex
       type: System.Int32
-      description: The section that this texture is in
+      description: "\nThe section that this texture is in\n"
     - id: settingsProp
       type: UnityEditor.MaterialProperty
-      description: The settings material property for this material section
+      description: "\nThe settings material property for this material section\n"
     return:
       type: System.Int32
-      description: The compressed assigned textures
+      description: "\nThe compressed assigned textures\n"
     content.vb: Protected Overridable Function HandleAssignedTextures(materialPrefix As String, sectionIndex As Integer, settingsProp As MaterialProperty) As Integer
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.HandleAssignedTextures*
   nameWithType.vb: RepetitionlessGUIBase.HandleAssignedTextures(String, Integer, MaterialProperty)
@@ -469,14 +457,14 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Called when the inspector is first opened
+  summary: "\nCalled when the inspector is first opened\n"
   example: []
   syntax:
     content: public virtual void OnEnable(MaterialEditor materialEditor)
     parameters:
     - id: materialEditor
       type: UnityEditor.MaterialEditor
-      description: The material editor being used
+      description: "\nThe material editor being used\n"
     content.vb: Public Overridable Sub OnEnable(materialEditor As MaterialEditor)
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.OnEnable*
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
@@ -501,17 +489,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Base OnGUI function
+  summary: "\nBase OnGUI function\n"
   example: []
   syntax:
     content: public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     parameters:
     - id: materialEditor
       type: UnityEditor.MaterialEditor
-      description: The material editor being used
+      description: "\nThe material editor being used\n"
     - id: properties
       type: UnityEditor.MaterialProperty[]
-      description: The material properties
+      description: "\nThe material properties\n"
     content.vb: Public Overrides Sub OnGUI(materialEditor As MaterialEditor, properties As MaterialProperty())
   overridden: UnityEditor.ShaderGUI.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.OnGUI*
@@ -540,7 +528,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the general material settings at the top of the inspector
+  summary: "\nDraws the general material settings at the top of the inspector\n"
   example: []
   syntax:
     content: protected virtual void DrawMaterialPropertiesGUI()
@@ -568,20 +556,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws a material section GUI
+  summary: "\nDraws a material section GUI\n"
   example: []
   syntax:
     content: protected virtual void DrawMaterialGUI(string materialPrefix, int sectionIndex, string headerText = "")
     parameters:
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
+      description: "\nThe material property prefix for the material section\n"
     - id: sectionIndex
       type: System.Int32
-      description: The material section index
+      description: "\nThe material section index\n"
     - id: headerText
       type: System.String
-      description: The header label text for the section
+      description: "\nThe header label text for the section\n"
     content.vb: Protected Overridable Sub DrawMaterialGUI(materialPrefix As String, sectionIndex As Integer, headerText As String = "")
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialGUI*
   nameWithType.vb: RepetitionlessGUIBase.DrawMaterialGUI(String, Integer, String)
@@ -609,35 +597,32 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the settings at the top of each material section
+  summary: "\nDraws the settings at the top of each material section\n"
   example: []
   syntax:
     content: protected virtual void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true, int extraWidth = 0)
     parameters:
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
+      description: "\nThe material property prefix for the material section\n"
     - id: showNoise
       type: System.Boolean
-      description: Toggles if the noise settings are enabled
+      description: "\nToggles if the noise settings are enabled\n"
     - id: showVariation
       type: System.Boolean
-      description: Toggles if the variation setting is enabled
+      description: "\nToggles if the variation setting is enabled\n"
     - id: showPT
       type: System.Boolean
-      description: Toggles if the packed texture setting is enabled
+      description: "\nToggles if the packed texture setting is enabled\n"
     - id: showEmission
       type: System.Boolean
-      description: Toggles if the emission setting is enabled
+      description: "\nToggles if the emission setting is enabled\n"
     - id: showSR
       type: System.Boolean
-      description: Toggles if the smoothness/roughness toggle setting is enabled
+      description: "\nToggles if the smoothness/roughness toggle setting is enabled\n"
     - id: extraWidth
       type: System.Int32
-      description: >-
-        Any extra width required for the whole section<br />
-
-        Used to increase the required width for the labels to expand
+      description: "\nAny extra width required for the whole section<br />\nUsed to increase the required width for the labels to expand\n"
     content.vb: Protected Overridable Sub DrawMaterialSettingsGUI(materialPrefix As String, showNoise As Boolean = True, showVariation As Boolean = True, showPT As Boolean = True, showEmission As Boolean = True, showSR As Boolean = True, extraWidth As Integer = 0)
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialSettingsGUI*
   nameWithType.vb: RepetitionlessGUIBase.DrawMaterialSettingsGUI(String, Boolean, Boolean, Boolean, Boolean, Boolean, Integer)
@@ -665,32 +650,32 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the left section of the material settings
+  summary: "\nDraws the left section of the material settings\n"
   example: []
   syntax:
     content: protected virtual int DrawLeftMaterialSettingsGUI(int compressedValues, string materialPrefix, int settingToggles, int minScaledTextWidth, bool showNoise = true, bool showVariation = true)
     parameters:
     - id: compressedValues
       type: System.Int32
-      description: The compressed setting values to modify
+      description: "\nThe compressed setting values to modify\n"
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
+      description: "\nThe material property prefix for the material section\n"
     - id: settingToggles
       type: System.Int32
-      description: The compressed settings toggles
+      description: "\nThe compressed settings toggles\n"
     - id: minScaledTextWidth
       type: System.Int32
-      description: The minimum width required for labels to expand
+      description: "\nThe minimum width required for labels to expand\n"
     - id: showNoise
       type: System.Boolean
-      description: Toggles if the noise settings are enabled
+      description: "\nToggles if the noise settings are enabled\n"
     - id: showVariation
       type: System.Boolean
-      description: Toggles if the variation setting is enabled
+      description: "\nToggles if the variation setting is enabled\n"
     return:
       type: System.Int32
-      description: The modified compressed setting values
+      description: "\nThe modified compressed setting values\n"
     content.vb: Protected Overridable Function DrawLeftMaterialSettingsGUI(compressedValues As Integer, materialPrefix As String, settingToggles As Integer, minScaledTextWidth As Integer, showNoise As Boolean = True, showVariation As Boolean = True) As Integer
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawLeftMaterialSettingsGUI*
   nameWithType.vb: RepetitionlessGUIBase.DrawLeftMaterialSettingsGUI(Integer, String, Integer, Integer, Boolean, Boolean)
@@ -718,35 +703,35 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the right section of the material settings
+  summary: "\nDraws the right section of the material settings\n"
   example: []
   syntax:
     content: protected virtual int DrawRightMaterialSettingsGUI(int compressedValues, string materialPrefix, int settingToggles, int minScaledTextWidth, bool showPT = true, bool showEmission = true, bool showSR = true)
     parameters:
     - id: compressedValues
       type: System.Int32
-      description: The compressed setting values to modify
+      description: "\nThe compressed setting values to modify\n"
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
+      description: "\nThe material property prefix for the material section\n"
     - id: settingToggles
       type: System.Int32
-      description: The compressed settings toggles
+      description: "\nThe compressed settings toggles\n"
     - id: minScaledTextWidth
       type: System.Int32
-      description: The minimum width required for labels to expand
+      description: "\nThe minimum width required for labels to expand\n"
     - id: showPT
       type: System.Boolean
-      description: Toggles if the packed texture setting is enabled
+      description: "\nToggles if the packed texture setting is enabled\n"
     - id: showEmission
       type: System.Boolean
-      description: Toggles if the emission setting is enabled
+      description: "\nToggles if the emission setting is enabled\n"
     - id: showSR
       type: System.Boolean
-      description: Toggles if the smoothness/roughness toggle setting is enabled
+      description: "\nToggles if the smoothness/roughness toggle setting is enabled\n"
     return:
       type: System.Int32
-      description: The modified compressed setting values
+      description: "\nThe modified compressed setting values\n"
     content.vb: Protected Overridable Function DrawRightMaterialSettingsGUI(compressedValues As Integer, materialPrefix As String, settingToggles As Integer, minScaledTextWidth As Integer, showPT As Boolean = True, showEmission As Boolean = True, showSR As Boolean = True) As Integer
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawRightMaterialSettingsGUI*
   nameWithType.vb: RepetitionlessGUIBase.DrawRightMaterialSettingsGUI(Integer, String, Integer, Integer, Boolean, Boolean, Boolean)
@@ -774,17 +759,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the main properties in a material section
+  summary: "\nDraws the main properties in a material section\n"
   example: []
   syntax:
     content: protected virtual void DrawMaterialMainProperties(string materialPrefix, int sectionIndex)
     parameters:
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
+      description: "\nThe material property prefix for the material section\n"
     - id: sectionIndex
       type: System.Int32
-      description: The material section index
+      description: "\nThe material section index\n"
     content.vb: Protected Overridable Sub DrawMaterialMainProperties(materialPrefix As String, sectionIndex As Integer)
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialMainProperties*
   nameWithType.vb: RepetitionlessGUIBase.DrawMaterialMainProperties(String, Integer)
@@ -812,14 +797,14 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the noise properties in a material section
+  summary: "\nDraws the noise properties in a material section\n"
   example: []
   syntax:
     content: protected virtual void DrawMaterialNoiseGUI(string materialPrefix)
     parameters:
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
+      description: "\nThe material property prefix for the material section\n"
     content.vb: Protected Overridable Sub DrawMaterialNoiseGUI(materialPrefix As String)
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialNoiseGUI*
   nameWithType.vb: RepetitionlessGUIBase.DrawMaterialNoiseGUI(String)
@@ -847,17 +832,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the variation properties in a material section
+  summary: "\nDraws the variation properties in a material section\n"
   example: []
   syntax:
     content: protected virtual void DrawMaterialVariationProperties(string materialPrefix, int sectionIndex)
     parameters:
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
+      description: "\nThe material property prefix for the material section\n"
     - id: sectionIndex
       type: System.Int32
-      description: The material section index
+      description: "\nThe material section index\n"
     content.vb: Protected Overridable Sub DrawMaterialVariationProperties(materialPrefix As String, sectionIndex As Integer)
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialVariationProperties*
   nameWithType.vb: RepetitionlessGUIBase.DrawMaterialVariationProperties(String, Integer)
@@ -885,14 +870,14 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the base material GUI
+  summary: "\nDraws the base material GUI\n"
   example: []
   syntax:
     content: protected virtual void DrawBaseMaterialGUI(string propertiesPrefix = "")
     parameters:
     - id: propertiesPrefix
       type: System.String
-      description: The material property prefix for the material
+      description: "\nThe material property prefix for the material\n"
     content.vb: Protected Overridable Sub DrawBaseMaterialGUI(propertiesPrefix As String = "")
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawBaseMaterialGUI*
   nameWithType.vb: RepetitionlessGUIBase.DrawBaseMaterialGUI(String)
@@ -920,14 +905,14 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the distance blend GUI
+  summary: "\nDraws the distance blend GUI\n"
   example: []
   syntax:
     content: protected virtual void DrawDistanceBlendGUI(string propertiesPrefix = "")
     parameters:
     - id: propertiesPrefix
       type: System.String
-      description: The material property prefix for the material
+      description: "\nThe material property prefix for the material\n"
     content.vb: Protected Overridable Sub DrawDistanceBlendGUI(propertiesPrefix As String = "")
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDistanceBlendGUI*
   nameWithType.vb: RepetitionlessGUIBase.DrawDistanceBlendGUI(String)
@@ -955,14 +940,14 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the blend material GUI
+  summary: "\nDraws the blend material GUI\n"
   example: []
   syntax:
     content: protected virtual void DrawMaterialBlendGUI(string propertiesPrefix = "")
     parameters:
     - id: propertiesPrefix
       type: System.String
-      description: The material property prefix for the material
+      description: "\nThe material property prefix for the material\n"
     content.vb: Protected Overridable Sub DrawMaterialBlendGUI(propertiesPrefix As String = "")
   overload: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialBlendGUI*
   nameWithType.vb: RepetitionlessGUIBase.DrawMaterialBlendGUI(String)
@@ -990,7 +975,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the debug selection GUI
+  summary: "\nDraws the debug selection GUI\n"
   example: []
   syntax:
     content: protected virtual void DrawDebugGUI()
@@ -999,26 +984,21 @@ items:
 references:
 - uid: Repetitionless.Inspectors
   commentId: N:Repetitionless.Inspectors
-  href: Repetitionless.html
   name: Repetitionless.Inspectors
   nameWithType: Repetitionless.Inspectors
   fullName: Repetitionless.Inspectors
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Inspectors
     name: Inspectors
-    href: Repetitionless.Inspectors.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Inspectors
     name: Inspectors
-    href: Repetitionless.Inspectors.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -1183,7 +1163,6 @@ references:
   commentId: T:System.Collections.Generic.Dictionary{System.String,Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.Dictionary`2
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
   name: Dictionary<string, RepetitionlessGUIBase.MaterialFoldoutState>
   nameWithType: Dictionary<string, RepetitionlessGUIBase.MaterialFoldoutState>
   fullName: System.Collections.Generic.Dictionary<string, Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState>
@@ -1202,11 +1181,9 @@ references:
   - name: " "
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase
     name: RepetitionlessGUIBase
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
   - name: .
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
     name: MaterialFoldoutState
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState.html
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.Dictionary`2
@@ -1222,15 +1199,12 @@ references:
   - name: " "
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase
     name: RepetitionlessGUIBase
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
   - name: .
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
     name: MaterialFoldoutState
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState.html
   - name: )
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.FindProperty*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.FindProperty
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_FindProperty_System_String_
   name: FindProperty
   nameWithType: RepetitionlessGUIBase.FindProperty
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.FindProperty
@@ -1253,13 +1227,11 @@ references:
   fullName: UnityEditor.MaterialProperty
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.GetScaledText*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.GetScaledText
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_GetScaledText_System_Int32_System_String_System_String_
   name: GetScaledText
   nameWithType: RepetitionlessGUIBase.GetScaledText
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.GetScaledText
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawTexture*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawTexture
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawTexture_System_Int32_System_Int32_UnityEngine_GUIContent_System_String_
   name: DrawTexture
   nameWithType: RepetitionlessGUIBase.DrawTexture
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawTexture
@@ -1279,13 +1251,11 @@ references:
   fullName: UnityEngine.Rect
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.HandleAssignedTextures*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.HandleAssignedTextures
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_HandleAssignedTextures_System_String_System_Int32_UnityEditor_MaterialProperty_
   name: HandleAssignedTextures
   nameWithType: RepetitionlessGUIBase.HandleAssignedTextures
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.HandleAssignedTextures
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.OnEnable*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.OnEnable
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_OnEnable_UnityEditor_MaterialEditor_
   name: OnEnable
   nameWithType: RepetitionlessGUIBase.OnEnable
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.OnEnable
@@ -1333,7 +1303,6 @@ references:
   - name: )
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.OnGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.OnGUI
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_OnGUI_UnityEditor_MaterialEditor_UnityEditor_MaterialProperty___
   name: OnGUI
   nameWithType: RepetitionlessGUIBase.OnGUI
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.OnGUI
@@ -1359,19 +1328,16 @@ references:
   - name: )
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialPropertiesGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialPropertiesGUI
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialPropertiesGUI
   name: DrawMaterialPropertiesGUI
   nameWithType: RepetitionlessGUIBase.DrawMaterialPropertiesGUI
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialPropertiesGUI
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialGUI
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialGUI_System_String_System_Int32_System_String_
   name: DrawMaterialGUI
   nameWithType: RepetitionlessGUIBase.DrawMaterialGUI
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialGUI
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialSettingsGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialSettingsGUI
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialSettingsGUI_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_
   name: DrawMaterialSettingsGUI
   nameWithType: RepetitionlessGUIBase.DrawMaterialSettingsGUI
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialSettingsGUI
@@ -1387,55 +1353,46 @@ references:
   name.vb: Boolean
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawLeftMaterialSettingsGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawLeftMaterialSettingsGUI
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawLeftMaterialSettingsGUI_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_System_Boolean_
   name: DrawLeftMaterialSettingsGUI
   nameWithType: RepetitionlessGUIBase.DrawLeftMaterialSettingsGUI
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawLeftMaterialSettingsGUI
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawRightMaterialSettingsGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawRightMaterialSettingsGUI
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawRightMaterialSettingsGUI_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_System_Boolean_System_Boolean_
   name: DrawRightMaterialSettingsGUI
   nameWithType: RepetitionlessGUIBase.DrawRightMaterialSettingsGUI
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawRightMaterialSettingsGUI
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialMainProperties*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialMainProperties
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialMainProperties_System_String_System_Int32_
   name: DrawMaterialMainProperties
   nameWithType: RepetitionlessGUIBase.DrawMaterialMainProperties
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialMainProperties
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialNoiseGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialNoiseGUI
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialNoiseGUI_System_String_
   name: DrawMaterialNoiseGUI
   nameWithType: RepetitionlessGUIBase.DrawMaterialNoiseGUI
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialNoiseGUI
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialVariationProperties*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialVariationProperties
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialVariationProperties_System_String_System_Int32_
   name: DrawMaterialVariationProperties
   nameWithType: RepetitionlessGUIBase.DrawMaterialVariationProperties
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialVariationProperties
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawBaseMaterialGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawBaseMaterialGUI
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawBaseMaterialGUI_System_String_
   name: DrawBaseMaterialGUI
   nameWithType: RepetitionlessGUIBase.DrawBaseMaterialGUI
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawBaseMaterialGUI
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDistanceBlendGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDistanceBlendGUI
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawDistanceBlendGUI_System_String_
   name: DrawDistanceBlendGUI
   nameWithType: RepetitionlessGUIBase.DrawDistanceBlendGUI
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDistanceBlendGUI
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialBlendGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialBlendGUI
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialBlendGUI_System_String_
   name: DrawMaterialBlendGUI
   nameWithType: RepetitionlessGUIBase.DrawMaterialBlendGUI
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialBlendGUI
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDebugGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDebugGUI
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawDebugGUI
   name: DrawDebugGUI
   nameWithType: RepetitionlessGUIBase.DrawDebugGUI
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDebugGUI

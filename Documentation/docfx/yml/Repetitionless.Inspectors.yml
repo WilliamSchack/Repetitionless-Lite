@@ -20,64 +20,51 @@ items:
 references:
 - uid: Repetitionless.Inspectors.RepetitionlessTerrainGUI
   commentId: T:Repetitionless.Inspectors.RepetitionlessTerrainGUI
-  href: Repetitionless.Inspectors.RepetitionlessTerrainGUI.html
   name: RepetitionlessTerrainGUI
   nameWithType: RepetitionlessTerrainGUI
   fullName: Repetitionless.Inspectors.RepetitionlessTerrainGUI
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase
   commentId: T:Repetitionless.Inspectors.RepetitionlessGUIBase
   parent: Repetitionless.Inspectors
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
   name: RepetitionlessGUIBase
   nameWithType: RepetitionlessGUIBase
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
   commentId: T:Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
   name: RepetitionlessGUIBase.MaterialFoldoutState
   nameWithType: RepetitionlessGUIBase.MaterialFoldoutState
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase
     name: RepetitionlessGUIBase
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
   - name: .
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
     name: MaterialFoldoutState
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState.html
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase
     name: RepetitionlessGUIBase
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
   - name: .
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
     name: MaterialFoldoutState
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState.html
 - uid: Repetitionless.Inspectors.RepetitionlessMasterGUI
   commentId: T:Repetitionless.Inspectors.RepetitionlessMasterGUI
-  href: Repetitionless.Inspectors.RepetitionlessMasterGUI.html
   name: RepetitionlessMasterGUI
   nameWithType: RepetitionlessMasterGUI
   fullName: Repetitionless.Inspectors.RepetitionlessMasterGUI
 - uid: Repetitionless.Inspectors
   commentId: N:Repetitionless.Inspectors
-  href: Repetitionless.html
   name: Repetitionless.Inspectors
   nameWithType: Repetitionless.Inspectors
   fullName: Repetitionless.Inspectors
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Inspectors
     name: Inspectors
-    href: Repetitionless.Inspectors.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Inspectors
     name: Inspectors
-    href: Repetitionless.Inspectors.html

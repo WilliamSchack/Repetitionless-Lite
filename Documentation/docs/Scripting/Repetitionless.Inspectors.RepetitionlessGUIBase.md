@@ -15,7 +15,7 @@ Base class for creating the Master/Terrain repetitionless inspector windows
 | SCALED_TEXT_PADDING | Buffer ontop of minWidth for GetScaledText |
 | _material | The material being edited |
 | _editor | The material editor being used |
-| _cachedProperties | <b>Use FindProperty for getting properties</b><br />Contains all the material properties<br /> |
+| _cachedProperties | <strong>Use FindProperty for getting properties</strong><br />Contains all the material properties<br /> |
 | _foldoutStates | Contains the current states for all foldouts<br />Keys are the material property prefix for that section |
 
 ---
@@ -66,7 +66,7 @@ The scaled text
 
 ### Description
 
-Dynamically returns a text if the window width is within the given minWidth
+Dynamically returns a text if the window width is within the given minWidth 
 
 ---
 

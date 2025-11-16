@@ -26,7 +26,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Holds the state for each property foldout in a material section
+  summary: "\nHolds the state for each property foldout in a material section\n"
   example: []
   syntax:
     content: protected class RepetitionlessGUIBase.MaterialFoldoutState
@@ -55,7 +55,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Foldout state for the main properties
+  summary: "\nFoldout state for the main properties\n"
   example: []
   syntax:
     content: public bool MainProperties
@@ -84,7 +84,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Foldout state for the noise properties
+  summary: "\nFoldout state for the noise properties\n"
   example: []
   syntax:
     content: public bool NoiseProperties
@@ -113,7 +113,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Foldout state for the variation properties
+  summary: "\nFoldout state for the variation properties\n"
   example: []
   syntax:
     content: public bool VariationProperties
@@ -123,26 +123,21 @@ items:
 references:
 - uid: Repetitionless.Inspectors
   commentId: N:Repetitionless.Inspectors
-  href: Repetitionless.html
   name: Repetitionless.Inspectors
   nameWithType: Repetitionless.Inspectors
   fullName: Repetitionless.Inspectors
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Inspectors
     name: Inspectors
-    href: Repetitionless.Inspectors.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Inspectors
     name: Inspectors
-    href: Repetitionless.Inspectors.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System

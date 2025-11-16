@@ -18,13 +18,11 @@ items:
 references:
 - uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities
   commentId: T:Repetitionless.TextureUtilities.Texture2DArrayUtilities
-  href: Repetitionless.TextureUtilities.Texture2DArrayUtilities.html
   name: Texture2DArrayUtilities
   nameWithType: Texture2DArrayUtilities
   fullName: Repetitionless.TextureUtilities.Texture2DArrayUtilities
 - uid: Repetitionless.TextureUtilities.TextureUtilities
   commentId: T:Repetitionless.TextureUtilities.TextureUtilities
-  href: Repetitionless.TextureUtilities.TextureUtilities.html
   name: TextureUtilities
   nameWithType: TextureUtilities
   fullName: Repetitionless.TextureUtilities.TextureUtilities

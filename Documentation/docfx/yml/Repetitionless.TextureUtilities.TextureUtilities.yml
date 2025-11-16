@@ -28,7 +28,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
-  summary: Contains various helper functions for modifying textures
+  summary: "\nContains various helper functions for modifying textures\n"
   example: []
   syntax:
     content: public static class TextureUtilities
@@ -57,7 +57,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
-  summary: List of all the compressed texture formats
+  summary: "\nList of all the compressed texture formats\n"
   example: []
   syntax:
     content: public static readonly TextureFormat[] COMPRESSED_TEXTURE_FORMATS
@@ -86,29 +86,26 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
-  summary: >-
-    Scales the input texture to the desired resolution<br />
-
-    Does not modify the original texture, returns a new resized one
+  summary: "\nScales the input texture to the desired resolution<br />\nDoes not modify the original texture, returns a new resized one\n"
   example: []
   syntax:
     content: public static Texture2D ResizeTexture(Texture2D texture, int newWidth, int newHeight, FilterMode filterMode = FilterMode.Bilinear)
     parameters:
     - id: texture
       type: UnityEngine.Texture2D
-      description: The texture that will be resized
+      description: "\nThe texture that will be resized\n"
     - id: newWidth
       type: System.Int32
-      description: The width of the output texture
+      description: "\nThe width of the output texture\n"
     - id: newHeight
       type: System.Int32
-      description: The height of the output texture
+      description: "\nThe height of the output texture\n"
     - id: filterMode
       type: UnityEngine.FilterMode
-      description: The filter mode used when resizing the texture
+      description: "\nThe filter mode used when resizing the texture\n"
     return:
       type: UnityEngine.Texture2D
-      description: The texture resized to the input resolution
+      description: "\nThe texture resized to the input resolution\n"
     content.vb: Public Shared Function ResizeTexture(texture As Texture2D, newWidth As Integer, newHeight As Integer, filterMode As FilterMode = FilterMode.Bilinear) As Texture2D
   overload: Repetitionless.TextureUtilities.TextureUtilities.ResizeTexture*
   nameWithType.vb: TextureUtilities.ResizeTexture(Texture2D, Integer, Integer, FilterMode)
@@ -136,17 +133,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
-  summary: Re-Imports the input texture as readable if necessary
+  summary: "\nRe-Imports the input texture as readable if necessary\n"
   example: []
   syntax:
     content: public static void SetReadable(Texture2D texture, bool logChanges = false)
     parameters:
     - id: texture
       type: UnityEngine.Texture2D
-      description: The texture that will set to readable
+      description: "\nThe texture that will set to readable\n"
     - id: logChanges
       type: System.Boolean
-      description: Debugs if the texture is set to readable if it is not already
+      description: "\nDebugs if the texture is set to readable if it is not already\n"
     content.vb: Public Shared Sub SetReadable(texture As Texture2D, logChanges As Boolean = False)
   overload: Repetitionless.TextureUtilities.TextureUtilities.SetReadable*
   nameWithType.vb: TextureUtilities.SetReadable(Texture2D, Boolean)
@@ -174,17 +171,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
-  summary: Re-Imports the input textures as readable if necessary
+  summary: "\nRe-Imports the input textures as readable if necessary\n"
   example: []
   syntax:
     content: public static void SetReadable(Texture2D[] textures, bool logChanges = false)
     parameters:
     - id: textures
       type: UnityEngine.Texture2D[]
-      description: The array of textures that will set to readable
+      description: "\nThe array of textures that will set to readable\n"
     - id: logChanges
       type: System.Boolean
-      description: Debugs if the texture is set to readable if it is not already
+      description: "\nDebugs if the texture is set to readable if it is not already\n"
     content.vb: Public Shared Sub SetReadable(textures As Texture2D(), logChanges As Boolean = False)
   overload: Repetitionless.TextureUtilities.TextureUtilities.SetReadable*
   nameWithType.vb: TextureUtilities.SetReadable(Texture2D(), Boolean)
@@ -212,47 +209,37 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
   namespace: Repetitionless.TextureUtilities
-  summary: >-
-    Converts a unity compressed normal map back to an uncompressed one<br />
-
-    From red to blue essentially<br />
-
-    Does not modify the original texture, returns a new converted one
+  summary: "\nConverts a unity compressed normal map back to an uncompressed one<br />\nFrom red to blue essentially<br />\nDoes not modify the original texture, returns a new converted one\n"
   example: []
   syntax:
     content: public static Texture2D ConvertFromCompressedNormal(Texture2D texture)
     parameters:
     - id: texture
       type: UnityEngine.Texture2D
-      description: The texture that will be converted
+      description: "\nThe texture that will be converted\n"
     return:
       type: UnityEngine.Texture2D
-      description: The texture converted to an uncompressed normal
+      description: "\nThe texture converted to an uncompressed normal\n"
     content.vb: Public Shared Function ConvertFromCompressedNormal(texture As Texture2D) As Texture2D
   overload: Repetitionless.TextureUtilities.TextureUtilities.ConvertFromCompressedNormal*
 references:
 - uid: Repetitionless.TextureUtilities
   commentId: N:Repetitionless.TextureUtilities
-  href: Repetitionless.html
   name: Repetitionless.TextureUtilities
   nameWithType: Repetitionless.TextureUtilities
   fullName: Repetitionless.TextureUtilities
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.TextureUtilities
     name: TextureUtilities
-    href: Repetitionless.TextureUtilities.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.TextureUtilities
     name: TextureUtilities
-    href: Repetitionless.TextureUtilities.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -291,7 +278,6 @@ references:
   - name: )
 - uid: Repetitionless.TextureUtilities.TextureUtilities.ResizeTexture*
   commentId: Overload:Repetitionless.TextureUtilities.TextureUtilities.ResizeTexture
-  href: Repetitionless.TextureUtilities.TextureUtilities.html#Repetitionless_TextureUtilities_TextureUtilities_ResizeTexture_UnityEngine_Texture2D_System_Int32_System_Int32_UnityEngine_FilterMode_
   name: ResizeTexture
   nameWithType: TextureUtilities.ResizeTexture
   fullName: Repetitionless.TextureUtilities.TextureUtilities.ResizeTexture
@@ -327,7 +313,6 @@ references:
   fullName: UnityEngine
 - uid: Repetitionless.TextureUtilities.TextureUtilities.SetReadable*
   commentId: Overload:Repetitionless.TextureUtilities.TextureUtilities.SetReadable
-  href: Repetitionless.TextureUtilities.TextureUtilities.html#Repetitionless_TextureUtilities_TextureUtilities_SetReadable_UnityEngine_Texture2D_System_Boolean_
   name: SetReadable
   nameWithType: TextureUtilities.SetReadable
   fullName: Repetitionless.TextureUtilities.TextureUtilities.SetReadable
@@ -363,7 +348,6 @@ references:
   - name: )
 - uid: Repetitionless.TextureUtilities.TextureUtilities.ConvertFromCompressedNormal*
   commentId: Overload:Repetitionless.TextureUtilities.TextureUtilities.ConvertFromCompressedNormal
-  href: Repetitionless.TextureUtilities.TextureUtilities.html#Repetitionless_TextureUtilities_TextureUtilities_ConvertFromCompressedNormal_UnityEngine_Texture2D_
   name: ConvertFromCompressedNormal
   nameWithType: TextureUtilities.ConvertFromCompressedNormal
   fullName: Repetitionless.TextureUtilities.TextureUtilities.ConvertFromCompressedNormal

@@ -17,7 +17,6 @@ items:
 references:
 - uid: Repetitionless.CustomDialog.ShaderGUIDialog
   commentId: T:Repetitionless.CustomDialog.ShaderGUIDialog
-  href: Repetitionless.CustomDialog.ShaderGUIDialog.html
   name: ShaderGUIDialog
   nameWithType: ShaderGUIDialog
   fullName: Repetitionless.CustomDialog.ShaderGUIDialog

@@ -18,13 +18,11 @@ items:
 references:
 - uid: Repetitionless.GUIUtilities.GUIUtilities
   commentId: T:Repetitionless.GUIUtilities.GUIUtilities
-  href: Repetitionless.GUIUtilities.GUIUtilities.html
   name: GUIUtilities
   nameWithType: GUIUtilities
   fullName: Repetitionless.GUIUtilities.GUIUtilities
 - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer
   commentId: T:Repetitionless.GUIUtilities.TextureArrayGUIDrawer
-  href: Repetitionless.GUIUtilities.TextureArrayGUIDrawer.html
   name: TextureArrayGUIDrawer
   nameWithType: TextureArrayGUIDrawer
   fullName: Repetitionless.GUIUtilities.TextureArrayGUIDrawer

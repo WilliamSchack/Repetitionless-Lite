@@ -78,26 +78,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: >-
-    Handles assigned textures that the shader uses to determine whether to use textures or values<br />
-
-    Can be overrided to change how the assigned textures are set
-  example: []
   syntax:
     content: protected override int HandleAssignedTextures(string materialPrefix, int sectionIndex, MaterialProperty settingsProp)
     parameters:
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
     - id: sectionIndex
       type: System.Int32
-      description: The section that this texture is in
     - id: settingsProp
       type: UnityEditor.MaterialProperty
-      description: The settings material property for this material section
     return:
       type: System.Int32
-      description: The compressed assigned textures
     content.vb: Protected Overrides Function HandleAssignedTextures(materialPrefix As String, sectionIndex As Integer, settingsProp As MaterialProperty) As Integer
   overridden: Repetitionless.Inspectors.RepetitionlessGUIBase.HandleAssignedTextures(System.String,System.Int32,UnityEditor.MaterialProperty)
   overload: Repetitionless.Inspectors.RepetitionlessTerrainGUI.HandleAssignedTextures*
@@ -126,14 +117,11 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Called when the inspector is first opened
-  example: []
   syntax:
     content: public override void OnEnable(MaterialEditor materialEditor)
     parameters:
     - id: materialEditor
       type: UnityEditor.MaterialEditor
-      description: The material editor being used
     content.vb: Public Overrides Sub OnEnable(materialEditor As MaterialEditor)
   overridden: Repetitionless.Inspectors.RepetitionlessGUIBase.OnEnable(UnityEditor.MaterialEditor)
   overload: Repetitionless.Inspectors.RepetitionlessTerrainGUI.OnEnable*
@@ -159,17 +147,13 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Base OnGUI function
-  example: []
   syntax:
     content: public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     parameters:
     - id: materialEditor
       type: UnityEditor.MaterialEditor
-      description: The material editor being used
     - id: properties
       type: UnityEditor.MaterialProperty[]
-      description: The material properties
     content.vb: Public Overrides Sub OnGUI(materialEditor As MaterialEditor, properties As MaterialProperty())
   overridden: Repetitionless.Inspectors.RepetitionlessGUIBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
   overload: Repetitionless.Inspectors.RepetitionlessTerrainGUI.OnGUI*
@@ -198,35 +182,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the settings at the top of each material section
-  example: []
   syntax:
     content: protected override void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true, int extraWidth = 0)
     parameters:
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
     - id: showNoise
       type: System.Boolean
-      description: Toggles if the noise settings are enabled
     - id: showVariation
       type: System.Boolean
-      description: Toggles if the variation setting is enabled
     - id: showPT
       type: System.Boolean
-      description: Toggles if the packed texture setting is enabled
     - id: showEmission
       type: System.Boolean
-      description: Toggles if the emission setting is enabled
     - id: showSR
       type: System.Boolean
-      description: Toggles if the smoothness/roughness toggle setting is enabled
     - id: extraWidth
       type: System.Int32
-      description: >-
-        Any extra width required for the whole section<br />
-
-        Used to increase the required width for the labels to expand
     content.vb: Protected Overrides Sub DrawMaterialSettingsGUI(materialPrefix As String, showNoise As Boolean = True, showVariation As Boolean = True, showPT As Boolean = True, showEmission As Boolean = True, showSR As Boolean = True, extraWidth As Integer = 0)
   overridden: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialSettingsGUI(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
   overload: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawMaterialSettingsGUI*
@@ -255,35 +227,25 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the right section of the material settings
-  example: []
   syntax:
     content: protected override int DrawRightMaterialSettingsGUI(int compressedValues, string materialPrefix, int settingToggles, int minScaledTextWidth, bool showPT = true, bool showEmission = true, bool showSR = true)
     parameters:
     - id: compressedValues
       type: System.Int32
-      description: The compressed setting values to modify
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
     - id: settingToggles
       type: System.Int32
-      description: The compressed settings toggles
     - id: minScaledTextWidth
       type: System.Int32
-      description: The minimum width required for labels to expand
     - id: showPT
       type: System.Boolean
-      description: Toggles if the packed texture setting is enabled
     - id: showEmission
       type: System.Boolean
-      description: Toggles if the emission setting is enabled
     - id: showSR
       type: System.Boolean
-      description: Toggles if the smoothness/roughness toggle setting is enabled
     return:
       type: System.Int32
-      description: The modified compressed setting values
     content.vb: Protected Overrides Function DrawRightMaterialSettingsGUI(compressedValues As Integer, materialPrefix As String, settingToggles As Integer, minScaledTextWidth As Integer, showPT As Boolean = True, showEmission As Boolean = True, showSR As Boolean = True) As Integer
   overridden: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawRightMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
   overload: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawRightMaterialSettingsGUI*
@@ -312,17 +274,13 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: Draws the main properties in a material section
-  example: []
   syntax:
     content: protected override void DrawMaterialMainProperties(string materialPrefix, int sectionIndex)
     parameters:
     - id: materialPrefix
       type: System.String
-      description: The material property prefix for the material section
     - id: sectionIndex
       type: System.Int32
-      description: The material section index
     content.vb: Protected Overrides Sub DrawMaterialMainProperties(materialPrefix As String, sectionIndex As Integer)
   overridden: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialMainProperties(System.String,System.Int32)
   overload: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawMaterialMainProperties*
@@ -351,29 +309,19 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
   namespace: Repetitionless.Inspectors
-  summary: >-
-    Used to draw all the texture fields<br />
-
-    Can be overrided to change how textures are drawn
-  example: []
   syntax:
     content: protected override Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, string texturePropertyName)
     parameters:
     - id: sectionIndex
       type: System.Int32
-      description: The section that this texture is in
     - id: textureIndex
       type: System.Int32
-      description: The index of the texture in this section
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent to use in the field
     - id: texturePropertyName
       type: System.String
-      description: The texture material property name
     return:
       type: UnityEngine.Rect
-      description: The rect that the texture field is using
     content.vb: Protected Overrides Function DrawTexture(sectionIndex As Integer, textureIndex As Integer, content As GUIContent, texturePropertyName As String) As Rect
   overridden: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent,System.String)
   overload: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawTexture*
@@ -383,26 +331,21 @@ items:
 references:
 - uid: Repetitionless.Inspectors
   commentId: N:Repetitionless.Inspectors
-  href: Repetitionless.html
   name: Repetitionless.Inspectors
   nameWithType: Repetitionless.Inspectors
   fullName: Repetitionless.Inspectors
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Inspectors
     name: Inspectors
-    href: Repetitionless.Inspectors.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Inspectors
     name: Inspectors
-    href: Repetitionless.Inspectors.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -423,56 +366,48 @@ references:
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase
   commentId: T:Repetitionless.Inspectors.RepetitionlessGUIBase
   parent: Repetitionless.Inspectors
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html
   name: RepetitionlessGUIBase
   nameWithType: RepetitionlessGUIBase
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.HEADER_PADDING
   commentId: F:Repetitionless.Inspectors.RepetitionlessGUIBase.HEADER_PADDING
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_HEADER_PADDING
   name: HEADER_PADDING
   nameWithType: RepetitionlessGUIBase.HEADER_PADDING
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.HEADER_PADDING
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.SETTING_PADDING
   commentId: F:Repetitionless.Inspectors.RepetitionlessGUIBase.SETTING_PADDING
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_SETTING_PADDING
   name: SETTING_PADDING
   nameWithType: RepetitionlessGUIBase.SETTING_PADDING
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.SETTING_PADDING
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.SCALED_TEXT_PADDING
   commentId: F:Repetitionless.Inspectors.RepetitionlessGUIBase.SCALED_TEXT_PADDING
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_SCALED_TEXT_PADDING
   name: SCALED_TEXT_PADDING
   nameWithType: RepetitionlessGUIBase.SCALED_TEXT_PADDING
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.SCALED_TEXT_PADDING
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase._material
   commentId: F:Repetitionless.Inspectors.RepetitionlessGUIBase._material
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase__material
   name: _material
   nameWithType: RepetitionlessGUIBase._material
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase._material
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase._editor
   commentId: F:Repetitionless.Inspectors.RepetitionlessGUIBase._editor
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase__editor
   name: _editor
   nameWithType: RepetitionlessGUIBase._editor
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase._editor
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase._cachedProperties
   commentId: F:Repetitionless.Inspectors.RepetitionlessGUIBase._cachedProperties
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase__cachedProperties
   name: _cachedProperties
   nameWithType: RepetitionlessGUIBase._cachedProperties
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase._cachedProperties
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase._foldoutStates
   commentId: F:Repetitionless.Inspectors.RepetitionlessGUIBase._foldoutStates
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase__foldoutStates
   name: _foldoutStates
   nameWithType: RepetitionlessGUIBase._foldoutStates
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase._foldoutStates
@@ -480,7 +415,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.FindProperty(System.String)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_FindProperty_System_String_
   name: FindProperty(string)
   nameWithType: RepetitionlessGUIBase.FindProperty(string)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.FindProperty(string)
@@ -490,7 +424,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.FindProperty(System.String)
     name: FindProperty
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_FindProperty_System_String_
   - name: (
   - uid: System.String
     name: string
@@ -499,7 +432,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.FindProperty(System.String)
     name: FindProperty
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_FindProperty_System_String_
   - name: (
   - uid: System.String
     name: String
@@ -509,7 +441,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.GetScaledText(System.Int32,System.String,System.String)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_GetScaledText_System_Int32_System_String_System_String_
   name: GetScaledText(int, string, string)
   nameWithType: RepetitionlessGUIBase.GetScaledText(int, string, string)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.GetScaledText(int, string, string)
@@ -519,7 +450,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.GetScaledText(System.Int32,System.String,System.String)
     name: GetScaledText
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_GetScaledText_System_Int32_System_String_System_String_
   - name: (
   - uid: System.Int32
     name: int
@@ -538,7 +468,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.GetScaledText(System.Int32,System.String,System.String)
     name: GetScaledText
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_GetScaledText_System_Int32_System_String_System_String_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -557,27 +486,23 @@ references:
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialPropertiesGUI
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialPropertiesGUI
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialPropertiesGUI
   name: DrawMaterialPropertiesGUI()
   nameWithType: RepetitionlessGUIBase.DrawMaterialPropertiesGUI()
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialPropertiesGUI()
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialPropertiesGUI
     name: DrawMaterialPropertiesGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialPropertiesGUI
   - name: (
   - name: )
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialPropertiesGUI
     name: DrawMaterialPropertiesGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialPropertiesGUI
   - name: (
   - name: )
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialGUI(System.String,System.Int32,System.String)
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialGUI(System.String,System.Int32,System.String)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialGUI_System_String_System_Int32_System_String_
   name: DrawMaterialGUI(string, int, string)
   nameWithType: RepetitionlessGUIBase.DrawMaterialGUI(string, int, string)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialGUI(string, int, string)
@@ -587,7 +512,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialGUI(System.String,System.Int32,System.String)
     name: DrawMaterialGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialGUI_System_String_System_Int32_System_String_
   - name: (
   - uid: System.String
     name: string
@@ -606,7 +530,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialGUI(System.String,System.Int32,System.String)
     name: DrawMaterialGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialGUI_System_String_System_Int32_System_String_
   - name: (
   - uid: System.String
     name: String
@@ -626,7 +549,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawLeftMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawLeftMaterialSettingsGUI_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_System_Boolean_
   name: DrawLeftMaterialSettingsGUI(int, string, int, int, bool, bool)
   nameWithType: RepetitionlessGUIBase.DrawLeftMaterialSettingsGUI(int, string, int, int, bool, bool)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawLeftMaterialSettingsGUI(int, string, int, int, bool, bool)
@@ -636,7 +558,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawLeftMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)
     name: DrawLeftMaterialSettingsGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawLeftMaterialSettingsGUI_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_System_Boolean_
   - name: (
   - uid: System.Int32
     name: int
@@ -670,7 +591,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawLeftMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)
     name: DrawLeftMaterialSettingsGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawLeftMaterialSettingsGUI_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_System_Boolean_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -705,7 +625,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialNoiseGUI(System.String)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialNoiseGUI_System_String_
   name: DrawMaterialNoiseGUI(string)
   nameWithType: RepetitionlessGUIBase.DrawMaterialNoiseGUI(string)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialNoiseGUI(string)
@@ -715,7 +634,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialNoiseGUI(System.String)
     name: DrawMaterialNoiseGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialNoiseGUI_System_String_
   - name: (
   - uid: System.String
     name: string
@@ -724,7 +642,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialNoiseGUI(System.String)
     name: DrawMaterialNoiseGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialNoiseGUI_System_String_
   - name: (
   - uid: System.String
     name: String
@@ -734,7 +651,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialVariationProperties(System.String,System.Int32)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialVariationProperties_System_String_System_Int32_
   name: DrawMaterialVariationProperties(string, int)
   nameWithType: RepetitionlessGUIBase.DrawMaterialVariationProperties(string, int)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialVariationProperties(string, int)
@@ -744,7 +660,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialVariationProperties(System.String,System.Int32)
     name: DrawMaterialVariationProperties
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialVariationProperties_System_String_System_Int32_
   - name: (
   - uid: System.String
     name: string
@@ -758,7 +673,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialVariationProperties(System.String,System.Int32)
     name: DrawMaterialVariationProperties
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialVariationProperties_System_String_System_Int32_
   - name: (
   - uid: System.String
     name: String
@@ -773,7 +687,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawBaseMaterialGUI(System.String)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawBaseMaterialGUI_System_String_
   name: DrawBaseMaterialGUI(string)
   nameWithType: RepetitionlessGUIBase.DrawBaseMaterialGUI(string)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawBaseMaterialGUI(string)
@@ -783,7 +696,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawBaseMaterialGUI(System.String)
     name: DrawBaseMaterialGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawBaseMaterialGUI_System_String_
   - name: (
   - uid: System.String
     name: string
@@ -792,7 +704,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawBaseMaterialGUI(System.String)
     name: DrawBaseMaterialGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawBaseMaterialGUI_System_String_
   - name: (
   - uid: System.String
     name: String
@@ -802,7 +713,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDistanceBlendGUI(System.String)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawDistanceBlendGUI_System_String_
   name: DrawDistanceBlendGUI(string)
   nameWithType: RepetitionlessGUIBase.DrawDistanceBlendGUI(string)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDistanceBlendGUI(string)
@@ -812,7 +722,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDistanceBlendGUI(System.String)
     name: DrawDistanceBlendGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawDistanceBlendGUI_System_String_
   - name: (
   - uid: System.String
     name: string
@@ -821,7 +730,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDistanceBlendGUI(System.String)
     name: DrawDistanceBlendGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawDistanceBlendGUI_System_String_
   - name: (
   - uid: System.String
     name: String
@@ -831,7 +739,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialBlendGUI(System.String)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialBlendGUI_System_String_
   name: DrawMaterialBlendGUI(string)
   nameWithType: RepetitionlessGUIBase.DrawMaterialBlendGUI(string)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialBlendGUI(string)
@@ -841,7 +748,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialBlendGUI(System.String)
     name: DrawMaterialBlendGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialBlendGUI_System_String_
   - name: (
   - uid: System.String
     name: string
@@ -850,7 +756,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialBlendGUI(System.String)
     name: DrawMaterialBlendGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialBlendGUI_System_String_
   - name: (
   - uid: System.String
     name: String
@@ -859,20 +764,17 @@ references:
 - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDebugGUI
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDebugGUI
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawDebugGUI
   name: DrawDebugGUI()
   nameWithType: RepetitionlessGUIBase.DrawDebugGUI()
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDebugGUI()
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDebugGUI
     name: DrawDebugGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawDebugGUI
   - name: (
   - name: )
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawDebugGUI
     name: DrawDebugGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawDebugGUI
   - name: (
   - name: )
 - uid: System
@@ -891,7 +793,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.HandleAssignedTextures(System.String,System.Int32,UnityEditor.MaterialProperty)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_HandleAssignedTextures_System_String_System_Int32_UnityEditor_MaterialProperty_
   name: HandleAssignedTextures(string, int, MaterialProperty)
   nameWithType: RepetitionlessGUIBase.HandleAssignedTextures(string, int, MaterialProperty)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.HandleAssignedTextures(string, int, UnityEditor.MaterialProperty)
@@ -901,7 +802,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.HandleAssignedTextures(System.String,System.Int32,UnityEditor.MaterialProperty)
     name: HandleAssignedTextures
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_HandleAssignedTextures_System_String_System_Int32_UnityEditor_MaterialProperty_
   - name: (
   - uid: System.String
     name: string
@@ -920,7 +820,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.HandleAssignedTextures(System.String,System.Int32,UnityEditor.MaterialProperty)
     name: HandleAssignedTextures
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_HandleAssignedTextures_System_String_System_Int32_UnityEditor_MaterialProperty_
   - name: (
   - uid: System.String
     name: String
@@ -938,7 +837,6 @@ references:
   - name: )
 - uid: Repetitionless.Inspectors.RepetitionlessTerrainGUI.HandleAssignedTextures*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessTerrainGUI.HandleAssignedTextures
-  href: Repetitionless.Inspectors.RepetitionlessTerrainGUI.html#Repetitionless_Inspectors_RepetitionlessTerrainGUI_HandleAssignedTextures_System_String_System_Int32_UnityEditor_MaterialProperty_
   name: HandleAssignedTextures
   nameWithType: RepetitionlessTerrainGUI.HandleAssignedTextures
   fullName: Repetitionless.Inspectors.RepetitionlessTerrainGUI.HandleAssignedTextures
@@ -973,14 +871,12 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.OnEnable(UnityEditor.MaterialEditor)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_OnEnable_UnityEditor_MaterialEditor_
   name: OnEnable(MaterialEditor)
   nameWithType: RepetitionlessGUIBase.OnEnable(MaterialEditor)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.OnEnable(UnityEditor.MaterialEditor)
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.OnEnable(UnityEditor.MaterialEditor)
     name: OnEnable
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_OnEnable_UnityEditor_MaterialEditor_
   - name: (
   - uid: UnityEditor.MaterialEditor
     name: MaterialEditor
@@ -989,7 +885,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.OnEnable(UnityEditor.MaterialEditor)
     name: OnEnable
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_OnEnable_UnityEditor_MaterialEditor_
   - name: (
   - uid: UnityEditor.MaterialEditor
     name: MaterialEditor
@@ -997,7 +892,6 @@ references:
   - name: )
 - uid: Repetitionless.Inspectors.RepetitionlessTerrainGUI.OnEnable*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessTerrainGUI.OnEnable
-  href: Repetitionless.Inspectors.RepetitionlessTerrainGUI.html#Repetitionless_Inspectors_RepetitionlessTerrainGUI_OnEnable_UnityEditor_MaterialEditor_
   name: OnEnable
   nameWithType: RepetitionlessTerrainGUI.OnEnable
   fullName: Repetitionless.Inspectors.RepetitionlessTerrainGUI.OnEnable
@@ -1012,7 +906,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_OnGUI_UnityEditor_MaterialEditor_UnityEditor_MaterialProperty___
   name: OnGUI(MaterialEditor, MaterialProperty[])
   nameWithType: RepetitionlessGUIBase.OnGUI(MaterialEditor, MaterialProperty[])
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.OnGUI(UnityEditor.MaterialEditor, UnityEditor.MaterialProperty[])
@@ -1022,7 +915,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
     name: OnGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_OnGUI_UnityEditor_MaterialEditor_UnityEditor_MaterialProperty___
   - name: (
   - uid: UnityEditor.MaterialEditor
     name: MaterialEditor
@@ -1038,7 +930,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
     name: OnGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_OnGUI_UnityEditor_MaterialEditor_UnityEditor_MaterialProperty___
   - name: (
   - uid: UnityEditor.MaterialEditor
     name: MaterialEditor
@@ -1053,7 +944,6 @@ references:
   - name: )
 - uid: Repetitionless.Inspectors.RepetitionlessTerrainGUI.OnGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessTerrainGUI.OnGUI
-  href: Repetitionless.Inspectors.RepetitionlessTerrainGUI.html#Repetitionless_Inspectors_RepetitionlessTerrainGUI_OnGUI_UnityEditor_MaterialEditor_UnityEditor_MaterialProperty___
   name: OnGUI
   nameWithType: RepetitionlessTerrainGUI.OnGUI
   fullName: Repetitionless.Inspectors.RepetitionlessTerrainGUI.OnGUI
@@ -1081,7 +971,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialSettingsGUI(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialSettingsGUI_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_
   name: DrawMaterialSettingsGUI(string, bool, bool, bool, bool, bool, int)
   nameWithType: RepetitionlessGUIBase.DrawMaterialSettingsGUI(string, bool, bool, bool, bool, bool, int)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialSettingsGUI(string, bool, bool, bool, bool, bool, int)
@@ -1091,7 +980,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialSettingsGUI(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
     name: DrawMaterialSettingsGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialSettingsGUI_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_
   - name: (
   - uid: System.String
     name: string
@@ -1130,7 +1018,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialSettingsGUI(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
     name: DrawMaterialSettingsGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialSettingsGUI_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_
   - name: (
   - uid: System.String
     name: String
@@ -1168,7 +1055,6 @@ references:
   - name: )
 - uid: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawMaterialSettingsGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawMaterialSettingsGUI
-  href: Repetitionless.Inspectors.RepetitionlessTerrainGUI.html#Repetitionless_Inspectors_RepetitionlessTerrainGUI_DrawMaterialSettingsGUI_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_
   name: DrawMaterialSettingsGUI
   nameWithType: RepetitionlessTerrainGUI.DrawMaterialSettingsGUI
   fullName: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawMaterialSettingsGUI
@@ -1186,7 +1072,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawRightMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawRightMaterialSettingsGUI_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_System_Boolean_System_Boolean_
   name: DrawRightMaterialSettingsGUI(int, string, int, int, bool, bool, bool)
   nameWithType: RepetitionlessGUIBase.DrawRightMaterialSettingsGUI(int, string, int, int, bool, bool, bool)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawRightMaterialSettingsGUI(int, string, int, int, bool, bool, bool)
@@ -1196,7 +1081,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawRightMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
     name: DrawRightMaterialSettingsGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawRightMaterialSettingsGUI_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_System_Boolean_System_Boolean_
   - name: (
   - uid: System.Int32
     name: int
@@ -1235,7 +1119,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawRightMaterialSettingsGUI(System.Int32,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
     name: DrawRightMaterialSettingsGUI
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawRightMaterialSettingsGUI_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_System_Boolean_System_Boolean_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1273,7 +1156,6 @@ references:
   - name: )
 - uid: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawRightMaterialSettingsGUI*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawRightMaterialSettingsGUI
-  href: Repetitionless.Inspectors.RepetitionlessTerrainGUI.html#Repetitionless_Inspectors_RepetitionlessTerrainGUI_DrawRightMaterialSettingsGUI_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_System_Boolean_System_Boolean_
   name: DrawRightMaterialSettingsGUI
   nameWithType: RepetitionlessTerrainGUI.DrawRightMaterialSettingsGUI
   fullName: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawRightMaterialSettingsGUI
@@ -1281,7 +1163,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialMainProperties(System.String,System.Int32)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialMainProperties_System_String_System_Int32_
   name: DrawMaterialMainProperties(string, int)
   nameWithType: RepetitionlessGUIBase.DrawMaterialMainProperties(string, int)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialMainProperties(string, int)
@@ -1291,7 +1172,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialMainProperties(System.String,System.Int32)
     name: DrawMaterialMainProperties
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialMainProperties_System_String_System_Int32_
   - name: (
   - uid: System.String
     name: string
@@ -1305,7 +1185,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawMaterialMainProperties(System.String,System.Int32)
     name: DrawMaterialMainProperties
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawMaterialMainProperties_System_String_System_Int32_
   - name: (
   - uid: System.String
     name: String
@@ -1318,7 +1197,6 @@ references:
   - name: )
 - uid: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawMaterialMainProperties*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawMaterialMainProperties
-  href: Repetitionless.Inspectors.RepetitionlessTerrainGUI.html#Repetitionless_Inspectors_RepetitionlessTerrainGUI_DrawMaterialMainProperties_System_String_System_Int32_
   name: DrawMaterialMainProperties
   nameWithType: RepetitionlessTerrainGUI.DrawMaterialMainProperties
   fullName: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawMaterialMainProperties
@@ -1326,7 +1204,6 @@ references:
   commentId: M:Repetitionless.Inspectors.RepetitionlessGUIBase.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent,System.String)
   parent: Repetitionless.Inspectors.RepetitionlessGUIBase
   isExternal: true
-  href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawTexture_System_Int32_System_Int32_UnityEngine_GUIContent_System_String_
   name: DrawTexture(int, int, GUIContent, string)
   nameWithType: RepetitionlessGUIBase.DrawTexture(int, int, GUIContent, string)
   fullName: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawTexture(int, int, UnityEngine.GUIContent, string)
@@ -1336,7 +1213,6 @@ references:
   spec.csharp:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent,System.String)
     name: DrawTexture
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawTexture_System_Int32_System_Int32_UnityEngine_GUIContent_System_String_
   - name: (
   - uid: System.Int32
     name: int
@@ -1360,7 +1236,6 @@ references:
   spec.vb:
   - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent,System.String)
     name: DrawTexture
-    href: Repetitionless.Inspectors.RepetitionlessGUIBase.html#Repetitionless_Inspectors_RepetitionlessGUIBase_DrawTexture_System_Int32_System_Int32_UnityEngine_GUIContent_System_String_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1383,7 +1258,6 @@ references:
   - name: )
 - uid: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawTexture*
   commentId: Overload:Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawTexture
-  href: Repetitionless.Inspectors.RepetitionlessTerrainGUI.html#Repetitionless_Inspectors_RepetitionlessTerrainGUI_DrawTexture_System_Int32_System_Int32_UnityEngine_GUIContent_System_String_
   name: DrawTexture
   nameWithType: RepetitionlessTerrainGUI.DrawTexture
   fullName: Repetitionless.Inspectors.RepetitionlessTerrainGUI.DrawTexture

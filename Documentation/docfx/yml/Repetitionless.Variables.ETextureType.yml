@@ -26,7 +26,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
-  summary: Available mask texture types for Repetitionless Materials
+  summary: "\nAvailable mask texture types for Repetitionless Materials\n"
   example: []
   syntax:
     content: public enum ETextureType
@@ -53,7 +53,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
-  summary: Procedurally generated with perlin noise
+  summary: "\nProcedurally generated with perlin noise\n"
   example: []
   syntax:
     content: PerlinNoise = 0
@@ -81,7 +81,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
-  summary: Procedurally generated with simplex noise
+  summary: "\nProcedurally generated with simplex noise\n"
   example: []
   syntax:
     content: SimplexNoise = 1
@@ -109,7 +109,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
-  summary: Uses a custom input texture
+  summary: "\nUses a custom input texture\n"
   example: []
   syntax:
     content: CustomTexture = 2
@@ -118,30 +118,24 @@ items:
 references:
 - uid: Repetitionless.Variables
   commentId: N:Repetitionless.Variables
-  href: Repetitionless.html
   name: Repetitionless.Variables
   nameWithType: Repetitionless.Variables
   fullName: Repetitionless.Variables
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Variables
     name: Variables
-    href: Repetitionless.Variables.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Variables
     name: Variables
-    href: Repetitionless.Variables.html
 - uid: Repetitionless.Variables.ETextureType
   commentId: T:Repetitionless.Variables.ETextureType
   parent: Repetitionless.Variables
-  href: Repetitionless.Variables.ETextureType.html
   name: ETextureType
   nameWithType: ETextureType
   fullName: Repetitionless.Variables.ETextureType

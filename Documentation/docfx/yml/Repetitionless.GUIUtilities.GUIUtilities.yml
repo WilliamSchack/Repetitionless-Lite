@@ -17,6 +17,7 @@ items:
   - Repetitionless.GUIUtilities.GUIUtilities.DrawTexture(UnityEngine.Texture2D,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.GUIUtilities.DrawTexture2DArray(UnityEngine.Rect,UnityEngine.Texture2DArray,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.GUIUtilities.DrawTexture2DArray(UnityEngine.Texture2DArray,UnityEngine.GUIContent)
+  - Repetitionless.GUIUtilities.GUIUtilities.DrawTextures(UnityEngine.Texture2D[],UnityEngine.GUIContent[])
   - Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Rect,UnityEngine.Texture2D,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Texture2D,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithFloat(UnityEngine.Rect,UnityEngine.Texture2D,System.Single,UnityEngine.GUIContent)
@@ -27,7 +28,6 @@ items:
   - Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider(UnityEngine.Texture2D,System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Rect,UnityEngine.Texture2D,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Texture2D,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
-  - Repetitionless.GUIUtilities.GUIUtilities.DrawTextures(UnityEngine.Texture2D[],UnityEngine.GUIContent[])
   - Repetitionless.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEditor.MaterialProperty,System.String,System.String)
   - Repetitionless.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Rect,UnityEngine.Vector2,UnityEngine.GUIContent)
   - Repetitionless.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Vector2,UnityEngine.GUIContent)
@@ -58,7 +58,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Many GUI functions to make inspector creation easier without MaterialProperties
+  summary: "\nMany GUI functions to make inspector creation easier without MaterialProperties\n"
   example: []
   syntax:
     content: public static class GUIUtilities
@@ -87,7 +87,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: The height that one line takes in the inspector
+  summary: "\nThe height that one line takes in the inspector\n"
   example: []
   syntax:
     content: public const int LINE_HEIGHT = 18
@@ -116,7 +116,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: The height in-between two lines in the inspector
+  summary: "\nThe height in-between two lines in the inspector\n"
   example: []
   syntax:
     content: public const int LINE_SPACING = 2
@@ -145,7 +145,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: The amount of left padding for foldouts
+  summary: "\nThe amount of left padding for foldouts\n"
   example: []
   syntax:
     content: public const int FOLDOUT_INDENT = 10
@@ -174,7 +174,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Style used for large headers
+  summary: "\nStyle used for large headers\n"
   example: []
   syntax:
     content: public static GUIStyle BoldHeaderLargeStyle { get; }
@@ -205,7 +205,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Style for major toggle buttons
+  summary: "\nStyle for major toggle buttons\n"
   example: []
   syntax:
     content: public static GUIStyle MajorToggleButtonStyle { get; }
@@ -236,7 +236,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Style used for foldout headers
+  summary: "\nStyle used for foldout headers\n"
   example: []
   syntax:
     content: public static GUIStyle BoldFoldoutStyle { get; }
@@ -267,20 +267,17 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Gets the rect of a single line, updating the GUILayout accordingly
+  summary: "\nGets the rect of a single line, updating the GUILayout accordingly\n"
   example: []
   syntax:
     content: public static Rect GetLineRect(float heightOverride = 20)
     parameters:
     - id: heightOverride
       type: System.Single
-      description: >-
-        Default <b>20 (LINE_HEIGHT + LINE_SPACING)</b><br />
-
-        Sets the height of the output rect
+      description: "\nDefault <strong>20 (LINE_HEIGHT + LINE_SPACING)</strong><br />\nSets the height of the output rect\n"
     return:
       type: UnityEngine.Rect
-      description: The rect of a single line
+      description: "\nThe rect of a single line\n"
     content.vb: Public Shared Function GetLineRect(heightOverride As Single = 20) As Rect
   overload: Repetitionless.GUIUtilities.GUIUtilities.GetLineRect*
   nameWithType.vb: GUIUtilities.GetLineRect(Single)
@@ -308,14 +305,14 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a Large Header Label
+  summary: "\nDraws a Large Header Label\n"
   example: []
   syntax:
     content: public static void DrawHeaderLabelLarge(string text)
     parameters:
     - id: text
       type: System.String
-      description: The text to show
+      description: "\nThe text to show\n"
     content.vb: Public Shared Sub DrawHeaderLabelLarge(text As String)
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge*
   nameWithType.vb: GUIUtilities.DrawHeaderLabelLarge(String)
@@ -343,23 +340,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a large toggle button that uses and updates the inputted property<br />
-
-    Displays red when disabled, green when enabled
+  summary: "\nDraws a large toggle button that uses and updates the inputted property<br />\nDisplays red when disabled, green when enabled\n"
   example: []
   syntax:
     content: public static bool DrawMajorToggleButton(MaterialProperty property, string label)
     parameters:
     - id: property
       type: UnityEditor.MaterialProperty
-      description: The material property to be used and modified for the toggle state
+      description: "\nThe material property to be used and modified for the toggle state\n"
     - id: label
       type: System.String
-      description: The text to show inside the button
+      description: "\nThe text to show inside the button\n"
     return:
       type: System.Boolean
-      description: The button toggled state
+      description: "\nThe button toggled state\n"
     content.vb: Public Shared Function DrawMajorToggleButton([property] As MaterialProperty, label As String) As Boolean
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawMajorToggleButton*
   nameWithType.vb: GUIUtilities.DrawMajorToggleButton(MaterialProperty, String)
@@ -387,23 +381,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws a large toggle button using an input toggle state value<br />
-
-    Displays red when disabled, green when enabled
+  summary: "\nDraws a large toggle button using an input toggle state value<br />\nDisplays red when disabled, green when enabled\n"
   example: []
   syntax:
     content: public static bool DrawMajorToggleButton(bool enabled, string label)
     parameters:
     - id: enabled
       type: System.Boolean
-      description: Toggle state if the button is enabled
+      description: "\nToggle state if the button is enabled\n"
     - id: label
       type: System.String
-      description: The text to show inside the button
+      description: "\nThe text to show inside the button\n"
     return:
       type: System.Boolean
-      description: The button toggled state
+      description: "\nThe button toggled state\n"
     content.vb: Public Shared Function DrawMajorToggleButton(enabled As Boolean, label As String) As Boolean
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawMajorToggleButton*
   nameWithType.vb: GUIUtilities.DrawMajorToggleButton(Boolean, String)
@@ -431,20 +422,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a Texture2DArray field
+  summary: "\nDraws a Texture2DArray field\n"
   example: []
   syntax:
     content: public static Texture2DArray DrawTexture2DArray(Texture2DArray array, GUIContent content)
     parameters:
     - id: array
       type: UnityEngine.Texture2DArray
-      description: The input Texture2DArray
+      description: "\nThe input Texture2DArray\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: UnityEngine.Texture2DArray
-      description: The Texture2DArray input into the inspector
+      description: "\nThe Texture2DArray input into the inspector\n"
     content.vb: Public Shared Function DrawTexture2DArray(array As Texture2DArray, content As GUIContent) As Texture2DArray
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTexture2DArray*
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTexture2DArray(UnityEngine.Rect,UnityEngine.Texture2DArray,UnityEngine.GUIContent)
@@ -469,23 +460,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a Texture2DArray field
+  summary: "\nDraws a Texture2DArray field\n"
   example: []
   syntax:
     content: public static Texture2DArray DrawTexture2DArray(Rect rect, Texture2DArray array, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: array
       type: UnityEngine.Texture2DArray
-      description: The input Texture2DArray
+      description: "\nThe input Texture2DArray\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: UnityEngine.Texture2DArray
-      description: The Texture2DArray input into the inspector
+      description: "\nThe Texture2DArray input into the inspector\n"
     content.vb: Public Shared Function DrawTexture2DArray(rect As Rect, array As Texture2DArray, content As GUIContent) As Texture2DArray
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTexture2DArray*
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTexture(UnityEngine.Texture2D,UnityEngine.GUIContent)
@@ -510,20 +501,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field
+  summary: "\nDraws a single texture field\n"
   example: []
   syntax:
     content: public static Texture2D DrawTexture(Texture2D texture, GUIContent content)
     parameters:
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: UnityEngine.Texture2D
-      description: The texture input into the inspector
+      description: "\nThe texture input into the inspector\n"
     content.vb: Public Shared Function DrawTexture(texture As Texture2D, content As GUIContent) As Texture2D
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTexture*
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTexture(UnityEngine.Rect,UnityEngine.Texture2D,UnityEngine.GUIContent)
@@ -548,23 +539,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field
+  summary: "\nDraws a single texture field\n"
   example: []
   syntax:
     content: public static Texture2D DrawTexture(Rect rect, Texture2D texture, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: UnityEngine.Texture2D
-      description: The texture input into the inspector
+      description: "\nThe texture input into the inspector\n"
     content.vb: Public Shared Function DrawTexture(rect As Rect, texture As Texture2D, content As GUIContent) As Texture2D
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTexture*
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithInt(UnityEngine.Texture2D,System.Int32,UnityEngine.GUIContent)
@@ -589,23 +580,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field with an accompanied integer value
+  summary: "\nDraws a single texture field with an accompanied integer value\n"
   example: []
   syntax:
     content: public static (Texture2D, int) DrawTextureWithInt(Texture2D texture, int intValue, GUIContent content)
     parameters:
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: intValue
       type: System.Int32
-      description: The input integer value
+      description: "\nThe input integer value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
-      description: 'Item1: Texture, Item2: Int Value'
+      description: "\nItem1: Texture, Item2: Int Value\n"
     content.vb: Public Shared Function DrawTextureWithInt(texture As Texture2D, intValue As Integer, content As GUIContent) As (Texture2D, Integer)
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithInt*
   nameWithType.vb: GUIUtilities.DrawTextureWithInt(Texture2D, Integer, GUIContent)
@@ -633,26 +624,26 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field with an accompanied integer value
+  summary: "\nDraws a single texture field with an accompanied integer value\n"
   example: []
   syntax:
     content: public static (Texture2D, int) DrawTextureWithInt(Rect rect, Texture2D texture, int intValue, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: intValue
       type: System.Int32
-      description: The input integer value
+      description: "\nThe input integer value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
-      description: 'Item1: Texture, Item2: Int Value'
+      description: "\nItem1: Texture, Item2: Int Value\n"
     content.vb: Public Shared Function DrawTextureWithInt(rect As Rect, texture As Texture2D, intValue As Integer, content As GUIContent) As (Texture2D, Integer)
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithInt*
   nameWithType.vb: GUIUtilities.DrawTextureWithInt(Rect, Texture2D, Integer, GUIContent)
@@ -680,29 +671,29 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field with an accompanied integer slider
+  summary: "\nDraws a single texture field with an accompanied integer slider\n"
   example: []
   syntax:
     content: public static (Texture2D, int) DrawTextureWithIntSlider(Texture2D texture, int sliderValue, int sliderMin, int sliderMax, GUIContent content)
     parameters:
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: sliderValue
       type: System.Int32
-      description: The input slider value
+      description: "\nThe input slider value\n"
     - id: sliderMin
       type: System.Int32
-      description: The minimum value that the slider will allow
+      description: "\nThe minimum value that the slider will allow\n"
     - id: sliderMax
       type: System.Int32
-      description: The maximum value that the slider will allow
+      description: "\nThe maximum value that the slider will allow\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
-      description: 'Item1: Texture, Item2: Slider Value'
+      description: "\nItem1: Texture, Item2: Slider Value\n"
     content.vb: Public Shared Function DrawTextureWithIntSlider(texture As Texture2D, sliderValue As Integer, sliderMin As Integer, sliderMax As Integer, content As GUIContent) As (Texture2D, Integer)
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider*
   nameWithType.vb: GUIUtilities.DrawTextureWithIntSlider(Texture2D, Integer, Integer, Integer, GUIContent)
@@ -730,32 +721,32 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field with an accompanied integer slider
+  summary: "\nDraws a single texture field with an accompanied integer slider\n"
   example: []
   syntax:
     content: public static (Texture2D, int) DrawTextureWithIntSlider(Rect rect, Texture2D texture, int sliderValue, int sliderMin, int sliderMax, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: sliderValue
       type: System.Int32
-      description: The input slider value
+      description: "\nThe input slider value\n"
     - id: sliderMin
       type: System.Int32
-      description: The minimum value that the slider will allow
+      description: "\nThe minimum value that the slider will allow\n"
     - id: sliderMax
       type: System.Int32
-      description: The maximum value that the slider will allow
+      description: "\nThe maximum value that the slider will allow\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
-      description: 'Item1: Texture, Item2: Slider Value'
+      description: "\nItem1: Texture, Item2: Slider Value\n"
     content.vb: Public Shared Function DrawTextureWithIntSlider(rect As Rect, texture As Texture2D, sliderValue As Integer, sliderMin As Integer, sliderMax As Integer, content As GUIContent) As (Texture2D, Integer)
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider*
   nameWithType.vb: GUIUtilities.DrawTextureWithIntSlider(Rect, Texture2D, Integer, Integer, Integer, GUIContent)
@@ -783,23 +774,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field with an accompanied float value
+  summary: "\nDraws a single texture field with an accompanied float value\n"
   example: []
   syntax:
     content: public static (Texture2D, float) DrawTextureWithFloat(Texture2D texture, float floatValue, GUIContent content)
     parameters:
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: floatValue
       type: System.Single
-      description: The input float value
+      description: "\nThe input float value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
-      description: 'Item1: Texture, Item2: Float Value'
+      description: "\nItem1: Texture, Item2: Float Value\n"
     content.vb: Public Shared Function DrawTextureWithFloat(texture As Texture2D, floatValue As Single, content As GUIContent) As (Texture2D, Single)
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithFloat*
   nameWithType.vb: GUIUtilities.DrawTextureWithFloat(Texture2D, Single, GUIContent)
@@ -827,26 +818,26 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field with an accompanied float value
+  summary: "\nDraws a single texture field with an accompanied float value\n"
   example: []
   syntax:
     content: public static (Texture2D, float) DrawTextureWithFloat(Rect rect, Texture2D texture, float floatValue, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: floatValue
       type: System.Single
-      description: The input float value
+      description: "\nThe input float value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
-      description: 'Item1: Texture, Item2: Float Value'
+      description: "\nItem1: Texture, Item2: Float Value\n"
     content.vb: Public Shared Function DrawTextureWithFloat(rect As Rect, texture As Texture2D, floatValue As Single, content As GUIContent) As (Texture2D, Single)
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithFloat*
   nameWithType.vb: GUIUtilities.DrawTextureWithFloat(Rect, Texture2D, Single, GUIContent)
@@ -874,29 +865,29 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field with an accompanied slider
+  summary: "\nDraws a single texture field with an accompanied slider\n"
   example: []
   syntax:
     content: public static (Texture2D, float) DrawTextureWithSlider(Texture2D texture, float sliderValue, float sliderMin, float sliderMax, GUIContent content)
     parameters:
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: sliderValue
       type: System.Single
-      description: The input slider value
+      description: "\nThe input slider value\n"
     - id: sliderMin
       type: System.Single
-      description: The minimum value that the slider will allow
+      description: "\nThe minimum value that the slider will allow\n"
     - id: sliderMax
       type: System.Single
-      description: The maximum value that the slider will allow
+      description: "\nThe maximum value that the slider will allow\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
-      description: 'Item1: Texture, Item2: Slider Value'
+      description: "\nItem1: Texture, Item2: Slider Value\n"
     content.vb: Public Shared Function DrawTextureWithSlider(texture As Texture2D, sliderValue As Single, sliderMin As Single, sliderMax As Single, content As GUIContent) As (Texture2D, Single)
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithSlider*
   nameWithType.vb: GUIUtilities.DrawTextureWithSlider(Texture2D, Single, Single, Single, GUIContent)
@@ -924,32 +915,32 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field with an accompanied slider
+  summary: "\nDraws a single texture field with an accompanied slider\n"
   example: []
   syntax:
     content: public static (Texture2D, float) DrawTextureWithSlider(Rect rect, Texture2D texture, float sliderValue, float sliderMin, float sliderMax, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: sliderValue
       type: System.Single
-      description: The input slider value
+      description: "\nThe input slider value\n"
     - id: sliderMin
       type: System.Single
-      description: The minimum value that the slider will allow
+      description: "\nThe minimum value that the slider will allow\n"
     - id: sliderMax
       type: System.Single
-      description: The maximum value that the slider will allow
+      description: "\nThe maximum value that the slider will allow\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
-      description: 'Item1: Texture, Item2: Slider Value'
+      description: "\nItem1: Texture, Item2: Slider Value\n"
     content.vb: Public Shared Function DrawTextureWithSlider(rect As Rect, texture As Texture2D, sliderValue As Single, sliderMin As Single, sliderMax As Single, content As GUIContent) As (Texture2D, Single)
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithSlider*
   nameWithType.vb: GUIUtilities.DrawTextureWithSlider(Rect, Texture2D, Single, Single, Single, GUIContent)
@@ -977,26 +968,26 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field with an accompanied color field
+  summary: "\nDraws a single texture field with an accompanied color field\n"
   example: []
   syntax:
     content: public static (Texture2D, Color) DrawTextureWithColor(Texture2D texture, Color colorValue, bool hdr, GUIContent content)
     parameters:
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: colorValue
       type: UnityEngine.Color
-      description: The input color value
+      description: "\nThe input color value\n"
     - id: hdr
       type: System.Boolean
-      description: If the color is HDR
+      description: "\nIf the color is HDR\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,UnityEngine.Color}
-      description: 'Item1: Texture, Item2: Color Value'
+      description: "\nItem1: Texture, Item2: Color Value\n"
     content.vb: Public Shared Function DrawTextureWithColor(texture As Texture2D, colorValue As Color, hdr As Boolean, content As GUIContent) As (Texture2D, Color)
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithColor*
   nameWithType.vb: GUIUtilities.DrawTextureWithColor(Texture2D, Color, Boolean, GUIContent)
@@ -1024,29 +1015,29 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a single texture field with an accompanied color field
+  summary: "\nDraws a single texture field with an accompanied color field\n"
   example: []
   syntax:
     content: public static (Texture2D, Color) DrawTextureWithColor(Rect rect, Texture2D texture, Color colorValue, bool hdr, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: texture
       type: UnityEngine.Texture2D
-      description: The input texture
+      description: "\nThe input texture\n"
     - id: colorValue
       type: UnityEngine.Color
-      description: The input color value
+      description: "\nThe input color value\n"
     - id: hdr
       type: System.Boolean
-      description: If the color is HDR
+      description: "\nIf the color is HDR\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: System.ValueTuple{UnityEngine.Texture2D,UnityEngine.Color}
-      description: 'Item1: Texture, Item2: Color Value'
+      description: "\nItem1: Texture, Item2: Color Value\n"
     content.vb: Public Shared Function DrawTextureWithColor(rect As Rect, texture As Texture2D, colorValue As Color, hdr As Boolean, content As GUIContent) As (Texture2D, Color)
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithColor*
   nameWithType.vb: GUIUtilities.DrawTextureWithColor(Rect, Texture2D, Color, Boolean, GUIContent)
@@ -1074,23 +1065,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws multiple texture fields in sequence from the given texture array
+  summary: "\nDraws multiple texture fields in sequence from the given texture array\n"
   example: []
   syntax:
     content: public static Texture2D[] DrawTextures(Texture2D[] textures, GUIContent[] content = null)
     parameters:
     - id: textures
       type: UnityEngine.Texture2D[]
-      description: The input textures that will be drawn in order
+      description: "\nThe input textures that will be drawn in order\n"
     - id: content
       type: UnityEngine.GUIContent[]
-      description: >-
-        The GUIContent for each field in order
-
-        If unassigned each texture will be named "Texture 1", "Texture 2", ...
+      description: "\nThe GUIContent for each field in order\nIf unassigned each texture will be named &quot;Texture 1&quot;, &quot;Texture 2&quot;, ...\n"
     return:
       type: UnityEngine.Texture2D[]
-      description: Array of textures input into the inspector
+      description: "\nArray of textures input into the inspector\n"
     content.vb: Public Shared Function DrawTextures(textures As Texture2D(), content As GUIContent() = Nothing) As Texture2D()
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTextures*
   nameWithType.vb: GUIUtilities.DrawTextures(Texture2D(), GUIContent())
@@ -1118,20 +1106,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a Vector2 field removing the space at the end which EditorGUI.Vector2Field draws
+  summary: "\nDraws a Vector2 field removing the space at the end which EditorGUI.Vector2Field draws\n"
   example: []
   syntax:
     content: public static Vector2 DrawVector2Field(Vector2 value, GUIContent content)
     parameters:
     - id: value
       type: UnityEngine.Vector2
-      description: The input Vector2 value
+      description: "\nThe input Vector2 value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: UnityEngine.Vector2
-      description: The Vector2 input into the inspector
+      description: "\nThe Vector2 input into the inspector\n"
     content.vb: Public Shared Function DrawVector2Field(value As Vector2, content As GUIContent) As Vector2
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawVector2Field*
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Rect,UnityEngine.Vector2,UnityEngine.GUIContent)
@@ -1156,23 +1144,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a Vector2 field removing the space at the end which EditorGUI.Vector2Field draws
+  summary: "\nDraws a Vector2 field removing the space at the end which EditorGUI.Vector2Field draws\n"
   example: []
   syntax:
     content: public static Vector2 DrawVector2Field(Rect rect, Vector2 value, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: value
       type: UnityEngine.Vector2
-      description: The input Vector2 value
+      description: "\nThe input Vector2 value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: UnityEngine.Vector2
-      description: The Vector2 input into the inspector
+      description: "\nThe Vector2 input into the inspector\n"
     content.vb: Public Shared Function DrawVector2Field(rect As Rect, value As Vector2, content As GUIContent) As Vector2
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawVector2Field*
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawVector2IntField(UnityEngine.Vector2Int,UnityEngine.GUIContent)
@@ -1197,20 +1185,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a Vector2Int field removing the space at the end which EditorGUI.Vector2IntField draws
+  summary: "\nDraws a Vector2Int field removing the space at the end which EditorGUI.Vector2IntField draws\n"
   example: []
   syntax:
     content: public static Vector2Int DrawVector2IntField(Vector2Int value, GUIContent content)
     parameters:
     - id: value
       type: UnityEngine.Vector2Int
-      description: The input Vector2Int value
+      description: "\nThe input Vector2Int value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: UnityEngine.Vector2Int
-      description: The Vector2Int input into the inspector
+      description: "\nThe Vector2Int input into the inspector\n"
     content.vb: Public Shared Function DrawVector2IntField(value As Vector2Int, content As GUIContent) As Vector2Int
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawVector2IntField*
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawVector2IntField(UnityEngine.Rect,UnityEngine.Vector2Int,UnityEngine.GUIContent)
@@ -1235,23 +1223,23 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a Vector2Int field removing the space at the end which EditorGUI.Vector2IntField draws
+  summary: "\nDraws a Vector2Int field removing the space at the end which EditorGUI.Vector2IntField draws\n"
   example: []
   syntax:
     content: public static Vector2Int DrawVector2IntField(Rect rect, Vector2Int value, GUIContent content)
     parameters:
     - id: rect
       type: UnityEngine.Rect
-      description: The space that the field will use
+      description: "\nThe space that the field will use\n"
     - id: value
       type: UnityEngine.Vector2Int
-      description: The input Vector2Int value
+      description: "\nThe input Vector2Int value\n"
     - id: content
       type: UnityEngine.GUIContent
-      description: The GUIContent for the field
+      description: "\nThe GUIContent for the field\n"
     return:
       type: UnityEngine.Vector2Int
-      description: The Vector2Int input into the inspector
+      description: "\nThe Vector2Int input into the inspector\n"
     content.vb: Public Shared Function DrawVector2IntField(rect As Rect, value As Vector2Int, content As GUIContent) As Vector2Int
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawVector2IntField*
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEditor.MaterialProperty,System.String,System.String)
@@ -1276,23 +1264,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: >-
-    Draws tiling offset fields using and updating values in a float4 materialProperty<br />
-
-    Uses the DrawVector2Field function to remove empty space
+  summary: "\nDraws tiling offset fields using and updating values in a float4 materialProperty<br />\nUses the DrawVector2Field function to remove empty space\n"
   example: []
   syntax:
     content: public static void DrawTilingOffset(MaterialProperty tilingOffsetProperty, string tilingLabel = "Scale", string offsetLabel = "Offset")
     parameters:
     - id: tilingOffsetProperty
       type: UnityEditor.MaterialProperty
-      description: A float4 property that will be used and updated for the tiling and offset values
+      description: "\nA float4 property that will be used and updated for the tiling and offset values\n"
     - id: tilingLabel
       type: System.String
-      description: The label to show for the tiling field
+      description: "\nThe label to show for the tiling field\n"
     - id: offsetLabel
       type: System.String
-      description: The label to show for the offset field
+      description: "\nThe label to show for the offset field\n"
     content.vb: Public Shared Sub DrawTilingOffset(tilingOffsetProperty As MaterialProperty, tilingLabel As String = "Scale", offsetLabel As String = "Offset")
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawTilingOffset*
   nameWithType.vb: GUIUtilities.DrawTilingOffset(MaterialProperty, String, String)
@@ -1320,20 +1305,20 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Draws a foldout and updates the gui layout
+  summary: "\nDraws a foldout and updates the gui layout\n"
   example: []
   syntax:
     content: public static bool DrawFoldout(bool foldout, string label)
     parameters:
     - id: foldout
       type: System.Boolean
-      description: If the foldout state is enabled
+      description: "\nIf the foldout state is enabled\n"
     - id: label
       type: System.String
-      description: The label on the foldout
+      description: "\nThe label on the foldout\n"
     return:
       type: System.Boolean
-      description: The foldout state
+      description: "\nThe foldout state\n"
     content.vb: Public Shared Function DrawFoldout(foldout As Boolean, label As String) As Boolean
   overload: Repetitionless.GUIUtilities.GUIUtilities.DrawFoldout*
   nameWithType.vb: GUIUtilities.DrawFoldout(Boolean, String)
@@ -1361,7 +1346,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Begins a background in the same style as a HelpBox using GUILayout.BeginVertical
+  summary: "\nBegins a background in the same style as a HelpBox using GUILayout.BeginVertical\n"
   example: []
   syntax:
     content: public static void BeginBackgroundVertical()
@@ -1389,7 +1374,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Ends the vertical background, same as calling GUILayout.EndVertical
+  summary: "\nEnds the vertical background, same as calling GUILayout.EndVertical\n"
   example: []
   syntax:
     content: public static void EndBackgroundVertical()
@@ -1417,7 +1402,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Begins a background in the same style as a HelpBox using GUILayout.BeginHorizontal
+  summary: "\nBegins a background in the same style as a HelpBox using GUILayout.BeginHorizontal\n"
   example: []
   syntax:
     content: public static void BeginBackgroundHorizontal()
@@ -1445,7 +1430,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.GUIUtilities
   namespace: Repetitionless.GUIUtilities
-  summary: Ends the horizontal background, same as calling GUILayout.EndHorizontal
+  summary: "\nEnds the horizontal background, same as calling GUILayout.EndHorizontal\n"
   example: []
   syntax:
     content: public static void EndBackgroundHorizontal()
@@ -1454,26 +1439,21 @@ items:
 references:
 - uid: Repetitionless.GUIUtilities
   commentId: N:Repetitionless.GUIUtilities
-  href: Repetitionless.html
   name: Repetitionless.GUIUtilities
   nameWithType: Repetitionless.GUIUtilities
   fullName: Repetitionless.GUIUtilities
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.GUIUtilities
     name: GUIUtilities
-    href: Repetitionless.GUIUtilities.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.GUIUtilities
     name: GUIUtilities
-    href: Repetitionless.GUIUtilities.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -1502,7 +1482,6 @@ references:
   name.vb: Integer
 - uid: Repetitionless.GUIUtilities.GUIUtilities.BoldHeaderLargeStyle*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.BoldHeaderLargeStyle
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_BoldHeaderLargeStyle
   name: BoldHeaderLargeStyle
   nameWithType: GUIUtilities.BoldHeaderLargeStyle
   fullName: Repetitionless.GUIUtilities.GUIUtilities.BoldHeaderLargeStyle
@@ -1521,19 +1500,16 @@ references:
   fullName: UnityEngine
 - uid: Repetitionless.GUIUtilities.GUIUtilities.MajorToggleButtonStyle*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.MajorToggleButtonStyle
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_MajorToggleButtonStyle
   name: MajorToggleButtonStyle
   nameWithType: GUIUtilities.MajorToggleButtonStyle
   fullName: Repetitionless.GUIUtilities.GUIUtilities.MajorToggleButtonStyle
 - uid: Repetitionless.GUIUtilities.GUIUtilities.BoldFoldoutStyle*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.BoldFoldoutStyle
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_BoldFoldoutStyle
   name: BoldFoldoutStyle
   nameWithType: GUIUtilities.BoldFoldoutStyle
   fullName: Repetitionless.GUIUtilities.GUIUtilities.BoldFoldoutStyle
 - uid: Repetitionless.GUIUtilities.GUIUtilities.GetLineRect*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.GetLineRect
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_GetLineRect_System_Single_
   name: GetLineRect
   nameWithType: GUIUtilities.GetLineRect
   fullName: Repetitionless.GUIUtilities.GUIUtilities.GetLineRect
@@ -1556,7 +1532,6 @@ references:
   fullName: UnityEngine.Rect
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawHeaderLabelLarge_System_String_
   name: DrawHeaderLabelLarge
   nameWithType: GUIUtilities.DrawHeaderLabelLarge
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge
@@ -1572,7 +1547,6 @@ references:
   name.vb: String
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawMajorToggleButton*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawMajorToggleButton
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawMajorToggleButton_UnityEditor_MaterialProperty_System_String_
   name: DrawMajorToggleButton
   nameWithType: GUIUtilities.DrawMajorToggleButton
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawMajorToggleButton
@@ -1601,7 +1575,6 @@ references:
   fullName: UnityEditor
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTexture2DArray*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawTexture2DArray
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawTexture2DArray_UnityEngine_Texture2DArray_UnityEngine_GUIContent_
   name: DrawTexture2DArray
   nameWithType: GUIUtilities.DrawTexture2DArray
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawTexture2DArray
@@ -1621,7 +1594,6 @@ references:
   fullName: UnityEngine.GUIContent
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTexture*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawTexture
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawTexture_UnityEngine_Texture2D_UnityEngine_GUIContent_
   name: DrawTexture
   nameWithType: GUIUtilities.DrawTexture
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawTexture
@@ -1634,7 +1606,6 @@ references:
   fullName: UnityEngine.Texture2D
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithInt*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithInt
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawTextureWithInt_UnityEngine_Texture2D_System_Int32_UnityEngine_GUIContent_
   name: DrawTextureWithInt
   nameWithType: GUIUtilities.DrawTextureWithInt
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithInt
@@ -1691,13 +1662,11 @@ references:
   - name: )
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawTextureWithIntSlider_UnityEngine_Texture2D_System_Int32_System_Int32_System_Int32_UnityEngine_GUIContent_
   name: DrawTextureWithIntSlider
   nameWithType: GUIUtilities.DrawTextureWithIntSlider
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithFloat*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithFloat
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawTextureWithFloat_UnityEngine_Texture2D_System_Single_UnityEngine_GUIContent_
   name: DrawTextureWithFloat
   nameWithType: GUIUtilities.DrawTextureWithFloat
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithFloat
@@ -1735,13 +1704,11 @@ references:
   - name: )
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithSlider*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithSlider
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawTextureWithSlider_UnityEngine_Texture2D_System_Single_System_Single_System_Single_UnityEngine_GUIContent_
   name: DrawTextureWithSlider
   nameWithType: GUIUtilities.DrawTextureWithSlider
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithSlider
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithColor*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithColor
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawTextureWithColor_UnityEngine_Texture2D_UnityEngine_Color_System_Boolean_UnityEngine_GUIContent_
   name: DrawTextureWithColor
   nameWithType: GUIUtilities.DrawTextureWithColor
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawTextureWithColor
@@ -1783,7 +1750,6 @@ references:
   - name: )
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTextures*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawTextures
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawTextures_UnityEngine_Texture2D___UnityEngine_GUIContent___
   name: DrawTextures
   nameWithType: GUIUtilities.DrawTextures
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawTextures
@@ -1829,7 +1795,6 @@ references:
   - name: )
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawVector2Field*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawVector2Field
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawVector2Field_UnityEngine_Vector2_UnityEngine_GUIContent_
   name: DrawVector2Field
   nameWithType: GUIUtilities.DrawVector2Field
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawVector2Field
@@ -1842,7 +1807,6 @@ references:
   fullName: UnityEngine.Vector2
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawVector2IntField*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawVector2IntField
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawVector2IntField_UnityEngine_Vector2Int_UnityEngine_GUIContent_
   name: DrawVector2IntField
   nameWithType: GUIUtilities.DrawVector2IntField
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawVector2IntField
@@ -1855,37 +1819,31 @@ references:
   fullName: UnityEngine.Vector2Int
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawTilingOffset*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawTilingOffset
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawTilingOffset_UnityEditor_MaterialProperty_System_String_System_String_
   name: DrawTilingOffset
   nameWithType: GUIUtilities.DrawTilingOffset
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawTilingOffset
 - uid: Repetitionless.GUIUtilities.GUIUtilities.DrawFoldout*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.DrawFoldout
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_DrawFoldout_System_Boolean_System_String_
   name: DrawFoldout
   nameWithType: GUIUtilities.DrawFoldout
   fullName: Repetitionless.GUIUtilities.GUIUtilities.DrawFoldout
 - uid: Repetitionless.GUIUtilities.GUIUtilities.BeginBackgroundVertical*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.BeginBackgroundVertical
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_BeginBackgroundVertical
   name: BeginBackgroundVertical
   nameWithType: GUIUtilities.BeginBackgroundVertical
   fullName: Repetitionless.GUIUtilities.GUIUtilities.BeginBackgroundVertical
 - uid: Repetitionless.GUIUtilities.GUIUtilities.EndBackgroundVertical*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.EndBackgroundVertical
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_EndBackgroundVertical
   name: EndBackgroundVertical
   nameWithType: GUIUtilities.EndBackgroundVertical
   fullName: Repetitionless.GUIUtilities.GUIUtilities.EndBackgroundVertical
 - uid: Repetitionless.GUIUtilities.GUIUtilities.BeginBackgroundHorizontal*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.BeginBackgroundHorizontal
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_BeginBackgroundHorizontal
   name: BeginBackgroundHorizontal
   nameWithType: GUIUtilities.BeginBackgroundHorizontal
   fullName: Repetitionless.GUIUtilities.GUIUtilities.BeginBackgroundHorizontal
 - uid: Repetitionless.GUIUtilities.GUIUtilities.EndBackgroundHorizontal*
   commentId: Overload:Repetitionless.GUIUtilities.GUIUtilities.EndBackgroundHorizontal
-  href: Repetitionless.GUIUtilities.GUIUtilities.html#Repetitionless_GUIUtilities_GUIUtilities_EndBackgroundHorizontal
   name: EndBackgroundHorizontal
   nameWithType: GUIUtilities.EndBackgroundHorizontal
   fullName: Repetitionless.GUIUtilities.GUIUtilities.EndBackgroundHorizontal

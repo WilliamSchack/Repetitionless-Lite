@@ -25,7 +25,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomDialog
   namespace: Repetitionless.CustomDialog
-  summary: Wrapper to remove the "PropertiesGUI() is being called recursively" warning when calling EditorUtility.DisplayDialog in OnGUI within a ShaderGUI inherited class
+  summary: "\nWrapper to remove the &quot;PropertiesGUI() is being called recursively&quot; warning when calling EditorUtility.DisplayDialog in OnGUI within a ShaderGUI inherited class\n"
   example: []
   syntax:
     content: public static class ShaderGUIDialog
@@ -54,26 +54,26 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomDialog
   namespace: Repetitionless.CustomDialog
-  summary: Displays a modal dialog removing the ShaderGUI specific warning
+  summary: "\nDisplays a modal dialog removing the ShaderGUI specific warning\n"
   example: []
   syntax:
     content: public static bool DisplayDialog(string title, string message, string ok, string cancel)
     parameters:
     - id: title
       type: System.String
-      description: Title of the window
+      description: "\nTitle of the window\n"
     - id: message
       type: System.String
-      description: Message displayed in the dialog
+      description: "\nMessage displayed in the dialog\n"
     - id: ok
       type: System.String
-      description: Left button underneath the message
+      description: "\nLeft button underneath the message\n"
     - id: cancel
       type: System.String
-      description: Right button underneath the message
+      description: "\nRight button underneath the message\n"
     return:
       type: System.Boolean
-      description: If the ok button was pressed
+      description: "\nIf the ok button was pressed\n"
     content.vb: Public Shared Function DisplayDialog(title As String, message As String, ok As String, cancel As String) As Boolean
   overload: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog*
   nameWithType.vb: ShaderGUIDialog.DisplayDialog(String, String, String, String)
@@ -101,29 +101,29 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.CustomDialog
   namespace: Repetitionless.CustomDialog
-  summary: Displays a modal dialog with three buttons removing the ShaderGUI specific warning
+  summary: "\nDisplays a modal dialog with three buttons removing the ShaderGUI specific warning\n"
   example: []
   syntax:
     content: public static int DisplayDialogComplex(string title, string message, string ok, string cancel, string alt)
     parameters:
     - id: title
       type: System.String
-      description: Title of the window
+      description: "\nTitle of the window\n"
     - id: message
       type: System.String
-      description: Message displayed in the dialog
+      description: "\nMessage displayed in the dialog\n"
     - id: ok
       type: System.String
-      description: Left button underneath the message
+      description: "\nLeft button underneath the message\n"
     - id: cancel
       type: System.String
-      description: Right button underneath the message
+      description: "\nRight button underneath the message\n"
     - id: alt
       type: System.String
-      description: Middle button underneath the  message
+      description: "\nMiddle button underneath the  message\n"
     return:
       type: System.Int32
-      description: 0, 1, 2 for ok, cancel, alt responses respectively
+      description: "\n0, 1, 2 for ok, cancel, alt responses respectively\n"
     content.vb: Public Shared Function DisplayDialogComplex(title As String, message As String, ok As String, cancel As String, alt As String) As Integer
   overload: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex*
   nameWithType.vb: ShaderGUIDialog.DisplayDialogComplex(String, String, String, String, String)
@@ -132,26 +132,21 @@ items:
 references:
 - uid: Repetitionless.CustomDialog
   commentId: N:Repetitionless.CustomDialog
-  href: Repetitionless.html
   name: Repetitionless.CustomDialog
   nameWithType: Repetitionless.CustomDialog
   fullName: Repetitionless.CustomDialog
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.CustomDialog
     name: CustomDialog
-    href: Repetitionless.CustomDialog.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.CustomDialog
     name: CustomDialog
-    href: Repetitionless.CustomDialog.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -170,7 +165,6 @@ references:
   fullName: System
 - uid: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog*
   commentId: Overload:Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog
-  href: Repetitionless.CustomDialog.ShaderGUIDialog.html#Repetitionless_CustomDialog_ShaderGUIDialog_DisplayDialog_System_String_System_String_System_String_System_String_
   name: DisplayDialog
   nameWithType: ShaderGUIDialog.DisplayDialog
   fullName: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog
@@ -196,7 +190,6 @@ references:
   name.vb: Boolean
 - uid: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex*
   commentId: Overload:Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex
-  href: Repetitionless.CustomDialog.ShaderGUIDialog.html#Repetitionless_CustomDialog_ShaderGUIDialog_DisplayDialogComplex_System_String_System_String_System_String_System_String_System_String_
   name: DisplayDialogComplex
   nameWithType: ShaderGUIDialog.DisplayDialogComplex
   fullName: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex

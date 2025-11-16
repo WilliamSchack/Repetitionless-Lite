@@ -13,6 +13,11 @@ EXCLUDE_FILES = [
     "Repetitionless.Inspectors.RepetitionlessTerrainGUI.yml"
 ]
 
+# docfx for some reason starts and ends summaries with \n on linux but not windows
+# This just double checks for that and removes it if it has it
+def CleanString(str):
+    return str.removeprefix("\n").removesuffix("\n")
+
 def HandleClass(data):
     print (f"  Converting {data["type"]} {data["uid"]}")
 
@@ -27,7 +32,7 @@ def HandleClass(data):
     if ("/Editor/" in data["source"]["path"]):
         mdText += "`Unity Editor Only`\n\n"
 
-    mdText += data["summary"].replace("<br />", "\n") # Double new line
+    mdText += CleanString(data["summary"].replace("<br />", "\n")) # Double new line
     mdText += "\n\n"
 
     return mdText
@@ -35,7 +40,7 @@ def HandleClass(data):
 def HandleVariable(data):
     print (f"    Found variable {data["name"]}")
 
-    return f"| {data["name"]} | {data["summary"].replace("\n", "")} |\n"
+    return f"| {data["name"]} | {CleanString(data["summary"].replace("\n", ""))} |\n"
 
 def HandleFunction(data):
     print (f"  Converting function {data["name"]}")
@@ -62,19 +67,19 @@ def HandleFunction(data):
         mdText += "|-----------|-------------|\n"
         
         for param in parameters:
-            mdText += f"| {param["id"]} | {param["description"].replace("\n", "")} |\n"
+            mdText += f"| {param["id"]} | {CleanString(param["description"].replace("\n", ""))} |\n"
 
         mdText += "\n"
 
     # Returns
     if "return" in syntax:
         mdText += "### Returns\n\n"
-        mdText += syntax["return"]["description"]
+        mdText += CleanString(syntax["return"]["description"])
         mdText += "\n\n"
 
     # Description
     mdText += "### Description\n\n"
-    mdText += data["summary"].replace("<br />", "\n") # Double new line
+    mdText += CleanString(data["summary"].replace("<br />", "\n")) # Double new line
     mdText += "\n\n"
 
     mdText += "---\n\n"

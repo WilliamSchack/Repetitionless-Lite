@@ -405,7 +405,7 @@ public Texture2D[] DrawTextures(GUIContent[] content = null)
 
 | Parameter | Description |
 |-----------|-------------|
-| content | The GUIContent for each texture field in order<br />If unassigned each texture will be named "Texture 1", "Texture 2", ... |
+| content | The GUIContent for each texture field in order<br />If unassigned each texture will be named &quot;Texture 1&quot;, &quot;Texture 2&quot;, ... |
 
 ### Returns
 

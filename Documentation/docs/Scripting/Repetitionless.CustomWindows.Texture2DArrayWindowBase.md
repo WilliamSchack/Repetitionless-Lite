@@ -11,25 +11,25 @@ Base class for creating the Create/Configure Array windows in Texture Array Esse
 | Variable | Description |
 |----------|-------------|
 | _textures | The textures that are assigned in the window<br />Should be updated in tandem with _texturesResizing and _textureErrors |
-| _texturesResizing | <b>AUTOMATICALLY UPDATES</b><br />Which textures have been marked as resizing<br />Should be updated in tandem with _textures and _textureErrors |
-| _textureErrors | <b>AUTOMATICALLY UPDATES</b><br />Which textures have an error that needs to be addressed<br />Should be updated in tandem with _textures and _texturesResizing |
-| _arrayTextureFormatIndex | Default: <b>Index Of TextureFormat.DXT5</b><br />The format index of the output array<br /><i>Modifiable in the window</i> |
-| _arrayMipMaps | Default: <b>true</b><br />If the output array will transfer mipmaps from the inputted textures<br /><i>Modifiable in the window</i> |
-| _arrayLinear | Default: <b>false</b><br />If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br /><b>Not Recommended in URP/HDRP as it will result in brighter textures</b><br /><i>Modifiable in the window</i> |
-| _arrayWrapMode | Default: <b>TextureWrapMode.Repeat</b><br />The Wrap Mode of the output array<br /><i>Modifiable in the window</i> |
-| _arrayFilterMode | Default: <b>FilterMode.Bilinear</b><br />The Filter Mode of the output array<br /><i>Modifiable in the window</i> |
-| _arrayAnisoLevel | Default: <b>1</b><br />The Aniso Level of the output array<br /><i>Modifiable in the window</i> |
-| _resizeTextures | Default: <b>false</b><br />If all the inputted textures will be resized to _arrayResolution<br /><i>Modifiable in the window</i> |
-| _arrayResolution | Default: <b>First Assigned Texture Resolution</b><br />The resolution that all inputted textures will be resized to if _resizeTextures is enabled<br /><i>Displayed and modifiable in the window when _resizeTextures enabled</i> |
-| _resizeFilterMode | Default: <b>FilterMode.Bilinear</b><br />The filter mode used when resizing textures<br /><i>Displayed and modifiable in the window when _resizeTextures enabled or _texturesResizing has any values set to true</i> |
-| _textureFormatSettingEnabled | Default: <b>true</b><br />If the Texture Format setting appears in the window |
-| _mipmapsSettingEnabled | Default: <b>true</b><br />If the Generate Mipmaps setting appears in the window |
-| _linearSettingEnabled | Default: <b>true</b><br />If the Linear setting appears in the window |
-| _wrapModeSettingEnabled | Default: <b>true</b><br />If the Wrap Mode setting appears in the window |
-| _filterModeSettingEnabled | Default: <b>true</b><br />If the Filter Mode setting appears in the window |
-| _anisoLevelSettingEnabled | Default: <b>true</b><br />If the Aniso Level setting appears in the window |
-| _resizeSettingEnabled | Default: <b>true</b><br />If the Resize Textures setting appears in the window |
-| _canAddRemoveTextures | Default: <b>true</b><br />If textures can be added or removed in the window |
+| _texturesResizing | <strong>AUTOMATICALLY UPDATES</strong><br />Which textures have been marked as resizing<br />Should be updated in tandem with _textures and _textureErrors |
+| _textureErrors | <strong>AUTOMATICALLY UPDATES</strong><br />Which textures have an error that needs to be addressed<br />Should be updated in tandem with _textures and _texturesResizing |
+| _arrayTextureFormatIndex | Default: <strong>Index Of TextureFormat.DXT5</strong><br />The format index of the output array<br /><em>Modifiable in the window</em> |
+| _arrayMipMaps | Default: <strong>true</strong><br />If the output array will transfer mipmaps from the inputted textures<br /><em>Modifiable in the window</em> |
+| _arrayLinear | Default: <strong>false</strong><br />If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br /><strong>Not Recommended in URP/HDRP as it will result in brighter textures</strong><br /><em>Modifiable in the window</em> |
+| _arrayWrapMode | Default: <strong>TextureWrapMode.Repeat</strong><br />The Wrap Mode of the output array<br /><em>Modifiable in the window</em> |
+| _arrayFilterMode | Default: <strong>FilterMode.Bilinear</strong><br />The Filter Mode of the output array<br /><em>Modifiable in the window</em> |
+| _arrayAnisoLevel | Default: <strong>1</strong><br />The Aniso Level of the output array<br /><em>Modifiable in the window</em> |
+| _resizeTextures | Default: <strong>false</strong><br />If all the inputted textures will be resized to _arrayResolution<br /><em>Modifiable in the window</em> |
+| _arrayResolution | Default: <strong>First Assigned Texture Resolution</strong><br />The resolution that all inputted textures will be resized to if _resizeTextures is enabled<br /><em>Displayed and modifiable in the window when _resizeTextures enabled</em> |
+| _resizeFilterMode | Default: <strong>FilterMode.Bilinear</strong><br />The filter mode used when resizing textures<br /><em>Displayed and modifiable in the window when _resizeTextures enabled or _texturesResizing has any values set to true</em> |
+| _textureFormatSettingEnabled | Default: <strong>true</strong><br />If the Texture Format setting appears in the window |
+| _mipmapsSettingEnabled | Default: <strong>true</strong><br />If the Generate Mipmaps setting appears in the window |
+| _linearSettingEnabled | Default: <strong>true</strong><br />If the Linear setting appears in the window |
+| _wrapModeSettingEnabled | Default: <strong>true</strong><br />If the Wrap Mode setting appears in the window |
+| _filterModeSettingEnabled | Default: <strong>true</strong><br />If the Filter Mode setting appears in the window |
+| _anisoLevelSettingEnabled | Default: <strong>true</strong><br />If the Aniso Level setting appears in the window |
+| _resizeSettingEnabled | Default: <strong>true</strong><br />If the Resize Textures setting appears in the window |
+| _canAddRemoveTextures | Default: <strong>true</strong><br />If textures can be added or removed in the window |
 | _headerStyle | Style used for headers in the GUI |
 
 ---
@@ -46,7 +46,7 @@ protected virtual void CreateGUI()
 
 Called when theGUI is first created
 
-<b>base.CreateGUI(); Must be called before performing operations</b>
+<strong>base.CreateGUI(); Must be called before performing operations</strong>
 
 ---
 
@@ -62,7 +62,7 @@ protected virtual void OnGUIUpdate()
 
 Called every GUI update, used due to other tasks in OnGUI
 
-<b>base.OnGUI(); Will create the textures, settings, and output sections</b>
+<strong>base.OnGUI(); Will create the textures, settings, and output sections</strong>
 
 ---
 
@@ -88,7 +88,7 @@ Height that the element will use
 
 Calculates the height of an element for the ReorderableList GUI where the textures are assigned
 
-<b>base.CalculateElementHeight(); Must be called before performing operations</b>
+<strong>base.CalculateElementHeight(); Must be called before performing operations</strong>
 
 ---
 
@@ -113,7 +113,7 @@ protected virtual void DrawTextureField(Rect rect, int index, bool isActive, boo
 
 Draws a texture element in the textures list
 
-<b>When modifying the height in any way Repaint(); should be called to update it on the same GUI call, otherwise will be updated on the next</b>
+<strong>When modifying the height in any way Repaint(); should be called to update it on the same GUI call, otherwise will be updated on the next</strong>
 
 ---
 
@@ -131,7 +131,7 @@ Draws the settings of the output array. Settings that are enabled here can be to
 
 All GUI called here will be drawn within the Array Settings section
 
-<b>base.DrawArraySettings() will draw the settings</b>
+<strong>base.DrawArraySettings() will draw the settings</strong>
 
 ---
 
@@ -149,7 +149,7 @@ Draws the details of the output array
 
 All GUI called here will be drawn within the Final Output section
 
-<b>base.DrawFinalOutputFields() will draw the final output details</b>
+<strong>base.DrawFinalOutputFields() will draw the final output details</strong>
 
 ---
 
@@ -167,7 +167,7 @@ Displays any warnings for array creation
 
 All GUI called here will be drawn within and at the bottom of the Final Output section
 
-<b>base.DrawFinalOutputFields() must be called before showing any extra warnings</b>
+<strong>base.DrawFinalOutputFields() must be called before showing any extra warnings</strong>
 
 ---
 
@@ -189,7 +189,7 @@ protected virtual void OnTextureAdd(ReorderableList list)
 
 Called when the add button is clicked in the ReorderableList GUI
 
-<b>base.OnTextureAdd() will add a texture to the texture lists and should be called</b>
+<strong>base.OnTextureAdd() will add a texture to the texture lists and should be called</strong>
 
 ---
 
@@ -235,7 +235,7 @@ protected virtual void OnTexturesReorder(ReorderableList list, int oldActiveElem
 
 Called when the textures are reordered in the ReorderableList GUI
 
-<b>base.OnTexturesReorder() will handle reordering the texture lists and should be called</b>
+<strong>base.OnTexturesReorder() will handle reordering the texture lists and should be called</strong>
 
 ---
 
@@ -257,7 +257,7 @@ protected virtual void OnDragUpdate(Object[] objectReferences)
 
 Called every update while anything is dragged over the window
 
-<b>base.OnDragUpdate(); Must be called before performing operations</b>
+<strong>base.OnDragUpdate(); Must be called before performing operations</strong>
 
 ---
 
@@ -279,7 +279,7 @@ protected virtual void OnDragPerform(Object[] objectReferences)
 
 Called when the drag is complete over the window
 
-<b>base.OnDragPerform(); Must be called before performing operations</b>
+<strong>base.OnDragPerform(); Must be called before performing operations</strong>
 
 ---
 
@@ -313,7 +313,7 @@ protected bool CreateArray(string path, bool pingArray = true)
 
 | Parameter | Description |
 |-----------|-------------|
-| path | The file location that the array will be created within the project folder<br />Should always start with "Assets/" |
+| path | The file location that the array will be created within the project folder<br />Should always start with &quot;Assets/&quot; |
 | pingArray | If the texture array will be pinged after creation |
 
 ### Returns

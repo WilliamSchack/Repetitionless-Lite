@@ -26,7 +26,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
-  summary: Available surface types for Repetitionless Materials
+  summary: "\nAvailable surface types for Repetitionless Materials\n"
   example: []
   syntax:
     content: public enum ESurfaceType
@@ -53,7 +53,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
-  summary: Opaque surface with no transparency
+  summary: "\nOpaque surface with no transparency\n"
   example: []
   syntax:
     content: Opaque = 0
@@ -81,7 +81,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
-  summary: TransparentCutout surface (Opaque with alpha clipping)
+  summary: "\nTransparentCutout surface (Opaque with alpha clipping)\n"
   example: []
   syntax:
     content: Cutout = 1
@@ -109,7 +109,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Variables
   namespace: Repetitionless.Variables
-  summary: Transparent surface
+  summary: "\nTransparent surface\n"
   example: []
   syntax:
     content: Transparent = 2
@@ -118,30 +118,24 @@ items:
 references:
 - uid: Repetitionless.Variables
   commentId: N:Repetitionless.Variables
-  href: Repetitionless.html
   name: Repetitionless.Variables
   nameWithType: Repetitionless.Variables
   fullName: Repetitionless.Variables
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Variables
     name: Variables
-    href: Repetitionless.Variables.html
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
-    href: Repetitionless.html
   - name: .
   - uid: Repetitionless.Variables
     name: Variables
-    href: Repetitionless.Variables.html
 - uid: Repetitionless.Variables.ESurfaceType
   commentId: T:Repetitionless.Variables.ESurfaceType
   parent: Repetitionless.Variables
-  href: Repetitionless.Variables.ESurfaceType.html
   name: ESurfaceType
   nameWithType: ESurfaceType
   fullName: Repetitionless.Variables.ESurfaceType

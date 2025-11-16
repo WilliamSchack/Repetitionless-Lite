@@ -31,7 +31,7 @@ public static Rect GetLineRect(float heightOverride = 20)
 
 | Parameter | Description |
 |-----------|-------------|
-| heightOverride | Default <b>20 (LINE_HEIGHT + LINE_SPACING)</b><br />Sets the height of the output rect |
+| heightOverride | Default <strong>20 (LINE_HEIGHT + LINE_SPACING)</strong><br />Sets the height of the output rect |
 
 ### Returns
 
@@ -507,7 +507,7 @@ public static Texture2D[] DrawTextures(Texture2D[] textures, GUIContent[] conten
 | Parameter | Description |
 |-----------|-------------|
 | textures | The input textures that will be drawn in order |
-| content | The GUIContent for each field in orderIf unassigned each texture will be named "Texture 1", "Texture 2", ... |
+| content | The GUIContent for each field in orderIf unassigned each texture will be named &quot;Texture 1&quot;, &quot;Texture 2&quot;, ... |
 
 ### Returns
 
