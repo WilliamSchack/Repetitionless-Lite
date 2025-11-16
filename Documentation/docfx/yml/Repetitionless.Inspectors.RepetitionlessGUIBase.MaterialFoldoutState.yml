@@ -21,7 +21,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: MaterialFoldoutState
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessGUIBase.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessGUIBase.cs
     startLine: 22
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
@@ -50,7 +50,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: MainProperties
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessGUIBase.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessGUIBase.cs
     startLine: 27
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
@@ -79,7 +79,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: NoiseProperties
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessGUIBase.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessGUIBase.cs
     startLine: 32
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
@@ -108,7 +108,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: VariationProperties
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessGUIBase.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessGUIBase.cs
     startLine: 37
   assemblies:
   - com.williamschack.Repetitionless.Inspectors

@@ -22,7 +22,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BooleanCompression
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
     startLine: 12
   assemblies:
   - com.williamschack.Repetitionless.Compression
@@ -51,7 +51,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CompressValues
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
     startLine: 23
   assemblies:
   - com.williamschack.Repetitionless.Compression
@@ -89,7 +89,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetValues
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
     startLine: 50
   assemblies:
   - com.williamschack.Repetitionless.Compression
@@ -130,7 +130,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AddValue
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
     startLine: 78
   assemblies:
   - com.williamschack.Repetitionless.Compression
@@ -174,7 +174,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetValue
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
     startLine: 96
   assemblies:
   - com.williamschack.Repetitionless.Compression

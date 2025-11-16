@@ -28,7 +28,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Texture2DArrayUtilities
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
     startLine: 17
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -57,7 +57,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SUPPORTED_TEXTURE_FORMATS
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
     startLine: 24
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -86,7 +86,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArray
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
     startLine: 76
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -143,7 +143,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArrayAutoResize
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
     startLine: 140
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -200,7 +200,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArrayUserInput
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
     startLine: 191
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -263,7 +263,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTexture
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
     startLine: 273
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -315,7 +315,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTextureAutoResize
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
     startLine: 324
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -365,7 +365,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTextureUserInput
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
     startLine: 366
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -415,7 +415,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetTexture
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
     startLine: 419
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -456,7 +456,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetTextures
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
     startLine: 440
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities
@@ -491,7 +491,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ResizeArrayTextures
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/TextureUtilities/Texture2DArrayUtilities.cs
     startLine: 473
   assemblies:
   - com.williamschack.Repetitionless.TextureUtilities

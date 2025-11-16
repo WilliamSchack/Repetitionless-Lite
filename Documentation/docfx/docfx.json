@@ -3,7 +3,7 @@
         {
             "src": [
                 {
-                    "src": "../True Seamless Texturing",
+                    "src": "../../True Seamless Texturing",
                     "files": [
                         "*.sln"
                     ]

@@ -25,7 +25,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessTerrainGUI
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
     startLine: 11
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
@@ -73,7 +73,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: HandleAssignedTextures
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
     startLine: 35
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
@@ -121,7 +121,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnEnable
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
     startLine: 64
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
@@ -154,7 +154,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnGUI
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
     startLine: 102
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
@@ -193,7 +193,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawMaterialSettingsGUI
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
     startLine: 154
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
@@ -250,7 +250,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawRightMaterialSettingsGUI
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
     startLine: 167
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
@@ -307,7 +307,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawMaterialMainProperties
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
     startLine: 196
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
@@ -346,7 +346,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessTerrainGUI.cs
     startLine: 250
   assemblies:
   - com.williamschack.Repetitionless.Inspectors

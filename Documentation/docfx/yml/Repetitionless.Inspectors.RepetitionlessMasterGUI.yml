@@ -19,7 +19,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessMasterGUI
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessMasterGUI.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessMasterGUI.cs
     startLine: 6
   assemblies:
   - com.williamschack.Repetitionless.Inspectors
@@ -73,7 +73,7 @@ items:
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnGUI
-    path: ../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessMasterGUI.cs
+    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/Inspectors/RepetitionlessMasterGUI.cs
     startLine: 8
   assemblies:
   - com.williamschack.Repetitionless.Inspectors

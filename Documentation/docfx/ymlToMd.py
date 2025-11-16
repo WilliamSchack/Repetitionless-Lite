@@ -1,8 +1,11 @@
+import os 
 import yaml
 from pathlib import Path
 
 INPUT_FOLDER_PATH = "yml"
 OUTPUT_FOLDER_PATH = "md"
+
+dirPath = Path(os.path.dirname(os.path.realpath(__file__)))
 
 EXCLUDE_FILES = [
     "Repetitionless.CustomWindows.ConfigureArrayWindowLimited.yml",
@@ -116,8 +119,8 @@ def ConvertYmlToMd(ymlData):
     return mdText
 
 # Paths
-inputFolder = Path(INPUT_FOLDER_PATH)
-outputFolder = Path(OUTPUT_FOLDER_PATH)
+inputFolder = Path(dirPath / INPUT_FOLDER_PATH)
+outputFolder = Path(dirPath / OUTPUT_FOLDER_PATH)
 outputFolder.mkdir(exist_ok=True)
 
 #for ymlFile in inputFolder.glob("Repetitionless*.yml"):
