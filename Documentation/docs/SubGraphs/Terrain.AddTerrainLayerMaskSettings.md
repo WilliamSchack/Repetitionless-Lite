@@ -8,7 +8,7 @@
 
 `Intended for internal use`
 
-Used in the Repetitionless Terrain shader to compress the HasMask value into the packed texture field in the compressed settings
+Used in the Repetitionless Terrain shader to compress the HasMask value into the packed texture field in the compressed settings and set the corresponding textures to assigned/unassigned
 
 ## Inputs
 

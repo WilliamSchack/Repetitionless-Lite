@@ -74,5 +74,8 @@ crashlytics-build.properties
 # mkdocs
 /site
 
-# Extra
+# Obsidian
+**/.obsidian/
+
+# Builds
 /Testing\ Builds
