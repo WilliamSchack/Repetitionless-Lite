@@ -23,6 +23,32 @@ nav:
       - EDistanceBlendMode: Scripting/Repetitionless.Variables.EDistanceBlendMode.md
       - ESurfaceType: Scripting/Repetitionless.Variables.ESurfaceType.md
       - ETextureType: Scripting/Repetitionless.Variables.ETextureType.md
+  - Shader HLSL:
+    - Main:
+      - SampleRepetitionlessMaterial: ShaderHLSL/Main.SampleRepetitionlessMaterial.md
+      - SampleRepetitionlessLayer: ShaderHLSL/Main.SampleRepetitionlessLayer.md
+    - Noise:
+      - VoronoiNoise2D: ShaderHLSL/Noise.VoronoiNoise2D.md
+      - Keijiro:
+        - ClassicNoise2D: ShaderHLSL/Noise.Keijiro.ClassicNoise2D.md
+        - SimplexNoise2D: ShaderHLSL/Noise.Keijiro.SimplexNoise2D.md
+    - RepetitionlessHelpers:
+      - DistanceBlend: ShaderHLSL/RepetitionlessHelpers.DistanceBlend.md
+      - MacroMicroVariation: ShaderHLSL/RepetitionlessHelpers.MacroMicroVariation.md
+      - RepetitionlessNoise: ShaderHLSL/RepetitionlessHelpers.RepetitionlessNoise.md
+      - RepetitionlessTextureUtilities: ShaderHLSL/RepetitionlessHelpers.RepetitionlessTextureUtilities.md
+    - Utilities: 
+      - BooleanCompression: ShaderHLSL/Utilities.BooleanCompression.md
+      - TextureUtilities: ShaderHLSL/Utilities.TextureUtilities.md
+    - Structs: 
+      - RepetitionlessLayer: ShaderHLSL/Structs.RepetitionlessLayer.md
+      - RepetitionlessLayerTerrain: ShaderHLSL/Structs.RepetitionlessLayerTerrain.md
+      - RepetitionlessLayerData: ShaderHLSL/Structs.RepetitionlessLayerData.md
+      - RepetitionlessMaterial: ShaderHLSL/Structs.RepetitionlessMaterial.md
+      - RepetitionlessMaterialArray: ShaderHLSL/Structs.RepetitionlessMaterialArray.md
+      - RepetitionlessMaterialData: ShaderHLSL/Structs.RepetitionlessMaterialData.md
+    - TextureArrayEssentials:
+      - TextureArrayUtilities: ShaderHLSL/TextureArrayEssentials.TextureArrayUtilities.md
   - Sub Graphs:
       - Compression:
         - Add Compressed Bool: SubGraphs/BooleanCompression.AddCompressedBool.md
@@ -31,7 +57,7 @@ nav:
         - Distance Blend Colour: SubGraphs/DistanceBlend.DistanceBlendColour.md
         - Distance Blend Texture: SubGraphs/DistanceBlend.DistanceBlendTexture.md
         - Distance Blend Tiling Offset: SubGraphs/DistanceBlend.DistanceBlendTilingOffset.md
-      - Micro Macro Variation:
+      - Macro Micro Variation:
         - MMV Perlin Noise: SubGraphs/MacroMicroVariation.MMVPerlinNoise.md
         - MMV Simplex Noise: SubGraphs/MacroMicroVariation.MMVSimplexNoise.md
         - MMV Texture: SubGraphs/MacroMicroVariation.MMVTexture.md

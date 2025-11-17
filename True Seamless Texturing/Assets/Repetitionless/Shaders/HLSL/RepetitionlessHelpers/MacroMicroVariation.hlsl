@@ -9,8 +9,19 @@
 #include "../Noise/Keijiro/ClassicNoise2D.hlsl"
 
 // Samples a given texture and turns it into a variation multiplier
-float MacroMicroVariationTexture(float SmallScale, float MediumScale, float LargeScale, float VariationBrightness, UnityTexture2D Texture, SamplerState SS, float2 UV, float2 Tiling = float2(1, 1), float2 Offset = float2(0, 0))
-{
+float MacroMicroVariationTexture(
+    float SmallScale,
+    float MediumScale,
+    float LargeScale,
+
+    float VariationBrightness,
+    UnityTexture2D Texture,
+    SamplerState SS,
+
+    float2 UV,
+    float2 Tiling = float2(1, 1),
+    float2 Offset = float2(0, 0)
+){
     // Get UVs
     float2 smallUV = UV * Tiling * SmallScale + Offset;
     float2 mediumUV = UV * Tiling * MediumScale + Offset;
@@ -30,8 +41,18 @@ float MacroMicroVariationTexture(float SmallScale, float MediumScale, float Larg
 }
 
 // Samples perlin noise and turns it into a variation multiplier
-float MacroMicroVariationPerlinNoise(float SmallScale, float MediumScale, float LargeScale, float VariationBrightness, float NoiseStrength, float2 UV, float NoiseScale = 1, float2 NoiseOffset = float2(0, 0))
-{
+float MacroMicroVariationPerlinNoise(
+    float SmallScale,
+    float MediumScale,
+    float LargeScale,
+
+    float VariationBrightness,
+
+    float NoiseStrength,
+    float2 UV,
+    float NoiseScale = 1,
+    float2 NoiseOffset = float2(0, 0)
+){
     // Get UVs
     float2 smallUV = UV * NoiseScale * SmallScale + NoiseOffset;
     float2 mediumUV = UV * NoiseScale * MediumScale + NoiseOffset;
@@ -56,8 +77,18 @@ float MacroMicroVariationPerlinNoise(float SmallScale, float MediumScale, float 
 }
 
 // Samples simplex noise and turns it into a variation multiplier
-float MacroMicroVariationSimplexNoise(float SmallScale, float MediumScale, float LargeScale, float VariationBrightness, float NoiseStrength, float2 UV, float NoiseScale = 1, float2 NoiseOffset = float2(0, 0))
-{
+float MacroMicroVariationSimplexNoise(
+    float SmallScale,
+    float MediumScale,
+    float LargeScale,
+
+    float VariationBrightness,
+
+    float NoiseStrength,
+    float2 UV,
+    float NoiseScale = 1,
+    float2 NoiseOffset = float2(0, 0)
+){
     // Get UVs
     float2 smallUV = UV * NoiseScale * SmallScale + NoiseOffset;
     float2 mediumUV = UV * NoiseScale * MediumScale + NoiseOffset;
@@ -82,8 +113,24 @@ float MacroMicroVariationSimplexNoise(float SmallScale, float MediumScale, float
 }
 
 // Outputs a variation colour based on an inputted texture
-void MacroMicroVariationTexture_float(float4 InputColor, float SmallScale, float MediumScale, float LargeScale, float VariationBrightness, float VariationOpacity, UnityTexture2D VariationTexture, SamplerState SS, float2 UV, float2 Tiling, float2 Offset, out float4 OutputColor)
-{
+void MacroMicroVariationTexture_float(
+    float4 InputColor,
+
+    float SmallScale,
+    float MediumScale,
+    float LargeScale,
+
+    float VariationBrightness,
+    float VariationOpacity,
+    UnityTexture2D VariationTexture,
+
+    SamplerState SS,
+    float2 UV,
+    float2 Tiling,
+    float2 Offset,
+
+    out float4 OutputColor
+){
     VariationOpacity = clamp(VariationOpacity, 0, 1);
     VariationBrightness = clamp(VariationBrightness, 0, 1);
     
@@ -92,8 +139,23 @@ void MacroMicroVariationTexture_float(float4 InputColor, float SmallScale, float
 }
 
 // Outputs a variation colour based on perlin noise
-void MacroMicroVariationPerlinNoise_float(float4 InputColor, float SmallScale, float MediumScale, float LargeScale, float VariationBrightness, float VariationOpacity, float NoiseStrength, float NoiseScale, float2 NoiseOffset, float2 UV, out float4 OutputColor)
-{
+void MacroMicroVariationPerlinNoise_float(
+    float4 InputColor,
+    
+    float SmallScale,
+    float MediumScale,
+    float LargeScale,
+
+    float VariationBrightness,
+    float VariationOpacity,
+    
+    float NoiseStrength,
+    float NoiseScale,
+    float2 NoiseOffset,
+    float2 UV,
+    
+    out float4 OutputColor
+){
     VariationOpacity = clamp(VariationOpacity, 0, 1);
     VariationBrightness = clamp(VariationBrightness, 0, 1);
     
@@ -102,8 +164,23 @@ void MacroMicroVariationPerlinNoise_float(float4 InputColor, float SmallScale, f
 }
 
 // Outputs a variation colour based on simplex noise
-void MacroMicroVariationSimplexNoise_float(float4 InputColor, float SmallScale, float MediumScale, float LargeScale, float VariationBrightness, float VariationOpacity, float NoiseStrength, float NoiseScale, float2 NoiseOffset, float2 UV, out float4 OutputColor)
-{
+void MacroMicroVariationSimplexNoise_float(
+    float4 InputColor,
+
+    float SmallScale,
+    float MediumScale,
+    float LargeScale,
+    
+    float VariationBrightness,
+    float VariationOpacity,
+    
+    float NoiseStrength,
+    float NoiseScale,
+    float2 NoiseOffset,
+    float2 UV,
+    
+    out float4 OutputColor
+){
     VariationOpacity = clamp(VariationOpacity, 0, 1);
     VariationBrightness = clamp(VariationBrightness, 0, 1);
     

@@ -20,3 +20,5 @@ Blends between two inputted colours based on the camera position
 | Output | Description       |
 | ------ | ----------------- |
 | Colour | The output colour |
+
+---

@@ -28,3 +28,5 @@ Outputs a variation colour based on an inputted texture
 | Output | Description       |
 | ------ | ----------------- |
 | Colour | The output colour |
+
+---

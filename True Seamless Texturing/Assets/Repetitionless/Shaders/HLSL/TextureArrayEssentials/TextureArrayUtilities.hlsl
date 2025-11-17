@@ -29,8 +29,15 @@ void GetIndexInArray_float(int TexturesAssignedCompressed, int Index, out int Ou
     Out = arrayIndex;
 }
 
-void SampleArrayAtConstantIndex_float(UnityTexture2DArray TextureArray, int TexturesAssignedCompressed, int Index, float2 UV, float4 UnassignedColor, SamplerState SS, out float4 Out)
-{
+void SampleArrayAtConstantIndex_float
+    UnityTexture2DArray TextureArray,
+    int TexturesAssignedCompressed,
+    int Index,
+    float2 UV,
+    float4 UnassignedColor,
+    SamplerState SS,
+    out float4 Out
+){
     // Only output texture if it is assigned in inspector
     bool indexExists = GetCompressedValue(TexturesAssignedCompressed, Index);
     if (!indexExists) {

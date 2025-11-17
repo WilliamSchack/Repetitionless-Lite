@@ -15,7 +15,7 @@
 /* There isnt really any good way to refactor this code to work with multiple types in hlsl (No inheritance or callbacks)
  * so as a last resort I have just included both types of materials into the base and the wrappers tell it which one to use.
  * Im not a fan of this hacky approach but I could not figure out any other way
- * If anyone has a better solution please contact me
+ * If anyone has a better solution please contact me I will change it asap
  */
 
 void SampleRepetitionlessLayerBase(

@@ -8,6 +8,13 @@
 //               https://github.com/ashima/webgl-noise
 //
 
+//
+// This code has been modified by Keijiro Takahashi for use in Unity,
+// including a rewrite in HLSL with simplifications and optimizations.
+// Rights to the modifications are waived, and the original license
+// terms remain unchanged.
+//
+
 #ifndef _INCLUDE_JP_KEIJIRO_NOISESHADER_SIMPLEX_NOISE_2D_HLSL_
 #define _INCLUDE_JP_KEIJIRO_NOISESHADER_SIMPLEX_NOISE_2D_HLSL_
 

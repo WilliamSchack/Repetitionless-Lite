@@ -25,3 +25,5 @@ Blends between an inputted texture with differing tiling and offset based on the
 | Output | Description       |
 | ------ | ----------------- |
 | Colour | The output colour |
+
+---

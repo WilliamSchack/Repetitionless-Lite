@@ -28,3 +28,5 @@ Samples the voronoi cells base and edge colour if required and lerps them togeth
 | Output | Description       |
 | ------ | ----------------- |
 | Colour | The output colour |
+
+---

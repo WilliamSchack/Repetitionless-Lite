@@ -27,3 +27,5 @@ Outputs a variation colour based on simplex noise
 | Output | Description       |
 | ------ | ----------------- |
 | Colour | The output colour |
+
+---

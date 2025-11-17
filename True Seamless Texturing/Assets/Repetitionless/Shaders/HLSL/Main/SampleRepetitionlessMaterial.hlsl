@@ -21,14 +21,14 @@ void GetRepetitionlessMaterialColorBase(
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     int SurfaceType, int DebuggingIndex,
 
-    bool usingArrayMaterial,
+    bool UsingArrayMaterial,
     in RepetitionlessMaterial Material,
     in RepetitionlessMaterialArray ArrayMaterial,
 
     out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
 ){
     RepetitionlessMaterialData materialData;
-    if (usingArrayMaterial) materialData = ArrayMaterial.Data;
+    if (UsingArrayMaterial) materialData = ArrayMaterial.Data;
     else                    materialData = Material.Data;
 
     // Default values
@@ -134,7 +134,7 @@ void GetRepetitionlessMaterialColorBase(
     }
     
     // Albedo
-    if (usingArrayMaterial) AlbedoColorOut = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 0, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+    if (UsingArrayMaterial) AlbedoColorOut = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 0, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
     else                    AlbedoColorOut = SampleRepetitionlessTexture(Material.Albedo, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
     AlbedoColorOut *= materialData.AlbedoTint;
 
@@ -147,7 +147,7 @@ void GetRepetitionlessMaterialColorBase(
     
     // Normal Map
     if (normalAssigned) {
-        if (usingArrayMaterial) NormalVectorOut = SampleRepetitionlessTexture(ArrayMaterial.NormalMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges, true, normalScale).rgb;
+        if (UsingArrayMaterial) NormalVectorOut = SampleRepetitionlessTexture(ArrayMaterial.NormalMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges, true, normalScale).rgb;
         else                    NormalVectorOut = SampleRepetitionlessTexture(Material.NormalMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges, true, normalScale).rgb;
 
         // Hacky fix to check if normal is assigned, values set in TextureUtilities::UnpackNormalMap. If not assigned, used default tangent normal vector
@@ -162,7 +162,7 @@ void GetRepetitionlessMaterialColorBase(
     if (packedTexture) {
         // Packed texture is stored in the metallic slot
         float4 packedTextureColor = 0;
-        if (usingArrayMaterial) packedTextureColor = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 1, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+        if (UsingArrayMaterial) packedTextureColor = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 1, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
         else                    packedTextureColor = SampleRepetitionlessTexture(Material.MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
 
         MetallicOut = packedTextureColor.r;
@@ -172,7 +172,7 @@ void GetRepetitionlessMaterialColorBase(
     } else {
         // Metallic
         if (metallicAssigned) {
-            if (usingArrayMaterial) MetallicOut = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 1, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
+            if (UsingArrayMaterial) MetallicOut = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 1, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
             else                    MetallicOut = SampleRepetitionlessTexture(Material.MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
         } else
             MetallicOut = metallic;
@@ -181,7 +181,7 @@ void GetRepetitionlessMaterialColorBase(
         if (smoothnessEnabled) {
             if (smoothnessAssigned) {
                 float4 smoothnessColor = 0;
-                if (usingArrayMaterial) smoothnessColor = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 2, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+                if (UsingArrayMaterial) smoothnessColor = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 2, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
                 else                    smoothnessColor = SampleRepetitionlessTexture(Material.SmoothnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
 
                 SmoothnessOut = smoothnessColor.r;
@@ -191,7 +191,7 @@ void GetRepetitionlessMaterialColorBase(
             if (roughnessAssigned) {
                 // Roughness = 1 - Smoothness
                 float4 roughnessColor = 1;
-                if (usingArrayMaterial) roughnessColor -= SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 3, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+                if (UsingArrayMaterial) roughnessColor -= SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 3, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
                 else                    roughnessColor -= SampleRepetitionlessTexture(Material.RoughnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
 
                 SmoothnessOut = roughnessColor.r;
@@ -202,7 +202,7 @@ void GetRepetitionlessMaterialColorBase(
         // Occlussion
         if (occlussionAssigned) {
             float4 occlussionColor = 1;
-            if (usingArrayMaterial) occlussionColor = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 4, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+            if (UsingArrayMaterial) occlussionColor = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 4, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
             else                    occlussionColor = SampleRepetitionlessTexture(Material.OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
 
             OcclussionOut = lerp(1, occlussionColor.r, occlussionStrength);
@@ -213,7 +213,7 @@ void GetRepetitionlessMaterialColorBase(
     // Emission
     if(emissionEnabled) {
         if (emissionAssigned) {
-            if (usingArrayMaterial) EmissionColorOut = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 5, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).rgb;
+            if (UsingArrayMaterial) EmissionColorOut = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 5, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).rgb;
             else                    EmissionColorOut = SampleRepetitionlessTexture(Material.EmissionMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).rgb;
             EmissionColorOut *= materialData.EmissionColor;
         } else
@@ -247,8 +247,7 @@ void GetRepetitionlessMaterialArrayColor(
     in RepetitionlessMaterialArray Material,
 
     out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
-)
-{
+){
     RepetitionlessMaterial emptyMaterial;
 
     GetRepetitionlessMaterialColorBase(

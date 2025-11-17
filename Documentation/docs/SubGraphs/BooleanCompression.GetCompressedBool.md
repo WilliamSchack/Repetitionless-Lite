@@ -19,3 +19,5 @@ Gets a compressed value at a given index from the input CompressedValues
 | Output | Description              |
 | ------ | ------------------------ |
 | Value  | Value at the given index |
+
+---

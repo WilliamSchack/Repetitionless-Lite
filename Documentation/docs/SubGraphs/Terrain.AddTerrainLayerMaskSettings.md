@@ -22,3 +22,5 @@ Used in the Repetitionless Terrain shader to compress the HasMask value into the
 | Output   | Description               |
 | -------- | ------------------------- |
 | Settings | The modified BaseSettings |
+
+---

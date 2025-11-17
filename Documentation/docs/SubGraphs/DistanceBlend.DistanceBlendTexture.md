@@ -26,3 +26,5 @@ Blends between two inputted textures based on the camera position
 | Output | Description       |
 | ------ | ----------------- |
 | Colour | The output colour |
+
+---

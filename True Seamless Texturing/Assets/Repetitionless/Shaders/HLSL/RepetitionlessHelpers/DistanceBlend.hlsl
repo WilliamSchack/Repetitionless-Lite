@@ -24,8 +24,8 @@ void DistanceBlendTilingOffset_float(
     UnityTexture2D Texture,
     
     // Output
-    out float4 ColourOut)
-{
+    out float4 ColourOut
+){
     // Calculate Far Distance
     float farDistance = CalculateFarDistance(WorldPosition, CameraPosition, DistanceBlendMinMax);
     
@@ -53,8 +53,8 @@ void DistanceBlendColour_float(
     float4 BaseColour, float4 FarColour,
 
     // Output
-    out float4 ColourOut)
-{
+    out float4 ColourOut
+){
     // Calculate Far Distance
     float farDistance = CalculateFarDistance(WorldPosition, CameraPosition, DistanceBlendMinMax);
     

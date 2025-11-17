@@ -7,11 +7,21 @@
 
 // Gets UVs based on voronoi noise
 void GetRepetitionlessNoiseUVs(
-    float2 UV, // UV
-    float NoiseAngleOffset, float NoiseScale, bool RandomiseNoiseScaling, float2 NoiseScalingMinMax, // Noise
-    bool RandomiseRotation, float2 RandomiseRotationMinMax, // Noise Rotation
-    out float VoronoiCells, out float EdgeMask, out float2 EdgeUV, out float2 TransformedUV) // Outputs
-{
+    float2 UV,
+
+    float NoiseAngleOffset,
+    float NoiseScale,
+    bool RandomiseNoiseScaling,
+    float2 NoiseScalingMinMax,
+
+    bool RandomiseRotation,
+    float2 RandomiseRotationMinMax,
+
+    out float VoronoiCells,
+    out float EdgeMask,
+    out float2 EdgeUV,
+    out float2 TransformedUV
+){
     // Generate Noise
     float VoronoiDistFromCenter;
     float VoronoiDistFromEdge;
@@ -45,12 +55,20 @@ void GetRepetitionlessNoiseUVs(
 // Samples the given texture using modified UVs based on voronoi noise
 // Samples the voronoi cells base and edge colour if required and lerps them together
 void AddRepetitionlessNoise_float(
-    UnityTexture2D InputTexture, SamplerState SS, // Texture
-    float2 UV, // UV
-    float NoiseAngleOffset, float NoiseScale, bool RandomiseNoiseScaling, float2 NoiseScalingMinMax, // Noise
-    bool RandomiseRotation, float2 RandomiseRotationMinMax, // Noise Rotation
-    out float4 OutputColor) // Outputs
-{
+    UnityTexture2D InputTexture,
+    SamplerState SS,
+    float2 UV,
+
+    float NoiseAngleOffset,
+    float NoiseScale,
+    bool RandomiseNoiseScaling,
+    float2 NoiseScalingMinMax,
+    
+    bool RandomiseRotation, 
+    float2 RandomiseRotationMinMax,
+
+    out float4 OutputColor
+){
     float VoronoiCells = 1;
     float EdgeMask = 0;
     float2 EdgeUV = UV;
