@@ -1,9 +1,9 @@
-#ifndef SAMPLESEAMLESSMATERIALTERRAIN_INCLUDED
-#define SAMPLESEAMLESSMATERIALTERRAIN_INCLUDED
+#ifndef SAMPLEREPETITIONLESSMATERIALTERRAIN_INCLUDED
+#define SAMPLEREPETITIONLESSMATERIALTERRAIN_INCLUDED
 
 #include "SampleRepetitionlessLayer.hlsl"
 
-// Essentially just calling the main SampleSeamlessMaterial function 4 times, once for each layer
+// Essentially just calling the main SampleRepetitionlessMaterial function 4 times, once for each layer
 // It does do more things and the function is modified for texture arrays but you get the idea
 
 void SampleRepetitionlessMaterialTerrain_float(

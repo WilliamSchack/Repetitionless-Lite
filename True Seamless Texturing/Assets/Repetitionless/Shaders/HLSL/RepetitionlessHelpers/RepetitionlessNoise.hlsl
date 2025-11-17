@@ -1,12 +1,12 @@
-#ifndef SEAMLESSNOISE_INCLUDED
-#define SEAMLESSNOISE_INCLUDED
+#ifndef REPETITIONLESSNOISE_INCLUDED
+#define REPETITIONLESSNOISE_INCLUDED
 
-#include "SeamlessTextureUtilities.hlsl"
+#include "RepetitionlessTextureUtilities.hlsl"
 
 #include "../Noise/VoronoiNoise2D.hlsl"
 
 // Gets UVs based on voronoi noise
-void GetSeamlessNoiseUVs(
+void GetRepetitionlessNoiseUVs(
     float2 UV, // UV
     float NoiseAngleOffset, float NoiseScale, bool RandomiseNoiseScaling, float2 NoiseScalingMinMax, // Noise
     bool RandomiseRotation, float2 RandomiseRotationMinMax, // Noise Rotation
@@ -44,7 +44,7 @@ void GetSeamlessNoiseUVs(
 
 // Samples the given texture using modified UVs based on voronoi noise
 // Samples the voronoi cells base and edge colour if required and lerps them together
-void AddSeamlessNoise_float(
+void AddRepetitionlessNoise_float(
     UnityTexture2D InputTexture, SamplerState SS, // Texture
     float2 UV, // UV
     float NoiseAngleOffset, float NoiseScale, bool RandomiseNoiseScaling, float2 NoiseScalingMinMax, // Noise
@@ -55,9 +55,9 @@ void AddSeamlessNoise_float(
     float EdgeMask = 0;
     float2 EdgeUV = UV;
     float2 TransformedUV = UV;
-    GetSeamlessNoiseUVs(UV, NoiseAngleOffset, NoiseScale, RandomiseNoiseScaling, NoiseScalingMinMax, RandomiseRotation, RandomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, TransformedUV);
+    GetRepetitionlessNoiseUVs(UV, NoiseAngleOffset, NoiseScale, RandomiseNoiseScaling, NoiseScalingMinMax, RandomiseRotation, RandomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, TransformedUV);
     
-    OutputColor = SampleSeamlessTexture(InputTexture, SS, EdgeMask, EdgeUV, TransformedUV, true);
+    OutputColor = SampleRepetitionlessTexture(InputTexture, SS, EdgeMask, EdgeUV, TransformedUV, true);
 }
 
 #endif
