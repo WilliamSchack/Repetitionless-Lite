@@ -20686,7 +20686,7 @@
     "m_Title": "Set Material Properties",
     "m_Position": {
         "x": -5520.0,
-        "y": 1990.9998779296875
+        "y": 1991.0
     }
 }
 
@@ -23448,7 +23448,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": -4633.0,
-        "y": -1908.9998779296875
+        "y": -1909.0
     }
 }
 
@@ -23727,7 +23727,7 @@
     "m_Title": "Blend Material",
     "m_Position": {
         "x": -4639.0,
-        "y": 6291.99951171875
+        "y": 6292.0
     }
 }
 
@@ -30306,7 +30306,7 @@
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
     "m_SupportsLODCrossFade": false,
-    "m_CustomEditorGUI": "Repetitionless.Inspectors.SeamlessMaterialTerrainGUI",
+    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessTerrainGUI",
     "m_SupportVFX": false
 }
 
@@ -33341,7 +33341,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": -4633.0,
-        "y": 5964.99951171875
+        "y": 5965.0
     }
 }
 
@@ -38150,7 +38150,7 @@
     "m_Title": "Far Material",
     "m_Position": {
         "x": -4629.0,
-        "y": 40.99992752075195
+        "y": 41.0
     }
 }
 
@@ -43092,7 +43092,7 @@
     "m_Title": "Base Material",
     "m_Position": {
         "x": -4634.0,
-        "y": 1717.9993896484375
+        "y": 1718.0
     }
 }
 
@@ -44928,7 +44928,7 @@
     "m_Title": "Blend Material",
     "m_Position": {
         "x": -4637.0,
-        "y": 1047.999755859375
+        "y": 1048.0
     }
 }
 
@@ -47187,7 +47187,7 @@
     "m_Title": "Check For Mask",
     "m_Position": {
         "x": -5364.0,
-        "y": 1671.9998779296875
+        "y": 1672.0
     }
 }
 
@@ -48141,7 +48141,7 @@
     "m_Title": "Check For Mask",
     "m_Position": {
         "x": -5362.0,
-        "y": -950.0001220703125
+        "y": -950.0
     }
 }
 
@@ -48964,7 +48964,7 @@
     "m_Title": "Distance Blending",
     "m_Position": {
         "x": -4609.0,
-        "y": 2473.999267578125
+        "y": 2474.0
     }
 }
 
@@ -52506,7 +52506,7 @@
     "m_Title": "Check For Mask",
     "m_Position": {
         "x": -5370.0,
-        "y": 4302.99951171875
+        "y": 4303.0
     }
 }
 
@@ -52659,7 +52659,7 @@
     "m_Title": "Set Material Properties",
     "m_Position": {
         "x": -5499.0,
-        "y": -632.0000610351563
+        "y": -632.0
     }
 }
 
@@ -53220,7 +53220,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": -4631.0,
-        "y": 717.9996948242188
+        "y": 718.0
     }
 }
 
@@ -56945,7 +56945,7 @@
     "m_Title": "Base Material",
     "m_Position": {
         "x": -4639.0,
-        "y": 4345.99951171875
+        "y": 4346.0
     }
 }
 
@@ -72481,7 +72481,7 @@
     "m_Title": "Set Material Properties",
     "m_Position": {
         "x": -5522.0,
-        "y": 4618.99951171875
+        "y": 4619.0
     }
 }
 

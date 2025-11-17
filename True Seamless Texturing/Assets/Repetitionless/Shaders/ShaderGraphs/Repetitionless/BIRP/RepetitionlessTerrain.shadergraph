@@ -14580,7 +14580,7 @@
     "m_AlphaMode": 0,
     "m_RenderFace": 2,
     "m_AlphaClip": false,
-    "m_CustomEditorGUI": "Repetitionless.Inspectors.SeamlessMaterialTerrainGUI"
+    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessTerrainGUI"
 }
 
 {
@@ -17235,7 +17235,7 @@
     "m_Title": "Blend Material",
     "m_Position": {
         "x": -4637.0,
-        "y": 3666.0
+        "y": 3666.000244140625
     }
 }
 
@@ -18681,7 +18681,7 @@
     "m_Title": "Base Material",
     "m_Position": {
         "x": -4634.0,
-        "y": -3523.0
+        "y": -3523.000732421875
     }
 }
 
@@ -20734,7 +20734,7 @@
     "m_Title": "Set Material Properties",
     "m_Position": {
         "x": -5520.0,
-        "y": 1991.0
+        "y": 1991.000244140625
     }
 }
 
@@ -20978,7 +20978,7 @@
     "m_Title": "Check For Mask",
     "m_Position": {
         "x": -5367.0,
-        "y": -3569.0
+        "y": -3569.000732421875
     }
 }
 
@@ -21906,7 +21906,7 @@
     "m_Title": "Far Material",
     "m_Position": {
         "x": -4633.0,
-        "y": 5293.0
+        "y": 5293.00048828125
     }
 }
 
@@ -23496,7 +23496,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": -4633.0,
-        "y": -1909.0
+        "y": -1908.9998779296875
     }
 }
 
@@ -23775,7 +23775,7 @@
     "m_Title": "Blend Material",
     "m_Position": {
         "x": -4639.0,
-        "y": 6292.0
+        "y": 6291.99951171875
     }
 }
 
@@ -32705,7 +32705,7 @@
     "m_Title": "Distance Blending",
     "m_Position": {
         "x": -4605.0,
-        "y": -151.0
+        "y": -150.9998779296875
     }
 }
 
@@ -33300,7 +33300,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": -4633.0,
-        "y": 5965.0
+        "y": 5965.00048828125
     }
 }
 
@@ -38109,7 +38109,7 @@
     "m_Title": "Far Material",
     "m_Position": {
         "x": -4629.0,
-        "y": 41.0
+        "y": 41.0001220703125
     }
 }
 
@@ -39127,7 +39127,7 @@
     "m_Title": "Distance Blending",
     "m_Position": {
         "x": -4609.0,
-        "y": -2768.0
+        "y": -2767.999755859375
     }
 }
 
@@ -40569,7 +40569,7 @@
     "m_Title": "Far Material",
     "m_Position": {
         "x": -4630.0,
-        "y": 2666.0
+        "y": 2666.000244140625
     }
 }
 
@@ -43085,7 +43085,7 @@
     "m_Title": "Base Material",
     "m_Position": {
         "x": -4634.0,
-        "y": 1718.0
+        "y": 1718.0001220703125
     }
 }
 
@@ -44921,7 +44921,7 @@
     "m_Title": "Blend Material",
     "m_Position": {
         "x": -4637.0,
-        "y": 1048.0
+        "y": 1048.0001220703125
     }
 }
 
@@ -47195,7 +47195,7 @@
     "m_Title": "Check For Mask",
     "m_Position": {
         "x": -5364.0,
-        "y": 1672.0
+        "y": 1672.0001220703125
     }
 }
 
@@ -48149,7 +48149,7 @@
     "m_Title": "Check For Mask",
     "m_Position": {
         "x": -5362.0,
-        "y": -950.0
+        "y": -949.999755859375
     }
 }
 
@@ -48972,7 +48972,7 @@
     "m_Title": "Distance Blending",
     "m_Position": {
         "x": -4609.0,
-        "y": 2474.0
+        "y": 2474.000244140625
     }
 }
 
@@ -51694,7 +51694,7 @@
     "m_Title": "Far Material",
     "m_Position": {
         "x": -4628.0,
-        "y": -2575.0
+        "y": -2574.999755859375
     }
 }
 
@@ -52514,7 +52514,7 @@
     "m_Title": "Check For Mask",
     "m_Position": {
         "x": -5370.0,
-        "y": 4303.0
+        "y": 4303.0009765625
     }
 }
 
@@ -52667,7 +52667,7 @@
     "m_Title": "Set Material Properties",
     "m_Position": {
         "x": -5499.0,
-        "y": -632.0
+        "y": -631.9998779296875
     }
 }
 
@@ -53228,7 +53228,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": -4631.0,
-        "y": 718.0
+        "y": 718.0000610351563
     }
 }
 
@@ -60519,7 +60519,7 @@
     "m_Title": "Blend Material",
     "m_Position": {
         "x": -4635.0,
-        "y": -1580.0
+        "y": -1579.9998779296875
     }
 }
 
@@ -71071,7 +71071,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": -4631.0,
-        "y": 3337.0
+        "y": 3337.000244140625
     }
 }
 
@@ -72474,7 +72474,7 @@
     "m_Title": "Set Material Properties",
     "m_Position": {
         "x": -5522.0,
-        "y": 4619.0
+        "y": 4619.00048828125
     }
 }
 

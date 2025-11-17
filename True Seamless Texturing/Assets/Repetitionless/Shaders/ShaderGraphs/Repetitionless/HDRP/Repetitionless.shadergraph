@@ -6933,7 +6933,7 @@
     "m_Title": "Material Blend Compression",
     "m_Position": {
         "x": 462.0,
-        "y": 3953.999755859375
+        "y": 3954.0
     }
 }
 
@@ -11433,7 +11433,7 @@
     "m_ObjectId": "78fba43ca02a4f59b78481b0b304f8c3",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 847.999755859375,
+        "x": 848.0,
         "y": 1415.0
     }
 }
@@ -15604,7 +15604,7 @@
             "m_Id": "7cecdb1320b647319624431a8b96d128"
         }
     ],
-    "m_CustomEditorGUI": "Repetitionless.Inspectors.SeamlessMaterialMasterGUI",
+    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessMasterGUI",
     "m_SupportVFX": false,
     "m_SupportComputeForVertexSetup": false
 }
@@ -16176,7 +16176,7 @@
     "m_ObjectId": "b5ae91f9b9c44bf08acbf4e282ec77d6",
     "m_Title": "Base Material",
     "m_Position": {
-        "x": 1246.999755859375,
+        "x": 1247.0,
         "y": 2201.0
     }
 }
@@ -17880,8 +17880,8 @@
     "m_ObjectId": "d1c0b1b0868d4323ab3dd25368923f5f",
     "m_Title": "Far Material",
     "m_Position": {
-        "x": 1253.999267578125,
-        "y": 3200.999755859375
+        "x": 1254.0,
+        "y": 3201.0
     }
 }
 
@@ -18132,8 +18132,8 @@
     "m_ObjectId": "d4e4c3be7460442e9bd48cb5d3ae36a4",
     "m_Title": "Blend Material",
     "m_Position": {
-        "x": 1268.999755859375,
-        "y": 4326.9990234375
+        "x": 1269.0,
+        "y": 4327.0
     }
 }
 
@@ -20098,8 +20098,8 @@
     "m_ObjectId": "ef8795ff8a314ad18f1e3f7e6bb40bc3",
     "m_Title": "Material Blend",
     "m_Position": {
-        "x": 1247.999267578125,
-        "y": 4001.999755859375
+        "x": 1248.0,
+        "y": 4002.0
     }
 }
 
@@ -20215,7 +20215,7 @@
     "m_ObjectId": "f0a6fbaffe5e4a95898c9357bfcaf394",
     "m_Title": "Distance Blending",
     "m_Position": {
-        "x": 1272.999755859375,
+        "x": 1273.0,
         "y": 3005.0
     }
 }

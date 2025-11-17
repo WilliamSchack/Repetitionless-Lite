@@ -17264,7 +17264,7 @@
     "m_Title": "Blend Material",
     "m_Position": {
         "x": -4637.0,
-        "y": 3665.999755859375
+        "y": 3666.0
     }
 }
 
@@ -20755,7 +20755,7 @@
     "m_Title": "Set Material Properties",
     "m_Position": {
         "x": -5520.0,
-        "y": 1990.99951171875
+        "y": 1991.0
     }
 }
 
@@ -21927,7 +21927,7 @@
     "m_Title": "Far Material",
     "m_Position": {
         "x": -4633.0,
-        "y": 5292.99951171875
+        "y": 5293.0
     }
 }
 
@@ -23517,7 +23517,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": -4633.0,
-        "y": -1909.0001220703125
+        "y": -1909.0
     }
 }
 
@@ -23835,7 +23835,7 @@
     "m_Title": "Blend Material",
     "m_Position": {
         "x": -4639.0,
-        "y": 6291.99951171875
+        "y": 6292.0
     }
 }
 
@@ -32918,7 +32918,7 @@
     "m_Title": "Distance Blending",
     "m_Position": {
         "x": -4605.0,
-        "y": -151.000244140625
+        "y": -151.0
     }
 }
 
@@ -33513,7 +33513,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": -4633.0,
-        "y": 5964.99951171875
+        "y": 5965.0
     }
 }
 
@@ -38385,7 +38385,7 @@
     "m_Title": "Far Material",
     "m_Position": {
         "x": -4629.0,
-        "y": 40.99967575073242
+        "y": 41.0
     }
 }
 
@@ -40811,7 +40811,7 @@
     "m_Title": "Far Material",
     "m_Position": {
         "x": -4630.0,
-        "y": 2665.999755859375
+        "y": 2666.0
     }
 }
 
@@ -43327,7 +43327,7 @@
     "m_Title": "Base Material",
     "m_Position": {
         "x": -4634.0,
-        "y": 1717.99951171875
+        "y": 1718.0
     }
 }
 
@@ -45163,7 +45163,7 @@
     "m_Title": "Blend Material",
     "m_Position": {
         "x": -4637.0,
-        "y": 1047.9993896484375
+        "y": 1048.0
     }
 }
 
@@ -47428,7 +47428,7 @@
     "m_Title": "Check For Mask",
     "m_Position": {
         "x": -5364.0,
-        "y": 1671.999755859375
+        "y": 1672.0
     }
 }
 
@@ -48382,7 +48382,7 @@
     "m_Title": "Check For Mask",
     "m_Position": {
         "x": -5362.0,
-        "y": -950.000244140625
+        "y": -950.0
     }
 }
 
@@ -49228,7 +49228,7 @@
     "m_Title": "Distance Blending",
     "m_Position": {
         "x": -4609.0,
-        "y": 2473.999267578125
+        "y": 2474.0
     }
 }
 
@@ -49944,7 +49944,7 @@
             "m_Id": "1138ef3b4fbb47ba9d50a652668f2b04"
         }
     ],
-    "m_CustomEditorGUI": "Repetitionless.Inspectors.SeamlessMaterialTerrainGUI",
+    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessTerrainGUI",
     "m_SupportVFX": false,
     "m_SupportComputeForVertexSetup": false
 }
@@ -52802,7 +52802,7 @@
     "m_Title": "Check For Mask",
     "m_Position": {
         "x": -5370.0,
-        "y": 4302.99951171875
+        "y": 4303.0
     }
 }
 
@@ -52989,7 +52989,7 @@
     "m_Title": "Set Material Properties",
     "m_Position": {
         "x": -5499.0,
-        "y": -632.0003051757813
+        "y": -632.0
     }
 }
 
@@ -53550,7 +53550,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": -4631.0,
-        "y": 717.9994506835938
+        "y": 718.0
     }
 }
 
@@ -57275,7 +57275,7 @@
     "m_Title": "Base Material",
     "m_Position": {
         "x": -4639.0,
-        "y": 4345.99951171875
+        "y": 4346.0
     }
 }
 
@@ -60941,7 +60941,7 @@
     "m_Title": "Blend Material",
     "m_Position": {
         "x": -4635.0,
-        "y": -1580.0001220703125
+        "y": -1580.0
     }
 }
 
@@ -63896,7 +63896,7 @@
     "m_Title": "Distance Blending",
     "m_Position": {
         "x": -4613.0,
-        "y": 5100.99951171875
+        "y": 5101.0
     }
 }
 
@@ -71560,7 +71560,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": -4631.0,
-        "y": 3336.99951171875
+        "y": 3337.0
     }
 }
 
@@ -72963,7 +72963,7 @@
     "m_Title": "Set Material Properties",
     "m_Position": {
         "x": -5522.0,
-        "y": 4618.99951171875
+        "y": 4619.0
     }
 }
 
