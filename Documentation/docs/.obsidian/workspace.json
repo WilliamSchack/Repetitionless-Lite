@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Shaders/HLSL/Utilities.TextureUtilities.md",
+                "file": "SubGraphs/Terrain.AddTerrainLayerMaskSettings.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Utilities.TextureUtilities"
+              "title": "Terrain.AddTerrainLayerMaskSettings"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 386.5
+    "width": 331.5
   },
   "right": {
     "id": "70b57771890f339c",
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Shaders/HLSL/Utilities.TextureUtilities.md",
+                "file": "SubGraphs/Terrain.AddTerrainLayerMaskSettings.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Utilities.TextureUtilities"
+              "title": "Outline of Terrain.AddTerrainLayerMaskSettings"
             }
           }
         ],
@@ -186,40 +186,50 @@
   },
   "active": "8b88a9035a7515cd",
   "lastOpenFiles": [
-    "Shaders/HLSL/Utilities.BooleanCompression.md",
-    "Shaders/HLSL/Utilities.TextureUtilities.md",
-    "Shaders/HLSL/TextureArrayEssentials.TextureArrayUtilities.md",
-    "Shaders/HLSL/Structs.RepetitionlessMaterialData.md",
-    "Shaders/HLSL/Structs.RepetitionlessMaterialArray.md",
-    "Shaders/HLSL/Structs.RepetitionlessMaterial.md",
-    "Shaders/HLSL/Structs.RepetitionlessLayerTerrain.md",
-    "Shaders/HLSL/Structs.RepetitionlessLayerData.md",
-    "Shaders/HLSL/Structs.RepetitionlessLayer.md",
-    "Shaders/HLSL/RepetitionlessHelpers.RepetitionlessTextureUtilities.md",
-    "Shaders/HLSL/RepetitionlessHelpers.RepetitionlessNoise.md",
-    "Shaders/HLSL/RepetitionlessHelpers.MacroMicroVariation.md",
-    "Shaders/HLSL/RepetitionlessHelpers.DistanceBlend.md",
-    "Shaders/HLSL/Noise.Keijiro.SimplexNoise2D.md",
-    "Shaders/HLSL/Noise.Keijiro.ClassicNoise2D.md",
-    "Shaders/HLSL/Noise.VoronoiNoise2D.md",
-    "Shaders/HLSL/Main.SampleRepetitionlessMaterial.md",
-    "Shaders/HLSL/Main.SampleRepetitionlessLayer.md",
-    "Shaders/SubGraphs/Terrain.AddTerrainLayerMaskSettings.md",
-    "Shaders/SubGraphs/Noise.SeamlessNoise.md",
-    "Shaders/SubGraphs/DistanceBlend.DistanceBlendTexture.md",
-    "Shaders/SubGraphs/BooleanCompression.GetCompressedBool.md",
+    "SubGraphs/Noise.RepetitionlessNoise.md",
+    "SubGraphs/Terrain.AddTerrainLayerMaskSettings.md",
+    "SubGraphs/MacroMicroVariation.MMVTexture.md",
+    "SubGraphs/MacroMicroVariation.MMVSimplexNoise.md",
+    "SubGraphs/DistanceBlend.DistanceBlendTilingOffset.md",
+    "SubGraphs/DistanceBlend.DistanceBlendTexture.md",
+    "SubGraphs/MacroMicroVariation.MMVPerlinNoise.md",
+    "SubGraphs/DistanceBlend.DistanceBlendColour.md",
+    "SubGraphs/BooleanCompression.AddCompressedBool.md",
+    "SubGraphs/BooleanCompression.GetCompressedBool.md",
+    "Images/SubGraphs/SeamlessNoise.png",
+    "Images/SubGraphs/RepetitionlessNoise.png",
+    "Images/SubGraphs/2025-11-17-155403_hyprshot.png",
+    "Images/SubGraphs/MMVTexture.png",
+    "Scripting/Repetitionless.TextureUtilities.TextureUtilities.md",
+    "Scripting/Repetitionless.GUIUtilities.TextureArrayGUIDrawer.md",
+    "Scripting/Repetitionless.TextureUtilities.Texture2DArrayUtilities.md",
+    "Scripting/Repetitionless.CustomWindows.Texture2DArrayWindowBase.md",
+    "Scripting/Repetitionless.CustomDialog.ShaderGUIDialog.md",
+    "Scripting/Repetitionless.Compression.BooleanCompression.md",
     "Shaders/SubGraphs/BooleanCompression.AddCompressedBool.md",
-    "Shaders/SubGraphs/MacroMicroVariation.MMVPerlinNoise.md",
-    "Shaders/SubGraphs/MacroMicroVariation.MMVTexture.md",
-    "Shaders/SubGraphs/MacroMicroVariation.MMVSimplexNoise (copy 1).md",
+    "ShaderHLSL/Utilities.TextureUtilities.md",
+    "ShaderHLSL/Utilities.BooleanCompression.md",
+    "ShaderHLSL/TextureArrayEssentials.TextureArrayUtilities.md",
+    "ShaderHLSL/Structs.RepetitionlessMaterialData.md",
+    "ShaderHLSL/Structs.RepetitionlessMaterialArray.md",
+    "ShaderHLSL/Structs.RepetitionlessMaterial.md",
+    "ShaderHLSL/Structs.RepetitionlessLayerTerrain.md",
+    "ShaderHLSL/Structs.RepetitionlessLayerData.md",
+    "ShaderHLSL",
+    "Shader HLSL",
+    "SubGraphs",
+    "HLSL",
+    "Images/SubGraphs/2025-11-17-151201_hyprshot.png",
+    "Images/SubGraphs/2025-11-17-151143_hyprshot.png",
+    "Images/SubGraphs/MMVSimplexNoise.png",
+    "Images/SubGraphs/2025-11-17-150938_hyprshot.png",
+    "Images/SubGraphs/MMVPerlinNoise.png",
+    "Images/SubGraphs/2025-11-17-150922_hyprshot.png",
+    "Images/SubGraphs",
+    "Images",
     "Shaders/HLSL",
     "Shaders/SubGraphs",
     "Shaders",
-    "Shaders/HLSL",
-    "Shaders",
-    "Shaders/Sub-Graphs",
-    "Images/array-creation/opening-1.png",
-    "Images/array-creation/configure-array.png",
-    "Images/array-creation/adding-textures.png"
+    "Shaders/HLSL"
   ]
 }

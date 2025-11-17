@@ -23,6 +23,22 @@ nav:
       - EDistanceBlendMode: Scripting/Repetitionless.Variables.EDistanceBlendMode.md
       - ESurfaceType: Scripting/Repetitionless.Variables.ESurfaceType.md
       - ETextureType: Scripting/Repetitionless.Variables.ETextureType.md
+  - Sub Graphs:
+      - Compression:
+        - Add Compressed Bool: SubGraphs/BooleanCompression.AddCompressedBool.md
+        - Get Compressed Bool: SubGraphs/BooleanCompression.GetCompressedBool.md
+      - Distance Blending:
+        - Distance Blend Colour: SubGraphs/DistanceBlend.DistanceBlendColour.md
+        - Distance Blend Texture: SubGraphs/DistanceBlend.DistanceBlendTexture.md
+        - Distance Blend Tiling Offset: SubGraphs/DistanceBlend.DistanceBlendTilingOffset.md
+      - Micro Macro Variation:
+        - MMV Perlin Noise: SubGraphs/MacroMicroVariation.MMVPerlinNoise.md
+        - MMV Simplex Noise: SubGraphs/MacroMicroVariation.MMVSimplexNoise.md
+        - MMV Texture: SubGraphs/MacroMicroVariation.MMVTexture.md
+      - Noise:
+        - Repetitionless Noise: SubGraphs/Noise.RepetitionlessNoise.md
+      - Internal:
+        - Add Terrain Layer Mask Settings: SubGraphs/Terrain.AddTerrainLayerMaskSettings.md
 theme:
     name: material
     logo: Images/Icon.png
