@@ -23,14 +23,19 @@ void SampleRepetitionlessLayerBase(
     float3 WorldPosition, float3 CameraPosition,
     int SurfaceType, int DebuggingIndex,
 
-    bool usingTerrainLayer,
+    bool UsingTerrainLayer,
     in RepetitionlessLayer Layer,
     in RepetitionlessLayerTerrain LayerTerrain,
 
-    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
+    out float4 AlbedoColorOut,
+    out float3 NormalVectorOut,
+    out float MetallicOut,
+    out float SmoothnessOut,
+    out float OcclussionOut,
+    out float3 EmissionColorOut
 ){
     RepetitionlessLayerData layerData;
-    if (usingTerrainLayer) layerData = LayerTerrain.Data;
+    if (UsingTerrainLayer) layerData = LayerTerrain.Data;
     else                   layerData = Layer.Data;
 
     // Variables
@@ -45,11 +50,11 @@ void SampleRepetitionlessLayerBase(
     float farDistance = 0;
 
     float4 farTilingOffset = 0;
-    if (usingTerrainLayer) farTilingOffset = LayerTerrain.FarMaterial.Data.TilingOffset;
+    if (UsingTerrainLayer) farTilingOffset = LayerTerrain.FarMaterial.Data.TilingOffset;
     else                   farTilingOffset = Layer.FarMaterial.Data.TilingOffset;
 
     float4 blendTilingOffset = 0;
-    if (usingTerrainLayer) blendTilingOffset = LayerTerrain.BlendMaterial.Data.TilingOffset;
+    if (UsingTerrainLayer) blendTilingOffset = LayerTerrain.BlendMaterial.Data.TilingOffset;
     else                   blendTilingOffset = Layer.BlendMaterial.Data.TilingOffset;
 
     // Calculate mask
@@ -115,7 +120,7 @@ void SampleRepetitionlessLayerBase(
 
     // ----------------------- Base Material ------------------------- //
     if (samplingBase) {
-        if (usingTerrainLayer) {
+        if (UsingTerrainLayer) {
             GetRepetitionlessMaterialColor(
                 SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                 LayerTerrain.BaseMaterial,
@@ -139,7 +144,7 @@ void SampleRepetitionlessLayerBase(
         float blendOcclussion = 0;
         float3 blendEmissionColor = 0;
 
-        if (usingTerrainLayer) {
+        if (UsingTerrainLayer) {
             GetRepetitionlessMaterialArrayColor(
                 SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                 LayerTerrain.BlendMaterial,
@@ -177,7 +182,7 @@ void SampleRepetitionlessLayerBase(
                 // Sample Base Material
                 // Set far TO, no need to change back it wont be used again
                 
-                if (usingTerrainLayer) {
+                if (UsingTerrainLayer) {
                     LayerTerrain.BaseMaterial.Data.TilingOffset = farTilingOffset;
                     
                     GetRepetitionlessMaterialColor(
@@ -197,7 +202,7 @@ void SampleRepetitionlessLayerBase(
                 break;
             case 1: // Material
                 // Sample Far Material
-                if (usingTerrainLayer) {
+                if (UsingTerrainLayer) {
                     GetRepetitionlessMaterialArrayColor(
                         SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                         LayerTerrain.FarMaterial,
@@ -244,7 +249,7 @@ void SampleRepetitionlessLayerBase(
         // Sample Blend Material
         // Set blend TO, no need to change back it wont be used again
 
-        if (usingTerrainLayer) {
+        if (UsingTerrainLayer) {
             LayerTerrain.BlendMaterial.Data.TilingOffset = tilingOffset;
             
             GetRepetitionlessMaterialArrayColor(
@@ -300,7 +305,12 @@ void SampleRepetitionlessLayer(
 
     in RepetitionlessLayer Layer,
 
-    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
+    out float4 AlbedoColorOut,
+    out float3 NormalVectorOut,
+    out float MetallicOut,
+    out float SmoothnessOut,
+    out float OcclussionOut,
+    out float3 EmissionColorOut
 ){
     RepetitionlessLayerTerrain emptyLayer;
 
@@ -320,7 +330,12 @@ void SampleRepetitionlessLayerTerrain(
 
     in RepetitionlessLayerTerrain Layer,
 
-    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
+    out float4 AlbedoColorOut,
+    out float3 NormalVectorOut,
+    out float MetallicOut,
+    out float SmoothnessOut,
+    out float OcclussionOut,
+    out float3 EmissionColorOut
 ){
     RepetitionlessLayer emptyLayer;
 

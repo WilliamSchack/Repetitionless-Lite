@@ -18,7 +18,12 @@ void SampleRepetitionlessLayer(
 	
 	in RepetitionlessLayer Layer,
 	
-    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
+    out float4 AlbedoColorOut,
+    out float3 NormalVectorOut,
+    out float MetallicOut,
+    out float SmoothnessOut,
+    out float OcclussionOut,
+    out float3 EmissionColorOut
 )
 ```
 
@@ -64,7 +69,12 @@ void SampleRepetitionlessLayerTerrain(
 	
 	in RepetitionlessLayerTerrain Layer,
 	
-	out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
+	out float4 AlbedoColorOut,
+    out float3 NormalVectorOut,
+    out float MetallicOut,
+    out float SmoothnessOut,
+    out float OcclussionOut,
+    out float3 EmissionColorOut
 )
 ```
 
@@ -112,7 +122,12 @@ void SampleRepetitionlessLayerBase(
 	in RepetitionlessLayer Layer,
 	in RepetitionlessLayerTerrain LayerTerrain,
 	
-	out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
+	out float4 AlbedoColorOut,
+    out float3 NormalVectorOut,
+    out float MetallicOut,
+    out float SmoothnessOut,
+    out float OcclussionOut,
+    out float3 EmissionColorOut
 )
 ```
 

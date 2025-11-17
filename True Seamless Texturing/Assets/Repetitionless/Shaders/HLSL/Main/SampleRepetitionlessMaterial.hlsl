@@ -25,7 +25,12 @@ void GetRepetitionlessMaterialColorBase(
     in RepetitionlessMaterial Material,
     in RepetitionlessMaterialArray ArrayMaterial,
 
-    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
+    out float4 AlbedoColorOut,
+    out float3 NormalVectorOut,
+    out float MetallicOut,
+    out float SmoothnessOut,
+    out float OcclussionOut,
+    out float3 EmissionColorOut
 ){
     RepetitionlessMaterialData materialData;
     if (UsingArrayMaterial) materialData = ArrayMaterial.Data;
@@ -228,7 +233,12 @@ void GetRepetitionlessMaterialColor(
 
     in RepetitionlessMaterial Material,
 
-    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
+    out float4 AlbedoColorOut,
+    out float3 NormalVectorOut, 
+    out float MetallicOut,
+    out float SmoothnessOut,
+    out float OcclussionOut,
+    out float3 EmissionColorOut
 ){
     RepetitionlessMaterialArray emptyMaterial;
 
@@ -246,7 +256,12 @@ void GetRepetitionlessMaterialArrayColor(
 
     in RepetitionlessMaterialArray Material,
 
-    out float4 AlbedoColorOut, out float3 NormalVectorOut, out float MetallicOut, out float SmoothnessOut, out float OcclussionOut, out float3 EmissionColorOut
+    out float4 AlbedoColorOut,
+    out float3 NormalVectorOut,
+    out float MetallicOut,
+    out float SmoothnessOut,
+    out float OcclussionOut,
+    out float3 EmissionColorOut
 ){
     RepetitionlessMaterial emptyMaterial;
 

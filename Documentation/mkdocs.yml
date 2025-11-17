@@ -2,28 +2,23 @@ site_name: Repetitionless
 #site_url: https://docs.wilschack.dev/texture-urray-utilities
 nav:
   - Getting Started: index.md
-  - Scripting API:
+  - Sub Graphs:
     - Compression:
-      - BooleanCompression: Scripting/Repetitionless.Compression.BooleanCompression.md
-    - CustomDialog:
-      - ShaderGUIDialog: Scripting/Repetitionless.CustomDialog.ShaderGUIDialog.md
-    - CustomWindows:
-      - Texture2DArrayWindowBase: Scripting/Repetitionless.CustomWindows.Texture2DArrayWindowBase.md
-    - GUIUtilities:
-      - TextureArrayGUIDrawer: Scripting/Repetitionless.GUIUtilities.TextureArrayGUIDrawer.md
-      - GUIUtilities: Scripting/Repetitionless.GUIUtilities.GUIUtilities.md
-    - Inspectors:
-      - RepetitionlessGUIBase: Scripting/Repetitionless.Inspectors.RepetitionlessGUIBase.md
-      - Variables:
-        - MaterialFoldoutState: Scripting/Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState.md
-    - TextureUtilities:
-      - Texture2DArrayUtilities: Scripting/Repetitionless.TextureUtilities.Texture2DArrayUtilities.md
-      - TextureUtilities: Scripting/Repetitionless.TextureUtilities.TextureUtilities.md
-    - Variables:
-      - EDistanceBlendMode: Scripting/Repetitionless.Variables.EDistanceBlendMode.md
-      - ESurfaceType: Scripting/Repetitionless.Variables.ESurfaceType.md
-      - ETextureType: Scripting/Repetitionless.Variables.ETextureType.md
-  - Shader HLSL:
+      - Add Compressed Bool: SubGraphs/BooleanCompression.AddCompressedBool.md
+      - Get Compressed Bool: SubGraphs/BooleanCompression.GetCompressedBool.md
+    - Distance Blending:
+      - Distance Blend Colour: SubGraphs/DistanceBlend.DistanceBlendColour.md
+      - Distance Blend Texture: SubGraphs/DistanceBlend.DistanceBlendTexture.md
+      - Distance Blend Tiling Offset: SubGraphs/DistanceBlend.DistanceBlendTilingOffset.md
+    - Macro Micro Variation:
+      - MMV Perlin Noise: SubGraphs/MacroMicroVariation.MMVPerlinNoise.md
+      - MMV Simplex Noise: SubGraphs/MacroMicroVariation.MMVSimplexNoise.md
+      - MMV Texture: SubGraphs/MacroMicroVariation.MMVTexture.md
+    - Noise:
+      - Repetitionless Noise: SubGraphs/Noise.RepetitionlessNoise.md
+    - Internal:
+      - Add Terrain Layer Mask Settings: SubGraphs/Terrain.AddTerrainLayerMaskSettings.md
+  - Shader API:
     - Main:
       - SampleRepetitionlessMaterial: ShaderHLSL/Main.SampleRepetitionlessMaterial.md
       - SampleRepetitionlessLayer: ShaderHLSL/Main.SampleRepetitionlessLayer.md
@@ -49,22 +44,27 @@ nav:
       - RepetitionlessMaterialData: ShaderHLSL/Structs.RepetitionlessMaterialData.md
     - TextureArrayEssentials:
       - TextureArrayUtilities: ShaderHLSL/TextureArrayEssentials.TextureArrayUtilities.md
-  - Sub Graphs:
-      - Compression:
-        - Add Compressed Bool: SubGraphs/BooleanCompression.AddCompressedBool.md
-        - Get Compressed Bool: SubGraphs/BooleanCompression.GetCompressedBool.md
-      - Distance Blending:
-        - Distance Blend Colour: SubGraphs/DistanceBlend.DistanceBlendColour.md
-        - Distance Blend Texture: SubGraphs/DistanceBlend.DistanceBlendTexture.md
-        - Distance Blend Tiling Offset: SubGraphs/DistanceBlend.DistanceBlendTilingOffset.md
-      - Macro Micro Variation:
-        - MMV Perlin Noise: SubGraphs/MacroMicroVariation.MMVPerlinNoise.md
-        - MMV Simplex Noise: SubGraphs/MacroMicroVariation.MMVSimplexNoise.md
-        - MMV Texture: SubGraphs/MacroMicroVariation.MMVTexture.md
-      - Noise:
-        - Repetitionless Noise: SubGraphs/Noise.RepetitionlessNoise.md
-      - Internal:
-        - Add Terrain Layer Mask Settings: SubGraphs/Terrain.AddTerrainLayerMaskSettings.md
+  - Scripting API:
+    - Compression:
+      - BooleanCompression: Scripting/Repetitionless.Compression.BooleanCompression.md
+    - CustomDialog:
+      - ShaderGUIDialog: Scripting/Repetitionless.CustomDialog.ShaderGUIDialog.md
+    - CustomWindows:
+      - Texture2DArrayWindowBase: Scripting/Repetitionless.CustomWindows.Texture2DArrayWindowBase.md
+    - GUIUtilities:
+      - TextureArrayGUIDrawer: Scripting/Repetitionless.GUIUtilities.TextureArrayGUIDrawer.md
+      - GUIUtilities: Scripting/Repetitionless.GUIUtilities.GUIUtilities.md
+    - Inspectors:
+      - RepetitionlessGUIBase: Scripting/Repetitionless.Inspectors.RepetitionlessGUIBase.md
+      - Variables:
+        - MaterialFoldoutState: Scripting/Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState.md
+    - TextureUtilities:
+      - Texture2DArrayUtilities: Scripting/Repetitionless.TextureUtilities.Texture2DArrayUtilities.md
+      - TextureUtilities: Scripting/Repetitionless.TextureUtilities.TextureUtilities.md
+    - Variables:
+      - EDistanceBlendMode: Scripting/Repetitionless.Variables.EDistanceBlendMode.md
+      - ESurfaceType: Scripting/Repetitionless.Variables.ESurfaceType.md
+      - ETextureType: Scripting/Repetitionless.Variables.ETextureType.md
 theme:
     name: material
     logo: Images/Icon.png
