@@ -28,9 +28,24 @@
   "license": "See LICENSE.md",
   "samples": [
     {
-        "displayName": "Repetitionless Examples",
-        "description": "Contains 3 seperate example scenes showcasing the materials",
-        "path": "Samples~"
+      "displayName": "Core Sample Assets",
+      "description": "The core assets used for the samples.\nMust be installed alongside the chosen render pipeline",
+      "path": "Samples~/Assets"
+    },
+    {
+        "displayName": "Examples BIRP",
+        "description": "Contains 3 seperate example scenes showcasing the materials.\nFor the Built-In Render pipeline",
+        "path": "Samples~/BIRP"
+    },
+    {
+        "displayName": "Examples URP",
+        "description": "Contains 3 seperate example scenes showcasing the materials.\nFor URP",
+        "path": "Samples~/URP"
+    },
+    {
+        "displayName": "Examples HDRP",
+        "description": "Contains 3 seperate example scenes showcasing the materials.\nFor HDRP",
+        "path": "Samples~/HDRP"
     }
   ]
 }
