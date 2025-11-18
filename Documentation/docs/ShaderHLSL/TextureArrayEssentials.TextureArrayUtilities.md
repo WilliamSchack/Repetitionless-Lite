@@ -38,7 +38,7 @@ Gets the actual index in a texture array based off the assigned textures and con
 ### Declaration 
 
 ``` csharp
-void SampleArrayAtConstantIndex_float
+void SampleArrayAtConstantIndex_float(
 	UnityTexture2DArray TextureArray,
 	int TexturesAssignedCompressed,
 	int Index,

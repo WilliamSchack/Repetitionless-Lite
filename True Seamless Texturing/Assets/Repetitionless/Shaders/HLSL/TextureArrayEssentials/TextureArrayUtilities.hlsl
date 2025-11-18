@@ -29,7 +29,7 @@ void GetIndexInArray_float(int TexturesAssignedCompressed, int Index, out int Ou
     Out = arrayIndex;
 }
 
-void SampleArrayAtConstantIndex_float
+void SampleArrayAtConstantIndex_float(
     UnityTexture2DArray TextureArray,
     int TexturesAssignedCompressed,
     int Index,

@@ -7,7 +7,7 @@ TerrainLayer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Repetitionless_Samples_CoastSandRocks
-  m_DiffuseTexture: {fileID: 2800000, guid: 3a11752c1f5e5b52c87caef17f4619fc, type: 3}
+  m_DiffuseTexture: {fileID: 2800000, guid: ee2de944f3ee84fef96c9e8a15531ac5, type: 3}
   m_NormalMapTexture: {fileID: 2800000, guid: faea135b59f412f3a9b3cb676ef5e423, type: 3}
   m_MaskMapTexture: {fileID: 2800000, guid: 2a1df231bb3a3005f834dded04bf6813, type: 3}
   m_TileSize: {x: 5, y: 5}

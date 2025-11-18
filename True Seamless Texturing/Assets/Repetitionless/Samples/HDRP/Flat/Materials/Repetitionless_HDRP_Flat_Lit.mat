@@ -42,6 +42,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
+  - _MASKMAP
   - _NORMALMAP
   - _NORMALMAP_TANGENT_SPACE
   m_InvalidKeywords: []
@@ -65,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColorMap:
-        m_Texture: {fileID: 2800000, guid: 6be8323d23cf45a1cbae0d93cc522c98, type: 3}
+        m_Texture: {fileID: 2800000, guid: a231b5934fba11f9aaa3d24a69ece201, type: 3}
         m_Scale: {x: 50, y: 50}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -125,11 +126,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6be8323d23cf45a1cbae0d93cc522c98, type: 3}
+        m_Texture: {fileID: 2800000, guid: a231b5934fba11f9aaa3d24a69ece201, type: 3}
         m_Scale: {x: 50, y: 50}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a4a1f9a04140f39848469607cbf907b2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

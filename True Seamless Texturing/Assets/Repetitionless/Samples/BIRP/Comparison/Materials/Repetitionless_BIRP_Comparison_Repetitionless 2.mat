@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseAlbedo:
-        m_Texture: {fileID: 2800000, guid: 17d48558206aa69ca9ccda683287932f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7a12c33923a1ff85ea1568f1bbc7cd7f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseEmissionMap:
@@ -54,7 +54,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseOcclussionMap:
-        m_Texture: {fileID: 2800000, guid: 85570cb4ed6ab1378b9cdbadc30c5b90, type: 3}
+        m_Texture: {fileID: 2800000, guid: 93d65ba53d9b6cefdb6998b097451126, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseRoughnessMap:
