@@ -33,17 +33,17 @@
       "path": "Samples~/Assets"
     },
     {
-        "displayName": "Examples BIRP",
+        "displayName": "BIRP Examples",
         "description": "Contains 3 seperate example scenes showcasing the materials.\nFor the Built-In Render pipeline",
         "path": "Samples~/BIRP"
     },
     {
-        "displayName": "Examples URP",
+        "displayName": "URP Examples",
         "description": "Contains 3 seperate example scenes showcasing the materials.\nFor URP",
         "path": "Samples~/URP"
     },
     {
-        "displayName": "Examples HDRP",
+        "displayName": "HDRP Examples",
         "description": "Contains 3 seperate example scenes showcasing the materials.\nFor HDRP",
         "path": "Samples~/HDRP"
     }
