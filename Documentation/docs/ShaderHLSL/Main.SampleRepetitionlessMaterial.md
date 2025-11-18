@@ -26,7 +26,7 @@ void GetRepetitionlessMaterialColor(
 )
 ```
 
-## Parameters
+### Parameters
 
 | Parameter           | Description                                                                                                                                                                                                          |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -37,7 +37,7 @@ void GetRepetitionlessMaterialColor(
 | DebuggingIndex      | The selected debugging type as shown in the inspector<br>*Anything outside the below range is disabled*<br>0: Voronoi Cells<br>1: Edge Mask<br>2: Distance Mask<br>3: Blend Material Mask<br>4: Variation Multiplier |
 | Material            | The material that will be used                                                                                                                                                                                       |
 
-## Returns
+### Returns
 
 | Output           | Description                  |
 | ---------------- | ---------------------------- |
@@ -48,7 +48,7 @@ void GetRepetitionlessMaterialColor(
 | OcclussionOut    | The output occlussion colour |
 | EmissionColorOut | The output emission colour   |
 
-## Description
+### Description
 
 Samples a RepetitionlessMaterial
 
@@ -74,7 +74,7 @@ void GetRepetitionlessMaterialArrayColor(
 )
 ```
 
-## Parameters
+### Parameters
 
 | Parameter           | Description                                                                                                                                                                                                          |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -85,7 +85,7 @@ void GetRepetitionlessMaterialArrayColor(
 | DebuggingIndex      | The selected debugging type as shown in the inspector<br>*Anything outside the below range is disabled*<br>0: Voronoi Cells<br>1: Edge Mask<br>2: Distance Mask<br>3: Blend Material Mask<br>4: Variation Multiplier |
 | Material            | The material that will be used                                                                                                                                                                                       |
 
-## Returns
+### Returns
 
 | Output           | Description                  |
 | ---------------- | ---------------------------- |
@@ -96,7 +96,7 @@ void GetRepetitionlessMaterialArrayColor(
 | OcclussionOut    | The output occlussion colour |
 | EmissionColorOut | The output emission colour   |
 
-## Description
+### Description
 
 Samples a RepetitionlessMaterialArray
 
@@ -124,7 +124,7 @@ void GetRepetitionlessMaterialColorBase(
 )
 ```
 
-## Parameters
+### Parameters
 
 | Parameter           | Description                                                                                                                                                                                                          |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -137,7 +137,7 @@ void GetRepetitionlessMaterialColorBase(
 | Material            | The material                                                                                                                                                                                                         |
 | ArrayMaterial       | The array material                                                                                                                                                                                                   |
 
-## Returns
+### Returns
 
 | Output           | Description                  |
 | ---------------- | ---------------------------- |
@@ -148,7 +148,7 @@ void GetRepetitionlessMaterialColorBase(
 | OcclussionOut    | The output occlussion colour |
 | EmissionColorOut | The output emission colour   |
 
-## Description
+### Description
 
 Samples a RepetitionlessMaterial or RepetitionlessMaterialArray based on UsingArrayMaterial
 

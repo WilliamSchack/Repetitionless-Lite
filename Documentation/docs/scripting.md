@@ -1,5 +1,4 @@
-For creating your own scripts and GUI using the included scripts, view the respective Scripting API pages for details on each set of functions and how to implement them into your own code
+For creating your own scripts and inspectors using the included scripts, view the respective Scripting API pages for details on each set of functions and how to implement them into your own code
 
-To include script namespaces their respective assembly definitions must be referenced in your own
+**To include script namespaces their respective assembly definitions must be referenced in your own assembly definitions**
 
-**Note that all scripts except compression require the Unity Editor to function.**

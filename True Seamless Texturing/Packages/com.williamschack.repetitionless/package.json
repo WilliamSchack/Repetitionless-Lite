@@ -20,7 +20,7 @@
     "tile"
   ],
   "dependencies": {
-    "com.unity.shadergraph": "12.1.16"
+    "com.unity.shadergraph": "12.1.0"
   },
   "documentationUrl": "https://example.com/",
   "changelogUrl": "https://example.com/changelog.html",

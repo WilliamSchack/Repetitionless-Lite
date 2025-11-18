@@ -27,7 +27,7 @@ void SampleRepetitionlessLayer(
 )
 ```
 
-## Parameters
+### Parameters
 
 | Parameter           | Description                                                                                                                                                                                                          |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -40,7 +40,7 @@ void SampleRepetitionlessLayer(
 | DebuggingIndex      | The selected debugging type as shown in the inspector<br>*Anything outside the below range is disabled*<br>0: Voronoi Cells<br>1: Edge Mask<br>2: Distance Mask<br>3: Blend Material Mask<br>4: Variation Multiplier |
 | Layer               | The layer data that will be used                                                                                                                                                                                     |
 
-## Returns
+### Returns
 
 | Output           | Description                  |
 | ---------------- | ---------------------------- |
@@ -51,7 +51,7 @@ void SampleRepetitionlessLayer(
 | OcclussionOut    | The output occlussion colour |
 | EmissionColorOut | The output emission colour   |
 
-## Description
+### Description
 
 Samples a RepetitionlessLayer, automatically blending between and handling each material in the layer 
 
@@ -78,7 +78,7 @@ void SampleRepetitionlessLayerTerrain(
 )
 ```
 
-## Returns
+### Parameters
 
 | Parameter           | Description                                                                                                                                                                                                          |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -91,7 +91,7 @@ void SampleRepetitionlessLayerTerrain(
 | DebuggingIndex      | The selected debugging type as shown in the inspector<br>*Anything outside the below range is disabled*<br>0: Voronoi Cells<br>1: Edge Mask<br>2: Distance Mask<br>3: Blend Material Mask<br>4: Variation Multiplier |
 | Layer               | The layer data                                                                                                                                                                                                       |
 
-## Returns
+### Returns
 
 | Output           | Description                  |
 | ---------------- | ---------------------------- |
@@ -102,7 +102,7 @@ void SampleRepetitionlessLayerTerrain(
 | OcclussionOut    | The output occlussion colour |
 | EmissionColorOut | The output emission colour   |
 
-## Description
+### Description
 
 Samples a RepetitionlessLayerTerrain, automatically blending between and handling each material in the layer
 
@@ -131,7 +131,7 @@ void SampleRepetitionlessLayerBase(
 )
 ```
 
-## Parameters
+### Parameters
 
 | Parameter           | Description                                                                                                                                                                                                          |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -146,7 +146,7 @@ void SampleRepetitionlessLayerBase(
 | Layer               | The layer data                                                                                                                                                                                                       |
 | LayerTerrain        | The layer terrain data                                                                                                                                                                                               |
 
-## Returns
+### Returns
 
 | Output           | Description                  |
 | ---------------- | ---------------------------- |
@@ -157,7 +157,7 @@ void SampleRepetitionlessLayerBase(
 | OcclussionOut    | The output occlussion colour |
 | EmissionColorOut | The output emission colour   |
 
-## Description
+### Description
 
 Samples a RepetitionlessLayer or RepetitionlessLayerTerrain based on usingTerrainLayer. Automatically blending between and handling each material in the layer
 
