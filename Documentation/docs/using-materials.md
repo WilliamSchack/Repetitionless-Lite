@@ -37,7 +37,7 @@ To assign the terrain repetititonless material you have to:
 
 ![image](Images/Materials/AssignRepetitionlessTerrainMaterial.png)
 
-*There is a warning for tangent geometry shown because the shader is using the Lit Shader Graph which includes tangent geometry that cannot be disabled. **The repetitionless shader does not use tangent geometry and this warning can be ignored***
+<i>There is a warning for tangent geometry because the shader is using the Lit Shader Graph which includes tangent geometry that cannot be disabled. <b>The repetitionless shader does not use tangent geometry and this warning can be safely ignored</b></i>
 
 **An update to this package is coming soon for Unity 6.3+ that will remove this warning**
 
