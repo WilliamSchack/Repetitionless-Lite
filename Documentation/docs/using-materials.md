@@ -15,6 +15,40 @@ To create one of these materials:
 
 ***Note: Render pipelines can be switched without losing data<br />ex. Changing a Repetitionless material from BIRP to its URP version will keep all the settings***
 
+## Using The Material
+
+### Repetitionless
+
+You can just assign repetitionless material to any Mesh Renderer and it will be applied to that object
+
+![image](Images/Materials/AssignRepetitionlessMaterial.png)
+
+### RepetitionlessTerrain
+
+**Important Details**
+
+- **Your Graphics API must support 64+ texture parameters.** This means graphics apis such as OpenGL and WebGL are not supported. You will know your graphics api is unsupported if you get the texture parameters warning and the shader doesnt work
+- **Currently only supports 4 terrain layers.** An update to this package is coming soon for Unity 6.3+ to support ~8 terrain layers
+
+To assign the terrain repetititonless material you have to:
+
+1. Go to the terrain settings in its inspector
+2. Assign the material to the material property
+
+![image](Images/Materials/AssignRepetitionlessTerrainMaterial.png)
+
+*There is a warning for tangent geometry shown because the shader is using the Lit Shader Graph which includes tangent geometry that cannot be disabled. **The repetitionless shader does not use tangent geometry and this warning can be ignored***
+
+**An update to this package is coming soon for Unity 6.3+ that will remove this warning**
+
+---
+
+![image](Images/Materials/LayerIndexes.png)
+
+Layers in the repetitionless material correspond to the order of the assigned terrain layers as shown in the image above
+
+**The material currently only supports 4 terrain layers.** An update to this package is coming soon for Unity 6.3+ to support ~8 terrain layers
+
 ## Configuration
 
 All the materials can be configured through its inspector by selecting the material and viewing the inspector window

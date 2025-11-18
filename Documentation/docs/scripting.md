@@ -1,4 +1,6 @@
 For creating your own scripts and inspectors using the included scripts, view the respective Scripting API pages for details on each set of functions and how to implement them into your own code
 
-**To include script namespaces their respective assembly definitions must be referenced in your own assembly definitions**
+Scripts can be found at `Packages/com.williamschack.repetitionless` in the `Editor` and `Runtime` folders
 
+
+**To include script namespaces their respective assembly definitions must be referenced in your own assembly definitions**
