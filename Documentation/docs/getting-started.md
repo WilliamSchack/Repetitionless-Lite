@@ -21,11 +21,15 @@ For instructions on how to create and configure repetitionless materials:
 
 ## Creating Shaders
 
+You can view the Sub Graphs and Shader API documentation in the contents on the left of the page
+
 If you want to create a shader graph or code shader using the features from the repetitionless materials:
 
 **View the [Shader Creation page](shader-creation.md)**
 
 ## Creating Scripts
+
+You can view the Sub Graphs and Shader API documentation in the contents on the left of the page
 
 If you want to create scripts or inspectors using the features from the repetitionless materials inspectors:
 
