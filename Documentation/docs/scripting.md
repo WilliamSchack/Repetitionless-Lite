@@ -3,4 +3,4 @@ For creating your own scripts and inspectors using the included scripts, view th
 Scripts can be found at `Packages/com.williamschack.repetitionless` in the `Editor` and `Runtime` folders
 
 
-**To include script namespaces their respective assembly definitions must be referenced in your own assembly definitions**
+**To include script namespaces you must reference their respective assembly definitions in your own assembly definitions**
