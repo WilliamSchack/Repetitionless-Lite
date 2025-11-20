@@ -263,7 +263,7 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.unity.shadergraph": "12.1.16"
+        "com.unity.shadergraph": "12.1.0"
       }
     },
     "com.unity.modules.ai": {
