@@ -1,0 +1,28 @@
+#pragma kernel CSMain
+
+uint Width;
+uint Height;
+
+Texture2D<float4> RTex;
+Texture2D<float4> GTex;
+Texture2D<float4> BTex;
+Texture2D<float4> ATex;
+
+int4 Channels;
+
+RWTexture2D<float4> Result;
+
+[numthreads(8, 8, 1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    // Assumes all textures have the same dimensions, but exit here if not
+    if (id.x >= Width || id.y >= Height)
+        return;
+    
+    half r = RTex[id.xy][Channels[0]];
+    half g = GTex[id.xy][Channels[1]];
+    half b = BTex[id.xy][Channels[2]];
+    half a = ATex[id.xy][Channels[3]];
+
+    Result[id.xy] = float4(r, g, b, a);
+}
