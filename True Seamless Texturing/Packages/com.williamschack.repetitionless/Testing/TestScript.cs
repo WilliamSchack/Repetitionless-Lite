@@ -59,8 +59,8 @@ public class TestScript : MonoBehaviour
 
         _shader.SetTexture(kernel, "Result", rt);
 
-        int groupsX = (width + (THREADS_X - 1)) / THREADS_X;
-        int groupsY = (height + (THREADS_Y - 1)) / THREADS_Y;
+        int groupsX = Mathf.CeilToInt(width  / (float)THREADS_X);
+        int groupsY = Mathf.CeilToInt(height / (float)THREADS_Y);
 
         _shader.Dispatch(kernel, groupsX, groupsY, 1);
 
