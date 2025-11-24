@@ -3,12 +3,14 @@
 uint Width;
 uint Height;
 
+int4 Channels;
+
+int4 AssignedTextures;
+
 Texture2D<float4> RTex;
 Texture2D<float4> GTex;
 Texture2D<float4> BTex;
 Texture2D<float4> ATex;
-
-int4 Channels;
 
 RWTexture2D<float4> Result;
 
@@ -19,10 +21,10 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     if (id.x >= Width || id.y >= Height)
         return;
     
-    half r = RTex[id.xy][Channels[0]];
-    half g = GTex[id.xy][Channels[1]];
-    half b = BTex[id.xy][Channels[2]];
-    half a = ATex[id.xy][Channels[3]];
+    half r = AssignedTextures[0] == 1 ? RTex[id.xy][Channels[0]] : RTex[float2(0, 0)];
+    half g = AssignedTextures[1] == 1 ? GTex[id.xy][Channels[1]] : GTex[float2(0, 0)];
+    half b = AssignedTextures[2] == 1 ? BTex[id.xy][Channels[2]] : BTex[float2(0, 0)];
+    half a = AssignedTextures[3] == 1 ? ATex[id.xy][Channels[3]] : ATex[float2(0, 0)];
 
     Result[id.xy] = float4(r, g, b, a);
 }

@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    const int THREADS_X = 8;
-    const int THREADS_Y = 8;
+    private const int THREADS_X = 8;
+    private const int THREADS_Y = 8;
 
+    private static readonly Color[] DEFAULT_COLOURS = { Color.black, Color.white, Color.white, Color.black };
+ 
     [SerializeField] private ComputeShader _shader;
     [SerializeField] private string _outPath;
 
@@ -20,24 +22,40 @@ public class TestScript : MonoBehaviour
     public void CreatePT()
     {
         int width = _texR.width;
-        int height = _texG.height;
+        int height = _texR.height;
 
         // Assumes all textures are the same size
         RenderTexture rt = new RenderTexture(width, height, 0);
         rt.enableRandomWrite = true;
         rt.Create();
 
+        Texture2D[] inputTextures = { _texR, _texG, _texB, _texA };
+        int[] assignedTextures = new int[4];
+
+        for (int i = 0; i < inputTextures.Length; i++) {
+            bool textureAssigned = inputTextures[i];
+            assignedTextures[i] = textureAssigned ? 1 : 0;
+
+            if (!textureAssigned) {
+                inputTextures[i] = new Texture2D(1, 1, TextureFormat.RGBA32, false);
+                inputTextures[i].SetPixel(0, 0, DEFAULT_COLOURS[i]);
+                inputTextures[i].Apply();
+            }
+        }
+
         int kernel = _shader.FindKernel("CSMain");
 
         _shader.SetFloat("Width", width);
         _shader.SetFloat("Height", height);
 
-        _shader.SetTexture(kernel, "RTex", _texR);
-        _shader.SetTexture(kernel, "GTex", _texG);
-        _shader.SetTexture(kernel, "BTex", _texB);
-        _shader.SetTexture(kernel, "ATex", _texA);
-
         _shader.SetInts("Channels", 0, 0, 0, 0);
+
+        _shader.SetInts("AssignedTextures", assignedTextures);
+
+        _shader.SetTexture(kernel, "RTex", inputTextures[0]);
+        _shader.SetTexture(kernel, "GTex", inputTextures[1]);
+        _shader.SetTexture(kernel, "BTex", inputTextures[2]);
+        _shader.SetTexture(kernel, "ATex", inputTextures[3]);
 
         _shader.SetTexture(kernel, "Result", rt);
 
