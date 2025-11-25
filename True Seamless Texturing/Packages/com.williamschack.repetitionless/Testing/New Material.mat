@@ -182,7 +182,7 @@ Material:
     - _Cutoff: 0.5
     - _DebuggingIndex: -1
     - _DetailNormalMapScale: 1
-    - _DistanceBlendEnabled: 0
+    - _DistanceBlendEnabled: 1
     - _DistanceBlendMode: 0
     - _DstBlend: 0
     - _FarVariationBrightness: 0.3
@@ -190,7 +190,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaterialBlendSettings: 6
+    - _MaterialBlendSettings: 7
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -221,7 +221,7 @@ Material:
     - _BlendMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _BlendNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BlendNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _BlendSettings: {r: 47, g: 0, b: 0, a: 0}
+    - _BlendSettings: {r: 15, g: 0, b: 0, a: 0}
     - _BlendTilingOffset: {r: 1, g: 1, b: 0, a: 0}
     - _BlendVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _BlendVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}

@@ -18,22 +18,56 @@ public class TestScript : MonoBehaviour
     [SerializeField] private Texture2D _texB;
     [SerializeField] private Texture2D _texA;
 
-    [ContextMenu("Create Texture")]
-    public void CreatePT()
+    private static TextureImporter GetTextureImporter(Texture2D texture)
     {
-        int width = _texR.width;
-        int height = _texR.height;
+        string path = AssetDatabase.GetAssetPath(texture);
+        TextureImporter importer = (TextureImporter)TextureImporter.GetAtPath(path);
+
+        return importer;
+    }
+
+    private static bool TextureIsNormal(Texture2D texture)
+    {
+        TextureImporter importer = GetTextureImporter(texture);
+        
+        if (importer == null) return false;
+        return importer.textureType == TextureImporterType.NormalMap;
+    }
+
+    private static void SetTextureToNormal(Texture2D texture)
+    {
+        TextureImporter importer = GetTextureImporter(texture);
+        if (importer == null) return;
+
+        importer.textureType = TextureImporterType.NormalMap;
+        importer.SaveAndReimport();
+    }
+
+    [ContextMenu("Create Texture")]
+    public void CreatePTInspector()
+    {
+        Texture2D[] inputTextures = { _texR, _texG, _texB, _texA };
+        CreatePT(_shader, _outPath, inputTextures);
+    }
+
+    public static void CreatePT(ComputeShader shader, string outPath, Texture2D[] inputTextures)
+    {
+        Debug.Log(TextureIsNormal(inputTextures[0]));
+        SetTextureToNormal(inputTextures[0]);
+        Debug.Log(TextureIsNormal(inputTextures[0]));
+
+        int width = inputTextures[0].width;
+        int height = inputTextures[0].height;
 
         // Assumes all textures are the same size
         RenderTexture rt = new RenderTexture(width, height, 0);
         rt.enableRandomWrite = true;
         rt.Create();
 
-        Texture2D[] inputTextures = { _texR, _texG, _texB, _texA };
         int[] assignedTextures = new int[4];
 
         for (int i = 0; i < inputTextures.Length; i++) {
-            bool textureAssigned = inputTextures[i];
+            bool textureAssigned = inputTextures[i] != null;
             assignedTextures[i] = textureAssigned ? 1 : 0;
 
             if (!textureAssigned) {
@@ -43,26 +77,27 @@ public class TestScript : MonoBehaviour
             }
         }
 
-        int kernel = _shader.FindKernel("CSMain");
+        int kernel = shader.FindKernel("CSMain");
 
-        _shader.SetFloat("Width", width);
-        _shader.SetFloat("Height", height);
+        shader.SetFloat("Width", width);
+        shader.SetFloat("Height", height);
 
-        _shader.SetInts("Channels", 0, 0, 0, 0);
+        shader.SetInts("NormalIndex", 0);
+        shader.SetInts("FromChannels", 0, 1, 2, 3);
 
-        _shader.SetInts("AssignedTextures", assignedTextures);
+        shader.SetInts("AssignedTextures", assignedTextures);
 
-        _shader.SetTexture(kernel, "RTex", inputTextures[0]);
-        _shader.SetTexture(kernel, "GTex", inputTextures[1]);
-        _shader.SetTexture(kernel, "BTex", inputTextures[2]);
-        _shader.SetTexture(kernel, "ATex", inputTextures[3]);
+        shader.SetTexture(kernel, "RTex", inputTextures[0]);
+        shader.SetTexture(kernel, "GTex", inputTextures[1]);
+        shader.SetTexture(kernel, "BTex", inputTextures[2]);
+        shader.SetTexture(kernel, "ATex", inputTextures[3]);
 
-        _shader.SetTexture(kernel, "Result", rt);
+        shader.SetTexture(kernel, "Result", rt);
 
         int groupsX = Mathf.CeilToInt(width  / (float)THREADS_X);
         int groupsY = Mathf.CeilToInt(height / (float)THREADS_Y);
 
-        _shader.Dispatch(kernel, groupsX, groupsY, 1);
+        shader.Dispatch(kernel, groupsX, groupsY, 1);
 
         // Blit to texture
         RenderTexture previousRT = RenderTexture.active;
@@ -76,14 +111,13 @@ public class TestScript : MonoBehaviour
         rt.Release();
 
         // Save tex
-        AssetDatabase.DeleteAsset(_outPath);
+        AssetDatabase.DeleteAsset(outPath);
         
         string fullPath = Application.dataPath.Substring(0, Application.dataPath.Length - "Assets".Length);
-        fullPath += _outPath;
+        fullPath += outPath;
 
         byte[] png = outTex.EncodeToPNG();
         System.IO.File.WriteAllBytes(fullPath, png);
-
         AssetDatabase.Refresh();
 
     }

@@ -338,11 +338,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: testing::TestScript
   _shader: {fileID: 7200000, guid: 8c2bb18480b03a79ea7c1f2949a976a4, type: 3}
-  _outTex: {fileID: 2800000, guid: bf06a52e2ceb5e5f589ca56b76cf0758, type: 3}
-  _texR: {fileID: 2800000, guid: c8e48644e2c21912f9a61a25e83611cb, type: 3}
-  _texG: {fileID: 2800000, guid: df7a707f426a3cebf8579cfad2a6ad92, type: 3}
-  _texB: {fileID: 2800000, guid: a14dcaa707cff4acaa3b1e90050565ea, type: 3}
-  _texA: {fileID: 2800000, guid: ea64b0abd9df3521a989ffb483f85cc7, type: 3}
+  _outPath: Assets/test.png
+  _texR: {fileID: 2800000, guid: e1ef57925b58e624bb0ddcc506f28e94, type: 3}
+  _texG: {fileID: 0}
+  _texB: {fileID: 0}
+  _texA: {fileID: 0}
 --- !u!4 &1712669349
 Transform:
   m_ObjectHideFlags: 0

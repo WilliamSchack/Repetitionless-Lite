@@ -1,18 +1,55 @@
 #pragma kernel CSMain
 
+// Texture Resolution
 uint Width;
 uint Height;
 
-int4 Channels;
+// If there is a normal being used, if so the rg channels will use this normals values
+int NormalIndex;
 
+// The channels each texture will take from
+int4 FromChannels;
+
+// Which textures are assigned. true == 1, false == 0
 int4 AssignedTextures;
 
+// Input textures
 Texture2D<float4> RTex;
 Texture2D<float4> GTex;
 Texture2D<float4> BTex;
 Texture2D<float4> ATex;
 
+// Output texture
 RWTexture2D<float4> Result;
+
+// Copied from UnityCG.cginc
+inline half3 UnpackNormal(half4 packedNormal = 0)
+{
+#if defined(UNITY_NO_DXT5nm)
+    return packedNormal.xyz * 2 - 1;
+#else
+    packedNormal.x *= packedNormal.w;
+
+    half3 normal;
+    normal.xy = packedNormal.xy * 2 - 1;
+    normal.z = sqrt(1 - saturate(dot(normal.xy, normal.xy)));
+    return normal;
+#endif
+}
+
+inline half4 GetTextureValue(int channelIndex = 0, float2 uv = 0)
+{
+    switch (channelIndex) {
+        case 0:  return RTex[uv];
+        case 1:  return GTex[uv];
+        case 2:  return BTex[uv];
+        case 3:  return ATex[uv];
+        default: return 0;
+    }
+
+    // Wont reach but just incase
+    return 0;
+}
 
 [numthreads(8, 8, 1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
@@ -20,11 +57,39 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     // Assumes all textures have the same dimensions, but exit here if not
     if (id.x >= Width || id.y >= Height)
         return;
-    
-    half r = AssignedTextures[0] == 1 ? RTex[id.xy][Channels[0]] : RTex[float2(0, 0)];
-    half g = AssignedTextures[1] == 1 ? GTex[id.xy][Channels[1]] : GTex[float2(0, 0)];
-    half b = AssignedTextures[2] == 1 ? BTex[id.xy][Channels[2]] : BTex[float2(0, 0)];
-    half a = AssignedTextures[3] == 1 ? ATex[id.xy][Channels[3]] : ATex[float2(0, 0)];
 
-    Result[id.xy] = float4(r, g, b, a);
+    // Unpack normal if we are including one
+    bool usingNormal = NormalIndex >= 0 && NormalIndex < 4;
+    half3 unpackedNormal = 0;
+    if (usingNormal) {
+        unpackedNormal = UnpackNormal(GetTextureValue(NormalIndex, id.xy));
+        unpackedNormal.xy = unpackedNormal.xy * 0.5 + 0.5;
+    }
+
+    // Sample
+    half channelValues[4];
+
+    [unroll]
+    for (int i = 0; i < 4; i++) {
+        int channelToRead = FromChannels[i];
+
+        // If a normal is set, assign it to the xy channels
+        if (usingNormal && i < 2) {
+            channelValues[i] = unpackedNormal[i];
+        }
+
+        // Otherwise use the assigned texture
+        else {
+            channelValues[i] = AssignedTextures[i] == 1 ?
+                               GetTextureValue(i, id.xy)[channelToRead] :
+                               GetTextureValue(i, float2(0, 0))[0]; // Default value stored in 1x1 texture
+        }
+    }
+
+    Result[id.xy] = float4(
+        channelValues[0],
+        channelValues[1],
+        channelValues[2],
+        channelValues[3]
+    );
 }
