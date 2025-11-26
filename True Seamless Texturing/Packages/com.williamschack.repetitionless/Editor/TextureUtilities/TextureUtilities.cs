@@ -134,35 +134,29 @@ namespace Repetitionless.TextureUtilities
             }
         }
 
-        /// <summary>
-        /// Converts a unity compressed normal map back to an uncompressed one<br />
-        /// From red to blue essentially<br />
-        /// Does not modify the original texture, returns a new converted one
-        /// </summary>
-        /// <param name="texture">
-        /// The texture that will be converted
-        /// </param>
-        /// <returns>
-        /// The texture converted to an uncompressed normal
-        /// </returns>
-        public static Texture2D ConvertFromCompressedNormal(Texture2D texture)
+        private static TextureImporter GetTextureImporter(Texture2D texture)
         {
-            if (texture == null) return null;
+            string path = AssetDatabase.GetAssetPath(texture);
+            TextureImporter importer = (TextureImporter)TextureImporter.GetAtPath(path);
 
-            Color[] pixels = texture.GetPixels();
-            for (int i = 0; i < pixels.Length; i++) {
-                Color pixel = pixels[i];
-                pixel.b = pixel.r;
-                pixel.r = pixel.a;
-                pixel.a = 1.0f;
-                pixels[i] = pixel;
-            }
+            return importer;
+        }
 
-            Texture2D normalTexture = new Texture2D(texture.width, texture.height);
-            normalTexture.SetPixels(pixels);
-            normalTexture.Apply();
+        public static bool TextureIsNormal(Texture2D texture)
+        {
+            TextureImporter importer = GetTextureImporter(texture);
+            
+            if (importer == null) return false;
+            return importer.textureType == TextureImporterType.NormalMap;
+        }
 
-            return normalTexture;
+        public static void SetTextureToNormal(Texture2D texture)
+        {
+            TextureImporter importer = GetTextureImporter(texture);
+            if (importer == null) return;
+
+            importer.textureType = TextureImporterType.NormalMap;
+            importer.SaveAndReimport();
         }
     }
 }
