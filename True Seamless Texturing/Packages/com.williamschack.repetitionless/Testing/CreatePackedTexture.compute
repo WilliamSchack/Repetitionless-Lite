@@ -1,23 +1,31 @@
 #pragma kernel CSMain
 
+struct TextureData
+{
+    uint NormalMap;
+    uint SRGB;
+    uint ChannelsUsedAmount;
+    uint4 FromChannels;
+    uint4 ToChannels;
+};
+
 // Texture Resolution
 uint Width;
 uint Height;
 
-// If there is a normal being used, if so the rg channels will use this normals values
-int NormalIndex;
+// Input Textures
+Texture2D<float4> Tex0;
+Texture2D<float4> Tex1;
+Texture2D<float4> Tex2;
+Texture2D<float4> Tex3;
 
-// The channels each texture will take from
-int4 FromChannels;
+StructuredBuffer<TextureData> TexturesData;
+int TextureCount;
 
-// Which textures are assigned. true == 1, false == 0
-int4 AssignedTextures;
-
-// Input textures
-Texture2D<float4> RTex;
-Texture2D<float4> GTex;
-Texture2D<float4> BTex;
-Texture2D<float4> ATex;
+half3 DefaultRColour;
+half3 DefaultGColour;
+half3 DefaultBColour;
+half3 DefaultAColour;
 
 // Output texture
 RWTexture2D<float4> Result;
@@ -37,18 +45,47 @@ inline half3 UnpackNormal(half4 packedNormal = 0)
 #endif
 }
 
-inline half4 GetTextureValue(int channelIndex = 0, float2 uv = 0)
+// Copied from unity postprocessing Colors.hlsl
+float4 PositivePow(float4 base, float4 power)
 {
+    float fltEpsilon = 1.192092896e-07;
+    return pow(max(abs(base), float4(fltEpsilon, fltEpsilon, fltEpsilon, fltEpsilon)), power);
+}
+
+inline half4 LinearToSRGB(half4 c)
+{
+    half4 sRGBLo = c * 12.92;
+    half4 sRGBHi = (PositivePow(c, float4(1.0 / 2.4, 1.0 / 2.4, 1.0 / 2.4, 1.0 / 2.4)) * 1.055) - 0.055;
+    half4 sRGB = (c <= 0.0031308) ? sRGBLo : sRGBHi;
+    return sRGB;
+}
+
+inline half4 SampleTexture(int channelIndex = 0, float2 uv = 0)
+{
+    half4 colour = 0;
+
     switch (channelIndex) {
-        case 0:  return RTex[uv];
-        case 1:  return GTex[uv];
-        case 2:  return BTex[uv];
-        case 3:  return ATex[uv];
-        default: return 0;
+        case 0: colour = Tex0[uv]; break;
+        case 1: colour = Tex1[uv]; break;
+        case 2: colour = Tex2[uv]; break;
+        case 3: colour = Tex3[uv]; break;
     }
 
-    // Wont reach but just incase
-    return 0;
+    if (TexturesData[channelIndex].SRGB)
+        colour = LinearToSRGB(colour);
+
+    return colour;
+}
+
+inline half3 GetDefaultColour(int channelIndex = 0)
+{
+    switch (channelIndex) {
+        case 0:  return DefaultRColour;
+        case 1:  return DefaultGColour;
+        case 2:  return DefaultBColour;
+        case 3:  return DefaultAColour;
+        default: return 0;
+    }
 }
 
 [numthreads(8, 8, 1)]
@@ -58,31 +95,30 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     if (id.x >= Width || id.y >= Height)
         return;
 
-    // Unpack normal if we are including one
-    bool usingNormal = NormalIndex >= 0 && NormalIndex < 4;
-    half3 unpackedNormal = 0;
-    if (usingNormal) {
-        unpackedNormal = UnpackNormal(GetTextureValue(NormalIndex, id.xy));
-        unpackedNormal.xy = unpackedNormal.xy * 0.5 + 0.5;
-    }
-
-    // Sample
     half channelValues[4];
 
+    // Initialise with default values
     [unroll]
     for (int i = 0; i < 4; i++) {
-        int channelToRead = FromChannels[i];
+        channelValues[i] = GetDefaultColour(i)[0];
+    }
 
-        // If a normal is set, assign it to the xy channels
-        if (usingNormal && i < 2) {
-            channelValues[i] = unpackedNormal[i];
+    // Sample textures
+    for (int t = 0; t < TextureCount; t++) {
+        half4 value = SampleTexture(t, id.xy);
+        TextureData data = TexturesData[t];
+
+        if (data.NormalMap == 1) {
+            value = half4(UnpackNormal(value), 1);
+            value.xy = value.xy * 0.5 + 0.5;
         }
 
-        // Otherwise use the assigned texture
-        else {
-            channelValues[i] = AssignedTextures[i] == 1 ?
-                               GetTextureValue(i, id.xy)[channelToRead] :
-                               GetTextureValue(i, float2(0, 0))[0]; // Default value stored in 1x1 texture
+        for (uint c = 0; c < data.ChannelsUsedAmount; c++) {
+            uint fromChannel = data.FromChannels[c];
+            uint toChannel = data.ToChannels[c];
+            channelValues[toChannel] = value[fromChannel];
+
+            channelValues[c] = value[c];
         }
     }
 
