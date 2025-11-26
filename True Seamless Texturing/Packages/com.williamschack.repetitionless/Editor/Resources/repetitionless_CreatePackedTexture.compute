@@ -19,7 +19,7 @@ Texture2D<float4> Tex1;
 Texture2D<float4> Tex2;
 Texture2D<float4> Tex3;
 
-StructuredBuffer<TextureData> TexturesData;
+StructuredBuffer<TextureData> Data;
 int TextureCount;
 
 half3 DefaultRColour;
@@ -52,6 +52,7 @@ float4 PositivePow(float4 base, float4 power)
     return pow(max(abs(base), float4(fltEpsilon, fltEpsilon, fltEpsilon, fltEpsilon)), power);
 }
 
+// Copied from unity postprocessing Colors.hlsl
 inline half4 LinearToSRGB(half4 c)
 {
     half4 sRGBLo = c * 12.92;
@@ -71,7 +72,7 @@ inline half4 SampleTexture(int channelIndex = 0, float2 uv = 0)
         case 3: colour = Tex3[uv]; break;
     }
 
-    if (TexturesData[channelIndex].SRGB)
+    if (Data[channelIndex].SRGB)
         colour = LinearToSRGB(colour);
 
     return colour;
@@ -106,7 +107,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     // Sample textures
     for (int t = 0; t < TextureCount; t++) {
         half4 value = SampleTexture(t, id.xy);
-        TextureData data = TexturesData[t];
+        TextureData data = Data[t];
 
         if (data.NormalMap == 1) {
             value = half4(UnpackNormal(value), 1);

@@ -39,7 +39,7 @@ namespace Repetitionless.TextureUtilities
 
         private const int THREADS_X = 8;
         private const int THREADS_Y = 8;
-        
+
         public static Texture2D PackTextures(List<TextureData> textureData, Dictionary<TextureChannel, Color> defaultColours)
         {
             if (textureData.Count == 0 || textureData.Count > 4) {
@@ -124,7 +124,7 @@ namespace Repetitionless.TextureUtilities
             ComputeBuffer textureDataBuffer = new ComputeBuffer(textureDataGPU.Count, System.Runtime.InteropServices.Marshal.SizeOf<TextureDataGPU>(), ComputeBufferType.Structured);
             textureDataBuffer.SetData(textureDataGPU);
 
-            shader.SetBuffer(kernel, "TexturesData", textureDataBuffer);
+            shader.SetBuffer(kernel, "Data", textureDataBuffer);
             shader.SetFloat("TextureCount", inputTextures.Count);
 
             shader.SetVector("DefaultRColour", defaultColours[TextureChannel.R]);
@@ -140,7 +140,7 @@ namespace Repetitionless.TextureUtilities
 
             shader.Dispatch(kernel, groupsX, groupsY, 1);
 
-            // Blit packed texture to texture2D
+            // Copy packed texture to texture2D
             RenderTexture previousRT = RenderTexture.active;
             RenderTexture.active = rt;
 
