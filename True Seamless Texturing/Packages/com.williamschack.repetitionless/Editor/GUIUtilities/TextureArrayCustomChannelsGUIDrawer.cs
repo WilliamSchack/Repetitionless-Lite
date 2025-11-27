@@ -16,6 +16,7 @@ namespace Repetitionless.GUIUtilities
     using TextureUtilities;
     using Data;
     using UnityEngine.PlayerLoop;
+    using Repetitionless.CustomDialog;
 
     /// <summary>
     /// Allows drawing textures stored in a Texture2DArray to the GUI as well as functions for reading and deleting the array<br />
@@ -280,9 +281,23 @@ namespace Repetitionless.GUIUtilities
         private Texture2D UpdateTexture(Texture2D newTexture, int index, int channelIndex)
         {
             if (UnityEditor.EditorGUI.EndChangeCheck()) {
+                TexturePacker.TextureData channelTextureData = _channelTexturesData[channelIndex];
+
                 // Return if texture is not being changed, usually due to updates for accompanying variable
-                if (newTexture == _channelTexturesData[channelIndex].Texture)
+                if (newTexture == channelTextureData.Texture)
                     return newTexture;
+
+                // Make sure this texture is a normal map if set
+                if (channelTextureData.NormalMap && !TextureUtilities.TextureIsNormal(newTexture)) {
+                    bool convertingNormalMap = ShaderGUIDialog.DisplayDialog(
+                        "Invalid Normal Map",
+                        "The inputted normal map is not assigned as a normal map. Would you like to convert it to one?",
+                        "Yes", "No"
+                    );
+
+                    if (convertingNormalMap)
+                        TextureUtilities.SetTextureToNormal(newTexture);
+                }
 
                 // Register Undo, cannot if material or array are null
                 if(_material != null && _array != null)
@@ -313,6 +328,7 @@ namespace Repetitionless.GUIUtilities
                 // Pack texture
                 _channelTexturesData[channelIndex].Texture = newTexture;
                 newTexture = TexturePacker.PackTextures(_channelTexturesData, _defaultChannelColours);
+                Debug.LogWarning("CHECK FOR NULL OR DIFFERENT RESOLUTION");
 
                 // Get the textures in order of the array
                 List<Texture2D> arrayTextures = new List<Texture2D>();

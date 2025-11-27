@@ -111,9 +111,20 @@ public class TestEditor : ShaderGUI
 
         GUILayout.Space(20);
         GUILayout.Label("Array Testing:");
+        GUILayout.Space(10);
 
-        _albedoVTexturesDrawer.DrawTexture(0, 0, new GUIContent("Testing1"));
-        _albedoVTexturesDrawer.DrawTexture(0, 1, new GUIContent("Testing2"));
+        GUILayout.Label("AV");
+        _albedoVTexturesDrawer.DrawTexture(0, 0, new GUIContent("Albedo"));
+        _albedoVTexturesDrawer.DrawTexture(0, 1, new GUIContent("Variation"));
+
+        GUILayout.Label("NSO");
+        _normalSOTexturesDrawer.DrawTexture(0, 0, new GUIContent("Normal"));
+        _normalSOTexturesDrawer.DrawTexture(0, 1, new GUIContent("Smoothness"));
+        _normalSOTexturesDrawer.DrawTexture(0, 2, new GUIContent("Occlussion"));
+
+        GUILayout.Label("EM");
+        _emissionMTexturesDrawer.DrawTexture(0, 0, new GUIContent("Emission"));
+        _emissionMTexturesDrawer.DrawTexture(0, 1, new GUIContent("Metallic"));
     }
 }
 #endif
