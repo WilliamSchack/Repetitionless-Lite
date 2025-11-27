@@ -12,12 +12,14 @@ namespace Repetitionless.TextureUtilities
             R, G, B, A
         }
 
+        [System.Serializable]
         public struct FromToChannel
         {
             public TextureChannel FromChannel;
             public TextureChannel ToChannel;
         }
 
+        [System.Serializable]
         public struct TextureData
         {
             public Texture2D Texture;
