@@ -114,6 +114,7 @@ namespace Repetitionless.Data
                         TexturePacker.TextureChannel.R,
                         TexturePacker.TextureChannel.A
                     )
+                }
             });
         }
     }

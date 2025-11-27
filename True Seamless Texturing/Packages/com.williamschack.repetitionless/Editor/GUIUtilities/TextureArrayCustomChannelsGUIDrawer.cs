@@ -31,6 +31,8 @@ namespace Repetitionless.GUIUtilities
         /// </summary>
         public Texture2DArray Array { get { return _array; } }
 
+        MaterialDataManager _dataManager;
+
         // Array Settings
 
         /// <summary>
@@ -126,6 +128,8 @@ namespace Repetitionless.GUIUtilities
         {
             // Assign material
             _material = arrayProperty.targets[0];
+            
+            _dataManager = dataManager;
 
             // Initialise
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
@@ -215,7 +219,7 @@ namespace Repetitionless.GUIUtilities
             _fileName = fileName;
 
             // Load array
-            Texture2DArray array = (Texture2DArray)AssetDatabase.LoadAssetAtPath(ArrayPath(), typeof(Texture2DArray));
+            Texture2DArray array = _dataManager.LoadAsset<Texture2DArray>(_fileName);
 
             // If array exists load textures and uncompress assigned textures
             if (array != null)
@@ -284,7 +288,7 @@ namespace Repetitionless.GUIUtilities
 
                 // If all textures are null, clear array and return
                 if (!textureAssigned && _textures.Count(x => x != null) == 1) {
-                    DeleteArrayFile();
+                    _dataManager.DeleteAsset(_fileName);
 
                     _assignedTextures[index] = textureAssigned;
                     _textures[index] = newTexture;
@@ -327,23 +331,14 @@ namespace Repetitionless.GUIUtilities
 
                 // If array is null try loading from material
                 if (_array == null) {
-                    _array = (Texture2DArray)AssetDatabase.LoadAssetAtPath(ArrayPath(), typeof(Texture2DArray));
+                    _array = _dataManager.LoadAsset<Texture2DArray>(_fileName);
 
                     // If array is still null create a new array and return changed texture
                     if (_array == null) {
                         _textures[index] = newTexture;
 
                         _array = Texture2DArrayUtilities.CreateArrayUserInput(arrayTextures.ToArray(), TextureFormat, null, TransferMipmaps, ArrayLinear);
-
-                        // Create folder for array
-                        string folderPath = AssetDatabase.GetAssetPath(_material);
-                        folderPath = folderPath.Substring(0, folderPath.LastIndexOf("/"));
-
-                        if (!AssetDatabase.IsValidFolder($"{folderPath}/{DataFolderName()}"))
-                            AssetDatabase.CreateFolder(folderPath, DataFolderName());
-
-                        // Create asset in folder
-                        AssetDatabase.CreateAsset(_array, $"{folderPath}/{DataFolderName()}/{_fileName}");
+                        _dataManager.CreateAsset(_array, _fileName);
 
                         // Update variables
                         _assignedTextures[index] = textureAssigned;
@@ -375,7 +370,7 @@ namespace Repetitionless.GUIUtilities
 
                     // If array is resized to texture, update file
                     if (_array != updatedArray.Item1)
-                        OverwriteArray(updatedArray.Item1);
+                        _dataManager.CreateAsset(updatedArray.Item1, _fileName, true);
 
                     _array = updatedArray.Item1;
                 }
@@ -394,7 +389,7 @@ namespace Repetitionless.GUIUtilities
                     }
 
                     _array = Texture2DArrayUtilities.CreateArrayUserInput(arrayTextures.ToArray(), TextureFormat, autoResizeIndexes, TransferMipmaps, ArrayLinear);
-                    OverwriteArray(_array);
+                    _dataManager.CreateAsset(_array, _fileName, true);
                 }
 
                 // Save Asset
@@ -836,78 +831,17 @@ namespace Repetitionless.GUIUtilities
         }
 
         /// <summary>
-        /// Gets the path of the assigned array in the material
-        /// </summary>
-        private string ArrayPath()
-        {
-            return AssetDatabase.GetAssetPath(_arrayProperty.textureValue);
-        }
-
-        /// <summary>
-        /// Gets the folder name of where the arrays for this material are stored
-        /// </summary>
-        /// <returns></returns>
-        private string DataFolderName()
-        {
-            string path = AssetDatabase.GetAssetPath(_material);
-            int lastIndex = path.LastIndexOf("/");
-            string fileName = path.Substring(lastIndex + 1, path.Length - lastIndex - 1).Split(".")[0];
-
-            return fileName + "_TextureData";
-        }
-
-        /// <summary>
-        /// Overwrites the array with the input deleting the previous and replacing it with the new one
-        /// </summary>
-        /// <param name="array">
-        /// Array that will overwrite the current
-        /// </param>
-        private void OverwriteArray(Texture2DArray array)
-        {
-            string path = ArrayPath();
-            AssetDatabase.DeleteAsset(path);
-            AssetDatabase.CreateAsset(array, path);
-        }
-
-        /// <summary>
         /// Clears the array and deletes its file and folder if empty
         /// </summary>
         public void DeleteArray()
         {
-            DeleteArrayFile();
+            _dataManager.DeleteAsset(_fileName);
 
             _textures = new Texture2D[_textureCount];
             _assignedTextures = new bool[_textureCount];
 
             _arrayProperty.textureValue = _array;
             _assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
-        }
-
-        /// <summary>
-        /// Deletes the array file and folder if empty<br />
-        /// Does not prevent drawing further textures, acts more like a reset
-        /// </summary>
-        private void DeleteArrayFile()
-        {
-            string arrayPath = ArrayPath();
-
-            // Delete array if it exists
-            if (System.IO.File.Exists(arrayPath)) {
-                AssetDatabase.DeleteAsset(arrayPath);
-                for (int i = 0; i < _textures.Length; i++) {
-                    _textures[i] = null;
-                }
-            }
-
-            // If data folder is empty, delete it
-            string folderPath = AssetDatabase.GetAssetPath(_material);
-            folderPath = folderPath.Substring(0, folderPath.LastIndexOf("/"));
-            folderPath = $"{folderPath}/{DataFolderName()}";
-
-            if (AssetDatabase.IsValidFolder(folderPath)) {
-                bool empty = !Directory.EnumerateFiles(folderPath).Any();
-                if (empty) AssetDatabase.DeleteAsset(folderPath);
-            }
         }
     }
 }
