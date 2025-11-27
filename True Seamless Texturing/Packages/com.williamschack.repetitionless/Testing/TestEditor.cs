@@ -6,10 +6,15 @@ using UnityEditor;
 using Repetitionless.GUIUtilities;
 using Repetitionless.Data;
 using Repetitionless.TextureUtilities;
+using Codice.CM.Client.Gui;
 
 public class TestEditor : ShaderGUI
 {
     private const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
+
+    private Texture2D testTexture1;
+    private Texture2D testTexture2;
+    public TexturePacker.TextureData[] TestTextureData;
 
     private TextureArrayCustomChannelsGUIDrawer _albedoVTexturesDrawer;
     private TextureArrayCustomChannelsGUIDrawer _normalSOTexturesDrawer;
@@ -43,14 +48,45 @@ public class TestEditor : ShaderGUI
         }
 
         // Array Drawers
-        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.AVTextures, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
-        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.NSOTextures, normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
-        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.EMTextures, emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
+        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.AVTextures, RepetitionlessTextureData.DEFAULT_AV_COLOURS, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
+        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.NSOTextures, RepetitionlessTextureData.DEFAULT_NSO_COLOURS, normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
+        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.EMTextures, RepetitionlessTextureData.DEFAULT_EM_COLOURS, emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
 
         _albedoVTexturesDrawer.TextureFormat = TextureFormat.BC7;
         _normalSOTexturesDrawer.TextureFormat = TextureFormat.BC7;
         _normalSOTexturesDrawer.ArrayLinear = true;
         _emissionMTexturesDrawer.TextureFormat = TextureFormat.BC7;
+
+        // Testing
+        TestTextureData = new TexturePacker.TextureData[2];
+
+        TestTextureData[0] = new TexturePacker.TextureData() {
+            NormalMap = false,
+            FromToChannels = new List<TexturePacker.FromToChannel>() {
+                new TexturePacker.FromToChannel(
+                    TexturePacker.TextureChannel.R,
+                    TexturePacker.TextureChannel.R
+                ),
+                new TexturePacker.FromToChannel(
+                    TexturePacker.TextureChannel.G,
+                    TexturePacker.TextureChannel.G
+                ),
+                new TexturePacker.FromToChannel(
+                    TexturePacker.TextureChannel.B,
+                    TexturePacker.TextureChannel.B
+                )
+            }
+        };
+        
+        TestTextureData[1] = new TexturePacker.TextureData() {
+            NormalMap = false,
+            FromToChannels = new List<TexturePacker.FromToChannel>() {
+                new TexturePacker.FromToChannel(
+                    TexturePacker.TextureChannel.R,
+                    TexturePacker.TextureChannel.A
+                )
+            }
+        };
     }
 
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
@@ -60,7 +96,24 @@ public class TestEditor : ShaderGUI
             _firstStart = false;
         }
 
-        _albedoVTexturesDrawer.DrawTextures();
+        GUILayout.Label("PT Testing:");
+
+        EditorGUI.BeginChangeCheck();
+        testTexture1 = GUIUtilities.DrawTexture(testTexture1, new GUIContent("Testing1"));
+        testTexture2 = GUIUtilities.DrawTexture(testTexture2, new GUIContent("Testing2"));
+        if(EditorGUI.EndChangeCheck()) {
+            TestTextureData[0].Texture = testTexture1;
+            TestTextureData[1].Texture = testTexture2;
+            Texture2D testTextureOut = TexturePacker.PackTextures(TestTextureData, RepetitionlessTextureData.DEFAULT_AV_COLOURS);
+
+            _dataManager.CreateAsset(testTextureOut, "Testing.asset");
+        }
+
+        GUILayout.Space(20);
+        GUILayout.Label("Array Testing:");
+
+        _albedoVTexturesDrawer.DrawTexture(0, 0, new GUIContent("Testing1"));
+        _albedoVTexturesDrawer.DrawTexture(0, 1, new GUIContent("Testing2"));
     }
 }
 #endif

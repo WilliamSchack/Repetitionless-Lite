@@ -15,6 +15,7 @@ namespace Repetitionless.GUIUtilities
     using Compression;
     using TextureUtilities;
     using Data;
+    using UnityEngine.PlayerLoop;
 
     /// <summary>
     /// Allows drawing textures stored in a Texture2DArray to the GUI as well as functions for reading and deleting the array<br />
@@ -32,6 +33,8 @@ namespace Repetitionless.GUIUtilities
         public Texture2DArray Array { get { return _array; } }
 
         MaterialDataManager _dataManager;
+        TexturePacker.TextureData[] _channelTexturesData;
+        Color[] _defaultChannelColours;
 
         // Array Settings
 
@@ -124,12 +127,14 @@ namespace Repetitionless.GUIUtilities
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
         }
 
-        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, List<TexturePacker.TextureData> channelTexturesData, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
+        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, TexturePacker.TextureData[] channelTexturesData, Color[] defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
         {
             // Assign material
             _material = arrayProperty.targets[0];
             
             _dataManager = dataManager;
+            _channelTexturesData = channelTexturesData;
+            _defaultChannelColours = defaultChannelColours;
 
             // Initialise
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
@@ -192,7 +197,7 @@ namespace Repetitionless.GUIUtilities
         /// <param name="fileName">
         /// The filename of the Texture2DArray asset stored in a folder accompanying the material<br />
         /// Used only on creation of the asset. Can be changed as long as it is assigned in the material.
-        /// </param>
+        /// </param>;
         private void Init(MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
         {
             // Assign variables
@@ -272,11 +277,11 @@ namespace Repetitionless.GUIUtilities
         /// Index of the texture being changed in the desired array layout<br />
         /// Not the index of the current array layout or textures, think of it as a constant within the set texture count
         /// </param>
-        private Texture2D UpdateTexture(Texture2D newTexture, int index)
+        private Texture2D UpdateTexture(Texture2D newTexture, int index, int channelIndex)
         {
             if (UnityEditor.EditorGUI.EndChangeCheck()) {
                 // Return if texture is not being changed, usually due to updates for accompanying variable
-                if (newTexture == _textures[index])
+                if (newTexture == _channelTexturesData[channelIndex].Texture)
                     return newTexture;
 
                 // Register Undo, cannot if material or array are null
@@ -290,8 +295,8 @@ namespace Repetitionless.GUIUtilities
                 if (!textureAssigned && _textures.Count(x => x != null) == 1) {
                     _dataManager.DeleteAsset(_fileName);
 
-                    _assignedTextures[index] = textureAssigned;
-                    _textures[index] = newTexture;
+                    _assignedTextures[index] = false;
+                    _textures[index] = null;
 
                     _arrayProperty.textureValue = _array;
                     _assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
@@ -304,6 +309,10 @@ namespace Repetitionless.GUIUtilities
                     Debug.LogWarning("Cannot update array, Texture resolution must be a multiple of 4");
                     return newTexture;
                 }
+
+                // Pack texture
+                _channelTexturesData[channelIndex].Texture = newTexture;
+                newTexture = TexturePacker.PackTextures(_channelTexturesData, _defaultChannelColours);
 
                 // Get the textures in order of the array
                 List<Texture2D> arrayTextures = new List<Texture2D>();
@@ -412,6 +421,17 @@ namespace Repetitionless.GUIUtilities
         {
             return null;
         }
+
+        public Texture2D DrawTexture(int index, int channelTextureIndex, GUIContent content)
+        {
+            Rect lineRect = GUIUtilities.GetLineRect();
+
+            EditorGUI.BeginChangeCheck();
+            Texture2D newTexture = GUIUtilities.DrawTexture(lineRect, _channelTexturesData[channelTextureIndex].Texture, content);
+            return UpdateTexture(newTexture, index, channelTextureIndex);
+        }
+
+/*
 
         /// <summary>
         /// Draws a texture using the assigned array<br />
@@ -815,6 +835,7 @@ namespace Repetitionless.GUIUtilities
 
             return textures;
         }
+*/
 
         /// <summary>
         /// Returns if a texture is assigned at the given index

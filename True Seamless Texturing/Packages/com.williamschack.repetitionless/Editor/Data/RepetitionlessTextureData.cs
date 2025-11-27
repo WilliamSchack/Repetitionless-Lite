@@ -9,9 +9,13 @@ namespace Repetitionless.Data
     {
         private const int TOTAL_SECTIONS = 3;
 
-        public List<TexturePacker.TextureData> AVTextures = new List<TexturePacker.TextureData>();
-        public List<TexturePacker.TextureData> NSOTextures = new List<TexturePacker.TextureData>();
-        public List<TexturePacker.TextureData> EMTextures = new List<TexturePacker.TextureData>();
+        public static readonly Color[] DEFAULT_AV_COLOURS = { Color.white, Color.white, Color.white, Color.black };
+        public static readonly Color[] DEFAULT_NSO_COLOURS = { Color.black, Color.black, Color.black, Color.white };
+        public static readonly Color[] DEFAULT_EM_COLOURS = { Color.white, Color.white, Color.white, Color.black };
+
+        public TexturePacker.TextureData[] AVTextures;
+        public TexturePacker.TextureData[] NSOTextures;
+        public TexturePacker.TextureData[] EMTextures;
 
         public void Init()
         {
@@ -20,8 +24,12 @@ namespace Repetitionless.Data
             // NSOTextures: normal (rg), smooth/rough (b), occlussion (a)
             // EMTextures: emission (rgb), metallic (a)
 
+            AVTextures = new TexturePacker.TextureData[2];
+            NSOTextures = new TexturePacker.TextureData[3];
+            EMTextures = new TexturePacker.TextureData[2];
+
             // Albedo
-            AVTextures.Add(new TexturePacker.TextureData() {
+            AVTextures[0] = new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -37,10 +45,10 @@ namespace Repetitionless.Data
                         TexturePacker.TextureChannel.B
                     )
                 }
-            });
+            };
             
             // Variation
-            AVTextures.Add(new TexturePacker.TextureData() {
+            AVTextures[1] = new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -48,10 +56,10 @@ namespace Repetitionless.Data
                         TexturePacker.TextureChannel.A
                     )
                 }
-            });
+            };
 
             // Normal
-            NSOTextures.Add(new TexturePacker.TextureData() {
+            NSOTextures[0] = new TexturePacker.TextureData() {
                 NormalMap = true,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -63,10 +71,10 @@ namespace Repetitionless.Data
                         TexturePacker.TextureChannel.G
                     )
                 } 
-            });
+            };
 
             // Smoothness / Roughness
-            NSOTextures.Add(new TexturePacker.TextureData() {
+            NSOTextures[1] = new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -74,10 +82,10 @@ namespace Repetitionless.Data
                         TexturePacker.TextureChannel.B
                     )
                 }
-            });
+            };
 
             // Occlussion
-            NSOTextures.Add(new TexturePacker.TextureData() {
+            NSOTextures[2] = new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -85,10 +93,10 @@ namespace Repetitionless.Data
                         TexturePacker.TextureChannel.A
                     )
                 }
-            });
+            };
 
             // Emission
-            EMTextures.Add(new TexturePacker.TextureData() {
+            EMTextures[0] = new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -104,10 +112,10 @@ namespace Repetitionless.Data
                         TexturePacker.TextureChannel.B
                     )
                 }
-            });
+            };
 
             // Metallic
-            EMTextures.Add(new TexturePacker.TextureData() {
+            EMTextures[1] = new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -115,7 +123,7 @@ namespace Repetitionless.Data
                         TexturePacker.TextureChannel.A
                     )
                 }
-            });
+            };
         }
     }
 }
