@@ -122,7 +122,7 @@ namespace Repetitionless.GUIUtilities
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
         }
 
-        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, List<TexturePacker.TextureData> channelTexturesData, int textureCount, string fileName = null)
+        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, List<TexturePacker.TextureData> channelTexturesData, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
         {
             // Assign material
             _material = arrayProperty.targets[0];

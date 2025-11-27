@@ -9,18 +9,113 @@ namespace Repetitionless.Data
     {
         private const int TOTAL_SECTIONS = 3;
 
-        // 1: albedo (rgb), variation (a)
-        // 2: normal (rg), smooth/rough (b), occlussion (a)
-        // 3: emission (rgb), metallic (a)
+        public List<TexturePacker.TextureData> AVTextures = new List<TexturePacker.TextureData>();
+        public List<TexturePacker.TextureData> NSOTextures = new List<TexturePacker.TextureData>();
+        public List<TexturePacker.TextureData> EMTextures = new List<TexturePacker.TextureData>();
 
-        public List<TexturePacker.TextureData> AVTextures;
-        public List<TexturePacker.TextureData> NSOTextures;
-        public List<TexturePacker.TextureData> EMTextures;
+        public void Init()
+        {
+            // Setup Textures
+            // AVTextures: albedo (rgb), variation (a)
+            // NSOTextures: normal (rg), smooth/rough (b), occlussion (a)
+            // EMTextures: emission (rgb), metallic (a)
 
-        //public Texture2D GetAVTexture(int layerIndex, int sectionIndex)
-        //{
-        //    int index = layerIndex * TOTAL_SECTIONS + sectionIndex;
-        //    return AVTextures[index];
-        //}
+            // Albedo
+            AVTextures.Add(new TexturePacker.TextureData() {
+                NormalMap = false,
+                FromToChannels = new List<TexturePacker.FromToChannel>() {
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.R,
+                        ToChannel = TexturePacker.TextureChannel.R
+                    },
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.G,
+                        ToChannel = TexturePacker.TextureChannel.G
+                    },
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.B,
+                        ToChannel = TexturePacker.TextureChannel.B
+                    }
+                }
+            });
+            
+            // Variation
+            AVTextures.Add(new TexturePacker.TextureData() {
+                NormalMap = false,
+                FromToChannels = new List<TexturePacker.FromToChannel>() {
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.R,
+                        ToChannel = TexturePacker.TextureChannel.A
+                    }
+                }
+            });
+
+            // Normal
+            NSOTextures.Add(new TexturePacker.TextureData() {
+                NormalMap = true,
+                FromToChannels = new List<TexturePacker.FromToChannel>() {
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.R,
+                        ToChannel = TexturePacker.TextureChannel.R
+                    },
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.G,
+                        ToChannel = TexturePacker.TextureChannel.G
+                    }
+                } 
+            });
+
+            // Smoothness / Roughness
+            NSOTextures.Add(new TexturePacker.TextureData() {
+                NormalMap = false,
+                FromToChannels = new List<TexturePacker.FromToChannel>() {
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.R,
+                        ToChannel = TexturePacker.TextureChannel.B
+                    }
+                }
+            });
+
+            // Occlussion
+            NSOTextures.Add(new TexturePacker.TextureData() {
+                NormalMap = false,
+                FromToChannels = new List<TexturePacker.FromToChannel>() {
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.R,
+                        ToChannel = TexturePacker.TextureChannel.A
+                    }
+                }
+            });
+
+            // Emission
+            EMTextures.Add(new TexturePacker.TextureData() {
+                NormalMap = false,
+                FromToChannels = new List<TexturePacker.FromToChannel>() {
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.R,
+                        ToChannel = TexturePacker.TextureChannel.R
+                    },
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.G,
+                        ToChannel = TexturePacker.TextureChannel.G
+                    },
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.B,
+                        ToChannel = TexturePacker.TextureChannel.B
+                    }
+                }
+            });
+
+            // Metallic
+            EMTextures.Add(new TexturePacker.TextureData() {
+                NormalMap = false,
+                FromToChannels = new List<TexturePacker.FromToChannel>() {
+                    new TexturePacker.FromToChannel() {
+                        FromChannel = TexturePacker.TextureChannel.R,
+                        ToChannel = TexturePacker.TextureChannel.A
+                    }
+                }
+            });
+        }
     }
 }

@@ -1,13 +1,16 @@
-using UnityEngine;
-
 #if UNITY_EDITOR
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEditor;
 
 using Repetitionless.GUIUtilities;
 using Repetitionless.Data;
+using Repetitionless.TextureUtilities;
 
 public class TestEditor : ShaderGUI
 {
+    private const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
+
     private TextureArrayCustomChannelsGUIDrawer _albedoVTexturesDrawer;
     private TextureArrayCustomChannelsGUIDrawer _normalSOTexturesDrawer;
     private TextureArrayCustomChannelsGUIDrawer _emissionMTexturesDrawer;
@@ -31,15 +34,18 @@ public class TestEditor : ShaderGUI
         _dataManager = new MaterialDataManager(material);
 
         // Texture Data
-        _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureData>();
-        _dataManager.CreateAsset(_textureData, "TextureData.asset");
-
-        Debug.Log(_dataManager.AssetExists("TextureData.asset"));
+        if (_dataManager.AssetExists(TEXTURE_DATA_FILE_NAME)) {
+            _textureData = _dataManager.LoadAsset<RepetitionlessTextureData>(TEXTURE_DATA_FILE_NAME);
+        } else {
+            _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureData>();
+            _dataManager.CreateAsset(_textureData, TEXTURE_DATA_FILE_NAME);
+            _textureData.Init();
+        }
 
         // Array Drawers
-        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
-        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
-        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
+        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.AVTextures, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
+        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.NSOTextures, normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
+        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.EMTextures, emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
 
         _albedoVTexturesDrawer.TextureFormat = TextureFormat.BC7;
         _normalSOTexturesDrawer.TextureFormat = TextureFormat.BC7;
@@ -53,6 +59,8 @@ public class TestEditor : ShaderGUI
             OnEnable(properties);
             _firstStart = false;
         }
+
+        _albedoVTexturesDrawer.DrawTextures();
     }
 }
 #endif
