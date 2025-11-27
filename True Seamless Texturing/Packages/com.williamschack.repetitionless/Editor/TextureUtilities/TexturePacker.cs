@@ -15,8 +15,14 @@ namespace Repetitionless.TextureUtilities
         [System.Serializable]
         public struct FromToChannel
         {
-            public TextureChannel FromChannel;
-            public TextureChannel ToChannel;
+            public TextureChannel From;
+            public TextureChannel To;
+
+            public FromToChannel(TextureChannel from, TextureChannel to)
+            {
+                From = from;
+                To = to;
+            }
         }
 
         [System.Serializable]
@@ -99,8 +105,8 @@ namespace Repetitionless.TextureUtilities
 
                 for (int j = 0; j < fromToChannelsCount; j++) {
                     FromToChannel currentFromToChannel = currentTextureData.FromToChannels[j];
-                    gpuData.FromChannels[j] = (int)currentFromToChannel.FromChannel;
-                    gpuData.ToChannels[j] = (int)currentFromToChannel.ToChannel;
+                    gpuData.FromChannels[j] = (int)currentFromToChannel.From;
+                    gpuData.ToChannels[j] = (int)currentFromToChannel.To;
                 }
 
                 textureDataGPU.Add(gpuData);

@@ -24,18 +24,18 @@ namespace Repetitionless.Data
             AVTextures.Add(new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.R,
-                        ToChannel = TexturePacker.TextureChannel.R
-                    },
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.G,
-                        ToChannel = TexturePacker.TextureChannel.G
-                    },
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.B,
-                        ToChannel = TexturePacker.TextureChannel.B
-                    }
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.R,
+                        TexturePacker.TextureChannel.R
+                    ),
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.G,
+                        TexturePacker.TextureChannel.G
+                    ),
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.B,
+                        TexturePacker.TextureChannel.B
+                    )
                 }
             });
             
@@ -43,10 +43,10 @@ namespace Repetitionless.Data
             AVTextures.Add(new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.R,
-                        ToChannel = TexturePacker.TextureChannel.A
-                    }
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.R,
+                        TexturePacker.TextureChannel.A
+                    )
                 }
             });
 
@@ -54,14 +54,14 @@ namespace Repetitionless.Data
             NSOTextures.Add(new TexturePacker.TextureData() {
                 NormalMap = true,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.R,
-                        ToChannel = TexturePacker.TextureChannel.R
-                    },
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.G,
-                        ToChannel = TexturePacker.TextureChannel.G
-                    }
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.R,
+                        TexturePacker.TextureChannel.R
+                    ),
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.G,
+                        TexturePacker.TextureChannel.G
+                    )
                 } 
             });
 
@@ -69,10 +69,10 @@ namespace Repetitionless.Data
             NSOTextures.Add(new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.R,
-                        ToChannel = TexturePacker.TextureChannel.B
-                    }
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.R,
+                        TexturePacker.TextureChannel.B
+                    )
                 }
             });
 
@@ -80,10 +80,10 @@ namespace Repetitionless.Data
             NSOTextures.Add(new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.R,
-                        ToChannel = TexturePacker.TextureChannel.A
-                    }
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.R,
+                        TexturePacker.TextureChannel.A
+                    )
                 }
             });
 
@@ -91,18 +91,18 @@ namespace Repetitionless.Data
             EMTextures.Add(new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.R,
-                        ToChannel = TexturePacker.TextureChannel.R
-                    },
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.G,
-                        ToChannel = TexturePacker.TextureChannel.G
-                    },
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.B,
-                        ToChannel = TexturePacker.TextureChannel.B
-                    }
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.R,
+                        TexturePacker.TextureChannel.R
+                    ),
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.G,
+                        TexturePacker.TextureChannel.G
+                    ),
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.B,
+                        TexturePacker.TextureChannel.B
+                    )
                 }
             });
 
@@ -110,11 +110,10 @@ namespace Repetitionless.Data
             EMTextures.Add(new TexturePacker.TextureData() {
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
-                    new TexturePacker.FromToChannel() {
-                        FromChannel = TexturePacker.TextureChannel.R,
-                        ToChannel = TexturePacker.TextureChannel.A
-                    }
-                }
+                    new TexturePacker.FromToChannel(
+                        TexturePacker.TextureChannel.R,
+                        TexturePacker.TextureChannel.A
+                    )
             });
         }
     }
