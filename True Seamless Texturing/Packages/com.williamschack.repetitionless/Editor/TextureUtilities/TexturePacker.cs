@@ -71,11 +71,13 @@ namespace Repetitionless.TextureUtilities
                 int currentWidth = currentTexture.width;
                 int currentHeight = currentTexture.height;
 
+                Debug.Log("Texture " + i + " has resolution: " + $"{currentWidth}x{currentHeight}");
+
                 if (resolution.x == 0 && resolution.y == 0) {
                     resolution.x = currentWidth;
                     resolution.y = currentHeight;
                     continue;
-                }   
+                }
 
                 if (currentWidth != resolution.x || currentHeight != resolution.y) {
                     Debug.LogError("All textures must have the same resolution to pack...");

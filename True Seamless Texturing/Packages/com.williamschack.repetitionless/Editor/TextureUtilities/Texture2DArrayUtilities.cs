@@ -143,6 +143,11 @@ namespace Repetitionless.TextureUtilities
             // Initial resolution
             Vector2Int resolution = new Vector2Int(textures[0].width, textures[0].height);
 
+            return CreateArrayAutoResize(textures, textureFormat, resolution, transferMipmaps, linear);
+        }
+
+        public static Texture2DArray CreateArrayAutoResize(Texture2D[] textures, TextureFormat textureFormat, Vector2Int resolution, bool transferMipmaps = true, bool linear = false)
+        {
             // Set textures to readable if not already
             TextureUtilities.SetReadable(textures);
 
@@ -156,8 +161,6 @@ namespace Repetitionless.TextureUtilities
                 if (texture.width != resolution.x || texture.height != resolution.y)
                     textures[i] = TextureUtilities.ResizeTexture(texture, resolution.x, resolution.y);
             }
-
-
 
             // Create array
             return CreateArray(textures, textureFormat, transferMipmaps, linear);
@@ -214,7 +217,7 @@ namespace Repetitionless.TextureUtilities
                     int returned = ShaderGUIDialog.DisplayDialogComplex(
                         "Texture Resolution Difference",
                         $"Texture: {texture.width}x{texture.height} Array: {resolution.x}x{resolution.y}\n"
-                        + "Texture size is not the same as they array. Would you like to resize this texture to the array resolution, or resize the array to this texture resolution?",
+                        + "Texture size is not the same as the array. Would you like to resize this texture to the array resolution, or resize the array to this texture resolution?",
                         "Resize Texture", "Cancel", "Resize Array"
                     );
 

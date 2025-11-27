@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Linq;
+using UnityEditor.VersionControl;
 
 namespace Repetitionless.Data
 {
@@ -99,8 +100,8 @@ namespace Repetitionless.Data
         public void DeleteAsset(string fileName)
         {
             string assetPath = $"{DataFolderPath()}/{fileName}";
-            
-            if (AssetExists(assetPath))
+
+            if (AssetExists(fileName))
                 AssetDatabase.DeleteAsset(assetPath);
 
             if (DataFolderEmpty())

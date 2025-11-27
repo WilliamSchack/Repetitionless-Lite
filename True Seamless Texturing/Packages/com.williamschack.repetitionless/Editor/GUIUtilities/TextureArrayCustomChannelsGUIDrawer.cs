@@ -17,6 +17,7 @@ namespace Repetitionless.GUIUtilities
     using Data;
     using UnityEngine.PlayerLoop;
     using Repetitionless.CustomDialog;
+    using UnityEngine.UIElements;
 
     /// <summary>
     /// Allows drawing textures stored in a Texture2DArray to the GUI as well as functions for reading and deleting the array<br />
@@ -32,10 +33,6 @@ namespace Repetitionless.GUIUtilities
         /// The array used for this field
         /// </summary>
         public Texture2DArray Array { get { return _array; } }
-
-        MaterialDataManager _dataManager;
-        TexturePacker.TextureData[] _channelTexturesData;
-        Vector4 _defaultChannelColours;
 
         // Array Settings
 
@@ -65,6 +62,11 @@ namespace Repetitionless.GUIUtilities
         private Texture2D[] _textures;
         private int _textureCount;
         private bool[] _assignedTextures;
+
+        private MaterialDataManager _dataManager;
+        private TexturePacker.TextureData[] _channelTexturesData;
+        private Texture2D[] _resizedTextures;
+        private Vector4 _defaultChannelColours;
 
         /// <summary>
         /// Create a TextureArrayGUIDrawer using the Array and Assigned Textures properties<br />
@@ -136,6 +138,8 @@ namespace Repetitionless.GUIUtilities
             _dataManager = dataManager;
             _channelTexturesData = channelTexturesData;
             _defaultChannelColours = defaultChannelColours;
+
+            _resizedTextures = new Texture2D[_channelTexturesData.Length];
 
             // Initialise
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
@@ -287,6 +291,37 @@ namespace Repetitionless.GUIUtilities
                 if (newTexture == channelTextureData.Texture)
                     return newTexture;
 
+                // Register Undo, cannot if material or array are null
+                if(_material != null && _array != null)
+                    Undo.RegisterCompleteObjectUndo(new Object[] { _material, _array }, $"Modified Array Texture of {_material.name} at Index {index}");
+
+                // Check if texture is assigned or removed
+                int channelTexturesAssigned = _channelTexturesData.Count(x => x.Texture != null);
+                if (newTexture == null) channelTexturesAssigned--;
+                else                    channelTexturesAssigned++;
+
+                bool textureAssigned = channelTexturesAssigned > 0;
+
+                // If all textures are null, clear array and return
+                if (!textureAssigned && _textures.Count(x => x != null) == 0) {
+                    _dataManager.DeleteAsset(_fileName);
+
+                    _assignedTextures[index] = false;
+                    _textures[index] = null;
+                    _channelTexturesData[channelIndex].Texture = null;
+
+                    _arrayProperty.textureValue = _array;
+                    _assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
+
+                    return newTexture;
+                }
+
+                // If texture resolution is not multiple of 4 return
+                if (textureAssigned && newTexture != null && (newTexture.width % 4 != 0 || newTexture.height % 4 != 0)) {
+                    Debug.LogWarning("Cannot update array, Texture resolution must be a multiple of 4");
+                    return newTexture;
+                }
+
                 // Make sure this texture is a normal map if set
                 if (channelTextureData.NormalMap && !TextureUtilities.TextureIsNormal(newTexture)) {
                     bool convertingNormalMap = ShaderGUIDialog.DisplayDialog(
@@ -299,36 +334,89 @@ namespace Repetitionless.GUIUtilities
                         TextureUtilities.SetTextureToNormal(newTexture);
                 }
 
-                // Register Undo, cannot if material or array are null
-                if(_material != null && _array != null)
-                    Undo.RegisterCompleteObjectUndo(new Object[] { _material, _array }, $"Modified Array Texture of {_material.name} at Index {index}");
+                // Copy texture data to modify
+                TexturePacker.TextureData[] clonedTextureData = new TexturePacker.TextureData[_channelTexturesData.Length];
+                System.Array.Copy(_channelTexturesData, clonedTextureData, _channelTexturesData.Length);
+                clonedTextureData[channelIndex].Texture = newTexture;
 
-                // Check if texture is assigned or removed
-                bool textureAssigned = newTexture != null;
+                // Debug
+                for (int i = 0; i < clonedTextureData.Length; i++) {
+                    Debug.Log("Debugging " + i + " ...");
 
-                // If all textures are null, clear array and return
-                if (!textureAssigned && _textures.Count(x => x != null) == 1) {
-                    _dataManager.DeleteAsset(_fileName);
-
-                    _assignedTextures[index] = false;
-                    _textures[index] = null;
-
-                    _arrayProperty.textureValue = _array;
-                    _assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
-
-                    return newTexture;
+                    if (clonedTextureData[i].Texture != null)
+                        Debug.Log("Texture: " + clonedTextureData[i].Texture.name);
                 }
 
-                // If texture resolution is not multiple of 4 return
-                if (textureAssigned && (newTexture.width % 4 != 0 || newTexture.height % 4 != 0)) {
-                    Debug.LogWarning("Cannot update array, Texture resolution must be a multiple of 4");
-                    return newTexture;
+                Debug.Log("Checking resolutions...");
+
+                // Check for resolution differences
+                if (_array != null) {
+                    Vector2Int newArrayResolution = new Vector2Int(_array.width, _array.height);
+
+                    for (int i = 0; i < clonedTextureData.Length; i++) {
+                        Texture2D texture = clonedTextureData[i].Texture;
+
+                        if (texture == null)
+                            continue;
+
+                        Debug.Log("Testing texture: " + i + " >> " + texture);
+                        Debug.Log(texture.width + " x " + texture.height);
+
+                        if (texture.width != _array.width || texture.height != _array.height) {
+                            int returned = ShaderGUIDialog.DisplayDialogComplex(
+                                "Texture Resolution Difference",
+                                $"Texture: {texture.width}x{texture.height} Array: {newArrayResolution.x}x{newArrayResolution.y}\n"
+                                + "Texture size is not the same as the array. Would you like to resize this texture to the array resolution, or resize the array to this texture resolution?",
+                                "Resize Texture", "Cancel", "Resize Array"
+                            );
+
+                            // If resizing, dont do anything it will be resized later
+
+                            // If cancelling, abort updating the texture
+                            if (returned == 1) {
+                                return newTexture;
+                            }
+
+                            // If resizing the array, queue a new array size
+                            else if (returned == 2) {
+                                newArrayResolution = new Vector2Int(texture.width, texture.height);
+                            }
+                        }
+                    }
+
+                    Debug.Log("Resizing textures to new resolution: " + newArrayResolution);
+
+                    // Resize textures that need to be resized
+                    //if (newArrayResolution.x != _array.width || newArrayResolution.y != _array.height) {
+                        for (int i = 0; i < clonedTextureData.Length; i++) {
+                            // Check if texture needs to be resized
+                            Texture2D checkingTexture = clonedTextureData[i].Texture;
+                            if (checkingTexture == null || (checkingTexture.width == newArrayResolution.x && checkingTexture.height == newArrayResolution.y))
+                                continue;
+                            
+                            // Check if texture has already been resized, if so use that one
+                            Texture2D preResizedTexture = _resizedTextures[i];
+                            if (preResizedTexture != null && preResizedTexture.width == newArrayResolution.x && preResizedTexture.height == newArrayResolution.y) {
+                                Debug.Log("Found preresized for: " + clonedTextureData[i].Texture);
+
+                                clonedTextureData[i].Texture = preResizedTexture;
+                                continue;
+                            }
+
+                            // Resize texture and save for later use
+                            Debug.Log("Resized texture " + clonedTextureData[i].Texture);
+
+                            clonedTextureData[i].Texture = TextureUtilities.ResizeTexture(clonedTextureData[i].Texture, newArrayResolution.x, newArrayResolution.y);
+                            _resizedTextures[i] = clonedTextureData[i].Texture;
+                            
+                            Debug.Log($"New res: {clonedTextureData[i].Texture.width}x{clonedTextureData[i].Texture.height}");
+                        }
+                    //}
                 }
 
                 // Pack texture
                 _channelTexturesData[channelIndex].Texture = newTexture;
-                newTexture = TexturePacker.PackTextures(_channelTexturesData, _defaultChannelColours);
-                Debug.LogWarning("CHECK FOR NULL OR DIFFERENT RESOLUTION");
+                newTexture = TexturePacker.PackTextures(clonedTextureData, _defaultChannelColours);
 
                 // Get the textures in order of the array
                 List<Texture2D> arrayTextures = new List<Texture2D>();
