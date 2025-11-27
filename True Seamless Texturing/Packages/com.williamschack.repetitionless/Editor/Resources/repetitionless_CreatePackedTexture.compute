@@ -5,8 +5,11 @@ struct TextureData
     uint NormalMap;
     uint SRGB;
     uint ChannelsUsedAmount;
-    uint4 FromChannels;
-    uint4 ToChannels;
+
+    // Inputting Vector4 so using int will give incorrect values
+    // Convert to int later
+    half4 FromChannels;
+    half4 ToChannels;
 };
 
 // Texture Resolution
@@ -22,10 +25,7 @@ Texture2D<float4> Tex3;
 StructuredBuffer<TextureData> Data;
 int TextureCount;
 
-half3 DefaultRColour;
-half3 DefaultGColour;
-half3 DefaultBColour;
-half3 DefaultAColour;
+half4 DefaultColours;
 
 // Output texture
 RWTexture2D<float4> Result;
@@ -78,17 +78,6 @@ inline half4 SampleTexture(int channelIndex = 0, float2 uv = 0)
     return colour;
 }
 
-inline half3 GetDefaultColour(int channelIndex = 0)
-{
-    switch (channelIndex) {
-        case 0:  return DefaultRColour;
-        case 1:  return DefaultGColour;
-        case 2:  return DefaultBColour;
-        case 3:  return DefaultAColour;
-        default: return 0;
-    }
-}
-
 [numthreads(8, 8, 1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
@@ -101,7 +90,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     // Initialise with default values
     [unroll]
     for (int i = 0; i < 4; i++) {
-        channelValues[i] = GetDefaultColour(i)[0];
+        channelValues[i] = DefaultColours[i];
     }
 
     // Sample textures
@@ -115,11 +104,9 @@ void CSMain (uint3 id : SV_DispatchThreadID)
         }
 
         for (uint c = 0; c < data.ChannelsUsedAmount; c++) {
-            uint fromChannel = data.FromChannels[c];
-            uint toChannel = data.ToChannels[c];
+            uint fromChannel = (uint)data.FromChannels[c];
+            uint toChannel = (uint)data.ToChannels[c];
             channelValues[toChannel] = value[fromChannel];
-
-            channelValues[c] = value[c];
         }
     }
 

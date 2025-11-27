@@ -34,7 +34,7 @@ namespace Repetitionless.GUIUtilities
 
         MaterialDataManager _dataManager;
         TexturePacker.TextureData[] _channelTexturesData;
-        Color[] _defaultChannelColours;
+        Vector4 _defaultChannelColours;
 
         // Array Settings
 
@@ -127,7 +127,7 @@ namespace Repetitionless.GUIUtilities
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
         }
 
-        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, TexturePacker.TextureData[] channelTexturesData, Color[] defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
+        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, TexturePacker.TextureData[] channelTexturesData, Vector4 defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
         {
             // Assign material
             _material = arrayProperty.targets[0];

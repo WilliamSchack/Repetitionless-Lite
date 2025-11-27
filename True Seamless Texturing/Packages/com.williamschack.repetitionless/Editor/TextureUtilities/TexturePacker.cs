@@ -48,7 +48,7 @@ namespace Repetitionless.TextureUtilities
         private const int THREADS_X = 8;
         private const int THREADS_Y = 8;
 
-        public static Texture2D PackTextures(TextureData[] textureData, Color[] defaultColours)
+        public static Texture2D PackTextures(TextureData[] textureData, Vector4 defaultColours)
         {
             if (textureData.Length == 0 || textureData.Length > 4) {
                 Debug.LogError("Texture packing can only take 1-4 input textures");
@@ -97,13 +97,13 @@ namespace Repetitionless.TextureUtilities
                 gpuData.NormalMap = currentTextureData.NormalMap ? 1 : 0;
                 gpuData.SRGB = currentTextureData.Texture.isDataSRGB ? 1 : 0;
 
-                gpuData.ChannelsUsedAmount = currentTextureData.FromToChannels.Count;
-
                 int fromToChannelsCount = currentTextureData.FromToChannels.Count;
                 if (fromToChannelsCount > 4) {
                     Debug.LogWarning("Only using the first 4 channels for " + currentTextureData.Texture.name);
                     fromToChannelsCount = 4;
                 }
+
+                gpuData.ChannelsUsedAmount = fromToChannelsCount;
 
                 gpuData.FromChannels = new Vector4();
                 gpuData.ToChannels = new Vector4();
@@ -115,6 +115,12 @@ namespace Repetitionless.TextureUtilities
                 }
 
                 textureDataGPU.Add(gpuData);
+            }
+
+            // No textures are assigned in the data
+            if (inputTextures.Count == 0) {
+                Debug.LogError("Input textures must be assigned...");
+                return null;
             }
 
             // Create render texture
@@ -140,10 +146,7 @@ namespace Repetitionless.TextureUtilities
             shader.SetBuffer(kernel, "Data", textureDataBuffer);
             shader.SetFloat("TextureCount", inputTextures.Count);
 
-            shader.SetVector("DefaultRColour", defaultColours[0]);
-            shader.SetVector("DefaultGColour", defaultColours[1]);
-            shader.SetVector("DefaultBColour", defaultColours[2]);
-            shader.SetVector("DefaultAColour", defaultColours[3]);
+            shader.SetVector("DefaultColours", defaultColours);
 
             shader.SetTexture(kernel, "Result", rt);
 
@@ -152,6 +155,8 @@ namespace Repetitionless.TextureUtilities
             int groupsY = Mathf.CeilToInt(resolution.y / (float)THREADS_Y);
 
             shader.Dispatch(kernel, groupsX, groupsY, 1);
+
+            textureDataBuffer.Release();
 
             // Copy packed texture to texture2D
             RenderTexture previousRT = RenderTexture.active;

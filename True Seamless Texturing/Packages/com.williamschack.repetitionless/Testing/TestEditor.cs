@@ -48,9 +48,9 @@ public class TestEditor : ShaderGUI
         }
 
         // Array Drawers
-        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.AVTextures, RepetitionlessTextureData.DEFAULT_AV_COLOURS, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
-        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.NSOTextures, RepetitionlessTextureData.DEFAULT_NSO_COLOURS, normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
-        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.EMTextures, RepetitionlessTextureData.DEFAULT_EM_COLOURS, emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
+        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.AVTextures, RepetitionlessTextureData.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
+        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.NSOTextures, RepetitionlessTextureData.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
+        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.EMTextures, RepetitionlessTextureData.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
 
         _albedoVTexturesDrawer.TextureFormat = TextureFormat.BC7;
         _normalSOTexturesDrawer.TextureFormat = TextureFormat.BC7;
@@ -104,7 +104,7 @@ public class TestEditor : ShaderGUI
         if(EditorGUI.EndChangeCheck()) {
             TestTextureData[0].Texture = testTexture1;
             TestTextureData[1].Texture = testTexture2;
-            Texture2D testTextureOut = TexturePacker.PackTextures(TestTextureData, RepetitionlessTextureData.DEFAULT_AV_COLOURS);
+            Texture2D testTextureOut = TexturePacker.PackTextures(TestTextureData, RepetitionlessTextureData.DEFAULT_AV_COLOUR);
 
             _dataManager.CreateAsset(testTextureOut, "Testing.asset");
         }

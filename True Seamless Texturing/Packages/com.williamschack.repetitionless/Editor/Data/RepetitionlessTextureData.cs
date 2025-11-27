@@ -9,9 +9,9 @@ namespace Repetitionless.Data
     {
         private const int TOTAL_SECTIONS = 3;
 
-        public static readonly Color[] DEFAULT_AV_COLOURS = { Color.white, Color.white, Color.white, Color.black };
-        public static readonly Color[] DEFAULT_NSO_COLOURS = { Color.black, Color.black, Color.black, Color.white };
-        public static readonly Color[] DEFAULT_EM_COLOURS = { Color.white, Color.white, Color.white, Color.black };
+        public static readonly Vector4 DEFAULT_AV_COLOUR  = new Vector4 ( 1.0f, 1.0f, 1.0f, 0.0f );
+        public static readonly Vector4 DEFAULT_NSO_COLOUR = new Vector4 ( 0.0f, 0.0f, 0.0f, 1.0f );
+        public static readonly Vector4 DEFAULT_EM_COLOUR  = new Vector4 ( 1.0f, 1.0f, 1.0f, 0.0f );
 
         public TexturePacker.TextureData[] AVTextures;
         public TexturePacker.TextureData[] NSOTextures;
