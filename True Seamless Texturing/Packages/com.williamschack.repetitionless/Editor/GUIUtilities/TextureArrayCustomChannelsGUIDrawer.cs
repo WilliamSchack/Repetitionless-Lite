@@ -14,6 +14,7 @@ namespace Repetitionless.GUIUtilities
 {
     using Compression;
     using TextureUtilities;
+    using Data;
 
     /// <summary>
     /// Allows drawing textures stored in a Texture2DArray to the GUI as well as functions for reading and deleting the array<br />
@@ -116,6 +117,15 @@ namespace Repetitionless.GUIUtilities
 
             MaterialProperty arrayProperty = MaterialEditor.GetMaterialProperty(new Object[] { material }, arrayPropertyName);
             MaterialProperty assignedTexturesProperty = MaterialEditor.GetMaterialProperty(new Object[] { material }, assignedTexturesPropertyName);
+
+            // Initialise
+            Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
+        }
+
+        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, List<TexturePacker.TextureData> channelTexturesData, int textureCount, string fileName = null)
+        {
+            // Assign material
+            _material = arrayProperty.targets[0];
 
             // Initialise
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
@@ -401,6 +411,11 @@ namespace Repetitionless.GUIUtilities
             _textures[index] = newTexture;
 
             return newTexture;
+        }
+
+        public Texture2D DrawTextureChannel(int index, GUIContent content)
+        {
+            return null;
         }
 
         /// <summary>
