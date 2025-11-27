@@ -339,16 +339,6 @@ namespace Repetitionless.GUIUtilities
                 System.Array.Copy(_channelTexturesData, clonedTextureData, _channelTexturesData.Length);
                 clonedTextureData[channelIndex].Texture = newTexture;
 
-                // Debug
-                for (int i = 0; i < clonedTextureData.Length; i++) {
-                    Debug.Log("Debugging " + i + " ...");
-
-                    if (clonedTextureData[i].Texture != null)
-                        Debug.Log("Texture: " + clonedTextureData[i].Texture.name);
-                }
-
-                Debug.Log("Checking resolutions...");
-
                 // Check for resolution differences
                 if (_array != null) {
                     Vector2Int newArrayResolution = new Vector2Int(_array.width, _array.height);
@@ -358,9 +348,6 @@ namespace Repetitionless.GUIUtilities
 
                         if (texture == null)
                             continue;
-
-                        Debug.Log("Testing texture: " + i + " >> " + texture);
-                        Debug.Log(texture.width + " x " + texture.height);
 
                         if (texture.width != _array.width || texture.height != _array.height) {
                             int returned = ShaderGUIDialog.DisplayDialogComplex(
@@ -384,8 +371,6 @@ namespace Repetitionless.GUIUtilities
                         }
                     }
 
-                    Debug.Log("Resizing textures to new resolution: " + newArrayResolution);
-
                     // Resize textures that need to be resized
                     //if (newArrayResolution.x != _array.width || newArrayResolution.y != _array.height) {
                         for (int i = 0; i < clonedTextureData.Length; i++) {
@@ -397,19 +382,13 @@ namespace Repetitionless.GUIUtilities
                             // Check if texture has already been resized, if so use that one
                             Texture2D preResizedTexture = _resizedTextures[i];
                             if (preResizedTexture != null && preResizedTexture.width == newArrayResolution.x && preResizedTexture.height == newArrayResolution.y) {
-                                Debug.Log("Found preresized for: " + clonedTextureData[i].Texture);
-
                                 clonedTextureData[i].Texture = preResizedTexture;
                                 continue;
                             }
 
                             // Resize texture and save for later use
-                            Debug.Log("Resized texture " + clonedTextureData[i].Texture);
-
                             clonedTextureData[i].Texture = TextureUtilities.ResizeTexture(clonedTextureData[i].Texture, newArrayResolution.x, newArrayResolution.y);
                             _resizedTextures[i] = clonedTextureData[i].Texture;
-                            
-                            Debug.Log($"New res: {clonedTextureData[i].Texture.width}x{clonedTextureData[i].Texture.height}");
                         }
                     //}
                 }
