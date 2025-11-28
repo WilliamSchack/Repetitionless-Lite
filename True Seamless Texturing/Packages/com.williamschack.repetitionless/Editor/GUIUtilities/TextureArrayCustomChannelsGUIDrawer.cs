@@ -287,7 +287,7 @@ namespace Repetitionless.GUIUtilities
         /// Index of the channel texture being changed at this index<br />
         /// Corresponds to the index in the initial given channelTexturesData
         /// </param>
-        private Texture2D UpdateTexture(Texture2D newTexture, int index, int channelIndex)
+        public Texture2D UpdateTexture(Texture2D newTexture, int index, int channelIndex)
         {
             if (UnityEditor.EditorGUI.EndChangeCheck()) {
                 TexturePacker.TextureData channelTextureData = _channelTexturesData[channelIndex];

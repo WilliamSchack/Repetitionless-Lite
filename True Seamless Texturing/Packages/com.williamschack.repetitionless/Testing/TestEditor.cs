@@ -21,6 +21,8 @@ public class TestEditor : ShaderGUI
 
     bool _firstStart = true;
 
+    bool _usingPT = false;
+
     MaterialDataManager _dataManager;
     RepetitionlessTextureData _textureData;
 
@@ -38,18 +40,21 @@ public class TestEditor : ShaderGUI
         _dataManager = new MaterialDataManager(material);
 
         // Texture Data
+        System.Action saveTexturesAction = () => {
+            EditorUtility.SetDirty(_textureData);
+            AssetDatabase.SaveAssetIfDirty(_textureData);
+        };
+
         if (_dataManager.AssetExists(TEXTURE_DATA_FILE_NAME)) {
             _textureData = _dataManager.LoadAsset<RepetitionlessTextureData>(TEXTURE_DATA_FILE_NAME);
         } else {
             _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureData>();
             _dataManager.CreateAsset(_textureData, TEXTURE_DATA_FILE_NAME);
             _textureData.Init();
+            saveTexturesAction();
         }
 
-        System.Action saveTexturesAction = () => {
-            EditorUtility.SetDirty(_textureData);
-            AssetDatabase.SaveAssetIfDirty(_textureData);
-        };
+        _usingPT = !_textureData.NSOTextures[3].Disabled;
 
         // Array Drawers
         _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.AVTextures, saveTexturesAction, RepetitionlessTextureData.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
@@ -115,6 +120,13 @@ public class TestEditor : ShaderGUI
 
         GUILayout.Space(20);
         GUILayout.Label("Array Testing:");
+
+        bool wasUsingPT = _usingPT;
+        _usingPT = GUILayout.Toggle(_usingPT, "Packed Texture");
+        if (wasUsingPT != _usingPT) {
+            _textureData.SetPackedTextureEnabled(_usingPT);
+        }
+
         GUILayout.Space(10);
 
         GUILayout.Label("AV");
@@ -123,12 +135,25 @@ public class TestEditor : ShaderGUI
 
         GUILayout.Label("NSO");
         _normalSOTexturesDrawer.DrawTexture(0, 0, new GUIContent("Normal"));
-        _normalSOTexturesDrawer.DrawTexture(0, 1, new GUIContent("Smoothness"));
-        _normalSOTexturesDrawer.DrawTexture(0, 2, new GUIContent("Occlussion"));
 
-        GUILayout.Label("EM");
-        _emissionMTexturesDrawer.DrawTexture(0, 0, new GUIContent("Emission"));
-        _emissionMTexturesDrawer.DrawTexture(0, 1, new GUIContent("Metallic"));
+        if (_usingPT) {
+            EditorGUI.BeginChangeCheck();
+            _normalSOTexturesDrawer.DrawTexture(0, 3, new GUIContent("Packed Texture"));
+            if (EditorGUI.EndChangeCheck()) {
+                // Manually update texture in emission array
+                _emissionMTexturesDrawer.UpdateTexture(_textureData.NSOTextures[3].Texture, 0, 2);
+            }
+
+            GUILayout.Label("EM");
+            _emissionMTexturesDrawer.DrawTexture(0, 0, new GUIContent("Emission"));
+        } else {
+            _normalSOTexturesDrawer.DrawTexture(0, 1, new GUIContent("Smoothness"));
+            _normalSOTexturesDrawer.DrawTexture(0, 2, new GUIContent("Occlussion"));
+
+            GUILayout.Label("EM");
+            _emissionMTexturesDrawer.DrawTexture(0, 0, new GUIContent("Emission"));
+            _emissionMTexturesDrawer.DrawTexture(0, 1, new GUIContent("Metallic"));
+        }
     }
 }
 #endif

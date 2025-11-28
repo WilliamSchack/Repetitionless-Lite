@@ -29,6 +29,7 @@ namespace Repetitionless.TextureUtilities
         public struct TextureData
         {
             public Texture2D Texture;
+            public bool Disabled;
             public bool NormalMap;
             public List<FromToChannel> FromToChannels;
         }
@@ -65,7 +66,7 @@ namespace Repetitionless.TextureUtilities
             Vector2Int resolution = new Vector2Int(0, 0);
             for (int i = 0; i < textureData.Length; i++) {
                 Texture2D currentTexture = textureData[i].Texture;
-                if (currentTexture == null)
+                if (currentTexture == null || textureData[i].Disabled)
                     continue;
 
                 int currentWidth = currentTexture.width;
@@ -88,7 +89,7 @@ namespace Repetitionless.TextureUtilities
             List<TextureDataGPU> textureDataGPU = new List<TextureDataGPU>();
             for (int i = 0; i < textureData.Length; i++) {
                 TextureData currentTextureData = textureData[i];
-                if (currentTextureData.Texture == null)
+                if (currentTextureData.Texture == null || currentTextureData.Disabled)
                     continue;
 
                 inputTextures.Add(currentTextureData.Texture);

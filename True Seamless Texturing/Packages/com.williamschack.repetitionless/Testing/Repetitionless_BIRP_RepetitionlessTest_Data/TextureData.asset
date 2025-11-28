@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: TextureData
   m_EditorClassIdentifier: com.williamschack.Repetitionless.Editor::Repetitionless.Data.RepetitionlessTextureData
   AVTextures:
-  - Texture: {fileID: 2800000, guid: 82febf2dec67a4f3cb162d2187372bc0, type: 3}
+  - Texture: {fileID: 0}
+    Disabled: 0
     NormalMap: 0
     FromToChannels:
     - From: 0
@@ -22,31 +23,44 @@ MonoBehaviour:
       To: 1
     - From: 2
       To: 2
-  - Texture: {fileID: 2800000, guid: 9396c9268ceae7f46bd3c9218f7a5ac6, type: 3}
+  - Texture: {fileID: 0}
+    Disabled: 0
     NormalMap: 0
     FromToChannels:
     - From: 0
       To: 3
   NSOTextures:
-  - Texture: {fileID: 2800000, guid: d4ea8689359a9e8968f79dbef440e43b, type: 3}
+  - Texture: {fileID: 0}
+    Disabled: 0
     NormalMap: 1
     FromToChannels:
     - From: 0
       To: 0
     - From: 1
       To: 1
-  - Texture: {fileID: 2800000, guid: daec98e6e115ffbb8ae28fb94ad27585, type: 3}
+  - Texture: {fileID: 0}
+    Disabled: 0
     NormalMap: 0
     FromToChannels:
     - From: 0
       To: 2
-  - Texture: {fileID: 2800000, guid: 3826568a66fe722deb55c1fc0fee9015, type: 3}
+  - Texture: {fileID: 0}
+    Disabled: 0
     NormalMap: 0
     FromToChannels:
     - From: 0
       To: 3
+  - Texture: {fileID: 0}
+    Disabled: 1
+    NormalMap: 0
+    FromToChannels:
+    - From: 1
+      To: 3
+    - From: 3
+      To: 2
   EMTextures:
   - Texture: {fileID: 0}
+    Disabled: 0
     NormalMap: 0
     FromToChannels:
     - From: 0
@@ -56,6 +70,13 @@ MonoBehaviour:
     - From: 2
       To: 2
   - Texture: {fileID: 0}
+    Disabled: 0
+    NormalMap: 0
+    FromToChannels:
+    - From: 0
+      To: 3
+  - Texture: {fileID: 0}
+    Disabled: 1
     NormalMap: 0
     FromToChannels:
     - From: 0
