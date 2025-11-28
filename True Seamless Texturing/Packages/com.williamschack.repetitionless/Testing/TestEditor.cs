@@ -6,7 +6,6 @@ using UnityEditor;
 using Repetitionless.GUIUtilities;
 using Repetitionless.Data;
 using Repetitionless.TextureUtilities;
-using Codice.CM.Client.Gui;
 
 public class TestEditor : ShaderGUI
 {
@@ -47,10 +46,15 @@ public class TestEditor : ShaderGUI
             _textureData.Init();
         }
 
+        System.Action saveTexturesAction = () => {
+            EditorUtility.SetDirty(_textureData);
+            AssetDatabase.SaveAssetIfDirty(_textureData);
+        };
+
         // Array Drawers
-        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.AVTextures, RepetitionlessTextureData.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
-        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.NSOTextures, RepetitionlessTextureData.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
-        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.EMTextures, RepetitionlessTextureData.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
+        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.AVTextures, saveTexturesAction, RepetitionlessTextureData.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
+        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.NSOTextures, saveTexturesAction, RepetitionlessTextureData.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
+        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.EMTextures, saveTexturesAction, RepetitionlessTextureData.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
 
         _albedoVTexturesDrawer.TextureFormat = TextureFormat.BC7;
         _normalSOTexturesDrawer.TextureFormat = TextureFormat.BC7;

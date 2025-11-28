@@ -71,8 +71,6 @@ namespace Repetitionless.TextureUtilities
                 int currentWidth = currentTexture.width;
                 int currentHeight = currentTexture.height;
 
-                Debug.Log("Texture " + i + " has resolution: " + $"{currentWidth}x{currentHeight}");
-
                 if (resolution.x == 0 && resolution.y == 0) {
                     resolution.x = currentWidth;
                     resolution.y = currentHeight;

@@ -15,9 +15,7 @@ namespace Repetitionless.GUIUtilities
     using Compression;
     using TextureUtilities;
     using Data;
-    using UnityEngine.PlayerLoop;
-    using Repetitionless.CustomDialog;
-    using UnityEngine.UIElements;
+    using CustomDialog;
 
     /// <summary>
     /// Allows drawing textures stored in a Texture2DArray to the GUI as well as functions for reading and deleting the array<br />
@@ -65,6 +63,7 @@ namespace Repetitionless.GUIUtilities
 
         private MaterialDataManager _dataManager;
         private TexturePacker.TextureData[] _channelTexturesData;
+        private System.Action _saveTextureDataAction;
         private Texture2D[] _resizedTextures;
         private Vector4 _defaultChannelColours;
 
@@ -130,13 +129,14 @@ namespace Repetitionless.GUIUtilities
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
         }
 
-        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, TexturePacker.TextureData[] channelTexturesData, Vector4 defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
+        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, TexturePacker.TextureData[] channelTexturesData, System.Action saveTextureDataAction, Vector4 defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
         {
             // Assign material
             _material = arrayProperty.targets[0];
             
             _dataManager = dataManager;
             _channelTexturesData = channelTexturesData;
+            _saveTextureDataAction = saveTextureDataAction;
             _defaultChannelColours = defaultChannelColours;
 
             _resizedTextures = new Texture2D[_channelTexturesData.Length];
@@ -273,6 +273,7 @@ namespace Repetitionless.GUIUtilities
 
         /// <summary>
         /// Updates the texture in the array while handling its order, asset file, and material variables<br />
+        /// Automatically packs textures, specifically updating the texture at the input channelIndex<br />
         /// In some situations this will request user input when changing textures with a popup
         /// </summary>
         /// <param name="newTexture">
@@ -281,6 +282,10 @@ namespace Repetitionless.GUIUtilities
         /// <param name="index">
         /// Index of the texture being changed in the desired array layout<br />
         /// Not the index of the current array layout or textures, think of it as a constant within the set texture count
+        /// </param>
+        /// <param name="channelIndex">
+        /// Index of the channel texture being changed at this index<br />
+        /// Corresponds to the index in the initial given channelTexturesData
         /// </param>
         private Texture2D UpdateTexture(Texture2D newTexture, int index, int channelIndex)
         {
@@ -309,6 +314,7 @@ namespace Repetitionless.GUIUtilities
                     _assignedTextures[index] = false;
                     _textures[index] = null;
                     _channelTexturesData[channelIndex].Texture = null;
+                    _saveTextureDataAction();
 
                     _arrayProperty.textureValue = _array;
                     _assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
@@ -395,6 +401,7 @@ namespace Repetitionless.GUIUtilities
 
                 // Pack texture
                 _channelTexturesData[channelIndex].Texture = newTexture;
+                _saveTextureDataAction();
                 newTexture = TexturePacker.PackTextures(clonedTextureData, _defaultChannelColours);
 
                 // Get the textures in order of the array
@@ -498,11 +505,6 @@ namespace Repetitionless.GUIUtilities
             _textures[index] = newTexture;
 
             return newTexture;
-        }
-
-        public Texture2D DrawTextureChannel(int index, GUIContent content)
-        {
-            return null;
         }
 
         public Texture2D DrawTexture(int index, int channelTextureIndex, GUIContent content)
