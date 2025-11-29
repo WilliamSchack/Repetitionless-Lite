@@ -26,6 +26,12 @@ public class TestEditor : ShaderGUI
     MaterialDataManager _dataManager;
     RepetitionlessTextureData _textureData;
 
+    private void SaveTextureData()
+    {
+        EditorUtility.SetDirty(_textureData);
+        AssetDatabase.SaveAssetIfDirty(_textureData);
+    }
+
     private void OnEnable(MaterialProperty[] properties)
     {
         MaterialProperty albedoVTexturesProp = FindProperty("_AlbedoVTextures", properties);
@@ -39,27 +45,21 @@ public class TestEditor : ShaderGUI
         Material material = (Material)albedoVTexturesProp.targets[0];
         _dataManager = new MaterialDataManager(material);
 
-        // Texture Data
-        System.Action saveTexturesAction = () => {
-            EditorUtility.SetDirty(_textureData);
-            AssetDatabase.SaveAssetIfDirty(_textureData);
-        };
-
         if (_dataManager.AssetExists(TEXTURE_DATA_FILE_NAME)) {
             _textureData = _dataManager.LoadAsset<RepetitionlessTextureData>(TEXTURE_DATA_FILE_NAME);
         } else {
             _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureData>();
             _dataManager.CreateAsset(_textureData, TEXTURE_DATA_FILE_NAME);
             _textureData.Init();
-            saveTexturesAction();
+            SaveTextureData();
         }
 
         _usingPT = !_textureData.NSOTextures[3].Disabled;
 
         // Array Drawers
-        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.AVTextures, saveTexturesAction, RepetitionlessTextureData.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
-        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.NSOTextures, saveTexturesAction, RepetitionlessTextureData.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
-        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.EMTextures, saveTexturesAction, RepetitionlessTextureData.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
+        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.AVTextures, SaveTextureData, RepetitionlessTextureData.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
+        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.NSOTextures, SaveTextureData, RepetitionlessTextureData.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
+        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.EMTextures, SaveTextureData, RepetitionlessTextureData.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
 
         _albedoVTexturesDrawer.TextureFormat = TextureFormat.BC7;
         _normalSOTexturesDrawer.TextureFormat = TextureFormat.BC7;
@@ -125,6 +125,7 @@ public class TestEditor : ShaderGUI
         _usingPT = GUILayout.Toggle(_usingPT, "Packed Texture");
         if (wasUsingPT != _usingPT) {
             _textureData.SetPackedTextureEnabled(_usingPT);
+            SaveTextureData();
         }
 
         GUILayout.Space(10);

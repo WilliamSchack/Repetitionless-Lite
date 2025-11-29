@@ -42,11 +42,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlbedoVTextures:
-        m_Texture: {fileID: 18700000, guid: df7c4c8ab4183ceb5b26b38078de9495, type: 2}
+        m_Texture: {fileID: 18700000, guid: b7b1824e2acf66c54af9af748fef39fb, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMTextures:
-        m_Texture: {fileID: 18700000, guid: 2afbfd7b1f31eb425946da632ada6ec6, type: 2}
+        m_Texture: {fileID: 18700000, guid: 3f80068cc41b5b8e19701353ce417569, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTextures:
@@ -54,7 +54,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalSOTextures:
-        m_Texture: {fileID: 18700000, guid: 88407d7a8e33a7bb5a635f5fe1c10528, type: 2}
+        m_Texture: {fileID: 18700000, guid: ebcc56a4ca60b3ff5b12f0bec8916190, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalVTextures:
@@ -65,9 +65,9 @@ Material:
     m_Floats:
     - _AssignedAbledoTextures: 0
     - _AssignedAlbedoVTextures: 1
-    - _AssignedEmissionMTextures: 0
+    - _AssignedEmissionMTextures: 1
     - _AssignedMaskTextures: 0
-    - _AssignedNormalSOTextures: 0
+    - _AssignedNormalSOTextures: 1
     - _AssignedNormalVTextures: 0
     - _BUILTIN_AlphaClip: 0
     - _BUILTIN_Blend: 0
