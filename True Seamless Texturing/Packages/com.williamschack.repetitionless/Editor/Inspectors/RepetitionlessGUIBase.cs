@@ -11,7 +11,9 @@ namespace Repetitionless.Inspectors
     using GUIUtilities;
 
     /// <summary>
-    /// Base class for creating the Master/Terrain repetitionless inspector windows
+    /// Base class for creating the Master/Terrain repetitionless inspector windows<br />
+    /// This assumes individual textures which is now unused in the current materials<br />
+    /// To use the current packed texture arrays, use RepetitionlessPackedArrayGUIBase
     /// </summary>
     public class RepetitionlessGUIBase : ShaderGUI
     {

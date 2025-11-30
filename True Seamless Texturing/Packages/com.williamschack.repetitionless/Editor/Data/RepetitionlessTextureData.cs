@@ -13,11 +13,17 @@ namespace Repetitionless.Data
         public static readonly Vector4 DEFAULT_NSO_COLOUR = new Vector4 ( 0.0f, 0.0f, 0.0f, 1.0f );
         public static readonly Vector4 DEFAULT_EM_COLOUR  = new Vector4 ( 1.0f, 1.0f, 1.0f, 0.0f );
 
-        public TexturePacker.TextureData[] AVTextures;
-        public TexturePacker.TextureData[] NSOTextures;
-        public TexturePacker.TextureData[] EMTextures;
+        [System.Serializable]
+        public struct MaterialTextureData
+        {
+            public TexturePacker.TextureData[] AVTextures;
+            public TexturePacker.TextureData[] NSOTextures;
+            public TexturePacker.TextureData[] EMTextures;
+        }
 
-        public void Init()
+        public List<MaterialTextureData> MaterialsTextureData = new List<MaterialTextureData>();
+
+        public void AddNewMaterial()
         {
             // Setup Textures
             // AVTextures: albedo (rgb), variation (a)
@@ -27,12 +33,14 @@ namespace Repetitionless.Data
             // Includes packed texture at indexes (Disabled by default):
             // NSOTextures[3], EMTextures[2]
 
-            AVTextures = new TexturePacker.TextureData[2];
-            NSOTextures = new TexturePacker.TextureData[4];
-            EMTextures = new TexturePacker.TextureData[3];
+            MaterialTextureData newMaterial = new MaterialTextureData();
+
+            newMaterial.AVTextures = new TexturePacker.TextureData[2];
+            newMaterial.NSOTextures = new TexturePacker.TextureData[4];
+            newMaterial.EMTextures = new TexturePacker.TextureData[3];
 
             // Albedo
-            AVTextures[0] = new TexturePacker.TextureData() {
+            newMaterial.AVTextures[0] = new TexturePacker.TextureData() {
                 Disabled = false,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
@@ -52,7 +60,7 @@ namespace Repetitionless.Data
             };
             
             // Variation
-            AVTextures[1] = new TexturePacker.TextureData() {
+            newMaterial.AVTextures[1] = new TexturePacker.TextureData() {
                 Disabled = false,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
@@ -64,7 +72,7 @@ namespace Repetitionless.Data
             };
 
             // Normal
-            NSOTextures[0] = new TexturePacker.TextureData() {
+            newMaterial.NSOTextures[0] = new TexturePacker.TextureData() {
                 Disabled = false,
                 NormalMap = true,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
@@ -80,7 +88,7 @@ namespace Repetitionless.Data
             };
 
             // Smoothness / Roughness
-            NSOTextures[1] = new TexturePacker.TextureData() {
+            newMaterial.NSOTextures[1] = new TexturePacker.TextureData() {
                 Disabled = false,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
@@ -92,7 +100,7 @@ namespace Repetitionless.Data
             };
 
             // Occlussion
-            NSOTextures[2] = new TexturePacker.TextureData() {
+            newMaterial.NSOTextures[2] = new TexturePacker.TextureData() {
                 Disabled = false,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
@@ -104,7 +112,7 @@ namespace Repetitionless.Data
             };
 
             // Packed Texture (Occlussion, Smoothness)
-            NSOTextures[3] = new TexturePacker.TextureData() {
+            newMaterial.NSOTextures[3] = new TexturePacker.TextureData() {
                 Disabled = true,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
@@ -122,7 +130,7 @@ namespace Repetitionless.Data
             };
 
             // Emission
-            EMTextures[0] = new TexturePacker.TextureData() {
+            newMaterial.EMTextures[0] = new TexturePacker.TextureData() {
                 Disabled = false,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
@@ -142,7 +150,7 @@ namespace Repetitionless.Data
             };
 
             // Metallic
-            EMTextures[1] = new TexturePacker.TextureData() {
+            newMaterial.EMTextures[1] = new TexturePacker.TextureData() {
                 Disabled = false,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
@@ -154,7 +162,7 @@ namespace Repetitionless.Data
             };
 
             // Packed Texture (Metallic)
-            EMTextures[2] = new TexturePacker.TextureData() {
+            newMaterial.EMTextures[2] = new TexturePacker.TextureData() {
                 Disabled = true,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
@@ -164,17 +172,21 @@ namespace Repetitionless.Data
                     )
                 }
             };
+
+            MaterialsTextureData.Add(newMaterial);
         }
 
-        // Assumes Init was called and texture data is in same format
-        public void SetPackedTextureEnabled(bool enabled)
-        {
-            NSOTextures[1].Disabled = enabled;
-            NSOTextures[2].Disabled = enabled;
-            NSOTextures[3].Disabled = !enabled;
 
-            EMTextures[1].Disabled = enabled;
-            EMTextures[2].Disabled = !enabled;
+
+        // Assumes Init was called and texture data is in same format
+        public void SetPackedTextureEnabled(int materialIndex, bool enabled)
+        {
+            MaterialsTextureData[materialIndex].NSOTextures[1].Disabled = enabled;
+            MaterialsTextureData[materialIndex].NSOTextures[2].Disabled = enabled;
+            MaterialsTextureData[materialIndex].NSOTextures[3].Disabled = !enabled;
+
+            MaterialsTextureData[materialIndex].EMTextures[1].Disabled = enabled;
+            MaterialsTextureData[materialIndex].EMTextures[2].Disabled = !enabled;
         }
     }
 }

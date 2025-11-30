@@ -62,7 +62,6 @@ namespace Repetitionless.GUIUtilities
         private bool[] _assignedTextures;
 
         private MaterialDataManager _dataManager;
-        private TexturePacker.TextureData[] _channelTexturesData;
         private System.Action _saveTextureDataAction;
         private Texture2D[] _resizedTextures;
         private Vector4 _defaultChannelColours;
@@ -129,17 +128,16 @@ namespace Repetitionless.GUIUtilities
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
         }
 
-        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, TexturePacker.TextureData[] channelTexturesData, System.Action saveTextureDataAction, Vector4 defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
+        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, int channelsAmount, System.Action saveTextureDataAction, Vector4 defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
         {
             // Assign material
             _material = arrayProperty.targets[0];
             
             _dataManager = dataManager;
-            _channelTexturesData = channelTexturesData;
             _saveTextureDataAction = saveTextureDataAction;
             _defaultChannelColours = defaultChannelColours;
 
-            _resizedTextures = new Texture2D[_channelTexturesData.Length];
+            _resizedTextures = new Texture2D[channelsAmount];
 
             // Initialise
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
@@ -287,10 +285,10 @@ namespace Repetitionless.GUIUtilities
         /// Index of the channel texture being changed at this index<br />
         /// Corresponds to the index in the initial given channelTexturesData
         /// </param>
-        public Texture2D UpdateTexture(Texture2D newTexture, int index, int channelIndex)
+        public Texture2D UpdateTexture(Texture2D newTexture, TexturePacker.TextureData[] textureData, int index, int channelIndex)
         {
             if (UnityEditor.EditorGUI.EndChangeCheck()) {
-                TexturePacker.TextureData channelTextureData = _channelTexturesData[channelIndex];
+                TexturePacker.TextureData channelTextureData = textureData[channelIndex];
 
                 // Return if texture is not being changed, usually due to updates for accompanying variable
                 if (newTexture == channelTextureData.Texture)
@@ -301,7 +299,7 @@ namespace Repetitionless.GUIUtilities
                     Undo.RegisterCompleteObjectUndo(new Object[] { _material, _array }, $"Modified Array Texture of {_material.name} at Index {index}");
 
                 // Check if texture is assigned or removed
-                int channelTexturesAssigned = _channelTexturesData.Count(x => x.Texture != null);
+                int channelTexturesAssigned = textureData.Count(x => x.Texture != null);
                 if (newTexture == null) channelTexturesAssigned--;
                 else                    channelTexturesAssigned++;
 
@@ -313,7 +311,7 @@ namespace Repetitionless.GUIUtilities
 
                     _assignedTextures[index] = false;
                     _textures[index] = null;
-                    _channelTexturesData[channelIndex].Texture = null;
+                    textureData[channelIndex].Texture = null;
                     _saveTextureDataAction();
 
                     _arrayProperty.textureValue = _array;
@@ -341,8 +339,8 @@ namespace Repetitionless.GUIUtilities
                 }
 
                 // Copy texture data to modify
-                TexturePacker.TextureData[] clonedTextureData = new TexturePacker.TextureData[_channelTexturesData.Length];
-                System.Array.Copy(_channelTexturesData, clonedTextureData, _channelTexturesData.Length);
+                TexturePacker.TextureData[] clonedTextureData = new TexturePacker.TextureData[textureData.Length];
+                System.Array.Copy(textureData, clonedTextureData, textureData.Length);
                 clonedTextureData[channelIndex].Texture = newTexture;
 
                 // Check for resolution differences
@@ -378,29 +376,27 @@ namespace Repetitionless.GUIUtilities
                     }
 
                     // Resize textures that need to be resized
-                    //if (newArrayResolution.x != _array.width || newArrayResolution.y != _array.height) {
-                        for (int i = 0; i < clonedTextureData.Length; i++) {
-                            // Check if texture needs to be resized
-                            Texture2D checkingTexture = clonedTextureData[i].Texture;
-                            if (checkingTexture == null || (checkingTexture.width == newArrayResolution.x && checkingTexture.height == newArrayResolution.y))
-                                continue;
-                            
-                            // Check if texture has already been resized, if so use that one
-                            Texture2D preResizedTexture = _resizedTextures[i];
-                            if (preResizedTexture != null && preResizedTexture.width == newArrayResolution.x && preResizedTexture.height == newArrayResolution.y) {
-                                clonedTextureData[i].Texture = preResizedTexture;
-                                continue;
-                            }
-
-                            // Resize texture and save for later use
-                            clonedTextureData[i].Texture = TextureUtilities.ResizeTexture(clonedTextureData[i].Texture, newArrayResolution.x, newArrayResolution.y);
-                            _resizedTextures[i] = clonedTextureData[i].Texture;
+                    for (int i = 0; i < clonedTextureData.Length; i++) {
+                        // Check if texture needs to be resized
+                        Texture2D checkingTexture = clonedTextureData[i].Texture;
+                        if (checkingTexture == null || (checkingTexture.width == newArrayResolution.x && checkingTexture.height == newArrayResolution.y))
+                            continue;
+                        
+                        // Check if texture has already been resized, if so use that one
+                        Texture2D preResizedTexture = _resizedTextures[i];
+                        if (preResizedTexture != null && preResizedTexture.width == newArrayResolution.x && preResizedTexture.height == newArrayResolution.y) {
+                            clonedTextureData[i].Texture = preResizedTexture;
+                            continue;
                         }
-                    //}
+
+                        // Resize texture and save for later use
+                        clonedTextureData[i].Texture = TextureUtilities.ResizeTexture(clonedTextureData[i].Texture, newArrayResolution.x, newArrayResolution.y);
+                        _resizedTextures[i] = clonedTextureData[i].Texture;
+                    }
                 }
 
                 // Pack texture
-                _channelTexturesData[channelIndex].Texture = newTexture;
+                textureData[channelIndex].Texture = newTexture;
                 _saveTextureDataAction();
                 newTexture = TexturePacker.PackTextures(clonedTextureData, _defaultChannelColours);
 
@@ -507,13 +503,13 @@ namespace Repetitionless.GUIUtilities
             return newTexture;
         }
 
-        public Texture2D DrawTexture(int index, int channelTextureIndex, GUIContent content)
+        public Texture2D DrawTexture(TexturePacker.TextureData[] textureData, int index, int channelIndex, GUIContent content)
         {
             Rect lineRect = GUIUtilities.GetLineRect();
 
             EditorGUI.BeginChangeCheck();
-            Texture2D newTexture = GUIUtilities.DrawTexture(lineRect, _channelTexturesData[channelTextureIndex].Texture, content);
-            return UpdateTexture(newTexture, index, channelTextureIndex);
+            Texture2D newTexture = GUIUtilities.DrawTexture(lineRect, textureData[channelIndex].Texture, content);
+            return UpdateTexture(newTexture, textureData, index, channelIndex);
         }
 
 /*

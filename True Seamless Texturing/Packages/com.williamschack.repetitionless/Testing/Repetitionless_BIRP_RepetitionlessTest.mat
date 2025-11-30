@@ -29,7 +29,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
@@ -37,6 +37,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AVTextures:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _AlbedoTextures:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -45,11 +49,19 @@ Material:
         m_Texture: {fileID: 18700000, guid: b7b1824e2acf66c54af9af748fef39fb, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EMTextures:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMTextures:
         m_Texture: {fileID: 18700000, guid: 3f80068cc41b5b8e19701353ce417569, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTextures:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NSOTextures:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -63,10 +75,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AssignedAVTextures: 0
     - _AssignedAbledoTextures: 0
     - _AssignedAlbedoVTextures: 1
+    - _AssignedEMTextures: 0
     - _AssignedEmissionMTextures: 1
     - _AssignedMaskTextures: 0
+    - _AssignedNSOTextures: 0
     - _AssignedNormalSOTextures: 1
     - _AssignedNormalVTextures: 0
     - _BUILTIN_AlphaClip: 0

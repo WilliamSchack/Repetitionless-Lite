@@ -34,12 +34,12 @@ public class TestEditor : ShaderGUI
 
     private void OnEnable(MaterialProperty[] properties)
     {
-        MaterialProperty albedoVTexturesProp = FindProperty("_AlbedoVTextures", properties);
-        MaterialProperty normalSOTexturesProp = FindProperty("_NormalSOTextures", properties);
-        MaterialProperty emissionMTexturesProp = FindProperty("_EmissionMTextures", properties);
-        MaterialProperty assignedAlbedoVTexturesProp = FindProperty("_AssignedAlbedoVTextures", properties);
-        MaterialProperty assignedNormalSOTexturesProp = FindProperty("_AssignedNormalSOTextures", properties);
-        MaterialProperty assignedEmissionMTexturesProp = FindProperty("_AssignedEmissionMTextures", properties);
+        MaterialProperty albedoVTexturesProp = FindProperty("_AVTextures", properties);
+        MaterialProperty normalSOTexturesProp = FindProperty("_NSOTextures", properties);
+        MaterialProperty emissionMTexturesProp = FindProperty("_EMTextures", properties);
+        MaterialProperty assignedAlbedoVTexturesProp = FindProperty("_AssignedAVTextures", properties);
+        MaterialProperty assignedNormalSOTexturesProp = FindProperty("_AssignedNSOTextures", properties);
+        MaterialProperty assignedEmissionMTexturesProp = FindProperty("_AssignedEMTextures", properties);
         
         // Data Manager
         Material material = (Material)albedoVTexturesProp.targets[0];
@@ -50,16 +50,16 @@ public class TestEditor : ShaderGUI
         } else {
             _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureData>();
             _dataManager.CreateAsset(_textureData, TEXTURE_DATA_FILE_NAME);
-            _textureData.Init();
+            _textureData.AddNewMaterial();
             SaveTextureData();
         }
 
-        _usingPT = !_textureData.NSOTextures[3].Disabled;
+        _usingPT = !_textureData.MaterialsTextureData[0].NSOTextures[3].Disabled;
 
         // Array Drawers
-        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.AVTextures, SaveTextureData, RepetitionlessTextureData.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
-        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.NSOTextures, SaveTextureData, RepetitionlessTextureData.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
-        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.EMTextures, SaveTextureData, RepetitionlessTextureData.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
+        _albedoVTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.MaterialsTextureData[0].AVTextures.Length, SaveTextureData, RepetitionlessTextureData.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, 3);
+        _normalSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.MaterialsTextureData[0].NSOTextures.Length, SaveTextureData, RepetitionlessTextureData.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, 3);
+        _emissionMTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, _textureData.MaterialsTextureData[0].EMTextures.Length, SaveTextureData, RepetitionlessTextureData.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, 3);
 
         _albedoVTexturesDrawer.TextureFormat = TextureFormat.BC7;
         _normalSOTexturesDrawer.TextureFormat = TextureFormat.BC7;
@@ -124,36 +124,36 @@ public class TestEditor : ShaderGUI
         bool wasUsingPT = _usingPT;
         _usingPT = GUILayout.Toggle(_usingPT, "Packed Texture");
         if (wasUsingPT != _usingPT) {
-            _textureData.SetPackedTextureEnabled(_usingPT);
+            _textureData.SetPackedTextureEnabled(0, _usingPT);
             SaveTextureData();
         }
 
         GUILayout.Space(10);
 
         GUILayout.Label("AV");
-        _albedoVTexturesDrawer.DrawTexture(0, 0, new GUIContent("Albedo"));
-        _albedoVTexturesDrawer.DrawTexture(0, 1, new GUIContent("Variation"));
+        _albedoVTexturesDrawer.DrawTexture(_textureData.MaterialsTextureData[0].AVTextures, 0, 0, new GUIContent("Albedo"));
+        _albedoVTexturesDrawer.DrawTexture(_textureData.MaterialsTextureData[0].AVTextures, 0, 1, new GUIContent("Variation"));
 
         GUILayout.Label("NSO");
-        _normalSOTexturesDrawer.DrawTexture(0, 0, new GUIContent("Normal"));
+        _normalSOTexturesDrawer.DrawTexture(_textureData.MaterialsTextureData[0].NSOTextures, 0, 0, new GUIContent("Normal"));
 
         if (_usingPT) {
             EditorGUI.BeginChangeCheck();
-            _normalSOTexturesDrawer.DrawTexture(0, 3, new GUIContent("Packed Texture"));
+            _normalSOTexturesDrawer.DrawTexture(_textureData.MaterialsTextureData[0].NSOTextures, 0, 3, new GUIContent("Packed Texture"));
             if (EditorGUI.EndChangeCheck()) {
                 // Manually update texture in emission array
-                _emissionMTexturesDrawer.UpdateTexture(_textureData.NSOTextures[3].Texture, 0, 2);
+                _emissionMTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[0].EMTextures[3].Texture, _textureData.MaterialsTextureData[0].NSOTextures, 0, 2);
             }
 
             GUILayout.Label("EM");
-            _emissionMTexturesDrawer.DrawTexture(0, 0, new GUIContent("Emission"));
+            _emissionMTexturesDrawer.DrawTexture(_textureData.MaterialsTextureData[0].EMTextures, 0, 0, new GUIContent("Emission"));
         } else {
-            _normalSOTexturesDrawer.DrawTexture(0, 1, new GUIContent("Smoothness"));
-            _normalSOTexturesDrawer.DrawTexture(0, 2, new GUIContent("Occlussion"));
+            _normalSOTexturesDrawer.DrawTexture(_textureData.MaterialsTextureData[0].NSOTextures, 0, 1, new GUIContent("Smoothness"));
+            _normalSOTexturesDrawer.DrawTexture(_textureData.MaterialsTextureData[0].NSOTextures, 0, 2, new GUIContent("Occlussion"));
 
             GUILayout.Label("EM");
-            _emissionMTexturesDrawer.DrawTexture(0, 0, new GUIContent("Emission"));
-            _emissionMTexturesDrawer.DrawTexture(0, 1, new GUIContent("Metallic"));
+            _emissionMTexturesDrawer.DrawTexture(_textureData.MaterialsTextureData[0].EMTextures, 0, 0, new GUIContent("Emission"));
+            _emissionMTexturesDrawer.DrawTexture(_textureData.MaterialsTextureData[0].EMTextures, 0, 1, new GUIContent("Metallic"));
         }
     }
 }

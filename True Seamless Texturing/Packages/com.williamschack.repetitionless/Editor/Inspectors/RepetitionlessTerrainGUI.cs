@@ -17,7 +17,6 @@ namespace Repetitionless.Inspectors
             public TextureArrayGUIDrawer BlendTexturesDrawer;
         }
 
-        private GUIStyle _labelStyle;
         private GUIContent _settingsIconContent;
         private int _settingsIconWidth;
 
@@ -70,10 +69,6 @@ namespace Repetitionless.Inspectors
             _material.SetOverrideTag("TerrainCompatible", "True");
 
             // Initialize styles
-            _labelStyle = new GUIStyle("Label");
-            _labelStyle.alignment = TextAnchor.MiddleCenter;
-            _labelStyle.wordWrap = true;
-
             _settingsIconContent = EditorGUIUtility.IconContent("Settings");
             _settingsIconContent.tooltip = "Texture Array Settings";
             _settingsIconWidth = (int)GUI.skin.button.CalcSize(_settingsIconContent).x;

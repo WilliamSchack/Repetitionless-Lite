@@ -156,10 +156,10 @@
     "m_Guid": {
         "m_GuidSerialized": "5329b29e-5411-4400-8de3-b4c4ef9f03a5"
     },
-    "m_Name": "AlbedoVTextures",
+    "m_Name": "AVTextures",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "AlbedoVTextures",
-    "m_DefaultReferenceName": "_AlbedoVTextures",
+    "m_RefNameGeneratedByDisplayName": "AVTextures",
+    "m_DefaultReferenceName": "_AVTextures",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -249,10 +249,10 @@
     "m_Guid": {
         "m_GuidSerialized": "41063dc2-fcd9-4aa6-9b39-26b30f239a69"
     },
-    "m_Name": "EmissionMTextures",
+    "m_Name": "EMTextures",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "EmissionMTextures",
-    "m_DefaultReferenceName": "_EmissionMTextures",
+    "m_RefNameGeneratedByDisplayName": "EMTextures",
+    "m_DefaultReferenceName": "_EMTextures",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -355,10 +355,10 @@
     "m_Guid": {
         "m_GuidSerialized": "d99700fa-8e40-41d1-88f8-e027657a2758"
     },
-    "m_Name": "AssignedNormalSOTextures",
+    "m_Name": "AssignedNSOTextures",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "AssignedNormalSOTextures",
-    "m_DefaultReferenceName": "_AssignedNormalSOTextures",
+    "m_RefNameGeneratedByDisplayName": "AssignedNSOTextures",
+    "m_DefaultReferenceName": "_AssignedNSOTextures",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -551,10 +551,10 @@
     "m_Guid": {
         "m_GuidSerialized": "9db149d8-f550-4702-9f61-9c02caf1ff33"
     },
-    "m_Name": "AssignedEmissionMTextures",
+    "m_Name": "AssignedEMTextures",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "AssignedEmissionMTextures",
-    "m_DefaultReferenceName": "_AssignedEmissionMTextures",
+    "m_RefNameGeneratedByDisplayName": "AssignedEMTextures",
+    "m_DefaultReferenceName": "_AssignedEMTextures",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -942,10 +942,10 @@
     "m_Guid": {
         "m_GuidSerialized": "0561b613-e051-47b4-8b11-912e490ffe95"
     },
-    "m_Name": "NormalSOTextures",
+    "m_Name": "NSOTextures",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "NormalSOTextures",
-    "m_DefaultReferenceName": "_NormalSOTextures",
+    "m_RefNameGeneratedByDisplayName": "NSOTextures",
+    "m_DefaultReferenceName": "_NSOTextures",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1084,10 +1084,10 @@
     "m_Guid": {
         "m_GuidSerialized": "e379f478-c281-4e10-b9dc-4091daaacb8e"
     },
-    "m_Name": "AssignedAlbedoVTextures",
+    "m_Name": "AssignedAVTextures",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "AssignedAlbedoVTextures",
-    "m_DefaultReferenceName": "_AssignedAlbedoVTextures",
+    "m_RefNameGeneratedByDisplayName": "AssignedAVTextures",
+    "m_DefaultReferenceName": "_AssignedAVTextures",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
