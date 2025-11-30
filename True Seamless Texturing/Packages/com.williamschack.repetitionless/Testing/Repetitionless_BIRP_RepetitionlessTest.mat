@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 84bde91692eb953878095534a73e45ed, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlbedoTextures:
@@ -50,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EMTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 807b776eaa5758825b4634df9e7cd80a, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMTextures:
@@ -62,7 +62,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NSOTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 95b1dad57b0e177d495210da1b746afe, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalSOTextures:
@@ -78,10 +78,10 @@ Material:
     - _AssignedAVTextures: 0
     - _AssignedAbledoTextures: 0
     - _AssignedAlbedoVTextures: 1
-    - _AssignedEMTextures: 0
+    - _AssignedEMTextures: 1
     - _AssignedEmissionMTextures: 1
     - _AssignedMaskTextures: 0
-    - _AssignedNSOTextures: 0
+    - _AssignedNSOTextures: 1
     - _AssignedNormalSOTextures: 1
     - _AssignedNormalVTextures: 0
     - _BUILTIN_AlphaClip: 0

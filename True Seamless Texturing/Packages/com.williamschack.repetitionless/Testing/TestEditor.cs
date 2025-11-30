@@ -136,7 +136,7 @@ public class TestEditor : ShaderGUI
         }
 
         
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < MATERIAL_COUNT; i++) {
             GUILayout.Space(20);
             GUILayout.Label($"MATERIAL {i}");
 

@@ -309,7 +309,7 @@ namespace Repetitionless.GUIUtilities
                 bool textureAssigned = channelTexturesAssigned > 0;
 
                 // If all textures are null, clear array and return
-                if (!textureAssigned && _textures.Count(x => x != null) == 0) {
+                if (!textureAssigned && _textures.Count(x => x != null) <= 1) {
                     _dataManager.DeleteAsset(_fileName);
 
                     _assignedTextures[index] = false;
@@ -357,9 +357,16 @@ namespace Repetitionless.GUIUtilities
                             continue;
 
                         if (texture.width != _array.width || texture.height != _array.height) {
+                            // Dont prompt if already resized a texture
+                            Texture2D preResizedTexture = _resizedTextures[index][i];
+                            if (preResizedTexture != null && preResizedTexture.width == newArrayResolution.x && preResizedTexture.height == newArrayResolution.y) {
+                                clonedTextureData[i].Texture = preResizedTexture;
+                                continue;
+                            }
+
                             int returned = ShaderGUIDialog.DisplayDialogComplex(
                                 "Texture Resolution Difference",
-                                $"Texture: {texture.width}x{texture.height} Array: {newArrayResolution.x}x{newArrayResolution.y}\n"
+                                $"{texture.name}: {texture.width}x{texture.height} Array: {newArrayResolution.x}x{newArrayResolution.y}\n"
                                 + "Texture size is not the same as the array. Would you like to resize this texture to the array resolution, or resize the array to this texture resolution?",
                                 "Resize Texture", "Cancel", "Resize Array"
                             );
@@ -379,25 +386,18 @@ namespace Repetitionless.GUIUtilities
                     }
 
                     // Resize textures that need to be resized
-                    //if (newArrayResolution.x != _array.width || newArrayResolution.y != _array.height) {
-                        for (int i = 0; i < clonedTextureData.Length; i++) {
-                            // Check if texture needs to be resized
-                            Texture2D checkingTexture = clonedTextureData[i].Texture;
-                            if (checkingTexture == null || (checkingTexture.width == newArrayResolution.x && checkingTexture.height == newArrayResolution.y))
-                                continue;
-                            
-                            // Check if texture has already been resized, if so use that one
-                            Texture2D preResizedTexture = _resizedTextures[index][i];
-                            if (preResizedTexture != null && preResizedTexture.width == newArrayResolution.x && preResizedTexture.height == newArrayResolution.y) {
-                                clonedTextureData[i].Texture = preResizedTexture;
-                                continue;
-                            }
+                    for (int i = 0; i < clonedTextureData.Length; i++) {
+                        // Check if texture needs to be resized
+                        Texture2D checkingTexture = clonedTextureData[i].Texture;
+                        if (checkingTexture == null || (checkingTexture.width == newArrayResolution.x && checkingTexture.height == newArrayResolution.y))
+                            continue;
 
-                            // Resize texture and save for later use
-                            clonedTextureData[i].Texture = TextureUtilities.ResizeTexture(clonedTextureData[i].Texture, newArrayResolution.x, newArrayResolution.y);
-                            _resizedTextures[index][i] = clonedTextureData[i].Texture;
-                        }
-                    //}
+                        // Resize texture and save for later use
+                        clonedTextureData[i].Texture = TextureUtilities.ResizeTexture(clonedTextureData[i].Texture, newArrayResolution.x, newArrayResolution.y);
+                        _resizedTextures[index][i] = clonedTextureData[i].Texture;
+
+                        Debug.Log($"Adding resized texture to {index}, {i}: {_resizedTextures[index][i]}");
+                    }
                 }
 
                 // Pack texture
