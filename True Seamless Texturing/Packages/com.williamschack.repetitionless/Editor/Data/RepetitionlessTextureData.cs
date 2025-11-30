@@ -21,10 +21,21 @@ namespace Repetitionless.Data
             public TexturePacker.TextureData[] EMTextures;
         }
 
-        public List<MaterialTextureData> MaterialsTextureData = new List<MaterialTextureData>();
+        public MaterialTextureData[] MaterialsTextureData;
 
-        public void AddNewMaterial()
+        public void Init(int materialsCount)
         {
+            MaterialsTextureData = new MaterialTextureData[materialsCount];
+
+            for (int i = 0; i < materialsCount; i++)
+                SetupMaterial(i);
+        }
+
+        public void SetupMaterial(int index)
+        {
+            if (index >= MaterialsTextureData.Length)
+                return;
+
             // Setup Textures
             // AVTextures: albedo (rgb), variation (a)
             // NSOTextures: normal (rg), smooth/rough (b), occlussion (a)
@@ -173,7 +184,7 @@ namespace Repetitionless.Data
                 }
             };
 
-            MaterialsTextureData.Add(newMaterial);
+            MaterialsTextureData[index] = newMaterial;
         }
 
 
