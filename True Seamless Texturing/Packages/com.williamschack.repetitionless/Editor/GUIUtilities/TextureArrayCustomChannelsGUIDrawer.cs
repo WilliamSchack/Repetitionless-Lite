@@ -215,7 +215,6 @@ namespace Repetitionless.GUIUtilities
 
             _textureCount = textureCount;
             _textures = new Texture2D[textureCount];
-            Debug.Log("Resetting textures...");
 
             // Auto assign file name if not set: "TextureArray_ArrayPropertyDisplayName.asset"
             if (fileName == null) {
@@ -292,9 +291,6 @@ namespace Repetitionless.GUIUtilities
         public Texture2D UpdateTexture(Texture2D newTexture, int index, int channelIndex)
         {
             if (UnityEditor.EditorGUI.EndChangeCheck()) {
-                Debug.Log($"Updating index {index} at channel texture {channelIndex}");
-                Debug.Log($"Found {_textures.Count(x => x != null)} set textures...");
-
                 TexturePacker.TextureData channelTextureData = _getLayerChannelDataFunc(index)[channelIndex];
 
                 // Return if texture is not being changed, usually due to updates for accompanying variable
@@ -318,7 +314,6 @@ namespace Repetitionless.GUIUtilities
 
                     _assignedTextures[index] = false;
                     _textures[index] = null;
-                    Debug.Log($"Resetting texture {index}...");
                     _getLayerChannelDataFunc(index)[channelIndex].Texture = null;
                     _saveTextureDataAction();
 
@@ -428,7 +423,6 @@ namespace Repetitionless.GUIUtilities
                         arrayTextures.Add(texture);
                     }
 
-                    Debug.Log($"Texture {i} assigned: {assigned}");
                     assignedTexturesArray[i] = assigned;
                 }
 
@@ -441,18 +435,12 @@ namespace Repetitionless.GUIUtilities
 
                     // If array is still null create a new array and return changed texture
                     if (_array == null) {
-                        Debug.Log("Creating array...");
-
-                        //_textures[index] = newTexture;
-
                         _array = Texture2DArrayUtilities.CreateArrayUserInput(arrayTextures.ToArray(), TextureFormat, null, TransferMipmaps, ArrayLinear);
                         _dataManager.CreateAsset(_array, _fileName);
 
                         // Update variables
                         _assignedTextures[index] = textureAssigned;
                         _textures[index] = newTexture;
-
-                        Debug.Log($"Assigned texture {index}: {_textures[index]}");
 
                         _arrayProperty.textureValue = _array;
                         _assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
@@ -513,7 +501,6 @@ namespace Repetitionless.GUIUtilities
                 
                 // Set texture
                 _textures[index] = newTexture;
-                Debug.Log($"Assigned texture {index}: {_textures[index]}");
             }
 
             return newTexture;
