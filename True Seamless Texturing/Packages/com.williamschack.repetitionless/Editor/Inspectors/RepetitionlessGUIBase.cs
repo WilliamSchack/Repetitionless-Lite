@@ -885,12 +885,11 @@ namespace Repetitionless.Inspectors
                 if (variationNoiseSettings != oriVariationNoiseSettings)
                     variationNoiseSettingsProp.vectorValue = variationNoiseSettings;
             } else {
-                // Material Properties
-                MaterialProperty variationTexturesProp = FindProperty($"_{materialPrefix}VariationTexture");
+                // Material Property
                 MaterialProperty variationTextureTOProp = FindProperty($"_{materialPrefix}VariationTextureTO");
 
                 // Texture
-                DrawTexture(sectionIndex, 7, new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), variationTexturesProp.name);
+                DrawTexture(sectionIndex, 7, new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), $"_{materialPrefix}VariationTexture");
                 
                 // Tiling & Offset
                 GUIUtilities.DrawTilingOffset(variationTextureTOProp, "Variation Scale", "Variation Offset");

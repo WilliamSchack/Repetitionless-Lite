@@ -509,9 +509,13 @@ namespace Repetitionless.GUIUtilities
         public Texture2D DrawTexture(int index, int channelTextureIndex, GUIContent content)
         {
             Rect lineRect = GUIUtilities.GetLineRect();
+            return DrawTexture(lineRect, index, channelTextureIndex, content);
+        }
 
+        public Texture2D DrawTexture(Rect rect, int index, int channelTextureIndex, GUIContent content)
+        {
             EditorGUI.BeginChangeCheck();
-            Texture2D newTexture = GUIUtilities.DrawTexture(lineRect, _getLayerChannelDataFunc(index)[channelTextureIndex].Texture, content);
+            Texture2D newTexture = GUIUtilities.DrawTexture(rect, _getLayerChannelDataFunc(index)[channelTextureIndex].Texture, content);
             return UpdateTexture(newTexture, index, channelTextureIndex);
         }
 
