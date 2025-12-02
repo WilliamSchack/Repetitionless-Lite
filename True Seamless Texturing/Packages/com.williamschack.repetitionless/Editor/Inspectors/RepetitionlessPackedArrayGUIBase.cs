@@ -99,6 +99,8 @@ namespace Repetitionless.Inspectors
             bool normalAssigned     = materialTextureData.NSOTextures[0].Texture != null;
             bool occlussionAssigned = packedTextureAssigned ? true : materialTextureData.NSOTextures[2].Texture != null;
             bool emissionAssigned   = materialTextureData.EMTextures[0].Texture != null;
+            bool albedoAssigned     = materialTextureData.AVTextures[0].Texture != null;
+            bool variationAssigned  = materialTextureData.AVTextures[1].Texture != null;
 
             //bool metallicAssigned = metallicTexProp.textureValue != null;
             //bool smoothnessAssigned = smoothnessTexProp.textureValue != null;
@@ -107,7 +109,7 @@ namespace Repetitionless.Inspectors
             //bool occlussionAssigned = occlussionTexProp.textureValue != null;
             //bool emissionAssigned = emissionTexProp.textureValue != null;
 
-            int compressedAssignedTextures = BooleanCompression.CompressValues(metallicAssigned, smoothnessAssigned, roughnessAssigned, normalAssigned, occlussionAssigned, emissionAssigned);
+            int compressedAssignedTextures = BooleanCompression.CompressValues(metallicAssigned, smoothnessAssigned, roughnessAssigned, normalAssigned, occlussionAssigned, emissionAssigned, albedoAssigned, variationAssigned);
             return compressedAssignedTextures;
         }
 

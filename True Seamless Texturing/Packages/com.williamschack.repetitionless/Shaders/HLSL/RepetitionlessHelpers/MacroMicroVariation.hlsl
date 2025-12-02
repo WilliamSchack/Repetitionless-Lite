@@ -8,6 +8,8 @@
 #include "../Noise/Keijiro/SimplexNoise2D.hlsl"
 #include "../Noise/Keijiro/ClassicNoise2D.hlsl"
 
+#include "../TextureArrayEssentials/TextureArrayUtilities.hlsl"
+
 // Samples a given texture and turns it into a variation multiplier
 float MacroMicroVariationTexture(
     float SmallScale,
@@ -23,19 +25,59 @@ float MacroMicroVariationTexture(
     float2 Offset = float2(0, 0)
 ){
     // Get UVs
-    float2 smallUV = UV * Tiling * SmallScale + Offset;
+    float2 smallUV  = UV * Tiling * SmallScale + Offset;
     float2 mediumUV = UV * Tiling * MediumScale + Offset;
-    float2 largeUV = UV * Tiling * LargeScale + Offset;
+    float2 largeUV  = UV * Tiling * LargeScale + Offset;
     
     // Sample Texture
-    float smallColor = SAMPLE_TEXTURE2D(Texture, SS, smallUV).r;
+    float smallColor  = SAMPLE_TEXTURE2D(Texture, SS, smallUV).r;
     float mediumColor = SAMPLE_TEXTURE2D(Texture, SS, mediumUV).r;
-    float largeColor = SAMPLE_TEXTURE2D(Texture, SS, largeUV).r;
+    float largeColor  = SAMPLE_TEXTURE2D(Texture, SS, largeUV).r;
     
     // Add Brightness
-    smallColor += VariationBrightness;
+    smallColor  += VariationBrightness;
     mediumColor += VariationBrightness;
-    largeColor += VariationBrightness;
+    largeColor  += VariationBrightness;
+        
+    return smallColor * mediumColor * largeColor;
+}
+
+float MacroMicroVariationTextureArray(
+    float SmallScale,
+    float MediumScale,
+    float LargeScale,
+
+    float VariationBrightness,
+    UnityTexture2DArray TextureArray,
+    int AssignedTextures,
+    int ConstantIndex,
+    int ChannelIndex,
+    SamplerState SS,
+
+    float2 UV,
+    float2 Tiling = float2(1, 1),
+    float2 Offset = float2(0, 0)
+){
+    // Get UVs
+    float2 smallUV  = UV * Tiling * SmallScale + Offset;
+    float2 mediumUV = UV * Tiling * MediumScale + Offset;
+    float2 largeUV  = UV * Tiling * LargeScale + Offset;
+    
+    // Sample Texture
+    float4 smallColorSample  = 0;//SAMPLE_TEXTURE2D(Texture, SS, smallUV).r;
+    float4 mediumColorSample = 0;//SAMPLE_TEXTURE2D(Texture, SS, mediumUV).r;
+    float4 largeColorSample  = 0;//SAMPLE_TEXTURE2D(Texture, SS, largeUV).r;
+    SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, smallUV, 0, SS, smallColorSample);
+    SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, mediumUV, 0, SS, mediumColorSample);
+    SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, largeUV, 0, SS, largeColorSample);
+
+    // Add Brightness
+    float smallColor  = smallColorSample[ChannelIndex];
+    float mediumColor = mediumColorSample[ChannelIndex];
+    float largeColor  = largeColorSample[ChannelIndex];
+    smallColor  += VariationBrightness;
+    mediumColor += VariationBrightness;
+    largeColor  += VariationBrightness;
         
     return smallColor * mediumColor * largeColor;
 }
@@ -54,24 +96,24 @@ float MacroMicroVariationPerlinNoise(
     float2 NoiseOffset = float2(0, 0)
 ){
     // Get UVs
-    float2 smallUV = UV * NoiseScale * SmallScale + NoiseOffset;
+    float2 smallUV  = UV * NoiseScale * SmallScale + NoiseOffset;
     float2 mediumUV = UV * NoiseScale * MediumScale + NoiseOffset;
-    float2 largeUV = UV * NoiseScale * LargeScale + NoiseOffset;
+    float2 largeUV  = UV * NoiseScale * LargeScale + NoiseOffset;
     
     // Sample Noise
-    float smallColor = ClassicNoise(smallUV) * 2 * NoiseStrength;
+    float smallColor  = ClassicNoise(smallUV) * 2 * NoiseStrength;
     float mediumColor = ClassicNoise(mediumUV) * 2 * NoiseStrength;
-    float largeColor = ClassicNoise(largeUV) * 2 * NoiseStrength;
+    float largeColor  = ClassicNoise(largeUV) * 2 * NoiseStrength;
     
     // Remap to more suitable size
-    smallColor = lerp(0.75, 1, smallColor);
+    smallColor  = lerp(0.75, 1, smallColor);
     mediumColor = lerp(0.75, 1, mediumColor);
-    largeColor = lerp(0.75, 1, largeColor);
+    largeColor  = lerp(0.75, 1, largeColor);
     
     // Add Brightness
-    smallColor += VariationBrightness;
+    smallColor  += VariationBrightness;
     mediumColor += VariationBrightness;
-    largeColor += VariationBrightness;
+    largeColor  += VariationBrightness;
         
     return smallColor * mediumColor * largeColor;
 }
