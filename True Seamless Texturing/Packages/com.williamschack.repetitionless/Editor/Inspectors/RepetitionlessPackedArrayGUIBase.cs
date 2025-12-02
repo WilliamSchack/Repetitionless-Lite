@@ -43,6 +43,11 @@ namespace Repetitionless.Inspectors
         private GUIContent _settingsIconContent;
         private int _settingsIconWidth;
 
+        ~RepetitionlessPackedArrayGUIBase()
+        {
+            Debug.Log("Destructor");
+        }
+
         protected TextureDrawerDetails GetTextureDrawerDetails(int textureIndex, bool packedTexture)
         {
             if (packedTexture && textureIndex == 1) {

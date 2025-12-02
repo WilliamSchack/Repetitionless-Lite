@@ -8,7 +8,7 @@ namespace Repetitionless.Data
 {
     public class MaterialDataManager
     {
-        private string DATA_FOLDER_SUFFIX = "_Data";
+        public const string DATA_FOLDER_SUFFIX = "_Data";
 
         private Material _material;
 
@@ -18,6 +18,11 @@ namespace Repetitionless.Data
         }
 
 #region Path
+        public static string GenerateFolderName(string prefix)
+        {
+            return prefix + DATA_FOLDER_SUFFIX;
+        }
+
         public string DataFolderParentPath()
         {
             string materialPath = AssetDatabase.GetAssetPath(_material);   
@@ -29,7 +34,7 @@ namespace Repetitionless.Data
 
         public string DataFolderName()
         {
-            return _material.name + DATA_FOLDER_SUFFIX;
+            return GenerateFolderName(_material.name);
         }
 
         public string DataFolderPath()
