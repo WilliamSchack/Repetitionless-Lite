@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Linq;
-using UnityEditor.VersionControl;
 
 namespace Repetitionless.Data
 {
@@ -21,9 +20,10 @@ namespace Repetitionless.Data
 #region Path
         public string DataFolderParentPath()
         {
-            string materialPath = AssetDatabase.GetAssetPath(_material);            
-            int lastDirIndex = materialPath.LastIndexOf("/");
+            string materialPath = AssetDatabase.GetAssetPath(_material);   
+            if (materialPath == "") return "";
 
+            int lastDirIndex = materialPath.LastIndexOf("/");
             return materialPath.Substring(0, lastDirIndex);
         }
 
@@ -34,7 +34,10 @@ namespace Repetitionless.Data
 
         public string DataFolderPath()
         {
-            return $"{DataFolderParentPath()}/{DataFolderName()}" ;
+            string parentPath = DataFolderParentPath();
+            if (parentPath == "") return "";
+
+            return $"{parentPath}/{DataFolderName()}" ;
         }
 
         private bool DataFolderCreated()
@@ -47,10 +50,14 @@ namespace Repetitionless.Data
             return !Directory.EnumerateFiles(DataFolderPath()).Any();
         }
 
-        private void CreateDataFolder()
+        private bool CreateDataFolder()
         {
-            if (!DataFolderCreated())
-                AssetDatabase.CreateFolder(DataFolderParentPath(), DataFolderName());
+            if (!DataFolderCreated()) {
+                string folderGUID = AssetDatabase.CreateFolder(DataFolderParentPath(), DataFolderName());
+                return folderGUID != "";
+            }
+
+            return true;
         }
 
         private bool DeleteDataFolder()
@@ -70,7 +77,8 @@ namespace Repetitionless.Data
 #region Asset Management
         public void CreateAsset(Object asset, string fileName, bool overwrite = false)
         {
-            CreateDataFolder();
+            bool folderExists = CreateDataFolder();
+            if (!folderExists) return;
 
             string assetPath = $"{DataFolderPath()}/{fileName}";
 
@@ -80,7 +88,10 @@ namespace Repetitionless.Data
 
         public T LoadAsset<T>(string fileName) where T : Object
         {
-            string assetPath = $"{DataFolderPath()}/{fileName}";
+            string dataFolderPath = DataFolderPath();
+            if (dataFolderPath == "") return null;
+
+            string assetPath = $"{dataFolderPath}/{fileName}";
             return (T)AssetDatabase.LoadAssetAtPath(assetPath, typeof(T));
         }
 
