@@ -345,7 +345,7 @@ Material:
     m_Floats:
     - _AssignedAVTextures: 1
     - _AssignedEMTextures: 0
-    - _AssignedNSOTextures: 1
+    - _AssignedNSOTextures: 0
     - _BUILTIN_AlphaClip: 0
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 2
@@ -367,7 +367,7 @@ Material:
     - _DistanceBlendMode: 0
     - _FarVariationBrightness: 0.3
     - _FarVariationMode: 2
-    - _MaterialBlendSettings: 6
+    - _MaterialBlendSettings: 7
     - _SurfaceTypeSetting: 0
     m_Colors:
     - _BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}
@@ -376,7 +376,7 @@ Material:
     - _BaseMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _BaseNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BaseNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _BaseSettings: {r: 7, g: 30, b: 0, a: 0}
+    - _BaseSettings: {r: 7, g: 200, b: 0, a: 0}
     - _BaseTilingOffset: {r: 1, g: 1, b: 0, a: 0}
     - _BaseVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _BaseVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}
@@ -389,7 +389,7 @@ Material:
     - _BlendMaterialProperties2: {r: 1, g: 0.5, b: 0, a: 0}
     - _BlendNoiseMinMax: {r: 0.8, g: 1.2, b: 0, a: 360}
     - _BlendNoiseSettings: {r: 2, g: 5, b: 0, a: 0}
-    - _BlendSettings: {r: 47, g: 0, b: 0, a: 0}
+    - _BlendSettings: {r: 15, g: 0, b: 0, a: 0}
     - _BlendTilingOffset: {r: 1, g: 1, b: 0, a: 0}
     - _BlendVariationNoiseSettings: {r: 0.4, g: 100, b: 0, a: 0}
     - _BlendVariationSettings: {r: 0.5, g: 2, b: 1, a: 0.5}

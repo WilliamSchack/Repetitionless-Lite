@@ -145,6 +145,20 @@ public class TestEditor : ShaderGUI
             if (wasUsingPT != _usingPT[i]) {
                 _textureData.SetPackedTextureEnabled(i, _usingPT[i]);
                 SaveTextureData();
+
+                Debug.Log("Updating packed texture for " + i);
+
+                // Repack textures
+                if (_usingPT[i]) {
+                    // Use regular textures
+                    _normalSOTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[0].NSOTextures[1].Texture, 0, 1, true);
+                    _normalSOTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[0].NSOTextures[2].Texture, 0, 2, true);
+                    _emissionMTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[0].EMTextures[1].Texture, 0, 1, true);
+                } else {
+                    // Use packed texture
+                    _normalSOTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[0].NSOTextures[3].Texture, 0, 3, true);
+                    _emissionMTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[0].EMTextures[2].Texture, 0, 2, true);
+                }
             }
 
             GUILayout.Space(10);
@@ -161,7 +175,7 @@ public class TestEditor : ShaderGUI
                 _normalSOTexturesDrawer.DrawTexture(i, 3, new GUIContent("Packed Texture"));
                 if (EditorGUI.EndChangeCheck()) {
                     // Manually update texture in emission array
-                    _emissionMTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[0].NSOTextures[3].Texture, 0, 2);
+                    _emissionMTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[0].NSOTextures[3].Texture, 0, 2, true);
                 }
 
                 GUILayout.Label("EM");

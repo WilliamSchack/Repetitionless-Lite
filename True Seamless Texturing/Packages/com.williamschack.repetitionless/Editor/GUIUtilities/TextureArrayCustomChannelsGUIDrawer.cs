@@ -288,13 +288,13 @@ namespace Repetitionless.GUIUtilities
         /// Index of the channel texture being changed at this index<br />
         /// Corresponds to the index in the initial given channelTexturesData
         /// </param>
-        public Texture2D UpdateTexture(Texture2D newTexture, int index, int channelIndex)
+        public Texture2D UpdateTexture(Texture2D newTexture, int index, int channelIndex, bool force = false)
         {
             if (UnityEditor.EditorGUI.EndChangeCheck()) {
                 TexturePacker.TextureData channelTextureData = _getLayerChannelDataFunc(index)[channelIndex];
 
                 // Return if texture is not being changed, usually due to updates for accompanying variable
-                if (newTexture == channelTextureData.Texture)
+                if (newTexture == channelTextureData.Texture && !force)
                     return newTexture;
 
                 // Register Undo, cannot if material or array are null
@@ -347,8 +347,10 @@ namespace Repetitionless.GUIUtilities
                 clonedTextureData[channelIndex].Texture = newTexture;
 
                 // Check for resolution differences
-                if (_array != null) {
-                    Vector2Int newArrayResolution = new Vector2Int(_array.width, _array.height);
+                //if (_array != null) {
+                    Vector2Int newArrayResolution;
+                    if (_array != null) newArrayResolution = new Vector2Int(_array.width, _array.height);
+                    else newArrayResolution = new Vector2Int(clonedTextureData[0].Texture.width, clonedTextureData[0].Texture.height);
 
                     for (int i = 0; i < clonedTextureData.Length; i++) {
                         Texture2D texture = clonedTextureData[i].Texture;
@@ -356,7 +358,7 @@ namespace Repetitionless.GUIUtilities
                         if (texture == null)
                             continue;
 
-                        if (texture.width != _array.width || texture.height != _array.height) {
+                        if (texture.width != newArrayResolution.x || texture.height != newArrayResolution.y) {
                             // Dont prompt if already resized a texture
                             Texture2D preResizedTexture = _resizedTextures[index][i];
                             if (preResizedTexture != null && preResizedTexture.width == newArrayResolution.x && preResizedTexture.height == newArrayResolution.y) {
@@ -395,10 +397,8 @@ namespace Repetitionless.GUIUtilities
                         // Resize texture and save for later use
                         clonedTextureData[i].Texture = TextureUtilities.ResizeTexture(clonedTextureData[i].Texture, newArrayResolution.x, newArrayResolution.y);
                         _resizedTextures[index][i] = clonedTextureData[i].Texture;
-
-                        Debug.Log($"Adding resized texture to {index}, {i}: {_resizedTextures[index][i]}");
                     }
-                }
+                //}
 
                 // Pack texture
                 _getLayerChannelDataFunc(index)[channelIndex].Texture = newTexture;

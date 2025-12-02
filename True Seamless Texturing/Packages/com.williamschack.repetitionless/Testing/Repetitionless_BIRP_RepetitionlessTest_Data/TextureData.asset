@@ -39,13 +39,13 @@ MonoBehaviour:
         To: 0
       - From: 1
         To: 1
-    - Texture: {fileID: 2800000, guid: daec98e6e115ffbb8ae28fb94ad27585, type: 3}
+    - Texture: {fileID: 0}
       Disabled: 0
       NormalMap: 0
       FromToChannels:
       - From: 0
         To: 2
-    - Texture: {fileID: 2800000, guid: 3826568a66fe722deb55c1fc0fee9015, type: 3}
+    - Texture: {fileID: 0}
       Disabled: 0
       NormalMap: 0
       FromToChannels:

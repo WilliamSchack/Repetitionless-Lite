@@ -9,7 +9,6 @@ namespace Repetitionless.Inspectors
     using Compression;
     using TextureUtilities;
     using CustomWindows;
-    using Codice.Client.Common;
 
     public class RepetitionlessPackedArrayGUIBase : RepetitionlessGUIBase
     {
@@ -178,12 +177,38 @@ namespace Repetitionless.Inspectors
 
         protected override int DrawRightMaterialSettingsGUI(int compressedValues, string materialPrefix, int settingToggles, int minScaledTextWidth, bool showPT = true, bool showEmission = true, bool showSR = true)
         {
+            bool previousPackedTexture = BooleanCompression.GetValue(settingToggles, 5);
             int compressedSettingToggles = base.DrawRightMaterialSettingsGUI(compressedValues, materialPrefix, settingToggles, minScaledTextWidth, showPT, showEmission, showSR);
         
+            // If packed texture was changed, update the texture data
+            bool packedTexture = BooleanCompression.GetValue(compressedSettingToggles, 5);
+            if (previousPackedTexture != packedTexture) {
+                int materialIndex = 0;
+                switch(materialPrefix) {
+                    case "Base":  materialIndex = 0; break;
+                    case "Far":   materialIndex = 1; break;
+                    case "Blend": materialIndex = 2; break;
+                }
+
+                _textureData.SetPackedTextureEnabled(materialIndex, packedTexture);
+                SaveTextureData();
+
+                // Repack the textures
+                if (packedTexture) {
+                    // Use regular textures
+                    _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].NSOTextures[1].Texture, materialIndex, 1, true);
+                    _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].NSOTextures[2].Texture, materialIndex, 2, true);
+                    _emTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].EMTextures[1].Texture, materialIndex, 1, true);
+                } else {
+                    // Use packed texture
+                    _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].NSOTextures[3].Texture, materialIndex, 3, true);
+                    _emTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].EMTextures[2].Texture, materialIndex, 2, true);
+                }
+            }
+
             // Array settings button
             if (GUILayout.Button(_settingsIconContent))
             {
-                bool packedTexture = BooleanCompression.GetValue(settingToggles, 5);
 
                 // Get the texture array for this material
                 int sectionIndex = materialPrefix.Contains("Far") ? 1 : 2;
@@ -218,7 +243,6 @@ namespace Repetitionless.Inspectors
             bool packedTexture = BooleanCompression.GetValue(settingToggles, 5);
 
             TextureDrawerDetails textureDrawerDetails = GetTextureDrawerDetails(textureIndex, packedTexture);
-
 
             EditorGUI.BeginChangeCheck();
             textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, sectionIndex, textureDrawerDetails.ChannelIndex, content);
