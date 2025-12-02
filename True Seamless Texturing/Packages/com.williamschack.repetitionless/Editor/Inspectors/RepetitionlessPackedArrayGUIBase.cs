@@ -102,13 +102,6 @@ namespace Repetitionless.Inspectors
             bool albedoAssigned     = materialTextureData.AVTextures[0].Texture != null;
             bool variationAssigned  = materialTextureData.AVTextures[1].Texture != null;
 
-            //bool metallicAssigned = metallicTexProp.textureValue != null;
-            //bool smoothnessAssigned = smoothnessTexProp.textureValue != null;
-            //bool roughnessAssigned = roughnessTexProp.textureValue != null;
-            //bool normalAssigned = normalTexProp.textureValue != null;
-            //bool occlussionAssigned = occlussionTexProp.textureValue != null;
-            //bool emissionAssigned = emissionTexProp.textureValue != null;
-
             int compressedAssignedTextures = BooleanCompression.CompressValues(metallicAssigned, smoothnessAssigned, roughnessAssigned, normalAssigned, occlussionAssigned, emissionAssigned, albedoAssigned, variationAssigned);
             return compressedAssignedTextures;
         }
@@ -228,7 +221,7 @@ namespace Repetitionless.Inspectors
 
 
             EditorGUI.BeginChangeCheck();
-            textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, 0, textureDrawerDetails.ChannelIndex, content);
+            textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, sectionIndex, textureDrawerDetails.ChannelIndex, content);
 
             // If packed texture was changed, manually update texture in emission array aswell
             if (EditorGUI.EndChangeCheck() && packedTexture && textureIndex == 1) {
