@@ -8,7 +8,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Packages/com.williamschack.repetitionless/Samples/BIRP/Forest/Forest.unity
     guid: 8ea6710235f18d744ae6e01dcff9b621
-  - enabled: 1
+  - enabled: 0
     path: Assets/Code Testing/ShaderTest.unity
     guid: dff63d0b657fba04597298dda40414a5
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
