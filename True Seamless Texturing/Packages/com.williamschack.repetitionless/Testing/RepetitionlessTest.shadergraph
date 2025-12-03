@@ -5266,7 +5266,7 @@
     "m_AlphaMode": 0,
     "m_RenderFace": 2,
     "m_AlphaClip": false,
-    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessPackedArrayGUIBase"
+    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessMasterGUINEW"
 }
 
 {
@@ -7300,8 +7300,8 @@
     "m_ObjectId": "52f7cb2ea01645a684d6bd320ae006e4",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1277.0001220703125,
-        "y": 2200.000244140625
+        "x": 1277.0,
+        "y": 2200.0
     }
 }
 
@@ -13296,8 +13296,8 @@
     "m_ObjectId": "b5ae91f9b9c44bf08acbf4e282ec77d6",
     "m_Title": "Base Material",
     "m_Position": {
-        "x": 1252.0001220703125,
-        "y": 2504.999755859375
+        "x": 1252.0,
+        "y": 2505.0
     }
 }
 
@@ -14771,7 +14771,7 @@
     "m_ObjectId": "d1c0b1b0868d4323ab3dd25368923f5f",
     "m_Title": "Far Material",
     "m_Position": {
-        "x": 1255.0001220703125,
+        "x": 1255.0,
         "y": 3231.0
     }
 }
@@ -15009,8 +15009,8 @@
     "m_ObjectId": "d4e4c3be7460442e9bd48cb5d3ae36a4",
     "m_Title": "Blend Material",
     "m_Position": {
-        "x": 1241.9998779296875,
-        "y": 4109.99951171875
+        "x": 1242.0,
+        "y": 4110.0
     }
 }
 
@@ -16640,7 +16640,7 @@
     "m_Title": "Material Blend",
     "m_Position": {
         "x": 1246.0,
-        "y": 3773.999755859375
+        "y": 3774.0
     }
 }
 
@@ -16741,7 +16741,7 @@
     "m_Title": "Distance Blending",
     "m_Position": {
         "x": 1276.0,
-        "y": 3035.999755859375
+        "y": 3036.0
     }
 }
 

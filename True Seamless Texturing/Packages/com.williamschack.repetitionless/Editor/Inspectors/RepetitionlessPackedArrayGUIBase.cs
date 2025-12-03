@@ -146,29 +146,6 @@ namespace Repetitionless.Inspectors
             _emTexturesDrawer.TextureFormat = TextureFormat.BC7;
         }
 
-        public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
-        {
-            base.OnGUI(materialEditor, properties);
-
-            // Base Material
-            DrawBaseMaterialGUI();
-
-            GUILayout.Space(SETTING_PADDING);
-
-            // Distance Blend Material
-            DrawDistanceBlendGUI();
-
-            GUILayout.Space(SETTING_PADDING);
-
-            // Material Blend
-            DrawMaterialBlendGUI();
-
-            GUILayout.Space(SETTING_PADDING);
-
-            // Footer Settings
-            DrawDebugGUI();
-        }
-
         protected override void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true, int extraWidth = 0)
         {
             // Add settings button width as extra width
