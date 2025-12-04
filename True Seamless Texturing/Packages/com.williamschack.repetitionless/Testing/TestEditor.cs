@@ -10,10 +10,8 @@ using Repetitionless.TextureUtilities;
 public class TestEditor : ShaderGUI
 {
     private const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
+    private const string PROPERTIES_HANDLER_FILE_NAME = "Properties.asset";
     private const int MATERIAL_COUNT = 3;
-
-    private RepetitionlessMaterialData _testingData = new RepetitionlessMaterialData();
-    private RepetitionlessMaterialDataCompressed _testingDataCompressed = new RepetitionlessMaterialDataCompressed();
 
     private Texture2D testTexture1;
     private Texture2D testTexture2;
@@ -29,6 +27,7 @@ public class TestEditor : ShaderGUI
 
     MaterialDataManager _dataManager;
     RepetitionlessTextureData _textureData;
+    RepetitionlessMaterialDataSO _propertiesHandler;
 
     private TexturePacker.TextureData[] GetArrayLayerTextureData(int materialIndex, int layerIndex)
     {
@@ -43,11 +42,14 @@ public class TestEditor : ShaderGUI
         return null;
     }
 
-    private void SaveTextureData()
+    private void SaveSO(ScriptableObject so)
     {
-        EditorUtility.SetDirty(_textureData);
-        AssetDatabase.SaveAssetIfDirty(_textureData);
+        EditorUtility.SetDirty(so);
+        AssetDatabase.SaveAssetIfDirty(so);
     }
+
+    private void SaveTextureData() { SaveSO(_textureData); }
+    private void SavePropertiesHandler() { SaveSO(_propertiesHandler); }
 
     private void OnEnable(MaterialProperty[] properties)
     {
@@ -70,6 +72,17 @@ public class TestEditor : ShaderGUI
             _textureData.Init(MATERIAL_COUNT);
             SaveTextureData();
         }
+
+        if (_dataManager.AssetExists(PROPERTIES_HANDLER_FILE_NAME)) {
+            _propertiesHandler = _dataManager.LoadAsset<RepetitionlessMaterialDataSO>(PROPERTIES_HANDLER_FILE_NAME);
+        } else {
+            _propertiesHandler = ScriptableObject.CreateInstance<RepetitionlessMaterialDataSO>();
+            _dataManager.CreateAsset(_propertiesHandler, PROPERTIES_HANDLER_FILE_NAME);
+            _propertiesHandler.Init(1);
+            SavePropertiesHandler();
+        }
+
+        _propertiesHandler.SetDataManager(_dataManager);
 
         _usingPT = new bool[MATERIAL_COUNT];
         for (int i = 0; i < MATERIAL_COUNT; i++) {
@@ -130,16 +143,53 @@ public class TestEditor : ShaderGUI
         GUILayout.Label("Value Packing:");
 
         EditorGUI.BeginChangeCheck();
+        _propertiesHandler.Data.BaseMaterialData.NoiseEnabled = EditorGUILayout.Toggle("1", _propertiesHandler.Data.BaseMaterialData.NoiseEnabled);
+        if (EditorGUI.EndChangeCheck()) {
+            MaterialProperty textureProperty = FindProperty("_TestTexture", properties);
+            _propertiesHandler.UpdateMaterialTexture(textureProperty, 0);
+        }
+
+/*
+        EditorGUI.BeginChangeCheck();
+        _testingData.AlbedoAssigned = EditorGUILayout.Toggle("2", _testingData.AlbedoAssigned);
+        if (EditorGUI.EndChangeCheck()) {
+            int compressedFieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedMaterialDataSingle(ref _testingDataCompressed, _testingData);
+            Debug.Log(compressedFieldChangedIndex);
+        }
+
+        GUILayout.Space(10);
+
+        EditorGUI.BeginChangeCheck();
         _testingData.Metallic = EditorGUILayout.Slider("1", _testingData.Metallic, 0, 1);
         if (EditorGUI.EndChangeCheck()) {
             int compressedFieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedMaterialDataSingle(ref _testingDataCompressed, _testingData);
+            Debug.Log(compressedFieldChangedIndex);
+        }
+*/
+
+        EditorGUI.BeginChangeCheck();
+        _propertiesHandler.Data.BaseMaterialData.SmoothnessRoughness = EditorGUILayout.Slider("Smooth", _propertiesHandler.Data.BaseMaterialData.SmoothnessRoughness, 0, 1);
+        if (EditorGUI.EndChangeCheck()) {
+            MaterialProperty textureProperty = FindProperty("_TestTexture", properties);
+            _propertiesHandler.UpdateMaterialTexture(textureProperty, 0);
+            EditorUtility.SetDirty(_propertiesHandler); // Refreshing asset database is slow, let unity handle it later
+        }
+
+/*
+        EditorGUI.BeginChangeCheck();
+        _testingData.NormalScale = EditorGUILayout.Slider("3", _testingData.NormalScale, 0, 1);
+        if (EditorGUI.EndChangeCheck()) {
+            int compressedFieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedMaterialDataSingle(ref _testingDataCompressed, _testingData);
+            Debug.Log(compressedFieldChangedIndex);
         }
 
         EditorGUI.BeginChangeCheck();
-        _testingData.SmoothnessRoughness = EditorGUILayout.Slider("2", _testingData.SmoothnessRoughness, 0, 1);
+        _testingData.OcclussionStrength = EditorGUILayout.Slider("2", _testingData.OcclussionStrength, 0, 1);
         if (EditorGUI.EndChangeCheck()) {
-            
+            int compressedFieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedMaterialDataSingle(ref _testingDataCompressed, _testingData);
+            Debug.Log(compressedFieldChangedIndex);
         }
+*/
 
         // ============================================= //
 

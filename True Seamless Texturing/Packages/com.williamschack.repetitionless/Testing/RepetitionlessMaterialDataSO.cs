@@ -11,7 +11,8 @@ public class RepetitionlessMaterialDataSO : ScriptableObject
     private const string TEXTURE_ASSET_NAME = "PropertiesTexture.asset";
     private const TextureFormat DATA_TEXTURE_FORMAT = TextureFormat.RGBAHalf;
 
-    public RepetitionlessLayerData Data;
+    // Dont modify data in the SO inspector, do it in the material inspector
+    [HideInInspector] public RepetitionlessLayerData Data;
     private RepetitionlessLayerDataCompressed _dataCompressed;
 
     private int _layerCount = 1;
@@ -69,9 +70,6 @@ public class RepetitionlessMaterialDataSO : ScriptableObject
 
             texture.SetPixel(compressedFieldChangedIndex, layerIndex, dataColour.Value);
             texture.Apply();
-
-            EditorUtility.SetDirty(texture);
-            AssetDatabase.SaveAssetIfDirty(texture);
         } else {
             // Create a new texture
             texture = new Texture2D(RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT, _layerCount, DATA_TEXTURE_FORMAT, false);

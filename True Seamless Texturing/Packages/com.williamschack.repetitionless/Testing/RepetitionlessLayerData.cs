@@ -1,12 +1,13 @@
 using UnityEngine;
 using Repetitionless.Variables;
 
+[System.Serializable]
 public struct RepetitionlessLayerData
 {
     // Materials
-    public RepetitionlessMaterialData BaseMaterialData;
-    public RepetitionlessMaterialData FarMaterialData;
-    public RepetitionlessMaterialData BlendMaterialData;
+    [SerializeField] public RepetitionlessMaterialData BaseMaterialData;
+    [SerializeField] public RepetitionlessMaterialData FarMaterialData;
+    [SerializeField] public RepetitionlessMaterialData BlendMaterialData;
 
     // Distance Blend Settings
     public bool DistanceBlendEnabled;
