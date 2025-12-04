@@ -3,11 +3,12 @@
 
 #include "../Structs/RepetitionlessMaterialDataNew.hlsl"
 
-#include "../Utilities/TextureUtilities.hlsl"
-
 #include "../Noise/VoronoiNoise2D.hlsl"
 #include "../Noise/Keijiro/ClassicNoise2D.hlsl"
 #include "../Noise/Keijiro/SimplexNoise2D.hlsl"
+
+#include "../Utilities/TextureUtilities.hlsl"
+#include "../Utilities/BooleanCompression.hlsl"
 
 #include "NewMaterialTest.hlsl"
 
@@ -27,7 +28,10 @@ void SampleRepetitionlessLayerBase_float(
     UnityTexture2DArray EMTextures,
     int AssignedAVTextures,
     int AssignedNSOTextures,
-    int AssignedEMTextures
+    int AssignedEMTextures,
+
+    // REPLACE ME WITH TEXTURE ARRAY
+    UnityTexture2D BlendMaskTexture,
 
     // Outputs
     out float4 AlbedoColorOut,
@@ -42,44 +46,44 @@ void SampleRepetitionlessLayerBase_float(
     // Base Material
     int indexOffset = 0;
     RepetitionlessMaterialDataNew baseMaterialData = {
-        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0))
-    }
+        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0)).rgba
+    };
 
     // Far Material
     indexOffset += REPETITIONLESS_MATERIAL_VARIABLE_COUNT;
     RepetitionlessMaterialDataNew farMaterialData = {
-        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0))
-    }
+        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0)).rgba
+    };
 
     // Blend Material
     indexOffset += REPETITIONLESS_MATERIAL_VARIABLE_COUNT;
     RepetitionlessMaterialDataNew blendMaterialData = {
-        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)),
-        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0))
-    }
+        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0)).rgba
+    };
 
     // Layer Settings
     indexOffset += REPETITIONLESS_MATERIAL_VARIABLE_COUNT;
@@ -93,14 +97,14 @@ void SampleRepetitionlessLayerBase_float(
     int   distanceBlendMode    = distanceBlendSettings.y;
     half2 distanceBlendMinMax  = distanceBlendSettings.zw;
 
-    int  materialBlendSettingsUnpacked = (int)MaterialBlendSettings;
-    bool materialBlendEnabled          = (materialBlendSettings & 1) != 0;
-    bool overrideDistanceBlend         = (materialBlendSettings & 2) != 0;
-    bool overrideDistanceBlendTO       = (materialBlendSettings & 4) != 0;
+    int  materialBlendSettingsUnpacked = (int)materialBlendSettings;
+    bool materialBlendEnabled          = GetCompressedValue(materialBlendSettingsUnpacked, 0);
+    bool overrideDistanceBlend         = GetCompressedValue(materialBlendSettingsUnpacked, 1);
+    bool overrideDistanceBlendTO       = GetCompressedValue(materialBlendSettingsUnpacked, 2);
     
-    int  blendMaskType     = MaterialBlendSettings.y;
-    half blendMaskOpacity  = MaterialBlendSettings.z;
-    half blendMaskStrength = MaterialBlendSettings.w;
+    int  blendMaskType     = materialBlendSettings.y;
+    half blendMaskOpacity  = materialBlendSettings.z;
+    half blendMaskStrength = materialBlendSettings.w;
 
     // ----------------------- Setup ------------------------- //
 
@@ -254,9 +258,9 @@ void SampleRepetitionlessLayerBase_float(
         
         float2 tiling = blendMaterialData.TilingOffset.xy;
         float2 offset = blendMaterialData.TilingOffset.zw;
-        if (DistanceBlendingMode == 0) {
-            tiling = overrideDistanceBlendingTO ? blendMaskDistanceTO.xy : farMaterialData.TilingOffset.xy;
-            offset = overrideDistanceBlendingTO ? blendMaskDistanceTO.zw : farMaterialData.TilingOffset.zw;
+        if (distanceBlendMode == 0) {
+            tiling = overrideDistanceBlendTO ? blendMaskDistanceTO.xy : farMaterialData.TilingOffset.xy;
+            offset = overrideDistanceBlendTO ? blendMaskDistanceTO.zw : farMaterialData.TilingOffset.zw;
         }
         
         float4 tilingOffset = float4(tiling.x, tiling.y, offset.x, offset.y);

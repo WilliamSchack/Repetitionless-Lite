@@ -47,7 +47,7 @@ void GetRepetitionlessMaterialColorTest(
     bool packedTexture         = GetCompressedValue(settingToggles, 5);
     bool emissionEnabled       = GetCompressedValue(settingToggles, 6);
 
-    int  assignedTextures   = (int)MaterialData.Settings.y;
+    int  assignedTextures   = (int)MaterialData.Settings1.y;
     bool albedoAssigned     = GetCompressedValue(assignedTextures, 0);
     bool metallicAssigned   = GetCompressedValue(assignedTextures, 1);
     bool smoothnessAssigned = GetCompressedValue(assignedTextures, 2);
@@ -67,9 +67,9 @@ void GetRepetitionlessMaterialColorTest(
     half2 noiseScalingMinMax           = MaterialData.Settings5.xy;
     half2 noiseRandomiseRotationMinMax = MaterialData.Settings5.zw;
 
-    int  variationMode          = (int)MaterialData.Settings.y;
+    int  variationMode          = (int)MaterialData.Settings3.y;
     half variationOpacity       = MaterialData.Settings3.z;
-    half variationBrightness    = MaterialData.Setings3.w;
+    half variationBrightness    = MaterialData.Settings3.w;
     half variationSmallScale    = MaterialData.Settings4.x;
     half variationMediumScale   = MaterialData.Settings4.y;
     half variationLargeScale    = MaterialData.Settings4.z;
@@ -103,7 +103,7 @@ void GetRepetitionlessMaterialColorTest(
     // Get Macro/Micro Variation Multiplier
     float variationColor = 0;
     if (variationEnabled && variationOpacity > 0) {
-        switch (MaterialData.VariationMode) {
+        switch (variationMode) {
             case 0: // Perlin Noise
                 variationColor = MacroMicroVariationPerlinNoise(variationSmallScale, variationMediumScale, variationLargeScale, variationBrightness, variationNoiseStrength, oriUV, MaterialData.VariationTO.x, MaterialData.VariationTO.zw);
                 break;
@@ -150,7 +150,7 @@ void GetRepetitionlessMaterialColorTest(
     
     // Albedo
     AlbedoColorOut = float4(avTexture.rgb, 1);
-    AlbedoColorOut *= MaterialData.AlbedoTint;
+    AlbedoColorOut *= float4(MaterialData.AlbedoTint, 1);
 
     // Doesnt do anything at the moment since alpha is forced to 1
     // Still here incase the alpha is readded
@@ -186,7 +186,7 @@ void GetRepetitionlessMaterialColorTest(
         MetallicOut = metallicAssigned ? emTexture.a : metallic;
 
         // Smoothness
-        SmoothnessOut = smoothnessAssigned ? nsoTexture.b : smoothness;
+        SmoothnessOut = smoothnessAssigned ? nsoTexture.b : smoothnessRoughness;
         if (!smoothnessEnabled) SmoothnessOut = 1 - SmoothnessOut; // Roughness
             
         // Occlussion

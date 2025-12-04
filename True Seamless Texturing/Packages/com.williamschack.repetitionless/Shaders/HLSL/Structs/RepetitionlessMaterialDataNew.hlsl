@@ -12,7 +12,7 @@ struct RepetitionlessMaterialDataNew
     half4 Settings5;
 
     half3 AlbedoTint;
-    half3 EmissionColour;
+    half3 EmissionColor;
 
     half4 TilingOffset;
     half4 VariationTO;
