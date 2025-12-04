@@ -46,12 +46,12 @@ public struct RepetitionlessLayerDataCompressed
     // y: BlendMaskType
     // z: BlendMaskOpacity
     // w: BlendMaskStrength
-    public Vector4 MaterialBlendSettings1;
+    public Vector4 MaterialBlendSettings;
 
     // IF USING NOISE MASK:
     // x: BlendMaskNoiseScale
     // zw: BlendMaskNoiseOffset
     // IF USING TEXTURE MASK:
     // xyzw: BlendMaskTextureTO
-    public Vector4 MaterialBlendSettings2;
+    public Vector4 MaterialBlendMaskTO;
 }

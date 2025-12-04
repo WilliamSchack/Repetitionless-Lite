@@ -50,6 +50,8 @@ public struct RepetitionlessMaterialData
     public float VariationNoiseScale;
     public Vector2 VariationNoiseOffset;
     public Vector4 VariationTextureTO;
+
+    
 }
 
 public struct RepetitionlessMaterialDataCompressed
@@ -102,9 +104,9 @@ public struct RepetitionlessMaterialDataCompressed
     public Vector4 TilingOffset;
 
     // IF USING NOISE:
-    // x: BlendMaskNoiseScale
-    // zw: BlendMaskNoiseOffset
+    // x: VariationNoiseScale
+    // zw: VariationNoiseOffset
     // IF USING TEXTURE:
-    // xyzw: BlendMaskTextureTO
+    // xyzw: VariationTextureTO
     public Vector4 VariationTO;
 }

@@ -12,6 +12,9 @@ public class TestEditor : ShaderGUI
     private const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
     private const int MATERIAL_COUNT = 3;
 
+    private RepetitionlessMaterialData _testingData = new RepetitionlessMaterialData();
+    private RepetitionlessMaterialDataCompressed _testingDataCompressed = new RepetitionlessMaterialDataCompressed();
+
     private Texture2D testTexture1;
     private Texture2D testTexture2;
     public TexturePacker.TextureData[] TestTextureData;
@@ -122,6 +125,25 @@ public class TestEditor : ShaderGUI
             _firstStart = false;
         }
 
+        // ============================================= //
+
+        GUILayout.Label("Value Packing:");
+
+        EditorGUI.BeginChangeCheck();
+        _testingData.Metallic = EditorGUILayout.Slider("1", _testingData.Metallic, 0, 1);
+        if (EditorGUI.EndChangeCheck()) {
+            int compressedFieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedMaterialDataSingle(ref _testingDataCompressed, _testingData);
+        }
+
+        EditorGUI.BeginChangeCheck();
+        _testingData.SmoothnessRoughness = EditorGUILayout.Slider("2", _testingData.SmoothnessRoughness, 0, 1);
+        if (EditorGUI.EndChangeCheck()) {
+            
+        }
+
+        // ============================================= //
+
+        GUILayout.Space(20);
         GUILayout.Label("PT Testing:");
 
         EditorGUI.BeginChangeCheck();
@@ -134,8 +156,9 @@ public class TestEditor : ShaderGUI
 
             _dataManager.CreateAsset(testTextureOut, "Testing.asset");
         }
-
         
+        // ============================================= //
+
         for (int i = 0; i < MATERIAL_COUNT; i++) {
             GUILayout.Space(20);
             GUILayout.Label($"MATERIAL {i}");

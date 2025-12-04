@@ -5266,7 +5266,7 @@
     "m_AlphaMode": 0,
     "m_RenderFace": 2,
     "m_AlphaClip": false,
-    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessMasterGUINEW"
+    "m_CustomEditorGUI": "TestEditor"
 }
 
 {
