@@ -1,15 +1,24 @@
 using UnityEngine;
 using Repetitionless.Variables;
 using Repetitionless.Compression;
-using UnityEngine.PlayerLoop;
-using System.Linq;
 
 public static class RepetitionlessDataPacker
 {
-    private const int COMPRESSED_MATERIAL_VARIABLES_COUNT = 9;
+    public const int COMPRESSED_MATERIAL_VARIABLES_COUNT = 9;
+    public const int COMPRESSED_LAYER_VARIABLES_COUNT = COMPRESSED_MATERIAL_VARIABLES_COUNT * 3 + 4;
+
+    public static Color Vector4ToColour(Vector4 vector)
+    {
+        return new Color(vector.x, vector.y, vector.z, vector.w);
+    }
+
+    public static Color Vector3ToColour(Vector3 vector)
+    {
+        return new Color(vector.x, vector.y, vector.z);
+    }
 
     // Returns if the value was changed
-    public static bool UpdateGenericIfChanged<T>(ref T target, T value)
+    private static bool UpdateGenericIfChanged<T>(ref T target, T value)
     {
         if (target.Equals(value))
             return false;
@@ -19,7 +28,7 @@ public static class RepetitionlessDataPacker
     }
 
     // Returns if the value was changed
-    public static bool UpdateColourIfChanged(ref Vector3 target, Color value)
+    private static bool UpdateColourIfChanged(ref Vector3 target, Color value)
     {
         if (target.x == value.r && target.y == value.g && target.y == value.b)
             return false;
@@ -29,7 +38,7 @@ public static class RepetitionlessDataPacker
     }
 
     // Returns if the value was changed
-    public static bool UpdateBoolsIfChanged(ref float target, params bool[] values)
+    private static bool UpdateBoolsIfChanged(ref float target, params bool[] values)
     {
         bool[] targetBools = BooleanCompression.GetValues((int)target, values.Length);
         for (int i = 0; i < values.Length; i++) {
@@ -160,5 +169,45 @@ public static class RepetitionlessDataPacker
         }
 
         return -1;
+    }
+
+    public static Color? GetMaterialFieldColour(RepetitionlessMaterialDataCompressed compressedData, int compressedFieldIndex)
+    {
+        switch(compressedFieldIndex) {
+            case 0: return Vector4ToColour(compressedData.Settings1);
+            case 1: return Vector4ToColour(compressedData.Settings2);
+            case 2: return Vector4ToColour(compressedData.Settings3);
+            case 3: return Vector4ToColour(compressedData.Settings4);
+            case 4: return Vector4ToColour(compressedData.Settings5);
+            case 5: return Vector3ToColour(compressedData.AlbedoTint);
+            case 6: return Vector3ToColour(compressedData.EmissionColour);
+            case 7: return Vector4ToColour(compressedData.TilingOffset);
+            case 8: return Vector4ToColour(compressedData.VariationTO);
+        }
+
+        return null;
+    }
+
+    public static Color? GetLayerFieldColour(RepetitionlessLayerDataCompressed compressedData, int compressedFieldIndex)
+    {
+        int materialFieldIndex = compressedFieldIndex % COMPRESSED_MATERIAL_VARIABLES_COUNT;
+
+        Color? baseMaterialFieldColour = GetMaterialFieldColour(compressedData.BaseMaterialData, materialFieldIndex);
+        if (baseMaterialFieldColour.HasValue) return baseMaterialFieldColour;
+
+        Color? farMaterialFieldColour = GetMaterialFieldColour(compressedData.FarMaterialData, materialFieldIndex);
+        if (farMaterialFieldColour.HasValue) return farMaterialFieldColour;
+
+        Color? blendMaterialFieldColour = GetMaterialFieldColour(compressedData.BlendMaterialData, materialFieldIndex);
+        if (blendMaterialFieldColour.HasValue) return blendMaterialFieldColour;
+
+        switch (materialFieldIndex) {
+            case 0: return Vector4ToColour(compressedData.DistanceBlendSettings);
+            case 1: return Vector4ToColour(compressedData.BlendMaskDistanceTO);
+            case 2: return Vector4ToColour(compressedData.MaterialBlendSettings);
+            case 3: return Vector4ToColour(compressedData.MaterialBlendMaskTO);
+        }
+
+        return null;
     }
 }

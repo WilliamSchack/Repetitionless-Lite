@@ -1,6 +1,7 @@
-using Repetitionless.Variables;
 using UnityEngine;
+using Repetitionless.Variables;
 
+[System.Serializable]
 public struct RepetitionlessMaterialData
 {
     // Features
