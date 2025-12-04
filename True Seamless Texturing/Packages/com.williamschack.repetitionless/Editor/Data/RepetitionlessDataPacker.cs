@@ -61,7 +61,7 @@ namespace Repetitionless.Data
             if (UpdateBoolsIfChanged(ref compressedData.Settings1.x,
                 newData.NoiseEnabled,
                 newData.RandomiseNoiseScaling,
-                newData.RandomiseRotation,
+                newData.RandomiseNoiseRotation,
                 newData.SmoothnessEnabled,
                 newData.VariationEnabled,
                 newData.PackedTexture,
@@ -76,7 +76,7 @@ namespace Repetitionless.Data
                 newData.NormalAssigned,
                 newData.OcclussionAssigned,
                 newData.EmissionAssigned,
-                newData.VarationAssigned
+                newData.VariationAssigned
             )) return 0;
 
             if (UpdateGenericIfChanged<float>(ref compressedData.Settings1.z, newData.Metallic))            return 0;

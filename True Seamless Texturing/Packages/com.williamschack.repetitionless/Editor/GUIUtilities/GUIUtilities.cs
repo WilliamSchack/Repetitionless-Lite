@@ -750,6 +750,27 @@ namespace Repetitionless.GUIUtilities
             return new Vector2Int(xVal, yVal);
         }
 
+        public static Vector4 DrawTilingOffset(Vector4 tilingOffset, string tilingLabel = "Scale", string offsetLabel = "Offset")
+        {
+            Vector2 newTiling = new Vector2(tilingOffset.x, tilingOffset.y);
+            EditorGUI.BeginChangeCheck();
+            newTiling = DrawVector2Field(newTiling, new GUIContent(tilingLabel));
+            if (EditorGUI.EndChangeCheck()) {
+                tilingOffset.x = newTiling.x;
+                tilingOffset.y = newTiling.y;
+            }
+
+            Vector2 newOffset = new Vector2(tilingOffset.z, tilingOffset.w);
+            EditorGUI.BeginChangeCheck();
+            newOffset = DrawVector2Field(newOffset, new GUIContent(offsetLabel));
+            if (EditorGUI.EndChangeCheck()) {
+                tilingOffset.z = newOffset.x;
+                tilingOffset.w = newOffset.y;
+            }
+
+            return tilingOffset;
+        }
+
         /// <summary>
         /// Draws tiling offset fields using and updating values in a float4 materialProperty<br />
         /// Uses the DrawVector2Field function to remove empty space
@@ -766,25 +787,10 @@ namespace Repetitionless.GUIUtilities
         public static void DrawTilingOffset(MaterialProperty tilingOffsetProperty, string tilingLabel = "Scale", string offsetLabel = "Offset")
         {
             Vector4 tilingOffset = tilingOffsetProperty.vectorValue;
-            bool tilingOffsetChanged = false;
 
             EditorGUI.BeginChangeCheck();
-            Vector2 scale = new Vector2(tilingOffset.x, tilingOffset.y);
-            scale = DrawVector2Field(scale, new GUIContent(tilingLabel));
-            if (EditorGUI.EndChangeCheck()) {
-                tilingOffset = new Vector4(scale.x, scale.y, tilingOffset.z, tilingOffset.w);
-                tilingOffsetChanged = true;
-            }
-
-            EditorGUI.BeginChangeCheck();
-            Vector2 offset = new Vector2(tilingOffset.z, tilingOffset.w);
-            offset = DrawVector2Field(offset, new GUIContent(offsetLabel));
-            if (EditorGUI.EndChangeCheck()) {
-                tilingOffset = new Vector4(tilingOffset.x, tilingOffset.y, offset.x, offset.y);
-                tilingOffsetChanged = true;
-            }
-
-            if (tilingOffsetChanged)
+            tilingOffset = DrawTilingOffset(tilingOffset, tilingLabel, offsetLabel);
+            if (EditorGUI.EndChangeCheck())
                 tilingOffsetProperty.vectorValue = tilingOffset;
         }
 

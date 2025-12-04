@@ -3,12 +3,12 @@ using UnityEngine;
 namespace Repetitionless.Variables
 {
     [System.Serializable]
-    public struct RepetitionlessMaterialData
+    public class RepetitionlessMaterialData
     {
         // Features
         public bool NoiseEnabled;
         public bool RandomiseNoiseScaling;
-        public bool RandomiseRotation;
+        public bool RandomiseNoiseRotation;
         public bool SmoothnessEnabled;
         public bool VariationEnabled;
         public bool PackedTexture;
@@ -21,7 +21,7 @@ namespace Repetitionless.Variables
         public bool NormalAssigned;
         public bool OcclussionAssigned;
         public bool EmissionAssigned;
-        public bool VarationAssigned;
+        public bool VariationAssigned;
 
         // Material Properties
         public Color AlbedoTint;
@@ -61,7 +61,7 @@ namespace Repetitionless.Variables
         // x: Compressed Bools
         //   0 > NoiseEnabled
         //   1 > RandomiseNoiseScaling
-        //   2 > RandomiseRotation
+        //   2 > RandomiseNoiseRotation
         //   3 > SmoothnessEnabled
         //   4 > VariationEnabled
         //   5 > PackedTexture

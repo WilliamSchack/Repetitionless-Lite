@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Repetitionless.Variables
 {
     [System.Serializable]
-    public struct RepetitionlessLayerData
+    public class RepetitionlessLayerData
     {
         // Materials
         [SerializeField] public RepetitionlessMaterialData BaseMaterialData;
