@@ -37,7 +37,7 @@ namespace Repetitionless.Inspectors
 
         // Data
         protected MaterialDataManager _dataManager;
-        protected RepetitionlessTextureData _textureData;
+        protected RepetitionlessTextureDataSO _textureData;
 
         // Array Settings Button
         private GUIContent _settingsIconContent;
@@ -65,7 +65,7 @@ namespace Repetitionless.Inspectors
 
         private TexturePacker.TextureData[] GetArrayLayerTextureData(int materialIndex, int layerIndex)
         {
-            RepetitionlessTextureData.MaterialTextureData materialData = _textureData.MaterialsTextureData[layerIndex];
+            RepetitionlessTextureDataSO.MaterialTextureData materialData = _textureData.MaterialsTextureData[layerIndex];
             
             switch(materialIndex) {
                 case 0: return materialData.AVTextures;
@@ -84,7 +84,7 @@ namespace Repetitionless.Inspectors
 
         protected override int HandleAssignedTextures(string materialPrefix, int sectionIndex, MaterialProperty settingsProp)
         {
-            RepetitionlessTextureData.MaterialTextureData materialTextureData = _textureData.MaterialsTextureData[sectionIndex];
+            RepetitionlessTextureDataSO.MaterialTextureData materialTextureData = _textureData.MaterialsTextureData[sectionIndex];
 
             MaterialProperty settingTogglesProp = FindProperty($"_{materialPrefix}Settings");
             int settingToggles = (int)settingTogglesProp.vectorValue.x;
@@ -127,18 +127,18 @@ namespace Repetitionless.Inspectors
             _dataManager = new MaterialDataManager(material);
 
             if (_dataManager.AssetExists(TEXTURE_DATA_FILE_NAME)) {
-                _textureData = _dataManager.LoadAsset<RepetitionlessTextureData>(TEXTURE_DATA_FILE_NAME);
+                _textureData = _dataManager.LoadAsset<RepetitionlessTextureDataSO>(TEXTURE_DATA_FILE_NAME);
             } else {
-                _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureData>();
+                _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureDataSO>();
                 _dataManager.CreateAsset(_textureData, TEXTURE_DATA_FILE_NAME);
                 _textureData.Init(_materialCount);
                 SaveTextureData();
             }
 
             // Texture Drawers
-            _avTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(0, i); }, SaveTextureData, RepetitionlessTextureData.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, _materialCount);
-            _nsoTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(1, i); }, SaveTextureData, RepetitionlessTextureData.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, _materialCount);
-            _emTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(2, i); }, SaveTextureData, RepetitionlessTextureData.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, _materialCount);
+            _avTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(0, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, _materialCount);
+            _nsoTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(1, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, _materialCount);
+            _emTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(2, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, _materialCount);
 
             _avTexturesDrawer.TextureFormat = TextureFormat.BC7;
             _nsoTexturesDrawer.TextureFormat = TextureFormat.BC7;

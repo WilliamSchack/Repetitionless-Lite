@@ -5,7 +5,7 @@ namespace Repetitionless.Data
 {
     using TextureUtilities;
 
-    public class RepetitionlessTextureData : ScriptableObject
+    public class RepetitionlessTextureDataSO : ScriptableObject
     {
         private const int TOTAL_SECTIONS = 3;
 

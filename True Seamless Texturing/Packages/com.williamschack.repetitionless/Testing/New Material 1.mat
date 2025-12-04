@@ -258,7 +258,7 @@ Material:
     - _Layer1BaseVariationBrightness: 0.3
     - _Layer1BaseVariationMode: 2
     - _Layer1BlendArrayAssignedTextures: 0
-    - _Layer1BlendMaskType: 0
+    - _Layer1BlendMaskType: 2
     - _Layer1BlendVariationBrightness: 0.3
     - _Layer1BlendVariationMode: 2
     - _Layer1DistanceBlendEnabled: 0
@@ -266,7 +266,7 @@ Material:
     - _Layer1FarArrayAssignedTextures: 0
     - _Layer1FarVariationBrightness: 0.3
     - _Layer1FarVariationMode: 2
-    - _Layer1MaterialBlendSettings: 6
+    - _Layer1MaterialBlendSettings: 7
     - _Layer2BaseVariationBrightness: 0.3
     - _Layer2BaseVariationMode: 2
     - _Layer2BlendArrayAssignedTextures: 0

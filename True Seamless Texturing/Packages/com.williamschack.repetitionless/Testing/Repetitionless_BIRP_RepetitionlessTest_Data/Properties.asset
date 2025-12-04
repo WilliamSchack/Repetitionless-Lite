@@ -32,7 +32,7 @@ MonoBehaviour:
       EmissionColour: {r: 0, g: 0, b: 0, a: 0}
       TilingOffset: {x: 0, y: 0, z: 0, w: 0}
       Metallic: 0
-      SmoothnessRoughness: 1
+      SmoothnessRoughness: 0.357
       NormalScale: 0
       OcclussionStrength: 0
       AlphaClipping: 0

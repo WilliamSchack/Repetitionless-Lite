@@ -149,6 +149,10 @@ Material:
         m_Texture: {fileID: 18700000, guid: e21abc3437b30049188424ff85ce0965, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PropertiesTexture:
+        m_Texture: {fileID: 2800000, guid: 37d0e38439b51c70b9ba61e985fae593, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleRepetitionlessMaterialRegularCustomFunction_969ab60c288c4a1f9430d120d8d1593d_BaseAlbedo_78_Texture2D:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
