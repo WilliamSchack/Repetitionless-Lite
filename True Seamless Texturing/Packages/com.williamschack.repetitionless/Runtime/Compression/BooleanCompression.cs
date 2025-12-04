@@ -23,14 +23,10 @@ namespace Repetitionless.Compression
         /// </returns>
         public static int CompressValues(params bool[] values)
         {
-            int compressedValues = (values[0] ? 1 : 0);
-
-            int current = 2;
-            for (int i = 1; i < values.Length; i++) {
-                bool value = values[i];
-                compressedValues |= (value ? current : 0);
-
-                current *= 2;
+            int compressedValues = 0;
+            for (int i = 0; i < values.Length; i++) {
+                if (values[i])
+                    compressedValues |= (1 << i);
             }
 
             return compressedValues;
@@ -52,10 +48,8 @@ namespace Repetitionless.Compression
         {
             bool[] values = new bool[valueCount];
 
-            int current = 1;
             for (int i = 0; i < valueCount; i++) {
-                values[i] = (compressedValues & current) != 0;
-                current *= 2;
+                values[i] = (compressedValues & (1 << i)) != 0;
             }
 
             return values;
@@ -78,8 +72,9 @@ namespace Repetitionless.Compression
         /// </returns>
         public static int AddValue(int compressedValues, int index, bool value)
         {
-            int current = (int)(1 * Mathf.Pow(2, index));
-            return compressedValues |= (value ? current : 0);
+            if (value) compressedValues |=  (1 << index);
+            else       compressedValues &= ~(1 << index);
+            return compressedValues;
         }
 
         /// <summary>
@@ -96,8 +91,7 @@ namespace Repetitionless.Compression
         /// </returns>
         public static bool GetValue(int compressedValues, int index)
         {
-            int current = (int)(1 * Mathf.Pow(2, index));
-            return (compressedValues & current) != 0;
+            return (compressedValues & (1 << index)) != 0;
         }
     }
 }
