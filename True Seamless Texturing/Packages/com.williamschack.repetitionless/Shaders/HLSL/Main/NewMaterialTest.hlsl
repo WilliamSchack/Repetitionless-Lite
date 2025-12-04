@@ -37,57 +37,52 @@ void GetRepetitionlessMaterialColorTest(
     out float OcclussionOut,
     out float3 EmissionColorOut
 ){
+    // Get variables from compressed
+    int  settingToggles        = (int)MaterialData.Settings1.x;
+    bool noiseEnabled          = GetCompressedValue(settingToggles, 0);
+    bool randomiseNoiseScaling = GetCompressedValue(settingToggles, 1);
+    bool randomiseRotation     = GetCompressedValue(settingToggles, 2);
+    bool smoothnessEnabled     = GetCompressedValue(settingToggles, 3);
+    bool variationEnabled      = GetCompressedValue(settingToggles, 4);
+    bool packedTexture         = GetCompressedValue(settingToggles, 5);
+    bool emissionEnabled       = GetCompressedValue(settingToggles, 6);
+
+    int  assignedTextures   = (int)MaterialData.Settings.y;
+    bool albedoAssigned     = GetCompressedValue(assignedTextures, 0);
+    bool metallicAssigned   = GetCompressedValue(assignedTextures, 1);
+    bool smoothnessAssigned = GetCompressedValue(assignedTextures, 2);
+    bool normalAssigned     = GetCompressedValue(assignedTextures, 3);
+    bool occlussionAssigned = GetCompressedValue(assignedTextures, 4);
+    bool emissionAssigned   = GetCompressedValue(assignedTextures, 5);
+    bool variationAssigned  = GetCompressedValue(assignedTextures, 6);
+
+    half metallic            = MaterialData.Settings1.z;
+    half smoothnessRoughness = MaterialData.Settings1.w;
+    half normalScale         = MaterialData.Settings2.x;
+    half occlussionStrength  = MaterialData.Settings2.y;
+    half alphaClipping       = MaterialData.Settings2.z;
+
+    half  noiseAngleOffset             = MaterialData.Settings2.w;
+    half  noiseScale                   = MaterialData.Settings3.x;
+    half2 noiseScalingMinMax           = MaterialData.Settings5.xy;
+    half2 noiseRandomiseRotationMinMax = MaterialData.Settings5.zw;
+
+    int  variationMode          = (int)MaterialData.Settings.y;
+    half variationOpacity       = MaterialData.Settings3.z;
+    half variationBrightness    = MaterialData.Setings3.w;
+    half variationSmallScale    = MaterialData.Settings4.x;
+    half variationMediumScale   = MaterialData.Settings4.y;
+    half variationLargeScale    = MaterialData.Settings4.z;
+    half variationNoiseStrength = MaterialData.Settings4.w;
+
     // Default values
-    AlbedoColorOut = 1;
-    NormalVectorOut = TangentNormalVector;
-    MetallicOut = 0;
-    SmoothnessOut = 0;
-    OcclussionOut = 1;
+    AlbedoColorOut   = 1;
+    NormalVectorOut  = TangentNormalVector;
+    MetallicOut      = 0;
+    SmoothnessOut    = 0;
+    OcclussionOut    = 1;
     EmissionColorOut = 0;
 
-    // Setting Toggles
-    int settingToggles = (int)MaterialData.Settings.x;
-    
-    bool noiseEnabled          = GetCompressedValue(settingToggles, 0);//(settingToggles & 1) != 0;
-    bool randomiseNoiseScaling = GetCompressedValue(settingToggles, 1);//(settingToggles & 2) != 0;
-    bool randomiseRotation     = GetCompressedValue(settingToggles, 2);//(settingToggles & 4) != 0;
-    bool smoothnessEnabled     = GetCompressedValue(settingToggles, 3);//(settingToggles & 8) != 0;
-    bool variationEnabled      = GetCompressedValue(settingToggles, 4);//(settingToggles & 16) != 0;
-    bool packedTexture         = GetCompressedValue(settingToggles, 5);//(settingToggles & 32) != 0;
-    bool emissionEnabled       = GetCompressedValue(settingToggles, 6);//(settingToggles & 64) != 0;
-    
-    // Get Assigned Textures
-    int assignedTextures = (int)MaterialData.Settings.y;
-    
-    bool metallicAssigned   = GetCompressedValue(assignedTextures, 0);//(assignedTextures & 1) != 0;
-    bool smoothnessAssigned = GetCompressedValue(assignedTextures, 1);//(assignedTextures & 2) != 0;
-    bool roughnessAssigned  = GetCompressedValue(assignedTextures, 2);//(assignedTextures & 4) != 0;
-    bool normalAssigned     = GetCompressedValue(assignedTextures, 3);//(assignedTextures & 8) != 0;
-    bool occlussionAssigned = GetCompressedValue(assignedTextures, 4);//(assignedTextures & 16) != 0;
-    bool emissionAssigned   = GetCompressedValue(assignedTextures, 5);//(assignedTextures & 32) != 0;
-    bool albedoAssigned     = GetCompressedValue(assignedTextures, 6);//(assignedTextures & 64) != 0;
-    bool variationAssigned  = GetCompressedValue(assignedTextures, 7);//(assignedTextures & 128) != 0;
-
-    // Material Properties
-    float metallic = MaterialData.Properties1.x;
-    float smoothness = MaterialData.Properties1.y;
-    float roughness = MaterialData.Properties1.z;
-    float normalScale = MaterialData.Properties1.w;
-    float occlussionStrength = MaterialData.Properties2.x;
-    float alphaClipping = MaterialData.Properties2.y;
-    
-    // Noise Settings
-    float noiseAngleOffset = MaterialData.NoiseSettings.x;
-    float noiseScale = MaterialData.NoiseSettings.y;
-    float2 noiseScalingMinMax = MaterialData.NoiseMinMax.xy;
-    float2 randomiseRotationMinMax = MaterialData.NoiseMinMax.zw;
-    
-    // Variation Settings
-    float variationOpacity = MaterialData.VariationSettings.x;
-    float variationNoiseStrength = MaterialData.VariationNoiseSettings.x;
-    float variationNoiseScale = MaterialData.VariationNoiseSettings.y;
-    float2 variationNoiseOffset = MaterialData.VariationNoiseSettings.zw;
-    
     // Setup UVs
     float2 tiling = MaterialData.TilingOffset.xy;
     float2 offset = MaterialData.TilingOffset.zw;
@@ -96,27 +91,27 @@ void GetRepetitionlessMaterialColorTest(
     UV = UV * tiling + offset;
     
     // Change UVs & Get Edge Mask
-    float VoronoiCells = 1;
-    float EdgeMask = 0;
-    float2 EdgeUV = UV;
-    float2 TransformedUV = UV;
+    float voronoiCells = 1;
+    float edgeMask = 0;
+    float2 edgeUV = UV;
+    float2 transformedUV = UV;
     if (noiseEnabled)
-        GetRepetitionlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, randomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, TransformedUV);
+        GetRepetitionlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, noiseRandomiseRotationMinMax, voronoiCells, edgeMask, edgeUV, transformedUV);
     
-    bool sampleEdges = EdgeMask > 0;
+    bool sampleEdges = edgeMask > 0;
 
     // Get Macro/Micro Variation Multiplier
     float variationColor = 0;
     if (variationEnabled && variationOpacity > 0) {
         switch (MaterialData.VariationMode) {
             case 0: // Perlin Noise
-                variationColor = MacroMicroVariationPerlinNoise(MaterialData.VariationSettings.y, MaterialData.VariationSettings.z, MaterialData.VariationSettings.w, MaterialData.VariationBrightness, MaterialData.VariationNoiseSettings.x, oriUV, MaterialData.VariationNoiseSettings.y, MaterialData.VariationNoiseSettings.z);
+                variationColor = MacroMicroVariationPerlinNoise(variationSmallScale, variationMediumScale, variationLargeScale, variationBrightness, variationNoiseStrength, oriUV, MaterialData.VariationTO.x, MaterialData.VariationTO.zw);
                 break;
             case 1: // Simplex Noise
-                variationColor = MacroMicroVariationSimplexNoise(MaterialData.VariationSettings.y, MaterialData.VariationSettings.z, MaterialData.VariationSettings.w, MaterialData.VariationBrightness, MaterialData.VariationNoiseSettings.x, oriUV, MaterialData.VariationNoiseSettings.y, MaterialData.VariationNoiseSettings.z);
+                variationColor = MacroMicroVariationSimplexNoise(variationSmallScale, variationMediumScale, variationLargeScale, variationBrightness, variationNoiseStrength, oriUV, MaterialData.VariationTO.x, MaterialData.VariationTO.zw);
                 break;
             case 2: // Custom Texture
-                variationColor = MacroMicroVariationTextureArray(MaterialData.VariationSettings.y, MaterialData.VariationSettings.z, MaterialData.VariationSettings.w, MaterialData.VariationBrightness, AVTextures, AssignedAVTextures, ArrayLayerIndex, 3, SS, oriUV, MaterialData.VariationTextureTO.xy, MaterialData.VariationTextureTO.zw);
+                variationColor = MacroMicroVariationTextureArray(variationSmallScale, variationMediumScale, variationLargeScale, variationBrightness, AVTextures, AssignedAVTextures, ArrayLayerIndex, 3, SS, oriUV, MaterialData.VariationTO.xy, MaterialData.VariationTO.zw);
                 break;
         }
     }
@@ -125,10 +120,10 @@ void GetRepetitionlessMaterialColorTest(
     if (DebuggingIndex != -1) {
         switch (DebuggingIndex) {
             case 0: // Voronoi Cells
-                AlbedoColorOut = VoronoiCells;
+                AlbedoColorOut = voronoiCells;
                 break;
             case 1: // Edge Mask
-                AlbedoColorOut = EdgeMask;
+                AlbedoColorOut = edgeMask;
                 break;
             case 4: // Variation Colour
                 AlbedoColorOut = variationColor;
@@ -149,9 +144,9 @@ void GetRepetitionlessMaterialColorTest(
     float4 avTexture = 0;
     float4 nsoTexture = 0;
     float4 emTexture = 0;
-    if (samplingAV)  avTexture  = SampleRepetitionlessArrayTexture(AVTextures, AssignedAVTextures, ArrayLayerIndex, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-    if (samplingNSO) nsoTexture = SampleRepetitionlessArrayTexture(NSOTextures, AssignedNSOTextures, ArrayLayerIndex, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-    if (samplingEM)  emTexture  = SampleRepetitionlessArrayTexture(EMTextures, AssignedEMTextures, ArrayLayerIndex, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+    if (samplingAV)  avTexture  = SampleRepetitionlessArrayTexture(AVTextures, AssignedAVTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+    if (samplingNSO) nsoTexture = SampleRepetitionlessArrayTexture(NSOTextures, AssignedNSOTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+    if (samplingEM)  emTexture  = SampleRepetitionlessArrayTexture(EMTextures, AssignedEMTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
     
     // Albedo
     AlbedoColorOut = float4(avTexture.rgb, 1);

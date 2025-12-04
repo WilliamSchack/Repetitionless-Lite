@@ -9,14 +9,15 @@
 // Overwrites a value at a given index into the input CompressedValues
 int AddCompressedValue(int CompressedValues, bool Value, int Index)
 {
-    return CompressedValues | (Value ? (int) (1 * pow(2, Index)) : 0);
+    if (Value) CompressedValues |=  (1 << Index);
+    else       CompressedValues &= ~(1 << Index);
+    return CompressedValues;
 }
 
 // Gets a compressed value at a given index from the input CompressedValues
 bool GetCompressedValue(int CompressedValues, int Index)
 {
-    int current = (int) (1 * pow(2, Index));
-    return (CompressedValues & current) != 0;
+    return (CompressedValues & (1 << Index)) != 0;
 }
 
 // Overwrites a value at a given index into the input CompressedValues

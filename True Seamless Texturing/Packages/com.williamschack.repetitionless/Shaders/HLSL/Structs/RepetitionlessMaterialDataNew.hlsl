@@ -1,7 +1,24 @@
 #ifndef REPETITIONLESSMATERIALDATANEW_INCLUDED
 #define REPETITIONLESSMATERIALDATANEW_INCLUDED
 
+#define REPETITIONLESS_MATERIAL_VARIABLE_COUNT 9
+
 struct RepetitionlessMaterialDataNew
+{
+    half4 Settings1;
+    half4 Settings2;
+    half4 Settings3;
+    half4 Settings4;
+    half4 Settings5;
+
+    half3 AlbedoTint;
+    half3 EmissionColour;
+
+    half4 TilingOffset;
+    half4 VariationTO;
+};
+
+struct RepetitionlessMaterialDataNewOLD
 {
     float2 Settings;
     float4 TilingOffset;

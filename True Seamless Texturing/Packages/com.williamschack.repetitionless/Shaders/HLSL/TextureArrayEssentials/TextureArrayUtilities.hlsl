@@ -17,13 +17,10 @@ void GetIndexInArray_float(int TexturesAssignedCompressed, int Index, out int Ou
     }
 
     // Get the index of the texture in the array
-    float arrayIndex = 0;
+    int arrayIndex = 0;
     for (int i = 0; i < Index; i++) {
         bool assigned = GetCompressedValue(TexturesAssignedCompressed, i);
-        
-        if (assigned) {
-            arrayIndex++;
-        }
+        arrayIndex += assigned ? 1 : 0;
     }
 
     Out = arrayIndex;

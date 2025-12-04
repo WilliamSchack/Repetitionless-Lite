@@ -145,7 +145,7 @@ public class TestEditor : ShaderGUI
         EditorGUI.BeginChangeCheck();
         _propertiesHandler.Data.BaseMaterialData.NoiseEnabled = EditorGUILayout.Toggle("1", _propertiesHandler.Data.BaseMaterialData.NoiseEnabled);
         if (EditorGUI.EndChangeCheck()) {
-            MaterialProperty textureProperty = FindProperty("_TestTexture", properties);
+            MaterialProperty textureProperty = FindProperty("_PropertiesTexture", properties);
             _propertiesHandler.UpdateMaterialTexture(textureProperty, 0);
         }
 
@@ -170,7 +170,7 @@ public class TestEditor : ShaderGUI
         EditorGUI.BeginChangeCheck();
         _propertiesHandler.Data.BaseMaterialData.SmoothnessRoughness = EditorGUILayout.Slider("Smooth", _propertiesHandler.Data.BaseMaterialData.SmoothnessRoughness, 0, 1);
         if (EditorGUI.EndChangeCheck()) {
-            MaterialProperty textureProperty = FindProperty("_TestTexture", properties);
+            MaterialProperty textureProperty = FindProperty("_PropertiesTexture", properties);
             _propertiesHandler.UpdateMaterialTexture(textureProperty, 0);
             EditorUtility.SetDirty(_propertiesHandler); // Refreshing asset database is slow, let unity handle it later
         }

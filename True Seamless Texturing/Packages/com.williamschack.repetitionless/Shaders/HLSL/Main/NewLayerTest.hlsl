@@ -11,13 +11,15 @@
 
 #include "NewMaterialTest.hlsl"
 
-#define ARRAY_LAYER_INDEX_TEMP 0
-
 void SampleRepetitionlessLayerBase_float(
     // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition,
     int SurfaceType, int DebuggingIndex,
+
+    // Properties
+    int LayerIndex,
+    UnityTexture2D PropertiesTexture,
 
     // Textures
     UnityTexture2DArray AVTextures,
@@ -25,46 +27,7 @@ void SampleRepetitionlessLayerBase_float(
     UnityTexture2DArray EMTextures,
     int AssignedAVTextures,
     int AssignedNSOTextures,
-    int AssignedEMTextures,
-
-    // Base Material
-    float2 BaseSettings, float4 BaseTilingOffset, // Tiling & Offset
-    float4 BaseAlbedoTint, float3 BaseEmissionColor, // Colors
-    float4 BaseMaterialProperties1, float2 BaseMaterialProperties2, // Material Properties
-
-    float2 BaseNoiseSettings, float4 BaseNoiseMinMax, // Noise
-
-    float BaseVariationMode, float4 BaseVariationSettings, float BaseVariationBrightness, // Variation Settings
-    float4 BaseVariationNoiseSettings, // Variation Noise
-    float4 BaseVariationTextureTO, // Variation Texture
-
-    // Far Material
-    bool DistanceBlendEnabled, int DistanceBlendingMode, float2 DistanceBlendMinMax,
-
-    float2 FarSettings, float4 FarTilingOffset, // Tiling & Offset
-    float4 FarAlbedoTint, float3 FarEmissionColor, // Colors
-    float4 FarMaterialProperties1, float2 FarMaterialProperties2, // Material Properties
-
-    float2 FarNoiseSettings, float4 FarNoiseMinMax, // Noise
-
-    float FarVariationMode, float4 FarVariationSettings, float FarVariationBrightness, // Variation Settings
-    float4 FarVariationNoiseSettings, // Variation Noise
-    float4 FarVariationTextureTO, // Variation Texture
-
-    // Blend Material
-    float MaterialBlendSettings, int BlendMaskType, float4 BlendMaskDistanceTO,
-    float2 MaterialBlendProperties, float3 MaterialBlendNoiseSettings,
-    UnityTexture2D BlendMaskTexture, float4 BlendMaskTextureTO,
-
-    float2 BlendSettings, float4 BlendTilingOffset, // Tiling & Offset
-    float4 BlendAlbedoTint, float3 BlendEmissionColor, // Colors
-    float4 BlendMaterialProperties1, float2 BlendMaterialProperties2, // Material Properties
-
-    float2 BlendNoiseSettings, float4 BlendNoiseMinMax, // Noise
-
-    float BlendVariationMode, float4 BlendVariationSettings, float BlendVariationBrightness, // Variation Settings
-    float4 BlendVariationNoiseSettings, // Variation Noise
-    float4 BlendVariationTextureTO, // Variation Texture
+    int AssignedEMTextures
 
     // Outputs
     out float4 AlbedoColorOut,
@@ -74,81 +37,102 @@ void SampleRepetitionlessLayerBase_float(
     out float OcclussionOut,
     out float3 EmissionColorOut
 ) {
+    // ----------------------- Load Variables From Texture ------------------------- //
+
+    // Base Material
+    int indexOffset = 0;
+    RepetitionlessMaterialDataNew baseMaterialData = {
+        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0))
+    }
+
+    // Far Material
+    indexOffset += REPETITIONLESS_MATERIAL_VARIABLE_COUNT;
+    RepetitionlessMaterialDataNew farMaterialData = {
+        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0))
+    }
+
+    // Blend Material
+    indexOffset += REPETITIONLESS_MATERIAL_VARIABLE_COUNT;
+    RepetitionlessMaterialDataNew blendMaterialData = {
+        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)),
+        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0))
+    }
+
+    // Layer Settings
+    indexOffset += REPETITIONLESS_MATERIAL_VARIABLE_COUNT;
+
+    half4 distanceBlendSettings = PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0));
+    half4 blendMaskDistanceTO   = PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0));
+    half4 materialBlendSettings = PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0));
+    half4 materialBlendMaskTO   = PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0));
+
+    bool  distanceBlendEnabled = distanceBlendSettings.x == 1 ? true : false;
+    int   distanceBlendMode    = distanceBlendSettings.y;
+    half2 distanceBlendMinMax  = distanceBlendSettings.zw;
+
+    int  materialBlendSettingsUnpacked = (int)MaterialBlendSettings;
+    bool materialBlendEnabled          = (materialBlendSettings & 1) != 0;
+    bool overrideDistanceBlend         = (materialBlendSettings & 2) != 0;
+    bool overrideDistanceBlendTO       = (materialBlendSettings & 4) != 0;
+    
+    int  blendMaskType     = MaterialBlendSettings.y;
+    half blendMaskOpacity  = MaterialBlendSettings.z;
+    half blendMaskStrength = MaterialBlendSettings.w;
+
     // ----------------------- Setup ------------------------- //
 
     // Variables
-    float4 albedoColor = 1;
-    float3 normalVector = TangentNormalVector;
-    float metallic = 0;
-    float smoothness = 0;
-    float occlussion = 0;
+    float4 albedoColor   = 1;
+    float3 normalVector  = TangentNormalVector;
+    float  metallic      = 0;
+    float  smoothness    = 0;
+    float  occlussion    = 0;
     float3 emissionColor = 0;
     
     float materialMask = 0;
-    float farDistance = 0;
-
-    // Calculate mask
-    int materialBlendSettings       = (int)MaterialBlendSettings;
-    bool materialBlendEnabled       = (materialBlendSettings & 1) != 0;
-    bool overrideDistanceBlending   = (materialBlendSettings & 2) != 0;
-    bool overrideDistanceBlendingTO = (materialBlendSettings & 4) != 0;
+    float farDistance  = 0;
 
     if (materialBlendEnabled) {
-        float blendMaskNoiseScale = MaterialBlendNoiseSettings.x;
-        float2 blendMaskNoiseOffset = MaterialBlendNoiseSettings.yz;
-        
         // Get mask of blended material
-        switch (BlendMaskType) {
+        switch (blendMaskType) {
             case 0: // Perlin Noise
-                materialMask = ClassicNoise(UV * blendMaskNoiseScale + blendMaskNoiseOffset) * 3;
+                materialMask = ClassicNoise(UV * materialBlendMaskTO.x + materialBlendMaskTO.zw) * 3;
                 break;
             case 1: // Simplex Noise
-                materialMask = SimplexNoise(UV * blendMaskNoiseScale + blendMaskNoiseOffset) * 2;
+                materialMask = SimplexNoise(UV * materialBlendMaskTO.x + materialBlendMaskTO.zw) * 2;
                 break;
             case 2: // Custom Texture
-                materialMask = SAMPLE_TEXTURE2D(BlendMaskTexture, SS, UV * blendMaskNoiseScale + blendMaskNoiseOffset).r;
+                materialMask = SAMPLE_TEXTURE2D(BlendMaskTexture, SS, UV * materialBlendMaskTO.xy + materialBlendMaskTO.zw).r;
                 break;
         }
-
-        float blendMaskOpacity = MaterialBlendProperties.x;
-        float blendMaskStrength = MaterialBlendProperties.y;
         
         materialMask *= blendMaskStrength;
         materialMask = clamp(materialMask, 0, 1);
         materialMask *= blendMaskOpacity;
     }
-
-    // ----------------------- Package Material Data ------------------------- //
-
-    RepetitionlessMaterialDataNew BaseMaterialData = {
-        BaseSettings, BaseTilingOffset,
-        BaseAlbedoTint, BaseEmissionColor,
-        BaseMaterialProperties1, BaseMaterialProperties2,
-        BaseNoiseSettings, BaseNoiseMinMax,
-        BaseVariationMode, BaseVariationSettings, BaseVariationBrightness,
-        BaseVariationNoiseSettings,
-        BaseVariationTextureTO
-    };
-
-    RepetitionlessMaterialDataNew FarMaterialData = {
-        FarSettings, FarTilingOffset,
-        FarAlbedoTint, FarEmissionColor,
-        FarMaterialProperties1, FarMaterialProperties2,
-        FarNoiseSettings, FarNoiseMinMax,
-        FarVariationMode, FarVariationSettings, FarVariationBrightness,
-        FarVariationNoiseSettings,
-        FarVariationTextureTO
-    };
-
-    RepetitionlessMaterialDataNew BlendMaterialData = {
-        BlendSettings, BlendTilingOffset,
-        BlendAlbedoTint, BlendEmissionColor,
-        BlendMaterialProperties1, BlendMaterialProperties2,
-        BlendNoiseSettings, BlendNoiseMinMax,
-        BlendVariationMode, BlendVariationSettings, BlendVariationBrightness,
-        BlendVariationNoiseSettings,
-        BlendVariationTextureTO
-    };
 
     // ----------------------- Get Materials To Sample ------------------------- //
 
@@ -160,20 +144,20 @@ void SampleRepetitionlessLayerBase_float(
     bool samplingDistanceBlend = false;
 
     // Check distance blend
-    if (DistanceBlendEnabled) {
+    if (distanceBlendEnabled) {
         // Distance Mask
         farDistance = distance(WorldPosition, CameraPosition);
-        farDistance = Remap(farDistance, DistanceBlendMinMax, float2(0, 1));
+        farDistance = Remap(farDistance, distanceBlendMinMax, float2(0, 1));
         farDistance = clamp(farDistance, 0, 1);
 
         samplingDistance = farDistance > 0 && materialMask != 1;
-        samplingDistanceBlend = farDistance > 0 && materialBlendEnabled && materialMask > 0 && overrideDistanceBlending;
+        samplingDistanceBlend = farDistance > 0 && materialBlendEnabled && materialMask > 0 && overrideDistanceBlend;
     }
 
     // Check material blend
     if (materialBlendEnabled) {
         samplingBlend = materialMask > 0;
-        if (DistanceBlendEnabled && overrideDistanceBlending && farDistance >= 1)
+        if (distanceBlendEnabled && overrideDistanceBlend && farDistance >= 1)
             samplingBlend = false;
     }
 
@@ -184,8 +168,8 @@ void SampleRepetitionlessLayerBase_float(
     if (samplingBase) {
         GetRepetitionlessMaterialColorTest(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-            ARRAY_LAYER_INDEX_TEMP, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
-            BaseMaterialData,
+            LayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+            baseMaterialData,
             albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor
         );
     }
@@ -201,8 +185,8 @@ void SampleRepetitionlessLayerBase_float(
 
         GetRepetitionlessMaterialColorTest(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-            ARRAY_LAYER_INDEX_TEMP, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
-            BlendMaterialData,
+            LayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+            blendMaterialData,
             blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
         );
         
@@ -224,18 +208,18 @@ void SampleRepetitionlessLayerBase_float(
         float farOcclussion = 0;
         float3 farEmissionColor = 0;
     
-        switch (DistanceBlendingMode)
+        switch (distanceBlendMode)
         {
             case 0: // Tiling & Offset
                 // Sample Base Material
                 // Set far TO, no need to change back it wont be used again
                 
-                BaseMaterialData.TilingOffset = FarTilingOffset;
+                baseMaterialData.TilingOffset = farMaterialData.TilingOffset;
                 
                 GetRepetitionlessMaterialColorTest(
                     SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                    ARRAY_LAYER_INDEX_TEMP, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
-                    BaseMaterialData,
+                    LayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+                    baseMaterialData,
                     farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
                 );
                 break;
@@ -243,8 +227,8 @@ void SampleRepetitionlessLayerBase_float(
                 // Sample Far Material
                 GetRepetitionlessMaterialColorTest(
                     SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                    ARRAY_LAYER_INDEX_TEMP, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
-                    FarMaterialData,
+                    LayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+                    farMaterialData,
                     farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
                 );
                 break;
@@ -268,11 +252,11 @@ void SampleRepetitionlessLayerBase_float(
         float blendOcclussion = 0;
         float3 blendEmissionColor = 0;
         
-        float2 tiling = BlendTilingOffset.xy;
-        float2 offset = BlendTilingOffset.zw;
+        float2 tiling = blendMaterialData.TilingOffset.xy;
+        float2 offset = blendMaterialData.TilingOffset.zw;
         if (DistanceBlendingMode == 0) {
-            tiling = overrideDistanceBlendingTO ? BlendMaskDistanceTO.xy : FarTilingOffset.xy;
-            offset = overrideDistanceBlendingTO ? BlendMaskDistanceTO.zw : FarTilingOffset.zw;
+            tiling = overrideDistanceBlendingTO ? blendMaskDistanceTO.xy : farMaterialData.TilingOffset.xy;
+            offset = overrideDistanceBlendingTO ? blendMaskDistanceTO.zw : farMaterialData.TilingOffset.zw;
         }
         
         float4 tilingOffset = float4(tiling.x, tiling.y, offset.x, offset.y);
@@ -280,12 +264,12 @@ void SampleRepetitionlessLayerBase_float(
         // Sample Blend Material
         // Set blend TO, no need to change back it wont be used again
 
-        BlendMaterialData.TilingOffset = tilingOffset;
+        blendMaterialData.TilingOffset = tilingOffset;
         
         GetRepetitionlessMaterialColorTest(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-            ARRAY_LAYER_INDEX_TEMP, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
-            BlendMaterialData,
+            LayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+            blendMaterialData,
             blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
         );
         
