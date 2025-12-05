@@ -46,7 +46,8 @@ namespace Repetitionless.Data
         {
             Color[] dataColours = new Color[RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT];
             for (int i = 0; i < dataColours.Length; i++) {
-            dataColours[i] = GetDataColour(i).Value;
+                dataColours[i] = GetDataColour(i).Value;
+                Debug.Log($"({i}) >> {dataColours[i]}");
             }
 
             return dataColours;
@@ -65,7 +66,7 @@ namespace Repetitionless.Data
                 texture = _dataManager.LoadAsset<Texture2D>(TEXTURE_ASSET_NAME);
                 
                 for (int i = 0; i < RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT; i++) {
-                    int fieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedLayerDataSingle(ref _dataCompressed, Data);
+                    int fieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed, Data);
 
                     if (fieldChangedIndex == -1)
                         break;
@@ -76,12 +77,13 @@ namespace Repetitionless.Data
                     if (!dataColour.HasValue)
                         continue;
 
-                    Debug.Log($"Changing index {fieldChangedIndex} to {dataColour.Value}");
-
                     texture.SetPixel(fieldChangedIndex, layerIndex, dataColour.Value);
                     texture.Apply();
                 }
             } else {
+                // Compress all values
+                RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed, Data, true);
+
                 // Create a new texture
                 texture = new Texture2D(RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT, _layerCount, DATA_TEXTURE_FORMAT, false);
 

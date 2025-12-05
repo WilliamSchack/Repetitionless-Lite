@@ -4,6 +4,7 @@ namespace Repetitionless.Data
 {
     using Variables;
     using Compression;
+    using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 
     public static class RepetitionlessDataPacker
     {
@@ -43,20 +44,23 @@ namespace Repetitionless.Data
         // Returns if the value was changed
         private static bool UpdateBoolsIfChanged(ref float target, params bool[] values)
         {
+            bool valueChanged = false;
+
             bool[] targetBools = BooleanCompression.GetValues((int)target, values.Length);
             for (int i = 0; i < values.Length; i++) {
                 if (targetBools[i] == values[i])
                     continue;
 
                 target = BooleanCompression.AddValue((int)target, i, values[i]);
-                return true;
+                valueChanged = true;
             }
 
-            return false;
+            return valueChanged;
         }
 
         // Returns the changed variable index in the struct
-        public static int UpdateCompressedMaterialDataSingle(ref RepetitionlessMaterialDataCompressed compressedData, RepetitionlessMaterialData newData)
+        // By default returns on the first changed value
+        public static int UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed compressedData, RepetitionlessMaterialData newData, bool updateAll = false)
         {
             if (UpdateBoolsIfChanged(ref compressedData.Settings1.x,
                 newData.NoiseEnabled,
@@ -66,7 +70,7 @@ namespace Repetitionless.Data
                 newData.VariationEnabled,
                 newData.PackedTexture,
                 newData.EmissionEnabled
-            )) return 0;
+            ) && !updateAll) return 0;
 
 
             if (UpdateBoolsIfChanged(ref compressedData.Settings1.y,
@@ -77,38 +81,38 @@ namespace Repetitionless.Data
                 newData.OcclussionAssigned,
                 newData.EmissionAssigned,
                 newData.VariationAssigned
-            )) return 0;
+            ) && !updateAll) return 0;
 
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings1.z, newData.Metallic))            return 0;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings1.w, newData.SmoothnessRoughness)) return 0;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings1.z, newData.Metallic) && !updateAll)            return 0;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings1.w, newData.SmoothnessRoughness) && !updateAll) return 0;
 
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings2.x, newData.NormalScale))        return 1;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings2.y, newData.OcclussionStrength)) return 1;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings2.z, newData.AlphaClipping))      return 1;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings2.w, newData.NoiseAngleOffset))   return 1;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings2.x, newData.NormalScale) && !updateAll)        return 1;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings2.y, newData.OcclussionStrength) && !updateAll) return 1;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings2.z, newData.AlphaClipping) && !updateAll)      return 1;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings2.w, newData.NoiseAngleOffset) && !updateAll)   return 1;
 
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings3.x, newData.NoiseScale))          return 2;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings3.y, (int)newData.VariationMode))  return 2;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings3.z, newData.VariationOpacity))    return 2;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings3.w, newData.VariationBrightness)) return 2;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings3.x, newData.NoiseScale) && !updateAll)          return 2;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings3.y, (int)newData.VariationMode) && !updateAll)  return 2;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings3.z, newData.VariationOpacity) && !updateAll)    return 2;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings3.w, newData.VariationBrightness) && !updateAll) return 2;
             
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings4.x, newData.VariationSmallScale))    return 3;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings4.y, newData.VariationMediumScale))   return 3;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings4.z, newData.VariationLargeScale))    return 3;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings4.w, newData.VariationNoiseStrength)) return 3;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings4.x, newData.VariationSmallScale) && !updateAll)    return 3;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings4.y, newData.VariationMediumScale) && !updateAll)   return 3;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings4.z, newData.VariationLargeScale) && !updateAll)    return 3;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings4.w, newData.VariationNoiseStrength) && !updateAll) return 3;
 
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings5.x, newData.NoiseScalingMinMax.x))           return 4;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings5.y, newData.NoiseScalingMinMax.y))           return 4;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings5.z, newData.NoiseRandomiseRotationMinMax.x)) return 4;
-            if (UpdateGenericIfChanged<float>(ref compressedData.Settings5.w, newData.NoiseRandomiseRotationMinMax.y)) return 4;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings5.x, newData.NoiseScalingMinMax.x) && !updateAll)           return 4;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings5.y, newData.NoiseScalingMinMax.y) && !updateAll)           return 4;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings5.z, newData.NoiseRandomiseRotationMinMax.x) && !updateAll) return 4;
+            if (UpdateGenericIfChanged<float>(ref compressedData.Settings5.w, newData.NoiseRandomiseRotationMinMax.y) && !updateAll) return 4;
 
-            if (UpdateColourIfChanged(ref compressedData.AlbedoTint, newData.AlbedoTint))         return 5;
-            if (UpdateColourIfChanged(ref compressedData.EmissionColour, newData.EmissionColour)) return 6;
+            if (UpdateColourIfChanged(ref compressedData.AlbedoTint, newData.AlbedoTint) && !updateAll)         return 5;
+            if (UpdateColourIfChanged(ref compressedData.EmissionColour, newData.EmissionColour) && !updateAll) return 6;
 
-            if (UpdateGenericIfChanged<Vector4>(ref compressedData.TilingOffset, newData.TilingOffset)) return 7;
+            if (UpdateGenericIfChanged<Vector4>(ref compressedData.TilingOffset, newData.TilingOffset) && !updateAll) return 7;
 
             if (newData.VariationMode == ETextureType.CustomTexture) {
-                if (UpdateGenericIfChanged<Vector4>(ref compressedData.VariationTO, newData.VariationTextureTO)) return 8;
+                if (UpdateGenericIfChanged<Vector4>(ref compressedData.VariationTO, newData.VariationTextureTO) && !updateAll) return 8;
             } else {
                 // All of these should be updated, return if changed afterwards
                 bool updatedAny = false;
@@ -118,7 +122,7 @@ namespace Repetitionless.Data
                 if (UpdateGenericIfChanged<float>(ref compressedData.VariationTO.z, newData.VariationNoiseOffset.x)) updatedAny = true;
                 if (UpdateGenericIfChanged<float>(ref compressedData.VariationTO.w, newData.VariationNoiseOffset.y)) updatedAny = true;
 
-                if (updatedAny)
+                if (updatedAny && !updateAll)
                     return 8;
             }
 
@@ -126,38 +130,39 @@ namespace Repetitionless.Data
         }
 
         // Returns the changed variable index in the struct, incrementing for each material
-        public static int UpdateCompressedLayerDataSingle(ref RepetitionlessLayerDataCompressed compressedData, RepetitionlessLayerData newData)
+        // By default returns on the first changed value
+        public static int UpdateCompressedLayerData(ref RepetitionlessLayerDataCompressed compressedData, RepetitionlessLayerData newData, bool updateAll = false)
         {
-            int baseMaterialChangedIndex = UpdateCompressedMaterialDataSingle(ref compressedData.BaseMaterialData, newData.BaseMaterialData);
-            if (baseMaterialChangedIndex != -1) return baseMaterialChangedIndex;
+            int baseMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.BaseMaterialData, newData.BaseMaterialData, updateAll);
+            if (baseMaterialChangedIndex != -1 && !updateAll) return baseMaterialChangedIndex;
 
-            int farMaterialChangedIndex = UpdateCompressedMaterialDataSingle(ref compressedData.FarMaterialData, newData.FarMaterialData);
-            if (farMaterialChangedIndex != -1) return farMaterialChangedIndex + COMPRESSED_MATERIAL_VARIABLES_COUNT;
+            int farMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.FarMaterialData, newData.FarMaterialData, updateAll);
+            if (farMaterialChangedIndex != -1 && !updateAll) return farMaterialChangedIndex + COMPRESSED_MATERIAL_VARIABLES_COUNT;
 
-            int blendMaterialChangedIndex = UpdateCompressedMaterialDataSingle(ref compressedData.BlendMaterialData, newData.BlendMaterialData);
-            if (blendMaterialChangedIndex != -1) return blendMaterialChangedIndex + COMPRESSED_MATERIAL_VARIABLES_COUNT * 2;
+            int blendMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.BlendMaterialData, newData.BlendMaterialData, updateAll);
+            if (blendMaterialChangedIndex != -1 && !updateAll) return blendMaterialChangedIndex + COMPRESSED_MATERIAL_VARIABLES_COUNT * 2;
 
             int startingChangedIndex = COMPRESSED_MATERIAL_VARIABLES_COUNT * 3;
 
-            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.x, newData.DistanceBlendEnabled ? 1.0f : 0.0f)) return startingChangedIndex + 0;
-            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.y, (int)newData.DistanceBlendMode))             return startingChangedIndex + 0;
-            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.z, newData.DistanceBlendMinMax.x))              return startingChangedIndex + 0;
-            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.w, newData.DistanceBlendMinMax.y))              return startingChangedIndex + 0;
+            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.x, newData.DistanceBlendEnabled ? 1.0f : 0.0f) && !updateAll) return startingChangedIndex + 0;
+            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.y, (int)newData.DistanceBlendMode) && !updateAll)             return startingChangedIndex + 0;
+            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.z, newData.DistanceBlendMinMax.x) && !updateAll)              return startingChangedIndex + 0;
+            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.w, newData.DistanceBlendMinMax.y) && !updateAll)              return startingChangedIndex + 0;
 
-            if (UpdateGenericIfChanged<Vector4>(ref compressedData.BlendMaskDistanceTO, newData.BlendMaskDistanceTO)) return startingChangedIndex + 1;
+            if (UpdateGenericIfChanged<Vector4>(ref compressedData.BlendMaskDistanceTO, newData.BlendMaskDistanceTO) && !updateAll) return startingChangedIndex + 1;
 
             if (UpdateBoolsIfChanged(ref compressedData.MaterialBlendSettings.x,
                 newData.MaterialBlendEnabled,
                 newData.OverrideDistanceBlend,
                 newData.OverrideDistanceBlendTO
-            )) return startingChangedIndex + 2;
+            ) && !updateAll) return startingChangedIndex + 2;
 
-            if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendSettings.y, (int)newData.BlendMaskType)) return startingChangedIndex + 2;
-            if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendSettings.z, newData.BlendMaskOpacity))   return startingChangedIndex + 2;
-            if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendSettings.w, newData.BlendMaskStrength))  return startingChangedIndex + 2;
+            if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendSettings.y, (int)newData.BlendMaskType) && !updateAll) return startingChangedIndex + 2;
+            if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendSettings.z, newData.BlendMaskOpacity) && !updateAll)   return startingChangedIndex + 2;
+            if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendSettings.w, newData.BlendMaskStrength) && !updateAll)  return startingChangedIndex + 2;
 
             if (newData.BlendMaskType == ETextureType.CustomTexture) {
-                if (UpdateGenericIfChanged<Vector4>(ref compressedData.MaterialBlendMaskTO, newData.BlendMaskTextureTO)) return startingChangedIndex + 3;
+                if (UpdateGenericIfChanged<Vector4>(ref compressedData.MaterialBlendMaskTO, newData.BlendMaskTextureTO) && !updateAll) return startingChangedIndex + 3;
             } else {
                 // All of these should be updated, return if changed afterwards
                 bool updatedAny = false;
@@ -167,7 +172,7 @@ namespace Repetitionless.Data
                 if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendMaskTO.z, newData.BlendMaskNoiseOffset.x)) updatedAny = true;
                 if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendMaskTO.w, newData.BlendMaskNoiseOffset.y)) updatedAny = true;
 
-                if (updatedAny)
+                if (updatedAny && !updateAll)
                     return startingChangedIndex + 3;
             }
 

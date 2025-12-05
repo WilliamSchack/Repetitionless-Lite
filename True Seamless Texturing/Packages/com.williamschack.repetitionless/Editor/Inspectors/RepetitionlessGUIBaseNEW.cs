@@ -221,7 +221,6 @@ namespace Repetitionless.Inspectors
 
         protected virtual void UpdateMaterialPropertiesTexture(int layerIndex = 0)
         {
-            Debug.Log("Updating...");
             MaterialProperty textureProperty = FindProperty("_PropertiesTexture");
             _materialProperties.UpdateMaterialTexture(textureProperty, layerIndex);
         }
@@ -411,11 +410,10 @@ namespace Repetitionless.Inspectors
                 _dataManager.CreateAsset(_materialProperties, PROPERTIES_HANDLER_FILE_NAME);
                 _materialProperties.Init(1);
                 _materialProperties.SetDataManager(_dataManager);
-
-                UpdateMaterialPropertiesTexture(0);
-
                 SaveMaterialProperties();
                 AssetDatabase.SaveAssetIfDirty(_materialProperties);
+
+                UpdateMaterialPropertiesTexture(0);
             }
 
 
