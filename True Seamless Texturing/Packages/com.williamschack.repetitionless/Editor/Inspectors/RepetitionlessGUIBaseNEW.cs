@@ -218,10 +218,8 @@ namespace Repetitionless.Inspectors
 
             EditorGUI.BeginChangeCheck();
             drawPropertyAction();
-            if (EditorGUI.EndChangeCheck()) {
-                Debug.Log("UPDATING MATERIAL PROPERTY TEXTURE");
+            if (EditorGUI.EndChangeCheck())
                 UpdateMaterialPropertiesTexture();
-            }
         }
 
         /// <summary>

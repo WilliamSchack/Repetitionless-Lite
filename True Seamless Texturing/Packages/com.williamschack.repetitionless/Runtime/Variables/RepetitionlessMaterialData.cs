@@ -6,54 +6,52 @@ namespace Repetitionless.Variables
     public class RepetitionlessMaterialData
     {
         // Features
-        public bool NoiseEnabled;
-        public bool RandomiseNoiseScaling;
-        public bool RandomiseNoiseRotation;
-        public bool SmoothnessEnabled;
-        public bool VariationEnabled;
-        public bool PackedTexture;
-        public bool EmissionEnabled;
+        public bool NoiseEnabled = true;
+        public bool RandomiseNoiseScaling = true;
+        public bool RandomiseNoiseRotation = true;
+        public bool SmoothnessEnabled = true;
+        public bool VariationEnabled = false;
+        public bool PackedTexture = false;
+        public bool EmissionEnabled = false;
 
         // Assigned Textures
-        public bool AlbedoAssigned;
-        public bool MetallicAssigned;
-        public bool SmoothnessAssigned;
-        public bool NormalAssigned;
-        public bool OcclussionAssigned;
-        public bool EmissionAssigned;
-        public bool VariationAssigned;
+        public bool AlbedoAssigned = false;
+        public bool MetallicAssigned = false;
+        public bool SmoothnessAssigned = false;
+        public bool NormalAssigned = false;
+        public bool OcclussionAssigned = false;
+        public bool EmissionAssigned = false;
+        public bool VariationAssigned = false;
 
         // Material Properties
-        public Color AlbedoTint;
-        public Color EmissionColour;
+        public Color AlbedoTint = Color.white;
+        public Color EmissionColour = Color.black;
 
-        public Vector4 TilingOffset;
+        public Vector4 TilingOffset = new Vector4(1, 1, 0, 0);
 
-        public float Metallic;
-        public float SmoothnessRoughness;
-        public float NormalScale;
-        public float OcclussionStrength;
-        public float AlphaClipping;
+        public float Metallic = 0;
+        public float SmoothnessRoughness = 0.5f;
+        public float NormalScale = 1.0f;
+        public float OcclussionStrength = 1.0f;
+        public float AlphaClipping = 0.5f;
 
         // Noise Settings
-        public float NoiseAngleOffset;
-        public float NoiseScale;
-        public Vector2 NoiseScalingMinMax;
-        public Vector2 NoiseRandomiseRotationMinMax;
+        public float NoiseAngleOffset = 2.0f;
+        public float NoiseScale = 5.0f;
+        public Vector2 NoiseScalingMinMax = new Vector2(0.8f, 1.2f);
+        public Vector2 NoiseRandomiseRotationMinMax = new Vector2(0, 360);
 
         // Variation Settings
-        public ETextureType VariationMode;
-        public float VariationOpacity;
-        public float VariationBrightness;
-        public float VariationSmallScale;
-        public float VariationMediumScale;
-        public float VariationLargeScale;
-        public float VariationNoiseStrength;
-        public float VariationNoiseScale;
-        public Vector2 VariationNoiseOffset;
-        public Vector4 VariationTextureTO;
-
-        
+        public ETextureType VariationMode = ETextureType.CustomTexture;
+        public float VariationOpacity = 0.5f;
+        public float VariationBrightness = 0.3f;
+        public float VariationSmallScale = 2.0f;
+        public float VariationMediumScale = 1.0f;
+        public float VariationLargeScale = 0.5f;
+        public float VariationNoiseStrength = 0.4f;
+        public float VariationNoiseScale = 100.0f;
+        public Vector2 VariationNoiseOffset = Vector2.zero;
+        public Vector4 VariationTextureTO = new Vector4(5, 5, 0, 0);
     }
 
     public struct RepetitionlessMaterialDataCompressed

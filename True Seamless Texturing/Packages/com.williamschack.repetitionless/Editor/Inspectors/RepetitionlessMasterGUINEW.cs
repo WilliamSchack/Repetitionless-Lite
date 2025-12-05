@@ -4,7 +4,7 @@ using UnityEditor;
 
 namespace Repetitionless.Inspectors
 {
-    public class RepetitionlessMasterGUINEW : RepetitionlessPackedArrayGUIBase
+    public class RepetitionlessMasterGUINEW : RepetitionlessGUIBaseNEW
     {
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
         {

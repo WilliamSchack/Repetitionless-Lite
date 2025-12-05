@@ -6,26 +6,26 @@ namespace Repetitionless.Variables
     public class RepetitionlessLayerData
     {
         // Materials
-        [SerializeField] public RepetitionlessMaterialData BaseMaterialData;
-        [SerializeField] public RepetitionlessMaterialData FarMaterialData;
-        [SerializeField] public RepetitionlessMaterialData BlendMaterialData;
+        [SerializeField] public RepetitionlessMaterialData BaseMaterialData = new RepetitionlessMaterialData();
+        [SerializeField] public RepetitionlessMaterialData FarMaterialData = new RepetitionlessMaterialData();
+        [SerializeField] public RepetitionlessMaterialData BlendMaterialData = new RepetitionlessMaterialData();
 
         // Distance Blend Settings
-        public bool DistanceBlendEnabled;
-        public EDistanceBlendMode DistanceBlendMode;
-        public Vector2 DistanceBlendMinMax;
+        public bool DistanceBlendEnabled = false;
+        public EDistanceBlendMode DistanceBlendMode = EDistanceBlendMode.TilingOffset;
+        public Vector2 DistanceBlendMinMax = new Vector2(100, 150);
 
         // Blend Material Settings
-        public bool MaterialBlendEnabled;
-        public bool OverrideDistanceBlend;
-        public bool OverrideDistanceBlendTO;
-        public ETextureType BlendMaskType;
-        public Vector4 BlendMaskDistanceTO;
-        public float BlendMaskOpacity;
-        public float BlendMaskStrength;
-        public float BlendMaskNoiseScale;
-        public Vector2 BlendMaskNoiseOffset;
-        public Vector4 BlendMaskTextureTO; // Not sure if its being used look into it
+        public bool MaterialBlendEnabled = false;
+        public bool OverrideDistanceBlend = true;
+        public bool OverrideDistanceBlendTO = true;
+        public ETextureType BlendMaskType = ETextureType.PerlinNoise;
+        public Vector4 BlendMaskDistanceTO = new Vector4(1, 1, 0, 0);
+        public float BlendMaskOpacity = 1.0f;
+        public float BlendMaskStrength = 1.0f;
+        public float BlendMaskNoiseScale = 10.0f;
+        public Vector2 BlendMaskNoiseOffset = Vector3.zero;
+        public Vector4 BlendMaskTextureTO = new Vector4(1, 1, 0, 0);
     }
 
     public struct RepetitionlessLayerDataCompressed

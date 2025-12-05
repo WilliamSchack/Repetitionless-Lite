@@ -11,13 +11,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e4185d91801be3a5b5864a95014f1a4, type: 3}
   m_Name: Properties
-  m_EditorClassIdentifier: testing::RepetitionlessMaterialDataSO
+  m_EditorClassIdentifier: com.williamschack.Repetitionless.Editor::Repetitionless.Data.RepetitionlessMaterialDataSO
   Data:
     BaseMaterialData:
-      NoiseEnabled: 0
-      RandomiseNoiseScaling: 0
-      RandomiseRotation: 0
-      SmoothnessEnabled: 0
+      NoiseEnabled: 1
+      RandomiseNoiseScaling: 1
+      RandomiseNoiseRotation: 1
+      SmoothnessEnabled: 1
       VariationEnabled: 0
       PackedTexture: 0
       EmissionEnabled: 0
@@ -27,34 +27,34 @@ MonoBehaviour:
       NormalAssigned: 0
       OcclussionAssigned: 0
       EmissionAssigned: 0
-      VarationAssigned: 0
-      AlbedoTint: {r: 0, g: 0, b: 0, a: 0}
-      EmissionColour: {r: 0, g: 0, b: 0, a: 0}
-      TilingOffset: {x: 0, y: 0, z: 0, w: 0}
+      VariationAssigned: 0
+      AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
+      EmissionColour: {r: 0, g: 0, b: 0, a: 1}
+      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
       Metallic: 0
-      SmoothnessRoughness: 0.357
-      NormalScale: 0
-      OcclussionStrength: 0
-      AlphaClipping: 0
-      NoiseAngleOffset: 0
-      NoiseScale: 0
-      NoiseScalingMinMax: {x: 0, y: 0}
-      NoiseRandomiseRotationMinMax: {x: 0, y: 0}
-      VariationMode: 0
-      VariationOpacity: 0
-      VariationBrightness: 0
-      VariationSmallScale: 0
-      VariationMediumScale: 0
-      VariationLargeScale: 0
-      VariationNoiseStrength: 0
-      VariationNoiseScale: 0
+      SmoothnessRoughness: 0.5
+      NormalScale: 1
+      OcclussionStrength: 1
+      AlphaClipping: 0.5
+      NoiseAngleOffset: 2
+      NoiseScale: 5
+      NoiseScalingMinMax: {x: 0.8, y: 1.2}
+      NoiseRandomiseRotationMinMax: {x: 0, y: 360}
+      VariationMode: 2
+      VariationOpacity: 0.5
+      VariationBrightness: 0.3
+      VariationSmallScale: 2
+      VariationMediumScale: 1
+      VariationLargeScale: 0.5
+      VariationNoiseStrength: 0.4
+      VariationNoiseScale: 100
       VariationNoiseOffset: {x: 0, y: 0}
-      VariationTextureTO: {x: 0, y: 0, z: 0, w: 0}
+      VariationTextureTO: {x: 5, y: 5, z: 0, w: 0}
     FarMaterialData:
-      NoiseEnabled: 0
-      RandomiseNoiseScaling: 0
-      RandomiseRotation: 0
-      SmoothnessEnabled: 0
+      NoiseEnabled: 1
+      RandomiseNoiseScaling: 1
+      RandomiseNoiseRotation: 1
+      SmoothnessEnabled: 1
       VariationEnabled: 0
       PackedTexture: 0
       EmissionEnabled: 0
@@ -64,34 +64,34 @@ MonoBehaviour:
       NormalAssigned: 0
       OcclussionAssigned: 0
       EmissionAssigned: 0
-      VarationAssigned: 0
-      AlbedoTint: {r: 0, g: 0, b: 0, a: 0}
-      EmissionColour: {r: 0, g: 0, b: 0, a: 0}
-      TilingOffset: {x: 0, y: 0, z: 0, w: 0}
+      VariationAssigned: 0
+      AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
+      EmissionColour: {r: 0, g: 0, b: 0, a: 1}
+      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
       Metallic: 0
-      SmoothnessRoughness: 0
-      NormalScale: 0
-      OcclussionStrength: 0
-      AlphaClipping: 0
-      NoiseAngleOffset: 0
-      NoiseScale: 0
-      NoiseScalingMinMax: {x: 0, y: 0}
-      NoiseRandomiseRotationMinMax: {x: 0, y: 0}
-      VariationMode: 0
-      VariationOpacity: 0
-      VariationBrightness: 0
-      VariationSmallScale: 0
-      VariationMediumScale: 0
-      VariationLargeScale: 0
-      VariationNoiseStrength: 0
-      VariationNoiseScale: 0
+      SmoothnessRoughness: 0.5
+      NormalScale: 1
+      OcclussionStrength: 1
+      AlphaClipping: 0.5
+      NoiseAngleOffset: 2
+      NoiseScale: 5
+      NoiseScalingMinMax: {x: 0.8, y: 1.2}
+      NoiseRandomiseRotationMinMax: {x: 0, y: 360}
+      VariationMode: 2
+      VariationOpacity: 0.5
+      VariationBrightness: 0.3
+      VariationSmallScale: 2
+      VariationMediumScale: 1
+      VariationLargeScale: 0.5
+      VariationNoiseStrength: 0.4
+      VariationNoiseScale: 100
       VariationNoiseOffset: {x: 0, y: 0}
-      VariationTextureTO: {x: 0, y: 0, z: 0, w: 0}
+      VariationTextureTO: {x: 5, y: 5, z: 0, w: 0}
     BlendMaterialData:
-      NoiseEnabled: 0
-      RandomiseNoiseScaling: 0
-      RandomiseRotation: 0
-      SmoothnessEnabled: 0
+      NoiseEnabled: 1
+      RandomiseNoiseScaling: 1
+      RandomiseNoiseRotation: 1
+      SmoothnessEnabled: 1
       VariationEnabled: 0
       PackedTexture: 0
       EmissionEnabled: 0
@@ -101,39 +101,39 @@ MonoBehaviour:
       NormalAssigned: 0
       OcclussionAssigned: 0
       EmissionAssigned: 0
-      VarationAssigned: 0
-      AlbedoTint: {r: 0, g: 0, b: 0, a: 0}
-      EmissionColour: {r: 0, g: 0, b: 0, a: 0}
-      TilingOffset: {x: 0, y: 0, z: 0, w: 0}
+      VariationAssigned: 0
+      AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
+      EmissionColour: {r: 0, g: 0, b: 0, a: 1}
+      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
       Metallic: 0
-      SmoothnessRoughness: 0
-      NormalScale: 0
-      OcclussionStrength: 0
-      AlphaClipping: 0
-      NoiseAngleOffset: 0
-      NoiseScale: 0
-      NoiseScalingMinMax: {x: 0, y: 0}
-      NoiseRandomiseRotationMinMax: {x: 0, y: 0}
-      VariationMode: 0
-      VariationOpacity: 0
-      VariationBrightness: 0
-      VariationSmallScale: 0
-      VariationMediumScale: 0
-      VariationLargeScale: 0
-      VariationNoiseStrength: 0
-      VariationNoiseScale: 0
+      SmoothnessRoughness: 0.5
+      NormalScale: 1
+      OcclussionStrength: 1
+      AlphaClipping: 0.5
+      NoiseAngleOffset: 2
+      NoiseScale: 5
+      NoiseScalingMinMax: {x: 0.8, y: 1.2}
+      NoiseRandomiseRotationMinMax: {x: 0, y: 360}
+      VariationMode: 2
+      VariationOpacity: 0.5
+      VariationBrightness: 0.3
+      VariationSmallScale: 2
+      VariationMediumScale: 1
+      VariationLargeScale: 0.5
+      VariationNoiseStrength: 0.4
+      VariationNoiseScale: 100
       VariationNoiseOffset: {x: 0, y: 0}
-      VariationTextureTO: {x: 0, y: 0, z: 0, w: 0}
+      VariationTextureTO: {x: 5, y: 5, z: 0, w: 0}
     DistanceBlendEnabled: 0
     DistanceBlendMode: 0
-    DistanceBlendMinMax: {x: 0, y: 0}
+    DistanceBlendMinMax: {x: 100, y: 150}
     MaterialBlendEnabled: 0
-    OverrideDistanceBlend: 0
-    OverrideDistanceBlendTO: 0
+    OverrideDistanceBlend: 1
+    OverrideDistanceBlendTO: 1
     BlendMaskType: 0
-    BlendMaskDistanceTO: {x: 0, y: 0, z: 0, w: 0}
-    BlendMaskOpacity: 0
-    BlendMaskStrength: 0
-    BlendMaskNoiseScale: 0
+    BlendMaskDistanceTO: {x: 1, y: 1, z: 0, w: 0}
+    BlendMaskOpacity: 1
+    BlendMaskStrength: 1
+    BlendMaskNoiseScale: 10
     BlendMaskNoiseOffset: {x: 0, y: 0}
-    BlendMaskTextureTO: {x: 0, y: 0, z: 0, w: 0}
+    BlendMaskTextureTO: {x: 1, y: 1, z: 0, w: 0}
