@@ -127,6 +127,8 @@ namespace Repetitionless.TextureUtilities
             // Create render texture
             RenderTexture rt = new RenderTexture(resolution.x, resolution.y, 0);
             rt.enableRandomWrite = true;
+            rt.useMipMap = true;
+            rt.autoGenerateMips = true;
             rt.Create();
 
             // Assign data
@@ -163,7 +165,9 @@ namespace Repetitionless.TextureUtilities
             RenderTexture previousRT = RenderTexture.active;
             RenderTexture.active = rt;
 
-            Texture2D outTex = new Texture2D(resolution.x, resolution.y, TextureFormat.RGBA32, false);
+            Debug.Log(rt.sRGB);
+
+            Texture2D outTex = new Texture2D(resolution.x, resolution.y, TextureFormat.RGBA32, true, !rt.sRGB);
             outTex.ReadPixels(new Rect(0, 0, resolution.x, resolution.y), 0, 0);
             outTex.Apply();
 

@@ -21,21 +21,14 @@ float2 RotateUVDegrees(float2 UV, float2 Center, float Rotation)
     return UV;
 }
 
-float3 UnpackNormalMap(float4 PackedNormal, float Strength = 1.0)
+half3 UnpackNormalMap(float4 PackedNormal, float Strength = 1.0)
 {
-    float3 normal = float3(0.5, 0.5, 1);
-
-    // Check if the normal is assigned by checking if each xyz component of the PackedNormal is within a +-.002 range of the default normal
-    // (An unassigned normal value is roughly rgba(0.498..., 0.498..., 1, 1))
-    bool normalUnassigned = all(abs(PackedNormal.xyz - normal) < 0.002) && PackedNormal.w == 1;
-    if (normalUnassigned)
-        return normal;
-    
-    normal.xy = PackedNormal.wy * 2 - 1;
+    half3 normal;
+    normal.xy = PackedNormal.xy * 2 - 1;
     normal.xy *= Strength;
     normal.z = sqrt(1.0 - saturate(dot(normal.xy, normal.xy)));
 
-    return normal;
+    return normalize(normal);
 }
 
 #endif

@@ -383,16 +383,19 @@ namespace Repetitionless.Inspectors
 
             if (_dataManager.AssetExists(PROPERTIES_HANDLER_FILE_NAME)) {
                 _materialProperties = _dataManager.LoadAsset<RepetitionlessMaterialDataSO>(PROPERTIES_HANDLER_FILE_NAME);
+                _materialProperties.SetDataManager(_dataManager);
             } else {
                 _materialProperties = ScriptableObject.CreateInstance<RepetitionlessMaterialDataSO>();
                 _dataManager.CreateAsset(_materialProperties, PROPERTIES_HANDLER_FILE_NAME);
                 _materialProperties.Init(1);
+                _materialProperties.SetDataManager(_dataManager);
+
+                UpdateMaterialPropertiesTexture(0);
 
                 SaveMaterialProperties();
                 AssetDatabase.SaveAssetIfDirty(_materialProperties);
             }
 
-            _materialProperties.SetDataManager(_dataManager);
 
             // Texture Drawers
             _avTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(0, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, _materialCount);
@@ -762,14 +765,14 @@ namespace Repetitionless.Inspectors
 
                     // Repack the textures
                     if (currentData.PackedTexture) {
+                        // Use packed texture
+                        _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].NSOTextures[3].Texture, materialIndex, 3, true);
+                        _emTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].EMTextures[2].Texture, materialIndex, 2, true);
+                    } else {
                         // Use regular textures
                         _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].NSOTextures[1].Texture, materialIndex, 1, true);
                         _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].NSOTextures[2].Texture, materialIndex, 2, true);
                         _emTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].EMTextures[1].Texture, materialIndex, 1, true);
-                    } else {
-                        // Use packed texture
-                        _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].NSOTextures[3].Texture, materialIndex, 3, true);
-                        _emTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].EMTextures[2].Texture, materialIndex, 2, true);
                     }
                 }
             }
@@ -812,6 +815,8 @@ namespace Repetitionless.Inspectors
         {
             RepetitionlessMaterialData currentData = GetMaterialData(materialPrefix);
 
+            HandleAssignedTextures(materialPrefix, sectionIndex);
+
             // Albedo
             Rect albedoTintRect = DrawTexture(sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), $"_{materialPrefix}Albedo");
             DrawProperty(() => currentData.AlbedoTint = EditorGUI.ColorField(albedoTintRect, currentData.AlbedoTint));
@@ -853,7 +858,7 @@ namespace Repetitionless.Inspectors
             }
 
             // Emission
-            if (currentData.EmissionAssigned) {
+            if (currentData.EmissionEnabled) {
                 bool prevEmissionAssigned = currentData.EmissionAssigned;
 
                 // Change emission colour to white if texture assigned and texture is black

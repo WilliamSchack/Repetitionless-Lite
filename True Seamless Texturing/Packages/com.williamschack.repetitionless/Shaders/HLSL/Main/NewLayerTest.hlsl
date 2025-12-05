@@ -178,6 +178,7 @@ void SampleRepetitionlessLayerBase_float(
         );
     }
 
+    /*
     // ----------------------- Blend Material ------------------------- //
     if (samplingBlend) {
         float4 blendAlbedoColor = 1;
@@ -286,6 +287,7 @@ void SampleRepetitionlessLayerBase_float(
         occlussion = lerp(occlussion, blendOcclussion, lerpFactor);
         emissionColor = lerp(emissionColor, blendEmissionColor, lerpFactor);
     }
+        */
 
     // ----------------------- Output ------------------------- //
 

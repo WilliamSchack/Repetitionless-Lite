@@ -11,6 +11,7 @@
 #include "../Noise/Keijiro/ClassicNoise2D.hlsl"
 
 #include "../Utilities/BooleanCompression.hlsl"
+#include "../Utilities/TextureUtilities.hlsl"
 
 void GetRepetitionlessMaterialColorTest(
     // General Settings
@@ -147,9 +148,9 @@ void GetRepetitionlessMaterialColorTest(
     if (samplingAV)  avTexture  = SampleRepetitionlessArrayTexture(AVTextures, AssignedAVTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
     if (samplingNSO) nsoTexture = SampleRepetitionlessArrayTexture(NSOTextures, AssignedNSOTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
     if (samplingEM)  emTexture  = SampleRepetitionlessArrayTexture(EMTextures, AssignedEMTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
-    
+
     // Albedo
-    AlbedoColorOut = float4(avTexture.rgb, 1);
+    AlbedoColorOut = albedoAssigned ? float4(avTexture.rgb, 1) : 1;
     AlbedoColorOut *= float4(MaterialData.AlbedoTint, 1);
 
     // Doesnt do anything at the moment since alpha is forced to 1
@@ -163,13 +164,11 @@ void GetRepetitionlessMaterialColorTest(
     
     // Normal Map
     if (normalAssigned) {
-        NormalVectorOut = nsoTexture.rgb;
-
-        // Hacky fix to check if normal is assigned, values set in TextureUtilities::UnpackNormalMap. If not assigned, used default tangent normal vector
-        // Implemented to check for terrain data normal maps as there is no variable to tell if its assigned or not
-        if (NormalVectorOut.x == 0.5 && NormalVectorOut.y == 0.5 && NormalVectorOut.z == 1) {
-            NormalVectorOut = TangentNormalVector;
-        }
+        NormalVectorOut = UnpackNormalMap(float4(nsoTexture.rg, 1, 1), normalScale);
+        //NormalVectorOut.xy = nsoTexture.rg * 2 - 1;
+        //NormalVectorOut.xy *= normalScale;
+        //NormalVectorOut.z = sqrt(1.0 - saturate(dot(NormalVectorOut.xy, NormalVectorOut.xy)));
+        //NormalVectorOut = normalize(NormalVectorOut);
     } else {
         NormalVectorOut = TangentNormalVector;
     }

@@ -72,7 +72,7 @@ inline half4 SampleTexture(int channelIndex = 0, float2 uv = 0)
         case 3: colour = Tex3[uv]; break;
     }
 
-    if (Data[channelIndex].SRGB)
+    if (Data[channelIndex].SRGB == 1 && Data[channelIndex].NormalMap != 1)
         colour = LinearToSRGB(colour);
 
     return colour;
@@ -99,8 +99,8 @@ void CSMain (uint3 id : SV_DispatchThreadID)
         TextureData data = Data[t];
 
         if (data.NormalMap == 1) {
-            value = half4(UnpackNormal(value), 1);
-            value.xy = value.xy * 0.5 + 0.5;
+            half3 unpackedNormal = UnpackNormal(value);
+            value.xy = unpackedNormal.xy * 0.5 + 0.5;
         }
 
         for (uint c = 0; c < data.ChannelsUsedAmount; c++) {

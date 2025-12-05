@@ -37,7 +37,6 @@ float4 SampleRepetitionlessTexture(
 
 // Samples the base and edge colour if required and lerps them together
 // Uses a texture array
-// Normal maps do not work properly in an array, dont allow them
 float4 SampleRepetitionlessArrayTexture(
     UnityTexture2DArray TextureArray,
     int AssignedTextures,
