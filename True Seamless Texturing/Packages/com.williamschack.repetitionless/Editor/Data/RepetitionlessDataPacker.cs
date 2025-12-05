@@ -139,10 +139,10 @@ namespace Repetitionless.Data
 
             int startingChangedIndex = COMPRESSED_MATERIAL_VARIABLES_COUNT * 3;
 
-            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.x, newData.DistanceBlendEnabled ? 1 : 0)) return startingChangedIndex + 0;
-            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.y, (int)newData.DistanceBlendMode))       return startingChangedIndex + 0;
-            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.z, newData.DistanceBlendMinMax.x))        return startingChangedIndex + 0;
-            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.w, newData.DistanceBlendMinMax.y))        return startingChangedIndex + 0;
+            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.x, newData.DistanceBlendEnabled ? 1.0f : 0.0f)) return startingChangedIndex + 0;
+            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.y, (int)newData.DistanceBlendMode))             return startingChangedIndex + 0;
+            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.z, newData.DistanceBlendMinMax.x))              return startingChangedIndex + 0;
+            if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.w, newData.DistanceBlendMinMax.y))              return startingChangedIndex + 0;
 
             if (UpdateGenericIfChanged<Vector4>(ref compressedData.BlendMaskDistanceTO, newData.BlendMaskDistanceTO)) return startingChangedIndex + 1;
 
@@ -195,14 +195,14 @@ namespace Repetitionless.Data
         {
             int materialFieldIndex = compressedFieldIndex % COMPRESSED_MATERIAL_VARIABLES_COUNT;
 
-            Color? baseMaterialFieldColour = GetMaterialFieldColour(compressedData.BaseMaterialData, materialFieldIndex);
-            if (baseMaterialFieldColour.HasValue) return baseMaterialFieldColour;
+            if (compressedFieldIndex < COMPRESSED_MATERIAL_VARIABLES_COUNT)
+                return GetMaterialFieldColour(compressedData.BaseMaterialData, materialFieldIndex);
 
-            Color? farMaterialFieldColour = GetMaterialFieldColour(compressedData.FarMaterialData, materialFieldIndex);
-            if (farMaterialFieldColour.HasValue) return farMaterialFieldColour;
+            if (compressedFieldIndex < COMPRESSED_MATERIAL_VARIABLES_COUNT * 2)
+                return GetMaterialFieldColour(compressedData.FarMaterialData, materialFieldIndex);
 
-            Color? blendMaterialFieldColour = GetMaterialFieldColour(compressedData.BlendMaterialData, materialFieldIndex);
-            if (blendMaterialFieldColour.HasValue) return blendMaterialFieldColour;
+            if (compressedFieldIndex < COMPRESSED_MATERIAL_VARIABLES_COUNT * 3)
+                return GetMaterialFieldColour(compressedData.BlendMaterialData, materialFieldIndex);
 
             switch (materialFieldIndex) {
                 case 0: return Vector4ToColour(compressedData.DistanceBlendSettings);

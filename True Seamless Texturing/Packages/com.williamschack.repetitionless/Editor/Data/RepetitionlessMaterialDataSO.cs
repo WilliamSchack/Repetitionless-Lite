@@ -64,15 +64,23 @@ namespace Repetitionless.Data
                 // Load and modify the texture
                 texture = _dataManager.LoadAsset<Texture2D>(TEXTURE_ASSET_NAME);
                 
-                int compressedFieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedLayerDataSingle(ref _dataCompressed, Data);
-                Color? dataColour = GetDataColour(compressedFieldChangedIndex);
-                
-                // The value has not changed
-                if (!dataColour.HasValue)
-                    return;
+                for (int i = 0; i < RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT; i++) {
+                    int fieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedLayerDataSingle(ref _dataCompressed, Data);
 
-                texture.SetPixel(compressedFieldChangedIndex, layerIndex, dataColour.Value);
-                texture.Apply();
+                    if (fieldChangedIndex == -1)
+                        break;
+
+                    Color? dataColour = GetDataColour(fieldChangedIndex);
+                
+                    // The value has not changed
+                    if (!dataColour.HasValue)
+                        continue;
+
+                    Debug.Log($"Changing index {fieldChangedIndex} to {dataColour.Value}");
+
+                    texture.SetPixel(fieldChangedIndex, layerIndex, dataColour.Value);
+                    texture.Apply();
+                }
             } else {
                 // Create a new texture
                 texture = new Texture2D(RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT, _layerCount, DATA_TEXTURE_FORMAT, false);

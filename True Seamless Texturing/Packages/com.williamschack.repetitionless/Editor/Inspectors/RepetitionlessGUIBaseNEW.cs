@@ -174,6 +174,28 @@ namespace Repetitionless.Inspectors
             return cachedProperties;
         }
 
+        private string GetMaterialPrefix(int sectionIndex)
+        {
+            switch (sectionIndex) {
+                case 0: return "Base";
+                case 1: return "Far";
+                case 2: return "Blend";
+            }
+
+            return "Base";
+        }
+
+        private int GetSectionIndex(string materialPrefix)
+        {
+            switch (materialPrefix) {
+                case "Base":  return 0;
+                case "Far":   return 0;
+                case "Blend": return 0;
+            }
+            
+            return 0;
+        }
+
         protected RepetitionlessLayerData GetLayerData()
         {
             return _materialProperties.Data;
@@ -193,18 +215,13 @@ namespace Repetitionless.Inspectors
 
         protected RepetitionlessMaterialData GetMaterialData(string materialPrefix)
         {
-            int sectionIndex = 0;
-            switch (materialPrefix) {
-              //case "Base":  sectionIndex = 0; break;
-                case "Far":   sectionIndex = 1; break;
-                case "Blend": sectionIndex = 2; break;
-            }
-
+            int sectionIndex = GetSectionIndex(materialPrefix);
             return GetMaterialData(sectionIndex);
         }
 
         protected virtual void UpdateMaterialPropertiesTexture(int layerIndex = 0)
         {
+            Debug.Log("Updating...");
             MaterialProperty textureProperty = FindProperty("_PropertiesTexture");
             _materialProperties.UpdateMaterialTexture(textureProperty, layerIndex);
         }
@@ -252,9 +269,14 @@ namespace Repetitionless.Inspectors
             EditorGUI.BeginChangeCheck();
             textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, sectionIndex, textureDrawerDetails.ChannelIndex, content);
 
-            // If packed texture was changed, manually update texture in emission array aswell
-            if (EditorGUI.EndChangeCheck() && currentData.PackedTexture && textureIndex == 1) {
-                _emTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, 1)[3].Texture, 0, 2);
+            if (EditorGUI.EndChangeCheck()) {
+                // Rehandle assigned textures and update the properties
+                string materialPrefix = GetMaterialPrefix(sectionIndex);
+                HandleAssignedTextures(materialPrefix, sectionIndex);
+
+                // If packed texture was changed, manually update texture in emission array aswell
+                if (currentData.PackedTexture && textureIndex == 1)
+                    _emTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, 1)[3].Texture, 0, 2);
             }
 
             // Return rect after texture field
@@ -753,26 +775,21 @@ namespace Repetitionless.Inspectors
 
                 // If packed texture was changed, update the texture data
                 if (prevPackedTexture != currentData.PackedTexture) {
-                    int materialIndex = 0;
-                    switch(materialPrefix) {
-                        case "Base":  materialIndex = 0; break;
-                        case "Far":   materialIndex = 1; break;
-                        case "Blend": materialIndex = 2; break;
-                    }
+                    int sectionIndex = GetSectionIndex(materialPrefix);
 
-                    _textureData.SetPackedTextureEnabled(materialIndex, currentData.PackedTexture);
+                    _textureData.SetPackedTextureEnabled(sectionIndex, currentData.PackedTexture);
                     SaveTextureData();
 
                     // Repack the textures
                     if (currentData.PackedTexture) {
                         // Use packed texture
-                        _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].NSOTextures[3].Texture, materialIndex, 3, true);
-                        _emTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].EMTextures[2].Texture, materialIndex, 2, true);
+                        _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[sectionIndex].NSOTextures[3].Texture, sectionIndex, 3, true);
+                        _emTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[sectionIndex].EMTextures[2].Texture, sectionIndex, 2, true);
                     } else {
                         // Use regular textures
-                        _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].NSOTextures[1].Texture, materialIndex, 1, true);
-                        _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].NSOTextures[2].Texture, materialIndex, 2, true);
-                        _emTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[materialIndex].EMTextures[1].Texture, materialIndex, 1, true);
+                        _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[sectionIndex].NSOTextures[1].Texture, sectionIndex, 1, true);
+                        _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[sectionIndex].NSOTextures[2].Texture, sectionIndex, 2, true);
+                        _emTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[sectionIndex].EMTextures[1].Texture, sectionIndex, 1, true);
                     }
                 }
             }
@@ -815,7 +832,7 @@ namespace Repetitionless.Inspectors
         {
             RepetitionlessMaterialData currentData = GetMaterialData(materialPrefix);
 
-            HandleAssignedTextures(materialPrefix, sectionIndex);
+            //HandleAssignedTextures(materialPrefix, sectionIndex);
 
             // Albedo
             Rect albedoTintRect = DrawTexture(sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), $"_{materialPrefix}Albedo");

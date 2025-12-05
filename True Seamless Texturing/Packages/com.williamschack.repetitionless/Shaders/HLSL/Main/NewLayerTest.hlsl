@@ -93,7 +93,7 @@ void SampleRepetitionlessLayerBase_float(
     half4 materialBlendSettings = PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0));
     half4 materialBlendMaskTO   = PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0));
 
-    bool  distanceBlendEnabled = distanceBlendSettings.x == 1 ? true : false;
+    bool  distanceBlendEnabled = distanceBlendSettings.x > 0.99 ? true : false;
     int   distanceBlendMode    = distanceBlendSettings.y;
     half2 distanceBlendMinMax  = distanceBlendSettings.zw;
 
