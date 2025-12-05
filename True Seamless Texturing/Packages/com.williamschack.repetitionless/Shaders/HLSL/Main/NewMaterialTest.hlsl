@@ -163,15 +163,7 @@ void GetRepetitionlessMaterialColorTest(
         AlbedoColorOut = lerp(AlbedoColorOut, variationColor * AlbedoColorOut, variationOpacity);
     
     // Normal Map
-    if (normalAssigned) {
-        NormalVectorOut = UnpackNormalMap(float4(nsoTexture.rg, 1, 1), normalScale);
-        //NormalVectorOut.xy = nsoTexture.rg * 2 - 1;
-        //NormalVectorOut.xy *= normalScale;
-        //NormalVectorOut.z = sqrt(1.0 - saturate(dot(NormalVectorOut.xy, NormalVectorOut.xy)));
-        //NormalVectorOut = normalize(NormalVectorOut);
-    } else {
-        NormalVectorOut = TangentNormalVector;
-    }
+    NormalVectorOut = normalAssigned ? UnpackNormalMap(float4(nsoTexture.rg, 1, 1), normalScale) : TangentNormalVector;
     
     if (packedTexture) {
         float4 packedTextureColor = float4(emTexture.a, nsoTexture.a, 0, nsoTexture.b);
