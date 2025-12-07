@@ -369,7 +369,18 @@ namespace Repetitionless.GUIUtilities
 
                 Vector2Int newArrayResolution;
                 if (_array != null && !channelCount1AndNotChanged) newArrayResolution = new Vector2Int(_array.width, _array.height);
-                else newArrayResolution = new Vector2Int(newTexture.width, newTexture.height);
+                else if (newTexture != null) newArrayResolution = new Vector2Int(newTexture.width, newTexture.height);
+                else {
+                    // Get the first assigned texture resolution
+                    newArrayResolution = Vector2Int.one;
+                    for (int i = 0; i < _getLayerChannelDataFunc(index).Length; i++) {
+                        Texture2D currentTexture = _getLayerChannelDataFunc(index)[i].Texture;
+                        if (currentTexture != null) {
+                            newArrayResolution = new Vector2Int(currentTexture.width, currentTexture.height);
+                            break;
+                        }
+                    }
+                }
 
                 for (int i = 0; i < clonedTextureData.Length; i++) {
                     Texture2D texture = clonedTextureData[i].Texture;

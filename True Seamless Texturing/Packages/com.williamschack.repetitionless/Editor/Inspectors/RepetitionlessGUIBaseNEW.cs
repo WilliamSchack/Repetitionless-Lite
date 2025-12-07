@@ -988,14 +988,17 @@ namespace Repetitionless.Inspectors
                         textureData.AVTextures[1].Texture = null;
 
                     HandleAssignedTextures(materialPrefix, sectionIndex);
+                    SaveTextureData();
                 }
 
                 // If was texture, remove it from the array
                 else if (prevVariationMode == ETextureType.CustomTexture) {
                     textureData.AVTextures[1].Disabled = true;
+                    SaveTextureData();
 
                     if (textureData.AVTextures[1].Texture != null)
                         _avTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, sectionIndex)[1].Texture, sectionIndex, 1, true);
+
                 }
             }
 
