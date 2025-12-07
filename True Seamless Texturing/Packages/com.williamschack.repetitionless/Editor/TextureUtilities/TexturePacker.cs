@@ -165,8 +165,6 @@ namespace Repetitionless.TextureUtilities
             RenderTexture previousRT = RenderTexture.active;
             RenderTexture.active = rt;
 
-            Debug.Log(rt.sRGB);
-
             Texture2D outTex = new Texture2D(resolution.x, resolution.y, TextureFormat.RGBA32, true, !rt.sRGB);
             outTex.ReadPixels(new Rect(0, 0, resolution.x, resolution.y), 0, 0);
             outTex.Apply();

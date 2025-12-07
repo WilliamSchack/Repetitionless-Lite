@@ -271,15 +271,13 @@ namespace Repetitionless.Inspectors
             textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, sectionIndex, textureDrawerDetails.ChannelIndex, content);
 
             if (EditorGUI.EndChangeCheck()) {
-
                 // Rehandle assigned textures and update the properties
                 string materialPrefix = GetMaterialPrefix(sectionIndex);
                 HandleAssignedTextures(materialPrefix, sectionIndex);
 
                 // If packed texture was changed, manually update texture in emission array aswell
                 if (currentData.PackedTexture && textureIndex == 1)
-                    _emTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, 1)[3].Texture, 0, 2);
-
+                    _emTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(1, sectionIndex)[3].Texture, 0, 2, true);
             }
 
             // Return rect after texture field
@@ -967,7 +965,28 @@ namespace Repetitionless.Inspectors
             RepetitionlessMaterialData currentData = GetMaterialData(sectionIndex);
 
             // Variation Mode
+            ETextureType prevVariationMode = currentData.VariationMode;
+            EditorGUI.BeginChangeCheck();
             DrawProperty(() => currentData.VariationMode = (ETextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Variation Mode", "Using a custom texture can cause visible tiling"), currentData.VariationMode));
+            if (EditorGUI.EndChangeCheck() && currentData.VariationMode != prevVariationMode) {
+                ref RepetitionlessTextureDataSO.MaterialTextureData textureData = ref _textureData.MaterialsTextureData[sectionIndex];
+
+                // If enabling texture, add it to the array
+                if (currentData.VariationMode == ETextureType.CustomTexture) {
+                    textureData.AVTextures[1].Disabled = false;
+                    bool textureAdded = _avTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, sectionIndex)[1].Texture, sectionIndex, 1, true).Item2;
+
+                    if (!textureAdded) {
+                        textureData.AVTextures[1].Texture = null;
+                    }
+                }
+
+                // If was texture, remove it from the array
+                else if (prevVariationMode == ETextureType.CustomTexture) {
+                    textureData.AVTextures[1].Disabled = true;
+                    _avTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, sectionIndex)[1].Texture, sectionIndex, 1, true);
+                }
+            }
 
             // Opacity
             DrawProperty(() => currentData.VariationOpacity = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Opacity", "Transparency of the variation"), currentData.VariationOpacity, 0, 1));
