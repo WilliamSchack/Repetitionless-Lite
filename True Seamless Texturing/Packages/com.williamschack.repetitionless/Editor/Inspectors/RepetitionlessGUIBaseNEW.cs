@@ -974,17 +974,22 @@ namespace Repetitionless.Inspectors
                 // If enabling texture, add it to the array
                 if (currentData.VariationMode == ETextureType.CustomTexture) {
                     textureData.AVTextures[1].Disabled = false;
-                    bool textureAdded = _avTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, sectionIndex)[1].Texture, sectionIndex, 1, true).Item2;
 
-                    if (!textureAdded) {
-                        textureData.AVTextures[1].Texture = null;
+                    if (textureData.AVTextures[1].Texture != null) {
+                        bool textureAdded = _avTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, sectionIndex)[1].Texture, sectionIndex, 1, true).Item2;
+
+                        if (!textureAdded) {
+                            textureData.AVTextures[1].Texture = null;
+                        }   
                     }
                 }
 
                 // If was texture, remove it from the array
                 else if (prevVariationMode == ETextureType.CustomTexture) {
                     textureData.AVTextures[1].Disabled = true;
-                    _avTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, sectionIndex)[1].Texture, sectionIndex, 1, true);
+
+                    if (textureData.AVTextures[1].Texture != null)
+                        _avTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, sectionIndex)[1].Texture, sectionIndex, 1, true);
                 }
             }
 

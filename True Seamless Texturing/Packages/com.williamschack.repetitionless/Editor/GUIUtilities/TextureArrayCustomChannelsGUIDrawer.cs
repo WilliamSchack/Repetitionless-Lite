@@ -1,12 +1,11 @@
-// ---------------------------------------------------
-// | Script created by me taken from my other asset: |
-// | Texture Array Essentials (https://u3d.as/3s4d)  |
-// ---------------------------------------------------
+// ---------------------------------------------------------------
+// | A modified version of the array drawer from my other asset: |
+// | Texture Array Essentials (https://u3d.as/3s4d)              |
+// ---------------------------------------------------------------
 
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
 using UnityEngine;
 using UnityEditor;
 
