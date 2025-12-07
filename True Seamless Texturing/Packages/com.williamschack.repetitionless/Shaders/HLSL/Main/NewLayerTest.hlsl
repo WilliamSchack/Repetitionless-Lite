@@ -140,6 +140,10 @@ void SampleRepetitionlessLayerBase_float(
 
     // ----------------------- Get Materials To Sample ------------------------- //
 
+    int baseLayerIndex = LayerIndex * 3 + 0;
+    int farLayerIndex = LayerIndex * 3 + 1;
+    int blendLayerIndex = LayerIndex * 3 + 2;
+
     // At most two materials will be sampled when blending between
     // Get the material(s) to be sampled
     bool samplingBase = false;
@@ -172,7 +176,7 @@ void SampleRepetitionlessLayerBase_float(
     if (samplingBase) {
         GetRepetitionlessMaterialColorTest(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-            LayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+            baseLayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
             baseMaterialData,
             albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor
         );
@@ -189,7 +193,7 @@ void SampleRepetitionlessLayerBase_float(
 
         GetRepetitionlessMaterialColorTest(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-            LayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+            blendLayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
             blendMaterialData,
             blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
         );
@@ -222,7 +226,7 @@ void SampleRepetitionlessLayerBase_float(
                 
                 GetRepetitionlessMaterialColorTest(
                     SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                    LayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+                    baseLayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
                     baseMaterialData,
                     farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
                 );
@@ -231,7 +235,7 @@ void SampleRepetitionlessLayerBase_float(
                 // Sample Far Material
                 GetRepetitionlessMaterialColorTest(
                     SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                    LayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+                    farLayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
                     farMaterialData,
                     farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
                 );
@@ -272,7 +276,7 @@ void SampleRepetitionlessLayerBase_float(
         
         GetRepetitionlessMaterialColorTest(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-            LayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+            blendLayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
             blendMaterialData,
             blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
         );

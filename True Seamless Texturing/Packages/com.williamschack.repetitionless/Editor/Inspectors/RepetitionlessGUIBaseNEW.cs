@@ -895,8 +895,6 @@ namespace Repetitionless.Inspectors
                 Rect emissionColourRect = DrawTexture(sectionIndex, 5, new GUIContent("Emission", "Emission (RGB)"), $"_{materialPrefix}EmissionMap");
                 DrawProperty(() => currentData.EmissionColour = EditorGUI.ColorField(emissionColourRect, GUIContent.none, currentData.EmissionColour, true, false, true));
                 if (EditorGUI.EndChangeCheck()) {
-                    Debug.Log("TESTING OUTSIDE ENDCHANGECHECK FROM EMISSION RAHHHHHHHHH");
-
                     // Rehandle assigned textures since the function can be changed in child classes
                     HandleAssignedTextures(materialPrefix, sectionIndex);
 
