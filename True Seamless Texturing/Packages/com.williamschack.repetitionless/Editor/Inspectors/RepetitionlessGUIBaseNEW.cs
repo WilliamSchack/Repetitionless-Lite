@@ -77,6 +77,8 @@ namespace Repetitionless.Inspectors
 
         private const string PROGRESS_BAR_TITLE = "Updating Material";
 
+        private const string DEFAULT_VARIATION_TEXTURE_NAME = "repetitionless_VariationTexture_2048";
+
         // Overridable
 
         protected virtual int _materialCount => 3;
@@ -975,13 +977,17 @@ namespace Repetitionless.Inspectors
                 if (currentData.VariationMode == ETextureType.CustomTexture) {
                     textureData.AVTextures[1].Disabled = false;
 
-                    if (textureData.AVTextures[1].Texture != null) {
-                        bool textureAdded = _avTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, sectionIndex)[1].Texture, sectionIndex, 1, true).Item2;
-
-                        if (!textureAdded) {
-                            textureData.AVTextures[1].Texture = null;
-                        }   
+                    // Set the texture to the default variation if none assigned
+                    Texture2D texture = GetArrayLayerTextureData(0, sectionIndex)[1].Texture;
+                    if (texture == null) {
+                        texture = Resources.Load<Texture2D>(DEFAULT_VARIATION_TEXTURE_NAME);
                     }
+
+                    bool textureAdded = _avTexturesDrawer.UpdateTexture(texture, sectionIndex, 1, true).Item2;
+                    if (!textureAdded)
+                        textureData.AVTextures[1].Texture = null;
+
+                    HandleAssignedTextures(materialPrefix, sectionIndex);
                 }
 
                 // If was texture, remove it from the array
