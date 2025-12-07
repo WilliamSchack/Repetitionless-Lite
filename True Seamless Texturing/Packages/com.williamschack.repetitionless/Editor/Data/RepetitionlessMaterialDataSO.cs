@@ -47,7 +47,6 @@ namespace Repetitionless.Data
             Color[] dataColours = new Color[RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT];
             for (int i = 0; i < dataColours.Length; i++) {
                 dataColours[i] = GetDataColour(i).Value;
-                Debug.Log($"({i}) >> {dataColours[i]}");
             }
 
             return dataColours;

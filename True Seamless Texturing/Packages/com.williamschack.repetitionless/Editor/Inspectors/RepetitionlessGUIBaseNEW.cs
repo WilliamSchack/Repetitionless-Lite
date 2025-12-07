@@ -75,6 +75,8 @@ namespace Repetitionless.Inspectors
         protected const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
         protected const string PROPERTIES_HANDLER_FILE_NAME = "Properties.asset";
 
+        private const string PROGRESS_BAR_TITLE = "Updating Material";
+
         // Overridable
 
         protected virtual int _materialCount => 3;
@@ -189,8 +191,8 @@ namespace Repetitionless.Inspectors
         {
             switch (materialPrefix) {
                 case "Base":  return 0;
-                case "Far":   return 0;
-                case "Blend": return 0;
+                case "Far":   return 1;
+                case "Blend": return 2;
             }
             
             return 0;
@@ -269,6 +271,7 @@ namespace Repetitionless.Inspectors
             textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, sectionIndex, textureDrawerDetails.ChannelIndex, content);
 
             if (EditorGUI.EndChangeCheck()) {
+
                 // Rehandle assigned textures and update the properties
                 string materialPrefix = GetMaterialPrefix(sectionIndex);
                 HandleAssignedTextures(materialPrefix, sectionIndex);
@@ -276,6 +279,7 @@ namespace Repetitionless.Inspectors
                 // If packed texture was changed, manually update texture in emission array aswell
                 if (currentData.PackedTexture && textureIndex == 1)
                     _emTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, 1)[3].Texture, 0, 2);
+
             }
 
             // Return rect after texture field
@@ -391,9 +395,14 @@ namespace Repetitionless.Inspectors
             Material material = (Material)albedoVTexturesProp.targets[0];
             _dataManager = new MaterialDataManager(material);
 
+            bool progressBarUsed = false;
+
             if (_dataManager.AssetExists(TEXTURE_DATA_FILE_NAME)) {
                 _textureData = _dataManager.LoadAsset<RepetitionlessTextureDataSO>(TEXTURE_DATA_FILE_NAME);
             } else {
+                EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Texture Data", 0.0f);
+                progressBarUsed = true;
+
                 _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureDataSO>();
                 _dataManager.CreateAsset(_textureData, TEXTURE_DATA_FILE_NAME);
                 _textureData.Init(_materialCount);
@@ -406,6 +415,9 @@ namespace Repetitionless.Inspectors
                 _materialProperties = _dataManager.LoadAsset<RepetitionlessMaterialDataSO>(PROPERTIES_HANDLER_FILE_NAME);
                 _materialProperties.SetDataManager(_dataManager);
             } else {
+                EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Properties", 0.3f);
+                progressBarUsed = true;
+
                 _materialProperties = ScriptableObject.CreateInstance<RepetitionlessMaterialDataSO>();
                 _dataManager.CreateAsset(_materialProperties, PROPERTIES_HANDLER_FILE_NAME);
                 _materialProperties.Init(1);
@@ -413,8 +425,12 @@ namespace Repetitionless.Inspectors
                 SaveMaterialProperties();
                 AssetDatabase.SaveAssetIfDirty(_materialProperties);
 
+                EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Writing Properties", 0.8f);
                 UpdateMaterialPropertiesTexture(0);
             }
+
+            if (progressBarUsed)
+                EditorUtility.ClearProgressBar();
 
 
             // Texture Drawers
@@ -829,8 +845,6 @@ namespace Repetitionless.Inspectors
         protected virtual void DrawMaterialMainProperties(string materialPrefix, int sectionIndex)
         {
             RepetitionlessMaterialData currentData = GetMaterialData(materialPrefix);
-
-            //HandleAssignedTextures(materialPrefix, sectionIndex);
 
             // Albedo
             Rect albedoTintRect = DrawTexture(sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), $"_{materialPrefix}Albedo");
