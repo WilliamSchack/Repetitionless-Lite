@@ -9,6 +9,7 @@ using Repetitionless.TextureUtilities;
 
 public class TestEditor : ShaderGUI
 {
+    /*
     private const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
     private const string PROPERTIES_HANDLER_FILE_NAME = "Properties.asset";
     private const int MATERIAL_COUNT = 3;
@@ -149,7 +150,6 @@ public class TestEditor : ShaderGUI
             _propertiesHandler.UpdateMaterialTexture(textureProperty, 0);
         }
 
-/*
         EditorGUI.BeginChangeCheck();
         _testingData.AlbedoAssigned = EditorGUILayout.Toggle("2", _testingData.AlbedoAssigned);
         if (EditorGUI.EndChangeCheck()) {
@@ -165,7 +165,6 @@ public class TestEditor : ShaderGUI
             int compressedFieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedMaterialDataSingle(ref _testingDataCompressed, _testingData);
             Debug.Log(compressedFieldChangedIndex);
         }
-*/
 
         EditorGUI.BeginChangeCheck();
         _propertiesHandler.Data.BaseMaterialData.SmoothnessRoughness = EditorGUILayout.Slider("Smooth", _propertiesHandler.Data.BaseMaterialData.SmoothnessRoughness, 0, 1);
@@ -175,7 +174,6 @@ public class TestEditor : ShaderGUI
             EditorUtility.SetDirty(_propertiesHandler); // Refreshing asset database is slow, let unity handle it later
         }
 
-/*
         EditorGUI.BeginChangeCheck();
         _testingData.NormalScale = EditorGUILayout.Slider("3", _testingData.NormalScale, 0, 1);
         if (EditorGUI.EndChangeCheck()) {
@@ -189,7 +187,6 @@ public class TestEditor : ShaderGUI
             int compressedFieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedMaterialDataSingle(ref _testingDataCompressed, _testingData);
             Debug.Log(compressedFieldChangedIndex);
         }
-*/
 
         // ============================================= //
 
@@ -263,5 +260,6 @@ public class TestEditor : ShaderGUI
             }
         }
     }
+    */
 }
 #endif

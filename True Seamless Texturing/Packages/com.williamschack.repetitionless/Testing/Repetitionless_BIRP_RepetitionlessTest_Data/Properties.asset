@@ -128,6 +128,7 @@ MonoBehaviour:
     DistanceBlendMode: 0
     DistanceBlendMinMax: {x: 100, y: 150}
     MaterialBlendEnabled: 0
+    BlendMaskAssigned: 0
     OverrideDistanceBlend: 1
     OverrideDistanceBlendTO: 1
     BlendMaskType: 0

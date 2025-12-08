@@ -17,6 +17,7 @@ namespace Repetitionless.Variables
 
         // Blend Material Settings
         public bool MaterialBlendEnabled = false;
+        public bool BlendMaskAssigned = false;
         public bool OverrideDistanceBlend = true;
         public bool OverrideDistanceBlendTO = true;
         public ETextureType BlendMaskType = ETextureType.PerlinNoise;
@@ -43,8 +44,9 @@ namespace Repetitionless.Variables
 
         // x: Compressed Bools
         //   0 > MaterialBlendEnabled
-        //   1 > OverrideDistanceBlend
-        //   2 > OverrideDistanceBlendTO
+        //   1 > BlendMaskAssigned
+        //   2 > OverrideDistanceBlend
+        //   3 > OverrideDistanceBlendTO
         // y: BlendMaskType
         // z: BlendMaskOpacity
         // w: BlendMaskStrength

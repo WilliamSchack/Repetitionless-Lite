@@ -294,7 +294,8 @@ namespace Repetitionless.GUIUtilities
         public (Texture2D, bool) UpdateTexture(Texture2D newTexture, int index, int channelIndex, bool force = false)
         {
             if (EditorGUI.EndChangeCheck() || force) {
-                TexturePacker.TextureData channelTextureData = _getLayerChannelDataFunc(index)[channelIndex];
+                TexturePacker.TextureData[] textureData = _getLayerChannelDataFunc(index);
+                TexturePacker.TextureData channelTextureData = textureData[channelIndex];
                 if (channelTextureData.Disabled) newTexture = null;
 
                 // Return if texture is not being changed, usually due to updates for accompanying variable
@@ -307,13 +308,13 @@ namespace Repetitionless.GUIUtilities
 
                 // Check if texture is assigned or removed
                 int channelTexturesAssigned = 0;
-                for (int i = 0; i < _getLayerChannelDataFunc(index).Length; i++) {
+                for (int i = 0; i < textureData.Length; i++) {
                     if (i == channelIndex) {
                         if (newTexture != null) channelTexturesAssigned++;
                         continue;
                     }
 
-                    TexturePacker.TextureData currentTextureData = _getLayerChannelDataFunc(index)[i];
+                    TexturePacker.TextureData currentTextureData = textureData[i];
                     bool channelAssigned = currentTextureData.Texture != null && !currentTextureData.Disabled;
                     if (channelAssigned)
                         channelTexturesAssigned++;
@@ -328,7 +329,7 @@ namespace Repetitionless.GUIUtilities
                     _assignedTextures[index] = false;
                     _textures[index] = null;
                     if (!channelTextureData.Disabled) {
-                        _getLayerChannelDataFunc(index)[channelIndex].Texture = null;
+                        channelTextureData.Texture = null;
                         _saveTextureDataAction();
                     }
 
@@ -357,8 +358,8 @@ namespace Repetitionless.GUIUtilities
                 }
 
                 // Copy texture data to modify
-                TexturePacker.TextureData[] clonedTextureData = new TexturePacker.TextureData[_getLayerChannelDataFunc(index).Length];
-                System.Array.Copy(_getLayerChannelDataFunc(index), clonedTextureData, _getLayerChannelDataFunc(index).Length);
+                TexturePacker.TextureData[] clonedTextureData = new TexturePacker.TextureData[textureData.Length];
+                System.Array.Copy(textureData, clonedTextureData, textureData.Length);
                 clonedTextureData[channelIndex].Texture = newTexture;
 
                 // Check for resolution differences
@@ -373,8 +374,8 @@ namespace Repetitionless.GUIUtilities
                 else {
                     // Get the first assigned texture resolution
                     newArrayResolution = Vector2Int.one;
-                    for (int i = 0; i < _getLayerChannelDataFunc(index).Length; i++) {
-                        Texture2D currentTexture = _getLayerChannelDataFunc(index)[i].Texture;
+                    for (int i = 0; i < textureData.Length; i++) {
+                        Texture2D currentTexture = textureData[i].Texture;
                         if (currentTexture != null) {
                             newArrayResolution = new Vector2Int(currentTexture.width, currentTexture.height);
                             break;
@@ -431,7 +432,7 @@ namespace Repetitionless.GUIUtilities
 
                 // Pack texture
                 if (!channelTextureData.Disabled) {
-                    _getLayerChannelDataFunc(index)[channelIndex].Texture = newTexture;
+                    channelTextureData.Texture = newTexture;
                     _saveTextureDataAction();
                 }
                 newTexture = TexturePacker.PackTextures(clonedTextureData, _defaultChannelColours);

@@ -32,6 +32,12 @@
         },
         {
             "m_Id": "8b1c8a1fd95b4da4b8185d71eb01e54b"
+        },
+        {
+            "m_Id": "21a95e7586af417eabf41c54dab244ee"
+        },
+        {
+            "m_Id": "cb86e14ce7cf4b8e827a9d976ed8b794"
         }
     ],
     "m_Keywords": [],
@@ -1433,6 +1439,9 @@
             "m_Id": "aada54f4931f43aeac8e068524275a74"
         },
         {
+            "m_Id": "21a95e7586af417eabf41c54dab244ee"
+        },
+        {
             "m_Id": "a136b82fc7a04c1ca8c68a2a67f7344e"
         },
         {
@@ -1443,6 +1452,9 @@
         },
         {
             "m_Id": "8b1c8a1fd95b4da4b8185d71eb01e54b"
+        },
+        {
+            "m_Id": "cb86e14ce7cf4b8e827a9d976ed8b794"
         }
     ]
 }
@@ -1505,6 +1517,35 @@
     "m_ObjectId": "219a412347eb4f4d9eb7dd36ad5b6586",
     "m_WorkflowMode": 1,
     "m_NormalDropOffSpace": 0
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DArrayShaderProperty",
+    "m_ObjectId": "21a95e7586af417eabf41c54dab244ee",
+    "m_Guid": {
+        "m_GuidSerialized": "64aefcac-4e4c-4ecc-a0d1-a2cc16d7ba34"
+    },
+    "m_Name": "BMTextures",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "BMTextures",
+    "m_DefaultReferenceName": "_BMTextures",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_PerRendererData": false,
+    "m_customAttributes": [],
+    "m_Value": {
+        "m_SerializedTexture": "{\"textureArray\":{\"instanceID\":0}}",
+        "m_Guid": ""
+    },
+    "m_Modifiable": true
 }
 
 {
@@ -4705,6 +4746,46 @@
         "b": 0.0,
         "a": 1.0
     }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "cb86e14ce7cf4b8e827a9d976ed8b794",
+    "m_Guid": {
+        "m_GuidSerialized": "68f1fe04-7760-4792-8cd6-a2bff31b782f"
+    },
+    "m_Name": "AssignedBMTextures",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "AssignedBMTextures",
+    "m_DefaultReferenceName": "_AssignedBMTextures",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_PerRendererData": false,
+    "m_customAttributes": [],
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    },
+    "m_SliderType": 0,
+    "m_SliderPower": 3.0,
+    "m_EnumType": 0,
+    "m_CSharpEnumString": "",
+    "m_EnumNames": [
+        "Default"
+    ],
+    "m_EnumValues": [
+        0
+    ]
 }
 
 {

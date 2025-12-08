@@ -99,8 +99,9 @@ void SampleRepetitionlessLayerBase_float(
 
     int  materialBlendSettingsUnpacked = (int)materialBlendSettings;
     bool materialBlendEnabled          = GetCompressedValue(materialBlendSettingsUnpacked, 0);
-    bool overrideDistanceBlend         = GetCompressedValue(materialBlendSettingsUnpacked, 1);
-    bool overrideDistanceBlendTO       = GetCompressedValue(materialBlendSettingsUnpacked, 2);
+    bool BlendMaskAssigned             = GetCompressedValue(materialBlendSettingsUnpacked, 1);
+    bool overrideDistanceBlend         = GetCompressedValue(materialBlendSettingsUnpacked, 2);
+    bool overrideDistanceBlendTO       = GetCompressedValue(materialBlendSettingsUnpacked, 3);
     
     int  blendMaskType     = materialBlendSettings.y;
     half blendMaskOpacity  = materialBlendSettings.z;

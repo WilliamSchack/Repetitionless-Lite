@@ -153,6 +153,7 @@ namespace Repetitionless.Data
 
             if (UpdateBoolsIfChanged(ref compressedData.MaterialBlendSettings.x,
                 newData.MaterialBlendEnabled,
+                newData.BlendMaskAssigned,
                 newData.OverrideDistanceBlend,
                 newData.OverrideDistanceBlendTO
             ) && !updateAll) return startingChangedIndex + 2;

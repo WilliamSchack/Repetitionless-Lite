@@ -91,6 +91,8 @@ namespace Repetitionless.Inspectors
 
         protected TextureArrayCustomChannelsGUIDrawer _emTexturesDrawer;
 
+        protected TextureArrayCustomChannelsGUIDrawer _bmTexturesDrawer;
+
         // Data
         protected MaterialDataManager _dataManager;
         protected RepetitionlessTextureDataSO _textureData;
@@ -246,7 +248,7 @@ namespace Repetitionless.Inspectors
         {
             RepetitionlessMaterialData currentData = GetMaterialData(sectionIndex);
 
-            ref RepetitionlessTextureDataSO.MaterialTextureData textureData = ref _textureData.MaterialsTextureData[sectionIndex];
+            ref RepetitionlessTextureDataSO.MaterialTextureData textureData = ref _textureData.GetTextureData(0, sectionIndex);
 
             // If enabling texture, add it to the array
             if (currentData.VariationMode == ETextureType.CustomTexture) {
@@ -340,7 +342,7 @@ namespace Repetitionless.Inspectors
         /// </returns>
         protected virtual void HandleAssignedTextures(string materialPrefix, int sectionIndex, int layerIndex = 0)
         {
-            RepetitionlessTextureDataSO.MaterialTextureData materialTextureData = _textureData.MaterialsTextureData[sectionIndex];
+            RepetitionlessTextureDataSO.MaterialTextureData materialTextureData = _textureData.GetTextureData(layerIndex, sectionIndex);
 
             RepetitionlessMaterialData currentData = GetMaterialData(sectionIndex);
             bool packedTextureAssigned = currentData.PackedTexture ? materialTextureData.NSOTextures[3].Texture != null : false;
@@ -352,6 +354,8 @@ namespace Repetitionless.Inspectors
             currentData.OcclussionAssigned = packedTextureAssigned ? true : materialTextureData.NSOTextures[2].Texture != null;
             currentData.EmissionAssigned   = materialTextureData.EMTextures[0].Texture != null;
             currentData.VariationAssigned  = materialTextureData.AVTextures[1].Texture != null;
+
+            _materialProperties.Data.BlendMaskAssigned = _textureData.LayersTextureData[layerIndex].BlendMaskTexture.Texture != null;
 
             UpdateMaterialPropertiesTexture();
         }
@@ -388,7 +392,7 @@ namespace Repetitionless.Inspectors
 
         private TexturePacker.TextureData[] GetArrayLayerTextureData(int materialIndex, int layerIndex)
         {
-            RepetitionlessTextureDataSO.MaterialTextureData materialData = _textureData.MaterialsTextureData[layerIndex];
+            RepetitionlessTextureDataSO.MaterialTextureData materialData = _textureData.GetTextureData(0, layerIndex);
             
             switch(materialIndex) {
                 case 0: return materialData.AVTextures;
@@ -397,6 +401,12 @@ namespace Repetitionless.Inspectors
             }
 
             return null;
+        }
+
+        private TexturePacker.TextureData[] GetBlendMaskTextureData(int layerIndex)
+        {
+            TexturePacker.TextureData blendMaskTextureData = _textureData.LayersTextureData[layerIndex].BlendMaskTexture;
+            return new TexturePacker.TextureData[] { blendMaskTextureData };
         }
 
         #endregion
@@ -422,9 +432,11 @@ namespace Repetitionless.Inspectors
             MaterialProperty albedoVTexturesProp = FindProperty("_AVTextures");
             MaterialProperty normalSOTexturesProp = FindProperty("_NSOTextures");
             MaterialProperty emissionMTexturesProp = FindProperty("_EMTextures");
+            MaterialProperty blendMaskTexturesProp = FindProperty("_BMTextures");
             MaterialProperty assignedAlbedoVTexturesProp = FindProperty("_AssignedAVTextures");
             MaterialProperty assignedNormalSOTexturesProp = FindProperty("_AssignedNSOTextures");
             MaterialProperty assignedEmissionMTexturesProp = FindProperty("_AssignedEMTextures");
+            MaterialProperty assignedBlendMaskTexturesProp = FindProperty("_AssignedBMTextures");
 
             // Setup data
             Material material = (Material)albedoVTexturesProp.targets[0];
@@ -440,7 +452,7 @@ namespace Repetitionless.Inspectors
 
                 _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureDataSO>();
                 _dataManager.CreateAsset(_textureData, TEXTURE_DATA_FILE_NAME);
-                _textureData.Init(_materialCount);
+                _textureData.Init(_materialCount / 3);
 
                 SaveTextureData();
                 AssetDatabase.SaveAssetIfDirty(_textureData);
@@ -472,11 +484,13 @@ namespace Repetitionless.Inspectors
             _avTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(0, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, _materialCount);
             _nsoTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(1, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, _materialCount);
             _emTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(2, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, _materialCount);
+            _bmTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetBlendMaskTextureData(i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_BM_COLOUR, blendMaskTexturesProp, assignedBlendMaskTexturesProp, _materialCount / 3);
 
             _avTexturesDrawer.TextureFormat = TextureFormat.BC7;
             _nsoTexturesDrawer.TextureFormat = TextureFormat.BC7;
             _nsoTexturesDrawer.ArrayLinear = true;
             _emTexturesDrawer.TextureFormat = TextureFormat.BC7;
+            _bmTexturesDrawer.TextureFormat = TextureFormat.BC7;
         }
 
         /// <summary>
@@ -830,19 +844,20 @@ namespace Repetitionless.Inspectors
                 if (prevPackedTexture != currentData.PackedTexture) {
                     int sectionIndex = GetSectionIndex(materialPrefix);
 
-                    _textureData.SetPackedTextureEnabled(sectionIndex, currentData.PackedTexture);
+                    _textureData.SetPackedTextureEnabled(0, sectionIndex, currentData.PackedTexture);
                     SaveTextureData();
 
                     // Repack the textures
+                    ref RepetitionlessTextureDataSO.MaterialTextureData textureData = ref _textureData.GetTextureData(0, sectionIndex); 
                     if (currentData.PackedTexture) {
                         // Use packed texture
-                        _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[sectionIndex].NSOTextures[3].Texture, sectionIndex, 3, true);
-                        _emTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[sectionIndex].EMTextures[2].Texture, sectionIndex, 2, true);
+                        _nsoTexturesDrawer.UpdateTexture(textureData.NSOTextures[3].Texture, sectionIndex, 3, true);
+                        _emTexturesDrawer.UpdateTexture(textureData.EMTextures[2].Texture, sectionIndex, 2, true);
                     } else {
                         // Use regular textures
-                        _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[sectionIndex].NSOTextures[1].Texture, sectionIndex, 1, true);
-                        _nsoTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[sectionIndex].NSOTextures[2].Texture, sectionIndex, 2, true);
-                        _emTexturesDrawer.UpdateTexture(_textureData.MaterialsTextureData[sectionIndex].EMTextures[1].Texture, sectionIndex, 1, true);
+                        _nsoTexturesDrawer.UpdateTexture(textureData.NSOTextures[1].Texture, sectionIndex, 1, true);
+                        _nsoTexturesDrawer.UpdateTexture(textureData.NSOTextures[2].Texture, sectionIndex, 2, true);
+                        _emTexturesDrawer.UpdateTexture(textureData.EMTextures[1].Texture, sectionIndex, 1, true);
                     }
                 }
             }
@@ -952,7 +967,7 @@ namespace Repetitionless.Inspectors
             if (surfaceTypeProp.floatValue == 1.0f)
                 DrawProperty(() => currentData.AlphaClipping = EditorGUI.Slider(GUIUtilities.GetLineRect(), "Alpha Clipping", currentData.AlphaClipping, 0, 1));
 
-            // Scale & Offset
+            // Scale & OffsetDrawTexture
             DrawProperty(() => currentData.TilingOffset = GUIUtilities.DrawTilingOffset(currentData.TilingOffset));
         }
 
@@ -1137,8 +1152,14 @@ namespace Repetitionless.Inspectors
                     DrawProperty(() => layerData.BlendMaskNoiseOffset = GUIUtilities.DrawVector2Field(layerData.BlendMaskNoiseOffset, new GUIContent("Noise Offset")));
                 } else { // Custom Texture
                     // Texture
-                    MaterialProperty blendMaskTextureProp = FindProperty($"_{propertiesPrefix}BlendMaskTexture"); // THIS SHOULD BE CHANGED TO AN ARRAY
-                    _editor.TexturePropertySingleLine(new GUIContent("Blend Mask", "Blend Mask (R), other channels are ignored\n\nTexture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)"), blendMaskTextureProp);
+                    EditorGUI.BeginChangeCheck();
+                    _bmTexturesDrawer.DrawTexture(0, 0, new GUIContent("Blend Mask", "Blend Mask (R), other channels are ignored\n\nTexture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)"));
+                    if (EditorGUI.EndChangeCheck()) {
+                        HandleAssignedTextures("Blend", 2);
+                    }
+
+                    //MaterialProperty blendMaskTextureProp = FindProperty($"_{propertiesPrefix}BlendMaskTexture"); // THIS SHOULD BE CHANGED TO AN ARRAY
+                    //_editor.TexturePropertySingleLine(new GUIContent("Blend Mask", "Blend Mask (R), other channels are ignored\n\nTexture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)"), blendMaskTextureProp);
 
                     // Scale & Offset
                     DrawProperty(() => layerData.BlendMaskTextureTO = GUIUtilities.DrawTilingOffset(layerData.BlendMaskTextureTO));
