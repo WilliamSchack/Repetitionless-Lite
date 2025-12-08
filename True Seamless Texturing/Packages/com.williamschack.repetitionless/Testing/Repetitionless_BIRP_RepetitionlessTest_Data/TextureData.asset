@@ -15,7 +15,7 @@ MonoBehaviour:
   LayersTextureData:
   - BaseMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 2800000, guid: eb04da16cbc16c9488332336fb11b965, type: 3}
+      - Texture: {fileID: 0}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -25,7 +25,7 @@ MonoBehaviour:
           To: 1
         - From: 2
           To: 2
-      - Texture: {fileID: 2800000, guid: 9396c9268ceae7f46bd3c9218f7a5ac6, type: 3}
+      - Texture: {fileID: 0}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -224,7 +224,7 @@ MonoBehaviour:
         - From: 0
           To: 3
     BlendMaskTexture:
-    - Texture: {fileID: 2800000, guid: eb04da16cbc16c9488332336fb11b965, type: 3}
+    - Texture: {fileID: 0}
       Disabled: 0
       NormalMap: 0
       FromToChannels:
