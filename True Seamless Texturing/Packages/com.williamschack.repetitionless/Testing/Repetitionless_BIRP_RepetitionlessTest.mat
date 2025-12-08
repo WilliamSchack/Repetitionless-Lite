@@ -25,19 +25,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 18700000, guid: 36c67828f66d3d3c886795488e4a863e, type: 2}
+        m_Texture: {fileID: 18700000, guid: 882e458c6d0520540980ea80bc896198, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BMTextures:
-        m_Texture: {fileID: 18700000, guid: b1d6cdb6e55c9c015896cc15dda98fd4, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BlendMaskTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 42604ad70bd92d06ca50568aace62313, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EMTextures:
-        m_Texture: {fileID: 18700000, guid: eca064647cdb3d3d2a2a53ee7018c497, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NSOTextures:
@@ -45,12 +41,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PropertiesTexture:
-        m_Texture: {fileID: 2800000, guid: 37d0e38439b51c70b9ba61e985fae593, type: 2}
+        m_Texture: {fileID: 2800000, guid: 828056be4fb7c60da9c78f2837e35021, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AssignedAVTextures: 7
+    - _AssignedAVTextures: 1
     - _AssignedBMTextures: 1
     - _AssignedEMTextures: 0
     - _AssignedNSOTextures: 0
@@ -70,7 +66,7 @@ Material:
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &5402829874778275561
+--- !u!114 &4230770454375858120
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

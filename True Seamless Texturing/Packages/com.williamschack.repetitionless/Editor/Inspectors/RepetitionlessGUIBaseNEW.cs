@@ -355,7 +355,7 @@ namespace Repetitionless.Inspectors
             currentData.EmissionAssigned   = materialTextureData.EMTextures[0].Texture != null;
             currentData.VariationAssigned  = materialTextureData.AVTextures[1].Texture != null;
 
-            _materialProperties.Data.BlendMaskAssigned = _textureData.LayersTextureData[layerIndex].BlendMaskTexture.Texture != null;
+            _materialProperties.Data.BlendMaskAssigned = _textureData.LayersTextureData[layerIndex].BlendMaskTexture[0].Texture != null;
 
             UpdateMaterialPropertiesTexture();
         }
@@ -390,23 +390,22 @@ namespace Repetitionless.Inspectors
             return new TextureDrawerDetails(null, 0);
         }
 
-        private TexturePacker.TextureData[] GetArrayLayerTextureData(int materialIndex, int layerIndex)
+        private ref TexturePacker.TextureData[] GetArrayLayerTextureData(int materialIndex, int layerIndex)
         {
-            RepetitionlessTextureDataSO.MaterialTextureData materialData = _textureData.GetTextureData(0, layerIndex);
+            ref RepetitionlessTextureDataSO.MaterialTextureData materialData = ref _textureData.GetTextureData(0, layerIndex);
             
             switch(materialIndex) {
-                case 0: return materialData.AVTextures;
-                case 1: return materialData.NSOTextures;
-                case 2: return materialData.EMTextures;
+                case 0: return ref materialData.AVTextures;
+                case 1: return ref materialData.NSOTextures;
+                case 2: return ref materialData.EMTextures;
             }
 
-            return null;
+            return ref materialData.AVTextures;
         }
 
-        private TexturePacker.TextureData[] GetBlendMaskTextureData(int layerIndex)
+        private ref TexturePacker.TextureData[] GetBlendMaskTextureData(int layerIndex)
         {
-            TexturePacker.TextureData blendMaskTextureData = _textureData.LayersTextureData[layerIndex].BlendMaskTexture;
-            return new TexturePacker.TextureData[] { blendMaskTextureData };
+            return ref _textureData.LayersTextureData[layerIndex].BlendMaskTexture;
         }
 
         #endregion
@@ -481,10 +480,10 @@ namespace Repetitionless.Inspectors
 
 
             // Texture Drawers
-            _avTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(0, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, _materialCount);
-            _nsoTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(1, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, _materialCount);
-            _emTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetArrayLayerTextureData(2, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, _materialCount);
-            _bmTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return GetBlendMaskTextureData(i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_BM_COLOUR, blendMaskTexturesProp, assignedBlendMaskTexturesProp, _materialCount / 3);
+            _avTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetArrayLayerTextureData(0, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_AV_COLOUR, albedoVTexturesProp, assignedAlbedoVTexturesProp, _materialCount);
+            _nsoTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetArrayLayerTextureData(1, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_NSO_COLOUR, normalSOTexturesProp, assignedNormalSOTexturesProp, _materialCount);
+            _emTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetArrayLayerTextureData(2, i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_EM_COLOUR, emissionMTexturesProp, assignedEmissionMTexturesProp, _materialCount);
+            _bmTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetBlendMaskTextureData(i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_BM_COLOUR, blendMaskTexturesProp, assignedBlendMaskTexturesProp, _materialCount / 3);
 
             _avTexturesDrawer.TextureFormat = TextureFormat.BC7;
             _nsoTexturesDrawer.TextureFormat = TextureFormat.BC7;

@@ -26,7 +26,7 @@ namespace Repetitionless.TextureUtilities
         }
 
         [System.Serializable]
-        public class TextureData
+        public struct TextureData
         {
             public Texture2D Texture;
             public bool Disabled;

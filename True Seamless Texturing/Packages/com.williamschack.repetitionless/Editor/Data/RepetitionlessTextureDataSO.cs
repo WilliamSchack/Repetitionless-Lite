@@ -27,7 +27,8 @@ namespace Repetitionless.Data
             public MaterialTextureData FarMaterialTextures;
             public MaterialTextureData BlendMaterialTextures;
 
-            public TexturePacker.TextureData BlendMaskTexture;
+            // Storing in an array to make it easier to pass into texture drawer
+            public TexturePacker.TextureData[] BlendMaskTexture;
         }
 
         public LayerTextureData[] LayersTextureData;
@@ -49,7 +50,8 @@ namespace Repetitionless.Data
             SetupMaterial(ref LayersTextureData[index].FarMaterialTextures);
             SetupMaterial(ref LayersTextureData[index].BlendMaterialTextures);
 
-            LayersTextureData[index].BlendMaskTexture = new TexturePacker.TextureData() {
+            LayersTextureData[index].BlendMaskTexture = new TexturePacker.TextureData[1];
+            LayersTextureData[index].BlendMaskTexture[0] = new TexturePacker.TextureData() {
                 Disabled = false,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {

@@ -60,8 +60,10 @@ namespace Repetitionless.GUIUtilities
         private int _textureCount;
         private bool[] _assignedTextures;
 
+        public delegate ref TOut RefFunc<TIn, TOut>(TIn input);
+        private RefFunc<int, TexturePacker.TextureData[]> _getLayerChannelDataFunc;
+
         private MaterialDataManager _dataManager;
-        private System.Func<int, TexturePacker.TextureData[]> _getLayerChannelDataFunc;
         private System.Action _saveTextureDataAction;
         private List<Dictionary<Texture2D, Texture2D>> _resizedTextures = new List<Dictionary<Texture2D, Texture2D>>(); // index > (Original texture, resized)
         private List<int> _previousChannelsAssigned = new List<int>();
@@ -129,7 +131,7 @@ namespace Repetitionless.GUIUtilities
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
         }
 
-        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, System.Func<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, Vector4 defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
+        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, /*System.Func<int, TexturePacker.TextureData[]>*/ RefFunc<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, Vector4 defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
         {
             // Assign material
             _material = arrayProperty.targets[0];
@@ -294,8 +296,8 @@ namespace Repetitionless.GUIUtilities
         public (Texture2D, bool) UpdateTexture(Texture2D newTexture, int index, int channelIndex, bool force = false)
         {
             if (EditorGUI.EndChangeCheck() || force) {
-                TexturePacker.TextureData[] textureData = _getLayerChannelDataFunc(index);
-                TexturePacker.TextureData channelTextureData = textureData[channelIndex];
+                ref TexturePacker.TextureData[] textureData = ref _getLayerChannelDataFunc(index);
+                ref TexturePacker.TextureData channelTextureData = ref textureData[channelIndex];
                 if (channelTextureData.Disabled) newTexture = null;
 
                 // Return if texture is not being changed, usually due to updates for accompanying variable
@@ -415,6 +417,8 @@ namespace Repetitionless.GUIUtilities
                         else if (returned == 2) {
                             newArrayResolution = new Vector2Int(texture.width, texture.height);
                         }
+
+                        Debug.Log($"Checked {texture} == {clonedTextureData[i].Texture}");
                     }
                 }
 
