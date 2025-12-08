@@ -4,6 +4,13 @@ Repetitionless is governed by the Unity Asset Store EULA (https://unity3d.com/le
 
 Once you are done with the examples, it is recommended that you delete them to reduce the clutter in your project. Doing so will also remove any concerns about third party asset licenses.
 
+// ============ CODE ============= //
+
+Some scripts are taken or modified from my other asset:
+Texture Array Essentials (https://u3d.as/3s4d)
+
+Scripts from this asset have a notice at the top
+
 // =========== SAMPLES =========== //
 
 // Trees
