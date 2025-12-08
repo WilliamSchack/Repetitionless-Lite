@@ -244,14 +244,14 @@ namespace Repetitionless.Inspectors
                 UpdateMaterialPropertiesTexture();
         }
 
-        private void UpdateVariationTexture(int sectionIndex, ETextureType prevVariationMode)
+        private void UpdateVariationTexture(int sectionIndex, ETextureType prevVariationMode, bool forceRemove = false)
         {
             RepetitionlessMaterialData currentData = GetMaterialData(sectionIndex);
 
             ref RepetitionlessTextureDataSO.MaterialTextureData textureData = ref _textureData.GetTextureData(0, sectionIndex);
 
             // If enabling texture, add it to the array
-            if (currentData.VariationMode == ETextureType.CustomTexture) {
+            if (currentData.VariationMode == ETextureType.CustomTexture && !forceRemove) {
                 textureData.AVTextures[1].Disabled = false;
 
                 // Set the texture to the default variation if none assigned
@@ -270,7 +270,7 @@ namespace Repetitionless.Inspectors
             }
 
             // If was texture, remove it from the array
-            else if (prevVariationMode == ETextureType.CustomTexture) {
+            else if (prevVariationMode == ETextureType.CustomTexture || forceRemove) {
                 textureData.AVTextures[1].Disabled = true;
                 SaveTextureData();
 
@@ -800,8 +800,9 @@ namespace Repetitionless.Inspectors
             if (showVariation) {
                 EditorGUI.BeginChangeCheck();
                 DrawProperty(() => currentData.VariationEnabled = GUILayout.Toggle(currentData.VariationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color\n\nUsing a custom texture can cause visible tiling"), "Button"));
-                if (EditorGUI.EndChangeCheck() && currentData.VariationMode == ETextureType.CustomTexture)
-                    UpdateVariationTexture(GetSectionIndex(materialPrefix), ETextureType.PerlinNoise);
+                if (EditorGUI.EndChangeCheck() && currentData.VariationMode == ETextureType.CustomTexture) {
+                    UpdateVariationTexture(GetSectionIndex(materialPrefix), ETextureType.PerlinNoise, !currentData.VariationEnabled);
+                }
             }
         }
 
