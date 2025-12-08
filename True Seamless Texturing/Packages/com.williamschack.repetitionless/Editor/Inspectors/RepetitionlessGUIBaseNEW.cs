@@ -1158,9 +1158,6 @@ namespace Repetitionless.Inspectors
                         HandleAssignedTextures("Blend", 2);
                     }
 
-                    //MaterialProperty blendMaskTextureProp = FindProperty($"_{propertiesPrefix}BlendMaskTexture"); // THIS SHOULD BE CHANGED TO AN ARRAY
-                    //_editor.TexturePropertySingleLine(new GUIContent("Blend Mask", "Blend Mask (R), other channels are ignored\n\nTexture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)"), blendMaskTextureProp);
-
                     // Scale & Offset
                     DrawProperty(() => layerData.BlendMaskTextureTO = GUIUtilities.DrawTilingOffset(layerData.BlendMaskTextureTO));
                 }

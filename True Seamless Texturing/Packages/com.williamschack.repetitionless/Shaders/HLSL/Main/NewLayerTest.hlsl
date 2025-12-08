@@ -162,13 +162,16 @@ void SampleRepetitionlessLayerBase_float(
         farDistance = Remap(farDistance, distanceBlendMinMax, float2(0, 1));
         farDistance = clamp(farDistance, 0, 1);
 
-        samplingDistance = farDistance > 0 && materialMask != 1;
-        samplingDistanceBlend = farDistance > 0 && materialBlendEnabled && materialMask > 0 && overrideDistanceBlend;
+        samplingDistance = farDistance > 0 && (materialMask != 1 || (materialBlendEnabled && !overrideDistanceBlend));
+        //samplingDistanceBlend = farDistance > 0 && materialBlendEnabled && materialMask > 0 && overrideDistanceBlend && overrideDistanceBlendTO;
     }
 
     // Check material blend
     if (materialBlendEnabled) {
         samplingBlend = materialMask > 0;
+        if (distanceBlendEnabled && overrideDistanceBlendTO && farDistance > 0)
+            samplingDistanceBlend = samplingBlend;
+
         if (distanceBlendEnabled && overrideDistanceBlend && farDistance >= 1)
             samplingBlend = false;
     }
@@ -210,7 +213,7 @@ void SampleRepetitionlessLayerBase_float(
         occlussion = lerp(occlussion, blendOcclussion, materialMask);
         emissionColor = lerp(emissionColor, blendEmissionColor, materialMask);
     }
-    
+
     // ----------------------- Distance Material ------------------------- //
     if (samplingDistance) {
         float4 farAlbedoColor = 1;
@@ -264,14 +267,7 @@ void SampleRepetitionlessLayerBase_float(
         float blendOcclussion = 0;
         float3 blendEmissionColor = 0;
         
-        float2 tiling = blendMaterialData.TilingOffset.xy;
-        float2 offset = blendMaterialData.TilingOffset.zw;
-        if (distanceBlendMode == 0) {
-            tiling = overrideDistanceBlendTO ? blendMaskDistanceTO.xy : farMaterialData.TilingOffset.xy;
-            offset = overrideDistanceBlendTO ? blendMaskDistanceTO.zw : farMaterialData.TilingOffset.zw;
-        }
-        
-        float4 tilingOffset = float4(tiling.x, tiling.y, offset.x, offset.y);
+        float4 tilingOffset = float4(blendMaskDistanceTO.xy, blendMaskDistanceTO.zw);
         
         // Sample Blend Material
         // Set blend TO, no need to change back it wont be used again
