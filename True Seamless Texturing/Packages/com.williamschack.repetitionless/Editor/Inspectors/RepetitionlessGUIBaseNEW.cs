@@ -865,7 +865,7 @@ namespace Repetitionless.Inspectors
             // Packed Texture Toggle
             if (showPT) {
                 bool prevPackedTexture = currentData.PackedTexture;
-                DrawProperty(() => currentData.PackedTexture = GUILayout.Toggle(currentData.PackedTexture, new GUIContent(GetScaledText(minScaledTextWidth, "Packed Texture", "PT"), "If you are using a packed texture of multiple regular ones (Better for performance)\nR: Metallic\nG: Occlussion\nA: Smoothness/Roughness"), "Button"));
+                DrawProperty(() => currentData.PackedTexture = GUILayout.Toggle(currentData.PackedTexture, new GUIContent(GetScaledText(minScaledTextWidth, "Packed Texture", "PT"), "If you are using a packed texture of multiple regular ones (Note that textures automatically pack even without this setting enabled)\nR: Metallic\nG: Occlussion\nA: Smoothness/Roughness"), "Button"));
 
                 // If packed texture was changed, update the texture data
                 if (prevPackedTexture != currentData.PackedTexture) {
@@ -902,7 +902,7 @@ namespace Repetitionless.Inspectors
             // Array settings button
             if (GUILayout.Button(_settingsIconContent)) {
                 // Get the texture array for this material
-                int sectionIndex = materialPrefix.Contains("Far") ? 1 : 2;
+                int sectionIndex = GetSectionIndex(materialPrefix);
                 TextureDrawerDetails textureDrawerDetails = GetTextureDrawerDetails(sectionIndex, currentData.PackedTexture);
 
                 if (textureDrawerDetails.TextureDrawer.Array != null) {
@@ -928,11 +928,11 @@ namespace Repetitionless.Inspectors
             RepetitionlessMaterialData currentData = GetMaterialData(materialPrefix);
 
             // Albedo
-            Rect albedoTintRect = DrawTexture(sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB), Transparency (A)"), $"_{materialPrefix}Albedo");
+            Rect albedoTintRect = DrawTexture(sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB)"), $"_{materialPrefix}Albedo");
             DrawProperty(() => currentData.AlbedoTint = EditorGUI.ColorField(albedoTintRect, currentData.AlbedoTint));
 
             // Normal Map
-            Rect normalStrengthSliderRect = DrawTexture(sectionIndex, 3, new GUIContent("Normal Map"), $"_{materialPrefix}NormalMap");
+            Rect normalStrengthSliderRect = DrawTexture(sectionIndex, 3, new GUIContent("Normal Map", "Normal (RG)"), $"_{materialPrefix}NormalMap");
             if (currentData.NormalAssigned)
                 DrawProperty(() => currentData.NormalScale = EditorGUI.FloatField(normalStrengthSliderRect, currentData.NormalScale));
 
@@ -953,16 +953,17 @@ namespace Repetitionless.Inspectors
                 DrawProperty(() => currentData.OcclussionStrength = EditorGUI.Slider(occlussionStrengthSliderRect, currentData.OcclussionStrength, 0, 1));
             } else {
                 // Metallic
-                Rect metallicSliderRect = DrawTexture(sectionIndex, 1, new GUIContent("Metallic", "Metallic (R), other channels are ignored"), $"_{materialPrefix}MetallicMap");
+                Rect metallicSliderRect = DrawTexture(sectionIndex, 1, new GUIContent("Metallic", "Metallic (R)"), $"_{materialPrefix}MetallicMap");
                 if (!currentData.MetallicAssigned)
                     DrawProperty(() => currentData.Metallic = EditorGUI.Slider(metallicSliderRect, currentData.Metallic, 0, 1));
 
                 // Smoothness/Roughness
-                Rect smoothnessSliderRect = DrawTexture(sectionIndex, 2, new GUIContent(currentData.SmoothnessEnabled ? "Smoothness" : "Roughness"), $"_{materialPrefix}SmoothnessMap");
+                string smoothnessText = currentData.SmoothnessEnabled ? "Smoothness" : "Roughness";
+                Rect smoothnessSliderRect = DrawTexture(sectionIndex, 2, new GUIContent(smoothnessText, $"{smoothnessText} (R)"), $"_{materialPrefix}SmoothnessMap");
                 DrawProperty(() => currentData.SmoothnessRoughness = EditorGUI.Slider(smoothnessSliderRect, currentData.SmoothnessRoughness, 0, 1));
 
                 // Occlussion Map
-                Rect occlussionStrengthSliderRect = DrawTexture(sectionIndex, 4, new GUIContent("Occlussion"), $"_{materialPrefix}OcclussionMap");
+                Rect occlussionStrengthSliderRect = DrawTexture(sectionIndex, 4, new GUIContent("Occlussion", "Occlussion (R)"), $"_{materialPrefix}OcclussionMap");
                 if (currentData.OcclussionAssigned)
                     DrawProperty(() => currentData.OcclussionStrength = EditorGUI.Slider(occlussionStrengthSliderRect, currentData.OcclussionStrength, 0, 1));
             }
