@@ -101,15 +101,9 @@ void GetRepetitionlessMaterialColorTest(
     
     bool sampleEdges = edgeMask > 0;
 
-    // Get textures to sample
-    bool samplingAV        = albedoAssigned; // Variation is sampled later
-    bool samplingNSO       = normalAssigned || smoothnessAssigned || occlussionAssigned;
-    bool samplingEM        = emissionAssigned || metallicAssigned;
-    bool samplingVariation = variationEnabled && variationOpacity > 0;
-
     // Get Macro/Micro Variation Multiplier
     float variationColor = 0;
-    if (samplingVariation) {
+    if (variationEnabled && variationOpacity > 0) {
         switch (variationMode) {
             case 0: // Perlin Noise
                 variationColor = MacroMicroVariationPerlinNoise(variationSmallScale, variationMediumScale, variationLargeScale, variationBrightness, variationNoiseStrength, oriUV, MaterialData.VariationTO.x, MaterialData.VariationTO.zw);
@@ -135,11 +129,6 @@ void GetRepetitionlessMaterialColorTest(
             case 4: // Variation Colour
                 AlbedoColorOut = variationColor;
                 break;
-            case 5: // Samples
-                int samples = samplingAV ? 1 : 0 + samplingNSO ? 1 : 0 + samplingEM ? 1 : 0;
-                samples += (samplingVariation && variationMode == 2) ? 3 : 0;
-                AlbedoColorOut = samples;
-                break;
             default:
                 AlbedoColorOut = 0;
                 break;
@@ -149,6 +138,10 @@ void GetRepetitionlessMaterialColorTest(
     }
 
     // Sample textures
+    bool samplingAV  = albedoAssigned; // Variation is sampled later
+    bool samplingNSO = normalAssigned || smoothnessAssigned || occlussionAssigned;
+    bool samplingEM  = emissionAssigned || metallicAssigned;
+
     float4 avTexture = 0;
     float4 nsoTexture = 0;
     float4 emTexture = 0;

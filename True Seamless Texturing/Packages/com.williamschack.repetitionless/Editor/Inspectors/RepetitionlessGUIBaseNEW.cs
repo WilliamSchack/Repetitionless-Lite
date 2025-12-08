@@ -1243,8 +1243,7 @@ namespace Repetitionless.Inspectors
                     "Edge Mask",
                     "Distance Mask",
                     "Blend Material Mask",
-                    "Variation Multiplier",
-                    "Texture Samples"
+                    "Variation Multiplier"
                 };
 
                 EditorGUI.BeginChangeCheck();
