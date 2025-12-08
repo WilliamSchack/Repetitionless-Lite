@@ -89,6 +89,7 @@ namespace Repetitionless.Data
 
             if (overwrite) AssetDatabase.DeleteAsset(assetPath);
             AssetDatabase.CreateAsset(asset, assetPath);
+            AssetDatabase.Refresh();
         }
 
         public T LoadAsset<T>(string fileName) where T : Object
@@ -117,8 +118,10 @@ namespace Repetitionless.Data
         {
             string assetPath = $"{DataFolderPath()}/{fileName}";
 
-            if (AssetExists(fileName))
+            if (AssetExists(fileName)) {
                 AssetDatabase.DeleteAsset(assetPath);
+                AssetDatabase.Refresh();
+            }
 
             if (DataFolderEmpty())
                 DeleteDataFolder();

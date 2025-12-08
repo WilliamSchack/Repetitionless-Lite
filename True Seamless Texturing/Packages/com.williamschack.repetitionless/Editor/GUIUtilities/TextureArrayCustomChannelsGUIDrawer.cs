@@ -131,7 +131,7 @@ namespace Repetitionless.GUIUtilities
             Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
         }
 
-        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, /*System.Func<int, TexturePacker.TextureData[]>*/ RefFunc<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, Vector4 defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
+        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, RefFunc<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, Vector4 defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
         {
             // Assign material
             _material = arrayProperty.targets[0];
@@ -473,6 +473,7 @@ namespace Repetitionless.GUIUtilities
                     if (_array == null) {
                         _array = Texture2DArrayUtilities.CreateArrayUserInput(arrayTextures.ToArray(), TextureFormat, null, TransferMipmaps, ArrayLinear);
                         _dataManager.CreateAsset(_array, _fileName);
+                        Undo.RegisterCompleteObjectUndo(_array, $"Modified Array Texture of {_material.name} at Index {index}");
 
                         // Update variables
                         _assignedTextures[index] = textureAssigned;
@@ -503,8 +504,10 @@ namespace Repetitionless.GUIUtilities
                     }
 
                     // If array is resized to texture, update file
-                    if (_array != updatedArray.Item1)
+                    if (_array != updatedArray.Item1) {
                         _dataManager.CreateAsset(updatedArray.Item1, _fileName, true);
+                        Undo.RegisterCompleteObjectUndo(updatedArray.Item1, $"Modified Array Texture of {_material.name} at Index {index}");
+                    }
 
                     _array = updatedArray.Item1;
                 }
@@ -524,6 +527,7 @@ namespace Repetitionless.GUIUtilities
 
                     _array = Texture2DArrayUtilities.CreateArrayUserInput(arrayTextures.ToArray(), TextureFormat, autoResizeIndexes, TransferMipmaps, ArrayLinear);
                     _dataManager.CreateAsset(_array, _fileName, true);
+                    Undo.RegisterCompleteObjectUndo(_array, $"Modified Array Texture of {_material.name} at Index {index}");
                 }
 
                 // Save Asset

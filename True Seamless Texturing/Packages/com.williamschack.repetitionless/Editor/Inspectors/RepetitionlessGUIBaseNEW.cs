@@ -238,6 +238,9 @@ namespace Repetitionless.Inspectors
             if (drawPropertyAction == null)
                 return;
 
+            MaterialProperty textureProperty = FindProperty("_PropertiesTexture");
+            Undo.RecordObjects(new Object[] {_materialProperties, (Texture2D)textureProperty.textureValue}, $"Modified {_material.name} property");
+
             EditorGUI.BeginChangeCheck();
             drawPropertyAction();
             if (EditorGUI.EndChangeCheck())
@@ -271,6 +274,9 @@ namespace Repetitionless.Inspectors
 
             TextureDrawerDetails textureDrawerDetails = GetTextureDrawerDetails(textureIndex, currentData.PackedTexture);
 
+            //Undo.IncrementCurrentGroup();
+            Undo.RecordObjects(new Object[] {_materialProperties, _textureData}, $"Modified {_material.name} texture");
+
             EditorGUI.BeginChangeCheck();
             textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, sectionIndex, textureDrawerDetails.ChannelIndex, content);
 
@@ -283,6 +289,8 @@ namespace Repetitionless.Inspectors
                 if (currentData.PackedTexture && textureIndex == 1)
                     _emTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(1, sectionIndex)[3].Texture, 0, 2, true);
             }
+
+            //Undo.SetCurrentGroupName($"Modified {_material.name} texture");
 
             // Return rect after texture field
             lineRect = MaterialEditor.GetRectAfterLabelWidth(lineRect);
@@ -960,7 +968,8 @@ namespace Repetitionless.Inspectors
                 // Smoothness/Roughness
                 string smoothnessText = currentData.SmoothnessEnabled ? "Smoothness" : "Roughness";
                 Rect smoothnessSliderRect = DrawTexture(sectionIndex, 2, new GUIContent(smoothnessText, $"{smoothnessText} (R)"), $"_{materialPrefix}SmoothnessMap");
-                DrawProperty(() => currentData.SmoothnessRoughness = EditorGUI.Slider(smoothnessSliderRect, currentData.SmoothnessRoughness, 0, 1));
+                if (!currentData.SmoothnessAssigned)
+                    DrawProperty(() => currentData.SmoothnessRoughness = EditorGUI.Slider(smoothnessSliderRect, currentData.SmoothnessRoughness, 0, 1));
 
                 // Occlussion Map
                 Rect occlussionStrengthSliderRect = DrawTexture(sectionIndex, 4, new GUIContent("Occlussion", "Occlussion (R)"), $"_{materialPrefix}OcclussionMap");
