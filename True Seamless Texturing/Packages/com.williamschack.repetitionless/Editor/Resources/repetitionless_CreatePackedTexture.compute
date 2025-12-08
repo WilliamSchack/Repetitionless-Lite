@@ -12,6 +12,8 @@ struct TextureData
     half4 ToChannels;
 };
 
+uint LinearColourSpace;
+
 // Texture Resolution
 uint Width;
 uint Height;
@@ -72,8 +74,9 @@ inline half4 SampleTexture(int channelIndex = 0, float2 uv = 0)
         case 3: colour = Tex3[uv]; break;
     }
 
-    if (Data[channelIndex].SRGB == 1 && Data[channelIndex].NormalMap != 1)
+    if (LinearColourSpace && Data[channelIndex].SRGB == 1 && Data[channelIndex].NormalMap != 1) {
         colour = LinearToSRGB(colour);
+    }
 
     return colour;
 }

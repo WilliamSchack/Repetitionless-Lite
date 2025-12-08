@@ -13,6 +13,4 @@
   <Project Path="com.williamschack.TextureArrayEssentials.Compression.csproj" />
   <Project Path="com.williamschack.TextureArrayEssentials.CustomWindows.csproj" />
   <Project Path="com.williamschack.TextureArrayEssentials.GUIUtilities.csproj" />
-  <Project Path="com.williamschack.Repetitionless.Samples.csproj" />
-  <Project Path="com.williamschack.Repetitionless.Samples.Editor.csproj" />
 </Solution>

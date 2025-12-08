@@ -134,6 +134,8 @@ namespace Repetitionless.TextureUtilities
             // Assign data
             int kernel = shader.FindKernel("CSMain");
 
+            shader.SetFloat("LinearColourSpace", QualitySettings.activeColorSpace == ColorSpace.Linear ? 1 : 0);
+
             shader.SetFloat("Width", resolution.x);
             shader.SetFloat("Height", resolution.y);
 
