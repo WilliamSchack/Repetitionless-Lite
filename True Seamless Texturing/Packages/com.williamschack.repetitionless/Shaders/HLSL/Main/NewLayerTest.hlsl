@@ -173,9 +173,6 @@ void SampleRepetitionlessLayerBase_float(
 
         if (samplingDistanceBlend != 0 && farDistance >= 1)
             samplingBlend = false;
-        
-        //if (distanceBlendEnabled && overrideDistanceBlend && farDistance >= 1)
-        //    samplingBlend = false;
     }
 
     // Check base material
@@ -227,12 +224,16 @@ void SampleRepetitionlessLayerBase_float(
         }
 
         // Combine Far with Base
-        albedoColor = lerp(albedoColor, farAlbedoColor, farDistance);
-        normalVector = lerp(normalVector, farNormalVector, farDistance);
-        metallic = lerp(metallic, farMetallic, farDistance);
-        smoothness = lerp(smoothness, farSmoothness, farDistance);
-        occlussion = lerp(occlussion, farOcclussion, farDistance);
-        emissionColor = lerp(emissionColor, farEmissionColor, farDistance);
+        if (DebuggingIndex == 5) {
+            albedoColor += farAlbedoColor;
+        } else {
+            albedoColor = lerp(albedoColor, farAlbedoColor, farDistance);
+            normalVector = lerp(normalVector, farNormalVector, farDistance);
+            metallic = lerp(metallic, farMetallic, farDistance);
+            smoothness = lerp(smoothness, farSmoothness, farDistance);
+            occlussion = lerp(occlussion, farOcclussion, farDistance);
+            emissionColor = lerp(emissionColor, farEmissionColor, farDistance);
+        }
     }
 
     // ----------------------- Blend Material ------------------------- //
@@ -252,12 +253,16 @@ void SampleRepetitionlessLayerBase_float(
         );
         
         // Combine Blend with Base
-        albedoColor = lerp(albedoColor, blendAlbedoColor, materialMask);
-        normalVector = lerp(normalVector, blendNormalVector, materialMask);
-        metallic = lerp(metallic, blendMetallic, materialMask);
-        smoothness = lerp(smoothness, blendSmoothness, materialMask);
-        occlussion = lerp(occlussion, blendOcclussion, materialMask);
-        emissionColor = lerp(emissionColor, blendEmissionColor, materialMask);
+        if (DebuggingIndex == 5) {
+            albedoColor += blendAlbedoColor;
+        } else {
+            albedoColor = lerp(albedoColor, blendAlbedoColor, materialMask);
+            normalVector = lerp(normalVector, blendNormalVector, materialMask);
+            metallic = lerp(metallic, blendMetallic, materialMask);
+            smoothness = lerp(smoothness, blendSmoothness, materialMask);
+            occlussion = lerp(occlussion, blendOcclussion, materialMask);
+            emissionColor = lerp(emissionColor, blendEmissionColor, materialMask);
+        }
     }
 
     // ----------------------- Distance Blend Material ------------------------- //
@@ -286,13 +291,17 @@ void SampleRepetitionlessLayerBase_float(
         );
         
         // Combine Far Blend with Base 
-        float lerpFactor = farDistance * materialMask;
-        albedoColor = lerp(albedoColor, blendAlbedoColor, lerpFactor);
-        normalVector = lerp(normalVector, blendNormalVector, lerpFactor);
-        metallic = lerp(metallic, blendMetallic, lerpFactor);
-        smoothness = lerp(smoothness, blendSmoothness, lerpFactor);
-        occlussion = lerp(occlussion, blendOcclussion, lerpFactor);
-        emissionColor = lerp(emissionColor, blendEmissionColor, lerpFactor);
+        if (DebuggingIndex == 5) {
+            albedoColor += blendAlbedoColor;
+        } else {
+            float lerpFactor = farDistance * materialMask;
+            albedoColor = lerp(albedoColor, blendAlbedoColor, lerpFactor);
+            normalVector = lerp(normalVector, blendNormalVector, lerpFactor);
+            metallic = lerp(metallic, blendMetallic, lerpFactor);
+            smoothness = lerp(smoothness, blendSmoothness, lerpFactor);
+            occlussion = lerp(occlussion, blendOcclussion, lerpFactor);
+            emissionColor = lerp(emissionColor, blendEmissionColor, lerpFactor);
+        }
     }
 
     // ----------------------- Output ------------------------- //
@@ -301,7 +310,10 @@ void SampleRepetitionlessLayerBase_float(
     switch (DebuggingIndex) {
         case 2: albedoColor = farDistance; break;
         case 3: albedoColor = materialMask; break;
-        case 5: albedoColor = 1; break;
+        case 5: 
+            float lerpFactor = albedoColor.r /= 12;
+            albedoColor = lerp(float4(0, 1, 0, 1), float4(1, 0, 0, 1), lerpFactor);
+            break;
     }  
     
     // If Transparency Disabled
