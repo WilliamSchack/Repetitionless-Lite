@@ -10,6 +10,8 @@
 #include "../Utilities/TextureUtilities.hlsl"
 #include "../Utilities/BooleanCompression.hlsl"
 
+#include "../TextureArrayEssentials/TextureArrayUtilities.hlsl"
+
 #include "NewMaterialTest.hlsl"
 
 void SampleRepetitionlessLayerBase_float(
@@ -26,12 +28,11 @@ void SampleRepetitionlessLayerBase_float(
     UnityTexture2DArray AVTextures,
     UnityTexture2DArray NSOTextures,
     UnityTexture2DArray EMTextures,
+    UnityTexture2DArray BMTextures,
     int AssignedAVTextures,
     int AssignedNSOTextures,
     int AssignedEMTextures,
-
-    // REPLACE ME WITH TEXTURE ARRAY
-    UnityTexture2D BlendMaskTexture,
+    int AssignedBMTextures,
 
     // Outputs
     out float4 AlbedoColorOut,
@@ -130,7 +131,9 @@ void SampleRepetitionlessLayerBase_float(
                 materialMask = SimplexNoise(UV * materialBlendMaskTO.x + materialBlendMaskTO.zw) * 2;
                 break;
             case 2: // Custom Texture
-                materialMask = SAMPLE_TEXTURE2D(BlendMaskTexture, SS, UV * materialBlendMaskTO.xy + materialBlendMaskTO.zw).r;
+                float4 bmTextureSample = 0;
+                SampleArrayAtConstantIndex_float(BMTextures, AssignedBMTextures, LayerIndex, UV * materialBlendMaskTO.xy + materialBlendMaskTO.zw, 0, SS, bmTextureSample);
+                materialMask = bmTextureSample.r;
                 break;
         }
         

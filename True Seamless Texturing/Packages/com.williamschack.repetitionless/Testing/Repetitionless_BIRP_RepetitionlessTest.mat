@@ -25,11 +25,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 18700000, guid: 58aecf31bca3b95fc9364d8261c915a1, type: 2}
+        m_Texture: {fileID: 18700000, guid: 36c67828f66d3d3c886795488e4a863e, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BMTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: b1d6cdb6e55c9c015896cc15dda98fd4, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BlendMaskTexture:
@@ -37,7 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EMTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: eca064647cdb3d3d2a2a53ee7018c497, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NSOTextures:
@@ -50,8 +50,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AssignedAVTextures: 1
-    - _AssignedBMTextures: 0
+    - _AssignedAVTextures: 7
+    - _AssignedBMTextures: 1
     - _AssignedEMTextures: 0
     - _AssignedNSOTextures: 0
     - _BUILTIN_AlphaClip: 0
