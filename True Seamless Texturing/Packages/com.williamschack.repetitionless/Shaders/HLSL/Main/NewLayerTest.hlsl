@@ -163,17 +163,19 @@ void SampleRepetitionlessLayerBase_float(
         farDistance = clamp(farDistance, 0, 1);
 
         samplingDistance = farDistance > 0 && (materialMask != 1 || (materialBlendEnabled && !overrideDistanceBlend));
-        //samplingDistanceBlend = farDistance > 0 && materialBlendEnabled && materialMask > 0 && overrideDistanceBlend && overrideDistanceBlendTO;
     }
 
     // Check material blend
     if (materialBlendEnabled) {
         samplingBlend = materialMask > 0;
-        if (distanceBlendEnabled && overrideDistanceBlendTO && farDistance > 0)
+        if (distanceBlendEnabled && overrideDistanceBlend && overrideDistanceBlendTO && farDistance > 0)
             samplingDistanceBlend = samplingBlend;
 
-        if (distanceBlendEnabled && overrideDistanceBlend && farDistance >= 1)
+        if (samplingDistanceBlend != 0 && farDistance >= 1)
             samplingBlend = false;
+        
+        //if (distanceBlendEnabled && overrideDistanceBlend && farDistance >= 1)
+        //    samplingBlend = false;
     }
 
     // Check base material
@@ -187,31 +189,6 @@ void SampleRepetitionlessLayerBase_float(
             baseMaterialData,
             albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor
         );
-    }
-
-    // ----------------------- Blend Material ------------------------- //
-    if (samplingBlend) {
-        float4 blendAlbedoColor = 1;
-        float3 blendNormalVector = TangentNormalVector;
-        float blendMetallic = 0;
-        float blendSmoothness = 0;
-        float blendOcclussion = 0;
-        float3 blendEmissionColor = 0;
-
-        GetRepetitionlessMaterialColorTest(
-            SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-            blendLayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
-            blendMaterialData,
-            blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
-        );
-        
-        // Combine Blend with Base
-        albedoColor = lerp(albedoColor, blendAlbedoColor, materialMask);
-        normalVector = lerp(normalVector, blendNormalVector, materialMask);
-        metallic = lerp(metallic, blendMetallic, materialMask);
-        smoothness = lerp(smoothness, blendSmoothness, materialMask);
-        occlussion = lerp(occlussion, blendOcclussion, materialMask);
-        emissionColor = lerp(emissionColor, blendEmissionColor, materialMask);
     }
 
     // ----------------------- Distance Material ------------------------- //
@@ -258,7 +235,34 @@ void SampleRepetitionlessLayerBase_float(
         emissionColor = lerp(emissionColor, farEmissionColor, farDistance);
     }
 
+    // ----------------------- Blend Material ------------------------- //
+    if (samplingBlend) {
+        float4 blendAlbedoColor = 1;
+        float3 blendNormalVector = TangentNormalVector;
+        float blendMetallic = 0;
+        float blendSmoothness = 0;
+        float blendOcclussion = 0;
+        float3 blendEmissionColor = 0;
+
+        GetRepetitionlessMaterialColorTest(
+            SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+            blendLayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+            blendMaterialData,
+            blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
+        );
+        
+        // Combine Blend with Base
+        albedoColor = lerp(albedoColor, blendAlbedoColor, materialMask);
+        normalVector = lerp(normalVector, blendNormalVector, materialMask);
+        metallic = lerp(metallic, blendMetallic, materialMask);
+        smoothness = lerp(smoothness, blendSmoothness, materialMask);
+        occlussion = lerp(occlussion, blendOcclussion, materialMask);
+        emissionColor = lerp(emissionColor, blendEmissionColor, materialMask);
+    }
+
     // ----------------------- Distance Blend Material ------------------------- //
+    // Only used when the blend tiling offset is changed at a distance
+
     if (samplingDistanceBlend) {
         float4 blendAlbedoColor = 1;
         float3 blendNormalVector = TangentNormalVector;
@@ -294,10 +298,11 @@ void SampleRepetitionlessLayerBase_float(
     // ----------------------- Output ------------------------- //
 
     // Debugging
-    if (DebuggingIndex == 2)
-        albedoColor = farDistance;
-    else if (DebuggingIndex == 3)
-        albedoColor = materialMask;
+    switch (DebuggingIndex) {
+        case 2: albedoColor = farDistance; break;
+        case 3: albedoColor = materialMask; break;
+        case 5: albedoColor = 1; break;
+    }  
     
     // If Transparency Disabled
     if (SurfaceType == 0 || DebuggingIndex != -1)

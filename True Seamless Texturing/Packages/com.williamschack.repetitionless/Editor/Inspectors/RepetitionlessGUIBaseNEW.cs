@@ -1183,9 +1183,9 @@ namespace Repetitionless.Inspectors
 
                     // Override Tiling & Offset Options
                     bool endedHorizontal = false;
-                    if (layerData.OverrideDistanceBlend && layerData.DistanceBlendMode == EDistanceBlendMode.TilingOffset) {
+                    if (layerData.OverrideDistanceBlend) {
                         // Override Tiling & Offset Toggle
-                        DrawProperty(() => layerData.OverrideDistanceBlendTO = GUILayout.Toggle(layerData.OverrideDistanceBlendTO, new GUIContent(GetScaledText(minScaledTextWidth, "Override Tiling & Offset", "OTO"), "Uses defined Tiling & Offset rather than distance blend Tiling & Offset"), "ButtonRight"));
+                        DrawProperty(() => layerData.OverrideDistanceBlendTO = GUILayout.Toggle(layerData.OverrideDistanceBlendTO, new GUIContent(GetScaledText(minScaledTextWidth, "Override Tiling & Offset", "OTO"), "Changes the tiling offset of the blend material at a distance"), "ButtonRight"));
 
                         endedHorizontal = true;
                         GUILayout.EndHorizontal();
@@ -1243,7 +1243,8 @@ namespace Repetitionless.Inspectors
                     "Edge Mask",
                     "Distance Mask",
                     "Blend Material Mask",
-                    "Variation Multiplier"
+                    "Variation Multiplier",
+                    "Texture Samples"
                 };
 
                 EditorGUI.BeginChangeCheck();
