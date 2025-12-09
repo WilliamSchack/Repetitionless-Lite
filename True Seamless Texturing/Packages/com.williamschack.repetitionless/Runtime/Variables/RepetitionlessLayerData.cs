@@ -29,6 +29,7 @@ namespace Repetitionless.Variables
         public Vector4 BlendMaskTextureTO = new Vector4(1, 1, 0, 0);
     }
 
+    [System.Serializable]
     public struct RepetitionlessLayerDataCompressed
     {
         public RepetitionlessMaterialDataCompressed BaseMaterialData;

@@ -52,10 +52,10 @@ namespace Repetitionless.Inspectors
         {
             serializedObject.Update();
 
-            // Check if a terrain layer was added or removed
-            //TerrainLayer[] newTerrainLayers = _terrainData.terrainLayers;
-            //if (!TerrainLayersEqual(newTerrainLayers))
-            //    UpdateTerrainLayers();
+            // Update global layers sync data for layer saving
+            TerrainLayer[] newTerrainLayers = _terrainData.terrainLayers;
+            if (!TerrainLayersEqual(newTerrainLayers))
+                UpdateTerrainLayers();
 
             // Material Selection
             EditorGUI.BeginChangeCheck();

@@ -54,6 +54,7 @@ namespace Repetitionless.Variables
         public Vector4 VariationTextureTO = new Vector4(5, 5, 0, 0);
     }
 
+    [System.Serializable]
     public struct RepetitionlessMaterialDataCompressed
     {
         // x: Compressed Bools
