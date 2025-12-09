@@ -19,7 +19,10 @@ namespace Repetitionless.Inspectors
         private TerrainLayerSyncDataSO _syncData;
 
         private GUIStyle _headerStyle;
+        private GUIStyle _headerStyleError;
         private GUIStyle _labelStyle;
+
+        bool _incorrectMaterial = false;
 
         private bool TerrainLayersEqual(TerrainLayer[] newTerrainLayers)
         {
@@ -46,6 +49,7 @@ namespace Repetitionless.Inspectors
                 return;
 
             EditorApplication.delayCall += () => {
+                Debug.LogWarning("ONLY UPDATE CHANGED TERRAIN LAYERS");
                 for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
                     _syncData.UpdateLayerMaterialsData(_terrainData.terrainLayers[i]);
             };
@@ -68,6 +72,9 @@ namespace Repetitionless.Inspectors
             _headerStyle.alignment = TextAnchor.MiddleCenter;
             _headerStyle.normal.textColor = Color.white;
 
+            _headerStyleError = new GUIStyle(_headerStyle);
+            _headerStyleError.normal.textColor = new Color(1, 0.4f, 0.4f);
+
             _labelStyle = new GUIStyle();
             _labelStyle.fontSize = 12;
             _labelStyle.wordWrap = true;
@@ -85,7 +92,9 @@ namespace Repetitionless.Inspectors
                 UpdateTerrainLayers();
 
             if (_main.RepetitionlessMaterial == null) {
-                GUILayout.Label("Assign the material here to get started", _headerStyle);
+                if (_incorrectMaterial) GUILayout.Label("Only Repetitionless terrain materials are accepted", _headerStyleError);
+                else GUILayout.Label("Assign a material here to get started", _headerStyle);
+                
                 GUILayout.Space(10);
             }
 
@@ -99,14 +108,18 @@ namespace Repetitionless.Inspectors
 
                     Debug.LogWarning("CHANGE ME TO ONLY ALLOW TERRAINS");
                     if (newShaderName.StartsWith("Repetitionless/")) {
+                        _incorrectMaterial = false;
+
                         _syncData.RemoveMaterial(_main.RepetitionlessMaterial);
                         _main.UpdateTerrainMaterial(newMat);
-                        
+
                         EditorApplication.delayCall += UpdateTerrainLayers;
                     } else {
+                        _incorrectMaterial = true;
                         _materialProp.objectReferenceValue = _main.RepetitionlessMaterial;
                     }
                 } else {
+                    _incorrectMaterial = false;
                     _syncData.RemoveMaterial(_main?.RepetitionlessMaterial);
                 }
             }

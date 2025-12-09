@@ -473,6 +473,8 @@ namespace Repetitionless.Inspectors
                 OnEnable(materialEditor);
                 _firstSetup = false;
             }
+
+            Debug.Log("UPDATE GUI CLASS NAMES");
             
             // Make Vectors One Line
             EditorGUIUtility.wideMode = true;
