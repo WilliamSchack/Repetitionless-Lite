@@ -13,24 +13,24 @@ MonoBehaviour:
   m_Name: Properties
   m_EditorClassIdentifier: com.williamschack.Repetitionless.Editor::Repetitionless.Data.RepetitionlessMaterialDataSO
   Data:
-    BaseMaterialData:
+  - BaseMaterialData:
       NoiseEnabled: 1
       RandomiseNoiseScaling: 1
       RandomiseNoiseRotation: 1
       SmoothnessEnabled: 1
       VariationEnabled: 0
-      PackedTexture: 1
+      PackedTexture: 0
       EmissionEnabled: 0
-      AlbedoAssigned: 1
+      AlbedoAssigned: 0
       MetallicAssigned: 0
       SmoothnessAssigned: 0
       NormalAssigned: 0
       OcclussionAssigned: 0
       EmissionAssigned: 0
-      VariationAssigned: 1
+      VariationAssigned: 0
       AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
-      TilingOffset: {x: 2, y: 2, z: 0, w: 0}
+      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
       Metallic: 0
       SmoothnessRoughness: 0.5
       NormalScale: 1

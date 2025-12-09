@@ -8,19 +8,20 @@ using UnityEditor;
 
 namespace Repetitionless.Data
 {
+    using Inspectors;
     using Variables;
 
     public class TerrainLayerSyncDataSO : ScriptableObject
     {
+        private const string ASSET_PATH = "Packages/com.williamschack.repetitionless/Data/TerrainLayerSyncData.asset";
+
         // Use wrappers to allow serialization
         // Bit stupid but it works
         [System.Serializable] public class TerrainLayerList { [SerializeField] public List<TerrainLayer> Items = new List<TerrainLayer>(); }
         [System.Serializable] public class MaterialList     { [SerializeField] public List<Material> Items = new List<Material>(); }
 
-        private const string ASSET_PATH = "Packages/com.williamschack.repetitionless/Data/TerrainLayerSyncData.asset";
-
-        [SerializeField] public SerializableDictionary<Material, TerrainLayerList> MaterialToTerrainLayer = new SerializableDictionary<Material, TerrainLayerList>();
-        [SerializeField] public SerializableDictionary<TerrainLayer, MaterialList> TerrainLayerToMaterial = new SerializableDictionary<TerrainLayer, MaterialList>();
+        public SerializableDictionary<Material, TerrainLayerList> MaterialToTerrainLayer = new SerializableDictionary<Material, TerrainLayerList>();
+        public SerializableDictionary<TerrainLayer, MaterialList> TerrainLayerToMaterial = new SerializableDictionary<TerrainLayer, MaterialList>();
 
     #if UNITY_EDITOR
         private static TerrainLayerSyncDataSO Create()
@@ -44,8 +45,6 @@ namespace Repetitionless.Data
         {
     #if UNITY_EDITOR
             EditorUtility.SetDirty(this);
-            AssetDatabase.SaveAssetIfDirty(this);
-            AssetDatabase.Refresh();
     #endif
         }
 
@@ -104,6 +103,73 @@ namespace Repetitionless.Data
             }
 
             Save();
+        }
+
+        public void UpdateLayerMaterialsData(TerrainLayer terrainLayer)
+        {
+            Debug.Log("Updating terrain layer: " + terrainLayer);
+
+            // Update the materials data related to this terrain layer
+            foreach (Material mat in TerrainLayerToMaterial.Get(terrainLayer).Items) {
+                string progressBarTitle = $"Updating {mat.name}...";
+                EditorUtility.DisplayProgressBar(progressBarTitle, "Setting up", 0.0f);
+
+                MaterialDataManager materialData = new MaterialDataManager(mat);
+                RepetitionlessMaterialDataSO materialProperties = materialData.LoadAsset<RepetitionlessMaterialDataSO>(RepetitionlessGUIBaseNEW.PROPERTIES_FILE_NAME);
+                RepetitionlessTextureDataSO  textureData        = materialData.LoadAsset<RepetitionlessTextureDataSO>(RepetitionlessGUIBaseNEW.TEXTURE_DATA_FILE_NAME);
+
+                if (materialProperties == null || textureData == null) {
+                    Debug.LogError($"Could not find properties or textures for material {mat.name}");
+                    EditorUtility.ClearProgressBar();
+                    continue;
+                }
+
+                // Setup data
+                materialProperties.SetDataManager(materialData);
+                textureData.SetupTextureDrawers(materialData);
+
+                // Get the layer index
+                int layerIndex = MaterialToTerrainLayer.Get(mat).Items.IndexOf(terrainLayer);
+                if (layerIndex >= textureData.LayersTextureData.Length)
+                    continue;
+
+                // Update properties
+                RepetitionlessMaterialData baseMaterialData = materialProperties.Data[layerIndex].BaseMaterialData;
+                baseMaterialData.NormalScale  = terrainLayer.normalScale;
+                baseMaterialData.TilingOffset = new Vector4(terrainLayer.tileSize.x, terrainLayer.tileSize.y, terrainLayer.tileOffset.x, terrainLayer.tileOffset.y);
+
+                EditorUtility.DisplayProgressBar(progressBarTitle, "Updating Textures", 0.2f);
+
+                // Update diffuse, normal textures
+                int arrayLayerIndex = layerIndex * 3 + 0; // Using base material
+                if(terrainLayer.diffuseTexture != textureData.GetTextureData(layerIndex, 0, 0)[0].Texture)
+                    textureData.AVTexturesDrawer.UpdateTexture(terrainLayer.diffuseTexture, arrayLayerIndex, 0, true);
+                if(terrainLayer.normalMapTexture != textureData.GetTextureData(layerIndex, 0, 1)[0].Texture)
+                    textureData.NSOTexturesDrawer.UpdateTexture(terrainLayer.normalMapTexture, arrayLayerIndex, 0, true);
+
+                // Update packed textures
+                if(!baseMaterialData.PackedTexture ||
+                    textureData.GetTextureData(layerIndex, 0, 1)[3].Texture != terrainLayer.maskMapTexture ||
+                    textureData.GetTextureData(layerIndex, 0, 2)[2].Texture != terrainLayer.maskMapTexture
+                ) {
+                    baseMaterialData.PackedTexture = true;
+                
+                    textureData.GetTextureData(layerIndex, 0, 1)[3].Texture = terrainLayer.maskMapTexture;
+                    textureData.GetTextureData(layerIndex, 0, 2)[2].Texture  = terrainLayer.maskMapTexture;
+
+                    textureData.UpdatePackedTexture(layerIndex, 0, true);
+                }
+
+                EditorUtility.DisplayProgressBar(progressBarTitle, "Updating Properties", 0.8f);
+
+                // Save changed properties
+                materialProperties.UpdateAssignedTextures(mat, textureData, 0, layerIndex);
+
+                materialProperties.Save();
+                textureData.Save();
+
+                EditorUtility.ClearProgressBar();
+            }
         }
     }
 }

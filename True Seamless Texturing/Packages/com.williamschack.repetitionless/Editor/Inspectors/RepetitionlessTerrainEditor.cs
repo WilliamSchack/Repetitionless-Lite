@@ -18,10 +18,22 @@ namespace Repetitionless.Inspectors
 
         TerrainLayerSyncDataSO _syncData;
 
+        private bool TerrainLayersEqual(TerrainLayer[] newTerrainLayers)
+        {
+            if (_terrainLayers.Length != newTerrainLayers.Length)
+                return false;
+
+            for (int i = 0; i < _terrainLayers.Length; i++) {
+                if (_terrainLayers[i] != newTerrainLayers[i])
+                    return false;
+            }
+
+            return true;
+        }
+
         private void UpdateTerrainLayers()
         {
             _terrainLayers = _terrainData.terrainLayers;
-
             _syncData.UpdateMaterialLayers(_main.RepetitionlessMaterial, _terrainLayers);
         }
 
@@ -41,9 +53,9 @@ namespace Repetitionless.Inspectors
             serializedObject.Update();
 
             // Check if a terrain layer was added or removed
-            TerrainLayer[] currentTerrainLayers = _terrainData.terrainLayers;
-            if (currentTerrainLayers.Length != _terrainLayers.Length)
-                UpdateTerrainLayers();
+            //TerrainLayer[] newTerrainLayers = _terrainData.terrainLayers;
+            //if (!TerrainLayersEqual(newTerrainLayers))
+            //    UpdateTerrainLayers();
 
             // Material Selection
             EditorGUI.BeginChangeCheck();
@@ -61,7 +73,14 @@ namespace Repetitionless.Inspectors
                 }
             }
 
+            // Save Texture Layers Button
             GUILayout.Space(10);
+            
+            if (GUILayout.Button("Save Textures", GUILayout.Height(30))) {
+                for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
+                    _syncData.UpdateLayerMaterialsData(_terrainData.terrainLayers[i]);
+            }
+
 
             // Edit Material Button
             if (_main.RepetitionlessMaterial != null &&

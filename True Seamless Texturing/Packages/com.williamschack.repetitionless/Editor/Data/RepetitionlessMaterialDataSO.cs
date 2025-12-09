@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -17,19 +18,20 @@ namespace Repetitionless.Data
         private const TextureFormat DATA_TEXTURE_FORMAT = TextureFormat.RGBAHalf;
 
         // Dont modify data in the SO inspector, do it in the material inspector
-        [HideInInspector] public RepetitionlessLayerData Data;
-        private RepetitionlessLayerDataCompressed _dataCompressed;
-
-        private int _layerCount = 1;
+        [HideInInspector] public RepetitionlessLayerData[] Data;
+        private RepetitionlessLayerDataCompressed[] _dataCompressed;
 
         MaterialDataManager _dataManager;
 
         public void Init(int layerCount)
         {
-            _layerCount = layerCount;
-
-            Data = new RepetitionlessLayerData();
-            _dataCompressed = new RepetitionlessLayerDataCompressed();
+            Data = new RepetitionlessLayerData[layerCount];
+            for (int i = 0; i < layerCount; i++)
+                Data[i] = new RepetitionlessLayerData();
+            
+            _dataCompressed = new RepetitionlessLayerDataCompressed[layerCount];
+            for (int i = 0; i < layerCount; i++)
+                _dataCompressed[i] = new RepetitionlessLayerDataCompressed();
         }
 
         public void Save()
@@ -46,16 +48,16 @@ namespace Repetitionless.Data
         }
 
     #if UNITY_EDITOR
-        private Color? GetDataColour(int compressedFieldIndex)
+        private Color? GetDataColour(int layerIndex, int compressedFieldIndex)
         {
-            return RepetitionlessDataPacker.GetLayerFieldColour(_dataCompressed, compressedFieldIndex);
+            return RepetitionlessDataPacker.GetLayerFieldColour(_dataCompressed[layerIndex], compressedFieldIndex);
         }
 
-        private Color[] GetLayerDataColour()
+        private Color[] GetLayerDataColour(int layerIndex)
         {
             Color[] dataColours = new Color[RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT];
             for (int i = 0; i < dataColours.Length; i++) {
-                dataColours[i] = GetDataColour(i).Value;
+                dataColours[i] = GetDataColour(layerIndex, i).Value;
             }
 
             return dataColours;
@@ -85,12 +87,12 @@ namespace Repetitionless.Data
                 texture = _dataManager.LoadAsset<Texture2D>(TEXTURE_ASSET_NAME);
                 
                 for (int i = 0; i < RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT; i++) {
-                    int fieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed, Data);
+                    int fieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed[layerIndex], Data[layerIndex]);
 
                     if (fieldChangedIndex == -1)
                         break;
 
-                    Color? dataColour = GetDataColour(fieldChangedIndex);
+                    Color? dataColour = GetDataColour(layerIndex, fieldChangedIndex);
                 
                     // The value has not changed
                     if (!dataColour.HasValue)
@@ -100,14 +102,22 @@ namespace Repetitionless.Data
                     texture.Apply();
                 }
             } else {
-                // Compress all values
-                RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed, Data, true);
-
                 // Create a new texture
-                texture = new Texture2D(RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT, _layerCount, DATA_TEXTURE_FORMAT, false);
+                texture = new Texture2D(RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT, Data.Length, DATA_TEXTURE_FORMAT, false);
 
-                Color[] dataColours = GetLayerDataColour();
-                
+                Color[] dataColours = new Color[RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT * Data.Length];
+                for (int i = 0; i < Data.Length; i++) {
+                    // Compress all values
+                    RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed[i], Data[i], true);
+                    Color[] layerDataColours = GetLayerDataColour(layerIndex);
+
+                    // Add colours to the main array
+                    int coloursOffset = RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT * i;
+                    for (int x = 0; x < RepetitionlessDataPacker.COMPRESSED_LAYER_VARIABLES_COUNT; x++) {
+                        dataColours[coloursOffset + x] = layerDataColours[x];
+                    }
+                }
+
                 texture.SetPixels(dataColours);
                 texture.Apply();
 
@@ -118,13 +128,13 @@ namespace Repetitionless.Data
                 property.textureValue = texture;
         }
 
-        public RepetitionlessMaterialData GetMaterialData(int materialIndex)
+        public RepetitionlessMaterialData GetMaterialData(int layerIndex, int materialIndex)
         {
-            RepetitionlessMaterialData currentData = Data.BaseMaterialData;
+            RepetitionlessMaterialData currentData = Data[layerIndex].BaseMaterialData;
             switch (materialIndex) {
               //case 0: currentData = Data.BaseMaterialData;  break;
-                case 1: currentData = Data.FarMaterialData;   break;
-                case 2: currentData = Data.BlendMaterialData; break; 
+                case 1: currentData = Data[layerIndex].FarMaterialData;   break;
+                case 2: currentData = Data[layerIndex].BlendMaterialData; break; 
             }
 
             return currentData;
@@ -134,7 +144,7 @@ namespace Repetitionless.Data
         {
             RepetitionlessTextureDataSO.MaterialTextureData materialTextureData = textureData.GetMaterialTextureData(layerIndex, materialIndex);
 
-            RepetitionlessMaterialData currentData = GetMaterialData(materialIndex);
+            RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, materialIndex);
             bool packedTextureAssigned = currentData.PackedTexture ? materialTextureData.NSOTextures[3].Texture != null : false;
 
             currentData.AlbedoAssigned     = materialTextureData.AVTextures[0].Texture != null;
@@ -145,7 +155,7 @@ namespace Repetitionless.Data
             currentData.EmissionAssigned   = materialTextureData.EMTextures[0].Texture != null;
             currentData.VariationAssigned  = materialTextureData.AVTextures[1].Texture != null;
 
-            Data.BlendMaskAssigned = textureData.LayersTextureData[layerIndex].BlendMaskTexture[0].Texture != null;
+            Data[layerIndex].BlendMaskAssigned = textureData.LayersTextureData[layerIndex].BlendMaskTexture[0].Texture != null;
 
             UpdateMaterialTexture(material, PROPERTIES_TEXTURE_PROP_NAME, layerIndex);
         }

@@ -13,14 +13,8 @@ MonoBehaviour:
   m_Name: TerrainLayerSyncData
   m_EditorClassIdentifier: com.williamschack.Repetitionless.Editor::Repetitionless.Data.TerrainLayerSyncDataSO
   MaterialToTerrainLayer:
-    keys:
-    - {fileID: 2100000, guid: 826eb0bb74e0457c5b3a6dc35fa0e989, type: 2}
-    values:
-    - Items:
-      - {fileID: 8574412962073106934, guid: 85dd0f1b40a7e16de89473ccc40fb01a, type: 2}
+    keys: []
+    values: []
   TerrainLayerToMaterial:
-    keys:
-    - {fileID: 8574412962073106934, guid: 85dd0f1b40a7e16de89473ccc40fb01a, type: 2}
-    values:
-    - Items:
-      - {fileID: 2100000, guid: 826eb0bb74e0457c5b3a6dc35fa0e989, type: 2}
+    keys: []
+    values: []

@@ -192,27 +192,27 @@ namespace Repetitionless.Inspectors
             return 0;
         }
 
-        protected RepetitionlessLayerData GetLayerData()
+        protected RepetitionlessLayerData GetLayerData(int layerIndex = 0)
         {
-            return _materialProperties.Data;
+            return _materialProperties.Data[layerIndex];
         }
 
-        protected RepetitionlessMaterialData GetMaterialData(int sectionIndex)
+        protected RepetitionlessMaterialData GetMaterialData(int layerIndex, int sectionIndex)
         {
-            RepetitionlessMaterialData currentData = _materialProperties.Data.BaseMaterialData;
+            RepetitionlessMaterialData currentData = _materialProperties.Data[layerIndex].BaseMaterialData;
             switch (sectionIndex) {
-              //case 0: currentData = _materialProperties.Data.BaseMaterialData;  break;
-                case 1: currentData = _materialProperties.Data.FarMaterialData;   break;
-                case 2: currentData = _materialProperties.Data.BlendMaterialData; break; 
+              //case 0: currentData = _materialProperties.Data[layerIndex].BaseMaterialData;  break;
+                case 1: currentData = _materialProperties.Data[layerIndex].FarMaterialData;   break;
+                case 2: currentData = _materialProperties.Data[layerIndex].BlendMaterialData; break; 
             }
 
             return currentData;
         }
 
-        protected RepetitionlessMaterialData GetMaterialData(string materialPrefix)
+        protected RepetitionlessMaterialData GetMaterialData(int layerIndex, string materialPrefix)
         {
             int sectionIndex = GetSectionIndex(materialPrefix);
-            return GetMaterialData(sectionIndex);
+            return GetMaterialData(layerIndex, sectionIndex);
         }
 
         // Each gui function modifying the material properties should be using this function
@@ -222,8 +222,10 @@ namespace Repetitionless.Inspectors
             if (drawPropertyAction == null)
                 return;
 
-            MaterialProperty textureProperty = FindProperty("_PropertiesTexture");
-            Undo.RecordObjects(new Object[] {_materialProperties, (Texture2D)textureProperty.textureValue}, $"Modified {_material.name} property");
+            MaterialProperty textureProperty = FindProperty(RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME);
+            if (_materialProperties != null && textureProperty.textureValue != null) {
+                Undo.RecordObjects(new Object[] {_materialProperties, (Texture2D)textureProperty.textureValue}, $"Modified {_material.name} property");
+            }
 
             EditorGUI.BeginChangeCheck();
             drawPropertyAction();
@@ -252,14 +254,16 @@ namespace Repetitionless.Inspectors
         /// </returns>
         protected virtual Rect DrawTexture(int sectionIndex, int textureIndex, GUIContent content, string texturePropertyName)
         {
+            int layerIndex = 0;
+
             Rect lineRect = GUIUtilities.GetLineRect();
 
-            RepetitionlessMaterialData currentData = GetMaterialData(sectionIndex);
+            RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, sectionIndex);
 
             TextureDrawerDetails textureDrawerDetails = GetTextureDrawerDetails(textureIndex, currentData.PackedTexture);
 
-            //Undo.IncrementCurrentGroup();
-            Undo.RecordObjects(new Object[] {_materialProperties, _textureData}, $"Modified {_material.name} texture");
+            if (_materialProperties != null && _textureData != null)
+                Undo.RecordObjects(new Object[] {_materialProperties, _textureData}, $"Modified {_material.name} texture");
 
             EditorGUI.BeginChangeCheck();
             textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, sectionIndex, textureDrawerDetails.ChannelIndex, content);
@@ -270,10 +274,8 @@ namespace Repetitionless.Inspectors
 
                 // If packed texture was changed, manually update texture in emission array aswell
                 if (currentData.PackedTexture && textureIndex == 1)
-                    _textureData.EMTexturesDrawer.UpdateTexture(_textureData.GetTextureData(0, sectionIndex, 1)[3].Texture, 0, 2, true);
+                    _textureData.EMTexturesDrawer.UpdateTexture(_textureData.GetTextureData(layerIndex, sectionIndex, 1)[3].Texture, 0, 2, true);
             }
-
-            //Undo.SetCurrentGroupName($"Modified {_material.name} texture");
 
             // Return rect after texture field
             lineRect = MaterialEditor.GetRectAfterLabelWidth(lineRect);
@@ -282,7 +284,9 @@ namespace Repetitionless.Inspectors
 
         private void UpdateVariationTexture(int sectionIndex, ETextureType prevVariationMode, bool forceRemove = false)
         {
-            RepetitionlessMaterialData currentData = GetMaterialData(sectionIndex);
+            int layerIndex = 0;
+
+            RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, sectionIndex);
             ref RepetitionlessTextureDataSO.MaterialTextureData textureData = ref _textureData.GetMaterialTextureData(0, sectionIndex);
 
             // If enabling texture, add it to the array
@@ -290,7 +294,7 @@ namespace Repetitionless.Inspectors
                 textureData.AVTextures[1].Disabled = false;
 
                 // Set the texture to the default variation if none assigned
-                Texture2D texture = _textureData.GetTextureData(0, sectionIndex, 0)[1].Texture;
+                Texture2D texture = _textureData.GetTextureData(layerIndex, sectionIndex, 0)[1].Texture;
                 if (texture == null) {
                     texture = Resources.Load<Texture2D>(DEFAULT_VARIATION_TEXTURE_NAME);
                 }
@@ -317,7 +321,7 @@ namespace Repetitionless.Inspectors
         {
             int layerIndex = 0;
 
-            RepetitionlessLayerData layerData = _materialProperties.Data;
+            RepetitionlessLayerData layerData = _materialProperties.Data[layerIndex];
             ref TexturePacker.TextureData textureData = ref _textureData.LayersTextureData[layerIndex].BlendMaskTexture[0];
 
             // If enabling texture, add it to the array
@@ -410,7 +414,7 @@ namespace Repetitionless.Inspectors
             _dataManager = new MaterialDataManager(_material);
 
             bool progressBarUsed = false;
-
+            
             if (_dataManager.AssetExists(TEXTURE_DATA_FILE_NAME)) {
                 _textureData = _dataManager.LoadAsset<RepetitionlessTextureDataSO>(TEXTURE_DATA_FILE_NAME);
             } else {
@@ -602,7 +606,8 @@ namespace Repetitionless.Inspectors
         /// </param>
         protected virtual void DrawMaterialGUI(string materialPrefix, int sectionIndex, string headerText = "")
         {
-            RepetitionlessMaterialData currentData = GetMaterialData(sectionIndex);
+            int layerIndex = 0;
+            RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, sectionIndex);
 
             // Setup Foldouts
             if (!_foldoutStates.ContainsKey(materialPrefix))
@@ -684,7 +689,8 @@ namespace Repetitionless.Inspectors
         /// </param>
         protected virtual void DrawMaterialSettingsGUI(string materialPrefix, bool showNoise = true, bool showVariation = true, bool showPT = true, bool showEmission = true, bool showSR = true, int extraWidth = 0)
         {
-            RepetitionlessMaterialData currentData = GetMaterialData(materialPrefix);
+            int layerIndex = 0;
+            RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, materialPrefix);
 
             // Calculate scaled text min width
             int minScaledTextWidth = 0;
@@ -841,7 +847,8 @@ namespace Repetitionless.Inspectors
         /// </param>
         protected virtual void DrawMaterialMainProperties(string materialPrefix, int sectionIndex)
         {
-            RepetitionlessMaterialData currentData = GetMaterialData(materialPrefix);
+            int layerIndex = 0;
+            RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, materialPrefix);
 
             // Albedo
             Rect albedoTintRect = DrawTexture(sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB)"), $"_{materialPrefix}Albedo");
@@ -924,7 +931,8 @@ namespace Repetitionless.Inspectors
         /// </param>
         protected virtual void DrawMaterialNoiseGUI(string materialPrefix)
         {
-            RepetitionlessMaterialData currentData = GetMaterialData(materialPrefix);
+            int layerIndex = 0;
+            RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, materialPrefix);
 
             // Angle Offset
             DrawProperty(() => currentData.NoiseAngleOffset = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Angle Offset", currentData.NoiseAngleOffset));
@@ -961,7 +969,8 @@ namespace Repetitionless.Inspectors
         /// </param>
         protected virtual void DrawMaterialVariationProperties(string materialPrefix, int sectionIndex)
         {
-            RepetitionlessMaterialData currentData = GetMaterialData(sectionIndex);
+            int layerIndex = 0;
+            RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, sectionIndex);
 
             // Variation Mode
             ETextureType prevVariationMode = currentData.VariationMode;
@@ -1051,7 +1060,8 @@ namespace Repetitionless.Inspectors
                 switch (layerData.DistanceBlendMode) {
                     case EDistanceBlendMode.TilingOffset:
                         // Tiling & Offset GUI
-                        RepetitionlessMaterialData farMaterialData = GetMaterialData(sectionIndex);
+                        int layerIndex = 0;
+                        RepetitionlessMaterialData farMaterialData = GetMaterialData(layerIndex, sectionIndex);
                         DrawProperty(() => farMaterialData.TilingOffset = GUIUtilities.DrawTilingOffset(farMaterialData.TilingOffset));
                         break;
                     case EDistanceBlendMode.Material:
