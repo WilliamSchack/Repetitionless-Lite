@@ -270,7 +270,7 @@ namespace Repetitionless.Inspectors
 
                 // If packed texture was changed, manually update texture in emission array aswell
                 if (currentData.PackedTexture && textureIndex == 1)
-                    _textureData.EMTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(1, sectionIndex)[3].Texture, 0, 2, true);
+                    _textureData.EMTexturesDrawer.UpdateTexture(_textureData.GetTextureData(0, sectionIndex, 1)[3].Texture, 0, 2, true);
             }
 
             //Undo.SetCurrentGroupName($"Modified {_material.name} texture");
@@ -290,7 +290,7 @@ namespace Repetitionless.Inspectors
                 textureData.AVTextures[1].Disabled = false;
 
                 // Set the texture to the default variation if none assigned
-                Texture2D texture = GetArrayLayerTextureData(0, sectionIndex)[1].Texture;
+                Texture2D texture = _textureData.GetTextureData(0, sectionIndex, 0)[1].Texture;
                 if (texture == null) {
                     texture = Resources.Load<Texture2D>(DEFAULT_VARIATION_TEXTURE_NAME);
                 }
@@ -309,7 +309,7 @@ namespace Repetitionless.Inspectors
                 _textureData.Save();
 
                 if (textureData.AVTextures[1].Texture != null)
-                    _textureData.AVTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, sectionIndex)[1].Texture, sectionIndex, 1, true);
+                    _textureData.AVTexturesDrawer.UpdateTexture(_textureData.GetTextureData(0, sectionIndex, 0)[1].Texture, sectionIndex, 1, true);
             }
         }
 
@@ -387,19 +387,6 @@ namespace Repetitionless.Inspectors
             return new TextureDrawerDetails(null, 0);
         }
 
-        private ref TexturePacker.TextureData[] GetArrayLayerTextureData(int materialIndex, int layerIndex)
-        {
-            ref RepetitionlessTextureDataSO.MaterialTextureData materialData = ref _textureData.GetMaterialTextureData(0, layerIndex);
-            
-            switch(materialIndex) {
-                case 0: return ref materialData.AVTextures;
-                case 1: return ref materialData.NSOTextures;
-                case 2: return ref materialData.EMTextures;
-            }
-
-            return ref materialData.AVTextures;
-        }
-
         #endregion
 
         #region GUI Calls
@@ -419,19 +406,8 @@ namespace Repetitionless.Inspectors
             _settingsIconContent = EditorGUIUtility.IconContent("Settings");
             _settingsIconContent.tooltip = "Texture Array Settings";
 
-            // Material Properties
-            MaterialProperty albedoVTexturesProp = FindProperty("_AVTextures");
-            MaterialProperty normalSOTexturesProp = FindProperty("_NSOTextures");
-            MaterialProperty emissionMTexturesProp = FindProperty("_EMTextures");
-            MaterialProperty blendMaskTexturesProp = FindProperty("_BMTextures");
-            MaterialProperty assignedAlbedoVTexturesProp = FindProperty("_AssignedAVTextures");
-            MaterialProperty assignedNormalSOTexturesProp = FindProperty("_AssignedNSOTextures");
-            MaterialProperty assignedEmissionMTexturesProp = FindProperty("_AssignedEMTextures");
-            MaterialProperty assignedBlendMaskTexturesProp = FindProperty("_AssignedBMTextures");
-
             // Setup data
-            Material material = (Material)albedoVTexturesProp.targets[0];
-            _dataManager = new MaterialDataManager(material);
+            _dataManager = new MaterialDataManager(_material);
 
             bool progressBarUsed = false;
 

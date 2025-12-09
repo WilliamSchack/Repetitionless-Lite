@@ -287,13 +287,18 @@ namespace Repetitionless.Data
             return ref materialData.AVTextures;
         }
 
+        public ref TexturePacker.TextureData[] GetTextureData(int layerIndex, int materialIndex, int texturesIndex)
+        {
+            ref MaterialTextureData materialTextureData = ref GetMaterialTextureData(layerIndex, materialIndex);
+            return ref GetTextureData(ref materialTextureData, texturesIndex);
+        }
+
         private ref TexturePacker.TextureData[] GetTextureDrawerTextureData(int arrayLayerIndex, int texturesIndex)
         {
             int layerIndex    = (int)Mathf.Floor(arrayLayerIndex / 3.0f);
             int materialIndex = arrayLayerIndex % MATERIAL_COUNT;
 
-            ref MaterialTextureData materialTextureData = ref GetMaterialTextureData(layerIndex, materialIndex);
-            return ref GetTextureData(ref materialTextureData, texturesIndex);
+            return ref GetTextureData(layerIndex, materialIndex, texturesIndex);
         }
 
         private ref TexturePacker.TextureData[] GetBlendMaskTextureData(int layerIndex)
