@@ -48,8 +48,8 @@ Material:
     m_Floats:
     - _AssignedAVTextures: 1
     - _AssignedBMTextures: 0
-    - _AssignedEMTextures: 1
-    - _AssignedNSOTextures: 1
+    - _AssignedEMTextures: 0
+    - _AssignedNSOTextures: 0
     - _BUILTIN_AlphaClip: 0
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 2

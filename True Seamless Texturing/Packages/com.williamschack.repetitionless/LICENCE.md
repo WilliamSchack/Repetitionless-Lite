@@ -13,11 +13,6 @@ Texture Array Essentials (https://u3d.as/3s4d)
 
 Scripts from this asset have a notice at the top
 
-// Serializable Dictionary
-
-SerializableDictionary created by azixMcAze from their repo:
-Unity-SerializableDictionary (https://github.com/azixMcAze/Unity-SerializableDictionary)
-
 // =========== SAMPLES =========== //
 
 // Trees

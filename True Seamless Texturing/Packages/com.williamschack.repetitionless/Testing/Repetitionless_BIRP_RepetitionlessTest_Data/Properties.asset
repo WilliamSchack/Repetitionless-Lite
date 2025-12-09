@@ -22,10 +22,10 @@ MonoBehaviour:
       PackedTexture: 1
       EmissionEnabled: 0
       AlbedoAssigned: 1
-      MetallicAssigned: 1
-      SmoothnessAssigned: 1
-      NormalAssigned: 1
-      OcclussionAssigned: 1
+      MetallicAssigned: 0
+      SmoothnessAssigned: 0
+      NormalAssigned: 0
+      OcclussionAssigned: 0
       EmissionAssigned: 0
       VariationAssigned: 1
       AlbedoTint: {r: 1, g: 1, b: 1, a: 1}

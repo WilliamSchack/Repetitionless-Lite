@@ -16,26 +16,24 @@ namespace Repetitionless.Inspectors
         private TerrainData _terrainData;
         private TerrainLayer[] _terrainLayers;
 
+        TerrainLayerSyncDataSO _syncData;
+
         private void UpdateTerrainLayers()
         {
             _terrainLayers = _terrainData.terrainLayers;
 
-            TerrainLayerProcessor.UpdateMaterialLayers(_main.RepetitionlessMaterial, _terrainLayers);
+            _syncData.UpdateMaterialLayers(_main.RepetitionlessMaterial, _terrainLayers);
         }
 
         private void OnEnable()
         {
             _main = (RepetitionlessTerrain)serializedObject.targetObject;
+            _syncData = TerrainLayerSyncDataSO.Load();
 
             _materialProp = serializedObject.FindProperty("_repetitionlessMaterial");
 
             _terrainData = _main.Terrain.terrainData;
             UpdateTerrainLayers();
-        }
-
-        private void OnDisable()
-        {
-            
         }
 
         public override void OnInspectorGUI()
@@ -56,7 +54,7 @@ namespace Repetitionless.Inspectors
 
                 Debug.LogWarning("CHANGE ME TO ONLY ALLOW TERRAINS");
                 if (newShaderName.StartsWith("Repetitionless/")) {
-                    TerrainLayerProcessor.RemoveMaterial(_main.RepetitionlessMaterial);
+                    _syncData.RemoveMaterial(_main.RepetitionlessMaterial);
                     _main.UpdateTerrainMaterial(newMat);
                 } else {
                     _materialProp.objectReferenceValue = _main.RepetitionlessMaterial;
