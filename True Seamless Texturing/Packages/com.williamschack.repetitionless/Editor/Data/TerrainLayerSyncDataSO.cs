@@ -50,6 +50,9 @@ namespace Repetitionless.Data
 
         public void UpdateMaterialLayers(Material mat, TerrainLayer[] layers)
         {
+            if (mat == null)
+                return;
+
             List<TerrainLayer> prevTerrainLayers;
 
             // Update terrain layers dict
@@ -100,7 +103,12 @@ namespace Repetitionless.Data
 
             foreach (TerrainLayer layer in usedTerrainLayers) {
                 TerrainLayerToMaterial.Get(layer).Items.Remove(mat);
+
+                if (TerrainLayerToMaterial.Get(layer).Items.Count == 0)
+                    TerrainLayerToMaterial.Remove(layer);
             }
+
+
 
             Save();
         }

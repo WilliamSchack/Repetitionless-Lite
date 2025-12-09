@@ -17,11 +17,11 @@ MonoBehaviour:
     - {fileID: 2100000, guid: 826eb0bb74e0457c5b3a6dc35fa0e989, type: 2}
     values:
     - Items:
+      - {fileID: 8574412962073106934, guid: 477783760963b6eef916bb56a222d1ce, type: 2}
       - {fileID: 8574412962073106934, guid: 1e92a9c8165577731892bae8544a09a7, type: 2}
-      - {fileID: 8574412962073106934, guid: d085c8239ce9ffd3ab5f9be01800dc72, type: 2}
   TerrainLayerToMaterial:
     keys:
-    - {fileID: 8574412962073106934, guid: d085c8239ce9ffd3ab5f9be01800dc72, type: 2}
+    - {fileID: 8574412962073106934, guid: 477783760963b6eef916bb56a222d1ce, type: 2}
     - {fileID: 8574412962073106934, guid: 1e92a9c8165577731892bae8544a09a7, type: 2}
     values:
     - Items:
