@@ -19,18 +19,18 @@ MonoBehaviour:
       RandomiseNoiseRotation: 1
       SmoothnessEnabled: 1
       VariationEnabled: 0
-      PackedTexture: 0
+      PackedTexture: 1
       EmissionEnabled: 0
       AlbedoAssigned: 1
-      MetallicAssigned: 0
-      SmoothnessAssigned: 0
+      MetallicAssigned: 1
+      SmoothnessAssigned: 1
       NormalAssigned: 1
-      OcclussionAssigned: 0
+      OcclussionAssigned: 1
       EmissionAssigned: 0
-      VariationAssigned: 0
+      VariationAssigned: 1
       AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
-      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
+      TilingOffset: {x: 2, y: 2, z: 0, w: 0}
       Metallic: 0
       SmoothnessRoughness: 0.5
       NormalScale: 1

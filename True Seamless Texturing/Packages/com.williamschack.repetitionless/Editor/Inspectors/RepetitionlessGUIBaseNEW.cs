@@ -73,7 +73,7 @@ namespace Repetitionless.Inspectors
         protected const int SCALED_TEXT_PADDING = 10;
 
         public const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
-        public const string PROPERTIES_HANDLER_FILE_NAME = "Properties.asset";
+        public const string PROPERTIES_FILE_NAME = "Properties.asset";
 
         private const string PROGRESS_BAR_TITLE = "Updating Material";
 
@@ -427,15 +427,15 @@ namespace Repetitionless.Inspectors
 
             _textureData.SetupTextureDrawers(_dataManager);
 
-            if (_dataManager.AssetExists(PROPERTIES_HANDLER_FILE_NAME)) {
-                _materialProperties = _dataManager.LoadAsset<RepetitionlessMaterialDataSO>(PROPERTIES_HANDLER_FILE_NAME);
+            if (_dataManager.AssetExists(PROPERTIES_FILE_NAME)) {
+                _materialProperties = _dataManager.LoadAsset<RepetitionlessMaterialDataSO>(PROPERTIES_FILE_NAME);
                 _materialProperties.SetDataManager(_dataManager);
             } else {
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Properties", 0.3f);
                 progressBarUsed = true;
 
                 _materialProperties = ScriptableObject.CreateInstance<RepetitionlessMaterialDataSO>();
-                _dataManager.CreateAsset(_materialProperties, PROPERTIES_HANDLER_FILE_NAME);
+                _dataManager.CreateAsset(_materialProperties, PROPERTIES_FILE_NAME);
                 _materialProperties.Init(1);
                 _materialProperties.SetDataManager(_dataManager);
                 

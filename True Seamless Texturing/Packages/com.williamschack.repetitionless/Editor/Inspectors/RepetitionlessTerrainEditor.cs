@@ -42,12 +42,10 @@ namespace Repetitionless.Inspectors
         {
             serializedObject.Update();
 
-            // Check if amount of terrain layers has changed
+            // Check if a terrain layer was added or removed
             TerrainLayer[] currentTerrainLayers = _terrainData.terrainLayers;
-            if (currentTerrainLayers.Length != _terrainLayers.Length) {
-                Debug.Log("Added / Removed terrain layer");
+            if (currentTerrainLayers.Length != _terrainLayers.Length)
                 UpdateTerrainLayers();
-            }
 
             // Material Selection
             EditorGUI.BeginChangeCheck();
