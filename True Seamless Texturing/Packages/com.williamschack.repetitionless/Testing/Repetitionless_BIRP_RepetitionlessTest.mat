@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 882e458c6d0520540980ea80bc896198, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BMTextures:
@@ -37,7 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NSOTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 304c311b2bd37f5ecb59b74851d5f301, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PropertiesTexture:
@@ -46,7 +46,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AssignedAVTextures: 0
+    - _AssignedAVTextures: 1
     - _AssignedBMTextures: 0
     - _AssignedEMTextures: 1
     - _AssignedNSOTextures: 1

@@ -15,6 +15,7 @@ namespace Repetitionless.GUIUtilities
     using TextureUtilities;
     using Data;
     using CustomDialog;
+    using System.IO;
 
     /// <summary>
     /// Allows drawing textures stored in a Texture2DArray to the GUI as well as functions for reading and deleting the array<br />
@@ -70,32 +71,6 @@ namespace Repetitionless.GUIUtilities
         private Vector4 _defaultChannelColours;
 
         /// <summary>
-        /// Create a TextureArrayGUIDrawer using the Array and Assigned Textures properties<br />
-        /// The Texture2DArray asset will be stored in a folder accompanying the material. Can be moved after creation
-        /// </summary>
-        /// <param name="arrayProperty">
-        /// The material property for the Array (Texture2DArray)
-        /// </param>
-        /// <param name="assignedTexturesProperty">
-        /// The material property for the Assigned Textures (Float)
-        /// </param>
-        /// <param name="textureCount">
-        /// The max amount of textures this array will hold
-        /// </param>
-        /// <param name="fileName">
-        /// The filename of the Texture2DArray asset stored in a folder accompanying the material<br />
-        /// Used only on creation of the asset. Array is retrieved from the material afterwards
-        /// </param>
-        public TextureArrayCustomChannelsGUIDrawer(MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
-        {
-            // Assign material
-            _material = arrayProperty.targets[0];
-
-            // Initialise
-            Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
-        }
-
-        /// <summary>
         /// Create a TextureArrayGUIDrawer using a material and property names<br />
         /// The Texture2DArray asset will be stored in a folder accompanying the material. Can be moved after creation
         /// </summary>
@@ -115,26 +90,25 @@ namespace Repetitionless.GUIUtilities
         /// The filename of the Texture2DArray asset stored in a folder accompanying the material<br />
         /// Used only on creation of the asset. Can be changed as long as it is assigned in the material.
         /// </param>
-        public TextureArrayCustomChannelsGUIDrawer(Material material, string arrayPropertyName, string assignedTexturesPropertyName, int textureCount, string fileName = null)
-        {
-            // Assign material and variables
-            _material = material;
-            
-            // Check if properties are valid
-            if (!PropertiesValid(arrayPropertyName, assignedTexturesPropertyName))
-                return;
-
-            MaterialProperty arrayProperty = MaterialEditor.GetMaterialProperty(new Object[] { material }, arrayPropertyName);
-            MaterialProperty assignedTexturesProperty = MaterialEditor.GetMaterialProperty(new Object[] { material }, assignedTexturesPropertyName);
-
-            // Initialise
-            Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
-        }
+        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, RefFunc<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, Vector4 defaultChannelColours, Material material, string arrayPropertyName, string assignedTexturesPropertyName, int textureCount, string fileName = null)
+        : this (
+            dataManager,
+            getLayerChannelData,
+            saveTextureDataAction,
+            defaultChannelColours,
+            MaterialEditor.GetMaterialProperty(new Object[] { material }, arrayPropertyName),
+            MaterialEditor.GetMaterialProperty(new Object[] { material }, assignedTexturesPropertyName),
+            textureCount,
+            fileName
+        ) {}
 
         public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, RefFunc<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, Vector4 defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
         {
             // Assign material
             _material = arrayProperty.targets[0];
+
+            if (!PropertiesValid(arrayProperty, assignedTexturesProperty))
+                return;
             
             _dataManager = dataManager;
             _getLayerChannelDataFunc = getLayerChannelData;
@@ -156,38 +130,38 @@ namespace Repetitionless.GUIUtilities
         /// <summary>
         /// Checks if the Array and Assigned Textures properties are valid
         /// </summary>
-        private bool PropertiesValid(string arrayPropertyName, string assignedTexturesPropertyName)
+        private bool PropertiesValid(MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty)
         {
             Material material = (Material)_material;
 
-            if (!material.HasProperty(arrayPropertyName)) {
-                Debug.LogError($"Could not find Array property in {_material.name}. Please check shader property name: \"{arrayPropertyName}\"");
+            if (!material.HasProperty(arrayProperty.name)) {
+                Debug.LogError($"Could not find Array property in {_material.name}. Please check shader property name: \"{arrayProperty.name}\"");
                 return false;
             }
 
 #if UNITY_6000_2_OR_NEWER
-            if (_arrayProperty.propertyType != UnityEngine.Rendering.ShaderPropertyType.Texture
+            if (arrayProperty.propertyType != UnityEngine.Rendering.ShaderPropertyType.Texture
 #else
-            if (_arrayProperty.type != MaterialProperty.PropType.Texture
+            if (arrayProperty.type != MaterialProperty.PropType.Texture
 #endif
-                || (_arrayProperty.textureValue != null && _arrayProperty.textureValue is not Texture2DArray))
+                || (arrayProperty.textureValue != null && arrayProperty.textureValue is not Texture2DArray))
             {
-                Debug.LogError($"Array property in ({_material.name}) is not a Texture2DArray. Please change the shader property type or check the property name: \"{arrayPropertyName}\"");
+                Debug.LogError($"Array property in ({_material.name}) is not a Texture2DArray. Please change the shader property type or check the property name: \"{arrayProperty.name}\"");
                 return false;
             }
 
-            if (!material.HasProperty(assignedTexturesPropertyName)) {
-                Debug.LogError($"Could not find Assigned Textures property in {_material.name}. Please check shader property name: \"{assignedTexturesPropertyName}\"");
+            if (!material.HasProperty(assignedTexturesProperty.name)) {
+                Debug.LogError($"Could not find Assigned Textures property in {_material.name}. Please check shader property name: \"{assignedTexturesProperty.name}\"");
                 return false;
             }
 
 #if UNITY_6000_2_OR_NEWER
-            if (_assignedTexturesProperty.propertyType != UnityEngine.Rendering.ShaderPropertyType.Float)
+            if (assignedTexturesProperty.propertyType != UnityEngine.Rendering.ShaderPropertyType.Float)
 #else
-            if (_assignedTexturesProperty.type != MaterialProperty.PropType.Float)
+            if (assignedTexturesProperty.type != MaterialProperty.PropType.Float)
 #endif
             {
-                Debug.LogError($"Assigned Textures property in ({_material.name}) is not a float. Please change the shader property type or check the property name: \"{assignedTexturesPropertyName}\"");
+                Debug.LogError($"Assigned Textures property in ({_material.name}) is not a float. Please change the shader property type or check the property name: \"{assignedTexturesProperty.name}\"");
                 return false;
             }
 
@@ -431,7 +405,11 @@ namespace Repetitionless.GUIUtilities
 
                     // Resize texture and save for later use
                     clonedTextureData[i].Texture = TextureUtilities.ResizeTexture(clonedTextureData[i].Texture, newArrayResolution.x, newArrayResolution.y);
-                    _resizedTextures[index].Add(checkingTexture, clonedTextureData[i].Texture);
+
+                    if (_resizedTextures[index].ContainsKey(checkingTexture))
+                        _resizedTextures[index][checkingTexture] = clonedTextureData[i].Texture;
+                    else
+                        _resizedTextures[index].Add(checkingTexture, clonedTextureData[i].Texture);
                 }
 
                 // Pack texture

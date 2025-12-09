@@ -21,10 +21,10 @@ MonoBehaviour:
       VariationEnabled: 0
       PackedTexture: 0
       EmissionEnabled: 0
-      AlbedoAssigned: 0
+      AlbedoAssigned: 1
       MetallicAssigned: 0
       SmoothnessAssigned: 0
-      NormalAssigned: 0
+      NormalAssigned: 1
       OcclussionAssigned: 0
       EmissionAssigned: 0
       VariationAssigned: 0

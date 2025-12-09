@@ -6,7 +6,7 @@ namespace Repetitionless.Data
 {
     public class RepetitionlessMaterialProcessor : AssetModificationProcessor
     {
-        private static Material GetRepetitionlessMaterial(string assetPath)
+	private static Material GetRepetitionlessMaterial(string assetPath)
         {
             Debug.LogWarning("TEST ME ON OLDER UNITY VERSIONS");
 
@@ -14,6 +14,9 @@ namespace Repetitionless.Data
                 return null;
 
             Material material = AssetDatabase.LoadAssetAtPath<Material>(assetPath);
+            if (material == null)
+                return null;
+
             string shaderName = material.shader.name;
             if (!shaderName.StartsWith("Repetitionless/"))
                 return null;
@@ -40,7 +43,7 @@ namespace Repetitionless.Data
         private static AssetMoveResult OnWillMoveAsset(string sourcePath, string destinationPath)
         {
             Material material = GetRepetitionlessMaterial(sourcePath);
-            if (!material) return AssetMoveResult.DidNotMove;
+            if (material == null) return AssetMoveResult.DidNotMove;
 
             // Data paths
             string sourceDataPath = GetDataPath(sourcePath);
@@ -59,7 +62,7 @@ namespace Repetitionless.Data
         private static AssetDeleteResult OnWillDeleteAsset(string assetPath, RemoveAssetOptions options)
         {
             Material material = GetRepetitionlessMaterial(assetPath);
-            if (!material) return AssetDeleteResult.DidNotDelete;
+            if (material == null) return AssetDeleteResult.DidNotDelete;
 
             // Data Path
             string materialDataPath = GetDataPath(assetPath);

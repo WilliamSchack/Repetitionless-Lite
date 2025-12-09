@@ -11,6 +11,7 @@ namespace Repetitionless.Data
         public const string DATA_FOLDER_SUFFIX = "_Data";
 
         private Material _material;
+        public Material Material { get { return _material; } }
 
         public MaterialDataManager(Material material)
         {
