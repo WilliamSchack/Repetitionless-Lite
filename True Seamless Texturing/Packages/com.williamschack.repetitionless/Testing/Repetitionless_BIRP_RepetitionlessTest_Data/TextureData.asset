@@ -15,7 +15,7 @@ MonoBehaviour:
   LayersTextureData:
   - BaseMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 2800000, guid: 82febf2dec67a4f3cb162d2187372bc0, type: 3}
+      - Texture: {fileID: 2800000, guid: 2cdae532208f07b4c980e429451b35d9, type: 3}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
