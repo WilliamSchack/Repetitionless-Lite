@@ -173,7 +173,7 @@ namespace Repetitionless.Inspectors
         private string GetMaterialPrefix(int sectionIndex)
         {
             switch (sectionIndex) {
-                case 0: return "Base";
+              //case 0: return "Base";
                 case 1: return "Far";
                 case 2: return "Blend";
             }
@@ -184,7 +184,7 @@ namespace Repetitionless.Inspectors
         private int GetSectionIndex(string materialPrefix)
         {
             switch (materialPrefix) {
-                case "Base":  return 0;
+              //case "Base":  return 0;
                 case "Far":   return 1;
                 case "Blend": return 2;
             }
@@ -213,12 +213,6 @@ namespace Repetitionless.Inspectors
         {
             int sectionIndex = GetSectionIndex(materialPrefix);
             return GetMaterialData(sectionIndex);
-        }
-
-        protected virtual void UpdateMaterialPropertiesTexture(int layerIndex = 0)
-        {
-            MaterialProperty textureProperty = FindProperty("_PropertiesTexture");
-            _materialProperties.UpdateMaterialTexture(textureProperty, layerIndex);
         }
 
         // Each gui function modifying the material properties should be using this function
@@ -271,9 +265,8 @@ namespace Repetitionless.Inspectors
             textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, sectionIndex, textureDrawerDetails.ChannelIndex, content);
 
             if (EditorGUI.EndChangeCheck()) {
-                // Rehandle assigned textures and update the properties
-                string materialPrefix = GetMaterialPrefix(sectionIndex);
-                HandleAssignedTextures(materialPrefix, sectionIndex);
+                // Update assigned textures and update the properties
+                UpdateAssignedTextures(sectionIndex);
 
                 // If packed texture was changed, manually update texture in emission array aswell
                 if (currentData.PackedTexture && textureIndex == 1)
@@ -306,8 +299,7 @@ namespace Repetitionless.Inspectors
                 if (!textureAdded)
                     textureData.AVTextures[1].Texture = null;
 
-                string materialPrefix = GetMaterialPrefix(sectionIndex);
-                HandleAssignedTextures(materialPrefix, sectionIndex);
+                UpdateAssignedTextures(sectionIndex);
                 _textureData.Save();
             }
 
@@ -336,7 +328,7 @@ namespace Repetitionless.Inspectors
                 if (!textureAdded)
                     textureData.Texture = null;
 
-                HandleAssignedTextures("", 0);
+                UpdateAssignedTextures(0);
                 _textureData.Save();
             }
 
@@ -366,36 +358,15 @@ namespace Repetitionless.Inspectors
         /// <returns>
         /// The compressed assigned textures
         /// </returns>
-        protected virtual void HandleAssignedTextures(string materialPrefix, int sectionIndex, int layerIndex = 0)
+        protected virtual void UpdateAssignedTextures(int sectionIndex, int layerIndex = 0)
         {
-            RepetitionlessTextureDataSO.MaterialTextureData materialTextureData = _textureData.GetMaterialTextureData(layerIndex, sectionIndex);
-
-            RepetitionlessMaterialData currentData = GetMaterialData(sectionIndex);
-            bool packedTextureAssigned = currentData.PackedTexture ? materialTextureData.NSOTextures[3].Texture != null : false;
-
-            currentData.AlbedoAssigned     = materialTextureData.AVTextures[0].Texture != null;
-            currentData.MetallicAssigned   = packedTextureAssigned ? true : materialTextureData.EMTextures[1].Texture != null;
-            currentData.SmoothnessAssigned = packedTextureAssigned ? true : materialTextureData.NSOTextures[1].Texture != null;
-            currentData.NormalAssigned     = materialTextureData.NSOTextures[0].Texture != null;
-            currentData.OcclussionAssigned = packedTextureAssigned ? true : materialTextureData.NSOTextures[2].Texture != null;
-            currentData.EmissionAssigned   = materialTextureData.EMTextures[0].Texture != null;
-            currentData.VariationAssigned  = materialTextureData.AVTextures[1].Texture != null;
-
-            _materialProperties.Data.BlendMaskAssigned = _textureData.LayersTextureData[layerIndex].BlendMaskTexture[0].Texture != null;
-
-            UpdateMaterialPropertiesTexture();
+            _materialProperties.UpdateAssignedTextures(_material, _textureData, sectionIndex, layerIndex);
         }
 
-        protected virtual void SaveSO(ScriptableObject so)
+        protected virtual void UpdateMaterialPropertiesTexture(int layerIndex = 0)
         {
-            // Only set it to dirty and let unity handle the 
-            // Refreshing the asset database every update is slow
-            EditorUtility.SetDirty(so);
+            _materialProperties.UpdateMaterialTexture(_material, layerIndex);
         }
-        
-        //protected virtual void SaveTextureData() { SaveSO(_textureData); }
-
-        protected virtual void SaveMaterialProperties() { SaveSO(_materialProperties); }
 
         protected TextureDrawerDetails GetTextureDrawerDetails(int textureIndex, bool packedTexture)
         {
@@ -491,7 +462,8 @@ namespace Repetitionless.Inspectors
                 _dataManager.CreateAsset(_materialProperties, PROPERTIES_HANDLER_FILE_NAME);
                 _materialProperties.Init(1);
                 _materialProperties.SetDataManager(_dataManager);
-                SaveMaterialProperties();
+                
+                _materialProperties.Save();
                 AssetDatabase.SaveAssetIfDirty(_materialProperties);
 
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Writing Properties", 0.8f);
@@ -946,8 +918,8 @@ namespace Repetitionless.Inspectors
                 Rect emissionColourRect = DrawTexture(sectionIndex, 5, new GUIContent("Emission", "Emission (RGB)"), $"_{materialPrefix}EmissionMap");
                 DrawProperty(() => currentData.EmissionColour = EditorGUI.ColorField(emissionColourRect, GUIContent.none, currentData.EmissionColour, true, false, true));
                 if (EditorGUI.EndChangeCheck()) {
-                    // Rehandle assigned textures since the function can be changed in child classes
-                    HandleAssignedTextures(materialPrefix, sectionIndex);
+                    // Update assigned textures since the function can be changed in child classes
+                    UpdateAssignedTextures(sectionIndex);
 
                     // If texture just assigned and colour is black, change colour to white
                     if (currentData.EmissionAssigned && !prevEmissionAssigned) {
@@ -1160,7 +1132,7 @@ namespace Repetitionless.Inspectors
                     EditorGUI.BeginChangeCheck();
                     _textureData.BMTexturesDrawer.DrawTexture(0, 0, new GUIContent("Blend Mask", "Blend Mask (R), other channels are ignored\n\nTexture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)"));
                     if (EditorGUI.EndChangeCheck()) {
-                        HandleAssignedTextures("Blend", 2);
+                        UpdateAssignedTextures(2);
                     }
 
                     // Scale & Offset
