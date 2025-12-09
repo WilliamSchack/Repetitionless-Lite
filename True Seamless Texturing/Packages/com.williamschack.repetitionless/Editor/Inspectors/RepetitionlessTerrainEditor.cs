@@ -35,6 +35,11 @@ namespace Repetitionless.Inspectors
         {
             _terrainLayers = _terrainData.terrainLayers;
             _syncData.UpdateMaterialLayers(_main.RepetitionlessMaterial, _terrainLayers);
+            
+            EditorApplication.delayCall += () => {
+                for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
+                    _syncData.UpdateLayerMaterialsData(_terrainData.terrainLayers[i]);
+            };
         }
 
         private void OnEnable()
@@ -76,6 +81,7 @@ namespace Repetitionless.Inspectors
             // Save Texture Layers Button
             GUILayout.Space(10);
             
+            GUILayout.Label("The material updates automatically but click here if is has not for any reason");
             if (GUILayout.Button("Save Textures", GUILayout.Height(30))) {
                 for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
                     _syncData.UpdateLayerMaterialsData(_terrainData.terrainLayers[i]);
@@ -83,6 +89,7 @@ namespace Repetitionless.Inspectors
 
 
             // Edit Material Button
+            GUILayout.Space(5);
             if (_main.RepetitionlessMaterial != null &&
                 GUILayout.Button("Edit Material", GUILayout.Height(30))) {
                 Selection.activeObject = _main.RepetitionlessMaterial;
