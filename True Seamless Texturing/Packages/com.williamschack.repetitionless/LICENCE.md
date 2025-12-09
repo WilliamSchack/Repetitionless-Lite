@@ -6,10 +6,17 @@ Once you are done with the examples, it is recommended that you delete them to r
 
 // ============ CODE ============= //
 
+// Texture Array Essentials
+
 Some scripts are taken or modified from my other asset:
 Texture Array Essentials (https://u3d.as/3s4d)
 
 Scripts from this asset have a notice at the top
+
+// Serializable Dictionary
+
+SerializableDictionary created by azixMcAze from their repo:
+Unity-SerializableDictionary (https://github.com/azixMcAze/Unity-SerializableDictionary)
 
 // =========== SAMPLES =========== //
 
