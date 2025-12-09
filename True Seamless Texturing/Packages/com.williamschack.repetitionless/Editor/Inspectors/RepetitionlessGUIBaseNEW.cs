@@ -83,10 +83,6 @@ namespace Repetitionless.Inspectors
 
         protected virtual int _materialCount => 3;
 
-        // Texture drawers
-
-        protected TextureArrayCustomChannelsGUIDrawer _bmTexturesDrawer;
-
         // Data
         protected MaterialDataManager _dataManager;
         protected RepetitionlessTextureDataSO _textureData;
@@ -312,13 +308,13 @@ namespace Repetitionless.Inspectors
 
                 string materialPrefix = GetMaterialPrefix(sectionIndex);
                 HandleAssignedTextures(materialPrefix, sectionIndex);
-                SaveTextureData();
+                _textureData.Save();
             }
 
             // If was texture, remove it from the array
             else if (prevVariationMode == ETextureType.CustomTexture || forceRemove) {
                 textureData.AVTextures[1].Disabled = true;
-                SaveTextureData();
+                _textureData.Save();
 
                 if (textureData.AVTextures[1].Texture != null)
                     _textureData.AVTexturesDrawer.UpdateTexture(GetArrayLayerTextureData(0, sectionIndex)[1].Texture, sectionIndex, 1, true);
@@ -336,21 +332,21 @@ namespace Repetitionless.Inspectors
             if (layerData.BlendMaskType == ETextureType.CustomTexture && !forceRemove) {
                 textureData.Disabled = false;
 
-                bool textureAdded = _bmTexturesDrawer.UpdateTexture(textureData.Texture, layerIndex, 0, true).Item2;
+                bool textureAdded = _textureData.BMTexturesDrawer.UpdateTexture(textureData.Texture, layerIndex, 0, true).Item2;
                 if (!textureAdded)
                     textureData.Texture = null;
 
                 HandleAssignedTextures("", 0);
-                SaveTextureData();
+                _textureData.Save();
             }
 
             // If was texture, remove it from the array
             else if (prevMaskType == ETextureType.CustomTexture || forceRemove) {
                 textureData.Disabled = true;
-                SaveTextureData();
+                _textureData.Save();
 
                 if (textureData.Texture != null)
-                    _bmTexturesDrawer.UpdateTexture(textureData.Texture, layerIndex, 0, true);
+                    _textureData.BMTexturesDrawer.UpdateTexture(textureData.Texture, layerIndex, 0, true);
             }
         }
 
@@ -397,7 +393,7 @@ namespace Repetitionless.Inspectors
             EditorUtility.SetDirty(so);
         }
         
-        protected virtual void SaveTextureData() { SaveSO(_textureData); }
+        //protected virtual void SaveTextureData() { SaveSO(_textureData); }
 
         protected virtual void SaveMaterialProperties() { SaveSO(_materialProperties); }
 
@@ -431,11 +427,6 @@ namespace Repetitionless.Inspectors
             }
 
             return ref materialData.AVTextures;
-        }
-
-        private ref TexturePacker.TextureData[] GetBlendMaskTextureData(int layerIndex)
-        {
-            return ref _textureData.LayersTextureData[layerIndex].BlendMaskTexture;
         }
 
         #endregion
@@ -483,7 +474,7 @@ namespace Repetitionless.Inspectors
                 _dataManager.CreateAsset(_textureData, TEXTURE_DATA_FILE_NAME);
                 _textureData.Init(_materialCount / 3);
 
-                SaveTextureData();
+                _textureData.Save();
                 AssetDatabase.SaveAssetIfDirty(_textureData);
             }
 
@@ -509,9 +500,6 @@ namespace Repetitionless.Inspectors
 
             if (progressBarUsed)
                 EditorUtility.ClearProgressBar();
-
-            _bmTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetBlendMaskTextureData(i); }, SaveTextureData, RepetitionlessTextureDataSO.DEFAULT_BM_COLOUR, blendMaskTexturesProp, assignedBlendMaskTexturesProp, _materialCount / 3);
-            _bmTexturesDrawer.TextureFormat = TextureFormat.BC7;
         }
 
         /// <summary>
@@ -866,7 +854,6 @@ namespace Repetitionless.Inspectors
                     int sectionIndex = GetSectionIndex(materialPrefix);
 
                     _textureData.UpdatePackedTexture(0, sectionIndex, currentData.PackedTexture);
-                    SaveTextureData();
                 }
             }
 
@@ -1171,7 +1158,7 @@ namespace Repetitionless.Inspectors
                 } else { // Custom Texture
                     // Texture
                     EditorGUI.BeginChangeCheck();
-                    _bmTexturesDrawer.DrawTexture(0, 0, new GUIContent("Blend Mask", "Blend Mask (R), other channels are ignored\n\nTexture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)"));
+                    _textureData.BMTexturesDrawer.DrawTexture(0, 0, new GUIContent("Blend Mask", "Blend Mask (R), other channels are ignored\n\nTexture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)"));
                     if (EditorGUI.EndChangeCheck()) {
                         HandleAssignedTextures("Blend", 2);
                     }

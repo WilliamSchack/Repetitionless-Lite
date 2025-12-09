@@ -18,9 +18,11 @@ namespace Repetitionless.Data
         private const string AV_TEXTURES_PROP_NAME  = "_AVTextures";
         private const string NSO_TEXTURES_PROP_NAME = "_NSOTextures";
         private const string EM_TEXTURES_PROP_NAME  = "_EMTextures";
+        private const string BM_TEXTURES_PROP_NAME  = "_BMTextures";
         private const string AV_ASSIGNED_TEXTURES_PROP_NAME = "_AssignedAVTextures";
         private const string NSO_ASSIGNED_TEXTURES_PROP_NAME = "_AssignedNSOTextures";
         private const string EM_ASSIGNED_TEXTURES_PROP_NAME = "_AssignedEMTextures";
+        private const string BM_ASSIGNED_TEXTURES_PROP_NAME = "_AssignedBMTextures";
 
         public static readonly Vector4 DEFAULT_AV_COLOUR  = new Vector4 ( 1.0f, 1.0f, 1.0f, 0.0f );
         public static readonly Vector4 DEFAULT_NSO_COLOUR = new Vector4 ( 0.0f, 0.0f, 0.0f, 1.0f );
@@ -54,6 +56,7 @@ namespace Repetitionless.Data
         public TextureArrayCustomChannelsGUIDrawer AVTexturesDrawer;
         public TextureArrayCustomChannelsGUIDrawer NSOTexturesDrawer;
         public TextureArrayCustomChannelsGUIDrawer EMTexturesDrawer;
+        public TextureArrayCustomChannelsGUIDrawer BMTexturesDrawer;
 
         public void Init(int layersCount)
         {
@@ -64,7 +67,7 @@ namespace Repetitionless.Data
             }
         }
 
-        private void Save()
+        public void Save()
         {
 #if UNITY_EDITOR
             EditorUtility.SetDirty(this);
@@ -79,11 +82,13 @@ namespace Repetitionless.Data
             AVTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 0); }, Save, DEFAULT_AV_COLOUR, dataManager.Material, AV_TEXTURES_PROP_NAME, AV_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length);
             NSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 1); }, Save, DEFAULT_NSO_COLOUR, dataManager.Material, NSO_TEXTURES_PROP_NAME, NSO_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length);
             EMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 2); }, Save, DEFAULT_EM_COLOUR, dataManager.Material, EM_TEXTURES_PROP_NAME, EM_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length);
-            
+            BMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetBlendMaskTextureData(i); }, Save, DEFAULT_BM_COLOUR, dataManager.Material, BM_TEXTURES_PROP_NAME, BM_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length);
+
             AVTexturesDrawer.TextureFormat  = TextureFormat.BC7;
             NSOTexturesDrawer.TextureFormat = TextureFormat.BC7;
             NSOTexturesDrawer.ArrayLinear   = true;
             EMTexturesDrawer.TextureFormat  = TextureFormat.BC7;
+            BMTexturesDrawer.TextureFormat  = TextureFormat.BC7;
         }
 
         public void SetupLayer(int index)
@@ -282,13 +287,18 @@ namespace Repetitionless.Data
             return ref materialData.AVTextures;
         }
 
-        public ref TexturePacker.TextureData[] GetTextureDrawerTextureData(int arrayLayerIndex, int texturesIndex)
+        private ref TexturePacker.TextureData[] GetTextureDrawerTextureData(int arrayLayerIndex, int texturesIndex)
         {
             int layerIndex    = (int)Mathf.Floor(arrayLayerIndex / 3.0f);
             int materialIndex = arrayLayerIndex % MATERIAL_COUNT;
 
             ref MaterialTextureData materialTextureData = ref GetMaterialTextureData(layerIndex, materialIndex);
             return ref GetTextureData(ref materialTextureData, texturesIndex);
+        }
+
+        private ref TexturePacker.TextureData[] GetBlendMaskTextureData(int layerIndex)
+        {
+            return ref LayersTextureData[layerIndex].BlendMaskTexture;
         }
 
         // Assumes Init was called and texture data is in same format
@@ -315,6 +325,8 @@ namespace Repetitionless.Data
                 NSOTexturesDrawer.UpdateTexture(textureData.NSOTextures[2].Texture, materialIndex, 2, true);
                 EMTexturesDrawer.UpdateTexture(textureData.EMTextures[1].Texture, materialIndex, 1, true);
             }
+
+            Save();
         }
     }
 }
