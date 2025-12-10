@@ -14,6 +14,7 @@ namespace Repetitionless.Inspectors
         private SerializedProperty _materialProp;
         private SerializedProperty _autoSaveProp;
 
+
         private TerrainData _terrainData;
         private TerrainLayer[] _terrainLayers;
 
@@ -41,18 +42,21 @@ namespace Repetitionless.Inspectors
             return true;
         }
 
-        private void UpdateTerrainLayers()
+        private void SyncLayersToMaterial()
         {
             // Update global data for terrain layer saving
             _terrainLayers = _terrainData.terrainLayers;
             _syncData.UpdateGlobalMaterialLayers(_main.RepetitionlessMaterial, _terrainLayers);
+        }
 
-            // Save textures to the material
-            if (_main.RepetitionlessMaterial == null || !_autoSaveProp.boolValue)
+        // Save textures to the material
+        private void UpdateMaterialTerrainLayerTextures()
+        {
+            if (_main.RepetitionlessMaterial == null)
                 return;
 
             EditorApplication.delayCall += () => {
-                Debug.LogWarning("ONLY UPDATE CHANGED TERRAIN LAYERS");
+                // Will only update changed layers
                 for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
                     _syncData.UpdateLayerMaterialsData(_terrainData.terrainLayers[i]);
             };
@@ -67,7 +71,8 @@ namespace Repetitionless.Inspectors
             _autoSaveProp = serializedObject.FindProperty("_autoSaveTextures");
 
             _terrainData = _main.Terrain.terrainData;
-            UpdateTerrainLayers();
+            SyncLayersToMaterial();
+            UpdateMaterialTerrainLayerTextures();
 
             _headerStyle = new GUIStyle();
             _headerStyle.fontSize = 14;
@@ -94,8 +99,11 @@ namespace Repetitionless.Inspectors
 
             // Update global layers sync data for layer saving
             TerrainLayer[] newTerrainLayers = _terrainData.terrainLayers;
-            if (!TerrainLayersEqual(newTerrainLayers))
-                UpdateTerrainLayers();
+            if (!TerrainLayersEqual(newTerrainLayers)) {
+                SyncLayersToMaterial();
+                if (_autoSaveProp.boolValue)
+                    UpdateMaterialTerrainLayerTextures();
+            }
 
             if (_main.RepetitionlessMaterial == null) {
                 if (_incorrectMaterial) GUILayout.Label("Only Repetitionless terrain materials are accepted", _headerStyleError);
@@ -121,7 +129,11 @@ namespace Repetitionless.Inspectors
                         _syncData.RemoveMaterial(_main.RepetitionlessMaterial);
                         _main.UpdateTerrainMaterial(newMat);
 
-                        EditorApplication.delayCall += UpdateTerrainLayers;
+                        EditorApplication.delayCall += () => {
+                            SyncLayersToMaterial();
+                            UpdateMaterialTerrainLayerTextures();
+                            _main.UpdateMaterialTerrainTextures();
+                        };
                     } else {
                         _incorrectMaterial = true;
                         _materialProp.objectReferenceValue = _main.RepetitionlessMaterial;
@@ -150,9 +162,9 @@ namespace Repetitionless.Inspectors
 
                 GUI.backgroundColor = prevBackgroundColor;
 
-                if (GUILayout.Button(new GUIContent("Save Textures", "Manually save the textures from the terrain layers to the material"), GUILayout.Height(30))) {
-                    for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
-                        _syncData.UpdateLayerMaterialsData(_terrainData.terrainLayers[i]);
+                if (GUILayout.Button(new GUIContent("Save Textures", "Manually save the data from the terrain layers to the material"), GUILayout.Height(30))) {
+                    UpdateMaterialTerrainLayerTextures();
+                    _main.UpdateMaterialTerrainTextures();
                 }
             }
 

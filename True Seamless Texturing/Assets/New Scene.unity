@@ -185,7 +185,7 @@ Terrain:
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 826eb0bb74e0457c5b3a6dc35fa0e989, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8208f575f3af1555c94def75675e22a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.williamschack.Repetitionless::RepetitionlessTerrain
-  _repetitionlessMaterial: {fileID: 2100000, guid: 826eb0bb74e0457c5b3a6dc35fa0e989, type: 2}
+  _repetitionlessMaterial: {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
   _autoSaveTextures: 1
 --- !u!1 &633423543
 GameObject:
