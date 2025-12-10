@@ -2522,8 +2522,8 @@
     "m_ObjectId": "52f7cb2ea01645a684d6bd320ae006e4",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1213.0,
-        "y": 2689.0
+        "x": 1212.9998779296875,
+        "y": 2688.999755859375
     }
 }
 
@@ -3261,7 +3261,7 @@
     "m_Title": "Material Setup",
     "m_Position": {
         "x": 886.9998779296875,
-        "y": 1984.0
+        "y": 1983.9998779296875
     }
 }
 
@@ -3838,7 +3838,7 @@
             "m_Id": "2f0ef82a278443bc81efce6675be18a0"
         },
         {
-            "m_Id": "f95b63093f4b45808c96a68c0db6f49f"
+            "m_Id": "aa3a733955a5461ab8fe5da1d07a64f9"
         },
         {
             "m_Id": "b7c559c6aa504b248527fea3bbddd274"
@@ -4422,6 +4422,21 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "aa3a733955a5461ab8fe5da1d07a64f9",
+    "m_Id": 154,
+    "m_DisplayName": "LayersCount",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "LayersCount",
+    "m_StageCapability": 3,
+    "m_Value": 4.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
@@ -6081,20 +6096,5 @@
     "useTexelSize": true,
     "m_Modifiable": true,
     "m_DefaultType": 1
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "f95b63093f4b45808c96a68c0db6f49f",
-    "m_Id": 154,
-    "m_DisplayName": "Layer2Count",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Layer2Count",
-    "m_StageCapability": 3,
-    "m_Value": 4.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
 }
 

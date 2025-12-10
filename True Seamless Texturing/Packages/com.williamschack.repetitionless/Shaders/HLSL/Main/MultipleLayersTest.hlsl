@@ -105,45 +105,40 @@ void SampleMultipleRepetitionlessLayers_float(
     // Sample Layers
     [loop]
     for (int i = 0; i < LayersCount; i++) {
-        [unroll]
-        for (int l = 0; l < 4; l++) {
-            int layerIndex = i * 4 + l;
+        half layerControl = controlWeights[i];
+        if (layerControl == 0)
+            continue;
 
-            half layerControl = controlWeights[layerIndex];
-            if (layerControl == 0)
-                continue;
+        float4 layerAlbedo    = albedoColor;
+        float3 layerNormal    = normalVector;
+        float layerMetallic   = metallic;
+        float layerSmoothness = smoothness;
+        float layerOcclussion = occlussion;
+        float3 layerEmission  = emission;
 
-            float4 layerAlbedo    = albedoColor;
-            float3 layerNormal    = normalVector;
-            float layerMetallic   = metallic;
-            float layerSmoothness = smoothness;
-            float layerOcclussion = occlussion;
-            float3 layerEmission  = emission;
+        SampleRepetitionlessLayerBase_float(
+            SS, UV, TangentNormalVector,
+            WorldPosition, CameraPosition,
+            SurfaceType, DebuggingIndex,
+            i,
+            PropertiesTexture,
+            AVTextures,
+            NSOTextures,
+            EMTextures,
+            BMTextures,
+            AssignedAVTextures,
+            AssignedNSOTextures,
+            AssignedEMTextures,
+            AssignedBMTextures,
+            layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
+        );
 
-            SampleRepetitionlessLayerBase_float(
-                SS, UV, TangentNormalVector,
-                WorldPosition, CameraPosition,
-                SurfaceType, DebuggingIndex,
-                layerIndex,
-                PropertiesTexture,
-                AVTextures,
-                NSOTextures,
-                EMTextures,
-                BMTextures,
-                AssignedAVTextures,
-                AssignedNSOTextures,
-                AssignedEMTextures,
-                AssignedBMTextures,
-                layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
-            );
-
-            albedoColor  += layerAlbedo     * layerControl;
-            normalVector += layerNormal     * layerControl;
-            metallic     += layerMetallic   * layerControl;
-            smoothness   += layerSmoothness * layerControl;
-            occlussion   += layerOcclussion * layerControl;
-            emission     += layerEmission   * layerControl;
-        }
+        albedoColor  += layerAlbedo     * layerControl;
+        normalVector += layerNormal     * layerControl;
+        metallic     += layerMetallic   * layerControl;
+        smoothness   += layerSmoothness * layerControl;
+        occlussion   += layerOcclussion * layerControl;
+        emission     += layerEmission   * layerControl;
     }
 
     AlbedoColorOut   = albedoColor;
