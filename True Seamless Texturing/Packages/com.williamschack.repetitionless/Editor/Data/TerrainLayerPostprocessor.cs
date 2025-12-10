@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Repetitionless.Data
 {
-    public class TerrainLayerPostprocessor : AssetPostprocessor
+    public class TerrainLayerPostprocessor : AssetModificationProcessor
     {
         private static TerrainLayerSyncDataSO _syncDataCache;
         private static TerrainLayerSyncDataSO _syncData {
@@ -16,17 +16,18 @@ namespace Repetitionless.Data
             }
         }
 
-        static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths, bool didDomainReload)
+        static string[] OnWillSaveAssets(string[] paths)
         {
-            foreach (string str in importedAssets)
-            {
-                TerrainLayer terrainLayer = AssetDatabase.LoadAssetAtPath<TerrainLayer>(str);
+            foreach (string path in paths) {
+                TerrainLayer terrainLayer = AssetDatabase.LoadAssetAtPath<TerrainLayer>(path);
 
                 if (terrainLayer == null || !_syncData.TerrainLayerToMaterial.ContainsKey(terrainLayer))
                     continue;
 
                 _syncData.UpdateLayerMaterialsData(terrainLayer);
             }
+
+            return paths;
         }
     }
 }

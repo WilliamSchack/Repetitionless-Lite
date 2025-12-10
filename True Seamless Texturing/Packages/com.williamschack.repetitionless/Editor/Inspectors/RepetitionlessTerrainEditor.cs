@@ -78,16 +78,19 @@ namespace Repetitionless.Inspectors
 
             _headerStyleError = new GUIStyle(_headerStyle);
             _headerStyleError.normal.textColor = new Color(1, 0.4f, 0.4f);
-
-            _toggleStyle = new GUIStyle("button");
-            _toggleStyle.fontSize = 12;
-            _toggleStyle.fontStyle = FontStyle.Bold;
-            _toggleStyle.alignment = TextAnchor.MiddleCenter;
         }
 
         public override void OnInspectorGUI()
         {   
             serializedObject.Update();
+
+            // Cannot copy GUI.skin styles outside of ongui, make it here
+            if (_toggleStyle == null) {
+                _toggleStyle = new GUIStyle("button");
+                _toggleStyle.fontSize = 12;
+                _toggleStyle.fontStyle = FontStyle.Bold;
+                _toggleStyle.alignment = TextAnchor.MiddleCenter;
+            }
 
             // Update global layers sync data for layer saving
             TerrainLayer[] newTerrainLayers = _terrainData.terrainLayers;
@@ -147,7 +150,7 @@ namespace Repetitionless.Inspectors
 
                 GUI.backgroundColor = prevBackgroundColor;
 
-                if (GUILayout.Button("Save Textures", GUILayout.Height(30))) {
+                if (GUILayout.Button(new GUIContent("Save Textures", "Manually save the textures from the terrain layers to the material"), GUILayout.Height(30))) {
                     for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
                         _syncData.UpdateLayerMaterialsData(_terrainData.terrainLayers[i]);
                 }
