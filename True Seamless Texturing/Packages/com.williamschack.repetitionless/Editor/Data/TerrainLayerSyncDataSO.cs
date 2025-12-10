@@ -123,8 +123,8 @@ namespace Repetitionless.Data
                 // Wrapping in try to prevent infinite progress bar on an error
                 try {
                     MaterialDataManager materialData = new MaterialDataManager(mat);
-                    RepetitionlessMaterialDataSO materialProperties = materialData.LoadAsset<RepetitionlessMaterialDataSO>(RepetitionlessGUIBaseNEW.PROPERTIES_FILE_NAME);
-                    RepetitionlessTextureDataSO  textureData        = materialData.LoadAsset<RepetitionlessTextureDataSO>(RepetitionlessGUIBaseNEW.TEXTURE_DATA_FILE_NAME);
+                    RepetitionlessMaterialDataSO materialProperties = materialData.LoadAsset<RepetitionlessMaterialDataSO>(RepetitionlessMaterialEditorBaseNEW.PROPERTIES_FILE_NAME);
+                    RepetitionlessTextureDataSO  textureData        = materialData.LoadAsset<RepetitionlessTextureDataSO>(RepetitionlessMaterialEditorBaseNEW.TEXTURE_DATA_FILE_NAME);
 
                     if (materialProperties == null || textureData == null) {
                         Debug.LogError($"Could not find properties or textures for material {mat.name}");
