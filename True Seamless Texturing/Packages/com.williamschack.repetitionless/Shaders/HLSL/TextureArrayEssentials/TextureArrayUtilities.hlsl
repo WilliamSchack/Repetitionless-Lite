@@ -10,7 +10,7 @@
 
 void GetIndexInArray_float(int TexturesAssignedCompressed, int Index, out int Out)
 {
-    // Dont loop with no iterations, will cause unrolling errors
+    // Dont loop with no iterations, will cause unrolling warnings
     if (Index <= 0) {
         Out = 0;
         return;
