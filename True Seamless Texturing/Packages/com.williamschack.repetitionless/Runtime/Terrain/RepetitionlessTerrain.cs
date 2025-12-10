@@ -6,6 +6,8 @@ public class RepetitionlessTerrain : MonoBehaviour
     [SerializeField] private Material _repetitionlessMaterial;
     public Material RepetitionlessMaterial { get { return _repetitionlessMaterial; } }
 
+    [SerializeField] private bool _autoSaveTextures = true;
+
     private Terrain _terrain;
     public Terrain Terrain { get {
             if (_terrain == null)

@@ -48,7 +48,7 @@ namespace Repetitionless.Data
     #endif
         }
 
-        public void UpdateMaterialLayers(Material mat, TerrainLayer[] layers)
+        public void UpdateGlobalMaterialLayers(Material mat, TerrainLayer[] layers)
         {
             if (mat == null)
                 return;

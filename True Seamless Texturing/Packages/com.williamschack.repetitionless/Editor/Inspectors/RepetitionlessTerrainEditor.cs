@@ -12,6 +12,7 @@ namespace Repetitionless.Inspectors
         private RepetitionlessTerrain _main;
 
         private SerializedProperty _materialProp;
+        private SerializedProperty _autoSaveProp;
 
         private TerrainData _terrainData;
         private TerrainLayer[] _terrainLayers;
@@ -20,7 +21,7 @@ namespace Repetitionless.Inspectors
 
         private GUIStyle _headerStyle;
         private GUIStyle _headerStyleError;
-        private GUIStyle _labelStyle;
+        private GUIStyle _toggleStyle;
 
         bool _incorrectMaterial = false;
 
@@ -42,10 +43,12 @@ namespace Repetitionless.Inspectors
 
         private void UpdateTerrainLayers()
         {
+            // Update global data for terrain layer saving
             _terrainLayers = _terrainData.terrainLayers;
-            _syncData.UpdateMaterialLayers(_main.RepetitionlessMaterial, _terrainLayers);
+            _syncData.UpdateGlobalMaterialLayers(_main.RepetitionlessMaterial, _terrainLayers);
 
-            if (_main.RepetitionlessMaterial == null)
+            // Save textures to the material
+            if (_main.RepetitionlessMaterial == null || !_autoSaveProp.boolValue)
                 return;
 
             EditorApplication.delayCall += () => {
@@ -61,6 +64,7 @@ namespace Repetitionless.Inspectors
             _syncData = TerrainLayerSyncDataSO.Load();
 
             _materialProp = serializedObject.FindProperty("_repetitionlessMaterial");
+            _autoSaveProp = serializedObject.FindProperty("_autoSaveTextures");
 
             _terrainData = _main.Terrain.terrainData;
             UpdateTerrainLayers();
@@ -75,15 +79,14 @@ namespace Repetitionless.Inspectors
             _headerStyleError = new GUIStyle(_headerStyle);
             _headerStyleError.normal.textColor = new Color(1, 0.4f, 0.4f);
 
-            _labelStyle = new GUIStyle();
-            _labelStyle.fontSize = 12;
-            _labelStyle.wordWrap = true;
-            _labelStyle.alignment = TextAnchor.MiddleCenter;
-            _labelStyle.normal.textColor = Color.white;
+            _toggleStyle = new GUIStyle("button");
+            _toggleStyle.fontSize = 12;
+            _toggleStyle.fontStyle = FontStyle.Bold;
+            _toggleStyle.alignment = TextAnchor.MiddleCenter;
         }
 
         public override void OnInspectorGUI()
-        {
+        {   
             serializedObject.Update();
 
             // Update global layers sync data for layer saving
@@ -94,11 +97,13 @@ namespace Repetitionless.Inspectors
             if (_main.RepetitionlessMaterial == null) {
                 if (_incorrectMaterial) GUILayout.Label("Only Repetitionless terrain materials are accepted", _headerStyleError);
                 else GUILayout.Label("Assign a material here to get started", _headerStyle);
-                
-                GUILayout.Space(10);
+            } else {
+                GUILayout.Label("Material", _headerStyle);
             }
 
             // Material Selection
+            GUILayout.Space(10);
+
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(_materialProp);
             if (EditorGUI.EndChangeCheck()) {
@@ -131,7 +136,16 @@ namespace Repetitionless.Inspectors
 
                 // Save Texture Layers Button
                 GUILayout.Space(10);
-                GUILayout.Label("Textures automatically update but click here if they have not", _labelStyle);
+
+                GUILayout.Label("Textures", _headerStyle);
+                GUILayout.Space(5);
+
+                Color prevBackgroundColor = GUI.backgroundColor;
+                GUI.backgroundColor = _autoSaveProp.boolValue ? Color.green : Color.red;
+
+                _autoSaveProp.boolValue = GUILayout.Toggle(_autoSaveProp.boolValue, "Auto Save Textures", _toggleStyle, GUILayout.Height(30));
+
+                GUI.backgroundColor = prevBackgroundColor;
 
                 if (GUILayout.Button("Save Textures", GUILayout.Height(30))) {
                     for (int i = 0; i < _terrainData.terrainLayers.Length; i++)

@@ -24,7 +24,7 @@ MonoBehaviour:
       AlbedoAssigned: 1
       MetallicAssigned: 0
       SmoothnessAssigned: 0
-      NormalAssigned: 0
+      NormalAssigned: 1
       OcclussionAssigned: 0
       EmissionAssigned: 0
       VariationAssigned: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
     BlendMaskTextureTO: {x: 1, y: 1, z: 0, w: 0}
   _dataCompressed:
   - BaseMaterialData:
-      Settings1: {x: 47, y: 1, z: 0, w: 0.5}
+      Settings1: {x: 47, y: 9, z: 0, w: 0.5}
       Settings2: {x: 1, y: 1, z: 0.5, w: 2}
       Settings3: {x: 5, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}

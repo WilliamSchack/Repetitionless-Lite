@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: com.williamschack.Repetitionless::RepetitionlessTerrain
   _repetitionlessMaterial: {fileID: 2100000, guid: 826eb0bb74e0457c5b3a6dc35fa0e989, type: 2}
+  _autoSaveTextures: 1
 --- !u!1 &633423543
 GameObject:
   m_ObjectHideFlags: 0
