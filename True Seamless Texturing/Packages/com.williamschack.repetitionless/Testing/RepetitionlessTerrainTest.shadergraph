@@ -1952,7 +1952,7 @@
     "m_AlphaMode": 0,
     "m_RenderFace": 2,
     "m_AlphaClip": false,
-    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessMaterialEditorMasterNEW"
+    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessMaterialEditorTerrainNEW"
 }
 
 {
@@ -2522,8 +2522,8 @@
     "m_ObjectId": "52f7cb2ea01645a684d6bd320ae006e4",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1212.9998779296875,
-        "y": 2688.999755859375
+        "x": 1213.0,
+        "y": 2689.0
     }
 }
 
@@ -3261,7 +3261,7 @@
     "m_Title": "Material Setup",
     "m_Position": {
         "x": 886.9998779296875,
-        "y": 1983.9998779296875
+        "y": 1984.0
     }
 }
 

@@ -11,17 +11,17 @@ namespace Repetitionless.Inspectors
             base.OnGUI(materialEditor, properties);
 
             // Base Material
-            DrawBaseMaterialGUI();
+            DrawBaseMaterialGUI(0);
 
             GUILayout.Space(SETTING_PADDING);
 
             // Distance Blend Material
-            DrawDistanceBlendGUI();
+            DrawDistanceBlendGUI(0);
 
             GUILayout.Space(SETTING_PADDING);
 
             // Material Blend
-            DrawMaterialBlendGUI();
+            DrawMaterialBlendGUI(0);
 
             GUILayout.Space(SETTING_PADDING);
 

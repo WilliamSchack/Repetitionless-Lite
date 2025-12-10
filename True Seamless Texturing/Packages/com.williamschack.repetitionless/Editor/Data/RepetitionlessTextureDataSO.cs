@@ -79,9 +79,9 @@ namespace Repetitionless.Data
         {
             _dataManager = dataManager;
 
-            AVTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 0); }, Save, DEFAULT_AV_COLOUR, dataManager.Material, AV_TEXTURES_PROP_NAME, AV_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length);
-            NSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 1); }, Save, DEFAULT_NSO_COLOUR, dataManager.Material, NSO_TEXTURES_PROP_NAME, NSO_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length);
-            EMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 2); }, Save, DEFAULT_EM_COLOUR, dataManager.Material, EM_TEXTURES_PROP_NAME, EM_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length);
+            AVTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 0); }, Save, DEFAULT_AV_COLOUR, dataManager.Material, AV_TEXTURES_PROP_NAME, AV_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length * 3);
+            NSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 1); }, Save, DEFAULT_NSO_COLOUR, dataManager.Material, NSO_TEXTURES_PROP_NAME, NSO_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length * 3);
+            EMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 2); }, Save, DEFAULT_EM_COLOUR, dataManager.Material, EM_TEXTURES_PROP_NAME, EM_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length * 3);
             BMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetBlendMaskTextureData(i); }, Save, DEFAULT_BM_COLOUR, dataManager.Material, BM_TEXTURES_PROP_NAME, BM_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length);
 
             AVTexturesDrawer.TextureFormat  = TextureFormat.BC7;

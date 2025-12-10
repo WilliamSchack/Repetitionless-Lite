@@ -341,6 +341,9 @@ namespace Repetitionless.GUIUtilities
                 // Check for resolution differences
 
                 // Dont prompt for change if we are replacing the only texture
+                Debug.Log(index);
+                Debug.Log(_previousChannelsAssigned.Count);
+                Debug.Log(_previousChannelsAssigned[index]);
                 bool channelCount1AndNotChanged = _previousChannelsAssigned[index] == 1 && channelTexturesAssigned == 1;
                 _previousChannelsAssigned[index] = channelTexturesAssigned;
 

@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 18700000, guid: 9a1c69d25cd0468c68f2802fc33cd233, type: 2}
+        m_Texture: {fileID: 18700000, guid: 96b1ca4453896f5fca685ac05e2ccb98, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BMTextures:
@@ -45,19 +45,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NSOTextures:
-        m_Texture: {fileID: 18700000, guid: 53987ddd62ec6c12886e68ffc58d0536, type: 2}
+        m_Texture: {fileID: 18700000, guid: 7d0863770fb09835384c896d68c2ec0a, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PropertiesTexture:
-        m_Texture: {fileID: 2800000, guid: dd65637f649a78f17b4e4bcfdf183f59, type: 2}
+        m_Texture: {fileID: 2800000, guid: ec487dca6a3e8349bbcf9aed24d6b487, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AssignedAVTextures: 1
+    - _AssignedAVTextures: 5
     - _AssignedBMTextures: 0
     - _AssignedEMTextures: 0
-    - _AssignedNSOTextures: 0
+    - _AssignedNSOTextures: 5
     - _BUILTIN_AlphaClip: 0
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 2

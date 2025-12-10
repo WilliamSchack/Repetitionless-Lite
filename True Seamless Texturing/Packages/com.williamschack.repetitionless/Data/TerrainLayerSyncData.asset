@@ -27,9 +27,9 @@ MonoBehaviour:
     keys:
     - {fileID: 0}
     - {fileID: 8574412962073106934, guid: 51e10dddaead682229234b5e7f7b3c88, type: 2}
-    - {fileID: 8574412962073106934, guid: d085c8239ce9ffd3ab5f9be01800dc72, type: 2}
     - {fileID: 8574412962073106934, guid: 1e92a9c8165577731892bae8544a09a7, type: 2}
     - {fileID: 8574412962073106934, guid: 477783760963b6eef916bb56a222d1ce, type: 2}
+    - {fileID: 8574412962073106934, guid: d085c8239ce9ffd3ab5f9be01800dc72, type: 2}
     - {fileID: 8574412962073106934, guid: ac8a94a2014faae0da5c984b16fcbe8e, type: 2}
     - {fileID: 8574412962073106934, guid: 7faf48c6167c479e1aa8848fe241f094, type: 2}
     values:
