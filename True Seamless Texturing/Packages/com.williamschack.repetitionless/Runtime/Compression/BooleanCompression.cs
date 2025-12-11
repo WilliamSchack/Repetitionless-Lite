@@ -12,6 +12,9 @@ namespace Repetitionless.Compression
     /// </summary>
     public static class BooleanCompression
     {
+        // 32-bit integer
+        public const int MAX_VALUES = 32;
+
         /// <summary>
         /// Compresses the input array of bools into an int
         /// </summary>
@@ -23,8 +26,13 @@ namespace Repetitionless.Compression
         /// </returns>
         public static int CompressValues(params bool[] values)
         {
+            if (values.Length > MAX_VALUES)
+                Debug.LogWarning($"More than {MAX_VALUES} values detected. Only compressing the first 32");
+
+            int valueCount = Mathf.Min(values.Length, MAX_VALUES);
+
             int compressedValues = 0;
-            for (int i = 0; i < values.Length; i++) {
+            for (int i = 0; i < valueCount; i++) {
                 if (values[i])
                     compressedValues |= (1 << i);
             }
@@ -46,6 +54,10 @@ namespace Repetitionless.Compression
         /// </returns>
         public static bool[] GetValues(int compressedValues, int valueCount)
         {
+            if (valueCount > MAX_VALUES)
+                Debug.LogWarning($"Trying to get more than {MAX_VALUES} values. Only returning the first 32");
+
+            valueCount = Mathf.Min(valueCount, MAX_VALUES);
             bool[] values = new bool[valueCount];
 
             for (int i = 0; i < valueCount; i++) {
@@ -72,6 +84,11 @@ namespace Repetitionless.Compression
         /// </returns>
         public static int AddValue(int compressedValues, int index, bool value)
         {
+            if (index >= MAX_VALUES) {
+                Debug.LogError($"Cannot add bool past {MAX_VALUES} values. Returning...");
+                return compressedValues;
+            }
+
             if (value) compressedValues |=  (1 << index);
             else       compressedValues &= ~(1 << index);
             return compressedValues;
@@ -91,6 +108,11 @@ namespace Repetitionless.Compression
         /// </returns>
         public static bool GetValue(int compressedValues, int index)
         {
+            if (index >= MAX_VALUES) {
+                Debug.LogError($"Cannot get bool past {MAX_VALUES} values. Returning false...");
+                return false;
+            }
+
             return (compressedValues & (1 << index)) != 0;
         }
     }

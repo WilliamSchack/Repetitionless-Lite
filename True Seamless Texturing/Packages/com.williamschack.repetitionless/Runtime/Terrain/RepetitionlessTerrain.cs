@@ -23,8 +23,11 @@ public class RepetitionlessTerrain : MonoBehaviour
     [SerializeField] private Material _repetitionlessMaterial;
     public Material RepetitionlessMaterial { get { return _repetitionlessMaterial; } }
 
-    // Used by the editor
+    // Not used in this file but used by the editor in a SerializedProperty
+    // Disabling warnings here to prevent unused variable warning
+#pragma warning disable 0414
     [SerializeField] private bool _autoSaveTextures = true;
+#pragma warning restore 0414
 
     private Terrain _terrain;
     public Terrain Terrain { get {

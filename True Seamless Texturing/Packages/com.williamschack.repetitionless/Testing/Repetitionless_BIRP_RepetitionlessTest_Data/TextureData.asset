@@ -15,7 +15,7 @@ MonoBehaviour:
   LayersTextureData:
   - BaseMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 2800000, guid: 82febf2dec67a4f3cb162d2187372bc0, type: 3}
+      - Texture: {fileID: 0}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -32,7 +32,7 @@ MonoBehaviour:
         - From: 0
           To: 3
       NSOTextures:
-      - Texture: {fileID: 2800000, guid: d4ea8689359a9e8968f79dbef440e43b, type: 3}
+      - Texture: {fileID: 0}
         Disabled: 0
         NormalMap: 1
         FromToChannels:
@@ -40,13 +40,13 @@ MonoBehaviour:
           To: 0
         - From: 1
           To: 1
-      - Texture: {fileID: 2800000, guid: daec98e6e115ffbb8ae28fb94ad27585, type: 3}
+      - Texture: {fileID: 0}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 2
-      - Texture: {fileID: 2800000, guid: 3826568a66fe722deb55c1fc0fee9015, type: 3}
+      - Texture: {fileID: 0}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -155,7 +155,7 @@ MonoBehaviour:
           To: 3
     BlendMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 2800000, guid: 7f1d5797b4c213938ab70b04432518da, type: 3}
+      - Texture: {fileID: 0}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -172,7 +172,7 @@ MonoBehaviour:
         - From: 0
           To: 3
       NSOTextures:
-      - Texture: {fileID: 2800000, guid: 48d4642b0cb8f5702a4172306801fef1, type: 3}
+      - Texture: {fileID: 0}
         Disabled: 0
         NormalMap: 1
         FromToChannels:

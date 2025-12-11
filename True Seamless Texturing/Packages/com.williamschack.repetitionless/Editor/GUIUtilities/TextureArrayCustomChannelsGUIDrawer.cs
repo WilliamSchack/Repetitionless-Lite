@@ -15,7 +15,6 @@ namespace Repetitionless.GUIUtilities
     using TextureUtilities;
     using Data;
     using CustomDialog;
-    using System.IO;
 
     /// <summary>
     /// Allows drawing textures stored in a Texture2DArray to the GUI as well as functions for reading and deleting the array<br />
@@ -54,12 +53,21 @@ namespace Repetitionless.GUIUtilities
         // Material
         private Object _material;
         private MaterialProperty _arrayProperty;
-        private MaterialProperty _assignedTexturesProperty;
 
         // Texture variables
         private Texture2D[] _textures;
         private int _textureCount;
         private bool[] _assignedTextures;
+
+        // Doing it this way so it can support as many textures as we want
+        // ^^ Only compressing into 32bit integers
+
+        // in:  per32TexturesIndex: (0-31: 0, 32-63: 1, ...)
+        // out: assignedTextures from that range
+        System.Func<int, int>   _assignedTexturesChangedGetter;
+        // int0: per32TexturesIndex: (0-31: 0, 32-63: 1, ...)
+        // int1: assignedTextures from that range
+        System.Action<int, int> _assignedTexturesChangedSetter;
 
         public delegate ref TOut RefFunc<TIn, TOut>(TIn input);
         private RefFunc<int, TexturePacker.TextureData[]> _getLayerChannelDataFunc;
@@ -70,44 +78,12 @@ namespace Repetitionless.GUIUtilities
         private List<int> _previousChannelsAssigned = new List<int>();
         private Vector4 _defaultChannelColours;
 
-        /// <summary>
-        /// Create a TextureArrayGUIDrawer using a material and property names<br />
-        /// The Texture2DArray asset will be stored in a folder accompanying the material. Can be moved after creation
-        /// </summary>
-        /// <param name="material">
-        /// The targeted material
-        /// </param>
-        /// <param name="arrayPropertyName">
-        /// The reference name for the Array (Texture2DArray) shader property
-        /// </param>
-        /// <param name="assignedTexturesPropertyName">
-        /// The reference name for the Assigned Textures (Float) shader property
-        /// </param>
-        /// <param name="textureCount">
-        /// The max amount of textures this array will hold
-        /// </param>
-        /// <param name="fileName">
-        /// The filename of the Texture2DArray asset stored in a folder accompanying the material<br />
-        /// Used only on creation of the asset. Can be changed as long as it is assigned in the material.
-        /// </param>
-        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, RefFunc<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, Vector4 defaultChannelColours, Material material, string arrayPropertyName, string assignedTexturesPropertyName, int textureCount, string fileName = null)
-        : this (
-            dataManager,
-            getLayerChannelData,
-            saveTextureDataAction,
-            defaultChannelColours,
-            MaterialEditor.GetMaterialProperty(new Object[] { material }, arrayPropertyName),
-            MaterialEditor.GetMaterialProperty(new Object[] { material }, assignedTexturesPropertyName),
-            textureCount,
-            fileName
-        ) {}
-
-        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, RefFunc<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, Vector4 defaultChannelColours, MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
+        public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, RefFunc<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, System.Func<int, int> assignedTexturesChangedGetter, System.Action<int, int> assignedTexturesChangedSetter, Vector4 defaultChannelColours, MaterialProperty arrayProperty, int textureCount, string fileName = null)
         {
             // Assign material
             _material = arrayProperty.targets[0];
 
-            if (!PropertiesValid(arrayProperty, assignedTexturesProperty))
+            if (!ArrayPropertyValid(arrayProperty))
                 return;
             
             _dataManager = dataManager;
@@ -124,13 +100,13 @@ namespace Repetitionless.GUIUtilities
             }
 
             // Initialise
-            Init(arrayProperty, assignedTexturesProperty, textureCount, fileName);
+            Init(assignedTexturesChangedGetter, assignedTexturesChangedSetter, arrayProperty, textureCount, fileName);
         }
 
         /// <summary>
         /// Checks if the Array and Assigned Textures properties are valid
         /// </summary>
-        private bool PropertiesValid(MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty)
+        private bool ArrayPropertyValid(MaterialProperty arrayProperty)
         {
             Material material = (Material)_material;
 
@@ -147,21 +123,6 @@ namespace Repetitionless.GUIUtilities
                 || (arrayProperty.textureValue != null && arrayProperty.textureValue is not Texture2DArray))
             {
                 Debug.LogError($"Array property in ({_material.name}) is not a Texture2DArray. Please change the shader property type or check the property name: \"{arrayProperty.name}\"");
-                return false;
-            }
-
-            if (!material.HasProperty(assignedTexturesProperty.name)) {
-                Debug.LogError($"Could not find Assigned Textures property in {_material.name}. Please check shader property name: \"{assignedTexturesProperty.name}\"");
-                return false;
-            }
-
-#if UNITY_6000_2_OR_NEWER
-            if (assignedTexturesProperty.propertyType != UnityEngine.Rendering.ShaderPropertyType.Float)
-#else
-            if (assignedTexturesProperty.type != MaterialProperty.PropType.Float)
-#endif
-            {
-                Debug.LogError($"Assigned Textures property in ({_material.name}) is not a float. Please change the shader property type or check the property name: \"{assignedTexturesProperty.name}\"");
                 return false;
             }
 
@@ -185,11 +146,12 @@ namespace Repetitionless.GUIUtilities
         /// The filename of the Texture2DArray asset stored in a folder accompanying the material<br />
         /// Used only on creation of the asset. Can be changed as long as it is assigned in the material.
         /// </param>;
-        private void Init(MaterialProperty arrayProperty, MaterialProperty assignedTexturesProperty, int textureCount, string fileName = null)
+        private void Init(System.Func<int, int> assignedTexturesChangedGetter, System.Action<int, int> assignedTexturesChangedSetter, MaterialProperty arrayProperty, int textureCount, string fileName = null)
         {
             // Assign variables
             _arrayProperty = arrayProperty;
-            _assignedTexturesProperty = assignedTexturesProperty;
+            _assignedTexturesChangedGetter = assignedTexturesChangedGetter;
+            _assignedTexturesChangedSetter = assignedTexturesChangedSetter;
             _assignedTextures = new bool[textureCount];
 
             _textureCount = textureCount;
@@ -217,16 +179,34 @@ namespace Repetitionless.GUIUtilities
                 // Get textures from array
                 Texture2D[] textures = Texture2DArrayUtilities.GetTextures(array);
 
-                // Get assigned textures
-                int compressedAssignedTextures = (int)assignedTexturesProperty.floatValue;
-                bool[] assignedTextures = BooleanCompression.GetValues(compressedAssignedTextures, _textures.Length);
+                // Get assigned textures in chunks of 32
+                bool[] assignedTextures = new bool[textureCount];
+                Debug.Log("Getting assigned textures...");
+
+                int num32BitChunks = Mathf.CeilToInt(textureCount / BooleanCompression.MAX_VALUES);
+                for (int i = 0; i < num32BitChunks; i++) {
+                    int compressedAssignedTextures = _assignedTexturesChangedGetter(i);
+                    bool[] chunkAssignedTextures = BooleanCompression.GetValues(compressedAssignedTextures, BooleanCompression.MAX_VALUES);
+
+                    int chunkOffset = i * BooleanCompression.MAX_VALUES;
+                    for (int j = 0; j < chunkAssignedTextures.Length; j++) {
+                        assignedTextures[chunkOffset + j] = chunkAssignedTextures[j];
+                        Debug.Log($"{chunkOffset + j} : {(chunkAssignedTextures[j] ? "True" : "False")}");
+                    }
+                }
 
                 // Add textures to array in correct positions
                 int currentIndex = 0;
                 for (int i = 0; i < assignedTextures.Length; i++)
                 {
+                    Debug.Log(currentIndex);
+                    Debug.Log(i);
+
                     if (assignedTextures[i])
                     {
+                        Debug.Log(_textures[i]);
+                        Debug.Log(textures[currentIndex]);
+
                         _textures[i] = textures[currentIndex];
                         currentIndex++;
                     }
@@ -249,6 +229,26 @@ namespace Repetitionless.GUIUtilities
         {
             _arrayProperty.textureValue = newArray;
             _array = newArray;
+        }
+
+        // Returns:
+        // Item1: The chunk index
+        // Item2: The compresssed textures in the 32 chunk changedIndex is in
+        private (int, int) GetCompressedAssignedTextures(int changedIndex)
+        {
+            int maxValues = BooleanCompression.MAX_VALUES;
+
+            int chunkIndex = Mathf.FloorToInt(changedIndex / maxValues);
+            int chunkOffset = chunkIndex * maxValues;
+
+            bool[] chunkAssignedTextures = new bool[maxValues];
+            for (int i = 0; i < maxValues; i++) {
+                int fromIndex = chunkOffset + i;
+                chunkAssignedTextures[i] = _assignedTextures[fromIndex];
+            }
+
+            int compressedAssignedTextures = BooleanCompression.CompressValues(chunkAssignedTextures);
+            return (chunkIndex, compressedAssignedTextures);
         }
 
         /// <summary>
@@ -310,7 +310,9 @@ namespace Repetitionless.GUIUtilities
                     }
 
                     _arrayProperty.textureValue = _array;
-                    _assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
+                    (int, int) compressedAssignedTextures = GetCompressedAssignedTextures(index);
+                    _assignedTexturesChangedSetter?.Invoke(compressedAssignedTextures.Item1, compressedAssignedTextures.Item2);
+                    //_assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
 
                     return (newTexture, false);
                 }
@@ -341,9 +343,6 @@ namespace Repetitionless.GUIUtilities
                 // Check for resolution differences
 
                 // Dont prompt for change if we are replacing the only texture
-                Debug.Log(index);
-                Debug.Log(_previousChannelsAssigned.Count);
-                Debug.Log(_previousChannelsAssigned[index]);
                 bool channelCount1AndNotChanged = _previousChannelsAssigned[index] == 1 && channelTexturesAssigned == 1;
                 _previousChannelsAssigned[index] = channelTexturesAssigned;
 
@@ -461,7 +460,9 @@ namespace Repetitionless.GUIUtilities
                         _textures[index] = newTexture;
 
                         _arrayProperty.textureValue = _array;
-                        _assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
+                        (int, int) compressedAssignedTextures = GetCompressedAssignedTextures(index);
+                        _assignedTexturesChangedSetter?.Invoke(compressedAssignedTextures.Item1, compressedAssignedTextures.Item2);
+                        //_assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
 
                         return (newTexture, true);
                     }
@@ -518,7 +519,9 @@ namespace Repetitionless.GUIUtilities
                 _arrayProperty.textureValue = _array;
 
                 _assignedTextures[index] = textureAssigned;
-                _assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
+                (int, int) endCompressedAssignedTextures = GetCompressedAssignedTextures(index);
+                _assignedTexturesChangedSetter?.Invoke(endCompressedAssignedTextures.Item1, endCompressedAssignedTextures.Item2);
+                //_assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
                 
                 // Set texture
                 _textures[index] = newTexture;
@@ -971,7 +974,13 @@ namespace Repetitionless.GUIUtilities
             _assignedTextures = new bool[_textureCount];
 
             _arrayProperty.textureValue = _array;
-            _assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
+
+            // Assign all textures to unassigned
+            int num32BitChunks = Mathf.CeilToInt(_textureCount / BooleanCompression.MAX_VALUES);
+            for (int i = 0; i < num32BitChunks; i++) {
+                _assignedTexturesChangedSetter?.Invoke(i, 0);
+            }
+            //_assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
         }
     }
 }

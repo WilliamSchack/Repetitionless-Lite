@@ -95,7 +95,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AssignedAVTextures: 1
+    - _AssignedAVTextures: 37449
     - _AssignedBMTextures: 0
     - _AssignedEMTextures: 0
     - _AssignedNSOTextures: 0

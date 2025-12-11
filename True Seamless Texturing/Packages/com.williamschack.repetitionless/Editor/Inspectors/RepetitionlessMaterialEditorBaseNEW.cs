@@ -80,7 +80,7 @@ namespace Repetitionless.Inspectors
         private const string DEFAULT_VARIATION_TEXTURE_NAME = "repetitionless_VariationTexture_2048";
 
         // Overridable
-        protected virtual int _materialCount => 3;
+        protected virtual int _maxLayers => 1;
 
         // Data
         protected MaterialDataManager _dataManager;
@@ -416,7 +416,7 @@ namespace Repetitionless.Inspectors
 
                 _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureDataSO>();
                 _dataManager.CreateAsset(_textureData, TEXTURE_DATA_FILE_NAME);
-                _textureData.Init(_materialCount / 3);
+                _textureData.Init(_maxLayers);
 
                 _textureData.Save();
                 AssetDatabase.SaveAssetIfDirty(_textureData);
@@ -433,7 +433,7 @@ namespace Repetitionless.Inspectors
 
                 _materialProperties = ScriptableObject.CreateInstance<RepetitionlessMaterialDataSO>();
                 _dataManager.CreateAsset(_materialProperties, PROPERTIES_FILE_NAME);
-                _materialProperties.Init(1);
+                _materialProperties.Init(_maxLayers);
                 _materialProperties.SetDataManager(_dataManager);
                 
                 _materialProperties.Save();

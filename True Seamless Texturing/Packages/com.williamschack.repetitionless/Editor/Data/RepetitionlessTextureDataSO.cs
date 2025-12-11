@@ -74,15 +74,79 @@ namespace Repetitionless.Data
 #endif
         }
 
+        private MaterialProperty GetTexturesProp(int sectionIndex)
+        {
+            string propName = "";
+            switch (sectionIndex) {
+                case 0: propName = AV_TEXTURES_PROP_NAME; break;
+                case 1: propName = NSO_TEXTURES_PROP_NAME; break;
+                case 2: propName = EM_TEXTURES_PROP_NAME; break;
+                case 3: propName = BM_TEXTURES_PROP_NAME; break;
+                default: return null;
+            }
+
+            MaterialProperty prop = MaterialEditor.GetMaterialProperty(new Object[] { _dataManager.Material }, propName);
+            return prop;
+        }
+
+        private MaterialProperty GetAssignedTexturesProp(int sectionIndex)
+        {
+            string propName = "";
+            switch (sectionIndex) {
+                case 0: propName = AV_ASSIGNED_TEXTURES_PROP_NAME; break;
+                case 1: propName = NSO_ASSIGNED_TEXTURES_PROP_NAME; break;
+                case 2: propName = EM_ASSIGNED_TEXTURES_PROP_NAME; break;
+                case 3: propName = BM_ASSIGNED_TEXTURES_PROP_NAME; break;
+                default: return null;
+            }
+
+            MaterialProperty prop = MaterialEditor.GetMaterialProperty(new Object[] { _dataManager.Material }, propName);
+            return prop;
+        }
+
+        private int AssignedTexturesGetter(int sectionIndex, int chunkIndex)
+        {
+            MaterialProperty prop = GetAssignedTexturesProp(sectionIndex);
+            if (prop == null) return 0;
+
+            switch (chunkIndex) {
+                case 0: return (int)prop.vectorValue.x;
+                case 1: return (int)prop.vectorValue.y;
+                case 2: return (int)prop.vectorValue.z;
+            }
+
+            return 0;
+        }
+
+        private void AssignedTexturesSetter(int sectionIndex, int chunkIndex, int compressedValues)
+        {
+            MaterialProperty prop = GetAssignedTexturesProp(sectionIndex);
+            Vector3 propValue = prop.vectorValue;
+
+            switch (chunkIndex) {
+                case 0: propValue.x = compressedValues; break;
+                case 1: propValue.y = compressedValues; break;
+                case 2: propValue.z = compressedValues; break;
+            }
+
+            prop.vectorValue = propValue;
+            return;
+        }
+
         // Should be called every time before using the drawers
         public void SetupTextureDrawers(MaterialDataManager dataManager)
         {
             _dataManager = dataManager;
 
-            AVTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 0); }, Save, DEFAULT_AV_COLOUR, dataManager.Material, AV_TEXTURES_PROP_NAME, AV_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length * 3);
-            NSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 1); }, Save, DEFAULT_NSO_COLOUR, dataManager.Material, NSO_TEXTURES_PROP_NAME, NSO_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length * 3);
-            EMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 2); }, Save, DEFAULT_EM_COLOUR, dataManager.Material, EM_TEXTURES_PROP_NAME, EM_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length * 3);
-            BMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetBlendMaskTextureData(i); }, Save, DEFAULT_BM_COLOUR, dataManager.Material, BM_TEXTURES_PROP_NAME, BM_ASSIGNED_TEXTURES_PROP_NAME, LayersTextureData.Length);
+            MaterialProperty avTexturesProp  = GetTexturesProp(0);
+            MaterialProperty nsoTexturesProp = GetTexturesProp(1);
+            MaterialProperty emTexturesProp  = GetTexturesProp(2);
+            MaterialProperty bmTexturesProp  = GetTexturesProp(3);
+
+            AVTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 0); }, Save, (int i) => { return AssignedTexturesGetter(0, i); }, (int i, int at) => { AssignedTexturesSetter(0, i, at); }, DEFAULT_AV_COLOUR,  avTexturesProp,  LayersTextureData.Length * 3);
+            NSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 1); }, Save, (int i) => { return AssignedTexturesGetter(1, i); }, (int i, int at) => { AssignedTexturesSetter(1, i, at); }, DEFAULT_NSO_COLOUR, nsoTexturesProp, LayersTextureData.Length * 3);
+            EMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 2); }, Save, (int i) => { return AssignedTexturesGetter(2, i); }, (int i, int at) => { AssignedTexturesSetter(2, i, at); }, DEFAULT_EM_COLOUR,  emTexturesProp,  LayersTextureData.Length * 3);
+            BMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetBlendMaskTextureData(i); },        Save, (int i) => { return AssignedTexturesGetter(3, i); }, (int i, int at) => { AssignedTexturesSetter(3, i, at); }, DEFAULT_BM_COLOUR,  bmTexturesProp,  LayersTextureData.Length);
 
             AVTexturesDrawer.TextureFormat  = TextureFormat.BC7;
             NSOTexturesDrawer.TextureFormat = TextureFormat.BC7;

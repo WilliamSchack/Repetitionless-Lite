@@ -6,22 +6,24 @@ namespace Repetitionless.Inspectors
 {
     public class RepetitionlessMaterialEditorTerrainNEW : RepetitionlessMaterialEditorBaseNEW
     {
+        protected override int _maxLayers => 32;
+
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
         {
             base.OnGUI(materialEditor, properties);
 
             // Base Material
-            DrawBaseMaterialGUI(0);
+            DrawBaseMaterialGUI(1);
 
             GUILayout.Space(SETTING_PADDING);
 
             // Distance Blend Material
-            DrawDistanceBlendGUI(0);
+            DrawDistanceBlendGUI(1);
 
             GUILayout.Space(SETTING_PADDING);
 
             // Material Blend
-            DrawMaterialBlendGUI(0);
+            DrawMaterialBlendGUI(1);
 
             GUILayout.Space(SETTING_PADDING);
 
