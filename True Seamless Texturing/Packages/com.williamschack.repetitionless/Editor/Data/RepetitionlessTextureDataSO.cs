@@ -133,6 +133,8 @@ namespace Repetitionless.Data
             return;
         }
 
+        // DIFFERENT GET/SET BLEND MASK
+
         // Should be called every time before using the drawers
         public void SetupTextureDrawers(MaterialDataManager dataManager)
         {
@@ -146,7 +148,7 @@ namespace Repetitionless.Data
             AVTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 0); }, Save, (int i) => { return AssignedTexturesGetter(0, i); }, (int i, int at) => { AssignedTexturesSetter(0, i, at); }, DEFAULT_AV_COLOUR,  avTexturesProp,  LayersTextureData.Length * 3);
             NSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 1); }, Save, (int i) => { return AssignedTexturesGetter(1, i); }, (int i, int at) => { AssignedTexturesSetter(1, i, at); }, DEFAULT_NSO_COLOUR, nsoTexturesProp, LayersTextureData.Length * 3);
             EMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 2); }, Save, (int i) => { return AssignedTexturesGetter(2, i); }, (int i, int at) => { AssignedTexturesSetter(2, i, at); }, DEFAULT_EM_COLOUR,  emTexturesProp,  LayersTextureData.Length * 3);
-            BMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetBlendMaskTextureData(i); },        Save, (int i) => { return AssignedTexturesGetter(3, i); }, (int i, int at) => { AssignedTexturesSetter(3, i, at); }, DEFAULT_BM_COLOUR,  bmTexturesProp,  LayersTextureData.Length);
+            BMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetBlendMaskTextureData(i);        }, Save, (int i) => { return AssignedTexturesGetter(3, i); }, (int i, int at) => { AssignedTexturesSetter(3, i, at); }, DEFAULT_BM_COLOUR,  bmTexturesProp,  LayersTextureData.Length);
 
             AVTexturesDrawer.TextureFormat  = TextureFormat.BC7;
             NSOTexturesDrawer.TextureFormat = TextureFormat.BC7;

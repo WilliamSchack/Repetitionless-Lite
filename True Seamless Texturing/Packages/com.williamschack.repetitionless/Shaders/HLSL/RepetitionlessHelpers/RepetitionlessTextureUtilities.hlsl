@@ -39,7 +39,7 @@ float4 SampleRepetitionlessTexture(
 // Uses a texture array
 float4 SampleRepetitionlessArrayTexture(
     UnityTexture2DArray TextureArray,
-    int AssignedTextures,
+    int AssignedTextures[3],
     int ConstantIndex,
     SamplerState SS,
 
@@ -50,13 +50,20 @@ float4 SampleRepetitionlessArrayTexture(
 ){
     float4 baseTextureColor = 1;
     
+    int assignedTexturesPadded[BOOLEAN_COMPRESSION_MAX_CHUNKS] = {
+        AssignedTextures[0],
+        AssignedTextures[1],
+        AssignedTextures[2],
+        0
+    };
+
     // Only sample base material if visible
     if (!SampleEdge || (SampleEdge && EdgeMask != 1))
-        SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, TransformedUV, 1, SS, baseTextureColor);
+        SampleArrayAtConstantIndex_float(TextureArray, assignedTexturesPadded, ConstantIndex, TransformedUV, 1, SS, baseTextureColor);
 
     if (SampleEdge) {
         float4 edgeTextureColor = 1;
-        SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, EdgeUV, 1, SS, edgeTextureColor);
+        SampleArrayAtConstantIndex_float(TextureArray, assignedTexturesPadded, ConstantIndex, EdgeUV, 1, SS, edgeTextureColor);
         baseTextureColor = lerp(baseTextureColor, edgeTextureColor, EdgeMask);
     }
 

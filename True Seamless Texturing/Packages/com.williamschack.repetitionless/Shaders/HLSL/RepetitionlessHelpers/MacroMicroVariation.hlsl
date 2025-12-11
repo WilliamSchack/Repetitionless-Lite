@@ -49,7 +49,7 @@ float MacroMicroVariationTextureArray(
 
     float VariationBrightness,
     UnityTexture2DArray TextureArray,
-    int AssignedTextures,
+    int AssignedTextures[3],
     int ConstantIndex,
     int ChannelIndex,
     SamplerState SS,
@@ -64,12 +64,19 @@ float MacroMicroVariationTextureArray(
     float2 largeUV  = UV * Tiling * LargeScale + Offset;
     
     // Sample Texture
+    int assignedTexturesPadded[BOOLEAN_COMPRESSION_MAX_CHUNKS] = {
+        AssignedTextures[0],
+        AssignedTextures[1],
+        AssignedTextures[2],
+        0
+    };
+
     float4 smallColorSample  = 0;//SAMPLE_TEXTURE2D(Texture, SS, smallUV).r;
     float4 mediumColorSample = 0;//SAMPLE_TEXTURE2D(Texture, SS, mediumUV).r;
     float4 largeColorSample  = 0;//SAMPLE_TEXTURE2D(Texture, SS, largeUV).r;
-    SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, smallUV, 0, SS, smallColorSample);
-    SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, mediumUV, 0, SS, mediumColorSample);
-    SampleArrayAtConstantIndex_float(TextureArray, AssignedTextures, ConstantIndex, largeUV, 0, SS, largeColorSample);
+    SampleArrayAtConstantIndex_float(TextureArray, assignedTexturesPadded, ConstantIndex, smallUV, 0, SS, smallColorSample);
+    SampleArrayAtConstantIndex_float(TextureArray, assignedTexturesPadded, ConstantIndex, mediumUV, 0, SS, mediumColorSample);
+    SampleArrayAtConstantIndex_float(TextureArray, assignedTexturesPadded, ConstantIndex, largeUV, 0, SS, largeColorSample);
 
     // Add Brightness
     float smallColor  = smallColorSample[ChannelIndex];

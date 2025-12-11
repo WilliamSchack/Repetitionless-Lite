@@ -8,7 +8,7 @@
 
 #include "../Utilities/BooleanCompression.hlsl"
 
-void GetIndexInArray_float(int TexturesAssignedCompressed, int Index, out int Out)
+void GetIndexInArray_float(int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNKS], int Index, out int Out)
 {
     // Dont loop with no iterations, will cause unrolling warnings
     if (Index <= 0) {
@@ -28,7 +28,7 @@ void GetIndexInArray_float(int TexturesAssignedCompressed, int Index, out int Ou
 
 void SampleArrayAtConstantIndex_float(
     UnityTexture2DArray TextureArray,
-    int TexturesAssignedCompressed,
+    int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNKS],
     int Index,
     float2 UV,
     float4 UnassignedColor,

@@ -6,6 +6,8 @@
 // Essentially just calling the main SampleRepetitionlessMaterial function 4 times, once for each layer
 // It does do more things and the function is modified for texture arrays but you get the idea
 
+/*
+
 void SampleRepetitionlessMaterialTerrain_float(
     SamplerState SS, float2 UV, float3 TangentNormalVector, // Control requires clamped sampler state, otherwise fades off at edges of terrain
     float3 WorldPosition, float3 CameraPosition, // Positions
@@ -589,5 +591,7 @@ void SampleRepetitionlessMaterialTerrain_float(
     OcclussionOut = occlussion;
     EmissionColorOut = emission;
 }
+
+*/
 
 #endif

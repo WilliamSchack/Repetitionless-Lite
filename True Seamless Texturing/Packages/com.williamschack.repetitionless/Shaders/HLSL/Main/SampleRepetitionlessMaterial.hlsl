@@ -17,6 +17,8 @@
  * If anyone has a better solution please contact me I will change it asap
  */
 
+/*
+
 void GetRepetitionlessMaterialColorBase(
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     int SurfaceType, int DebuggingIndex,
@@ -272,5 +274,7 @@ void GetRepetitionlessMaterialArrayColor(
         AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
     );
 }
+
+*/
 
 #endif

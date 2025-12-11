@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 18700000, guid: 19cba5f261d289693905f5723b7291cc, type: 2}
+        m_Texture: {fileID: 18700000, guid: b680112662a26d947ba4140206c17f41, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BMTextures:
@@ -86,7 +86,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PropertiesTexture:
-        m_Texture: {fileID: 2800000, guid: 1db2100de3dc7b59c8c061fdf7eaecd8, type: 2}
+        m_Texture: {fileID: 2800000, guid: 01101b5d9fce547d6b4e4c48c3ee8b81, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TerrainHoles:

@@ -181,7 +181,6 @@ namespace Repetitionless.GUIUtilities
 
                 // Get assigned textures in chunks of 32
                 bool[] assignedTextures = new bool[textureCount];
-                Debug.Log("Getting assigned textures...");
 
                 int num32BitChunks = Mathf.CeilToInt(textureCount / BooleanCompression.MAX_VALUES);
                 for (int i = 0; i < num32BitChunks; i++) {
@@ -191,7 +190,6 @@ namespace Repetitionless.GUIUtilities
                     int chunkOffset = i * BooleanCompression.MAX_VALUES;
                     for (int j = 0; j < chunkAssignedTextures.Length; j++) {
                         assignedTextures[chunkOffset + j] = chunkAssignedTextures[j];
-                        Debug.Log($"{chunkOffset + j} : {(chunkAssignedTextures[j] ? "True" : "False")}");
                     }
                 }
 
@@ -199,14 +197,8 @@ namespace Repetitionless.GUIUtilities
                 int currentIndex = 0;
                 for (int i = 0; i < assignedTextures.Length; i++)
                 {
-                    Debug.Log(currentIndex);
-                    Debug.Log(i);
-
                     if (assignedTextures[i])
                     {
-                        Debug.Log(_textures[i]);
-                        Debug.Log(textures[currentIndex]);
-
                         _textures[i] = textures[currentIndex];
                         currentIndex++;
                     }
@@ -244,6 +236,9 @@ namespace Repetitionless.GUIUtilities
             bool[] chunkAssignedTextures = new bool[maxValues];
             for (int i = 0; i < maxValues; i++) {
                 int fromIndex = chunkOffset + i;
+                if (fromIndex >= _assignedTextures.Length)
+                    break;
+
                 chunkAssignedTextures[i] = _assignedTextures[fromIndex];
             }
 
@@ -311,6 +306,13 @@ namespace Repetitionless.GUIUtilities
 
                     _arrayProperty.textureValue = _array;
                     (int, int) compressedAssignedTextures = GetCompressedAssignedTextures(index);
+
+                    Debug.Log("310");
+                    Debug.Log(index);
+                    Debug.Log(textureAssigned);
+                    Debug.Log(_assignedTextures[index]);
+                    Debug.Log($"SETTING: {compressedAssignedTextures}");
+
                     _assignedTexturesChangedSetter?.Invoke(compressedAssignedTextures.Item1, compressedAssignedTextures.Item2);
                     //_assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
 
@@ -461,6 +463,13 @@ namespace Repetitionless.GUIUtilities
 
                         _arrayProperty.textureValue = _array;
                         (int, int) compressedAssignedTextures = GetCompressedAssignedTextures(index);
+                        
+                        Debug.Log("460");
+                        Debug.Log(index);
+                        Debug.Log(textureAssigned);
+                        Debug.Log(_assignedTextures[index]);
+                        Debug.Log($"SETTING: {compressedAssignedTextures}");
+
                         _assignedTexturesChangedSetter?.Invoke(compressedAssignedTextures.Item1, compressedAssignedTextures.Item2);
                         //_assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
 
@@ -518,8 +527,17 @@ namespace Repetitionless.GUIUtilities
                 // Assign variables
                 _arrayProperty.textureValue = _array;
 
+                
+
                 _assignedTextures[index] = textureAssigned;
                 (int, int) endCompressedAssignedTextures = GetCompressedAssignedTextures(index);
+
+                Debug.Log("526");
+                Debug.Log(index);
+                Debug.Log(textureAssigned);
+                Debug.Log(_assignedTextures[index]);
+                Debug.Log($"SETTING: {endCompressedAssignedTextures}");
+
                 _assignedTexturesChangedSetter?.Invoke(endCompressedAssignedTextures.Item1, endCompressedAssignedTextures.Item2);
                 //_assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
                 

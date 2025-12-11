@@ -3,6 +3,8 @@
 
 #include "SampleRepetitionlessLayer.hlsl"
 
+/*
+
 void SampleRepetitionlessMaterialRegular_float(
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition, // Positions
@@ -144,5 +146,7 @@ void SampleRepetitionlessMaterialRegular_float(
         AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
     );
 }
+
+*/
 
 #endif

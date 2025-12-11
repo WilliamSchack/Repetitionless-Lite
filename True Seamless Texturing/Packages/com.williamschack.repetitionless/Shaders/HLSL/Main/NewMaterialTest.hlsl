@@ -23,9 +23,9 @@ void GetRepetitionlessMaterialColorTest(
     UnityTexture2DArray AVTextures,
     UnityTexture2DArray NSOTextures,
     UnityTexture2DArray EMTextures,
-    int AssignedAVTextures,
-    int AssignedNSOTextures,
-    int AssignedEMTextures,
+    int AssignedAVTextures[3],
+    int AssignedNSOTextures[3],
+    int AssignedEMTextures[3],
 
     // Material Data
     RepetitionlessMaterialDataNew MaterialData,
@@ -33,9 +33,9 @@ void GetRepetitionlessMaterialColorTest(
     // Outputs
     out float4 AlbedoColorOut,
     out float3 NormalVectorOut,
-    out float MetallicOut,
-    out float SmoothnessOut,
-    out float OcclussionOut,
+    out float  MetallicOut,
+    out float  SmoothnessOut,
+    out float  OcclussionOut,
     out float3 EmissionColorOut
 ){
     // Get variables from compressed

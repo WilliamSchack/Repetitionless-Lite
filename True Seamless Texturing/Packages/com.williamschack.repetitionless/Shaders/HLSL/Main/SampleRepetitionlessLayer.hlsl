@@ -18,6 +18,8 @@
  * If anyone has a better solution please contact me I will change it asap
  */
 
+ /*
+
 void SampleRepetitionlessLayerBase(
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition,
@@ -347,5 +349,7 @@ void SampleRepetitionlessLayerTerrain(
         AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
     );
 }
+
+*/
 
 #endif
