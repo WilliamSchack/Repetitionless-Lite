@@ -130,6 +130,7 @@ namespace Repetitionless.Data
             }
 
             prop.vectorValue = propValue;
+            Debug.Log($"Setting: {sectionIndex}, {chunkIndex}: {compressedValues} || {prop.name} >> ({propValue} == {prop.vectorValue})");
             return;
         }
 
@@ -331,6 +332,8 @@ namespace Repetitionless.Data
 
         public ref MaterialTextureData GetMaterialTextureData(int layerIndex, int materialIndex)
         {
+            Debug.Log($"Getting texture data for layer {layerIndex}");
+
             LayerTextureData layerData = LayersTextureData[layerIndex];
 
             switch (materialIndex) {

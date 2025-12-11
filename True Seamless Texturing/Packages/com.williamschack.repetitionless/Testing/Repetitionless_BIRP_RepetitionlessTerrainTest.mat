@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 18700000, guid: b680112662a26d947ba4140206c17f41, type: 2}
+        m_Texture: {fileID: 18700000, guid: d1a34a5f05946fd39a790464800dfb8b, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BMTextures:
@@ -50,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control1:
-        m_Texture: {fileID: -750200913336819604, guid: 52d9b74224829c3a3b218b4ac4e1d069, type: 2}
+        m_Texture: {fileID: -3849834469726430989, guid: 52d9b74224829c3a3b218b4ac4e1d069, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control2:
@@ -86,7 +86,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PropertiesTexture:
-        m_Texture: {fileID: 2800000, guid: 01101b5d9fce547d6b4e4c48c3ee8b81, type: 2}
+        m_Texture: {fileID: 2800000, guid: ec6266fba5ad758afbc5c49ae69abba0, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TerrainHoles:
@@ -112,6 +112,9 @@ Material:
     - _BUILTIN_ZWriteControl: 0
     - _DebuggingIndex: -1
     - _SurfaceTypeSetting: 0
-    m_Colors: []
+    m_Colors:
+    - _AssignedAVTextures: {r: 4683, g: 0, b: 0, a: 0}
+    - _AssignedEMTextures: {r: 0, g: 0, b: 0, a: 0}
+    - _AssignedNSOTextures: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -185,11 +185,14 @@ namespace Repetitionless.GUIUtilities
                 int num32BitChunks = Mathf.CeilToInt(textureCount / BooleanCompression.MAX_VALUES);
                 for (int i = 0; i < num32BitChunks; i++) {
                     int compressedAssignedTextures = _assignedTexturesChangedGetter(i);
+                    Debug.Log($"Chunk {i}: {compressedAssignedTextures}");
+
                     bool[] chunkAssignedTextures = BooleanCompression.GetValues(compressedAssignedTextures, BooleanCompression.MAX_VALUES);
 
                     int chunkOffset = i * BooleanCompression.MAX_VALUES;
                     for (int j = 0; j < chunkAssignedTextures.Length; j++) {
                         assignedTextures[chunkOffset + j] = chunkAssignedTextures[j];
+                        //Debug.Log($"Setting assigned texture at {chunkOffset + j}: {chunkAssignedTextures[j]}");
                     }
                 }
 
@@ -199,6 +202,8 @@ namespace Repetitionless.GUIUtilities
                 {
                     if (assignedTextures[i])
                     {
+                        Debug.Log($"Loading texture: {i}: {textures[currentIndex]}");
+
                         _textures[i] = textures[currentIndex];
                         currentIndex++;
                     }
@@ -228,10 +233,14 @@ namespace Repetitionless.GUIUtilities
         // Item2: The compresssed textures in the 32 chunk changedIndex is in
         private (int, int) GetCompressedAssignedTextures(int changedIndex)
         {
+            Debug.Log("Getting compressed...");
+
             int maxValues = BooleanCompression.MAX_VALUES;
 
             int chunkIndex = Mathf.FloorToInt(changedIndex / maxValues);
             int chunkOffset = chunkIndex * maxValues;
+
+            Debug.Log($"Getting compressed: CHUNK({chunkIndex}) OFFSET({chunkOffset})");
 
             bool[] chunkAssignedTextures = new bool[maxValues];
             for (int i = 0; i < maxValues; i++) {
@@ -240,9 +249,11 @@ namespace Repetitionless.GUIUtilities
                     break;
 
                 chunkAssignedTextures[i] = _assignedTextures[fromIndex];
+                Debug.Log($"\t{fromIndex}>>{i} Assigned: {_assignedTextures[fromIndex]}");
             }
 
             int compressedAssignedTextures = BooleanCompression.CompressValues(chunkAssignedTextures);
+            Debug.Log($"Compressed Output: {compressedAssignedTextures}");
             return (chunkIndex, compressedAssignedTextures);
         }
 
@@ -265,6 +276,8 @@ namespace Repetitionless.GUIUtilities
         public (Texture2D, bool) UpdateTexture(Texture2D newTexture, int index, int channelIndex, bool force = false)
         {
             if (EditorGUI.EndChangeCheck() || force) {
+                Debug.Log("Textures not null: " + _textures.Count(x => x != null));
+
                 ref TexturePacker.TextureData[] textureData = ref _getLayerChannelDataFunc(index);
                 ref TexturePacker.TextureData channelTextureData = ref textureData[channelIndex];
                 if (channelTextureData.Disabled) newTexture = null;
@@ -425,7 +438,6 @@ namespace Repetitionless.GUIUtilities
 
                 // Get the textures in order of the array
                 List<Texture2D> arrayTextures = new List<Texture2D>();
-                bool[] assignedTexturesArray = new bool[_textures.Length];
 
                 // Get which textures are assigned in inspector and sort it into new list representing array layout
                 for (int i = 0; i < _textures.Length; i++) {
@@ -440,9 +452,11 @@ namespace Repetitionless.GUIUtilities
                     if (assigned) {
                         arrayTextures.Add(texture);
                     }
-
-                    assignedTexturesArray[i] = assigned;
+                    
+                    //Debug.Log($"Adding texture: |{assigned}| {i} ({index}), {(texture != null ? texture.name : "NULL")}");
                 }
+
+                Debug.Log(arrayTextures.Count);
 
                 if (arrayTextures.Count == 0)
                     return (_textures[index], false);
@@ -526,8 +540,6 @@ namespace Repetitionless.GUIUtilities
 
                 // Assign variables
                 _arrayProperty.textureValue = _array;
-
-                
 
                 _assignedTextures[index] = textureAssigned;
                 (int, int) endCompressedAssignedTextures = GetCompressedAssignedTextures(index);

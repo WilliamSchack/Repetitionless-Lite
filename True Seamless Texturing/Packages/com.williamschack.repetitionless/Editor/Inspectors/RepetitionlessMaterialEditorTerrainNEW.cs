@@ -12,20 +12,23 @@ namespace Repetitionless.Inspectors
         {
             base.OnGUI(materialEditor, properties);
 
-            // Base Material
-            DrawBaseMaterialGUI(1);
+            // TESTING
+            for (int i = 0; i < 2; i++) {
+                // Base Material
+                DrawBaseMaterialGUI(i);
 
-            GUILayout.Space(SETTING_PADDING);
+                GUILayout.Space(SETTING_PADDING);
 
-            // Distance Blend Material
-            DrawDistanceBlendGUI(1);
+                // Distance Blend Material
+                DrawDistanceBlendGUI(i);
 
-            GUILayout.Space(SETTING_PADDING);
+                GUILayout.Space(SETTING_PADDING);
 
-            // Material Blend
-            DrawMaterialBlendGUI(1);
+                // Material Blend
+                DrawMaterialBlendGUI(i);
 
-            GUILayout.Space(SETTING_PADDING);
+                GUILayout.Space(SETTING_PADDING);
+            }
 
             // Footer Settings
             DrawDebugGUI();

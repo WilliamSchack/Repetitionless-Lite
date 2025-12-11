@@ -263,7 +263,7 @@ namespace Repetitionless.Inspectors
                 Undo.RecordObjects(new Object[] {_materialProperties, _textureData}, $"Modified {_material.name} texture");
 
             EditorGUI.BeginChangeCheck();
-            textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, sectionIndex, textureDrawerDetails.ChannelIndex, content);
+            textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, layerIndex * 3 + sectionIndex, textureDrawerDetails.ChannelIndex, content);
 
             if (EditorGUI.EndChangeCheck()) {
                 // Update assigned textures and update the properties

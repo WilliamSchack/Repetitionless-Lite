@@ -149,8 +149,8 @@ void SampleRepetitionlessLayerBase_float(
 
     // ----------------------- Get Materials To Sample ------------------------- //
 
-    int baseLayerIndex = LayerIndex * 3 + 0;
-    int farLayerIndex = LayerIndex * 3 + 1;
+    int baseLayerIndex  = LayerIndex * 3 + 0;
+    int farLayerIndex   = LayerIndex * 3 + 1;
     int blendLayerIndex = LayerIndex * 3 + 2;
 
     // At most two materials will be sampled when blending between

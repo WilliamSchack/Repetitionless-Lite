@@ -33,7 +33,7 @@ bool GetCompressedValue(int CompressedValues[BOOLEAN_COMPRESSION_MAX_CHUNKS], in
     int chunkIndex = floor(Index / 32);
     int chunkCompressedValues = CompressedValues[chunkIndex];
     
-    int valueIndex = chunkIndex % 32;
+    int valueIndex = Index % 32;
     return GetCompressedValue(chunkCompressedValues, valueIndex);
 }
 

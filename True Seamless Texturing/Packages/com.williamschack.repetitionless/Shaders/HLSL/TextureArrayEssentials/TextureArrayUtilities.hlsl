@@ -17,12 +17,18 @@ void GetIndexInArray_float(int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MA
     }
 
     // Get the index of the texture in the array
-    int arrayIndex = 0;
+    int arrayIndex = -1;
     for (int i = 0; i < Index; i++) {
         bool assigned = GetCompressedValue(TexturesAssignedCompressed, i);
         arrayIndex += assigned ? 1 : 0;
     }
 
+    if (arrayIndex == -1) {
+        Out = -1;
+        return;
+    }
+
+    arrayIndex++;
     Out = arrayIndex;
 }
 
@@ -36,16 +42,21 @@ void SampleArrayAtConstantIndex_float(
     out float4 Out
 ){
     // Only output texture if it is assigned in inspector
-    bool indexExists = GetCompressedValue(TexturesAssignedCompressed, Index);
-    if (!indexExists) {
-        Out = UnassignedColor;
-        return;
-    }
+    //bool indexExists = GetCompressedValue(TexturesAssignedCompressed, Index);
+    //if (!indexExists) {
+    //    Out = UnassignedColor;
+    //    return;
+    //}
     
     // Get the index of the texture in the array
     int arrayIndex = 0;
     GetIndexInArray_float(TexturesAssignedCompressed, Index, arrayIndex);
-    
+
+    if (arrayIndex == -1) {
+        Out = UnassignedColor;
+        return;
+    }
+
     // Sample the array at the index found previously
     Out = SAMPLE_TEXTURE2D_ARRAY(TextureArray, SS, UV, arrayIndex);
 }
