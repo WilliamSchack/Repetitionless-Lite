@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 18700000, guid: d1a34a5f05946fd39a790464800dfb8b, type: 2}
+        m_Texture: {fileID: 18700000, guid: 14f8ef13869eaa9cfab56df4eb481460, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BMTextures:
@@ -54,7 +54,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control2:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: -5947043537125441343, guid: 52d9b74224829c3a3b218b4ac4e1d069, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control3:
@@ -113,7 +113,7 @@ Material:
     - _DebuggingIndex: -1
     - _SurfaceTypeSetting: 0
     m_Colors:
-    - _AssignedAVTextures: {r: 4683, g: 0, b: 0, a: 0}
+    - _AssignedAVTextures: {r: 19173960, g: 0, b: 0, a: 0}
     - _AssignedEMTextures: {r: 0, g: 0, b: 0, a: 0}
     - _AssignedNSOTextures: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -69,7 +69,7 @@ void SampleMultipleRepetitionlessLayers_float(
         SAMPLE_CONTROL(6, UV),
         SAMPLE_CONTROL(7, UV)
     };
-
+    
     // Get individual weights and sum
     half controlWeights[32];
     half controlSum = 0;

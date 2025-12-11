@@ -15,7 +15,7 @@ MonoBehaviour:
   LayersTextureData:
   - BaseMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 2800000, guid: 9953810455f862949b75194ab220703c, type: 3}
+      - Texture: {fileID: 2800000, guid: 4ff0e3f3b1d223d4895dde2ef3b2dfe1, type: 3}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -85,7 +85,7 @@ MonoBehaviour:
           To: 3
     FarMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 2800000, guid: a366a386d5147ee47b6111652608c240, type: 3}
+      - Texture: {fileID: 0}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -449,7 +449,7 @@ MonoBehaviour:
         To: 0
   - BaseMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 2800000, guid: 4ff0e3f3b1d223d4895dde2ef3b2dfe1, type: 3}
+      - Texture: {fileID: 2800000, guid: 9953810455f862949b75194ab220703c, type: 3}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -1100,7 +1100,7 @@ MonoBehaviour:
         To: 0
   - BaseMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 0}
+      - Texture: {fileID: 2800000, guid: 0e1771a5cd057014db71494d5a458d40, type: 3}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -1126,19 +1126,19 @@ MonoBehaviour:
         - From: 1
           To: 1
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 2
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
-        Disabled: 1
+        Disabled: 0
         NormalMap: 0
         FromToChannels:
         - From: 1
@@ -1157,13 +1157,13 @@ MonoBehaviour:
         - From: 2
           To: 2
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
-        Disabled: 1
+        Disabled: 0
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -1317,7 +1317,7 @@ MonoBehaviour:
         To: 0
   - BaseMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 0}
+      - Texture: {fileID: 2800000, guid: 100a50e8b1d0bc04b95bc2f03cb760db, type: 3}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -1343,19 +1343,19 @@ MonoBehaviour:
         - From: 1
           To: 1
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 2
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
-        Disabled: 1
+        Disabled: 0
         NormalMap: 0
         FromToChannels:
         - From: 1
@@ -1374,13 +1374,13 @@ MonoBehaviour:
         - From: 2
           To: 2
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
-        Disabled: 1
+        Disabled: 0
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -1534,7 +1534,7 @@ MonoBehaviour:
         To: 0
   - BaseMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 0}
+      - Texture: {fileID: 2800000, guid: 4fe4d3241d435594b82a72af96e4052d, type: 3}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -1560,19 +1560,19 @@ MonoBehaviour:
         - From: 1
           To: 1
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 2
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
-        Disabled: 1
+        Disabled: 0
         NormalMap: 0
         FromToChannels:
         - From: 1
@@ -1591,13 +1591,13 @@ MonoBehaviour:
         - From: 2
           To: 2
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
-        Disabled: 1
+        Disabled: 0
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -1751,7 +1751,7 @@ MonoBehaviour:
         To: 0
   - BaseMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 0}
+      - Texture: {fileID: 2800000, guid: 70afb12ada2efcd408ffb3ba25beab1c, type: 3}
         Disabled: 0
         NormalMap: 0
         FromToChannels:
@@ -1777,19 +1777,19 @@ MonoBehaviour:
         - From: 1
           To: 1
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 2
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
-        Disabled: 1
+        Disabled: 0
         NormalMap: 0
         FromToChannels:
         - From: 1
@@ -1808,13 +1808,13 @@ MonoBehaviour:
         - From: 2
           To: 2
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
-        Disabled: 1
+        Disabled: 0
         NormalMap: 0
         FromToChannels:
         - From: 0

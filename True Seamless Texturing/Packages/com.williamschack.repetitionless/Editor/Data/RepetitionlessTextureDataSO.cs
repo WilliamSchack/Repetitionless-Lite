@@ -332,8 +332,6 @@ namespace Repetitionless.Data
 
         public ref MaterialTextureData GetMaterialTextureData(int layerIndex, int materialIndex)
         {
-            Debug.Log($"Getting texture data for layer {layerIndex}");
-
             LayerTextureData layerData = LayersTextureData[layerIndex];
 
             switch (materialIndex) {

@@ -182,7 +182,12 @@ namespace Repetitionless.GUIUtilities
                 // Get assigned textures in chunks of 32
                 bool[] assignedTextures = new bool[textureCount];
 
-                int num32BitChunks = Mathf.CeilToInt(textureCount / BooleanCompression.MAX_VALUES);
+                Debug.Log("Initializing...");
+
+                int num32BitChunks = Mathf.CeilToInt(textureCount / (BooleanCompression.MAX_VALUES * 1.0f));
+                Debug.Log("TextureCount: " + textureCount);
+                Debug.Log("Chunks: " + num32BitChunks);
+
                 for (int i = 0; i < num32BitChunks; i++) {
                     int compressedAssignedTextures = _assignedTexturesChangedGetter(i);
                     Debug.Log($"Chunk {i}: {compressedAssignedTextures}");
