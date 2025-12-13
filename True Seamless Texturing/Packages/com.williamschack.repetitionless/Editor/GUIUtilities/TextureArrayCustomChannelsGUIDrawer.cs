@@ -194,8 +194,11 @@ namespace Repetitionless.GUIUtilities
 
                     bool[] chunkAssignedTextures = BooleanCompression.GetValues(compressedAssignedTextures, BooleanCompression.MAX_VALUES);
 
+                    Debug.Log(chunkAssignedTextures.Length);
+
                     int chunkOffset = i * BooleanCompression.MAX_VALUES;
                     for (int j = 0; j < chunkAssignedTextures.Length; j++) {
+                        Debug.Log(chunkAssignedTextures[j]);
                         assignedTextures[chunkOffset + j] = chunkAssignedTextures[j];
                         //Debug.Log($"Setting assigned texture at {chunkOffset + j}: {chunkAssignedTextures[j]}");
                     }

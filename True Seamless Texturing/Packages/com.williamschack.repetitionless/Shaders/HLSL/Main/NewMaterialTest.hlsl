@@ -85,17 +85,6 @@ void GetRepetitionlessMaterialColorTest(
     OcclussionOut    = 1;
     EmissionColorOut = 0;
 
-    /*// TESTING
-    if (ArrayLayerIndex != 3) {
-        AlbedoColorOut = 0;
-        return;
-    }
-
-    if (AssignedAVTextures[0] == 19173960) {
-        AlbedoColorOut = float4(1, 0, 0, 1);
-    }
-    return;*/
-
     // Setup UVs
     float2 tiling = MaterialData.TilingOffset.xy;
     float2 offset = MaterialData.TilingOffset.zw;

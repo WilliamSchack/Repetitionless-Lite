@@ -216,7 +216,7 @@ namespace Repetitionless.Inspectors
 
         // Each gui function modifying the material properties should be using this function
         // Must be called to properly save the properties
-        protected virtual void DrawProperty(System.Action drawPropertyAction, int layerIndex = 0)
+        protected virtual void DrawProperty(int layerIndex, System.Action drawPropertyAction)
         {
             if (drawPropertyAction == null)
                 return;
@@ -229,7 +229,7 @@ namespace Repetitionless.Inspectors
             EditorGUI.BeginChangeCheck();
             drawPropertyAction();
             if (EditorGUI.EndChangeCheck())
-                UpdateMaterialPropertiesTexture();
+                UpdateMaterialPropertiesTexture(layerIndex);
         }
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace Repetitionless.Inspectors
 
             if (EditorGUI.EndChangeCheck()) {
                 // Update assigned textures and update the properties
-                UpdateAssignedTextures(sectionIndex);
+                UpdateAssignedTextures(layerIndex, sectionIndex);
 
                 // If packed texture was changed, manually update texture in emission array aswell
                 if (currentData.PackedTexture && textureIndex == 1)
@@ -298,7 +298,7 @@ namespace Repetitionless.Inspectors
                 if (!textureAdded)
                     textureData.AVTextures[1].Texture = null;
 
-                UpdateAssignedTextures(sectionIndex);
+                UpdateAssignedTextures(layerIndex, sectionIndex);
                 _textureData.Save();
             }
 
@@ -325,7 +325,7 @@ namespace Repetitionless.Inspectors
                 if (!textureAdded)
                     textureData.Texture = null;
 
-                UpdateAssignedTextures(0);
+                UpdateAssignedTextures(layerIndex, 0);
                 _textureData.Save();
             }
 
@@ -355,12 +355,12 @@ namespace Repetitionless.Inspectors
         /// <returns>
         /// The compressed assigned textures
         /// </returns>
-        protected virtual void UpdateAssignedTextures(int sectionIndex, int layerIndex = 0)
+        protected virtual void UpdateAssignedTextures(int layerIndex, int sectionIndex)
         {
             _materialProperties.UpdateAssignedTextures(_material, _textureData, sectionIndex, layerIndex);
         }
 
-        protected virtual void UpdateMaterialPropertiesTexture(int layerIndex = 0)
+        protected virtual void UpdateMaterialPropertiesTexture(int layerIndex)
         {
             _materialProperties.UpdateMaterialTexture(_material, layerIndex);
         }
@@ -707,7 +707,7 @@ namespace Repetitionless.Inspectors
             // Draw Settings
             DrawLeftMaterialSettingsGUI(currentData, layerIndex, materialPrefix, minScaledTextWidth, showNoise, showVariation);
             GUILayout.FlexibleSpace();
-            DrawRightMaterialSettingsGUI(currentData, materialPrefix, minScaledTextWidth, showPT, showEmission, showSR);
+            DrawRightMaterialSettingsGUI(currentData, layerIndex, materialPrefix, minScaledTextWidth, showPT, showEmission, showSR);
 
             EditorGUILayout.EndHorizontal();
         }
@@ -741,21 +741,21 @@ namespace Repetitionless.Inspectors
             // Noise Enabled
             if (showNoise) {
                 string noiseEnabledStyle = currentData.NoiseEnabled ? "ButtonLeft" : "Button";
-                DrawProperty(() => currentData.NoiseEnabled = GUILayout.Toggle(currentData.NoiseEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Noise", "N"), "Adds random scaling & rotation based on voronoi noise"), noiseEnabledStyle));
+                DrawProperty(layerIndex, () => currentData.NoiseEnabled = GUILayout.Toggle(currentData.NoiseEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Noise", "N"), "Adds random scaling & rotation based on voronoi noise"), noiseEnabledStyle));
 
                 if (currentData.NoiseEnabled) {
                     // Noise Scaling Enabled
-                    DrawProperty(() => currentData.RandomiseNoiseScaling = GUILayout.Toggle(currentData.RandomiseNoiseScaling, new GUIContent(GetScaledText(minScaledTextWidth, "Random Scaling", "RS"), "Adds random scaling to each voronoi cell"), "ButtonMid"));
+                    DrawProperty(layerIndex, () => currentData.RandomiseNoiseScaling = GUILayout.Toggle(currentData.RandomiseNoiseScaling, new GUIContent(GetScaledText(minScaledTextWidth, "Random Scaling", "RS"), "Adds random scaling to each voronoi cell"), "ButtonMid"));
 
                     // Randomise Rotation Enabled
-                    DrawProperty(() => currentData.RandomiseNoiseRotation = GUILayout.Toggle(currentData.RandomiseNoiseRotation, new GUIContent(GetScaledText(minScaledTextWidth, "Random Rotation", "RR"), "Adds random rotation to each voronoi cell"), "ButtonRight"));
+                    DrawProperty(layerIndex, () => currentData.RandomiseNoiseRotation = GUILayout.Toggle(currentData.RandomiseNoiseRotation, new GUIContent(GetScaledText(minScaledTextWidth, "Random Rotation", "RR"), "Adds random rotation to each voronoi cell"), "ButtonRight"));
                 }
             }
 
             // Variation toggle
             if (showVariation) {
                 EditorGUI.BeginChangeCheck();
-                DrawProperty(() => currentData.VariationEnabled = GUILayout.Toggle(currentData.VariationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color\n\nUsing a custom texture can cause visible tiling"), "Button"));
+                DrawProperty(layerIndex, () => currentData.VariationEnabled = GUILayout.Toggle(currentData.VariationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color\n\nUsing a custom texture can cause visible tiling"), "Button"));
                 if (EditorGUI.EndChangeCheck() && currentData.VariationMode == ETextureType.CustomTexture)
                     UpdateVariationTexture(layerIndex, GetSectionIndex(materialPrefix), ETextureType.PerlinNoise, !currentData.VariationEnabled);
             }
@@ -788,12 +788,12 @@ namespace Repetitionless.Inspectors
         /// <returns>
         /// The modified compressed setting values
         /// </returns>
-        protected virtual void DrawRightMaterialSettingsGUI(RepetitionlessMaterialData currentData, string materialPrefix, int minScaledTextWidth, bool showPT = true, bool showEmission = true, bool showSR = true)
+        protected virtual void DrawRightMaterialSettingsGUI(RepetitionlessMaterialData currentData, int layerIndex, string materialPrefix, int minScaledTextWidth, bool showPT = true, bool showEmission = true, bool showSR = true)
         {
             // Packed Texture Toggle
             if (showPT) {
                 bool prevPackedTexture = currentData.PackedTexture;
-                DrawProperty(() => currentData.PackedTexture = GUILayout.Toggle(currentData.PackedTexture, new GUIContent(GetScaledText(minScaledTextWidth, "Packed Texture", "PT"), "If you are using a packed texture of multiple regular ones (Note that textures automatically pack even without this setting enabled)\nR: Metallic\nG: Occlussion\nA: Smoothness/Roughness"), "Button"));
+                DrawProperty(layerIndex, () => currentData.PackedTexture = GUILayout.Toggle(currentData.PackedTexture, new GUIContent(GetScaledText(minScaledTextWidth, "Packed Texture", "PT"), "If you are using a packed texture of multiple regular ones (Note that textures automatically pack even without this setting enabled)\nR: Metallic\nG: Occlussion\nA: Smoothness/Roughness"), "Button"));
 
                 // If packed texture was changed, update the texture data
                 if (prevPackedTexture != currentData.PackedTexture) {
@@ -805,12 +805,12 @@ namespace Repetitionless.Inspectors
 
             // Emission Toggle
             if (showEmission)
-                DrawProperty(() => currentData.EmissionEnabled = GUILayout.Toggle(currentData.EmissionEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Emission", "E"), "If Emission is enabled"), "Button"));
+                DrawProperty(layerIndex, () => currentData.EmissionEnabled = GUILayout.Toggle(currentData.EmissionEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Emission", "E"), "If Emission is enabled"), "Button"));
 
             // Smoothness/Roughness Toggle
             if (showSR) {
                 // S=0,R=1, flip the value
-                DrawProperty(() => currentData.SmoothnessEnabled = GUILayout.Toolbar(currentData.SmoothnessEnabled ? 0 : 1, new GUIContent[] { new GUIContent(GetScaledText(minScaledTextWidth, "Smooth", "S"), "Using smoothness for material\n(Default unity material behaviour)"), new GUIContent(GetScaledText(minScaledTextWidth, "Rough", "R"), "Uses roughness for material (1 - smoothness)") }) == 0 ? true : false);
+                DrawProperty(layerIndex, () => currentData.SmoothnessEnabled = GUILayout.Toolbar(currentData.SmoothnessEnabled ? 0 : 1, new GUIContent[] { new GUIContent(GetScaledText(minScaledTextWidth, "Smooth", "S"), "Using smoothness for material\n(Default unity material behaviour)"), new GUIContent(GetScaledText(minScaledTextWidth, "Rough", "R"), "Uses roughness for material (1 - smoothness)") }) == 0 ? true : false);
             }
 
             // Array settings button
@@ -843,12 +843,12 @@ namespace Repetitionless.Inspectors
 
             // Albedo
             Rect albedoTintRect = DrawTexture(layerIndex, sectionIndex, 0, new GUIContent("Albedo", "Albedo (RGB)"), $"_{materialPrefix}Albedo");
-            DrawProperty(() => currentData.AlbedoTint = EditorGUI.ColorField(albedoTintRect, currentData.AlbedoTint));
+            DrawProperty(layerIndex, () => currentData.AlbedoTint = EditorGUI.ColorField(albedoTintRect, currentData.AlbedoTint));
 
             // Normal Map
             Rect normalStrengthSliderRect = DrawTexture(layerIndex, sectionIndex, 3, new GUIContent("Normal Map", "Normal (RG)"), $"_{materialPrefix}NormalMap");
             if (currentData.NormalAssigned)
-                DrawProperty(() => currentData.NormalScale = EditorGUI.FloatField(normalStrengthSliderRect, currentData.NormalScale));
+                DrawProperty(layerIndex, () => currentData.NormalScale = EditorGUI.FloatField(normalStrengthSliderRect, currentData.NormalScale));
 
             if (currentData.PackedTexture) {
                 // Use metallic as packed texture
@@ -864,23 +864,23 @@ namespace Repetitionless.Inspectors
                 occlussionStrengthLabelRect.width -= 30;
 
                 EditorGUI.LabelField(occlussionStrengthLabelRect, "Occlussion Strength");
-                DrawProperty(() => currentData.OcclussionStrength = EditorGUI.Slider(occlussionStrengthSliderRect, currentData.OcclussionStrength, 0, 1));
+                DrawProperty(layerIndex, () => currentData.OcclussionStrength = EditorGUI.Slider(occlussionStrengthSliderRect, currentData.OcclussionStrength, 0, 1));
             } else {
                 // Metallic
                 Rect metallicSliderRect = DrawTexture(layerIndex, sectionIndex, 1, new GUIContent("Metallic", "Metallic (R)"), $"_{materialPrefix}MetallicMap");
                 if (!currentData.MetallicAssigned)
-                    DrawProperty(() => currentData.Metallic = EditorGUI.Slider(metallicSliderRect, currentData.Metallic, 0, 1));
+                    DrawProperty(layerIndex, () => currentData.Metallic = EditorGUI.Slider(metallicSliderRect, currentData.Metallic, 0, 1));
 
                 // Smoothness/Roughness
                 string smoothnessText = currentData.SmoothnessEnabled ? "Smoothness" : "Roughness";
                 Rect smoothnessSliderRect = DrawTexture(layerIndex, sectionIndex, 2, new GUIContent(smoothnessText, $"{smoothnessText} (R)"), $"_{materialPrefix}SmoothnessMap");
                 if (!currentData.SmoothnessAssigned)
-                    DrawProperty(() => currentData.SmoothnessRoughness = EditorGUI.Slider(smoothnessSliderRect, currentData.SmoothnessRoughness, 0, 1));
+                    DrawProperty(layerIndex, () => currentData.SmoothnessRoughness = EditorGUI.Slider(smoothnessSliderRect, currentData.SmoothnessRoughness, 0, 1));
 
                 // Occlussion Map
                 Rect occlussionStrengthSliderRect = DrawTexture(layerIndex, sectionIndex, 4, new GUIContent("Occlussion", "Occlussion (R)"), $"_{materialPrefix}OcclussionMap");
                 if (currentData.OcclussionAssigned)
-                    DrawProperty(() => currentData.OcclussionStrength = EditorGUI.Slider(occlussionStrengthSliderRect, currentData.OcclussionStrength, 0, 1));
+                    DrawProperty(layerIndex, () => currentData.OcclussionStrength = EditorGUI.Slider(occlussionStrengthSliderRect, currentData.OcclussionStrength, 0, 1));
             }
 
             // Emission
@@ -890,10 +890,10 @@ namespace Repetitionless.Inspectors
                 // Change emission colour to white if texture assigned and texture is black
                 EditorGUI.BeginChangeCheck();
                 Rect emissionColourRect = DrawTexture(layerIndex, sectionIndex, 5, new GUIContent("Emission", "Emission (RGB)"), $"_{materialPrefix}EmissionMap");
-                DrawProperty(() => currentData.EmissionColour = EditorGUI.ColorField(emissionColourRect, GUIContent.none, currentData.EmissionColour, true, false, true));
+                DrawProperty(layerIndex, () => currentData.EmissionColour = EditorGUI.ColorField(emissionColourRect, GUIContent.none, currentData.EmissionColour, true, false, true));
                 if (EditorGUI.EndChangeCheck()) {
                     // Update assigned textures since the function can be changed in child classes
-                    UpdateAssignedTextures(sectionIndex);
+                    UpdateAssignedTextures(layerIndex, sectionIndex);
 
                     // If texture just assigned and colour is black, change colour to white
                     if (currentData.EmissionAssigned && !prevEmissionAssigned) {
@@ -908,10 +908,10 @@ namespace Repetitionless.Inspectors
             // Alpha Clipping
             MaterialProperty surfaceTypeProp = FindProperty("_SurfaceTypeSetting");
             if (surfaceTypeProp.floatValue == 1.0f)
-                DrawProperty(() => currentData.AlphaClipping = EditorGUI.Slider(GUIUtilities.GetLineRect(), "Alpha Clipping", currentData.AlphaClipping, 0, 1));
+                DrawProperty(layerIndex, () => currentData.AlphaClipping = EditorGUI.Slider(GUIUtilities.GetLineRect(), "Alpha Clipping", currentData.AlphaClipping, 0, 1));
 
             // Scale & OffsetDrawTexture
-            DrawProperty(() => currentData.TilingOffset = GUIUtilities.DrawTilingOffset(currentData.TilingOffset));
+            DrawProperty(layerIndex, () => currentData.TilingOffset = GUIUtilities.DrawTilingOffset(currentData.TilingOffset));
         }
 
         /// <summary>
@@ -925,16 +925,16 @@ namespace Repetitionless.Inspectors
             RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, materialPrefix);
 
             // Angle Offset
-            DrawProperty(() => currentData.NoiseAngleOffset = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Angle Offset", currentData.NoiseAngleOffset));
+            DrawProperty(layerIndex, () => currentData.NoiseAngleOffset = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Angle Offset", currentData.NoiseAngleOffset));
 
             // Scale Randomising
             if (currentData.RandomiseNoiseScaling) {
                 // Scale
-                DrawProperty(() => currentData.NoiseScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Scale", currentData.NoiseScale));
+                DrawProperty(layerIndex, () => currentData.NoiseScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Scale", currentData.NoiseScale));
 
                 // Scaling Min Max
                 EditorGUI.BeginChangeCheck();
-                DrawProperty(() => currentData.NoiseScalingMinMax = GUIUtilities.DrawVector2Field(currentData.NoiseScalingMinMax, new GUIContent("Noise Scaling Min Max", "(x: Min Scale, y: Max Scale)\n\nRange that each voronoi cell is randomly scaled by")));
+                DrawProperty(layerIndex, () => currentData.NoiseScalingMinMax = GUIUtilities.DrawVector2Field(currentData.NoiseScalingMinMax, new GUIContent("Noise Scaling Min Max", "(x: Min Scale, y: Max Scale)\n\nRange that each voronoi cell is randomly scaled by")));
                 if (EditorGUI.EndChangeCheck()) {
                     Debug.Log("OUTSIDE END CHANGE CHECK");
                     if (currentData.NoiseScalingMinMax.x < 0) currentData.NoiseScalingMinMax.x = 0;
@@ -944,7 +944,7 @@ namespace Repetitionless.Inspectors
 
             // Rotation Randomising
             if (currentData.RandomiseNoiseRotation)
-                DrawProperty(() => currentData.NoiseRandomiseRotationMinMax = GUIUtilities.DrawVector2Field(currentData.NoiseRandomiseRotationMinMax, new GUIContent("Random Rotation Min Max", "(x: Min Rotation Degrees, y: Max Rotation Degrees)\n\nRange that each voronoi cell is randomly rotated by")));
+                DrawProperty(layerIndex, () => currentData.NoiseRandomiseRotationMinMax = GUIUtilities.DrawVector2Field(currentData.NoiseRandomiseRotationMinMax, new GUIContent("Random Rotation Min Max", "(x: Min Rotation Degrees, y: Max Rotation Degrees)\n\nRange that each voronoi cell is randomly rotated by")));
         }
 
 
@@ -964,36 +964,36 @@ namespace Repetitionless.Inspectors
             // Variation Mode
             ETextureType prevVariationMode = currentData.VariationMode;
             EditorGUI.BeginChangeCheck();
-            DrawProperty(() => currentData.VariationMode = (ETextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Variation Mode", "Using a custom texture can cause visible tiling"), currentData.VariationMode));
+            DrawProperty(layerIndex, () => currentData.VariationMode = (ETextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Variation Mode", "Using a custom texture can cause visible tiling"), currentData.VariationMode));
             if (EditorGUI.EndChangeCheck() && currentData.VariationMode != prevVariationMode)
                 UpdateVariationTexture(layerIndex, sectionIndex, prevVariationMode);
 
             // Opacity
-            DrawProperty(() => currentData.VariationOpacity = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Opacity", "Transparency of the variation"), currentData.VariationOpacity, 0, 1));
+            DrawProperty(layerIndex, () => currentData.VariationOpacity = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Opacity", "Transparency of the variation"), currentData.VariationOpacity, 0, 1));
 
             // Brightness
-            DrawProperty(() => currentData.VariationBrightness = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Brightness", "Intensity of the variation"), currentData.VariationBrightness, 0, 1));
+            DrawProperty(layerIndex, () => currentData.VariationBrightness = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Brightness", "Intensity of the variation"), currentData.VariationBrightness, 0, 1));
 
             // Scaling
-            DrawProperty(() => currentData.VariationSmallScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Small Scale", "Scale of the small variation sample"), currentData.VariationSmallScale));
-            DrawProperty(() => currentData.VariationMediumScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Medium Scale", "Scale of the medium variation sample"), currentData.VariationMediumScale));
-            DrawProperty(() => currentData.VariationLargeScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Large Scale", "Scale of the large variation sample"), currentData.VariationLargeScale));
+            DrawProperty(layerIndex, () => currentData.VariationSmallScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Small Scale", "Scale of the small variation sample"), currentData.VariationSmallScale));
+            DrawProperty(layerIndex, () => currentData.VariationMediumScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Medium Scale", "Scale of the medium variation sample"), currentData.VariationMediumScale));
+            DrawProperty(layerIndex, () => currentData.VariationLargeScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Large Scale", "Scale of the large variation sample"), currentData.VariationLargeScale));
 
             if (currentData.VariationMode != ETextureType.CustomTexture) { // Noise
                 // Strength
-                DrawProperty(() => currentData.VariationNoiseStrength = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Strength", currentData.VariationNoiseStrength));
+                DrawProperty(layerIndex, () => currentData.VariationNoiseStrength = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Strength", currentData.VariationNoiseStrength));
 
                 // Scale
-                DrawProperty(() => currentData.VariationNoiseScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Scale", currentData.VariationNoiseScale));
+                DrawProperty(layerIndex, () => currentData.VariationNoiseScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Scale", currentData.VariationNoiseScale));
 
                 // Offset
-                DrawProperty(() => currentData.VariationNoiseOffset = GUIUtilities.DrawVector2Field(currentData.VariationNoiseOffset, new GUIContent("Noise Offset")));
+                DrawProperty(layerIndex, () => currentData.VariationNoiseOffset = GUIUtilities.DrawVector2Field(currentData.VariationNoiseOffset, new GUIContent("Noise Offset")));
             } else {
                 // Texture
                 DrawTexture(layerIndex, sectionIndex, 6, new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"), $"_{materialPrefix}VariationTexture");
                 
                 // Tiling & Offset
-                DrawProperty(() => currentData.VariationTextureTO = GUIUtilities.DrawTilingOffset(currentData.VariationTextureTO, "Variation Scale", "Variation Offset"));
+                DrawProperty(layerIndex, () => currentData.VariationTextureTO = GUIUtilities.DrawTilingOffset(currentData.VariationTextureTO, "Variation Scale", "Variation Offset"));
             }
         }
         #endregion
@@ -1022,24 +1022,24 @@ namespace Repetitionless.Inspectors
         /// </param>
         protected virtual void DrawDistanceBlendGUI(int layerIndex, string propertiesPrefix = "")
         {
-            RepetitionlessLayerData layerData = GetLayerData();
+            RepetitionlessLayerData layerData = GetLayerData(layerIndex);
 
             // Start Background
             GUIUtilities.BeginBackgroundVertical();
 
             // Distance Blend Enabled Toggle
-            DrawProperty(() => layerData.DistanceBlendEnabled = GUIUtilities.DrawMajorToggleButton(layerData.DistanceBlendEnabled, "Distance Blending"));
+            DrawProperty(layerIndex, () => layerData.DistanceBlendEnabled = GUIUtilities.DrawMajorToggleButton(layerData.DistanceBlendEnabled, "Distance Blending"));
 
             // Draw distance blending settings
             if (layerData.DistanceBlendEnabled) {
                 GUILayout.Space(5);
 
                 // Distance Blend Mode
-                DrawProperty(() => layerData.DistanceBlendMode = (EDistanceBlendMode)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Blend Mode", "Tiling & Offset: Resamples materials with defined Tiling & Offset\nMaterial: Samples far material"), layerData.DistanceBlendMode));
+                DrawProperty(layerIndex, () => layerData.DistanceBlendMode = (EDistanceBlendMode)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Blend Mode", "Tiling & Offset: Resamples materials with defined Tiling & Offset\nMaterial: Samples far material"), layerData.DistanceBlendMode));
 
                 // Distance Blend Min Max
                 EditorGUI.BeginChangeCheck();
-                DrawProperty(() => layerData.DistanceBlendMinMax = GUIUtilities.DrawVector2Field(layerData.DistanceBlendMinMax, new GUIContent("Distance Blend Min Max", "(x: Min Distance, y: Max Distance)\n\nBlend distance which the material will be sampled. Materials will be blended with regular material at min, and far material at max")));
+                DrawProperty(layerIndex, () => layerData.DistanceBlendMinMax = GUIUtilities.DrawVector2Field(layerData.DistanceBlendMinMax, new GUIContent("Distance Blend Min Max", "(x: Min Distance, y: Max Distance)\n\nBlend distance which the material will be sampled. Materials will be blended with regular material at min, and far material at max")));
                 if (EditorGUI.EndChangeCheck()) {
                     if (layerData.DistanceBlendMinMax.x < 0) layerData.DistanceBlendMinMax.x = 0;
                     if (layerData.DistanceBlendMinMax.y < 0) layerData.DistanceBlendMinMax.y = 0;
@@ -1050,7 +1050,7 @@ namespace Repetitionless.Inspectors
                     case EDistanceBlendMode.TilingOffset:
                         // Tiling & Offset GUI
                         RepetitionlessMaterialData farMaterialData = GetMaterialData(layerIndex, sectionIndex);
-                        DrawProperty(() => farMaterialData.TilingOffset = GUIUtilities.DrawTilingOffset(farMaterialData.TilingOffset));
+                        DrawProperty(layerIndex, () => farMaterialData.TilingOffset = GUIUtilities.DrawTilingOffset(farMaterialData.TilingOffset));
                         break;
                     case EDistanceBlendMode.Material:
                         GUILayout.Space(10);
@@ -1073,14 +1073,14 @@ namespace Repetitionless.Inspectors
         /// </param>
         protected virtual void DrawMaterialBlendGUI(int layerIndex, string propertiesPrefix = "")
         {
-            RepetitionlessLayerData layerData = GetLayerData();
+            RepetitionlessLayerData layerData = GetLayerData(layerIndex);
 
             // Start Background
             GUIUtilities.BeginBackgroundVertical();
 
             // Material Blend Enabled Toggle
             EditorGUI.BeginChangeCheck();
-            DrawProperty(() => layerData.MaterialBlendEnabled = GUIUtilities.DrawMajorToggleButton(layerData.MaterialBlendEnabled, "Material Blending"));
+            DrawProperty(layerIndex, () => layerData.MaterialBlendEnabled = GUIUtilities.DrawMajorToggleButton(layerData.MaterialBlendEnabled, "Material Blending"));
             if (EditorGUI.EndChangeCheck() && layerData.BlendMaskType == ETextureType.CustomTexture)
                 UpdateBlendMaskTexture(layerIndex, ETextureType.PerlinNoise, !layerData.MaterialBlendEnabled);
 
@@ -1090,27 +1090,27 @@ namespace Repetitionless.Inspectors
 
                 ETextureType prevMaskType = layerData.BlendMaskType;
                 EditorGUI.BeginChangeCheck();
-                DrawProperty(() => layerData.BlendMaskType = (ETextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), "Mask Type", layerData.BlendMaskType));
+                DrawProperty(layerIndex, () => layerData.BlendMaskType = (ETextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), "Mask Type", layerData.BlendMaskType));
                 if (EditorGUI.EndChangeCheck() && layerData.BlendMaskType != prevMaskType)
                     UpdateBlendMaskTexture(layerIndex, prevMaskType);
 
-                DrawProperty(() => layerData.BlendMaskOpacity = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Mask Opacity", "Opacity of the mask and in response the blend material"), layerData.BlendMaskOpacity, 0, 1));
-                DrawProperty(() => layerData.BlendMaskStrength = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Mask Strength", "The higher the value, the sharper the edges and vice versa"), layerData.BlendMaskStrength));
+                DrawProperty(layerIndex, () => layerData.BlendMaskOpacity = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Mask Opacity", "Opacity of the mask and in response the blend material"), layerData.BlendMaskOpacity, 0, 1));
+                DrawProperty(layerIndex, () => layerData.BlendMaskStrength = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Mask Strength", "The higher the value, the sharper the edges and vice versa"), layerData.BlendMaskStrength));
 
                 if (layerData.BlendMaskType != ETextureType.CustomTexture) { // Noise
                     // Scale & Offset
-                    DrawProperty(() => layerData.BlendMaskNoiseScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Scale", layerData.BlendMaskNoiseScale));
-                    DrawProperty(() => layerData.BlendMaskNoiseOffset = GUIUtilities.DrawVector2Field(layerData.BlendMaskNoiseOffset, new GUIContent("Noise Offset")));
+                    DrawProperty(layerIndex, () => layerData.BlendMaskNoiseScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Scale", layerData.BlendMaskNoiseScale));
+                    DrawProperty(layerIndex, () => layerData.BlendMaskNoiseOffset = GUIUtilities.DrawVector2Field(layerData.BlendMaskNoiseOffset, new GUIContent("Noise Offset")));
                 } else { // Custom Texture
                     // Texture
                     EditorGUI.BeginChangeCheck();
                     _textureData.BMTexturesDrawer.DrawTexture(0, 0, new GUIContent("Blend Mask", "Blend Mask (R), other channels are ignored\n\nTexture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)"));
                     if (EditorGUI.EndChangeCheck()) {
-                        UpdateAssignedTextures(2);
+                        UpdateAssignedTextures(layerIndex, 2);
                     }
 
                     // Scale & Offset
-                    DrawProperty(() => layerData.BlendMaskTextureTO = GUIUtilities.DrawTilingOffset(layerData.BlendMaskTextureTO));
+                    DrawProperty(layerIndex, () => layerData.BlendMaskTextureTO = GUIUtilities.DrawTilingOffset(layerData.BlendMaskTextureTO));
                 }
 
                 GUILayout.Space(10);
@@ -1130,20 +1130,20 @@ namespace Repetitionless.Inspectors
 
                     // Override Distance Blending Toggle
                     string distanceBlendEnabledStyle = layerData.OverrideDistanceBlend && layerData.DistanceBlendMode == 0 ? "ButtonLeft" : "Button";
-                    DrawProperty(() => layerData.OverrideDistanceBlend = GUILayout.Toggle(layerData.OverrideDistanceBlend, new GUIContent(GetScaledText(minScaledTextWidth, "Override Distance Blending", "ODB"), "Draws the blend material on top of the far material"), distanceBlendEnabledStyle));
+                    DrawProperty(layerIndex, () => layerData.OverrideDistanceBlend = GUILayout.Toggle(layerData.OverrideDistanceBlend, new GUIContent(GetScaledText(minScaledTextWidth, "Override Distance Blending", "ODB"), "Draws the blend material on top of the far material"), distanceBlendEnabledStyle));
 
                     // Override Tiling & Offset Options
                     bool endedHorizontal = false;
                     if (layerData.OverrideDistanceBlend) {
                         // Override Tiling & Offset Toggle
-                        DrawProperty(() => layerData.OverrideDistanceBlendTO = GUILayout.Toggle(layerData.OverrideDistanceBlendTO, new GUIContent(GetScaledText(minScaledTextWidth, "Override Tiling & Offset", "OTO"), "Changes the tiling offset of the blend material at a distance"), "ButtonRight"));
+                        DrawProperty(layerIndex, () => layerData.OverrideDistanceBlendTO = GUILayout.Toggle(layerData.OverrideDistanceBlendTO, new GUIContent(GetScaledText(minScaledTextWidth, "Override Tiling & Offset", "OTO"), "Changes the tiling offset of the blend material at a distance"), "ButtonRight"));
 
                         endedHorizontal = true;
                         GUILayout.EndHorizontal();
 
                         // Override Tiling & Offset
                         if (layerData.OverrideDistanceBlendTO)
-                            DrawProperty(() => layerData.BlendMaskDistanceTO = GUIUtilities.DrawTilingOffset(layerData.BlendMaskDistanceTO));
+                            DrawProperty(layerIndex, () => layerData.BlendMaskDistanceTO = GUIUtilities.DrawTilingOffset(layerData.BlendMaskDistanceTO));
                     }
 
                     if (!endedHorizontal)

@@ -59,7 +59,7 @@ namespace Repetitionless.Inspectors
 
             GUIUtilities.DrawHeaderLabelLarge("Terrain");
 
-            _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex, 0, _terrainLayers.Count - 1);
+            _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _terrainLayers.Count) - 1;
 
             GUILayout.Space(5);
 
