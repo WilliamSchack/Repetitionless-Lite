@@ -23,10 +23,6 @@ namespace Repetitionless.Data
         private const string NSO_TEXTURES_PROP_NAME = "_NSOTextures";
         private const string EM_TEXTURES_PROP_NAME  = "_EMTextures";
         private const string BM_TEXTURES_PROP_NAME  = "_BMTextures";
-        private const string AV_ASSIGNED_TEXTURES_PROP_NAME = "_AssignedAVTextures";
-        private const string NSO_ASSIGNED_TEXTURES_PROP_NAME = "_AssignedNSOTextures";
-        private const string EM_ASSIGNED_TEXTURES_PROP_NAME = "_AssignedEMTextures";
-        private const string BM_ASSIGNED_TEXTURES_PROP_NAME = "_AssignedBMTextures";
 
         private static readonly Vector4 DEFAULT_AV_COLOUR  = new Vector4 ( 1.0f, 1.0f, 1.0f, 0.0f );
         private static readonly Vector4 DEFAULT_NSO_COLOUR = new Vector4 ( 0.0f, 0.0f, 0.0f, 1.0f );
@@ -54,10 +50,10 @@ namespace Repetitionless.Data
 
         public LayerTextureData[] LayersTextureData;
 
-        public int[] _assignedAVTextures = new int[3];
-        public int[] _assignedNSOTextures = new int[3];
-        public int[] _assignedEMTextures = new int[3];
-        public int _assignedBMTextures = 0;
+        [HideInInspector][SerializeField] private int[] _assignedAVTextures = new int[3];
+        [HideInInspector][SerializeField] private int[] _assignedNSOTextures = new int[3];
+        [HideInInspector][SerializeField] private int[] _assignedEMTextures = new int[3];
+        [HideInInspector][SerializeField] private int _assignedBMTextures = 0;
 
         // Non-Serializable
         private MaterialDataManager _dataManager;

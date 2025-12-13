@@ -561,6 +561,13 @@ namespace Repetitionless.Inspectors
             _editor.LightmapEmissionProperty();
             _editor.RenderQueueField();
             _editor.DoubleSidedGIField();
+
+            // Data Folder
+            GUILayout.Space(5);
+            if (GUILayout.Button("Ping Data Folder")) {
+                Object folderObj = AssetDatabase.LoadAssetAtPath(_dataManager.DataFolderPath(), typeof(Object));
+                EditorGUIUtility.PingObject(folderObj);
+            }
         }
         #endregion
 

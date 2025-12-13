@@ -18,10 +18,8 @@ namespace Repetitionless.Data
         private const TextureFormat DATA_TEXTURE_FORMAT = TextureFormat.RGBAHalf;
 
         // Dont modify data in the SO inspector, do it in the material inspector
-        //[HideInInspector]
-        public RepetitionlessLayerData[] Data;
-        [SerializeField]//[HideInInspector][SerializeField]
-        private RepetitionlessLayerDataCompressed[] _dataCompressed;
+        [HideInInspector] public RepetitionlessLayerData[] Data;
+        [HideInInspector][SerializeField] private RepetitionlessLayerDataCompressed[] _dataCompressed;
 
         MaterialDataManager _dataManager;
 
