@@ -115,5 +115,22 @@ namespace Repetitionless.Compression
 
             return (compressedValues & (1 << index)) != 0;
         }
+
+
+        // Returns:
+        // Item1: first half
+        // Item2: second half
+        public static (ushort, ushort) Split32BitInt(int value)
+        {
+            return (
+                (ushort)(value & 0xFFFF),
+                (ushort)((value >> 16) & 0xFFFF)
+            );
+        }
+
+        public static int Combine16BitInts(ushort firstHalf, ushort secondHalf)
+        {
+            return (((int)firstHalf) & 0xFFFF) | ((int)secondHalf << 16);
+        }
     }
 }

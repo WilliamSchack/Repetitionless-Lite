@@ -10,10 +10,14 @@ namespace Repetitionless.Data
     using TextureUtilities;
     using GUIUtilities;
     using Variables;
+    using Compression;
 
     public class RepetitionlessTextureDataSO : ScriptableObject
     {
         public const int MATERIAL_COUNT = 3;
+
+        private const string TEXTURE_ASSET_NAME = "AssignedTextures.asset";
+        public const string TEXTURE_PROP_NAME = "_AssignedTexturesTexture";
 
         private const string AV_TEXTURES_PROP_NAME  = "_AVTextures";
         private const string NSO_TEXTURES_PROP_NAME = "_NSOTextures";
@@ -49,6 +53,11 @@ namespace Repetitionless.Data
         }
 
         public LayerTextureData[] LayersTextureData;
+
+        public int[] _assignedAVTextures = new int[3];
+        public int[] _assignedNSOTextures = new int[3];
+        public int[] _assignedEMTextures = new int[3];
+        public int _assignedBMTextures = 0;
 
         // Non-Serializable
         private MaterialDataManager _dataManager;
@@ -89,52 +98,84 @@ namespace Repetitionless.Data
             return prop;
         }
 
-        private MaterialProperty GetAssignedTexturesProp(int sectionIndex)
+        private ref int GetAssignedTexturesValue(int sectionIndex, int chunkIndex)
         {
-            string propName = "";
             switch (sectionIndex) {
-                case 0: propName = AV_ASSIGNED_TEXTURES_PROP_NAME; break;
-                case 1: propName = NSO_ASSIGNED_TEXTURES_PROP_NAME; break;
-                case 2: propName = EM_ASSIGNED_TEXTURES_PROP_NAME; break;
-                case 3: propName = BM_ASSIGNED_TEXTURES_PROP_NAME; break;
-                default: return null;
+                case 0: return ref _assignedAVTextures[chunkIndex];
+                case 1: return ref _assignedNSOTextures[chunkIndex];
+                case 2: return ref _assignedEMTextures[chunkIndex];
+                case 3: return ref _assignedBMTextures;
             }
 
-            MaterialProperty prop = MaterialEditor.GetMaterialProperty(new Object[] { _dataManager.Material }, propName);
-            return prop;
+            return ref _assignedAVTextures[0];
         }
 
         private int AssignedTexturesGetter(int sectionIndex, int chunkIndex)
         {
-            MaterialProperty prop = GetAssignedTexturesProp(sectionIndex);
-            if (prop == null) return 0;
-
-            switch (chunkIndex) {
-                case 0: return (int)prop.vectorValue.x;
-                case 1: return (int)prop.vectorValue.y;
-                case 2: return (int)prop.vectorValue.z;
-            }
-
-            return 0;
+            return GetAssignedTexturesValue(sectionIndex, chunkIndex);
         }
 
         private void AssignedTexturesSetter(int sectionIndex, int chunkIndex, int compressedValues)
         {
-            MaterialProperty prop = GetAssignedTexturesProp(sectionIndex);
-            Vector3 propValue = prop.vectorValue;
+            ref int assignedTexturesVal = ref GetAssignedTexturesValue(sectionIndex, chunkIndex);
+            assignedTexturesVal = compressedValues;
 
-            switch (chunkIndex) {
-                case 0: propValue.x = compressedValues; break;
-                case 1: propValue.y = compressedValues; break;
-                case 2: propValue.z = compressedValues; break;
-            }
-
-            prop.vectorValue = propValue;
-            Debug.Log($"Setting: {sectionIndex}, {chunkIndex}: {compressedValues} || {prop.name} >> ({propValue} == {prop.vectorValue})");
+            UpdateAssignedTexturesTexture();
             return;
         }
 
-        // DIFFERENT GET/SET BLEND MASK
+        // Returns:
+        // Item1: First half
+        // Item2: Second half
+        private ushort[] GetAssignedTexturesData()
+        {
+            // Split assigned textures value into two 16 bit integers
+            // Cannot store single 32 bit integers in a texture
+
+            ushort[] data = new ushort[8 * 3]; // 8 pixels, 3 channels
+            for (int section = 0; section < 4; section++) {
+                for (int chunk = 0; chunk < 3; chunk++) {
+                    int value = GetAssignedTexturesValue(section, chunk);
+                    (ushort, ushort) valueSplit = BooleanCompression.Split32BitInt(value);
+
+                    // x = 0 first half, x = 1 second half
+                    int offsetFirst    = (section * 2 + 0) * 3 + chunk;
+                    int offsetSecond   = (section * 2 + 1) * 3 + chunk;
+                    data[offsetFirst]  = valueSplit.Item1;
+                    data[offsetSecond] = valueSplit.Item2;
+                }
+            }
+
+            return data;
+        }
+
+        // I would use 4 properties instead of a texture but this way i can store ints in the shader graph
+        // You cannot store int properties in a shader graph and floating point precision would be an issue
+        public void UpdateAssignedTexturesTexture()
+        {
+            MaterialProperty textureProp = MaterialEditor.GetMaterialProperty(new Object[] { _dataManager.Material }, TEXTURE_PROP_NAME);
+            UpdateAssignedTexturesTexture(textureProp);
+        }
+
+        public void UpdateAssignedTexturesTexture(MaterialProperty property)
+        {
+            Texture2D texture;
+            if (_dataManager.AssetExists(TEXTURE_ASSET_NAME)) {
+                // Load and modify the texture
+                texture = _dataManager.LoadAsset<Texture2D>(TEXTURE_ASSET_NAME);
+            } else {
+                // Create a new texture
+                texture = new Texture2D(2, 4, TextureFormat.RGB48, false);
+                _dataManager.CreateAsset(texture, TEXTURE_ASSET_NAME);
+            }
+
+            ushort[] pixelData = GetAssignedTexturesData();
+            texture.SetPixelData(pixelData, 0);
+            texture.Apply();
+
+            if ((Texture2D)property.textureValue != texture)
+                property.textureValue = texture;
+        }
 
         // Should be called every time before using the drawers
         public void SetupTextureDrawers(MaterialDataManager dataManager)

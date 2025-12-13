@@ -3,6 +3,8 @@
 
 #include "../Structs/RepetitionlessMaterialDataNew.hlsl"
 
+#include "../RepetitionlessHelpers/GetArrayAssignedTextures.hlsl"
+
 #include "../Noise/VoronoiNoise2D.hlsl"
 #include "../Noise/Keijiro/ClassicNoise2D.hlsl"
 #include "../Noise/Keijiro/SimplexNoise2D.hlsl"
@@ -14,6 +16,7 @@
 
 #include "NewMaterialTest.hlsl"
 
+// Uses assigned array properties variables
 void SampleRepetitionlessLayerBase_float(
     // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector,
@@ -23,16 +26,22 @@ void SampleRepetitionlessLayerBase_float(
     // Properties
     int LayerIndex,
     UnityTexture2D PropertiesTexture,
+    int AssignedAVTextures0,
+    int AssignedAVTextures1,
+    int AssignedAVTextures2,
+    int AssignedNSOTextures0,
+    int AssignedNSOTextures1,
+    int AssignedNSOTextures2,
+    int AssignedEMTextures0,
+    int AssignedEMTextures1,
+    int AssignedEMTextures2,
+    int AssignedBMTextures0,
 
     // Textures
     UnityTexture2DArray AVTextures,
     UnityTexture2DArray NSOTextures,
     UnityTexture2DArray EMTextures,
     UnityTexture2DArray BMTextures,
-    int3 AssignedAVTextures,
-    int3 AssignedNSOTextures,
-    int3 AssignedEMTextures,
-    int  AssignedBMTextures,
 
     // Outputs
     out float4 AlbedoColorOut,
@@ -42,7 +51,7 @@ void SampleRepetitionlessLayerBase_float(
     out float  OcclussionOut,
     out float3 EmissionColorOut
 ) {
-    // ----------------------- Load Variables From Texture ------------------------- //
+    // ----------------------- Load Variables From Textures ------------------------- //
 
     // Base Material
     int indexOffset = 0;
@@ -108,10 +117,11 @@ void SampleRepetitionlessLayerBase_float(
     half blendMaskOpacity  = materialBlendSettings.z;
     half blendMaskStrength = materialBlendSettings.w;
 
-    int assignedAVTexturesArray[]  = { AssignedAVTextures.x,  AssignedAVTextures.y,  AssignedAVTextures.z  };
-    int assignedNSOTexturesArray[] = { AssignedNSOTextures.x, AssignedNSOTextures.y, AssignedNSOTextures.z };
-    int assignedEMTexturesArray[]  = { AssignedEMTextures.x,  AssignedEMTextures.y,  AssignedEMTextures.z  };
-    int assignedBMTexturesArray[]  = { AssignedBMTextures, 0, 0, 0 };
+    // Construct array assigned textures
+    int assignedAVTexturesArray[]  = { AssignedAVTextures0,  AssignedAVTextures1,  AssignedAVTextures2  };
+    int assignedNSOTexturesArray[] = { AssignedNSOTextures0, AssignedNSOTextures1, AssignedNSOTextures2 };
+    int assignedEMTexturesArray[]  = { AssignedEMTextures0,  AssignedEMTextures1,  AssignedEMTextures2  };
+    int assignedBMTexturesArray[]  = { AssignedBMTextures0, 0, 0, 0 };
 
     // ----------------------- Setup ------------------------- //
 
@@ -316,6 +326,57 @@ void SampleRepetitionlessLayerBase_float(
     SmoothnessOut = smoothness;
     OcclussionOut = occlussion;
     EmissionColorOut = emissionColor;
+}
+
+// Uses assigned array properties texture
+void SampleRepetitionlessLayerBase_float(
+    // General Settings
+    SamplerState SS, float2 UV, float3 TangentNormalVector,
+    float3 WorldPosition, float3 CameraPosition,
+    int SurfaceType, int DebuggingIndex,
+
+    // Properties
+    int LayerIndex,
+    UnityTexture2D PropertiesTexture,
+    UnityTexture2D AssignedTexturesTexture,
+
+    // Textures
+    UnityTexture2DArray AVTextures,
+    UnityTexture2DArray NSOTextures,
+    UnityTexture2DArray EMTextures,
+    UnityTexture2DArray BMTextures,
+
+    // Outputs
+    out float4 AlbedoColorOut,
+    out float3 NormalVectorOut,
+    out float  MetallicOut,
+    out float  SmoothnessOut,
+    out float  OcclussionOut,
+    out float3 EmissionColorOut
+){
+    int assignedAVTextures[3];
+    int assignedNSOTextures[3];
+    int assignedEVTextures[3];
+    int assignedBMTextures;
+
+    GetArrayAssignedTextures(AssignedTexturesTexture, assignedAVTextures, assignedNSOTextures, assignedEVTextures, assignedBMTextures);
+
+    SampleRepetitionlessLayerBase_float(
+        SS, UV, TangentNormalVector,
+        WorldPosition, CameraPosition,
+        SurfaceType, DebuggingIndex,
+        LayerIndex,
+        PropertiesTexture,
+        assignedAVTextures[0], assignedAVTextures[1], assignedAVTextures[2],
+        assignedNSOTextures[0], assignedNSOTextures[1], assignedNSOTextures[2],
+        assignedEVTextures[0], assignedEVTextures[1], assignedEVTextures[2],
+        assignedBMTextures,
+        AVTextures,
+        NSOTextures,
+        EMTextures,
+        BMTextures,
+        AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
+    );
 }
 
 #endif

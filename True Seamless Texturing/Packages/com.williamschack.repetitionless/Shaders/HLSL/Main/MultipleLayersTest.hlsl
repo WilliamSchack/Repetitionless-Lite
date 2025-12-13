@@ -3,6 +3,10 @@
 
 #include "NewLayerTest.hlsl"
 
+// Assume control and terrain holes properties are:
+// _TerrainHoles
+// _Control{Index}
+
 #define SAMPLE_CONTROL(i, uv) LayersCount > i ? SAMPLE_TEXTURE2D(_Control##i, sampler_Control##i, uv) : 0
 
 void SampleMultipleRepetitionlessLayers_float(
@@ -14,16 +18,13 @@ void SampleMultipleRepetitionlessLayers_float(
     // Properties
     int LayersCount,
     UnityTexture2D PropertiesTexture,
+    UnityTexture2D AssignedTexturesTexture,
 
     // Textures
     UnityTexture2DArray AVTextures,
     UnityTexture2DArray NSOTextures,
     UnityTexture2DArray EMTextures,
     UnityTexture2DArray BMTextures,
-    int AssignedAVTextures,
-    int AssignedNSOTextures,
-    int AssignedEMTextures,
-    int AssignedBMTextures,
 
     // Outputs
     out float4 AlbedoColorOut,
@@ -33,10 +34,6 @@ void SampleMultipleRepetitionlessLayers_float(
     out float OcclussionOut,
     out float3 EmissionColorOut
 ) {
-    // Assume control and terrain holes properties are:
-    // _TerrainHoles
-    // _Control{Index}
-    
     float4 albedoColor  = 1;
     float3 normalVector = TangentNormalVector;
     float  metallic     = 0;
@@ -94,6 +91,14 @@ void SampleMultipleRepetitionlessLayers_float(
         }
     }
 
+    // Read array assigned textures
+    int assignedAVTextures[3];
+    int assignedNSOTextures[3];
+    int assignedEVTextures[3];
+    int assignedBMTextures;
+
+    GetArrayAssignedTextures(AssignedTexturesTexture, assignedAVTextures, assignedNSOTextures, assignedEVTextures, assignedBMTextures);
+
     // Variables
     albedoColor  = backgroundControl;
     normalVector = TangentNormalVector * backgroundControl;
@@ -122,14 +127,14 @@ void SampleMultipleRepetitionlessLayers_float(
             SurfaceType, DebuggingIndex,
             i,
             PropertiesTexture,
+            assignedAVTextures[0], assignedAVTextures[1], assignedAVTextures[2],
+            assignedNSOTextures[0], assignedNSOTextures[1], assignedNSOTextures[2],
+            assignedEVTextures[0], assignedEVTextures[1], assignedEVTextures[2],
+            assignedBMTextures,
             AVTextures,
             NSOTextures,
             EMTextures,
             BMTextures,
-            AssignedAVTextures,
-            AssignedNSOTextures,
-            AssignedEMTextures,
-            AssignedBMTextures,
             layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
         );
 
