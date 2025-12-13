@@ -18,7 +18,7 @@ namespace Repetitionless.Data
         private const TextureFormat DATA_TEXTURE_FORMAT = TextureFormat.RGBAHalf;
 
         // Dont modify data in the SO inspector, do it in the material inspector
-        [HideInInspector] public RepetitionlessLayerData[] Data;
+        public RepetitionlessLayerData[] Data;
         [HideInInspector][SerializeField] private RepetitionlessLayerDataCompressed[] _dataCompressed;
 
         MaterialDataManager _dataManager;
@@ -147,13 +147,14 @@ namespace Repetitionless.Data
             RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, materialIndex);
             bool packedTextureAssigned = currentData.PackedTexture ? materialTextureData.NSOTextures[3].Texture != null : false;
 
-            currentData.AlbedoAssigned     = materialTextureData.AVTextures[0].Texture != null;
-            currentData.MetallicAssigned   = packedTextureAssigned ? true : materialTextureData.EMTextures[1].Texture != null;
-            currentData.SmoothnessAssigned = packedTextureAssigned ? true : materialTextureData.NSOTextures[1].Texture != null;
-            currentData.NormalAssigned     = materialTextureData.NSOTextures[0].Texture != null;
-            currentData.OcclussionAssigned = packedTextureAssigned ? true : materialTextureData.NSOTextures[2].Texture != null;
-            currentData.EmissionAssigned   = materialTextureData.EMTextures[0].Texture != null;
-            currentData.VariationAssigned  = materialTextureData.AVTextures[1].Texture != null;
+            currentData.AlbedoAssigned        = materialTextureData.AVTextures[0].Texture != null;
+            currentData.MetallicAssigned      = packedTextureAssigned ? true : materialTextureData.EMTextures[1].Texture != null;
+            currentData.SmoothnessAssigned    = packedTextureAssigned ? true : materialTextureData.NSOTextures[1].Texture != null;
+            currentData.NormalAssigned        = materialTextureData.NSOTextures[0].Texture != null;
+            currentData.OcclussionAssigned    = packedTextureAssigned ? true : materialTextureData.NSOTextures[2].Texture != null;
+            currentData.EmissionAssigned      = materialTextureData.EMTextures[0].Texture != null;
+            currentData.VariationAssigned     = materialTextureData.AVTextures[1].Texture != null;
+            currentData.PackedTextureAssigned = packedTextureAssigned;
 
             Data[layerIndex].BlendMaskAssigned = textureData.LayersTextureData[layerIndex].BlendMaskTexture[0].Texture != null;
 

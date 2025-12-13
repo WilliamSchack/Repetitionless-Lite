@@ -22,6 +22,7 @@ namespace Repetitionless.Variables
         public bool OcclussionAssigned = false;
         public bool EmissionAssigned = false;
         public bool VariationAssigned = false;
+        public bool PackedTextureAssigned = false;
 
         // Material Properties
         public Color AlbedoTint = Color.white;
@@ -73,6 +74,7 @@ namespace Repetitionless.Variables
         //   4 > OcclussionAssigned
         //   5 > EmissionAssigned
         //   6 > VarationAssigned
+        //   7 > PackedTextureAssigned
         // z: Metallic
         // w: Smoothness/Roughness
         public Vector4 Settings1;

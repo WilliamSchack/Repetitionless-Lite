@@ -80,7 +80,8 @@ namespace Repetitionless.Data
                 newData.NormalAssigned,
                 newData.OcclussionAssigned,
                 newData.EmissionAssigned,
-                newData.VariationAssigned
+                newData.VariationAssigned,
+                newData.PackedTextureAssigned
             ) && !updateAll) return 0;
 
             if (UpdateGenericIfChanged<float>(ref compressedData.Settings1.z, newData.Metallic) && !updateAll)            return 0;

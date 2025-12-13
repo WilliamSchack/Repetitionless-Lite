@@ -49,14 +49,15 @@ void GetRepetitionlessMaterialColorTest(
     bool packedTexture         = GetCompressedValue(settingToggles, 5);
     bool emissionEnabled       = GetCompressedValue(settingToggles, 6);
 
-    int  assignedTextures   = (int)MaterialData.Settings1.y;
-    bool albedoAssigned     = GetCompressedValue(assignedTextures, 0);
-    bool metallicAssigned   = GetCompressedValue(assignedTextures, 1);
-    bool smoothnessAssigned = GetCompressedValue(assignedTextures, 2);
-    bool normalAssigned     = GetCompressedValue(assignedTextures, 3);
-    bool occlussionAssigned = GetCompressedValue(assignedTextures, 4);
-    bool emissionAssigned   = GetCompressedValue(assignedTextures, 5);
-    bool variationAssigned  = GetCompressedValue(assignedTextures, 6);
+    int  assignedTextures      = (int)MaterialData.Settings1.y;
+    bool albedoAssigned        = GetCompressedValue(assignedTextures, 0);
+    bool metallicAssigned      = GetCompressedValue(assignedTextures, 1);
+    bool smoothnessAssigned    = GetCompressedValue(assignedTextures, 2);
+    bool normalAssigned        = GetCompressedValue(assignedTextures, 3);
+    bool occlussionAssigned    = GetCompressedValue(assignedTextures, 4);
+    bool emissionAssigned      = GetCompressedValue(assignedTextures, 5);
+    bool variationAssigned     = GetCompressedValue(assignedTextures, 6);
+    bool packedTextureAssigned = GetCompressedValue(assignedTextures, 7);
 
     half metallic            = MaterialData.Settings1.z;
     half smoothnessRoughness = MaterialData.Settings1.w;
@@ -167,7 +168,7 @@ void GetRepetitionlessMaterialColorTest(
     NormalVectorOut = normalAssigned ? UnpackNormalMap(float4(nsoTexture.rg, 1, 1), normalScale) : TangentNormalVector;
     
     if (packedTexture) {
-        float4 packedTextureColor = float4(emTexture.a, nsoTexture.a, 0, nsoTexture.b);
+        float4 packedTextureColor = packedTextureAssigned ? float4(emTexture.a, nsoTexture.a, 0, nsoTexture.b) : float4(0, 1, 0, 0);
 
         MetallicOut = packedTextureColor.r;
         OcclussionOut = lerp(1, packedTextureColor.g, occlussionStrength);
