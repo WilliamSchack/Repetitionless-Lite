@@ -199,7 +199,12 @@ namespace Repetitionless.GUIUtilities
                     int chunkOffset = i * BooleanCompression.MAX_VALUES;
                     for (int j = 0; j < chunkAssignedTextures.Length; j++) {
                         Debug.Log(chunkAssignedTextures[j]);
-                        assignedTextures[chunkOffset + j] = chunkAssignedTextures[j];
+
+                        int assignedTexIndex = chunkOffset + j;
+                        if (assignedTexIndex >= assignedTextures.Length)
+                            break;
+
+                        assignedTextures[assignedTexIndex] = chunkAssignedTextures[j];
                         //Debug.Log($"Setting assigned texture at {chunkOffset + j}: {chunkAssignedTextures[j]}");
                     }
                 }
