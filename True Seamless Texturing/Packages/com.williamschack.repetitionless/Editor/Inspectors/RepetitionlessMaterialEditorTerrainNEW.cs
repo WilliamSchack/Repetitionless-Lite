@@ -21,6 +21,9 @@ namespace Repetitionless.Inspectors
         {
             base.OnEnable(materialEditor);
 
+            // Set terrain compatible tag
+            _material.SetOverrideTag("TerrainCompatible", "True");
+
             // Load terrain layers
             TerrainLayerSyncDataSO syncData = TerrainLayerSyncDataSO.Load();
             _terrainLayers = syncData.MaterialToTerrainLayer.Get(_material).Items;
