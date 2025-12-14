@@ -65,12 +65,15 @@ public class RepetitionlessTerrain : MonoBehaviour
         EditorSceneManager.sceneSaved -= OnSceneSaved;
         EditorSceneManager.sceneSaved += OnSceneSaved;
         
-        // Set dirty on next editor frame
+        // Set dirty and update textures on next editor frame
         // For some reason doing it immediately doesnt work
-        EditorApplication.delayCall += SetDirty;
-#endif
-
+        EditorApplication.delayCall += () => {
+            SetDirty();
+            UpdateMaterialTerrainTextures();
+        };
+#else
         UpdateMaterialTerrainTextures();
+#endif
     }
 
     void OnDisable()
@@ -88,7 +91,8 @@ public class RepetitionlessTerrain : MonoBehaviour
     // Update control and holes textures
     public void UpdateMaterialTerrainTextures()
     {
-        if (_repetitionlessMaterial == null)
+        // this == null to prevent error on end of build
+        if (_repetitionlessMaterial == null || this == null)
             return;
 
         UpdateControlTextures();
