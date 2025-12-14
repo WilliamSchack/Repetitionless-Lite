@@ -108,12 +108,18 @@ public class RepetitionlessTerrain : MonoBehaviour
 
         // Control textures 2-8 are not exposed in the shader graph
         // May aswell also set holes while we are here
+        UpdateLayersCount();
         UpdateControlTextures();
         UpdateHolesTexture();
 
 #if UNITY_EDITOR
         SetDirty();
 #endif
+    }
+
+    public void UpdateLayersCount()
+    {
+        _materialInstance.SetFloat("_LayersCount", _terrainData.alphamapLayers);
     }
 
     public void UpdateControlTextures()
