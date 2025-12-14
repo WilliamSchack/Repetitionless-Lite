@@ -13,54 +13,8 @@ MonoBehaviour:
   m_Name: TerrainLayerSyncData
   m_EditorClassIdentifier: com.williamschack.Repetitionless.Editor::Repetitionless.Data.TerrainLayerSyncDataSO
   MaterialToTerrainLayer:
-    keys:
-    - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
-    values:
-    - Items:
-      - {fileID: 8574412962073106934, guid: 477783760963b6eef916bb56a222d1ce, type: 2}
-      - {fileID: 8574412962073106934, guid: ac8a94a2014faae0da5c984b16fcbe8e, type: 2}
-      - {fileID: 8574412962073106934, guid: 51e10dddaead682229234b5e7f7b3c88, type: 2}
-      - {fileID: 8574412962073106934, guid: 1e92a9c8165577731892bae8544a09a7, type: 2}
-      - {fileID: 8574412962073106934, guid: d085c8239ce9ffd3ab5f9be01800dc72, type: 2}
-      - {fileID: 8574412962073106934, guid: 7faf48c6167c479e1aa8848fe241f094, type: 2}
-      - {fileID: 8574412962073106934, guid: a66b183d715f2ccae913e4e926f11bd9, type: 2}
-      - {fileID: 8574412962073106934, guid: 8836cfd6c1579ade78d912536fd444b9, type: 2}
-      - {fileID: 8574412962073106934, guid: 2645f482bb01d4c108e03aa6c29a8ebe, type: 2}
-      - {fileID: 8574412962073106934, guid: 1b7d3db1dd3a66cf3ae73803df79b0c1, type: 2}
-      - {fileID: 8574412962073106934, guid: 45cac7610844b5497be043390433abc5, type: 2}
+    keys: []
+    values: []
   TerrainLayerToMaterial:
-    keys:
-    - {fileID: 8574412962073106934, guid: 477783760963b6eef916bb56a222d1ce, type: 2}
-    - {fileID: 8574412962073106934, guid: ac8a94a2014faae0da5c984b16fcbe8e, type: 2}
-    - {fileID: 8574412962073106934, guid: 51e10dddaead682229234b5e7f7b3c88, type: 2}
-    - {fileID: 8574412962073106934, guid: 1e92a9c8165577731892bae8544a09a7, type: 2}
-    - {fileID: 8574412962073106934, guid: d085c8239ce9ffd3ab5f9be01800dc72, type: 2}
-    - {fileID: 8574412962073106934, guid: 7faf48c6167c479e1aa8848fe241f094, type: 2}
-    - {fileID: 8574412962073106934, guid: a66b183d715f2ccae913e4e926f11bd9, type: 2}
-    - {fileID: 8574412962073106934, guid: 8836cfd6c1579ade78d912536fd444b9, type: 2}
-    - {fileID: 8574412962073106934, guid: 2645f482bb01d4c108e03aa6c29a8ebe, type: 2}
-    - {fileID: 8574412962073106934, guid: 45cac7610844b5497be043390433abc5, type: 2}
-    - {fileID: 8574412962073106934, guid: 1b7d3db1dd3a66cf3ae73803df79b0c1, type: 2}
-    values:
-    - Items:
-      - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
-    - Items:
-      - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
-    - Items:
-      - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
-    - Items:
-      - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
-    - Items:
-      - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
-    - Items:
-      - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
-    - Items:
-      - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
-    - Items:
-      - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
-    - Items:
-      - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
-    - Items:
-      - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
-    - Items:
-      - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
+    keys: []
+    values: []

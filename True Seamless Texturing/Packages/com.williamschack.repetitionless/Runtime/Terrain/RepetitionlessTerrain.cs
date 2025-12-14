@@ -29,7 +29,7 @@ public class RepetitionlessTerrain : MonoBehaviour
     // Not used in this file but used by the editor in a SerializedProperty
     // Disabling warnings here to prevent unused variable warning
 #pragma warning disable 0414
-    [SerializeField] private bool _autoSaveTextures = true;
+    public bool AutoSaveTextures = true;
 #pragma warning restore 0414
 
     private Terrain _terrain;
@@ -46,6 +46,8 @@ public class RepetitionlessTerrain : MonoBehaviour
             return Terrain.terrainData;
         }
     }
+
+    [SerializeField] public RepetitionlessTerrain ParentTerrain;
 
 #if UNITY_EDITOR
     // Set this as dirty so saving after doing nothing will still update the textures
@@ -88,10 +90,12 @@ public class RepetitionlessTerrain : MonoBehaviour
 
     public void UpdateTerrainMaterial(Material material)
     {
+        _mainMaterial = material;
+
         // Use an instance to support multiple terrain objects
-        _materialInstance = new Material(material);
+        _materialInstance = new Material(_mainMaterial);
         _materialInstance.name += " (Instance)";
-        _materialInstance.CopyPropertiesFromMaterial(material);
+        _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);
 
         _terrain.materialTemplate = _materialInstance;
     }

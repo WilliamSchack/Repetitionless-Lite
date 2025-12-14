@@ -13,10 +13,12 @@ namespace Repetitionless.Inspectors
 
         private SerializedProperty _materialProp;
         private SerializedProperty _autoSaveProp;
+        private SerializedProperty _parentTerrainProp;
 
 
         private TerrainData _terrainData;
         private TerrainLayer[] _terrainLayers;
+        private Terrain[] _terrainNeighbours = new Terrain[4];
 
         private TerrainLayerSyncDataSO _syncData;
 
@@ -26,8 +28,10 @@ namespace Repetitionless.Inspectors
 
         bool _incorrectMaterial = false;
 
-        private bool TerrainLayersEqual(TerrainLayer[] newTerrainLayers)
+        private bool TerrainLayersUpdated()
         {
+            TerrainLayer[] newTerrainLayers = _terrainData.terrainLayers;
+
             if (_terrainLayers == null)
                 return false;
 
@@ -40,6 +44,60 @@ namespace Repetitionless.Inspectors
             }
 
             return true;
+        }
+
+        private void SetupNewTerrainNeighbour(Terrain newNeighbour)
+        {
+            RepetitionlessTerrain repetitionlessTerrain;
+            newNeighbour.TryGetComponent<RepetitionlessTerrain>(out repetitionlessTerrain);
+
+            // Already setup
+            if (repetitionlessTerrain != null && repetitionlessTerrain.ParentTerrain == _main)
+                return;
+
+            // Create terrain component
+            if (repetitionlessTerrain == null)
+                repetitionlessTerrain = newNeighbour.gameObject.AddComponent<RepetitionlessTerrain>();
+
+            RepetitionlessTerrain newParent = _main;
+            if (_main.ParentTerrain != null)
+                newParent = _main.ParentTerrain;
+            
+            repetitionlessTerrain.ParentTerrain = newParent;
+
+            // In the case another parent is set, there is a conflict and prompt which one to use
+            if (repetitionlessTerrain.ParentTerrain != null && repetitionlessTerrain.ParentTerrain != _main) {
+                bool usingMainParent = EditorUtility.DisplayDialog(
+                    "Repetitionless Terrain Conflict",
+                    $"Conflict detected between two repetitionless terrains. Pick which one will be the new parent (Which terrain layers will be used).\n\n" +
+                    $"1: {_main.gameObject.name} ({_main.MainMaterial})" +
+                    $"\n2: {repetitionlessTerrain.ParentTerrain.gameObject.name} ({repetitionlessTerrain.ParentTerrain.MainMaterial})",
+                    _main.gameObject.name,
+                    repetitionlessTerrain.ParentTerrain.gameObject.name);
+            }
+
+            // Set terrain layers and material
+            repetitionlessTerrain.Terrain.terrainData.terrainLayers = _terrainLayers;
+            repetitionlessTerrain.AutoSaveTextures = false;
+            repetitionlessTerrain.UpdateTerrainMaterial(_main.MainMaterial);
+        }
+
+        private void HandleUpdatedTerrainNeighbours()
+        {
+            Terrain[] newTerrainNeighbours = {
+                _main.Terrain.leftNeighbor,
+                _main.Terrain.rightNeighbor,
+                _main.Terrain.topNeighbor,
+                _main.Terrain.bottomNeighbor
+            };
+
+            for (int i = 0; i < newTerrainNeighbours.Length; i++) {
+                Terrain neighbour = newTerrainNeighbours[i];
+                if(_terrainNeighbours[i] != neighbour) {
+                    SetupNewTerrainNeighbour(neighbour);
+                    _terrainNeighbours[i] = neighbour;
+                }
+            }
         }
 
         private void SyncLayersToMaterial()
@@ -67,13 +125,19 @@ namespace Repetitionless.Inspectors
             _main = (RepetitionlessTerrain)serializedObject.targetObject;
             _syncData = TerrainLayerSyncDataSO.Load();
 
-            _materialProp = serializedObject.FindProperty("_mainMaterial");
-            _autoSaveProp = serializedObject.FindProperty("_autoSaveTextures");
+            _materialProp      = serializedObject.FindProperty("_mainMaterial");
+            _autoSaveProp      = serializedObject.FindProperty("AutoSaveTextures");
+            _parentTerrainProp = serializedObject.FindProperty("ParentTerrain");
 
-            _terrainData = _main.Terrain.terrainData;
+            _terrainData   = _main.Terrain.terrainData;
             _terrainLayers = _terrainData.terrainLayers;
             //SyncLayersToMaterial();
             //UpdateMaterialTerrainLayerTextures();
+
+            _terrainNeighbours[0] = _main.Terrain.leftNeighbor;
+            _terrainNeighbours[1] = _main.Terrain.rightNeighbor;
+            _terrainNeighbours[2] = _main.Terrain.topNeighbor;
+            _terrainNeighbours[3] = _main.Terrain.bottomNeighbor;
 
             _headerStyle = new GUIStyle();
             _headerStyle.fontSize = 14;
@@ -90,6 +154,8 @@ namespace Repetitionless.Inspectors
         {   
             serializedObject.Update();
 
+            EditorGUILayout.PropertyField(_parentTerrainProp);
+
             // Cannot copy GUI.skin styles outside of ongui, make it here
             if (_toggleStyle == null) {
                 _toggleStyle = new GUIStyle("button");
@@ -99,12 +165,14 @@ namespace Repetitionless.Inspectors
             }
 
             // Update global layers sync data for layer saving
-            TerrainLayer[] newTerrainLayers = _terrainData.terrainLayers;
-            if (!TerrainLayersEqual(newTerrainLayers)) {
+            if (!TerrainLayersUpdated()) {
                 SyncLayersToMaterial();
                 if (_autoSaveProp.boolValue)
                     UpdateMaterialTerrainLayerTextures();
             }
+
+            // Add scripts to terrain neighbours if added
+            HandleUpdatedTerrainNeighbours();
 
             if (_main.MainMaterial == null) {
                 if (_incorrectMaterial) GUILayout.Label("Only Repetitionless terrain materials are accepted", _headerStyleError);
