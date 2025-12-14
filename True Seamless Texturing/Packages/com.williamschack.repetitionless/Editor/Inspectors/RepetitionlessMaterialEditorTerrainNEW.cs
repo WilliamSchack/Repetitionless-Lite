@@ -17,8 +17,22 @@ namespace Repetitionless.Inspectors
         private int _currentLayerIndex = 0;
         private bool _showingTerrainLayers = false;
 
+        private GUIStyle _instanceHeaderStyle;
+        private bool _isInstance = false;
+
         public override void OnEnable(MaterialEditor materialEditor)
         {
+            // Check if this is an instance, disables gui pretty much
+            // We need the data folder which is gotten from next to the editor
+            _material = (Material)materialEditor.target;
+            _isInstance = !AssetDatabase.Contains(_material);
+            if (_isInstance) {
+                _instanceHeaderStyle = new GUIStyle(GUIUtilities.BoldHeaderLargeStyle);
+                _instanceHeaderStyle.wordWrap = true;
+
+                return;
+            }
+
             base.OnEnable(materialEditor);
 
             // Set terrain compatible tag
@@ -26,12 +40,20 @@ namespace Repetitionless.Inspectors
 
             // Load terrain layers
             TerrainLayerSyncDataSO syncData = TerrainLayerSyncDataSO.Load();
-            _terrainLayers = syncData.MaterialToTerrainLayer.Get(_material).Items;
+            _terrainLayers = syncData.MaterialToTerrainLayer.Get(_material)?.Items;
         }
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
         {
+            if (_isInstance) {
+                GUILayout.Label("Cannot view the material from an instance, select the main material to view and edit.", _instanceHeaderStyle);
+                return;
+            }
+
             base.OnGUI(materialEditor, properties);
+
+            // If OnEnable was just called, prevents errors
+            if (_isInstance) return;
 
             DrawTerrainSettings();
 
@@ -61,6 +83,12 @@ namespace Repetitionless.Inspectors
             GUIUtilities.BeginBackgroundVertical();
 
             GUIUtilities.DrawHeaderLabelLarge("Terrain");
+
+            if (_terrainLayers == null) {
+                GUILayout.Label("No terrain layers found, editing layer 1");
+                GUIUtilities.EndBackgroundVertical();
+                return;
+            }
 
             _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _terrainLayers.Count) - 1;
 

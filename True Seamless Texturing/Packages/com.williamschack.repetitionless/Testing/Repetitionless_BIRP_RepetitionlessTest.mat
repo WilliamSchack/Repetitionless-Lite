@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Repetitionless_BIRP_RepetitionlessTest
-  m_Shader: {fileID: -6465566751694194690, guid: 2e442388a9557679a8eaf0a9230f4c74, type: 3}
-  m_Parent: {fileID: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: d9f3c26619b9fff3fba543d61ffaa00f, type: 3}
+  m_Parent: {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -18,7 +18,7 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
-    RenderType: Opaque
+    TerrainCompatible: true
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -32,53 +32,13 @@ Material:
         m_Texture: {fileID: 2800000, guid: 5a48e1683b4902d868cabd0ad849a9ba, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _BMTextures:
-        m_Texture: {fileID: 18700000, guid: 42604ad70bd92d06ca50568aace62313, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Control0:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Control1:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EMTextures:
-        m_Texture: {fileID: 18700000, guid: ac68d9f8e0777b16da1a35ec74937b4a, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NSOTextures:
-        m_Texture: {fileID: 18700000, guid: e9b106a671b86fb1b847c74c36113350, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _PropertiesTexture:
         m_Texture: {fileID: 2800000, guid: 56073cb96822b29c4b6c3f2a0699bcf9, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats:
-    - _AssignedAVTextures: 5
-    - _AssignedBMTextures: 0
-    - _AssignedEMTextures: 0
-    - _AssignedNSOTextures: 5
-    - _BUILTIN_AlphaClip: 0
-    - _BUILTIN_Blend: 0
-    - _BUILTIN_CullMode: 2
-    - _BUILTIN_DstBlend: 0
-    - _BUILTIN_QueueControl: 0
-    - _BUILTIN_QueueOffset: 0
-    - _BUILTIN_SrcBlend: 1
-    - _BUILTIN_Surface: 0
-    - _BUILTIN_ZTest: 4
-    - _BUILTIN_ZWrite: 1
-    - _BUILTIN_ZWriteControl: 0
-    - _DebuggingIndex: -1
-    - _SurfaceTypeSetting: 0
-    m_Colors:
-    - _AssignedAVTextures: {r: 7, g: 0, b: 0, a: 0}
-    - _AssignedEMTextures: {r: 7, g: 0, b: 0, a: 0}
-    - _AssignedNSOTextures: {r: 7, g: 0, b: 0, a: 0}
+    m_Floats: []
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4230770454375858120

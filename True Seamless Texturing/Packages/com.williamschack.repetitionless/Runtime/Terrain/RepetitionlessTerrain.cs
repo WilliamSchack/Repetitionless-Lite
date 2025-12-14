@@ -6,12 +6,12 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 #endif
 
-// Update material textures to terrain render textures whenever they are removed
-// Honestly the best way i found to do since writing them to textures would be sluggish
-// Plus the terrain is already handling these may aswell use them
+// Set the control and holes render textures to the material directly
+// Better than trying to fiddle with saving the textures
+// Also allows me to instance the material and have different textures for different terrains
 
 // Updates textures when:
-// OnEnable
+// OnEnable (Runtime & Editor)
 // Scene saved
 
 [ExecuteInEditMode]
@@ -20,8 +20,11 @@ public class RepetitionlessTerrain : MonoBehaviour
 {
     private const int CONTROL_TEXTURE_COUNT = 8;
 
-    [SerializeField] private Material _repetitionlessMaterial;
-    public Material RepetitionlessMaterial { get { return _repetitionlessMaterial; } }
+    [SerializeField] private Material _mainMaterial;
+    public Material MainMaterial { get { return _mainMaterial; } }
+    
+    private Material _materialInstance;
+    public Material MaterialInstance { get { return _materialInstance; } }
 
     // Not used in this file but used by the editor in a SerializedProperty
     // Disabling warnings here to prevent unused variable warning
@@ -85,16 +88,26 @@ public class RepetitionlessTerrain : MonoBehaviour
 
     public void UpdateTerrainMaterial(Material material)
     {
-        Terrain.materialTemplate = material;
+        // Use an instance to support multiple terrain objects
+        _materialInstance = new Material(material);
+        _materialInstance.name += " (Instance)";
+        _materialInstance.CopyPropertiesFromMaterial(material);
+
+        _terrain.materialTemplate = _materialInstance;
     }
 
     // Update control and holes textures
     public void UpdateMaterialTerrainTextures()
     {
         // this == null to prevent error on end of build
-        if (_repetitionlessMaterial == null || this == null)
+        if (_mainMaterial == null || this == null)
             return;
 
+        if (_materialInstance == null || _terrain.materialTemplate == null)
+            UpdateTerrainMaterial(_mainMaterial);
+
+        // Control textures 2-8 are not exposed in the shader graph
+        // May aswell also set holes while we are here
         UpdateControlTextures();
         UpdateHolesTexture();
 
@@ -108,12 +121,12 @@ public class RepetitionlessTerrain : MonoBehaviour
         int controlTextureCount = Mathf.CeilToInt(_terrainData.alphamapLayers / 4.0f);
         for (int i = 0; i < CONTROL_TEXTURE_COUNT; i++) {
             Texture2D controlTexture = controlTextureCount > i ? _terrainData.alphamapTextures[i] : null;
-            _repetitionlessMaterial.SetTexture($"_Control{i}", controlTexture);
+            _materialInstance.SetTexture($"_Control{i}", controlTexture);
         }
     }
 
     public void UpdateHolesTexture()
     {
-        _repetitionlessMaterial.SetTexture("_TerrainHoles", _terrainData.holesTexture);
+        _materialInstance.SetTexture("_TerrainHoles", _terrainData.holesTexture);
     }
 }

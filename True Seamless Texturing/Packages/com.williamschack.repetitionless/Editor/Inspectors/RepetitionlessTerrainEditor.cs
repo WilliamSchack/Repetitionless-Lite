@@ -46,13 +46,13 @@ namespace Repetitionless.Inspectors
         {
             // Update global data for terrain layer saving
             _terrainLayers = _terrainData.terrainLayers;
-            _syncData.UpdateGlobalMaterialLayers(_main.RepetitionlessMaterial, _terrainLayers);
+            _syncData.UpdateGlobalMaterialLayers(_main.MainMaterial, _terrainLayers);
         }
 
         // Save textures to the material
         private void UpdateMaterialTerrainLayerTextures()
         {
-            if (_main.RepetitionlessMaterial == null)
+            if (_main.MainMaterial == null)
                 return;
 
             EditorApplication.delayCall += () => {
@@ -67,7 +67,7 @@ namespace Repetitionless.Inspectors
             _main = (RepetitionlessTerrain)serializedObject.targetObject;
             _syncData = TerrainLayerSyncDataSO.Load();
 
-            _materialProp = serializedObject.FindProperty("_repetitionlessMaterial");
+            _materialProp = serializedObject.FindProperty("_mainMaterial");
             _autoSaveProp = serializedObject.FindProperty("_autoSaveTextures");
 
             _terrainData = _main.Terrain.terrainData;
@@ -106,7 +106,7 @@ namespace Repetitionless.Inspectors
                     UpdateMaterialTerrainLayerTextures();
             }
 
-            if (_main.RepetitionlessMaterial == null) {
+            if (_main.MainMaterial == null) {
                 if (_incorrectMaterial) GUILayout.Label("Only Repetitionless terrain materials are accepted", _headerStyleError);
                 else GUILayout.Label("Assign a material here to get started", _headerStyle);
             } else {
@@ -127,7 +127,7 @@ namespace Repetitionless.Inspectors
                     if (newShaderName.StartsWith("Repetitionless/")) {
                         _incorrectMaterial = false;
 
-                        _syncData.RemoveMaterial(_main.RepetitionlessMaterial);
+                        _syncData.RemoveMaterial(_main.MainMaterial);
                         _main.UpdateTerrainMaterial(newMat);
 
                         EditorApplication.delayCall += () => {
@@ -137,18 +137,18 @@ namespace Repetitionless.Inspectors
                         };
                     } else {
                         _incorrectMaterial = true;
-                        _materialProp.objectReferenceValue = _main.RepetitionlessMaterial;
+                        _materialProp.objectReferenceValue = _main.MainMaterial;
                     }
                 } else {
                     _incorrectMaterial = false;
-                    _syncData.RemoveMaterial(_main?.RepetitionlessMaterial);
+                    _syncData.RemoveMaterial(_main?.MainMaterial);
                 }
             }
 
-            if (_main.RepetitionlessMaterial != null) {
+            if (_main.MainMaterial != null) {
                 // Edit Material Button
                 if (GUILayout.Button("Edit Material", GUILayout.Height(30)))
-                    Selection.activeObject = _main.RepetitionlessMaterial;
+                    Selection.activeObject = _main.MainMaterial;
 
                 // Save Texture Layers Button
                 GUILayout.Space(10);

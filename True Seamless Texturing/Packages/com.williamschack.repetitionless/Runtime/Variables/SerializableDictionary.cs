@@ -17,6 +17,9 @@ namespace Repetitionless.Variables
         public TValue Get(TKey key)
         {
             int index = keys.IndexOf(key);
+            if (index < 0)
+                return default(TValue);
+
             return values[index];
         }
 

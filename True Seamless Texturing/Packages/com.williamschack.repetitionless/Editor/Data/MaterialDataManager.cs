@@ -83,8 +83,6 @@ namespace Repetitionless.Data
 #region Asset Management
         public void CreateAsset(Object asset, string fileName, bool overwrite = false)
         {
-            Debug.Log("CREATING ASSET: " + asset.name);
-
             bool folderExists = CreateDataFolder();
             if (!folderExists) return;
 

@@ -558,9 +558,11 @@ namespace Repetitionless.Inspectors
             }
 
             // Advanced Options
-            _editor.LightmapEmissionProperty();
-            _editor.RenderQueueField();
-            _editor.DoubleSidedGIField();
+            if (_editor != null) {
+                _editor.LightmapEmissionProperty();
+                _editor.RenderQueueField();
+                _editor.DoubleSidedGIField();
+            }
 
             // Data Folder
             GUILayout.Space(5);

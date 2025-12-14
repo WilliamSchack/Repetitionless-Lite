@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2747914697073271952
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.ShaderGraph.Editor::UnityEditor.Rendering.BuiltIn.AssetVersion
-  version: 0
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -32,6 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
+    TerrainCompatible: true
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -50,15 +38,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control0:
-        m_Texture: {fileID: -4321514980890626510, guid: 52d9b74224829c3a3b218b4ac4e1d069, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control1:
-        m_Texture: {fileID: -3849834469726430989, guid: 52d9b74224829c3a3b218b4ac4e1d069, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control2:
-        m_Texture: {fileID: 3025768235860655082, guid: 52d9b74224829c3a3b218b4ac4e1d069, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control3:
@@ -81,16 +69,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _CustomFunction_53fb42ae5a9e40d5a5b1c5a0595f282b_In_0_Texture2D:
+    - _EMTextures:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _EMTextures:
-        m_Texture: {fileID: 18700000, guid: a989f2047c68ff3a4b02d70a05956c44, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _NSOTextures:
-        m_Texture: {fileID: 18700000, guid: 09a84d5ded807a22a92573f11ddebcaa, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PropertiesTexture:
@@ -101,26 +85,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TestCustomFunction_53fb42ae5a9e40d5a5b1c5a0595f282b_In_0_Texture2D:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AssignedAVTextures: 37449
-    - _AssignedAVTextures0: 0
-    - _AssignedAVTextures1: 0
-    - _AssignedAVTextures2: 0
-    - _AssignedBMTextures: 0
-    - _AssignedBMTextures0: 0
-    - _AssignedEMTextures: 0
-    - _AssignedEMTextures0: 0
-    - _AssignedEMTextures1: 0
-    - _AssignedEMTextures2: 0
-    - _AssignedNSOTextures: 0
-    - _AssignedNSOTextures0: 0
-    - _AssignedNSOTextures1: 0
-    - _AssignedNSOTextures2: 0
     - _BUILTIN_AlphaClip: 0
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 2
@@ -134,9 +100,19 @@ Material:
     - _BUILTIN_ZWriteControl: 0
     - _DebuggingIndex: -1
     - _SurfaceTypeSetting: 0
-    m_Colors:
-    - _AssignedAVTextures: {r: 19173960, g: 0, b: 0, a: 0}
-    - _AssignedEMTextures: {r: 0, g: 0, b: 0, a: 0}
-    - _AssignedNSOTextures: {r: 0, g: 0, b: 0, a: 0}
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
+--- !u!114 &1442326174430074623
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.ShaderGraph.Editor::UnityEditor.Rendering.BuiltIn.AssetVersion
+  version: 0

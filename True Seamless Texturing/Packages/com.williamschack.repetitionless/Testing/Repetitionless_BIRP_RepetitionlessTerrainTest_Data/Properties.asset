@@ -33,7 +33,7 @@ MonoBehaviour:
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
       TilingOffset: {x: 2, y: 2, z: 0, w: 0}
       Metallic: 0
-      SmoothnessRoughness: 0
+      SmoothnessRoughness: 0.5
       NormalScale: 1
       OcclussionStrength: 1
       AlphaClipping: 0.5
@@ -160,8 +160,8 @@ MonoBehaviour:
       AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
       TilingOffset: {x: 2, y: 2, z: 0, w: 0}
-      Metallic: 0.194
-      SmoothnessRoughness: 0
+      Metallic: 0
+      SmoothnessRoughness: 0.5
       NormalScale: 1
       OcclussionStrength: 1
       AlphaClipping: 0.5
@@ -4111,7 +4111,7 @@ MonoBehaviour:
     BlendMaskTextureTO: {x: 1, y: 1, z: 0, w: 0}
   _dataCompressed:
   - BaseMaterialData:
-      Settings1: {x: 47, y: 1, z: 0, w: 0}
+      Settings1: {x: 47, y: 1, z: 0, w: 0.5}
       Settings2: {x: 1, y: 1, z: 0.5, w: 2}
       Settings3: {x: 5, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
@@ -4145,7 +4145,7 @@ MonoBehaviour:
     MaterialBlendSettings: {x: 12, y: 0, z: 1, w: 1}
     MaterialBlendMaskTO: {x: 10, y: 0, z: 0, w: 0}
   - BaseMaterialData:
-      Settings1: {x: 47, y: 1, z: 0.194, w: 0}
+      Settings1: {x: 47, y: 1, z: 0, w: 0.5}
       Settings2: {x: 1, y: 1, z: 0.5, w: 2}
       Settings3: {x: 5, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
