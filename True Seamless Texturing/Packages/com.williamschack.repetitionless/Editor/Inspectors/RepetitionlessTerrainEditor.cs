@@ -71,8 +71,9 @@ namespace Repetitionless.Inspectors
             _autoSaveProp = serializedObject.FindProperty("_autoSaveTextures");
 
             _terrainData = _main.Terrain.terrainData;
-            SyncLayersToMaterial();
-            UpdateMaterialTerrainLayerTextures();
+            _terrainLayers = _terrainData.terrainLayers;
+            //SyncLayersToMaterial();
+            //UpdateMaterialTerrainLayerTextures();
 
             _headerStyle = new GUIStyle();
             _headerStyle.fontSize = 14;
