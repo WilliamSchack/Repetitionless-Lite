@@ -115,6 +115,9 @@ namespace Repetitionless.Data
 
         public void UpdateLayerMaterialsData(TerrainLayer terrainLayer)
         {
+            if (!TerrainLayerToMaterial.ContainsKey(terrainLayer))
+                return;
+
             // Update the materials data related to this terrain layer
             foreach (Material mat in TerrainLayerToMaterial.Get(terrainLayer).Items) {
                 string progressBarTitle = $"Updating {mat.name}...";
