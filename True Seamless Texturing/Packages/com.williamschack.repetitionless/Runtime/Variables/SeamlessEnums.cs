@@ -21,6 +21,12 @@ namespace Repetitionless.Variables
         Transparent
     }
     
+    public enum EUVSpace
+    {
+        Local,
+        World
+    }
+
     /// <summary>
     /// Available mask texture types for Repetitionless Materials
     /// </summary>

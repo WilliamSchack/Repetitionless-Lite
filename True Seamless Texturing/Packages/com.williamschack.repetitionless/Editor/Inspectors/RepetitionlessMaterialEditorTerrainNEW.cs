@@ -7,6 +7,7 @@ namespace Repetitionless.Inspectors
 {
     using GUIUtilities;
     using Data;
+    using Repetitionless.Variables;
 
     public class RepetitionlessMaterialEditorTerrainNEW : RepetitionlessMaterialEditorBaseNEW
     {
@@ -41,6 +42,21 @@ namespace Repetitionless.Inspectors
             // Load terrain layers
             TerrainLayerSyncDataSO syncData = TerrainLayerSyncDataSO.Load();
             _terrainLayers = syncData.MaterialToTerrainLayer.Get(_material)?.Items;
+        }
+
+        protected override void OnPropertiesCreated()
+        {
+            // Set uv space to world
+            MaterialProperty uvSpaceProp = FindProperty("_UVSpace");
+            uvSpaceProp.floatValue = (int)EUVSpace.World;
+
+            // Set all tiling offset values to 100
+            Vector4 defaultTilingOffset = new Vector4(100, 100, 0, 0);
+            for (int i = 0; i < _materialProperties.Data.Length; i++) {
+                _materialProperties.Data[i].BaseMaterialData.TilingOffset  = defaultTilingOffset;
+                _materialProperties.Data[i].FarMaterialData.TilingOffset   = defaultTilingOffset;
+                _materialProperties.Data[i].BlendMaterialData.TilingOffset = defaultTilingOffset;
+            }
         }
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)

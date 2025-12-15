@@ -421,10 +421,19 @@ namespace Repetitionless.Inspectors
 
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Writing Properties", 0.8f);
                 UpdateMaterialPropertiesTexture(0);
+
+                OnPropertiesCreated();
             }
 
             if (progressBarUsed)
                 EditorUtility.ClearProgressBar();
+        }
+
+        // Called when the material properties are first created
+        // Do not need to call base, nothing happens
+        protected virtual void OnPropertiesCreated()
+        {
+            
         }
 
         /// <summary>
@@ -556,6 +565,15 @@ namespace Repetitionless.Inspectors
                         break;
                 }
             }
+
+            // UV Space
+            MaterialProperty uvSpaceProp = FindProperty("_UVSpace");
+
+            EditorGUI.BeginChangeCheck();
+            EUVSpace uvSpace = (EUVSpace)uvSpaceProp.floatValue;
+            uvSpace = (EUVSpace)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), "UV Space", uvSpace);
+            if (EditorGUI.EndChangeCheck())
+                uvSpaceProp.floatValue = (int)uvSpace;
 
             // Advanced Options
             if (_editor != null) {

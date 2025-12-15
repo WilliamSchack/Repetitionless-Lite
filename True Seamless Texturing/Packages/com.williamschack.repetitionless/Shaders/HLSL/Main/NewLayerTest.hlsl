@@ -21,7 +21,7 @@ void SampleRepetitionlessLayerBase_float(
     // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition,
-    int SurfaceType, int DebuggingIndex,
+    int SurfaceType, int UVSpace, int DebuggingIndex,
 
     // Properties
     int LayerIndex,
@@ -157,6 +157,13 @@ void SampleRepetitionlessLayerBase_float(
         materialMask *= blendMaskOpacity;
     }
 
+    // Use world space UVs if enabled
+    if (UVSpace == 1) {
+        // pos / 1000 to allow space for tiling
+        // Terrains are default 1000m^2 so this pretty much expands it to 1x1 on a terrain
+        UV = WorldPosition.xz / 1000;
+    }
+
     // ----------------------- Get Materials To Sample ------------------------- //
 
     int baseLayerIndex  = LayerIndex * 3 + 0;
@@ -192,8 +199,6 @@ void SampleRepetitionlessLayerBase_float(
 
     // Check base material
     samplingBase = farDistance != 1 && materialMask != 1;
-
-    //UV = WorldPosition.xz / 4; // UV / 4 to match regular terrain tiling
 
     // ----------------------- Base Material ------------------------- //
     if (samplingBase) {
@@ -335,7 +340,7 @@ void SampleRepetitionlessLayerBase_float(
     // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition,
-    int SurfaceType, int DebuggingIndex,
+    int SurfaceType, int UVSpace, int DebuggingIndex,
 
     // Properties
     int LayerIndex,
@@ -366,7 +371,7 @@ void SampleRepetitionlessLayerBase_float(
     SampleRepetitionlessLayerBase_float(
         SS, UV, TangentNormalVector,
         WorldPosition, CameraPosition,
-        SurfaceType, DebuggingIndex,
+        SurfaceType, UVSpace, DebuggingIndex,
         LayerIndex,
         PropertiesTexture,
         assignedAVTextures[0], assignedAVTextures[1], assignedAVTextures[2],

@@ -114,6 +114,7 @@ Material:
     - _DebuggingIndex: -1
     - _LayersCount: 1
     - _SurfaceTypeSetting: 0
+    - _UVSpace: 1
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

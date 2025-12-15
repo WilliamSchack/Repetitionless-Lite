@@ -13,7 +13,7 @@ void SampleMultipleRepetitionlessLayers_float(
     // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition,
-    int SurfaceType, int DebuggingIndex,
+    int SurfaceType, int UVSpace, int DebuggingIndex,
 
     // Properties
     int LayersCount,
@@ -124,7 +124,7 @@ void SampleMultipleRepetitionlessLayers_float(
         SampleRepetitionlessLayerBase_float(
             SS, UV, TangentNormalVector,
             WorldPosition, CameraPosition,
-            SurfaceType, DebuggingIndex,
+            SurfaceType, UVSpace, DebuggingIndex,
             i,
             PropertiesTexture,
             assignedAVTextures[0], assignedAVTextures[1], assignedAVTextures[2],

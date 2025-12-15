@@ -56,6 +56,9 @@
         },
         {
             "m_Id": "e96c4c78d7284312b43b7513dee15205"
+        },
+        {
+            "m_Id": "94c3961ab3314a09b5038893b8bd9e82"
         }
     ],
     "m_Keywords": [],
@@ -227,6 +230,9 @@
         },
         {
             "m_Id": "b91193f432d44eeca21cea397f0ac01a"
+        },
+        {
+            "m_Id": "5f839e3c5fda417894e04454d2d96760"
         }
     ],
     "m_GroupDatas": [
@@ -489,6 +495,20 @@
                     "m_Id": "740bc1152f744e32bd5f07dbd89b1f18"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "5f839e3c5fda417894e04454d2d96760"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "969ab60c288c4a1f9430d120d8d1593d"
+                },
+                "m_SlotId": 158
             }
         },
         {
@@ -1950,6 +1970,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "318c3671635b4f7c83ba06447dcf8628",
+    "m_Id": 158,
+    "m_DisplayName": "UVSpace",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "UVSpace",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "3347c1e106554ac4916d18faaf3a6d31",
     "m_Group": {
@@ -2368,8 +2403,8 @@
     "m_ObjectId": "52f7cb2ea01645a684d6bd320ae006e4",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1186.0,
-        "y": 2689.0
+        "x": 1186.0001220703125,
+        "y": 2689.000244140625
     }
 }
 
@@ -2432,6 +2467,9 @@
     "m_ChildObjectList": [
         {
             "m_Id": "68d9a9922e24415291d1eb97409c77f6"
+        },
+        {
+            "m_Id": "94c3961ab3314a09b5038893b8bd9e82"
         },
         {
             "m_Id": "a53c21286b3b4d8aaecc5989768a620e"
@@ -2559,6 +2597,42 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "5f839e3c5fda417894e04454d2d96760",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 1746.0,
+            "y": 2371.999755859375,
+            "width": 124.0,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "f1a93a2b656e486aa7888dc5768e1302"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "94c3961ab3314a09b5038893b8bd9e82"
+    }
 }
 
 {
@@ -2841,7 +2915,7 @@
     "m_PerRendererData": false,
     "m_customAttributes": [],
     "m_Value": 0.0,
-    "m_FloatType": 0,
+    "m_FloatType": 2,
     "m_RangeValues": {
         "x": 0.0,
         "y": 1.0
@@ -3076,8 +3150,8 @@
     "m_ObjectId": "78fba43ca02a4f59b78481b0b304f8c3",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 887.0,
-        "y": 1983.9998779296875
+        "x": 887.0000610351563,
+        "y": 1984.0001220703125
     }
 }
 
@@ -3507,6 +3581,46 @@
 
 {
     "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "94c3961ab3314a09b5038893b8bd9e82",
+    "m_Guid": {
+        "m_GuidSerialized": "4afbb805-3bd9-4864-aeb3-97a6fbce6268"
+    },
+    "m_Name": "UVSpace",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "UVSpace",
+    "m_DefaultReferenceName": "_UVSpace",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_PerRendererData": false,
+    "m_customAttributes": [],
+    "m_Value": 0.0,
+    "m_FloatType": 2,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    },
+    "m_SliderType": 0,
+    "m_SliderPower": 3.0,
+    "m_EnumType": 0,
+    "m_CSharpEnumString": "",
+    "m_EnumNames": [
+        "Default"
+    ],
+    "m_EnumValues": [
+        0
+    ]
+}
+
+{
+    "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.CustomFunctionNode",
     "m_ObjectId": "969ab60c288c4a1f9430d120d8d1593d",
     "m_Group": {
@@ -3541,6 +3655,9 @@
         },
         {
             "m_Id": "d2212c4f6a2c4d2190237761203517af"
+        },
+        {
+            "m_Id": "318c3671635b4f7c83ba06447dcf8628"
         },
         {
             "m_Id": "2f0ef82a278443bc81efce6675be18a0"
@@ -5484,6 +5601,21 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "f1a93a2b656e486aa7888dc5768e1302",
+    "m_Id": 0,
+    "m_DisplayName": "UVSpace",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
