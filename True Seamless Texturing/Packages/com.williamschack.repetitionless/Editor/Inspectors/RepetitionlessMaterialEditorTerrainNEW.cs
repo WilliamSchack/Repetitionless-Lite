@@ -6,8 +6,9 @@ using UnityEditor;
 namespace Repetitionless.Inspectors
 {
     using GUIUtilities;
+    using TextureUtilities;
     using Data;
-    using Repetitionless.Variables;
+    using Variables;
 
     public class RepetitionlessMaterialEditorTerrainNEW : RepetitionlessMaterialEditorBaseNEW
     {
@@ -123,6 +124,39 @@ namespace Repetitionless.Inspectors
             }
             GUIUtilities.EndBackgroundVertical();
             GUIUtilities.EndBackgroundVertical();
+        }
+
+        protected override Rect DrawTexture(int layerIndex, int sectionIndex, int textureIndex, GUIContent content)
+        {
+            EditorGUI.BeginChangeCheck();
+            Rect rect = base.DrawTexture(layerIndex, sectionIndex, textureIndex, content);
+            if (!EditorGUI.EndChangeCheck() || sectionIndex != 0) return rect;
+    
+            // Update terrain layer
+            TerrainLayer terrainLayer = _terrainLayers[layerIndex];
+
+            switch (textureIndex) {
+                case 0: { // Albedo
+                    ref TexturePacker.TextureData[] textureData = ref _textureData.GetTextureData(layerIndex, sectionIndex, 0);
+                    terrainLayer.diffuseTexture = textureData[0].Texture;
+                    break;
+                } case 1: { // Packed texture
+                    ref TexturePacker.TextureData[] textureData = ref _textureData.GetTextureData(layerIndex, sectionIndex, 1);
+                    RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, sectionIndex);
+                    if (!currentData.PackedTexture) break;
+
+                    terrainLayer.maskMapTexture = textureData[3].Texture;
+                    break;
+                } case 3: { // Normal
+                    ref TexturePacker.TextureData[] textureData = ref _textureData.GetTextureData(layerIndex, sectionIndex, 1);
+                    terrainLayer.normalMapTexture = textureData[0].Texture;
+                    break;
+                }
+            }
+
+            EditorUtility.SetDirty(terrainLayer);
+
+            return rect;
         }
     }
 }

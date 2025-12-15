@@ -33,7 +33,7 @@ void GetArrayAssignedTextures(UnityTexture2D tex,
     AssignedEMTextures[2] = Combine16BitInts(assignedEM0.b, assignedEM1.b);
 
     // Only needs 16 bits
-    AssignedBMTextures = assignedBM;
+    AssignedBMTextures = assignedBM.r;
 }
 
 #endif
