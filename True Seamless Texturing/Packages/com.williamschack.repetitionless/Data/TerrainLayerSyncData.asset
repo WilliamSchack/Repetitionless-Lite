@@ -26,11 +26,11 @@ MonoBehaviour:
   TerrainLayerToMaterial:
     keys:
     - {fileID: 8574412962073106934, guid: 51e10dddaead682229234b5e7f7b3c88, type: 2}
-    - {fileID: 8574412962073106934, guid: 526a1b1cfaa64ab2c90652690cb722a8, type: 2}
     - {fileID: 8574412962073106934, guid: 477783760963b6eef916bb56a222d1ce, type: 2}
     - {fileID: 8574412962073106934, guid: 7faf48c6167c479e1aa8848fe241f094, type: 2}
-    - {fileID: 8574412962073106934, guid: ac8a94a2014faae0da5c984b16fcbe8e, type: 2}
     - {fileID: 8574412962073106934, guid: 1e92a9c8165577731892bae8544a09a7, type: 2}
+    - {fileID: 8574412962073106934, guid: 526a1b1cfaa64ab2c90652690cb722a8, type: 2}
+    - {fileID: 8574412962073106934, guid: ac8a94a2014faae0da5c984b16fcbe8e, type: 2}
     values:
     - Items:
       - {fileID: 2100000, guid: 89006ff91cc12a5b1b9c7bdc35194954, type: 2}

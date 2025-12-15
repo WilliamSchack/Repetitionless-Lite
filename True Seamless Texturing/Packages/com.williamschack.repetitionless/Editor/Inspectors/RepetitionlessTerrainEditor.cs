@@ -190,9 +190,8 @@ namespace Repetitionless.Inspectors
                 Material newMat = (Material)_materialProp.objectReferenceValue;
                 if (newMat != null) {
                     string newShaderName = newMat.shader.name;
-
-                    Debug.LogWarning("CHANGE ME TO ONLY ALLOW TERRAINS");
-                    if (newShaderName.StartsWith("Repetitionless/")) {
+                    Debug.Log(newShaderName);
+                    if (newShaderName.StartsWith("Repetitionless/") && newShaderName.Contains("Terrain")) {
                         _incorrectMaterial = false;
                         _parentTerrainProp.objectReferenceValue = null;
                         _autoSaveProp.boolValue = true;
@@ -246,10 +245,20 @@ namespace Repetitionless.Inspectors
             }
         }
 
+        private void DrawIncorrectMaterialWarning()
+        {
+            if (!_incorrectMaterial)
+                return;
+            
+            EditorGUILayout.HelpBox("Only Repetitionless terrain materials are accepted", MessageType.Warning);
+            if (GUILayout.Button("Dismiss")) _incorrectMaterial = false;
+        }
+
         private void DrawNoMaterialGUI()
         {
-            if (_incorrectMaterial) GUILayout.Label("Only Repetitionless terrain materials are accepted", _headerStyleError);
-            else GUILayout.Label("Assign a material or parent terrain to get started", _headerStyle);
+            GUILayout.Label("Assign a material or parent terrain to get started", _headerStyle);
+            DrawIncorrectMaterialWarning();
+
             GUILayout.Space(10);
 
             DrawMaterialProperty();
@@ -264,6 +273,8 @@ namespace Repetitionless.Inspectors
         private void DrawAssignedMaterialGUI()
         {
             GUILayout.Label("Material", _headerStyle);
+            DrawIncorrectMaterialWarning();
+
             GUILayout.Space(10);
 
             DrawMaterialProperty();
