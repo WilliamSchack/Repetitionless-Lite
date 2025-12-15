@@ -237,11 +237,7 @@
             "m_Id": "52f7cb2ea01645a684d6bd320ae006e4"
         }
     ],
-    "m_StickyNoteDatas": [
-        {
-            "m_Id": "ee4c57d1344f4e5a92230f4d9d1e0c33"
-        }
-    ],
+    "m_StickyNoteDatas": [],
     "m_Edges": [
         {
             "m_OutputSlot": {
@@ -3081,7 +3077,7 @@
     "m_Title": "Material Setup",
     "m_Position": {
         "x": 887.0,
-        "y": 1984.0
+        "y": 1983.9998779296875
     }
 }
 
@@ -5440,26 +5436,6 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "ee4c57d1344f4e5a92230f4d9d1e0c33",
-    "m_Title": "CAHNGE MAX LAYERS TO BE THE AMOUNT ASSIGNED",
-    "m_Content": "",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": 1979.0,
-        "y": 2314.0,
-        "width": 200.0,
-        "height": 110.0
-    },
-    "m_Group": {
-        "m_Id": ""
-    }
 }
 
 {

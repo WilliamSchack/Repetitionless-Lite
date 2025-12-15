@@ -193,6 +193,8 @@ void SampleRepetitionlessLayerBase_float(
     // Check base material
     samplingBase = farDistance != 1 && materialMask != 1;
 
+    //UV = WorldPosition.xz / 4; // UV / 4 to match regular terrain tiling
+
     // ----------------------- Base Material ------------------------- //
     if (samplingBase) {
         GetRepetitionlessMaterialColorTest(

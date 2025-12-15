@@ -249,6 +249,69 @@ namespace Repetitionless.GUIUtilities
             return (chunkIndex, compressedAssignedTextures);
         }
 
+        public void RemoveArrayLayer(int index)
+        {
+            if (_array == null)
+                return;
+
+            if (index >= _textureCount)
+                return;
+
+            int assignedTextureCount = _textures.Count(x => x != null);
+            if (index == 0 && assignedTextureCount == 1) {
+                DeleteArray();
+
+                ref TexturePacker.TextureData[] deletingTextureData = ref _getLayerChannelDataFunc(index);
+                for (int i = 0; i < deletingTextureData.Length; i++) {
+                    ref TexturePacker.TextureData channelTextureData = ref deletingTextureData[i];
+                    channelTextureData.Texture = null;
+                }
+                _saveTextureDataAction();
+
+                return;
+            }
+
+            // Get new textures with the index one removed
+            List<Texture2D> newTextures = new List<Texture2D>();
+            for (int i = 0; i < _textures.Length; i++) {
+                if(i == index || _textures[i] == null)
+                    continue;
+
+                newTextures.Add(_textures[i]);
+            }
+
+            // Automatically resize textures other than the changed one, prevents popups for textures that have already been decided
+            int[] autoResizeIndexes = new int[_textures.Length - 1];
+
+            int currentIndex = 0;
+            for (int i = 0; i < _textures.Length; i++) {
+                if (i == index) continue;
+
+                autoResizeIndexes[currentIndex] = i;
+                currentIndex++;
+            }
+
+            // Recreate array
+            _array = Texture2DArrayUtilities.CreateArrayUserInput(newTextures.ToArray(), TextureFormat, autoResizeIndexes, TransferMipmaps, ArrayLinear);
+            _dataManager.CreateAsset(_array, _fileName, true);
+            Undo.RegisterCompleteObjectUndo(_array, $"Modified Array Texture of {_material.name} at Index {index}");
+
+            // Cleanup
+            _textures[index] = null;
+            _assignedTextures[index] = false;
+
+            ref TexturePacker.TextureData[] textureData = ref _getLayerChannelDataFunc(index);
+            for (int i = 0; i < textureData.Length; i++) {
+                ref TexturePacker.TextureData channelTextureData = ref textureData[i];
+                channelTextureData.Texture = null;
+            }
+            _saveTextureDataAction();
+
+            _arrayProperty.textureValue = _array;
+            (int, int) compressedAssignedTextures = GetCompressedAssignedTextures(index);
+            _assignedTexturesChangedSetter?.Invoke(compressedAssignedTextures.Item1, compressedAssignedTextures.Item2);
+        }
+
         /// <summary>
         /// Updates the texture in the array while handling its order, asset file, and material variables<br />
         /// Automatically packs textures, specifically updating the texture at the input channelIndex<br />
@@ -973,7 +1036,6 @@ namespace Repetitionless.GUIUtilities
             for (int i = 0; i < num32BitChunks; i++) {
                 _assignedTexturesChangedSetter?.Invoke(i, 0);
             }
-            //_assignedTexturesProperty.floatValue = BooleanCompression.CompressValues(_assignedTextures);
         }
     }
 }

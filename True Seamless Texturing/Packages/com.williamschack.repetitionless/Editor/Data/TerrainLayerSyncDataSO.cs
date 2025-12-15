@@ -113,13 +113,25 @@ namespace Repetitionless.Data
             Save();
         }
 
-        public void UpdateLayerMaterialsData(TerrainLayer terrainLayer)
+        public void UpdateLayerMaterialsData(TerrainLayer terrainLayer, Material material = null)
         {
             if (!TerrainLayerToMaterial.ContainsKey(terrainLayer))
                 return;
 
+            bool nullMaterialFound = false;
+
             // Update the materials data related to this terrain layer
             foreach (Material mat in TerrainLayerToMaterial.Get(terrainLayer).Items) {
+                if (material != null && mat != material)
+                    continue;
+
+                if (mat == null) {
+                    nullMaterialFound = true;
+                    continue;
+                }
+
+                Debug.Log("UPDATING DATA");
+
                 string progressBarTitle = $"Updating {mat.name}...";
                 EditorUtility.DisplayProgressBar(progressBarTitle, "Setting up", 0.0f);
 
@@ -169,7 +181,7 @@ namespace Repetitionless.Data
                         baseMaterialData.PackedTexture = true;
                     
                         textureData.GetTextureData(layerIndex, 0, 1)[3].Texture = terrainLayer.maskMapTexture;
-                        textureData.GetTextureData(layerIndex, 0, 2)[2].Texture  = terrainLayer.maskMapTexture;
+                        textureData.GetTextureData(layerIndex, 0, 2)[2].Texture = terrainLayer.maskMapTexture;
 
                         textureData.UpdatePackedTexture(layerIndex, 0, true);
                     }
@@ -181,15 +193,53 @@ namespace Repetitionless.Data
 
                     materialProperties.Save();
                     textureData.Save();
-
-                    //EditorUtility.ClearProgressBar();
                 } catch (System.Exception e) {
                     Debug.LogException(e);
-                    //EditorUtility.ClearProgressBar();
                 }
 
                 EditorUtility.ClearProgressBar();
             }
+
+            if (nullMaterialFound) RemoveMaterial(null);
+        }
+
+        public void RemoveUnusedLayerTextures(Material material)
+        {
+            MaterialDataManager materialData = new MaterialDataManager(material);
+            RepetitionlessTextureDataSO textureData = materialData.LoadAsset<RepetitionlessTextureDataSO>(RepetitionlessMaterialEditorBaseNEW.TEXTURE_DATA_FILE_NAME);
+
+            // Check if the count differs
+            // Only handles if textures need to be removed
+            List<TerrainLayer> terrainLayers = MaterialToTerrainLayer.Get(material)?.Items;
+            if (terrainLayers == null) return;
+
+            textureData.SetupTextureDrawers(materialData);
+            bool avHasArray  = textureData.AVTexturesDrawer.Array  == null;
+            bool nsoHasArray = textureData.NSOTexturesDrawer.Array == null;
+            bool emHasArray  = textureData.EMTexturesDrawer.Array  == null;
+
+            if (!avHasArray && !nsoHasArray && !emHasArray) return;
+
+            // AV Array
+            int arrayDepth = textureData.AVTexturesDrawer.Array.depth;
+            if (terrainLayers.Count >= arrayDepth)
+                return;
+
+            for (int i = terrainLayers.Count; i < arrayDepth; i++) {
+                Debug.Log("REMOVING: " + i);
+                textureData.AVTexturesDrawer.RemoveArrayLayer(i*3+0);
+                textureData.AVTexturesDrawer.RemoveArrayLayer(i*3+1);
+                textureData.AVTexturesDrawer.RemoveArrayLayer(i*3+2);
+
+                //textureData.LayersTextureData[i].BaseMaterialTextures.AVTextures[0].Texture = null;
+                //textureData.LayersTextureData[i].BaseMaterialTextures.AVTextures[1].Texture = null;
+            }
+
+            Debug.Log(textureData.LayersTextureData[1].BaseMaterialTextures.AVTextures[0].Texture);
+
+            // NSOArray
+
+            // EMArray
         }
     }
 }

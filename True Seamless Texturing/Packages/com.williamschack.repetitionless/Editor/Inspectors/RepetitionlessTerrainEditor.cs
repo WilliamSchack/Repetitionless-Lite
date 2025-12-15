@@ -29,24 +29,6 @@ namespace Repetitionless.Inspectors
         private bool _incorrectMaterial = false;
         private bool _settingUpParent = false;
 
-        private bool TerrainLayersUpdated()
-        {
-            TerrainLayer[] newTerrainLayers = _terrainData.terrainLayers;
-
-            if (_terrainLayers == null)
-                return true;
-
-            if (_terrainLayers.Length != newTerrainLayers.Length)
-                return true;
-
-            for (int i = 0; i < _terrainLayers.Length; i++) {
-                if (_terrainLayers[i] != newTerrainLayers[i])
-                    return true;
-            }
-
-            return false;
-        }
-
         private void HandleUpdatedTerrainNeighbours()
         {
             Terrain[] newTerrainNeighbours = {
@@ -65,6 +47,27 @@ namespace Repetitionless.Inspectors
             }
         }
 
+        private bool TerrainLayersUpdated()
+        {
+            if (_terrainData == null)
+                return false;
+
+            TerrainLayer[] newTerrainLayers = _terrainData.terrainLayers;
+
+            if (_terrainLayers == null)
+                return true;
+
+            if (_terrainLayers.Length != newTerrainLayers.Length)
+                return true;
+
+            for (int i = 0; i < _terrainLayers.Length; i++) {
+                if (_terrainLayers[i] != newTerrainLayers[i])
+                    return true;
+            }
+
+            return false;
+        }
+
         private void SyncLayersToMaterial()
         {
             // Update global data for terrain layer saving
@@ -81,7 +84,9 @@ namespace Repetitionless.Inspectors
             EditorApplication.delayCall += () => {
                 // Will only update changed layers
                 for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
-                    _syncData.UpdateLayerMaterialsData(_terrainData.terrainLayers[i]);
+                    _syncData.UpdateLayerMaterialsData(_terrainData.terrainLayers[i], _main.MainMaterial);
+
+                _syncData.RemoveUnusedLayerTextures(_main.MainMaterial);
             };
         }
 
@@ -274,6 +279,9 @@ namespace Repetitionless.Inspectors
                     // Incase the material was changed to something different
                     if (_main.Terrain.materialTemplate != _main.MaterialInstance)
                         _main.UpdateTerrainMaterial(_main.MainMaterial);
+
+                    // Update regular properties
+                    _main.MaterialInstance.CopyPropertiesFromMaterial(_main.MainMaterial);
 
                     SyncLayersToMaterial();
                     UpdateMaterialTerrainLayerTextures();
