@@ -1,11 +1,11 @@
 #if UNITY_EDITOR
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
 namespace Repetitionless.Inspectors
 {
-    using System.Collections.Generic;
-    using System.Linq;
+    using Helpers;
     using Data;
     
     [CustomEditor(typeof(RepetitionlessTerrain))]
@@ -169,6 +169,8 @@ namespace Repetitionless.Inspectors
                 SyncLayersToMaterial();
                 if (_autoSaveProp.boolValue)
                     UpdateMaterialTerrainLayerTextures();
+
+                _main.TerrainLayersChanged?.Invoke(_terrainData.terrainLayers);
             }
 
             // Add scripts to terrain neighbours if added
@@ -233,6 +235,7 @@ namespace Repetitionless.Inspectors
                     } else {
                         _settingUpParent = true;
                         newTerrain.SetupNewTerrainNeighbour(_main.Terrain);
+                        _main.UpdateParentCallback(newTerrain);
 
                         _materialProp.objectReferenceValue = _main.MainMaterial;
                         EditorApplication.delayCall += _main.UpdateMaterialTerrainTextures;
