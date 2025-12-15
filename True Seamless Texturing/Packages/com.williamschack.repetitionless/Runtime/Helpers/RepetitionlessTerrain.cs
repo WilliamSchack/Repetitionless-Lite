@@ -56,6 +56,10 @@ namespace Repetitionless.Helpers
         // Set this as dirty so saving after doing nothing will still update the textures
         private void SetDirty()
         {
+            // this == null to prevent error on end of build
+            if (this == null || Terrain == null)
+                return;
+
             EditorUtility.SetDirty(this);
             EditorUtility.SetDirty(Terrain);
             EditorUtility.SetDirty(_terrainData);
@@ -112,11 +116,15 @@ namespace Repetitionless.Helpers
             if (_materialInstance != null)
                 DestroyImmediate(_materialInstance);
 
-            _materialInstance = new Material(_mainMaterial);
-            _materialInstance.name += " (Instance)";
-            _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);
+            if (material != null) {
+                _materialInstance = new Material(_mainMaterial);
+                _materialInstance.name += " (Instance)";
+                _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);
+            } else {
+                _materialInstance = null;
+            }
 
-            _terrain.materialTemplate = _materialInstance;
+            Terrain.materialTemplate = _materialInstance;
 
             OnMaterialChanged?.Invoke(material);
         }
