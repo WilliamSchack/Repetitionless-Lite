@@ -567,11 +567,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control0:
-        m_Texture: {fileID: 2307540201421677962, guid: 7c5b2aefaffce328da3fd8dbab575b63, type: 2}
+        m_Texture: {fileID: -7291873802015099607, guid: 7c5b2aefaffce328da3fd8dbab575b63, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: -5823284088047636262, guid: 7c5b2aefaffce328da3fd8dbab575b63, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control2:
@@ -628,7 +628,7 @@ Material:
     - _BUILTIN_ZWrite: 1
     - _BUILTIN_ZWriteControl: 0
     - _DebuggingIndex: -1
-    - _LayersCount: 1
+    - _LayersCount: 5
     - _SurfaceTypeSetting: 0
     m_Colors: []
   m_BuildTextureStacks: []

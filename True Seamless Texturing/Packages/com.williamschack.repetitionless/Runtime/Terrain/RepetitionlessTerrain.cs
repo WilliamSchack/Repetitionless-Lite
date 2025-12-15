@@ -110,6 +110,9 @@ public class RepetitionlessTerrain : MonoBehaviour
         if (_materialInstance == null || _terrain.materialTemplate == null)
             UpdateTerrainMaterial(_mainMaterial);
 
+        // Copy any changed properties from the main material
+        _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);
+
         // Control textures 2-8 are not exposed in the shader graph
         // May aswell also set holes while we are here
         UpdateLayersCount();

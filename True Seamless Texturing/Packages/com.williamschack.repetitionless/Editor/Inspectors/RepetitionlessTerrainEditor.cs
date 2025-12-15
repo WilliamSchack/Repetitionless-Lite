@@ -87,8 +87,6 @@ namespace Repetitionless.Inspectors
                     _syncData.UpdateLayerMaterialsData(_terrainData.terrainLayers[i], _main.MainMaterial);
 
                 _syncData.RemoveUnusedLayerTextures(_main.MainMaterial);
-                
-                _main.MaterialInstance.CopyPropertiesFromMaterial(_main.MainMaterial);
                 _main.UpdateMaterialTerrainTextures();
             };
         }
