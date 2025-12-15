@@ -13,6 +13,7 @@ using UnityEditor.SceneManagement;
 // Updates textures when:
 // OnEnable (Runtime & Editor)
 // Scene saved
+// Undo/Redo
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(Terrain))]
@@ -65,7 +66,7 @@ public class RepetitionlessTerrain : MonoBehaviour
 #if UNITY_EDITOR
         EditorSceneManager.sceneSaved -= OnSceneSaved;
         EditorSceneManager.sceneSaved += OnSceneSaved;
-        
+
         // Set dirty and update textures on next editor frame
         // For some reason doing it immediately doesnt work
         EditorApplication.delayCall += () => {

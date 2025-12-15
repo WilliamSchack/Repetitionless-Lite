@@ -87,6 +87,9 @@ namespace Repetitionless.Inspectors
 
         private void OnEnable()
         {
+            Undo.undoRedoPerformed -= OnUndoRedo;
+            Undo.undoRedoPerformed += OnUndoRedo;
+
             _main = (RepetitionlessTerrain)serializedObject.targetObject;
             _syncData = TerrainLayerSyncDataSO.Load();
 
@@ -111,6 +114,18 @@ namespace Repetitionless.Inspectors
 
             _headerStyleError = new GUIStyle(_headerStyle);
             _headerStyleError.normal.textColor = new Color(1, 0.4f, 0.4f);
+        }
+
+        private void OnDisable()
+        {
+            Undo.undoRedoPerformed -= OnUndoRedo;
+        }
+
+        // Check in the editor since we only care when we are editing this terrain
+        private void OnUndoRedo()
+        {
+            // Hole texture tends to break on undo, may aswell update other textures aswell incase anything happens
+            _main.UpdateMaterialTerrainTextures();
         }
 
         public override void OnInspectorGUI()
