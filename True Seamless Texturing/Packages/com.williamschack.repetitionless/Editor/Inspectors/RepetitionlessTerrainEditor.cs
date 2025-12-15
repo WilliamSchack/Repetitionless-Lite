@@ -170,7 +170,7 @@ namespace Repetitionless.Inspectors
                 if (_autoSaveProp.boolValue)
                     UpdateMaterialTerrainLayerTextures();
 
-                _main.TerrainLayersChanged?.Invoke(_terrainData.terrainLayers);
+                _main.OnTerrainLayersChanged?.Invoke(_terrainData.terrainLayers);
             }
 
             // Add scripts to terrain neighbours if added
@@ -190,7 +190,7 @@ namespace Repetitionless.Inspectors
                 Material newMat = (Material)_materialProp.objectReferenceValue;
                 if (newMat != null) {
                     string newShaderName = newMat.shader.name;
-                    Debug.Log(newShaderName);
+                    
                     if (newShaderName.StartsWith("Repetitionless/") && newShaderName.Contains("Terrain")) {
                         _incorrectMaterial = false;
                         _parentTerrainProp.objectReferenceValue = null;
@@ -199,11 +199,8 @@ namespace Repetitionless.Inspectors
                         _syncData.RemoveMaterial(_main.MainMaterial);
                         _main.UpdateTerrainMaterial(newMat);
 
-                        EditorApplication.delayCall += () => {
-                            SyncLayersToMaterial();
-                            UpdateMaterialTerrainLayerTextures();
-                            _main.UpdateMaterialTerrainTextures();
-                        };
+                        UpdateMaterialTerrainLayerTextures();
+                        EditorApplication.delayCall += SyncLayersToMaterial;
                     } else {
                         _incorrectMaterial = true;
                         _materialProp.objectReferenceValue = _main.MainMaterial;

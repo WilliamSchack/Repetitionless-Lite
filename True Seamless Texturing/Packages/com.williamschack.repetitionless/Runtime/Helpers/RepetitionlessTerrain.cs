@@ -49,7 +49,8 @@ namespace Repetitionless.Helpers
 
         [SerializeField] public RepetitionlessTerrain ParentTerrain;
 
-        public Action<TerrainLayer[]> TerrainLayersChanged;
+        public Action<TerrainLayer[]> OnTerrainLayersChanged;
+        public Action<Material> OnMaterialChanged;
 
     #if UNITY_EDITOR
         // Set this as dirty so saving after doing nothing will still update the textures
@@ -73,8 +74,11 @@ namespace Repetitionless.Helpers
             EditorSceneManager.sceneSaved += OnSceneSaved;
 
             if (ParentTerrain != null) {
-                ParentTerrain.TerrainLayersChanged -= OverwriteTerrainLayers;
-                ParentTerrain.TerrainLayersChanged += OverwriteTerrainLayers;
+                ParentTerrain.OnTerrainLayersChanged -= ParentTerrainLayersChanged;
+                ParentTerrain.OnTerrainLayersChanged += ParentTerrainLayersChanged;
+
+                ParentTerrain.OnMaterialChanged -= ParentMaterialChanged;
+                ParentTerrain.OnMaterialChanged += ParentMaterialChanged;
             }
 
             // Set dirty and update textures on next editor frame
@@ -93,22 +97,11 @@ namespace Repetitionless.Helpers
     #if UNITY_EDITOR
             EditorSceneManager.sceneSaved -= OnSceneSaved;
 
-            if (ParentTerrain != null)
-                ParentTerrain.TerrainLayersChanged -= OverwriteTerrainLayers;
+            if (ParentTerrain != null) {
+                ParentTerrain.OnTerrainLayersChanged -= ParentTerrainLayersChanged;
+                ParentTerrain.OnMaterialChanged -= ParentMaterialChanged;
+            }
     #endif
-        }
-
-        // Assumes this is called from the editor before the current parent is updated
-        public void UpdateParentCallback(RepetitionlessTerrain newParent)
-        {
-            ParentTerrain.TerrainLayersChanged -= OverwriteTerrainLayers;
-            if (newParent != null)
-                newParent.TerrainLayersChanged += OverwriteTerrainLayers;
-        }
-
-        private void OverwriteTerrainLayers(TerrainLayer[] newTerrainLayers)
-        {
-            _terrainData.terrainLayers = newTerrainLayers;
         }
 
         public void UpdateTerrainMaterial(Material material)
@@ -124,6 +117,8 @@ namespace Repetitionless.Helpers
             _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);
 
             _terrain.materialTemplate = _materialInstance;
+
+            OnMaterialChanged?.Invoke(material);
         }
 
         // Update control and holes textures
@@ -170,6 +165,29 @@ namespace Repetitionless.Helpers
         }
 
     #if UNITY_EDITOR
+        // Assumes this is called from the editor before the current parent is updated
+        public void UpdateParentCallback(RepetitionlessTerrain newParent)
+        {
+            ParentTerrain.OnTerrainLayersChanged -= ParentTerrainLayersChanged;
+            ParentTerrain.OnMaterialChanged      -= ParentMaterialChanged;
+
+            if (newParent != null) {
+                newParent.OnTerrainLayersChanged += ParentTerrainLayersChanged;
+                newParent.OnMaterialChanged      += ParentMaterialChanged;
+            }
+        }
+
+        private void ParentTerrainLayersChanged(TerrainLayer[] newTerrainLayers)
+        {
+            _terrainData.terrainLayers = newTerrainLayers;
+        }
+
+        public void ParentMaterialChanged(Material material)
+        {
+            UpdateTerrainMaterial(material);
+            UpdateMaterialTerrainTextures();
+        }
+
         public void SetupNewTerrainNeighbour(Terrain newNeighbour)
         {
             RepetitionlessTerrain repetitionlessTerrain;
