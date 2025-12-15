@@ -99,6 +99,7 @@ Material:
     - _BUILTIN_ZWrite: 1
     - _BUILTIN_ZWriteControl: 0
     - _DebuggingIndex: -1
+    - _LayersCount: 1
     - _SurfaceTypeSetting: 0
     m_Colors: []
   m_BuildTextureStacks: []

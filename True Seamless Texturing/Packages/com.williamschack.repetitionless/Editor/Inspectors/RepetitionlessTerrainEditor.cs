@@ -26,60 +26,25 @@ namespace Repetitionless.Inspectors
         private GUIStyle _headerStyleError;
         private GUIStyle _toggleStyle;
 
-        bool _incorrectMaterial = false;
+        private bool _incorrectMaterial = false;
+        private bool _settingUpParent = false;
 
         private bool TerrainLayersUpdated()
         {
             TerrainLayer[] newTerrainLayers = _terrainData.terrainLayers;
 
             if (_terrainLayers == null)
-                return false;
+                return true;
 
             if (_terrainLayers.Length != newTerrainLayers.Length)
-                return false;
+                return true;
 
             for (int i = 0; i < _terrainLayers.Length; i++) {
                 if (_terrainLayers[i] != newTerrainLayers[i])
-                    return false;
+                    return true;
             }
 
-            return true;
-        }
-
-        private void SetupNewTerrainNeighbour(Terrain newNeighbour)
-        {
-            RepetitionlessTerrain repetitionlessTerrain;
-            newNeighbour.TryGetComponent<RepetitionlessTerrain>(out repetitionlessTerrain);
-
-            // Already setup
-            if (repetitionlessTerrain != null && repetitionlessTerrain.ParentTerrain == _main)
-                return;
-
-            // Create terrain component
-            if (repetitionlessTerrain == null)
-                repetitionlessTerrain = newNeighbour.gameObject.AddComponent<RepetitionlessTerrain>();
-
-            RepetitionlessTerrain newParent = _main;
-            if (_main.ParentTerrain != null)
-                newParent = _main.ParentTerrain;
-            
-            repetitionlessTerrain.ParentTerrain = newParent;
-
-            // In the case another parent is set, there is a conflict and prompt which one to use
-            if (repetitionlessTerrain.ParentTerrain != null && repetitionlessTerrain.ParentTerrain != _main) {
-                bool usingMainParent = EditorUtility.DisplayDialog(
-                    "Repetitionless Terrain Conflict",
-                    $"Conflict detected between two repetitionless terrains. Pick which one will be the new parent (Which terrain layers will be used).\n\n" +
-                    $"1: {_main.gameObject.name} ({_main.MainMaterial})" +
-                    $"\n2: {repetitionlessTerrain.ParentTerrain.gameObject.name} ({repetitionlessTerrain.ParentTerrain.MainMaterial})",
-                    _main.gameObject.name,
-                    repetitionlessTerrain.ParentTerrain.gameObject.name);
-            }
-
-            // Set terrain layers and material
-            repetitionlessTerrain.Terrain.terrainData.terrainLayers = _terrainLayers;
-            repetitionlessTerrain.AutoSaveTextures = false;
-            repetitionlessTerrain.UpdateTerrainMaterial(_main.MainMaterial);
+            return false;
         }
 
         private void HandleUpdatedTerrainNeighbours()
@@ -94,7 +59,7 @@ namespace Repetitionless.Inspectors
             for (int i = 0; i < newTerrainNeighbours.Length; i++) {
                 Terrain neighbour = newTerrainNeighbours[i];
                 if(_terrainNeighbours[i] != neighbour) {
-                    SetupNewTerrainNeighbour(neighbour);
+                    _main.SetupNewTerrainNeighbour(neighbour);
                     _terrainNeighbours[i] = neighbour;
                 }
             }
@@ -131,8 +96,6 @@ namespace Repetitionless.Inspectors
 
             _terrainData   = _main.Terrain.terrainData;
             _terrainLayers = _terrainData.terrainLayers;
-            //SyncLayersToMaterial();
-            //UpdateMaterialTerrainLayerTextures();
 
             _terrainNeighbours[0] = _main.Terrain.leftNeighbor;
             _terrainNeighbours[1] = _main.Terrain.rightNeighbor;
@@ -154,8 +117,6 @@ namespace Repetitionless.Inspectors
         {   
             serializedObject.Update();
 
-            EditorGUILayout.PropertyField(_parentTerrainProp);
-
             // Cannot copy GUI.skin styles outside of ongui, make it here
             if (_toggleStyle == null) {
                 _toggleStyle = new GUIStyle("button");
@@ -165,7 +126,10 @@ namespace Repetitionless.Inspectors
             }
 
             // Update global layers sync data for layer saving
-            if (!TerrainLayersUpdated()) {
+            if (TerrainLayersUpdated() && !_settingUpParent) {
+                if (_main.ParentTerrain != null)
+                    _parentTerrainProp.objectReferenceValue = null;
+
                 SyncLayersToMaterial();
                 if (_autoSaveProp.boolValue)
                     UpdateMaterialTerrainLayerTextures();
@@ -174,16 +138,14 @@ namespace Repetitionless.Inspectors
             // Add scripts to terrain neighbours if added
             HandleUpdatedTerrainNeighbours();
 
-            if (_main.MainMaterial == null) {
-                if (_incorrectMaterial) GUILayout.Label("Only Repetitionless terrain materials are accepted", _headerStyleError);
-                else GUILayout.Label("Assign a material here to get started", _headerStyle);
-            } else {
-                GUILayout.Label("Material", _headerStyle);
-            }
+            if (_main.MainMaterial == null) DrawNoMaterialGUI();
+            else DrawAssignedMaterialGUI();
 
-            // Material Selection
-            GUILayout.Space(10);
+            serializedObject.ApplyModifiedProperties();
+        }
 
+        private void DrawMaterialProperty()
+        {
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(_materialProp);
             if (EditorGUI.EndChangeCheck()) {
@@ -194,6 +156,8 @@ namespace Repetitionless.Inspectors
                     Debug.LogWarning("CHANGE ME TO ONLY ALLOW TERRAINS");
                     if (newShaderName.StartsWith("Repetitionless/")) {
                         _incorrectMaterial = false;
+                        _parentTerrainProp.objectReferenceValue = null;
+                        _autoSaveProp.boolValue = true;
 
                         _syncData.RemoveMaterial(_main.MainMaterial);
                         _main.UpdateTerrainMaterial(newMat);
@@ -209,21 +173,81 @@ namespace Repetitionless.Inspectors
                     }
                 } else {
                     _incorrectMaterial = false;
+                    _parentTerrainProp.objectReferenceValue = null;
+                    _autoSaveProp.boolValue = true;
+
                     _syncData.RemoveMaterial(_main?.MainMaterial);
                 }
             }
+        }
 
-            if (_main.MainMaterial != null) {
-                // Edit Material Button
-                if (GUILayout.Button("Edit Material", GUILayout.Height(30)))
-                    Selection.activeObject = _main.MainMaterial;
+        private void DrawParentProperty()
+        {
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(_parentTerrainProp);
+            if (EditorGUI.EndChangeCheck()) {
+                RepetitionlessTerrain newTerrain = (RepetitionlessTerrain)_parentTerrainProp.objectReferenceValue;
+                if (newTerrain != null) {
+                    bool assigning = true;
+                    if (_materialProp.objectReferenceValue != null)
+                        assigning = EditorUtility.DisplayDialog("Assigning terrain parent", "This will overwrite the current material and terrain layers with the ones in the assigned terrain, do you want to continue?", "Continue", "Cancel");
+                    
+                    if (!assigning) {
+                        _parentTerrainProp.objectReferenceValue = _main.ParentTerrain;
+                    } else {
+                        _settingUpParent = true;
+                        newTerrain.SetupNewTerrainNeighbour(_main.Terrain);
 
-                // Save Texture Layers Button
+                        _materialProp.objectReferenceValue = _main.MainMaterial;
+                        EditorApplication.delayCall += _main.UpdateMaterialTerrainTextures;
+                    }
+                } else {
+                    _autoSaveProp.boolValue = true;
+                }
+            }
+        }
+
+        private void DrawNoMaterialGUI()
+        {
+            if (_incorrectMaterial) GUILayout.Label("Only Repetitionless terrain materials are accepted", _headerStyleError);
+            else GUILayout.Label("Assign a material or parent terrain to get started", _headerStyle);
+            GUILayout.Space(10);
+
+            DrawMaterialProperty();
+            EditorGUILayout.HelpBox("If you want this terrain to use its own set of textures", MessageType.Info);
+
+            GUILayout.Space(10);
+
+            DrawParentProperty();
+            EditorGUILayout.HelpBox("If you want to take the material and textures from another terrain\n(Should be used if using the same material as another terrain)", MessageType.Info);
+        }
+
+        private void DrawAssignedMaterialGUI()
+        {
+            GUILayout.Label("Material", _headerStyle);
+            GUILayout.Space(10);
+
+            DrawMaterialProperty();
+
+            // Edit Material Button
+            if (GUILayout.Button("Edit Material", GUILayout.Height(30)))
+                Selection.activeObject = _main.MainMaterial;
+
+            // Save Texture Layers Button
+            GUILayout.Space(10);
+
+            GUILayout.Label("Textures", _headerStyle);
+            GUILayout.Space(5);
+
+            // Terrain Parent
+            if (_settingUpParent) _settingUpParent = false;
+            DrawParentProperty();
+
+            if (_parentTerrainProp.objectReferenceValue != null) {
+                EditorGUILayout.HelpBox("This terrain is taking the material and terrain layers from the parent terrain assigned above. Change the terrain layers, material, or remove the parent to use this terrains textures", MessageType.Info);
+            } else {
                 GUILayout.Space(10);
-
-                GUILayout.Label("Textures", _headerStyle);
-                GUILayout.Space(5);
-
+                
                 Color prevBackgroundColor = GUI.backgroundColor;
                 GUI.backgroundColor = _autoSaveProp.boolValue ? Color.green : Color.red;
 
@@ -236,8 +260,6 @@ namespace Repetitionless.Inspectors
                     _main.UpdateMaterialTerrainTextures();
                 }
             }
-
-            serializedObject.ApplyModifiedProperties();
         }
     }
 }

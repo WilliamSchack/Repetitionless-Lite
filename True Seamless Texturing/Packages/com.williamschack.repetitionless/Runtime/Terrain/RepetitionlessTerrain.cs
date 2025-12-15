@@ -26,11 +26,7 @@ public class RepetitionlessTerrain : MonoBehaviour
     private Material _materialInstance;
     public Material MaterialInstance { get { return _materialInstance; } }
 
-    // Not used in this file but used by the editor in a SerializedProperty
-    // Disabling warnings here to prevent unused variable warning
-#pragma warning disable 0414
     public bool AutoSaveTextures = true;
-#pragma warning restore 0414
 
     private Terrain _terrain;
     public Terrain Terrain { get {
@@ -138,5 +134,31 @@ public class RepetitionlessTerrain : MonoBehaviour
     public void UpdateHolesTexture()
     {
         _materialInstance.SetTexture("_TerrainHoles", _terrainData.holesTexture);
+    }
+
+    public void SetupNewTerrainNeighbour(Terrain newNeighbour)
+    {
+        RepetitionlessTerrain repetitionlessTerrain;
+        newNeighbour.TryGetComponent<RepetitionlessTerrain>(out repetitionlessTerrain);
+
+        // Already setup
+        if (repetitionlessTerrain != null && repetitionlessTerrain.ParentTerrain == this)
+            return;
+
+        // Create terrain component
+        if (repetitionlessTerrain == null)
+            repetitionlessTerrain = newNeighbour.gameObject.AddComponent<RepetitionlessTerrain>();
+
+        // Set parent
+        RepetitionlessTerrain newParent = this;
+        if (ParentTerrain != null)
+            newParent = ParentTerrain;
+        
+        repetitionlessTerrain.ParentTerrain = newParent;
+
+        // Set terrain layers and material
+        repetitionlessTerrain.Terrain.terrainData.terrainLayers = _terrainData.terrainLayers;
+        repetitionlessTerrain.AutoSaveTextures = false;
+        repetitionlessTerrain.UpdateTerrainMaterial(_mainMaterial);
     }
 }
