@@ -130,8 +130,6 @@ namespace Repetitionless.Data
                     continue;
                 }
 
-                Debug.Log("UPDATING DATA");
-
                 string progressBarTitle = $"Updating {mat.name}...";
                 EditorUtility.DisplayProgressBar(progressBarTitle, "Setting up", 0.0f);
 
