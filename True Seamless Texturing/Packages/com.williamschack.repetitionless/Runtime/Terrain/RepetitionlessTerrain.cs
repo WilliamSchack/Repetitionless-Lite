@@ -90,6 +90,9 @@ public class RepetitionlessTerrain : MonoBehaviour
         _mainMaterial = material;
 
         // Use an instance to support multiple terrain objects
+        if (_materialInstance != null)
+            DestroyImmediate(_materialInstance);
+
         _materialInstance = new Material(_mainMaterial);
         _materialInstance.name += " (Instance)";
         _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);

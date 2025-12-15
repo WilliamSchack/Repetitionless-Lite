@@ -271,6 +271,10 @@ namespace Repetitionless.Inspectors
                 GUI.backgroundColor = prevBackgroundColor;
 
                 if (GUILayout.Button(new GUIContent("Save Textures", "Manually save the data from the terrain layers to the material"), GUILayout.Height(30))) {
+                    // Incase the material was changed to something different
+                    if (_main.Terrain.materialTemplate != _main.MaterialInstance)
+                        _main.UpdateTerrainMaterial(_main.MainMaterial);
+
                     SyncLayersToMaterial();
                     UpdateMaterialTerrainLayerTextures();
                     _main.UpdateMaterialTerrainTextures();
