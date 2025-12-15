@@ -146,8 +146,7 @@ void SampleRepetitionlessLayerBase_float(
                 materialMask = SimplexNoise(UV * materialBlendMaskTO.x + materialBlendMaskTO.zw) * 2;
                 break;
             case 2: // Custom Texture
-                float4 bmTextureSample = 0;
-                SampleArrayAtConstantIndex_float(BMTextures, assignedBMTexturesArray, LayerIndex, UV * materialBlendMaskTO.xy + materialBlendMaskTO.zw, 0, SS, bmTextureSample);
+                float4 bmTextureSample = SampleArrayAtConstantIndex(BMTextures, assignedBMTexturesArray, LayerIndex, UV * materialBlendMaskTO.xy + materialBlendMaskTO.zw, 0, SS);
                 materialMask = bmTextureSample.r;
                 break;
         }

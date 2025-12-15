@@ -71,12 +71,9 @@ float MacroMicroVariationTextureArray(
         0
     };
 
-    float4 smallColorSample  = 0;//SAMPLE_TEXTURE2D(Texture, SS, smallUV).r;
-    float4 mediumColorSample = 0;//SAMPLE_TEXTURE2D(Texture, SS, mediumUV).r;
-    float4 largeColorSample  = 0;//SAMPLE_TEXTURE2D(Texture, SS, largeUV).r;
-    SampleArrayAtConstantIndex_float(TextureArray, assignedTexturesPadded, ConstantIndex, smallUV, 0, SS, smallColorSample);
-    SampleArrayAtConstantIndex_float(TextureArray, assignedTexturesPadded, ConstantIndex, mediumUV, 0, SS, mediumColorSample);
-    SampleArrayAtConstantIndex_float(TextureArray, assignedTexturesPadded, ConstantIndex, largeUV, 0, SS, largeColorSample);
+    float4 smallColorSample  = SampleArrayAtConstantIndex(TextureArray, assignedTexturesPadded, ConstantIndex, smallUV, 0, SS);
+    float4 mediumColorSample = SampleArrayAtConstantIndex(TextureArray, assignedTexturesPadded, ConstantIndex, mediumUV, 0, SS);
+    float4 largeColorSample  = SampleArrayAtConstantIndex(TextureArray, assignedTexturesPadded, ConstantIndex, largeUV, 0, SS);
 
     // Add Brightness
     float smallColor  = smallColorSample[ChannelIndex];

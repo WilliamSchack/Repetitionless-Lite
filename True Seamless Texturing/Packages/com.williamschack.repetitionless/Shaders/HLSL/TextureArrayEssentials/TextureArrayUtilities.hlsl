@@ -8,13 +8,11 @@
 
 #include "../Utilities/BooleanCompression.hlsl"
 
-void GetIndexInArray_float(int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNKS], int Index, out int Out)
+int GetIndexInArray(int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNKS], int Index)
 {
     // Dont loop with no iterations, will cause unrolling warnings
-    if (Index <= 0) {
-        Out = 0;
-        return;
-    }
+    if (Index <= 0)
+        return 0;
 
     // Get the index of the texture in the array
     int arrayIndex = -1;
@@ -23,42 +21,48 @@ void GetIndexInArray_float(int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MA
         arrayIndex += assigned ? 1 : 0;
     }
 
-    if (arrayIndex == -1) {
-        Out = -1;
-        return;
-    }
+    if (arrayIndex == -1)
+        return -1;
 
     arrayIndex++;
-    Out = arrayIndex;
+    return arrayIndex;
+}
+
+void GetIndexInArray_float(int TexturesAssignedCompressed, int Index, out int Out)
+{
+    int array[BOOLEAN_COMPRESSION_MAX_CHUNKS] = { TexturesAssignedCompressed , 0, 0, 0};
+    Out = GetIndexInArray(array, Index);
+}
+
+float4 SampleArrayAtConstantIndex(
+    UnityTexture2DArray TextureArray,
+    int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNKS],
+    int Index,
+    float2 UV,
+    float4 UnassignedColor,
+    SamplerState SS
+){
+    // Get the index of the texture in the array
+    int arrayIndex = GetIndexInArray(TexturesAssignedCompressed, Index);
+
+    if (arrayIndex == -1)
+        return UnassignedColor;
+
+    // Sample the array at the index found previously
+    return SAMPLE_TEXTURE2D_ARRAY(TextureArray, SS, UV, arrayIndex);
 }
 
 void SampleArrayAtConstantIndex_float(
     UnityTexture2DArray TextureArray,
-    int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNKS],
+    int TexturesAssignedCompressed,
     int Index,
     float2 UV,
     float4 UnassignedColor,
     SamplerState SS,
     out float4 Out
 ){
-    // Only output texture if it is assigned in inspector
-    //bool indexExists = GetCompressedValue(TexturesAssignedCompressed, Index);
-    //if (!indexExists) {
-    //    Out = UnassignedColor;
-    //    return;
-    //}
-    
-    // Get the index of the texture in the array
-    int arrayIndex = 0;
-    GetIndexInArray_float(TexturesAssignedCompressed, Index, arrayIndex);
-
-    if (arrayIndex == -1) {
-        Out = UnassignedColor;
-        return;
-    }
-
-    // Sample the array at the index found previously
-    Out = SAMPLE_TEXTURE2D_ARRAY(TextureArray, SS, UV, arrayIndex);
+    int array[BOOLEAN_COMPRESSION_MAX_CHUNKS] = { TexturesAssignedCompressed , 0, 0, 0};
+    Out = SampleArrayAtConstantIndex(TextureArray, array, Index, UV, UnassignedColor, SS);
 }
 
 #endif
