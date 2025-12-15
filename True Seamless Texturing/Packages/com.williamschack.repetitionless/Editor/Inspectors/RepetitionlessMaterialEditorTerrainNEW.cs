@@ -9,6 +9,7 @@ namespace Repetitionless.Inspectors
     using TextureUtilities;
     using Data;
     using Variables;
+    using System;
 
     public class RepetitionlessMaterialEditorTerrainNEW : RepetitionlessMaterialEditorBaseNEW
     {
@@ -157,6 +158,32 @@ namespace Repetitionless.Inspectors
             EditorUtility.SetDirty(terrainLayer);
 
             return rect;
+        }
+
+        protected override void DrawProperty(int layerIndex, Action drawPropertyAction)
+        {
+            // Check for terrain layer properties
+            RepetitionlessMaterialData baseData = GetMaterialData(layerIndex, 0);
+            float prevMetallic       = baseData.Metallic;
+            float prevSmoothness     = baseData.SmoothnessRoughness;
+            Vector4 prevTilingOffset = baseData.TilingOffset;
+
+            EditorGUI.BeginChangeCheck();
+            base.DrawProperty(layerIndex, drawPropertyAction);
+            if (!EditorGUI.EndChangeCheck()) return;
+
+            // If any terrain layer properties changed, update them
+            TerrainLayer terrainLayer = _terrainLayers[layerIndex];
+            if (prevMetallic != baseData.Metallic)
+                terrainLayer.metallic = baseData.Metallic;
+                
+            if (prevSmoothness != baseData.SmoothnessRoughness)
+                terrainLayer.smoothness = baseData.SmoothnessRoughness;
+
+            if (prevTilingOffset != baseData.TilingOffset) {
+                terrainLayer.tileSize   = new Vector2(baseData.TilingOffset.x, baseData.TilingOffset.y);
+                terrainLayer.tileOffset = new Vector2(baseData.TilingOffset.z, baseData.TilingOffset.w);
+            }
         }
     }
 }

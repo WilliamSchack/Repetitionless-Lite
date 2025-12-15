@@ -254,7 +254,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 14f8ef13869eaa9cfab56df4eb481460, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AssignedTexturesTexture:
@@ -769,7 +769,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 14f8ef13869eaa9cfab56df4eb481460, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AssignedTexturesTexture:
@@ -874,7 +874,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 14f8ef13869eaa9cfab56df4eb481460, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AssignedTexturesTexture:
@@ -979,7 +979,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 14f8ef13869eaa9cfab56df4eb481460, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AssignedTexturesTexture:
