@@ -56,7 +56,7 @@ namespace Repetitionless.Inspectors
             Vector4 defaultTilingOffset = new Vector4(100, 100, 0, 0);
             for (int i = 0; i < _materialProperties.Data.Length; i++) {
                 _materialProperties.Data[i].BaseMaterialData.TilingOffset  = defaultTilingOffset;
-                _materialProperties.Data[i].FarMaterialData.TilingOffset   = defaultTilingOffset;
+                _materialProperties.Data[i].FarMaterialData.TilingOffset   = defaultTilingOffset / 2;
                 _materialProperties.Data[i].BlendMaterialData.TilingOffset = defaultTilingOffset;
             }
         }
@@ -171,6 +171,9 @@ namespace Repetitionless.Inspectors
             EditorGUI.BeginChangeCheck();
             base.DrawProperty(layerIndex, drawPropertyAction);
             if (!EditorGUI.EndChangeCheck()) return;
+
+            if (layerIndex >= _terrainLayers.Count)
+                return;
 
             // If any terrain layer properties changed, update them
             TerrainLayer terrainLayer = _terrainLayers[layerIndex];
