@@ -1,96 +1,173 @@
 #ifndef SAMPLEREPETITIONLESSLAYER_INCLUDED
 #define SAMPLEREPETITIONLESSLAYER_INCLUDED
 
-#include "../Structs/RepetitionlessLayer.hlsl"
-#include "../Structs/RepetitionlessLayerTerrain.hlsl"
+#include "../Structs/RepetitionlessMaterialData.hlsl"
 
-#include "../Utilities/TextureUtilities.hlsl"
+#include "../RepetitionlessHelpers/GetArrayAssignedTextures.hlsl"
 
 #include "../Noise/VoronoiNoise2D.hlsl"
 #include "../Noise/Keijiro/ClassicNoise2D.hlsl"
 #include "../Noise/Keijiro/SimplexNoise2D.hlsl"
 
+#include "../Utilities/TextureUtilities.hlsl"
+#include "../Utilities/BooleanCompression.hlsl"
+
+#include "../TextureArrayEssentials/TextureArrayUtilities.hlsl"
+
 #include "SampleRepetitionlessMaterial.hlsl"
 
-/* There isnt really any good way to refactor this code to work with multiple types in hlsl (No inheritance or callbacks)
- * so as a last resort I have just included both types of materials into the base and the wrappers tell it which one to use.
- * Im not a fan of this hacky approach but I could not figure out any other way
- * If anyone has a better solution please contact me I will change it asap
- */
-
- /*
-
-void SampleRepetitionlessLayerBase(
+// Uses assigned array properties variables
+void SampleRepetitionlessLayer_float(
+    // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition,
-    int SurfaceType, int DebuggingIndex,
+    int SurfaceType, int UVSpace, int DebuggingIndex,
 
-    bool UsingTerrainLayer,
-    in RepetitionlessLayer Layer,
-    in RepetitionlessLayerTerrain LayerTerrain,
+    // Properties
+    int LayerIndex,
+    UnityTexture2D PropertiesTexture,
+    int AssignedAVTextures0,
+    int AssignedAVTextures1,
+    int AssignedAVTextures2,
+    int AssignedNSOTextures0,
+    int AssignedNSOTextures1,
+    int AssignedNSOTextures2,
+    int AssignedEMTextures0,
+    int AssignedEMTextures1,
+    int AssignedEMTextures2,
+    int AssignedBMTextures0,
 
+    // Textures
+    UnityTexture2DArray AVTextures,
+    UnityTexture2DArray NSOTextures,
+    UnityTexture2DArray EMTextures,
+    UnityTexture2DArray BMTextures,
+
+    // Outputs
     out float4 AlbedoColorOut,
     out float3 NormalVectorOut,
-    out float MetallicOut,
-    out float SmoothnessOut,
-    out float OcclussionOut,
+    out float  MetallicOut,
+    out float  SmoothnessOut,
+    out float  OcclussionOut,
     out float3 EmissionColorOut
-){
-    RepetitionlessLayerData layerData;
-    if (UsingTerrainLayer) layerData = LayerTerrain.Data;
-    else                   layerData = Layer.Data;
+) {
+    // ----------------------- Load Variables From Textures ------------------------- //
+
+    // Base Material
+    int indexOffset = 0;
+    RepetitionlessMaterialData baseMaterialData = {
+        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0)).rgba
+    };
+
+    // Far Material
+    indexOffset += REPETITIONLESS_MATERIAL_VARIABLE_COUNT;
+    RepetitionlessMaterialData farMaterialData = {
+        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0)).rgba
+    };
+
+    // Blend Material
+    indexOffset += REPETITIONLESS_MATERIAL_VARIABLE_COUNT;
+    RepetitionlessMaterialData blendMaterialData = {
+        PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(5 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(6 + indexOffset, LayerIndex, 0)).rgb,
+        PropertiesTexture.Load(int3(7 + indexOffset, LayerIndex, 0)).rgba,
+        PropertiesTexture.Load(int3(8 + indexOffset, LayerIndex, 0)).rgba
+    };
+
+    // Layer Settings
+    indexOffset += REPETITIONLESS_MATERIAL_VARIABLE_COUNT;
+
+    half4 distanceBlendSettings = PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0));
+    half4 blendMaskDistanceTO   = PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0));
+    half4 materialBlendSettings = PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0));
+    half4 materialBlendMaskTO   = PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0));
+
+    bool  distanceBlendEnabled = distanceBlendSettings.x > 0.99 ? true : false;
+    int   distanceBlendMode    = distanceBlendSettings.y;
+    half2 distanceBlendMinMax  = distanceBlendSettings.zw;
+
+    int  materialBlendSettingsUnpacked = (int)materialBlendSettings;
+    bool materialBlendEnabled          = GetCompressedValue(materialBlendSettingsUnpacked, 0);
+    bool BlendMaskAssigned             = GetCompressedValue(materialBlendSettingsUnpacked, 1);
+    bool overrideDistanceBlend         = GetCompressedValue(materialBlendSettingsUnpacked, 2);
+    bool overrideDistanceBlendTO       = GetCompressedValue(materialBlendSettingsUnpacked, 3);
+    
+    int  blendMaskType     = materialBlendSettings.y;
+    half blendMaskOpacity  = materialBlendSettings.z;
+    half blendMaskStrength = materialBlendSettings.w;
+
+    // Construct array assigned textures
+    int assignedAVTexturesArray[]  = { AssignedAVTextures0,  AssignedAVTextures1,  AssignedAVTextures2  };
+    int assignedNSOTexturesArray[] = { AssignedNSOTextures0, AssignedNSOTextures1, AssignedNSOTextures2 };
+    int assignedEMTexturesArray[]  = { AssignedEMTextures0,  AssignedEMTextures1,  AssignedEMTextures2  };
+    int assignedBMTexturesArray[]  = { AssignedBMTextures0, 0, 0, 0 };
+
+    // ----------------------- Setup ------------------------- //
 
     // Variables
-    float4 albedoColor = 1;
-    float3 normalVector = TangentNormalVector;
-    float metallic = 0;
-    float smoothness = 0;
-    float occlussion = 0;
+    float4 albedoColor   = 1;
+    float3 normalVector  = TangentNormalVector;
+    float  metallic      = 0;
+    float  smoothness    = 0;
+    float  occlussion    = 0;
     float3 emissionColor = 0;
     
     float materialMask = 0;
-    float farDistance = 0;
-
-    float4 farTilingOffset = 0;
-    if (UsingTerrainLayer) farTilingOffset = LayerTerrain.FarMaterial.Data.TilingOffset;
-    else                   farTilingOffset = Layer.FarMaterial.Data.TilingOffset;
-
-    float4 blendTilingOffset = 0;
-    if (UsingTerrainLayer) blendTilingOffset = LayerTerrain.BlendMaterial.Data.TilingOffset;
-    else                   blendTilingOffset = Layer.BlendMaterial.Data.TilingOffset;
-
-    // Calculate mask
-    int materialBlendSettings       = (int)layerData.MaterialBlendSettings;
-    bool materialBlendEnabled       = (materialBlendSettings & 1) != 0;
-    bool overrideDistanceBlending   = (materialBlendSettings & 2) != 0;
-    bool overrideDistanceBlendingTO = (materialBlendSettings & 4) != 0;
+    float farDistance  = 0;
 
     if (materialBlendEnabled) {
-        float blendMaskNoiseScale = layerData.MaterialBlendNoiseSettings.x;
-        float2 blendMaskNoiseOffset = layerData.MaterialBlendNoiseSettings.yz;
-        
         // Get mask of blended material
-        switch (layerData.BlendMaskType) {
+        switch (blendMaskType) {
             case 0: // Perlin Noise
-                materialMask = ClassicNoise(UV * blendMaskNoiseScale + blendMaskNoiseOffset) * 3;
+                materialMask = ClassicNoise(UV * materialBlendMaskTO.x + materialBlendMaskTO.zw) * 3;
                 break;
             case 1: // Simplex Noise
-                materialMask = SimplexNoise(UV * blendMaskNoiseScale + blendMaskNoiseOffset) * 2;
+                materialMask = SimplexNoise(UV * materialBlendMaskTO.x + materialBlendMaskTO.zw) * 2;
                 break;
             case 2: // Custom Texture
-                materialMask = SAMPLE_TEXTURE2D(layerData.BlendMaskTexture, SS, UV * blendMaskNoiseScale + blendMaskNoiseOffset).r;
+                float4 bmTextureSample = SampleArrayAtConstantIndex(BMTextures, assignedBMTexturesArray, LayerIndex, UV * materialBlendMaskTO.xy + materialBlendMaskTO.zw, 0, SS);
+                materialMask = bmTextureSample.r;
                 break;
         }
-
-        float blendMaskOpacity = layerData.MaterialBlendProperties.x;
-        float blendMaskStrength = layerData.MaterialBlendProperties.y;
         
         materialMask *= blendMaskStrength;
         materialMask = clamp(materialMask, 0, 1);
         materialMask *= blendMaskOpacity;
     }
 
+    // Use world space UVs if enabled
+    if (UVSpace == 1) {
+        // pos / 1000 to allow space for tiling
+        // Terrains are default 1000m^2 so this pretty much expands it to 1x1 on a terrain
+        UV = WorldPosition.xz / 1000;
+    }
+
     // ----------------------- Get Materials To Sample ------------------------- //
+
+    int baseLayerIndex  = LayerIndex * 3 + 0;
+    int farLayerIndex   = LayerIndex * 3 + 1;
+    int blendLayerIndex = LayerIndex * 3 + 2;
 
     // At most two materials will be sampled when blending between
     // Get the material(s) to be sampled
@@ -100,20 +177,22 @@ void SampleRepetitionlessLayerBase(
     bool samplingDistanceBlend = false;
 
     // Check distance blend
-    if (layerData.DistanceBlendEnabled) {
+    if (distanceBlendEnabled) {
         // Distance Mask
         farDistance = distance(WorldPosition, CameraPosition);
-        farDistance = Remap(farDistance, layerData.DistanceBlendMinMax, float2(0, 1));
+        farDistance = Remap(farDistance, distanceBlendMinMax, float2(0, 1));
         farDistance = clamp(farDistance, 0, 1);
 
-        samplingDistance = farDistance > 0 && materialMask != 1;
-        samplingDistanceBlend = farDistance > 0 && materialBlendEnabled && materialMask > 0 && overrideDistanceBlending;
+        samplingDistance = farDistance > 0 && (materialMask != 1 || (materialBlendEnabled && !overrideDistanceBlend));
     }
 
     // Check material blend
     if (materialBlendEnabled) {
         samplingBlend = materialMask > 0;
-        if (layerData.DistanceBlendEnabled && overrideDistanceBlending && farDistance >= 1)
+        if (distanceBlendEnabled && overrideDistanceBlend && overrideDistanceBlendTO && farDistance > 0)
+            samplingDistanceBlend = samplingBlend;
+
+        if (samplingDistanceBlend != 0 && farDistance >= 1)
             samplingBlend = false;
     }
 
@@ -122,53 +201,14 @@ void SampleRepetitionlessLayerBase(
 
     // ----------------------- Base Material ------------------------- //
     if (samplingBase) {
-        if (UsingTerrainLayer) {
-            GetRepetitionlessMaterialColor(
-                SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                LayerTerrain.BaseMaterial,
-                albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor
-            );
-        } else {
-            GetRepetitionlessMaterialColor(
-                SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                Layer.BaseMaterial,
-                albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor
-            );
-        }
+        SampleRepetitionlessMaterial(
+            SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+            baseLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
+            baseMaterialData,
+            albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor
+        );
     }
 
-    // ----------------------- Blend Material ------------------------- //
-    if (samplingBlend) {
-        float4 blendAlbedoColor = 1;
-        float3 blendNormalVector = TangentNormalVector;
-        float blendMetallic = 0;
-        float blendSmoothness = 0;
-        float blendOcclussion = 0;
-        float3 blendEmissionColor = 0;
-
-        if (UsingTerrainLayer) {
-            GetRepetitionlessMaterialArrayColor(
-                SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                LayerTerrain.BlendMaterial,
-                blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
-            );
-        } else {
-            GetRepetitionlessMaterialColor(
-                SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                Layer.BlendMaterial,
-                blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
-            );
-        }
-        
-        // Combine Blend with Base
-        albedoColor = lerp(albedoColor, blendAlbedoColor, materialMask);
-        normalVector = lerp(normalVector, blendNormalVector, materialMask);
-        metallic = lerp(metallic, blendMetallic, materialMask);
-        smoothness = lerp(smoothness, blendSmoothness, materialMask);
-        occlussion = lerp(occlussion, blendOcclussion, materialMask);
-        emissionColor = lerp(emissionColor, blendEmissionColor, materialMask);
-    }
-    
     // ----------------------- Distance Material ------------------------- //
     if (samplingDistance) {
         float4 farAlbedoColor = 1;
@@ -178,45 +218,29 @@ void SampleRepetitionlessLayerBase(
         float farOcclussion = 0;
         float3 farEmissionColor = 0;
     
-        switch (layerData.DistanceBlendingMode)
+        switch (distanceBlendMode)
         {
             case 0: // Tiling & Offset
                 // Sample Base Material
                 // Set far TO, no need to change back it wont be used again
                 
-                if (UsingTerrainLayer) {
-                    LayerTerrain.BaseMaterial.Data.TilingOffset = farTilingOffset;
-                    
-                    GetRepetitionlessMaterialColor(
-                        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                        LayerTerrain.BaseMaterial,
-                        farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
-                    );
-                } else {
-                    Layer.BaseMaterial.Data.TilingOffset = farTilingOffset;
-
-                    GetRepetitionlessMaterialColor(
-                        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                        Layer.BaseMaterial,
-                        farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
-                    );
-                }
+                baseMaterialData.TilingOffset = farMaterialData.TilingOffset;
+                
+                SampleRepetitionlessMaterial(
+                    SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+                    baseLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
+                    baseMaterialData,
+                    farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
+                );
                 break;
             case 1: // Material
                 // Sample Far Material
-                if (UsingTerrainLayer) {
-                    GetRepetitionlessMaterialArrayColor(
-                        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                        LayerTerrain.FarMaterial,
-                        farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
-                    );
-                } else {
-                    GetRepetitionlessMaterialColor(
-                        SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                        Layer.FarMaterial,
-                        farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
-                    );
-                }
+                SampleRepetitionlessMaterial(
+                    SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+                    farLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
+                    farMaterialData,
+                    farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
+                );
                 break;
         }
 
@@ -229,7 +253,34 @@ void SampleRepetitionlessLayerBase(
         emissionColor = lerp(emissionColor, farEmissionColor, farDistance);
     }
 
+    // ----------------------- Blend Material ------------------------- //
+    if (samplingBlend) {
+        float4 blendAlbedoColor = 1;
+        float3 blendNormalVector = TangentNormalVector;
+        float blendMetallic = 0;
+        float blendSmoothness = 0;
+        float blendOcclussion = 0;
+        float3 blendEmissionColor = 0;
+
+        SampleRepetitionlessMaterial(
+            SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+            blendLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
+            blendMaterialData,
+            blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
+        );
+        
+        // Combine Blend with Base
+        albedoColor = lerp(albedoColor, blendAlbedoColor, materialMask);
+        normalVector = lerp(normalVector, blendNormalVector, materialMask);
+        metallic = lerp(metallic, blendMetallic, materialMask);
+        smoothness = lerp(smoothness, blendSmoothness, materialMask);
+        occlussion = lerp(occlussion, blendOcclussion, materialMask);
+        emissionColor = lerp(emissionColor, blendEmissionColor, materialMask);
+    }
+
     // ----------------------- Distance Blend Material ------------------------- //
+    // Only used when the blend tiling offset is changed at a distance
+
     if (samplingDistanceBlend) {
         float4 blendAlbedoColor = 1;
         float3 blendNormalVector = TangentNormalVector;
@@ -238,36 +289,19 @@ void SampleRepetitionlessLayerBase(
         float blendOcclussion = 0;
         float3 blendEmissionColor = 0;
         
-        float2 tiling = blendTilingOffset.xy;
-        float2 offset = blendTilingOffset.zw;
-        if (layerData.DistanceBlendingMode == 0)
-        {
-            tiling = overrideDistanceBlendingTO ? layerData.BlendMaskDistanceTO.xy : farTilingOffset.xy;
-            offset = overrideDistanceBlendingTO ? layerData.BlendMaskDistanceTO.zw : farTilingOffset.zw;
-        }
-        
-        float4 tilingOffset = float4(tiling.x, tiling.y, offset.x, offset.y);
+        float4 tilingOffset = float4(blendMaskDistanceTO.xy, blendMaskDistanceTO.zw);
         
         // Sample Blend Material
         // Set blend TO, no need to change back it wont be used again
 
-        if (UsingTerrainLayer) {
-            LayerTerrain.BlendMaterial.Data.TilingOffset = tilingOffset;
-            
-            GetRepetitionlessMaterialArrayColor(
-                SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                LayerTerrain.BlendMaterial,
-                blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
-            );
-        } else {
-            Layer.BlendMaterial.Data.TilingOffset = tilingOffset;
-
-            GetRepetitionlessMaterialColor(
-                SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
-                Layer.BlendMaterial,
-                blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
-            );
-        }
+        blendMaterialData.TilingOffset = tilingOffset;
+        
+        SampleRepetitionlessMaterial(
+            SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+            blendLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
+            blendMaterialData,
+            blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
+        );
         
         // Combine Far Blend with Base 
         float lerpFactor = farDistance * materialMask;
@@ -278,14 +312,14 @@ void SampleRepetitionlessLayerBase(
         occlussion = lerp(occlussion, blendOcclussion, lerpFactor);
         emissionColor = lerp(emissionColor, blendEmissionColor, lerpFactor);
     }
-    
-    // --------------------------------------------------------------- //
-    
+
+    // ----------------------- Output ------------------------- //
+
     // Debugging
-    if (DebuggingIndex == 2)
-        albedoColor = farDistance;
-    else if (DebuggingIndex == 3)
-        albedoColor = materialMask;
+    switch (DebuggingIndex) {
+        case 2: albedoColor = farDistance; break;
+        case 3: albedoColor = materialMask; break;
+    }  
     
     // If Transparency Disabled
     if (SurfaceType == 0 || DebuggingIndex != -1)
@@ -300,56 +334,55 @@ void SampleRepetitionlessLayerBase(
     EmissionColorOut = emissionColor;
 }
 
-void SampleRepetitionlessLayer(
+// Uses assigned array properties texture
+void SampleRepetitionlessLayer_float(
+    // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition,
-    int SurfaceType, int DebuggingIndex,
+    int SurfaceType, int UVSpace, int DebuggingIndex,
 
-    in RepetitionlessLayer Layer,
+    // Properties
+    int LayerIndex,
+    UnityTexture2D PropertiesTexture,
+    UnityTexture2D AssignedTexturesTexture,
 
+    // Textures
+    UnityTexture2DArray AVTextures,
+    UnityTexture2DArray NSOTextures,
+    UnityTexture2DArray EMTextures,
+    UnityTexture2DArray BMTextures,
+
+    // Outputs
     out float4 AlbedoColorOut,
     out float3 NormalVectorOut,
-    out float MetallicOut,
-    out float SmoothnessOut,
-    out float OcclussionOut,
+    out float  MetallicOut,
+    out float  SmoothnessOut,
+    out float  OcclussionOut,
     out float3 EmissionColorOut
 ){
-    RepetitionlessLayerTerrain emptyLayer;
+    int assignedAVTextures[3];
+    int assignedNSOTextures[3];
+    int assignedEVTextures[3];
+    int assignedBMTextures;
 
-    SampleRepetitionlessLayerBase(
+    GetArrayAssignedTextures(AssignedTexturesTexture, assignedAVTextures, assignedNSOTextures, assignedEVTextures, assignedBMTextures);
+
+    SampleRepetitionlessLayer_float(
         SS, UV, TangentNormalVector,
         WorldPosition, CameraPosition,
-        SurfaceType, DebuggingIndex,
-        false, Layer, emptyLayer,
+        SurfaceType, UVSpace, DebuggingIndex,
+        LayerIndex,
+        PropertiesTexture,
+        assignedAVTextures[0], assignedAVTextures[1], assignedAVTextures[2],
+        assignedNSOTextures[0], assignedNSOTextures[1], assignedNSOTextures[2],
+        assignedEVTextures[0], assignedEVTextures[1], assignedEVTextures[2],
+        assignedBMTextures,
+        AVTextures,
+        NSOTextures,
+        EMTextures,
+        BMTextures,
         AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
     );
 }
-
-void SampleRepetitionlessLayerTerrain(
-    SamplerState SS, float2 UV, float3 TangentNormalVector,
-    float3 WorldPosition, float3 CameraPosition,
-    int SurfaceType, int DebuggingIndex,
-
-    in RepetitionlessLayerTerrain Layer,
-
-    out float4 AlbedoColorOut,
-    out float3 NormalVectorOut,
-    out float MetallicOut,
-    out float SmoothnessOut,
-    out float OcclussionOut,
-    out float3 EmissionColorOut
-){
-    RepetitionlessLayer emptyLayer;
-
-    SampleRepetitionlessLayerBase(
-        SS, UV, TangentNormalVector,
-        WorldPosition, CameraPosition,
-        SurfaceType, DebuggingIndex,
-        true, emptyLayer, Layer,
-        AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
-    );
-}
-
-*/
 
 #endif

@@ -2420,8 +2420,8 @@
     "m_ObjectId": "52f7cb2ea01645a684d6bd320ae006e4",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1185.9998779296875,
-        "y": 2688.999755859375
+        "x": 1186.0,
+        "y": 2689.0
     }
 }
 
@@ -3167,8 +3167,8 @@
     "m_ObjectId": "78fba43ca02a4f59b78481b0b304f8c3",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 886.9999389648438,
-        "y": 1983.9998779296875
+        "x": 887.0,
+        "y": 1984.0
     }
 }
 
@@ -3643,7 +3643,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "SampleMultipleRepetitionlessLayers (Custom Function)",
+    "m_Name": "SampleRepetitionlessTerrain (Custom Function)",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -3731,7 +3731,7 @@
         "m_SerializableColors": []
     },
     "m_SourceType": 0,
-    "m_FunctionName": "SampleMultipleRepetitionlessLayers",
+    "m_FunctionName": "SampleRepetitionlessTerrain",
     "m_FunctionSource": "61f421fb5d2f35902907b806e4ab37be",
     "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."

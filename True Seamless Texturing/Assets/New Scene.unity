@@ -501,7 +501,7 @@ Terrain:
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 1444921297}
+  m_MaterialTemplate: {fileID: 1370097147}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -529,7 +529,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1444921297
+--- !u!21 &1370097147
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control0:
-        m_Texture: {fileID: -974032874815539415, guid: 3d78fe02df01361bb97abfd33041b4ae, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control1:
@@ -628,7 +628,7 @@ Material:
     - _BUILTIN_ZWrite: 1
     - _BUILTIN_ZWriteControl: 0
     - _DebuggingIndex: -1
-    - _LayersCount: 2
+    - _LayersCount: 1
     - _SurfaceTypeSetting: 0
     - _UVSpace: 1
     m_Colors: []

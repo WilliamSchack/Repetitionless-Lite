@@ -2825,7 +2825,7 @@
     "m_Title": "Material Setup",
     "m_Position": {
         "x": 887.0,
-        "y": 1984.0
+        "y": 1983.999755859375
     }
 }
 
@@ -3277,7 +3277,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "SampleRepetitionlessLayerBase (Custom Function)",
+    "m_Name": "SampleRepetitionlessLayer (Custom Function)",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -3365,7 +3365,7 @@
         "m_SerializableColors": []
     },
     "m_SourceType": 0,
-    "m_FunctionName": "SampleRepetitionlessLayerBase",
+    "m_FunctionName": "SampleRepetitionlessLayer",
     "m_FunctionSource": "d301562efe38e765ab7a630d495ae267",
     "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."

@@ -9,7 +9,6 @@ namespace Repetitionless.Inspectors
     using GUIUtilities;
     using TextureUtilities;
     using CustomWindows;
-    using Compression;
     using Variables;
     using Data;
 

@@ -1,15 +1,15 @@
-#ifndef MULTIPLELAYERSTEST_INCLUDED
-#define MULTIPLELAYERSTEST_INCLUDED
+#ifndef SAMPLEREPETITIONLESSTERRAIN_INCLUDED
+#define SAMPLEREPETITIONLESSTERRAIN_INCLUDED
 
-#include "NewLayerTest.hlsl"
+#include "SampleRepetitionlessLayer.hlsl"
 
 // Assume control and terrain holes properties are:
 // _TerrainHoles
 // _Control{Index}
 
-#define SAMPLE_CONTROL(i, uv) LayersCount > i ? SAMPLE_TEXTURE2D(_Control##i, sampler_Control##i, uv) : 0
+#define R_SAMPLE_CONTROL(i, uv) LayersCount > i ? SAMPLE_TEXTURE2D(_Control##i, sampler_Control##i, uv) : 0
 
-void SampleMultipleRepetitionlessLayers_float(
+void SampleRepetitionlessTerrain_float(
     // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     float3 WorldPosition, float3 CameraPosition,
@@ -57,14 +57,14 @@ void SampleMultipleRepetitionlessLayers_float(
 
     // Sample control
     half4 controlColours[8] = {
-        SAMPLE_CONTROL(0, UV),
-        SAMPLE_CONTROL(1, UV),
-        SAMPLE_CONTROL(2, UV),
-        SAMPLE_CONTROL(3, UV),
-        SAMPLE_CONTROL(4, UV),
-        SAMPLE_CONTROL(5, UV),
-        SAMPLE_CONTROL(6, UV),
-        SAMPLE_CONTROL(7, UV)
+        R_SAMPLE_CONTROL(0, UV),
+        R_SAMPLE_CONTROL(1, UV),
+        R_SAMPLE_CONTROL(2, UV),
+        R_SAMPLE_CONTROL(3, UV),
+        R_SAMPLE_CONTROL(4, UV),
+        R_SAMPLE_CONTROL(5, UV),
+        R_SAMPLE_CONTROL(6, UV),
+        R_SAMPLE_CONTROL(7, UV)
     };
 
     // Get individual weights and sum
@@ -121,7 +121,7 @@ void SampleMultipleRepetitionlessLayers_float(
         float layerOcclussion = occlussion;
         float3 layerEmission  = emission;
 
-        SampleRepetitionlessLayerBase_float(
+        SampleRepetitionlessLayer_float(
             SS, UV, TangentNormalVector,
             WorldPosition, CameraPosition,
             SurfaceType, UVSpace, DebuggingIndex,

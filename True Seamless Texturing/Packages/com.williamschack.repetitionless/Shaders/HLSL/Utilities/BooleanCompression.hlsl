@@ -26,6 +26,7 @@ bool GetCompressedValue(int CompressedValues, int Index)
     return (CompressedValues & (1 << Index)) != 0;
 }
 
+// Combines two halfs of a 32 bit integer
 int Combine16BitInts(int firstHalf, int secondHalf)
 {
     return (((int)firstHalf) & 0xFFFF) | ((int)secondHalf << 16);

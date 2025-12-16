@@ -1,133 +1,132 @@
 #ifndef SAMPLEREPETITIONLESSMATERIAL_INCLUDED
 #define SAMPLEREPETITIONLESSMATERIAL_INCLUDED
 
-#include "../Structs/RepetitionlessMaterial.hlsl"
-#include "../Structs/RepetitionlessMaterialArray.hlsl"
+#include "../Structs/RepetitionlessMaterialData.hlsl"
 
 #include "../RepetitionlessHelpers/RepetitionlessNoise.hlsl"
 #include "../RepetitionlessHelpers/RepetitionlessTextureUtilities.hlsl"
 #include "../RepetitionlessHelpers/MacroMicroVariation.hlsl"
+#include "../RepetitionlessHelpers/GetArrayAssignedTextures.hlsl"
 
 #include "../Noise/Keijiro/SimplexNoise2D.hlsl"
 #include "../Noise/Keijiro/ClassicNoise2D.hlsl"
 
-/* There isnt really any good way to refactor this code to work with multiple sampling types (regular, texture arrays) in hlsl
- * so as a last resort I have just included both types of materials into the base and the wrappers tell it which one to use.
- * Im not a fan of this hacky approach but I could not figure out any other way
- * If anyone has a better solution please contact me I will change it asap
- */
+#include "../Utilities/BooleanCompression.hlsl"
+#include "../Utilities/TextureUtilities.hlsl"
 
-/*
-
-void GetRepetitionlessMaterialColorBase(
+void SampleRepetitionlessMaterial(
+    // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector,
     int SurfaceType, int DebuggingIndex,
 
-    bool UsingArrayMaterial,
-    in RepetitionlessMaterial Material,
-    in RepetitionlessMaterialArray ArrayMaterial,
+    // Textures
+    int ArrayLayerIndex,
+    UnityTexture2DArray AVTextures,
+    UnityTexture2DArray NSOTextures,
+    UnityTexture2DArray EMTextures,
+    int AssignedAVTextures[3],
+    int AssignedNSOTextures[3],
+    int AssignedEMTextures[3],
 
+    // Material Data
+    RepetitionlessMaterialData MaterialData,
+
+    // Outputs
     out float4 AlbedoColorOut,
     out float3 NormalVectorOut,
-    out float MetallicOut,
-    out float SmoothnessOut,
-    out float OcclussionOut,
+    out float  MetallicOut,
+    out float  SmoothnessOut,
+    out float  OcclussionOut,
     out float3 EmissionColorOut
 ){
-    RepetitionlessMaterialData materialData;
-    if (UsingArrayMaterial) materialData = ArrayMaterial.Data;
-    else                    materialData = Material.Data;
+    // Get variables from compressed
+    int  settingToggles        = (int)MaterialData.Settings1.x;
+    bool noiseEnabled          = GetCompressedValue(settingToggles, 0);
+    bool randomiseNoiseScaling = GetCompressedValue(settingToggles, 1);
+    bool randomiseRotation     = GetCompressedValue(settingToggles, 2);
+    bool smoothnessEnabled     = GetCompressedValue(settingToggles, 3);
+    bool variationEnabled      = GetCompressedValue(settingToggles, 4);
+    bool packedTexture         = GetCompressedValue(settingToggles, 5);
+    bool emissionEnabled       = GetCompressedValue(settingToggles, 6);
+
+    int  assignedTextures      = (int)MaterialData.Settings1.y;
+    bool albedoAssigned        = GetCompressedValue(assignedTextures, 0);
+    bool metallicAssigned      = GetCompressedValue(assignedTextures, 1);
+    bool smoothnessAssigned    = GetCompressedValue(assignedTextures, 2);
+    bool normalAssigned        = GetCompressedValue(assignedTextures, 3);
+    bool occlussionAssigned    = GetCompressedValue(assignedTextures, 4);
+    bool emissionAssigned      = GetCompressedValue(assignedTextures, 5);
+    bool variationAssigned     = GetCompressedValue(assignedTextures, 6);
+    bool packedTextureAssigned = GetCompressedValue(assignedTextures, 7);
+
+    half metallic            = MaterialData.Settings1.z;
+    half smoothnessRoughness = MaterialData.Settings1.w;
+    half normalScale         = MaterialData.Settings2.x;
+    half occlussionStrength  = MaterialData.Settings2.y;
+    half alphaClipping       = MaterialData.Settings2.z;
+
+    half  noiseAngleOffset             = MaterialData.Settings2.w;
+    half  noiseScale                   = MaterialData.Settings3.x;
+    half2 noiseScalingMinMax           = MaterialData.Settings5.xy;
+    half2 noiseRandomiseRotationMinMax = MaterialData.Settings5.zw;
+
+    int  variationMode          = (int)MaterialData.Settings3.y;
+    half variationOpacity       = MaterialData.Settings3.z;
+    half variationBrightness    = MaterialData.Settings3.w;
+    half variationSmallScale    = MaterialData.Settings4.x;
+    half variationMediumScale   = MaterialData.Settings4.y;
+    half variationLargeScale    = MaterialData.Settings4.z;
+    half variationNoiseStrength = MaterialData.Settings4.w;
 
     // Default values
-    AlbedoColorOut = 1;
-    NormalVectorOut = TangentNormalVector;
-    MetallicOut = 0;
-    SmoothnessOut = 0;
-    OcclussionOut = 1;
+    AlbedoColorOut   = 1;
+    NormalVectorOut  = TangentNormalVector;
+    MetallicOut      = 0;
+    SmoothnessOut    = 0;
+    OcclussionOut    = 1;
     EmissionColorOut = 0;
 
-    // Setting Toggles
-    int settingToggles = (int)materialData.Settings.x;
-    
-    bool noiseEnabled = (settingToggles & 1) != 0;
-    bool randomiseNoiseScaling = (settingToggles & 2) != 0;
-    bool randomiseRotation = (settingToggles & 4) != 0;
-    bool smoothnessEnabled = (settingToggles & 8) != 0;
-    bool variationEnabled = (settingToggles & 16) != 0;
-    bool packedTexture = (settingToggles & 32) != 0;
-    bool emissionEnabled = (settingToggles & 64) != 0;
-    
-    // Get Assigned Textures
-    int assignedTextures = (int)materialData.Settings.y;
-    
-    bool metallicAssigned = (assignedTextures & 1) != 0;
-    bool smoothnessAssigned = (assignedTextures & 2) != 0;
-    bool roughnessAssigned = (assignedTextures & 4) != 0;
-    bool normalAssigned = (assignedTextures & 8) != 0;
-    bool occlussionAssigned = (assignedTextures & 16) != 0;
-    bool emissionAssigned = (assignedTextures & 32) != 0;
-    
-    // Material Properties
-    float metallic = materialData.Properties1.x;
-    float smoothness = materialData.Properties1.y;
-    float roughness = materialData.Properties1.z;
-    float normalScale = materialData.Properties1.w;
-    float occlussionStrength = materialData.Properties2.x;
-    float alphaClipping = materialData.Properties2.y;
-    
-    // Noise Settings
-    float noiseAngleOffset = materialData.NoiseSettings.x;
-    float noiseScale = materialData.NoiseSettings.y;
-    float2 noiseScalingMinMax = materialData.NoiseMinMax.xy;
-    float2 randomiseRotationMinMax = materialData.NoiseMinMax.zw;
-    
-    // Variation Settings
-    float variationOpacity = materialData.VariationSettings.x;
-    float variationNoiseStrength = materialData.VariationNoiseSettings.x;
-    float variationNoiseScale = materialData.VariationNoiseSettings.y;
-    float2 variationNoiseOffset = materialData.VariationNoiseSettings.zw;
-    
     // Setup UVs
-    float2 tiling = materialData.TilingOffset.xy;
-    float2 offset = materialData.TilingOffset.zw;
+    float2 tiling = MaterialData.TilingOffset.xy;
+    float2 offset = MaterialData.TilingOffset.zw;
     
     float2 oriUV = UV;
     UV = UV * tiling + offset;
     
     // Change UVs & Get Edge Mask
-    float VoronoiCells = 1;
-    float EdgeMask = 0;
-    float2 EdgeUV = UV;
-    float2 TransformedUV = UV;
+    float voronoiCells = 1;
+    float edgeMask = 0;
+    float2 edgeUV = UV;
+    float2 transformedUV = UV;
     if (noiseEnabled)
-        GetRepetitionlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, randomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, TransformedUV);
+        GetRepetitionlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, noiseRandomiseRotationMinMax, voronoiCells, edgeMask, edgeUV, transformedUV);
     
-    bool sampleEdges = EdgeMask > 0;
+    bool sampleEdges = edgeMask > 0;
 
     // Get Macro/Micro Variation Multiplier
     float variationColor = 0;
     if (variationEnabled && variationOpacity > 0) {
-        switch (materialData.VariationMode) {
+        switch (variationMode) {
             case 0: // Perlin Noise
-                variationColor = MacroMicroVariationPerlinNoise(materialData.VariationSettings.y, materialData.VariationSettings.z, materialData.VariationSettings.w, materialData.VariationBrightness, materialData.VariationNoiseSettings.x, oriUV, materialData.VariationNoiseSettings.y, materialData.VariationNoiseSettings.z);
+                variationColor = MacroMicroVariationPerlinNoise(variationSmallScale, variationMediumScale, variationLargeScale, variationBrightness, variationNoiseStrength, oriUV, MaterialData.VariationTO.x, MaterialData.VariationTO.zw);
                 break;
             case 1: // Simplex Noise
-                variationColor = MacroMicroVariationSimplexNoise(materialData.VariationSettings.y, materialData.VariationSettings.z, materialData.VariationSettings.w, materialData.VariationBrightness, materialData.VariationNoiseSettings.x, oriUV, materialData.VariationNoiseSettings.y, materialData.VariationNoiseSettings.z);
+                variationColor = MacroMicroVariationSimplexNoise(variationSmallScale, variationMediumScale, variationLargeScale, variationBrightness, variationNoiseStrength, oriUV, MaterialData.VariationTO.x, MaterialData.VariationTO.zw);
                 break;
             case 2: // Custom Texture
-                variationColor = MacroMicroVariationTexture(materialData.VariationSettings.y, materialData.VariationSettings.z, materialData.VariationSettings.w, materialData.VariationBrightness, materialData.VariationTexture, SS, oriUV, materialData.VariationTextureTO.xy, materialData.VariationTextureTO.zw);
+                variationColor = MacroMicroVariationTextureArray(variationSmallScale, variationMediumScale, variationLargeScale, variationBrightness, AVTextures, AssignedAVTextures, ArrayLayerIndex, 3, SS, oriUV, MaterialData.VariationTO.xy, MaterialData.VariationTO.zw);
                 break;
         }
     }
-    
+
     // Debugging
     if (DebuggingIndex != -1) {
         switch (DebuggingIndex) {
             case 0: // Voronoi Cells
-                AlbedoColorOut = VoronoiCells;
+                AlbedoColorOut = voronoiCells;
                 break;
             case 1: // Edge Mask
-                AlbedoColorOut = EdgeMask;
+                AlbedoColorOut = edgeMask;
                 break;
             case 4: // Variation Colour
                 AlbedoColorOut = variationColor;
@@ -139,12 +138,25 @@ void GetRepetitionlessMaterialColorBase(
         
         return;
     }
-    
-    // Albedo
-    if (UsingArrayMaterial) AlbedoColorOut = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 0, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-    else                    AlbedoColorOut = SampleRepetitionlessTexture(Material.Albedo, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-    AlbedoColorOut *= materialData.AlbedoTint;
 
+    // Sample textures
+    bool samplingAV  = albedoAssigned; // Variation is sampled later
+    bool samplingNSO = normalAssigned || smoothnessAssigned || occlussionAssigned;
+    bool samplingEM  = emissionAssigned || metallicAssigned;
+
+    float4 avTexture = 0;
+    float4 nsoTexture = 0;
+    float4 emTexture = 0;
+    if (samplingAV)  avTexture  = SampleRepetitionlessArrayTexture(AVTextures, AssignedAVTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+    if (samplingNSO) nsoTexture = SampleRepetitionlessArrayTexture(NSOTextures, AssignedNSOTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+    if (samplingEM)  emTexture  = SampleRepetitionlessArrayTexture(EMTextures, AssignedEMTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+
+    // Albedo
+    AlbedoColorOut = albedoAssigned ? float4(avTexture.rgb, 1) : 1;
+    AlbedoColorOut *= float4(MaterialData.AlbedoTint, 1);
+
+    // Doesnt do anything at the moment since alpha is forced to 1
+    // Still here incase the alpha is readded
     if (SurfaceType == 1)
         clip(AlbedoColorOut.a - alphaClipping);
     
@@ -153,24 +165,10 @@ void GetRepetitionlessMaterialColorBase(
         AlbedoColorOut = lerp(AlbedoColorOut, variationColor * AlbedoColorOut, variationOpacity);
     
     // Normal Map
-    if (normalAssigned) {
-        if (UsingArrayMaterial) NormalVectorOut = SampleRepetitionlessTexture(ArrayMaterial.NormalMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges, true, normalScale).rgb;
-        else                    NormalVectorOut = SampleRepetitionlessTexture(Material.NormalMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges, true, normalScale).rgb;
-
-        // Hacky fix to check if normal is assigned, values set in TextureUtilities::UnpackNormalMap. If not assigned, used default tangent normal vector
-        // Implemented to check for terrain data normal maps as there is no variable to tell if its assigned or not
-        if (NormalVectorOut.x == 0.5 && NormalVectorOut.y == 0.5 && NormalVectorOut.z == 1) {
-            NormalVectorOut = TangentNormalVector;
-        }
-    } else {
-        NormalVectorOut = TangentNormalVector;
-    }
+    NormalVectorOut = normalAssigned ? UnpackNormalMap(float4(nsoTexture.rg, 1, 1), normalScale) : TangentNormalVector;
     
     if (packedTexture) {
-        // Packed texture is stored in the metallic slot
-        float4 packedTextureColor = 0;
-        if (UsingArrayMaterial) packedTextureColor = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 1, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-        else                    packedTextureColor = SampleRepetitionlessTexture(Material.MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
+        float4 packedTextureColor = packedTextureAssigned ? float4(emTexture.a, nsoTexture.a, 0, nsoTexture.b) : float4(0, 1, 0, 0);
 
         MetallicOut = packedTextureColor.r;
         OcclussionOut = lerp(1, packedTextureColor.g, occlussionStrength);
@@ -178,103 +176,27 @@ void GetRepetitionlessMaterialColorBase(
         else                   SmoothnessOut = 1 - packedTextureColor.a;
     } else {
         // Metallic
-        if (metallicAssigned) {
-            if (UsingArrayMaterial) MetallicOut = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 1, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
-            else                    MetallicOut = SampleRepetitionlessTexture(Material.MetallicMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).r;
-        } else
-            MetallicOut = metallic;
+        MetallicOut = metallicAssigned ? emTexture.a : metallic;
 
-        // Smoothness / Roughness
-        if (smoothnessEnabled) {
-            if (smoothnessAssigned) {
-                float4 smoothnessColor = 0;
-                if (UsingArrayMaterial) smoothnessColor = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 2, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-                else                    smoothnessColor = SampleRepetitionlessTexture(Material.SmoothnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-
-                SmoothnessOut = smoothnessColor.r;
-            } else
-                SmoothnessOut = smoothness;
-        } else {
-            if (roughnessAssigned) {
-                // Roughness = 1 - Smoothness
-                float4 roughnessColor = 1;
-                if (UsingArrayMaterial) roughnessColor -= SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 3, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-                else                    roughnessColor -= SampleRepetitionlessTexture(Material.RoughnessMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-
-                SmoothnessOut = roughnessColor.r;
-            } else
-                SmoothnessOut = 1 - roughness;
-        }
+        // Smoothness
+        SmoothnessOut = smoothnessAssigned ? nsoTexture.b : smoothnessRoughness;
+        if (!smoothnessEnabled) SmoothnessOut = 1 - SmoothnessOut; // Roughness
             
         // Occlussion
         if (occlussionAssigned) {
-            float4 occlussionColor = 1;
-            if (UsingArrayMaterial) occlussionColor = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 4, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-            else                    occlussionColor = SampleRepetitionlessTexture(Material.OcclussionMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges);
-
-            OcclussionOut = lerp(1, occlussionColor.r, occlussionStrength);
-        } else
+            OcclussionOut = nsoTexture.a;
+            OcclussionOut = lerp(1, OcclussionOut, occlussionStrength);
+        } else {
             OcclussionOut = 1;
+        }
     }
 
     // Emission
+    EmissionColorOut = 0;
     if(emissionEnabled) {
-        if (emissionAssigned) {
-            if (UsingArrayMaterial) EmissionColorOut = SampleRepetitionlessArrayTexture(ArrayMaterial.Textures, ArrayMaterial.ArrayAssignedTextures, 5, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).rgb;
-            else                    EmissionColorOut = SampleRepetitionlessTexture(Material.EmissionMap, SS, EdgeMask, EdgeUV, TransformedUV, sampleEdges).rgb;
-            EmissionColorOut *= materialData.EmissionColor;
-        } else
-            EmissionColorOut = materialData.EmissionColor;
-    } else
-        EmissionColorOut = 0;
+        EmissionColorOut = emissionAssigned ? emTexture.rgb : 1;
+        EmissionColorOut *= MaterialData.EmissionColor;
+    }
 }
-
-void GetRepetitionlessMaterialColor(
-    SamplerState SS, float2 UV, float3 TangentNormalVector,
-    int SurfaceType, int DebuggingIndex,
-
-    in RepetitionlessMaterial Material,
-
-    out float4 AlbedoColorOut,
-    out float3 NormalVectorOut, 
-    out float MetallicOut,
-    out float SmoothnessOut,
-    out float OcclussionOut,
-    out float3 EmissionColorOut
-){
-    RepetitionlessMaterialArray emptyMaterial;
-
-    GetRepetitionlessMaterialColorBase(
-        SS, UV, TangentNormalVector,
-        SurfaceType, DebuggingIndex,
-        false, Material, emptyMaterial,
-        AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
-    );
-}
-
-void GetRepetitionlessMaterialArrayColor(
-    SamplerState SS, float2 UV, float3 TangentNormalVector,
-    int SurfaceType, int DebuggingIndex,
-
-    in RepetitionlessMaterialArray Material,
-
-    out float4 AlbedoColorOut,
-    out float3 NormalVectorOut,
-    out float MetallicOut,
-    out float SmoothnessOut,
-    out float OcclussionOut,
-    out float3 EmissionColorOut
-){
-    RepetitionlessMaterial emptyMaterial;
-
-    GetRepetitionlessMaterialColorBase(
-        SS, UV, TangentNormalVector,
-        SurfaceType, DebuggingIndex,
-        true, emptyMaterial, Material,
-        AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
-    );
-}
-
-*/
 
 #endif

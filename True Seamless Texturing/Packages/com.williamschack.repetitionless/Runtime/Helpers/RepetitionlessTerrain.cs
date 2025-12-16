@@ -43,7 +43,7 @@ namespace Repetitionless.Helpers
 
         private TerrainData _terrainData {
             get {
-                return Terrain.terrainData;
+                return Terrain?.terrainData;
             }
         }
 
@@ -56,13 +56,10 @@ namespace Repetitionless.Helpers
         // Set this as dirty so saving after doing nothing will still update the textures
         private void SetDirty()
         {
-            // this == null to prevent error on end of build
-            if (this == null || Terrain == null)
-                return;
-
-            EditorUtility.SetDirty(this);
-            EditorUtility.SetDirty(Terrain);
-            EditorUtility.SetDirty(_terrainData);
+            // this != null to prevent error on end of build
+            if (this != null)         EditorUtility.SetDirty(this);
+            if (Terrain != null)      EditorUtility.SetDirty(Terrain);
+            if (_terrainData != null) EditorUtility.SetDirty(_terrainData);
         }
 
         private void OnSceneSaved(Scene scene)
@@ -133,10 +130,10 @@ namespace Repetitionless.Helpers
         public void UpdateMaterialTerrainTextures()
         {
             // this == null to prevent error on end of build
-            if (_mainMaterial == null || this == null)
+            if (_mainMaterial == null || _terrainData == null || this == null)
                 return;
 
-            if (_materialInstance == null || _terrain.materialTemplate == null)
+            if (_materialInstance == null || Terrain.materialTemplate == null)
                 UpdateTerrainMaterial(_mainMaterial);
 
             // Copy any changed properties from the main material
