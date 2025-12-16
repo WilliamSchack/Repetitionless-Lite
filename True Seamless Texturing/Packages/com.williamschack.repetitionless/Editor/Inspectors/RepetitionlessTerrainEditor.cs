@@ -93,10 +93,10 @@ namespace Repetitionless.Inspectors
         // Save textures to the material
         private void UpdateMaterialTerrainLayerTextures()
         {
-            if (_main.MainMaterial == null)
-                return;
-
             EditorApplication.delayCall += () => {
+                if (_main.MainMaterial == null)
+                    return;
+
                 // Will only update changed layers
                 for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
                     _syncData.UpdateLayerMaterialsData(_terrainData.terrainLayers[i], _main.MainMaterial);
@@ -199,8 +199,11 @@ namespace Repetitionless.Inspectors
                         _syncData.RemoveMaterial(_main.MainMaterial);
                         _main.UpdateTerrainMaterial(newMat);
 
-                        UpdateMaterialTerrainLayerTextures();
-                        EditorApplication.delayCall += SyncLayersToMaterial;
+                        // Assign textures after a frame so the material is properly assigned
+                        EditorApplication.delayCall += () => {
+                            UpdateMaterialTerrainLayerTextures();
+                            SyncLayersToMaterial();
+                        };
                     } else {
                         _incorrectMaterial = true;
                         _materialProp.objectReferenceValue = _main.MainMaterial;
