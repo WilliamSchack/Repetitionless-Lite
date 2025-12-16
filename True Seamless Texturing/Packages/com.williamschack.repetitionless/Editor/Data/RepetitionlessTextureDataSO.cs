@@ -189,10 +189,16 @@ namespace Repetitionless.Data
             BMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetBlendMaskTextureData(i);        }, Save, (int i) => { return AssignedTexturesGetter(3, i); }, (int i, int at) => { AssignedTexturesSetter(3, i, at); }, DEFAULT_BM_COLOUR,  bmTexturesProp,  LayersTextureData.Length);
 
             AVTexturesDrawer.TextureFormat  = TextureFormat.BC7;
+            AVTexturesDrawer.ArrayLinear    = false;
+
             NSOTexturesDrawer.TextureFormat = TextureFormat.BC7;
             NSOTexturesDrawer.ArrayLinear   = true;
+
             EMTexturesDrawer.TextureFormat  = TextureFormat.BC7;
+            EMTexturesDrawer.ArrayLinear    = true;
+            
             BMTexturesDrawer.TextureFormat  = TextureFormat.BC7;
+            BMTexturesDrawer.ArrayLinear    = true;
         }
 
         public void SetupLayer(int index)

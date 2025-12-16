@@ -86,6 +86,8 @@ namespace Repetitionless.TextureUtilities
             }
 
             // Convert texture data to gpu friendly
+            bool anyHasSrgb = false;
+
             List<Texture2D> inputTextures = new List<Texture2D>();
             List<TextureDataGPU> textureDataGPU = new List<TextureDataGPU>();
             for (int i = 0; i < textureData.Length; i++) {
@@ -98,6 +100,7 @@ namespace Repetitionless.TextureUtilities
                 TextureDataGPU gpuData;
                 gpuData.NormalMap = currentTextureData.NormalMap ? 1 : 0;
                 gpuData.SRGB = currentTextureData.Texture.isDataSRGB && !currentTextureData.DataTexture ? 1 : 0;
+                if (gpuData.SRGB == 1 && gpuData.NormalMap == 0) anyHasSrgb = true;
 
                 int fromToChannelsCount = currentTextureData.FromToChannels.Count;
                 if (fromToChannelsCount > 4) {
@@ -126,10 +129,14 @@ namespace Repetitionless.TextureUtilities
             }
 
             // Create render texture
-            RenderTexture rt = new RenderTexture(resolution.x, resolution.y, 0);
-            rt.enableRandomWrite = true;
-            rt.useMipMap = true;
-            rt.autoGenerateMips = true;
+            RenderTextureDescriptor desc =  new RenderTextureDescriptor(resolution.x, resolution.y) {
+                enableRandomWrite = true,
+                useMipMap = true,
+                autoGenerateMips = true,
+                sRGB = anyHasSrgb
+            };
+
+            RenderTexture rt = new RenderTexture(desc);
             rt.Create();
 
             // Assign data
@@ -168,7 +175,7 @@ namespace Repetitionless.TextureUtilities
             RenderTexture previousRT = RenderTexture.active;
             RenderTexture.active = rt;
 
-            Texture2D outTex = new Texture2D(resolution.x, resolution.y, TextureFormat.RGBA32, true, !rt.sRGB);
+            Texture2D outTex = new Texture2D(resolution.x, resolution.y, TextureFormat.RGBA32, true, !anyHasSrgb);
             outTex.ReadPixels(new Rect(0, 0, resolution.x, resolution.y), 0, 0);
             outTex.Apply();
 

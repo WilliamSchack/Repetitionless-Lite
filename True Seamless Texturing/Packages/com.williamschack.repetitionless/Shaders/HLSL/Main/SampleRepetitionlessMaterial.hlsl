@@ -152,7 +152,8 @@ void SampleRepetitionlessMaterial(
     if (samplingEM)  emTexture  = SampleRepetitionlessArrayTexture(EMTextures, AssignedEMTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
 
     // Albedo
-    AlbedoColorOut = albedoAssigned ? float4(avTexture.rgb, 1) : 1;
+    //if (samplingAV) avTexture.rgb = LinearToSRGB(avTexture).rgb;
+    AlbedoColorOut = samplingAV ? float4(avTexture.rgb, 1) : 1;
     AlbedoColorOut *= float4(MaterialData.AlbedoTint, 1);
 
     // Doesnt do anything at the moment since alpha is forced to 1

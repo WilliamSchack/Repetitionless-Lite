@@ -329,7 +329,7 @@ namespace Repetitionless.TextureUtilities
         {
             // If array has a depth of one, the only texture is being replaced, create a new array as it will cause mipmap or format errors otherwise
             if (array.depth == 1) {
-                array = CreateArrayUserInput(new Texture2D[] { texture }, array.format, null, array.mipmapCount > 1);
+                array = CreateArrayUserInput(new Texture2D[] { texture }, array.format, null, array.mipmapCount > 1, !array.isDataSRGB);
                 return array;
             }
 
@@ -371,7 +371,7 @@ namespace Repetitionless.TextureUtilities
         {
             // If array has a depth of one, the only texture is being replaced, create a new array as it will cause mipmap or format errors otherwise
             if(array.depth == 1) {
-                array = CreateArrayUserInput(new Texture2D[] { texture }, array.format, null, array.mipmapCount > 1);
+                array = CreateArrayUserInput(new Texture2D[] { texture }, array.format, null, array.mipmapCount > 1, !array.isDataSRGB);
                 return (array, false);
             }
 
@@ -483,7 +483,7 @@ namespace Repetitionless.TextureUtilities
                     textures[i] = TextureUtilities.ResizeTexture(textures[i], newWidth, newHeight, resizeFilterMode);
             }
 
-            return CreateArrayUserInput(textures, array.format);
+            return CreateArrayUserInput(textures, array.format, null, array.mipmapCount > 1, !array.isDataSRGB);
         }
     }
 }
