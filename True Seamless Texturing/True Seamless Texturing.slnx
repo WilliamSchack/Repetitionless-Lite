@@ -2,15 +2,9 @@
   <Project Path="SingularityGroup.HotReload.Editor.csproj" />
   <Project Path="asset-store-tools-editor.csproj" />
   <Project Path="com.williamschack.Repetitionless.Editor.csproj" />
-  <Project Path="com.williamschack.TextureArrayEssentials.Samples.csproj" />
   <Project Path="SingularityGroup.HotReload.Runtime.Public.csproj" />
-  <Project Path="com.williamschack.TextureArrayEssentials.CustomDialog.csproj" />
   <Project Path="testing.csproj" />
   <Project Path="SingularityGroup.HotReload.Runtime.csproj" />
-  <Project Path="com.williamschack.TextureArrayEssentials.csproj" />
   <Project Path="com.williamschack.Repetitionless.csproj" />
-  <Project Path="com.williamschack.TextureArrayEssentials.Compression.csproj" />
-  <Project Path="com.williamschack.TextureArrayEssentials.CustomWindows.csproj" />
-  <Project Path="com.williamschack.TextureArrayEssentials.GUIUtilities.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
 </Solution>
