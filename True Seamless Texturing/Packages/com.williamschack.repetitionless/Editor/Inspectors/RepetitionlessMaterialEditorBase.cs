@@ -792,8 +792,10 @@ namespace Repetitionless.Inspectors
                 DrawProperty(layerIndex, () => currentData.PackedTexture = GUILayout.Toggle(currentData.PackedTexture, new GUIContent(GetScaledText(minScaledTextWidth, "Packed Texture", "PT"), "If you are using a packed texture of multiple regular ones (Note that textures automatically pack even without this setting enabled)\nR: Metallic\nG: Occlussion\nA: Smoothness/Roughness"), "Button"));
 
                 // If packed texture was changed, update the texture data
-                if (prevPackedTexture != currentData.PackedTexture)
+                if (prevPackedTexture != currentData.PackedTexture) {
+                    UpdateAssignedTextures(layerIndex, sectionIndex);
                     _textureData.UpdatePackedTexture(0, sectionIndex, currentData.PackedTexture);
+                }
             }
 
             // Emission Toggle
