@@ -49,6 +49,7 @@ namespace Repetitionless.Samples
                 UpdateTerrainMaterials();
 
             // Update terrain layers to make them all equal in tiling
+            // Repetitionless uses world UVs, regular uses local so they differ a bit 
             TerrainLayer[] layers = _terrains[0].terrainData.terrainLayers;
             foreach (TerrainLayer layer in layers) {
                 layer.tileSize = TerrainUsingRepetitionless ? new Vector2(150, 150) : new Vector2(7, 7);

@@ -424,15 +424,17 @@ namespace Repetitionless.Data
             textureData.EMTextures[2].Disabled = !enabled;
 
             // Update textures
+            int arrayIndex = layerIndex * 3 + materialIndex;
+
             if (enabled) {
                 // Use packed texture
-                NSOTexturesDrawer.UpdateTexture(textureData.NSOTextures[3].Texture, materialIndex, 3, true);
-                EMTexturesDrawer.UpdateTexture(textureData.EMTextures[2].Texture, materialIndex, 2, true);
+                NSOTexturesDrawer.UpdateTexture(textureData.NSOTextures[3].Texture, arrayIndex, 3, true);
+                EMTexturesDrawer.UpdateTexture(textureData.EMTextures[2].Texture, arrayIndex, 2, true);
             } else {
                 // Use regular textures
-                NSOTexturesDrawer.UpdateTexture(textureData.NSOTextures[1].Texture, materialIndex, 1, true);
-                NSOTexturesDrawer.UpdateTexture(textureData.NSOTextures[2].Texture, materialIndex, 2, true);
-                EMTexturesDrawer.UpdateTexture(textureData.EMTextures[1].Texture, materialIndex, 1, true);
+                NSOTexturesDrawer.UpdateTexture(textureData.NSOTextures[1].Texture, arrayIndex, 1, true);
+                NSOTexturesDrawer.UpdateTexture(textureData.NSOTextures[2].Texture, arrayIndex, 2, true);
+                EMTexturesDrawer.UpdateTexture(textureData.EMTextures[1].Texture, arrayIndex, 1, true);
             }
 
             Save();
