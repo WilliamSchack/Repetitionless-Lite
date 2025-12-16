@@ -6,4 +6,6 @@
   <Project Path="SingularityGroup.HotReload.Runtime.csproj" />
   <Project Path="com.williamschack.Repetitionless.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="com.williamschack.Repetitionless.Samples.csproj" />
+  <Project Path="com.williamschack.Repetitionless.Samples.Editor.csproj" />
 </Solution>
