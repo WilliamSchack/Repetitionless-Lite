@@ -51,6 +51,7 @@ namespace Repetitionless.Helpers
 
         public Action<TerrainLayer[]> OnTerrainLayersChanged;
         public Action<Material> OnMaterialChanged;
+        public Action OnMaterialTexturesUpdated;
 
     #if UNITY_EDITOR
         // Set this as dirty so saving after doing nothing will still update the textures
@@ -75,11 +76,13 @@ namespace Repetitionless.Helpers
             EditorSceneManager.sceneSaved += OnSceneSaved;
 
             if (ParentTerrain != null) {
-                ParentTerrain.OnTerrainLayersChanged -= ParentTerrainLayersChanged;
-                ParentTerrain.OnTerrainLayersChanged += ParentTerrainLayersChanged;
+                ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
+                ParentTerrain.OnMaterialChanged         -= ParentMaterialChanged;
+                ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
 
-                ParentTerrain.OnMaterialChanged -= ParentMaterialChanged;
-                ParentTerrain.OnMaterialChanged += ParentMaterialChanged;
+                ParentTerrain.OnTerrainLayersChanged    += ParentTerrainLayersChanged;
+                ParentTerrain.OnMaterialChanged         += ParentMaterialChanged;
+                ParentTerrain.OnMaterialTexturesUpdated += ParentMaterialTexturesUpdated;
             }
 
             // Set dirty and update textures on next editor frame
@@ -99,8 +102,9 @@ namespace Repetitionless.Helpers
             EditorSceneManager.sceneSaved -= OnSceneSaved;
 
             if (ParentTerrain != null) {
-                ParentTerrain.OnTerrainLayersChanged -= ParentTerrainLayersChanged;
-                ParentTerrain.OnMaterialChanged -= ParentMaterialChanged;
+                ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
+                ParentTerrain.OnMaterialChanged         -= ParentMaterialChanged;
+                ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
             }
     #endif
         }
@@ -148,6 +152,8 @@ namespace Repetitionless.Helpers
     #if UNITY_EDITOR
             SetDirty();
     #endif
+
+            OnMaterialTexturesUpdated?.Invoke();
         }
 
         public void UpdateLayersCount()
@@ -173,12 +179,14 @@ namespace Repetitionless.Helpers
         // Assumes this is called from the editor before the current parent is updated
         public void UpdateParentCallback(RepetitionlessTerrain newParent)
         {
-            ParentTerrain.OnTerrainLayersChanged -= ParentTerrainLayersChanged;
-            ParentTerrain.OnMaterialChanged      -= ParentMaterialChanged;
+            ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
+            ParentTerrain.OnMaterialChanged         -= ParentMaterialChanged;
+            ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
 
             if (newParent != null) {
-                newParent.OnTerrainLayersChanged += ParentTerrainLayersChanged;
-                newParent.OnMaterialChanged      += ParentMaterialChanged;
+                newParent.OnTerrainLayersChanged    += ParentTerrainLayersChanged;
+                newParent.OnMaterialChanged         += ParentMaterialChanged;
+                newParent.OnMaterialTexturesUpdated += ParentMaterialTexturesUpdated;
             }
         }
 
@@ -190,6 +198,11 @@ namespace Repetitionless.Helpers
         public void ParentMaterialChanged(Material material)
         {
             UpdateTerrainMaterial(material);
+            UpdateMaterialTerrainTextures();
+        }
+
+        public void ParentMaterialTexturesUpdated()
+        {
             UpdateMaterialTerrainTextures();
         }
 

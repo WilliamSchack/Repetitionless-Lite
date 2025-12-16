@@ -13,7 +13,7 @@ void GetArrayAssignedTextures(UnityTexture2D tex,
     // Reconstruct into 32bit integers
 
     // * 65535 for 0-1 colour to 0-16bit int
-    // + 0.5 for float precision
+    // + 0.5 for float precision errors
     int3 assignedAV0  = (int3)(tex.Load(int3(0, 0, 0)).rgb * 65535 + 0.5);
     int3 assignedAV1  = (int3)(tex.Load(int3(1, 0, 0)).rgb * 65535 + 0.5);
     int3 assignedNSO0 = (int3)(tex.Load(int3(0, 1, 0)).rgb * 65535 + 0.5);
