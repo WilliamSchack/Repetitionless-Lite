@@ -2205,7 +2205,7 @@
             "m_Id": "7a9420d2a68f4cad9cf4c54a00b399fd"
         }
     ],
-    "m_CustomEditorGUI": "",
+    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessMaterialEditorMaster",
     "m_SupportVFX": false,
     "m_SupportLineRendering": false
 }
@@ -2298,7 +2298,7 @@
     "m_ObjectId": "52f7cb2ea01645a684d6bd320ae006e4",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1184.9998779296875,
+        "x": 1185.0,
         "y": 2689.0
     }
 }
@@ -3067,8 +3067,8 @@
     "m_ObjectId": "78fba43ca02a4f59b78481b0b304f8c3",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 781.9999389648438,
-        "y": 1983.9998779296875
+        "x": 782.0,
+        "y": 1983.999755859375
     }
 }
 
