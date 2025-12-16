@@ -405,7 +405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf4de4f9e82be3899785e096781f38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.williamschack.Repetitionless.Samples::Repetitionless.Samples.ColourSpaceChecker
-  _repetitionlessMaterial: {fileID: 2100000, guid: edbbf70162d070afba2b0aeb72e5a193, type: 2}
+  _repetitionlessMaterials:
+  - {fileID: 2100000, guid: edbbf70162d070afba2b0aeb72e5a193, type: 2}
 --- !u!1 &1679117639
 GameObject:
   m_ObjectHideFlags: 0
