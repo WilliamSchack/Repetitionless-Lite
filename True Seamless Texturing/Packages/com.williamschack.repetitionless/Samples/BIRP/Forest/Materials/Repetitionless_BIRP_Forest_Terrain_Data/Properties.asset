@@ -34,7 +34,7 @@ MonoBehaviour:
       TilingOffset: {x: 150, y: 150, z: 0, w: 0}
       Metallic: 0
       SmoothnessRoughness: 0
-      NormalScale: 50
+      NormalScale: 1
       OcclussionStrength: 1
       AlphaClipping: 0.5
       NoiseAngleOffset: 2
@@ -351,13 +351,13 @@ MonoBehaviour:
       RandomiseNoiseRotation: 1
       SmoothnessEnabled: 0
       VariationEnabled: 0
-      PackedTexture: 0
+      PackedTexture: 1
       EmissionEnabled: 0
       AlbedoAssigned: 1
       MetallicAssigned: 0
-      SmoothnessAssigned: 1
+      SmoothnessAssigned: 0
       NormalAssigned: 1
-      OcclussionAssigned: 1
+      OcclussionAssigned: 0
       EmissionAssigned: 0
       VariationAssigned: 0
       PackedTextureAssigned: 0
@@ -4112,7 +4112,7 @@ MonoBehaviour:
   _dataCompressed:
   - BaseMaterialData:
       Settings1: {x: 47, y: 159, z: 0, w: 0}
-      Settings2: {x: 50, y: 1, z: 0.5, w: 2}
+      Settings2: {x: 1, y: 1, z: 0.5, w: 2}
       Settings3: {x: 5, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
@@ -4199,7 +4199,7 @@ MonoBehaviour:
       TilingOffset: {x: 50, y: 50, z: 0, w: 0}
       VariationTO: {x: 5, y: 5, z: 0, w: 0}
     BlendMaterialData:
-      Settings1: {x: 7, y: 29, z: 0, w: 0.5}
+      Settings1: {x: 39, y: 9, z: 0, w: 0.5}
       Settings2: {x: 1, y: 1, z: 0.5, w: 2}
       Settings3: {x: 5, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
