@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Repetitionless_URP_Comparison_Repetitionless 2
-  m_Shader: {fileID: -6465566751694194690, guid: ca5620d817bef71c08865ca0ac0d092f, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 2668dc74239987d2abd177adfc8716b8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -37,6 +37,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AVTextures:
+        m_Texture: {fileID: 18700000, guid: ff95bb58f630267d588c1ab39ab382bd, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AssignedTexturesTexture:
+        m_Texture: {fileID: 2800000, guid: 1403ec5d30585c67da38bc87d7256cfe, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BMTextures:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseAlbedo:
         m_Texture: {fileID: 2800000, guid: 7a12c33923a1ff85ea1568f1bbc7cd7f, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -121,6 +133,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EMTextures:
+        m_Texture: {fileID: 18700000, guid: 09cfa697aae150b2fb659d23a8ef3f25, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -165,12 +181,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NSOTextures:
+        m_Texture: {fileID: 18700000, guid: 53c0fdee155b79787b122e0bc100e6f6, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PropertiesTexture:
+        m_Texture: {fileID: 2800000, guid: 26e9a91812ba779e7a9210559f7f084f, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -228,6 +252,7 @@ Material:
     - _SurfaceType: 0
     - _SurfaceTypeSetting: 0
     - _UVSec: 0
+    - _UVSpace: 0
     - _ZWrite: 1
     m_Colors:
     - _BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}

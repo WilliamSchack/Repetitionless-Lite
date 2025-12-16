@@ -12,7 +12,7 @@ namespace Repetitionless.Samples
     [ExecuteInEditMode]
     public class ColourSpaceChecker : MonoBehaviour
     {
-        [SerializeField] private List<Material> _repetitionlessMaterials;
+        [SerializeField] private List<Material> _repetitionlessMaterials = new List<Material>();
 
         void OnEnable()
         {
