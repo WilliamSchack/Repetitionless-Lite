@@ -48,6 +48,15 @@ namespace Repetitionless.Samples
             else
                 UpdateTerrainMaterials();
 
+            // Update terrain layers to make them all equal in tiling
+            TerrainLayer[] layers = _terrains[0].terrainData.terrainLayers;
+            foreach (TerrainLayer layer in layers) {
+                layer.tileSize = TerrainUsingRepetitionless ? new Vector2(150, 150) : new Vector2(7, 7);
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(layer);
+#endif
+            }
+
 #if UNITY_EDITOR
             // Repaint scene and game view
             UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
