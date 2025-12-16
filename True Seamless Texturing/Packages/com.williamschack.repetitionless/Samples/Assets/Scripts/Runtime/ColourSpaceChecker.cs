@@ -12,13 +12,13 @@ namespace Repetitionless.Samples
     [ExecuteInEditMode]
     public class ColourSpaceChecker : MonoBehaviour
     {
-        [SerializeField] private Material _repetitionlessMaterial;
+        [SerializeField] private List<Material> _repetitionlessMaterials;
 
         void OnEnable()
         {
 #if UNITY_EDITOR
             // Update the material colour space if it is different
-            RepetitionlessColourSpaceUpdater.RepackMaterialsIfColourSpaceChanged(new List<Material> { _repetitionlessMaterial }, false);
+            RepetitionlessColourSpaceUpdater.RepackMaterialsIfColourSpaceChanged(_repetitionlessMaterials, false);
 #endif
         }
     }
