@@ -11,7 +11,7 @@ using UnityEditor.SceneManagement;
 // Better than trying to fiddle with saving the textures
 // Also allows me to instance the material and have different textures for different terrains
 
-// Updates textures when:
+// Updates material textures when:
 // OnEnable (Runtime & Editor)
 // Scene saved
 // Undo/Redo
