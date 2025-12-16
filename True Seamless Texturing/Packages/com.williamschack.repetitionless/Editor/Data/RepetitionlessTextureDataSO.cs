@@ -55,6 +55,8 @@ namespace Repetitionless.Data
         [HideInInspector][SerializeField] private int[] _assignedEMTextures = new int[3];
         [HideInInspector][SerializeField] private int _assignedBMTextures = 0;
 
+        [HideInInspector] public ColorSpace PackedColourSpace = ColorSpace.Uninitialized;
+
         // Non-Serializable
         private MaterialDataManager _dataManager;
 
@@ -173,9 +175,21 @@ namespace Repetitionless.Data
                 property.textureValue = texture;
         }
 
+#if UNITY_EDITOR
+        private void UpdatePackedColourSpace()
+        {
+            
+            PackedColourSpace = PlayerSettings.colorSpace;
+        }
+#endif
+
         // Should be called every time before using the drawers
         public void SetupTextureDrawers(MaterialDataManager dataManager)
         {
+#if UNITY_EDITOR
+            if (AVTexturesDrawer != null) AVTexturesDrawer.OnTextureUpdated -= UpdatePackedColourSpace;
+#endif
+
             _dataManager = dataManager;
 
             MaterialProperty avTexturesProp  = GetTexturesProp(0);
@@ -183,9 +197,9 @@ namespace Repetitionless.Data
             MaterialProperty emTexturesProp  = GetTexturesProp(2);
             MaterialProperty bmTexturesProp  = GetTexturesProp(3);
 
-            AVTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 0); }, Save, (int i) => { return AssignedTexturesGetter(0, i); }, (int i, int at) => { AssignedTexturesSetter(0, i, at); }, DEFAULT_AV_COLOUR,  avTexturesProp,  LayersTextureData.Length * 3);
-            NSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 1); }, Save, (int i) => { return AssignedTexturesGetter(1, i); }, (int i, int at) => { AssignedTexturesSetter(1, i, at); }, DEFAULT_NSO_COLOUR, nsoTexturesProp, LayersTextureData.Length * 3);
-            EMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 2); }, Save, (int i) => { return AssignedTexturesGetter(2, i); }, (int i, int at) => { AssignedTexturesSetter(2, i, at); }, DEFAULT_EM_COLOUR,  emTexturesProp,  LayersTextureData.Length * 3);
+            AVTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 0); }, Save, (int i) => { return AssignedTexturesGetter(0, i); }, (int i, int at) => { AssignedTexturesSetter(0, i, at); }, DEFAULT_AV_COLOUR,  avTexturesProp,  LayersTextureData.Length * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT);
+            NSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 1); }, Save, (int i) => { return AssignedTexturesGetter(1, i); }, (int i, int at) => { AssignedTexturesSetter(1, i, at); }, DEFAULT_NSO_COLOUR, nsoTexturesProp, LayersTextureData.Length * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT);
+            EMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 2); }, Save, (int i) => { return AssignedTexturesGetter(2, i); }, (int i, int at) => { AssignedTexturesSetter(2, i, at); }, DEFAULT_EM_COLOUR,  emTexturesProp,  LayersTextureData.Length * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT);
             BMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetBlendMaskTextureData(i);        }, Save, (int i) => { return AssignedTexturesGetter(3, i); }, (int i, int at) => { AssignedTexturesSetter(3, i, at); }, DEFAULT_BM_COLOUR,  bmTexturesProp,  LayersTextureData.Length);
 
             AVTexturesDrawer.TextureFormat  = TextureFormat.BC7;
@@ -199,6 +213,10 @@ namespace Repetitionless.Data
             
             BMTexturesDrawer.TextureFormat  = TextureFormat.BC7;
             BMTexturesDrawer.ArrayLinear    = true;
+
+#if UNITY_EDITOR
+            AVTexturesDrawer.OnTextureUpdated += UpdatePackedColourSpace;
+#endif
         }
 
         public void SetupLayer(int index)
@@ -439,7 +457,7 @@ namespace Repetitionless.Data
             textureData.EMTextures[2].Disabled = !enabled;
 
             // Update textures
-            int arrayIndex = layerIndex * 3 + materialIndex;
+            int arrayIndex = layerIndex * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT + materialIndex;
 
             if (enabled) {
                 // Use packed texture

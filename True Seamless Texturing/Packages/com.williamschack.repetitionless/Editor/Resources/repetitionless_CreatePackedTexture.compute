@@ -74,6 +74,8 @@ inline half4 SampleTexture(int channelIndex = 0, float2 uv = 0)
         case 3: colour = Tex3[uv]; break;
     }
 
+    // In linear colour space, srgb textures need to be converted
+    // This also means that if changing between linear <> gamma colour space the texture will need to be repacked
     if (LinearColourSpace && Data[channelIndex].SRGB == 1 && Data[channelIndex].NormalMap != 1) {
         colour = LinearToSRGB(colour);
     }

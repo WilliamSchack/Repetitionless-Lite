@@ -78,6 +78,8 @@ namespace Repetitionless.GUIUtilities
         private List<int> _previousChannelsAssigned = new List<int>();
         private Vector4 _defaultChannelColours;
 
+        public System.Action OnTextureUpdated;
+
         public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, RefFunc<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, System.Func<int, int> assignedTexturesChangedGetter, System.Action<int, int> assignedTexturesChangedSetter, Vector4 defaultChannelColours, MaterialProperty arrayProperty, int textureCount, string fileName = null)
         {
             // Assign material
@@ -520,6 +522,7 @@ namespace Repetitionless.GUIUtilities
 
                         _assignedTexturesChangedSetter?.Invoke(compressedAssignedTextures.Item1, compressedAssignedTextures.Item2);
 
+                        OnTextureUpdated?.Invoke();
                         return (newTexture, true);
                     }
                 }
@@ -583,6 +586,7 @@ namespace Repetitionless.GUIUtilities
                 _textures[index] = newTexture;
             }
 
+            OnTextureUpdated?.Invoke();
             return (newTexture, true);
         }
 

@@ -71,12 +71,7 @@ namespace Repetitionless.Inspectors
         /// </summary>
         protected const int SCALED_TEXT_PADDING = 10;
 
-        public const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
-        public const string PROPERTIES_FILE_NAME = "Properties.asset";
-
         private const string PROGRESS_BAR_TITLE = "Updating Material";
-
-        private const string DEFAULT_VARIATION_TEXTURE_NAME = "repetitionless_VariationTexture_2048";
 
         // Overridable
         protected virtual int _maxLayers => 1;
@@ -245,7 +240,7 @@ namespace Repetitionless.Inspectors
                 Undo.RecordObjects(new Object[] {_materialProperties, _textureData}, $"Modified {_material.name} texture");
 
             EditorGUI.BeginChangeCheck();
-            textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, layerIndex * 3 + sectionIndex, textureDrawerDetails.ChannelIndex, content);
+            textureDrawerDetails.TextureDrawer.DrawTexture(lineRect, layerIndex * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT + sectionIndex, textureDrawerDetails.ChannelIndex, content);
 
             if (EditorGUI.EndChangeCheck()) {
                 // Update assigned textures and update the properties
@@ -273,7 +268,7 @@ namespace Repetitionless.Inspectors
                 // Set the texture to the default variation if none assigned
                 Texture2D texture = _textureData.GetTextureData(layerIndex, sectionIndex, 0)[1].Texture;
                 if (texture == null) {
-                    texture = Resources.Load<Texture2D>(DEFAULT_VARIATION_TEXTURE_NAME);
+                    texture = Resources.Load<Texture2D>(MaterialDataConstants.DEFAULT_VARIATION_TEXTURE_NAME);
                 }
 
                 bool textureAdded = _textureData.AVTexturesDrawer.UpdateTexture(texture, sectionIndex, 1, true).Item2;
@@ -387,14 +382,14 @@ namespace Repetitionless.Inspectors
 
             bool progressBarUsed = false;
             
-            if (_dataManager.AssetExists(TEXTURE_DATA_FILE_NAME)) {
-                _textureData = _dataManager.LoadAsset<RepetitionlessTextureDataSO>(TEXTURE_DATA_FILE_NAME);
+            if (_dataManager.AssetExists(MaterialDataConstants.TEXTURE_DATA_FILE_NAME)) {
+                _textureData = _dataManager.LoadAsset<RepetitionlessTextureDataSO>(MaterialDataConstants.TEXTURE_DATA_FILE_NAME);
             } else {
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Texture Data", 0.0f);
                 progressBarUsed = true;
 
                 _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureDataSO>();
-                _dataManager.CreateAsset(_textureData, TEXTURE_DATA_FILE_NAME);
+                _dataManager.CreateAsset(_textureData, MaterialDataConstants.TEXTURE_DATA_FILE_NAME);
                 _textureData.Init(_maxLayers);
 
                 _textureData.Save();
@@ -403,15 +398,15 @@ namespace Repetitionless.Inspectors
 
             _textureData.SetupTextureDrawers(_dataManager);
 
-            if (_dataManager.AssetExists(PROPERTIES_FILE_NAME)) {
-                _materialProperties = _dataManager.LoadAsset<RepetitionlessMaterialDataSO>(PROPERTIES_FILE_NAME);
+            if (_dataManager.AssetExists(MaterialDataConstants.PROPERTIES_FILE_NAME)) {
+                _materialProperties = _dataManager.LoadAsset<RepetitionlessMaterialDataSO>(MaterialDataConstants.PROPERTIES_FILE_NAME);
                 _materialProperties.SetDataManager(_dataManager);
             } else {
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Properties", 0.3f);
                 progressBarUsed = true;
 
                 _materialProperties = ScriptableObject.CreateInstance<RepetitionlessMaterialDataSO>();
-                _dataManager.CreateAsset(_materialProperties, PROPERTIES_FILE_NAME);
+                _dataManager.CreateAsset(_materialProperties, MaterialDataConstants.PROPERTIES_FILE_NAME);
                 _materialProperties.Init(_maxLayers);
                 _materialProperties.SetDataManager(_dataManager);
                 

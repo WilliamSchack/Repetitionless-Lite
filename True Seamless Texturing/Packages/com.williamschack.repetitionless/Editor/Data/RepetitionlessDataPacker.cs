@@ -4,13 +4,9 @@ namespace Repetitionless.Data
 {
     using Variables;
     using Compression;
-    using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 
     public static class RepetitionlessDataPacker
     {
-        public const int COMPRESSED_MATERIAL_VARIABLES_COUNT = 9;
-        public const int COMPRESSED_LAYER_VARIABLES_COUNT = COMPRESSED_MATERIAL_VARIABLES_COUNT * 3 + 4;
-
         public static Color Vector4ToColour(Vector4 vector)
         {
             return new Color(vector.x, vector.y, vector.z, vector.w);
@@ -138,12 +134,12 @@ namespace Repetitionless.Data
             if (baseMaterialChangedIndex != -1 && !updateAll) return baseMaterialChangedIndex;
 
             int farMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.FarMaterialData, newData.FarMaterialData, updateAll);
-            if (farMaterialChangedIndex != -1 && !updateAll) return farMaterialChangedIndex + COMPRESSED_MATERIAL_VARIABLES_COUNT;
+            if (farMaterialChangedIndex != -1 && !updateAll) return farMaterialChangedIndex + MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT;
 
             int blendMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.BlendMaterialData, newData.BlendMaterialData, updateAll);
-            if (blendMaterialChangedIndex != -1 && !updateAll) return blendMaterialChangedIndex + COMPRESSED_MATERIAL_VARIABLES_COUNT * 2;
+            if (blendMaterialChangedIndex != -1 && !updateAll) return blendMaterialChangedIndex + MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT * 2;
 
-            int startingChangedIndex = COMPRESSED_MATERIAL_VARIABLES_COUNT * 3;
+            int startingChangedIndex = MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT;
 
             if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.x, newData.DistanceBlendEnabled ? 1.0f : 0.0f) && !updateAll) return startingChangedIndex + 0;
             if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.y, (int)newData.DistanceBlendMode) && !updateAll)             return startingChangedIndex + 0;
@@ -200,15 +196,15 @@ namespace Repetitionless.Data
 
         public static Color? GetLayerFieldColour(RepetitionlessLayerDataCompressed compressedData, int compressedFieldIndex)
         {
-            int materialFieldIndex = compressedFieldIndex % COMPRESSED_MATERIAL_VARIABLES_COUNT;
+            int materialFieldIndex = compressedFieldIndex % MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT;
 
-            if (compressedFieldIndex < COMPRESSED_MATERIAL_VARIABLES_COUNT)
+            if (compressedFieldIndex < MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT)
                 return GetMaterialFieldColour(compressedData.BaseMaterialData, materialFieldIndex);
 
-            if (compressedFieldIndex < COMPRESSED_MATERIAL_VARIABLES_COUNT * 2)
+            if (compressedFieldIndex < MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT * 2)
                 return GetMaterialFieldColour(compressedData.FarMaterialData, materialFieldIndex);
 
-            if (compressedFieldIndex < COMPRESSED_MATERIAL_VARIABLES_COUNT * 3)
+            if (compressedFieldIndex < MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT * 3)
                 return GetMaterialFieldColour(compressedData.BlendMaterialData, materialFieldIndex);
 
             switch (materialFieldIndex) {

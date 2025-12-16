@@ -21,15 +21,6 @@ float2 RotateUVDegrees(float2 UV, float2 Center, float Rotation)
     return UV;
 }
 
-/*// Copied from unity postprocessing Colors.hlsl
-half4 LinearToSRGB(half4 c)
-{
-    half4 sRGBLo = c * 12.92;
-    half4 sRGBHi = (PositivePow(c, float4(1.0 / 2.4, 1.0 / 2.4, 1.0 / 2.4, 1.0 / 2.4)) * 1.055) - 0.055;
-    half4 sRGB = (c <= 0.0031308) ? sRGBLo : sRGBHi;
-    return sRGB;
-}*/
-
 half3 UnpackNormalMap(float4 PackedNormal, float Strength = 1.0)
 {
     // Approximate LinearToSRGB in linear colour space
