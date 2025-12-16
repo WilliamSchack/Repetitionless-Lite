@@ -6,24 +6,47 @@ using UnityEditor;
 
 namespace Repetitionless.Samples
 {
+    using Helpers;
+
     public class TerrainSceneSettings : MonoBehaviour
     {
         [SerializeField] private Terrain[] _terrains;
+        [SerializeField] private RepetitionlessTerrain _repetitionlessTerrain;
 
+        [Space(10)]
         [SerializeField] private Material _repetitionlessMaterial;
         [SerializeField] private Material _litMaterial;
 
         [HideInInspector] public bool TerrainUsingRepetitionless = true;
 
-        public void ToggleTerrainRepetitionless()
+        public void UpdateRepetitionlessTerrainMaterial()
         {
-            Material currentMaterial = TerrainUsingRepetitionless ? _litMaterial : _repetitionlessMaterial;
-            for (uint i = 0; i < _terrains.Length; i++)
-            {
+            if (TerrainUsingRepetitionless) {
+                _repetitionlessTerrain.enabled = true;
+                _repetitionlessTerrain.UpdateTerrainMaterial(_repetitionlessMaterial);
+                _repetitionlessTerrain.UpdateMaterialTerrainTextures();
+            } else {
+                _repetitionlessTerrain.enabled = false;
+                UpdateTerrainMaterials();
+            }
+        }
+
+        private void UpdateTerrainMaterials()
+        {
+            Material currentMaterial = TerrainUsingRepetitionless ? _repetitionlessMaterial : _litMaterial;
+            for (uint i = 0; i < _terrains.Length; i++) {
                 _terrains[i].materialTemplate = currentMaterial;
             }
+        }
 
+        public void ToggleTerrainRepetitionless()
+        {
             TerrainUsingRepetitionless = !TerrainUsingRepetitionless;
+
+            if (_repetitionlessTerrain != null)
+                UpdateRepetitionlessTerrainMaterial();
+            else
+                UpdateTerrainMaterials();
 
 #if UNITY_EDITOR
             // Repaint scene and game view
