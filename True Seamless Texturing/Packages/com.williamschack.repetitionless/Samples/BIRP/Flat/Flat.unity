@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -42,8 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -147,9 +144,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257373241}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 1
-  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -199,8 +195,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!4 &257373243
 Transform:
   m_ObjectHideFlags: 0
@@ -352,6 +352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1253009735}
   - component: {fileID: 1253009736}
+  - component: {fileID: 1253009737}
   m_Layer: 0
   m_Name: Settings
   m_TagString: Untagged
@@ -388,9 +389,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _terrains:
   - {fileID: 1679117641}
+  _repetitionlessTerrain: {fileID: 0}
   _repetitionlessMaterial: {fileID: 2100000, guid: edbbf70162d070afba2b0aeb72e5a193, type: 2}
   _litMaterial: {fileID: 2100000, guid: 1d1c8ac3d378dd01e9766a1f83a47aa5, type: 2}
   TerrainUsingRepetitionless: 1
+--- !u!114 &1253009737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253009734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf4de4f9e82be3899785e096781f38c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.williamschack.Repetitionless.Samples::Repetitionless.Samples.ColourSpaceChecker
+  _repetitionlessMaterial: {fileID: 2100000, guid: edbbf70162d070afba2b0aeb72e5a193, type: 2}
 --- !u!1 &1679117639
 GameObject:
   m_ObjectHideFlags: 0
