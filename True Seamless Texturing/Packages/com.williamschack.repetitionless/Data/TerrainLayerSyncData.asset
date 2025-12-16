@@ -15,24 +15,24 @@ MonoBehaviour:
   MaterialToTerrainLayer:
     keys:
     - {fileID: 2100000, guid: 48985d512b5b8f4459b89acfba42350f, type: 2}
-    - {fileID: 2100000, guid: 8dbb7c8818debab32b718f309622fd82, type: 2}
     - {fileID: 2100000, guid: 29fc7235d548b7dd1946c2994a9fa1d2, type: 2}
     - {fileID: 2100000, guid: 458947cca5223ab02933576c5b03dfc2, type: 2}
+    - {fileID: 2100000, guid: 8dbb7c8818debab32b718f309622fd82, type: 2}
     values:
     - Items:
       - {fileID: 8574412962073106934, guid: 55137e210829884c3969a2daa86bb484, type: 2}
       - {fileID: 8574412962073106934, guid: f26ec0e15c666cadcb2a9754caaeb069, type: 2}
       - {fileID: 8574412962073106934, guid: 2755994fe9ab76cf6a68e2cb7abd4c30, type: 2}
     - Items:
+      - {fileID: 8574412962073106934, guid: 55137e210829884c3969a2daa86bb484, type: 2}
+      - {fileID: 8574412962073106934, guid: f26ec0e15c666cadcb2a9754caaeb069, type: 2}
+      - {fileID: 8574412962073106934, guid: 2755994fe9ab76cf6a68e2cb7abd4c30, type: 2}
+    - Items:
+      - {fileID: 8574412962073106934, guid: 55137e210829884c3969a2daa86bb484, type: 2}
+      - {fileID: 8574412962073106934, guid: f26ec0e15c666cadcb2a9754caaeb069, type: 2}
+      - {fileID: 8574412962073106934, guid: 2755994fe9ab76cf6a68e2cb7abd4c30, type: 2}
+    - Items:
       - {fileID: 8574412962073106934, guid: 10138a68ada39468dbbab2a5b7a661ed, type: 2}
-    - Items:
-      - {fileID: 8574412962073106934, guid: 55137e210829884c3969a2daa86bb484, type: 2}
-      - {fileID: 8574412962073106934, guid: f26ec0e15c666cadcb2a9754caaeb069, type: 2}
-      - {fileID: 8574412962073106934, guid: 2755994fe9ab76cf6a68e2cb7abd4c30, type: 2}
-    - Items:
-      - {fileID: 8574412962073106934, guid: 55137e210829884c3969a2daa86bb484, type: 2}
-      - {fileID: 8574412962073106934, guid: f26ec0e15c666cadcb2a9754caaeb069, type: 2}
-      - {fileID: 8574412962073106934, guid: 2755994fe9ab76cf6a68e2cb7abd4c30, type: 2}
   TerrainLayerToMaterial:
     keys:
     - {fileID: 8574412962073106934, guid: 55137e210829884c3969a2daa86bb484, type: 2}
