@@ -130,8 +130,8 @@ namespace Repetitionless.Data
                 // Wrapping in try to prevent infinite progress bar on an error
                 try {
                     MaterialDataManager materialData = new MaterialDataManager(mat);
-                    RepetitionlessMaterialDataSO materialProperties = materialData.LoadAsset<RepetitionlessMaterialDataSO>(RepetitionlessMaterialEditorBaseNEW.PROPERTIES_FILE_NAME);
-                    RepetitionlessTextureDataSO  textureData        = materialData.LoadAsset<RepetitionlessTextureDataSO>(RepetitionlessMaterialEditorBaseNEW.TEXTURE_DATA_FILE_NAME);
+                    RepetitionlessMaterialDataSO materialProperties = materialData.LoadAsset<RepetitionlessMaterialDataSO>(RepetitionlessMaterialEditorBase.PROPERTIES_FILE_NAME);
+                    RepetitionlessTextureDataSO  textureData        = materialData.LoadAsset<RepetitionlessTextureDataSO>(RepetitionlessMaterialEditorBase.TEXTURE_DATA_FILE_NAME);
 
                     if (materialProperties == null || textureData == null) {
                         Debug.LogError($"Could not find properties or textures for material {mat.name}");
@@ -198,7 +198,7 @@ namespace Repetitionless.Data
         public void RemoveUnusedLayerTextures(Material material)
         {
             MaterialDataManager materialData = new MaterialDataManager(material);
-            RepetitionlessTextureDataSO textureData = materialData.LoadAsset<RepetitionlessTextureDataSO>(RepetitionlessMaterialEditorBaseNEW.TEXTURE_DATA_FILE_NAME);
+            RepetitionlessTextureDataSO textureData = materialData.LoadAsset<RepetitionlessTextureDataSO>(RepetitionlessMaterialEditorBase.TEXTURE_DATA_FILE_NAME);
 
             // Check if the count differs
             // Only handles if textures need to be removed

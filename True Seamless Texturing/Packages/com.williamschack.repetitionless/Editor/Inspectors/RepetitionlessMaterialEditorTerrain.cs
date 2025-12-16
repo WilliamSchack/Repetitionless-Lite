@@ -11,7 +11,7 @@ namespace Repetitionless.Inspectors
     using Variables;
     using System;
 
-    public class RepetitionlessMaterialEditorTerrainNEW : RepetitionlessMaterialEditorBaseNEW
+    public class RepetitionlessMaterialEditorTerrain : RepetitionlessMaterialEditorBase
     {
         protected override int _maxLayers => 32;
 

@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1185387119791001775
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.ShaderGraph.Editor::UnityEditor.Rendering.BuiltIn.AssetVersion
+  version: 0
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
-  m_Shader: {fileID: -6465566751694194690, guid: d9f3c26619b9fff3fba543d61ffaa00f, type: 3}
+  m_Name: New Material 1
+  m_Shader: {fileID: -6465566751694194690, guid: 2e442388a9557679a8eaf0a9230f4c74, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -18,6 +31,7 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
+    RenderType: Opaque
     TerrainCompatible: true
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -25,11 +39,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 18700000, guid: bc15bf84fd41aadf39400a2e7406c12a, type: 2}
+        m_Texture: {fileID: 18700000, guid: 17fc3d17c0fbe7262b594dd89c2f210c, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AssignedTexturesTexture:
-        m_Texture: {fileID: 2800000, guid: e2fcacdf4a90792a3a2f995f71b9c014, type: 2}
+        m_Texture: {fileID: 2800000, guid: 3ada332f07136345780c48f7679c184d, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BMTextures:
@@ -113,7 +127,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PropertiesTexture:
-        m_Texture: {fileID: 2800000, guid: 81772c69dbbf59ed6934714f224523e7, type: 2}
+        m_Texture: {fileID: 2800000, guid: fa91a6fe1747de9e1a97911d9def78ef, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TerrainHoles:
@@ -126,7 +140,7 @@ Material:
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 2
     - _BUILTIN_DstBlend: 0
-    - _BUILTIN_QueueControl: -1
+    - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BUILTIN_SrcBlend: 1
     - _BUILTIN_Surface: 0
@@ -151,23 +165,10 @@ Material:
     - _SrcBlend: 1
     - _SurfaceTypeSetting: 0
     - _UVSec: 0
-    - _UVSpace: 1
+    - _UVSpace: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &6583673874790682398
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.ShaderGraph.Editor::UnityEditor.Rendering.BuiltIn.AssetVersion
-  version: 0

@@ -17,7 +17,7 @@ namespace Repetitionless.Inspectors
     /// This assumes individual textures which is now unused in the current materials<br />
     /// To use the current packed texture arrays, use RepetitionlessPackedArrayGUIBase
     /// </summary>
-    public class RepetitionlessMaterialEditorBaseNEW : ShaderGUI
+    public class RepetitionlessMaterialEditorBase : ShaderGUI
     {
         #region Variables
         

@@ -4,24 +4,24 @@ using UnityEditor;
 
 namespace Repetitionless.Inspectors
 {
-    public class RepetitionlessMasterGUI : RepetitionlessGUIBase
+    public class RepetitionlessMaterialEditorMaster : RepetitionlessMaterialEditorBase
     {
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
         {
             base.OnGUI(materialEditor, properties);
 
             // Base Material
-            DrawBaseMaterialGUI();
+            DrawBaseMaterialGUI(0);
 
             GUILayout.Space(SETTING_PADDING);
 
             // Distance Blend Material
-            DrawDistanceBlendGUI();
+            DrawDistanceBlendGUI(0);
 
             GUILayout.Space(SETTING_PADDING);
 
             // Material Blend
-            DrawMaterialBlendGUI();
+            DrawMaterialBlendGUI(0);
 
             GUILayout.Space(SETTING_PADDING);
 
