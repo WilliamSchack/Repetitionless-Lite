@@ -30,6 +30,7 @@ namespace Repetitionless.TextureUtilities
         {
             public Texture2D Texture;
             public bool Disabled;
+            public bool DataTexture;
             public bool NormalMap;
             public List<FromToChannel> FromToChannels;
         }
@@ -96,7 +97,7 @@ namespace Repetitionless.TextureUtilities
 
                 TextureDataGPU gpuData;
                 gpuData.NormalMap = currentTextureData.NormalMap ? 1 : 0;
-                gpuData.SRGB = currentTextureData.Texture.isDataSRGB ? 1 : 0;
+                gpuData.SRGB = currentTextureData.Texture.isDataSRGB && !currentTextureData.DataTexture ? 1 : 0;
 
                 int fromToChannelsCount = currentTextureData.FromToChannels.Count;
                 if (fromToChannelsCount > 4) {

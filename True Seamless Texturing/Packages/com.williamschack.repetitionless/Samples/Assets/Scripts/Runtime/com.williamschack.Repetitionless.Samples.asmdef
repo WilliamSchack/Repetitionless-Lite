@@ -1,7 +1,9 @@
 {
     "name": "com.williamschack.Repetitionless.Samples",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:a620bba248562f4889995c340a74987a"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

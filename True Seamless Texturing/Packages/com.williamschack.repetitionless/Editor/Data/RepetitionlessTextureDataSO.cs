@@ -235,6 +235,7 @@ namespace Repetitionless.Data
             // Albedo
             data.AVTextures[0] = new TexturePacker.TextureData() {
                 Disabled = false,
+                DataTexture = false,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -255,6 +256,7 @@ namespace Repetitionless.Data
             // Variation
             data.AVTextures[1] = new TexturePacker.TextureData() {
                 Disabled = false,
+                DataTexture = true,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -267,6 +269,7 @@ namespace Repetitionless.Data
             // Normal
             data.NSOTextures[0] = new TexturePacker.TextureData() {
                 Disabled = false,
+                DataTexture = true,
                 NormalMap = true,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -283,6 +286,7 @@ namespace Repetitionless.Data
             // Smoothness / Roughness
             data.NSOTextures[1] = new TexturePacker.TextureData() {
                 Disabled = false,
+                DataTexture = true,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -295,6 +299,7 @@ namespace Repetitionless.Data
             // Occlussion
             data.NSOTextures[2] = new TexturePacker.TextureData() {
                 Disabled = false,
+                DataTexture = true,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -307,6 +312,7 @@ namespace Repetitionless.Data
             // Packed Texture (Occlussion, Smoothness)
             data.NSOTextures[3] = new TexturePacker.TextureData() {
                 Disabled = true,
+                DataTexture = true,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     // Occlussion
@@ -325,6 +331,7 @@ namespace Repetitionless.Data
             // Emission
             data.EMTextures[0] = new TexturePacker.TextureData() {
                 Disabled = false,
+                DataTexture = true,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -345,6 +352,7 @@ namespace Repetitionless.Data
             // Metallic
             data.EMTextures[1] = new TexturePacker.TextureData() {
                 Disabled = false,
+                DataTexture = true,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
@@ -357,6 +365,7 @@ namespace Repetitionless.Data
             // Packed Texture (Metallic)
             data.EMTextures[2] = new TexturePacker.TextureData() {
                 Disabled = true,
+                DataTexture = true,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(

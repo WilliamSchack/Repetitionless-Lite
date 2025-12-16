@@ -17,6 +17,7 @@ MonoBehaviour:
       AVTextures:
       - Texture: {fileID: 2800000, guid: a231b5934fba11f9aaa3d24a69ece201, type: 3}
         Disabled: 0
+        DataTexture: 0
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -25,8 +26,9 @@ MonoBehaviour:
           To: 1
         - From: 2
           To: 2
-      - Texture: {fileID: 2800000, guid: 9396c9268ceae7f46bd3c9218f7a5ac6, type: 3}
-        Disabled: 1
+      - Texture: {fileID: 0}
+        Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -34,6 +36,7 @@ MonoBehaviour:
       NSOTextures:
       - Texture: {fileID: 2800000, guid: 2b5ae3149b4556623b251e31caea52b1, type: 3}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 1
         FromToChannels:
         - From: 0
@@ -42,18 +45,21 @@ MonoBehaviour:
           To: 1
       - Texture: {fileID: 2800000, guid: afd4d01f4261153ee8c906e2a2dbc584, type: 3}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 2
       - Texture: {fileID: 2800000, guid: 0e5149c46a361fd29bd4a696e672c85d, type: 3}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
         Disabled: 1
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 1
@@ -63,6 +69,7 @@ MonoBehaviour:
       EMTextures:
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -73,12 +80,14 @@ MonoBehaviour:
           To: 2
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
         Disabled: 1
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -87,6 +96,7 @@ MonoBehaviour:
       AVTextures:
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 0
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -97,6 +107,7 @@ MonoBehaviour:
           To: 2
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -104,6 +115,7 @@ MonoBehaviour:
       NSOTextures:
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 1
         FromToChannels:
         - From: 0
@@ -112,18 +124,21 @@ MonoBehaviour:
           To: 1
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 2
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
         Disabled: 1
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 1
@@ -133,6 +148,7 @@ MonoBehaviour:
       EMTextures:
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -143,12 +159,14 @@ MonoBehaviour:
           To: 2
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
         Disabled: 1
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -157,6 +175,7 @@ MonoBehaviour:
       AVTextures:
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 0
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -167,6 +186,7 @@ MonoBehaviour:
           To: 2
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -174,6 +194,7 @@ MonoBehaviour:
       NSOTextures:
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 1
         FromToChannels:
         - From: 0
@@ -182,18 +203,21 @@ MonoBehaviour:
           To: 1
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 2
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
         Disabled: 1
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 1
@@ -203,6 +227,7 @@ MonoBehaviour:
       EMTextures:
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -213,12 +238,14 @@ MonoBehaviour:
           To: 2
       - Texture: {fileID: 0}
         Disabled: 0
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
         Disabled: 1
+        DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
@@ -226,6 +253,7 @@ MonoBehaviour:
     BlendMaskTexture:
     - Texture: {fileID: 0}
       Disabled: 0
+      DataTexture: 0
       NormalMap: 0
       FromToChannels:
       - From: 0
