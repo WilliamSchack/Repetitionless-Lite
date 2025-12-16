@@ -72,6 +72,9 @@ namespace Repetitionless.Inspectors
 
         private void SyncLayersToMaterial()
         {
+            if (_terrainData == null)
+                return;
+
             // Update global data for terrain layer saving
             _syncData.UpdateGlobalMaterialLayers(_main.MainMaterial, _terrainData.terrainLayers);
 
@@ -94,7 +97,7 @@ namespace Repetitionless.Inspectors
         private void UpdateMaterialTerrainLayerTextures()
         {
             EditorApplication.delayCall += () => {
-                if (_main.MainMaterial == null)
+                if (_main.MainMaterial == null || _terrainData == null)
                     return;
 
                 // Will only update changed layers
@@ -118,8 +121,10 @@ namespace Repetitionless.Inspectors
             _autoSaveProp      = serializedObject.FindProperty("AutoSaveTextures");
             _parentTerrainProp = serializedObject.FindProperty("ParentTerrain");
 
-            _terrainData   = _main.Terrain.terrainData;
-            _terrainLayers = _terrainData.terrainLayers;
+            if (_main.Terrain.terrainData != null) {
+                _terrainData   = _main.Terrain.terrainData;
+                _terrainLayers = _terrainData.terrainLayers;
+            }
 
             _terrainNeighbours[0] = _main.Terrain.leftNeighbor;
             _terrainNeighbours[1] = _main.Terrain.rightNeighbor;

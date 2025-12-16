@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
-#if UNITY_EDITOR
 using UnityEditor;
-#endif
 
 namespace Repetitionless.Data
 {
-    using Inspectors;
     using Variables;
+    using Inspectors;
+    using GUIUtilities;
 
     public class TerrainLayerSyncDataSO : ScriptableObject
     {
@@ -22,8 +20,6 @@ namespace Repetitionless.Data
 
         public SerializableDictionary<Material, TerrainLayerList> MaterialToTerrainLayer = new SerializableDictionary<Material, TerrainLayerList>();
         public SerializableDictionary<TerrainLayer, MaterialList> TerrainLayerToMaterial = new SerializableDictionary<TerrainLayer, MaterialList>();
-
-    #if UNITY_EDITOR
         private static TerrainLayerSyncDataSO Create()
         {
             TerrainLayerSyncDataSO asset = CreateInstance<TerrainLayerSyncDataSO>();
@@ -39,14 +35,12 @@ namespace Repetitionless.Data
 
             return asset;
         }
-    #endif
 
         public void Save()
         {
-    #if UNITY_EDITOR
             EditorUtility.SetDirty(this);
-    #endif
         }
+
 
         public void UpdateGlobalMaterialLayers(Material mat, TerrainLayer[] layers)
         {
@@ -212,32 +206,25 @@ namespace Repetitionless.Data
             if (terrainLayers == null) return;
 
             textureData.SetupTextureDrawers(materialData);
-            bool avHasArray  = textureData.AVTexturesDrawer.Array  == null;
-            bool nsoHasArray = textureData.NSOTexturesDrawer.Array == null;
-            bool emHasArray  = textureData.EMTexturesDrawer.Array  == null;
+            RemoveArrayLayer(textureData.AVTexturesDrawer,  textureData, terrainLayers.Count);
+            RemoveArrayLayer(textureData.NSOTexturesDrawer, textureData, terrainLayers.Count);
+            RemoveArrayLayer(textureData.EMTexturesDrawer,  textureData, terrainLayers.Count);
+        }
 
-            if (!avHasArray && !nsoHasArray && !emHasArray) return;
-
-            // AV Array
-            int arrayDepth = textureData.AVTexturesDrawer.Array.depth;
-            if (terrainLayers.Count >= arrayDepth)
+        private void RemoveArrayLayer(TextureArrayCustomChannelsGUIDrawer arrayDrawer, RepetitionlessTextureDataSO textureData, int terrainLayersCount)
+        {
+            if (arrayDrawer == null || arrayDrawer.Array == null)
                 return;
 
-            for (int i = terrainLayers.Count; i < arrayDepth; i++) {
-                Debug.Log("REMOVING: " + i);
-                textureData.AVTexturesDrawer.RemoveArrayLayer(i*3+0);
-                textureData.AVTexturesDrawer.RemoveArrayLayer(i*3+1);
-                textureData.AVTexturesDrawer.RemoveArrayLayer(i*3+2);
+            int arrayDepth = arrayDrawer.Array.depth;
+            if (terrainLayersCount >= arrayDepth)
+                return;
 
-                //textureData.LayersTextureData[i].BaseMaterialTextures.AVTextures[0].Texture = null;
-                //textureData.LayersTextureData[i].BaseMaterialTextures.AVTextures[1].Texture = null;
+            for (int i = terrainLayersCount; i < arrayDepth; i++) {
+                textureData.AVTexturesDrawer.RemoveArrayLayer(i * 3 + 0);
+                textureData.AVTexturesDrawer.RemoveArrayLayer(i * 3 + 1);
+                textureData.AVTexturesDrawer.RemoveArrayLayer(i * 3 + 2);
             }
-
-            Debug.Log(textureData.LayersTextureData[1].BaseMaterialTextures.AVTextures[0].Texture);
-
-            // NSOArray
-
-            // EMArray
         }
     }
 }
