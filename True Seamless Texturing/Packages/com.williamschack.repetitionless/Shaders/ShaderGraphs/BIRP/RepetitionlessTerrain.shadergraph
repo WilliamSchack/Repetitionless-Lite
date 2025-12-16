@@ -5250,11 +5250,11 @@
     },
     "m_Name": "Split",
     "m_DrawState": {
-        "m_Expanded": true,
+        "m_Expanded": false,
         "m_Position": {
             "serializedVersion": "2",
             "x": 2355.0,
-            "y": 2675.0,
+            "y": 2672.0,
             "width": 119.0,
             "height": 77.0
         }

@@ -910,7 +910,7 @@
         },
         "preventRotation": false
     },
-    "m_Path": "Repetitionless/BIRP",
+    "m_Path": "Repetitionless/URP",
     "m_GraphPrecision": 1,
     "m_PreviewMode": 2,
     "m_OutputNode": {
@@ -919,7 +919,7 @@
     "m_SubDatas": [],
     "m_ActiveTargets": [
         {
-            "m_Id": "2ce9b9b270fc4cceaff9f3ebdc0d98d4"
+            "m_Id": "b96d5adc6fd846999e9ef9c8056ae53b"
         }
     ]
 }
@@ -1438,14 +1438,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.Rendering.BuiltIn.ShaderGraph.BuiltInLitSubTarget",
-    "m_ObjectId": "219a412347eb4f4d9eb7dd36ad5b6586",
-    "m_WorkflowMode": 1,
-    "m_NormalDropOffSpace": 0
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DArrayShaderProperty",
     "m_ObjectId": "21a95e7586af417eabf41c54dab244ee",
     "m_Guid": {
@@ -1675,24 +1667,6 @@
         "y": 0.0
     },
     "m_Labels": []
-}
-
-{
-    "m_SGVersion": 2,
-    "m_Type": "UnityEditor.Rendering.BuiltIn.ShaderGraph.BuiltInTarget",
-    "m_ObjectId": "2ce9b9b270fc4cceaff9f3ebdc0d98d4",
-    "m_Datas": [],
-    "m_ActiveSubTarget": {
-        "m_Id": "219a412347eb4f4d9eb7dd36ad5b6586"
-    },
-    "m_AllowMaterialOverride": true,
-    "m_SurfaceType": 0,
-    "m_ZWriteControl": 0,
-    "m_ZTestMode": 4,
-    "m_AlphaMode": 0,
-    "m_RenderFace": 2,
-    "m_AlphaClip": false,
-    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessMaterialEditorMaster"
 }
 
 {
@@ -3411,6 +3385,16 @@
 }
 
 {
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalLitSubTarget",
+    "m_ObjectId": "99d499d7e34b436a994092e0a0e1d4c5",
+    "m_WorkflowMode": 1,
+    "m_NormalDropOffSpace": 0,
+    "m_ClearCoat": false,
+    "m_BlendModePreserveSpecular": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "9d17d8ecce2e493fb5c4f386e645e5fa",
@@ -4083,6 +4067,31 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalTarget",
+    "m_ObjectId": "b96d5adc6fd846999e9ef9c8056ae53b",
+    "m_Datas": [],
+    "m_ActiveSubTarget": {
+        "m_Id": "99d499d7e34b436a994092e0a0e1d4c5"
+    },
+    "m_AllowMaterialOverride": false,
+    "m_SurfaceType": 0,
+    "m_ZTestMode": 4,
+    "m_ZWriteControl": 0,
+    "m_AlphaMode": 0,
+    "m_RenderFace": 2,
+    "m_AlphaClip": true,
+    "m_CastShadows": true,
+    "m_ReceiveShadows": true,
+    "m_DisableTint": false,
+    "m_AdditionalMotionVectorMode": 0,
+    "m_AlembicMotionVectors": false,
+    "m_SupportsLODCrossFade": false,
+    "m_CustomEditorGUI": "",
+    "m_SupportVFX": false
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "b9e078e558d646888df28f1a3de4cc21",
@@ -4727,11 +4736,11 @@
     },
     "m_Name": "Split",
     "m_DrawState": {
-        "m_Expanded": true,
+        "m_Expanded": false,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 2355.0,
-            "y": 2675.0,
+            "x": 2356.999755859375,
+            "y": 2674.999755859375,
             "width": 119.0,
             "height": 77.0
         }
