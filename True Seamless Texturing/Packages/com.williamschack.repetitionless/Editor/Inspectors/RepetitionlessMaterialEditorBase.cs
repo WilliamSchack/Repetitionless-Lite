@@ -119,6 +119,7 @@ namespace Repetitionless.Editor.Inspectors
         // ShaderGUI doesnt have an OnEnable function, using this instead
         private bool _firstSetup = true;
 
+        private EUVSpace _prevUVSpace;
 
         private LocalKeyword _triplanarKeyword;
         private bool _triplanarEnabled = false;
@@ -377,6 +378,15 @@ namespace Repetitionless.Editor.Inspectors
             });
         }
 
+        private void SetTriplanarEnabled(bool enabled)
+        {
+            _triplanarEnabled = enabled;
+
+            _material.SetKeyword(_triplanarKeyword, enabled);
+            _material.SetInt(Constants.TRIPLANAR_KEYWORD, enabled ? 1 : 0); // Required to save for some reason
+            EditorUtility.SetDirty(_material);
+        }
+
         #endregion
 
         #region GUI Calls
@@ -592,16 +602,31 @@ namespace Repetitionless.Editor.Inspectors
             EditorGUI.BeginChangeCheck();
             EUVSpace uvSpace = (EUVSpace)uvSpaceProp.floatValue;
             uvSpace = (EUVSpace)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), "UV Space", uvSpace);
-            if (EditorGUI.EndChangeCheck())
+            if (EditorGUI.EndChangeCheck()) {
                 uvSpaceProp.floatValue = (int)uvSpace;
+                _prevUVSpace = uvSpace;
+
+                // If setting uv space to local, disable triplanar
+                if (uvSpace == EUVSpace.Local) {
+                    SetTriplanarEnabled(false);
+                }
+            }
 
             // Triplanar
             EditorGUI.BeginChangeCheck();
-            _triplanarEnabled = EditorGUILayout.Toggle(new GUIContent("Triplanar"), _triplanarEnabled);
+            _triplanarEnabled = EditorGUILayout.Toggle(new GUIContent("Triplanar", "Uses world space UVs and samples the material in each direction"), _triplanarEnabled);
             if (EditorGUI.EndChangeCheck()) {
-                _material.SetKeyword(_triplanarKeyword, _triplanarEnabled);
-                _material.SetInt(Constants.TRIPLANAR_KEYWORD, _triplanarEnabled ? 1 : 0); // Required to save for some reason
-                EditorUtility.SetDirty(_material);
+                SetTriplanarEnabled(_triplanarEnabled);
+
+                // If enabled set uv space to world
+                if (_triplanarEnabled && uvSpace == (int)EUVSpace.Local) {
+                    uvSpaceProp.floatValue = (int)EUVSpace.World;
+                }
+
+                // If disabling triplanar, set uv space back to what it was before
+                if (!_triplanarEnabled) {
+                    uvSpaceProp.floatValue = (int)_prevUVSpace;                   
+                }
             }
 
             // Advanced Options
