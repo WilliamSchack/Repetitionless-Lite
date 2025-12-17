@@ -9,7 +9,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
-namespace Repetitionless.GUIUtilities
+namespace Repetitionless.Editor.GUIUtilities
 {
     using Compression;
     using TextureUtilities;

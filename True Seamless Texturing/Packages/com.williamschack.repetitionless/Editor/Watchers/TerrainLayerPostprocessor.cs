@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Repetitionless.Watchers
+namespace Repetitionless.Editor.Watchers
 {
     using Data;
 

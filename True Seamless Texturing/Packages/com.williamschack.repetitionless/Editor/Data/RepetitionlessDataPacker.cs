@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Repetitionless.Data
+namespace Repetitionless.Editor.Data
 {
     using Variables;
     using Compression;
@@ -134,12 +134,12 @@ namespace Repetitionless.Data
             if (baseMaterialChangedIndex != -1 && !updateAll) return baseMaterialChangedIndex;
 
             int farMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.FarMaterialData, newData.FarMaterialData, updateAll);
-            if (farMaterialChangedIndex != -1 && !updateAll) return farMaterialChangedIndex + MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT;
+            if (farMaterialChangedIndex != -1 && !updateAll) return farMaterialChangedIndex + Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT;
 
             int blendMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.BlendMaterialData, newData.BlendMaterialData, updateAll);
-            if (blendMaterialChangedIndex != -1 && !updateAll) return blendMaterialChangedIndex + MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT * 2;
+            if (blendMaterialChangedIndex != -1 && !updateAll) return blendMaterialChangedIndex + Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT * 2;
 
-            int startingChangedIndex = MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT;
+            int startingChangedIndex = Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT * Constants.MATERIALS_PER_LAYER_COUNT;
 
             if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.x, newData.DistanceBlendEnabled ? 1.0f : 0.0f) && !updateAll) return startingChangedIndex + 0;
             if (UpdateGenericIfChanged<float>(ref compressedData.DistanceBlendSettings.y, (int)newData.DistanceBlendMode) && !updateAll)             return startingChangedIndex + 0;
@@ -196,15 +196,15 @@ namespace Repetitionless.Data
 
         public static Color? GetLayerFieldColour(RepetitionlessLayerDataCompressed compressedData, int compressedFieldIndex)
         {
-            int materialFieldIndex = compressedFieldIndex % MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT;
+            int materialFieldIndex = compressedFieldIndex % Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT;
 
-            if (compressedFieldIndex < MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT)
+            if (compressedFieldIndex < Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT)
                 return GetMaterialFieldColour(compressedData.BaseMaterialData, materialFieldIndex);
 
-            if (compressedFieldIndex < MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT * 2)
+            if (compressedFieldIndex < Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT * 2)
                 return GetMaterialFieldColour(compressedData.FarMaterialData, materialFieldIndex);
 
-            if (compressedFieldIndex < MaterialDataConstants.COMPRESSED_MATERIAL_VARIABLES_COUNT * 3)
+            if (compressedFieldIndex < Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT * 3)
                 return GetMaterialFieldColour(compressedData.BlendMaterialData, materialFieldIndex);
 
             switch (materialFieldIndex) {

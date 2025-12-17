@@ -4,7 +4,7 @@ using UnityEditor;
 using System.IO;
 using System.Linq;
 
-namespace Repetitionless.Data
+namespace Repetitionless.Editor.Data
 {
     public class MaterialDataManager
     {

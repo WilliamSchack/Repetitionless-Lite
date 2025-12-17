@@ -8,7 +8,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
-namespace Repetitionless.TextureUtilities
+namespace Repetitionless.Editor.TextureUtilities
 {
     using CustomDialog;
 

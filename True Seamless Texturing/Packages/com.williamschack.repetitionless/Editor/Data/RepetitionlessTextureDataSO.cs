@@ -5,11 +5,10 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace Repetitionless.Data
+namespace Repetitionless.Editor.Data
 {
     using TextureUtilities;
     using GUIUtilities;
-    using Variables;
     using Compression;
 
     public class RepetitionlessTextureDataSO : ScriptableObject
@@ -197,9 +196,9 @@ namespace Repetitionless.Data
             MaterialProperty emTexturesProp  = GetTexturesProp(2);
             MaterialProperty bmTexturesProp  = GetTexturesProp(3);
 
-            AVTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 0); }, Save, (int i) => { return AssignedTexturesGetter(0, i); }, (int i, int at) => { AssignedTexturesSetter(0, i, at); }, DEFAULT_AV_COLOUR,  avTexturesProp,  LayersTextureData.Length * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT);
-            NSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 1); }, Save, (int i) => { return AssignedTexturesGetter(1, i); }, (int i, int at) => { AssignedTexturesSetter(1, i, at); }, DEFAULT_NSO_COLOUR, nsoTexturesProp, LayersTextureData.Length * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT);
-            EMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 2); }, Save, (int i) => { return AssignedTexturesGetter(2, i); }, (int i, int at) => { AssignedTexturesSetter(2, i, at); }, DEFAULT_EM_COLOUR,  emTexturesProp,  LayersTextureData.Length * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT);
+            AVTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 0); }, Save, (int i) => { return AssignedTexturesGetter(0, i); }, (int i, int at) => { AssignedTexturesSetter(0, i, at); }, DEFAULT_AV_COLOUR,  avTexturesProp,  LayersTextureData.Length * Constants.MATERIALS_PER_LAYER_COUNT);
+            NSOTexturesDrawer = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 1); }, Save, (int i) => { return AssignedTexturesGetter(1, i); }, (int i, int at) => { AssignedTexturesSetter(1, i, at); }, DEFAULT_NSO_COLOUR, nsoTexturesProp, LayersTextureData.Length * Constants.MATERIALS_PER_LAYER_COUNT);
+            EMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetTextureDrawerTextureData(i, 2); }, Save, (int i) => { return AssignedTexturesGetter(2, i); }, (int i, int at) => { AssignedTexturesSetter(2, i, at); }, DEFAULT_EM_COLOUR,  emTexturesProp,  LayersTextureData.Length * Constants.MATERIALS_PER_LAYER_COUNT);
             BMTexturesDrawer  = new TextureArrayCustomChannelsGUIDrawer(_dataManager, (int i) => { return ref GetBlendMaskTextureData(i);        }, Save, (int i) => { return AssignedTexturesGetter(3, i); }, (int i, int at) => { AssignedTexturesSetter(3, i, at); }, DEFAULT_BM_COLOUR,  bmTexturesProp,  LayersTextureData.Length);
 
             AVTexturesDrawer.TextureFormat  = TextureFormat.BC7;
@@ -457,7 +456,7 @@ namespace Repetitionless.Data
             textureData.EMTextures[2].Disabled = !enabled;
 
             // Update textures
-            int arrayIndex = layerIndex * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT + materialIndex;
+            int arrayIndex = layerIndex * Constants.MATERIALS_PER_LAYER_COUNT + materialIndex;
 
             if (enabled) {
                 // Use packed texture

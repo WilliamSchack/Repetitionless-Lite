@@ -11,7 +11,7 @@ using UnityEngine.Rendering;
 using UnityEditor;
 using UnityEditorInternal;
 
-namespace Repetitionless.CustomWindows
+namespace Repetitionless.Editor.CustomWindows
 {
     using GUIUtilities;
     using TextureUtilities;

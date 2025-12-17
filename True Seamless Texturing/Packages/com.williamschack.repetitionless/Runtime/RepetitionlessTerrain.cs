@@ -16,7 +16,7 @@ using UnityEditor.SceneManagement;
 // Scene saved
 // Undo/Redo
 
-namespace Repetitionless.Helpers
+namespace Repetitionless
 {
     [ExecuteInEditMode]
     [RequireComponent(typeof(Terrain))]

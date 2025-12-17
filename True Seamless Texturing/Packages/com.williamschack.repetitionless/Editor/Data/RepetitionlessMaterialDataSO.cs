@@ -1,11 +1,10 @@
-using System.Linq;
 using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace Repetitionless.Data
+namespace Repetitionless.Editor.Data
 {
     using Variables;
 
@@ -55,7 +54,7 @@ namespace Repetitionless.Data
 
         private Color[] GetLayerDataColour(int layerIndex)
         {
-            Color[] dataColours = new Color[MaterialDataConstants.COMPRESSED_LAYER_VARIABLES_COUNT];
+            Color[] dataColours = new Color[Constants.COMPRESSED_LAYER_VARIABLES_COUNT];
             for (int i = 0; i < dataColours.Length; i++) {
                 dataColours[i] = GetDataColour(layerIndex, i).Value;
             }
@@ -86,7 +85,7 @@ namespace Repetitionless.Data
                 // Load and modify the texture
                 texture = _dataManager.LoadAsset<Texture2D>(TEXTURE_ASSET_NAME);
                 
-                for (int i = 0; i < MaterialDataConstants.COMPRESSED_LAYER_VARIABLES_COUNT; i++) {
+                for (int i = 0; i < Constants.COMPRESSED_LAYER_VARIABLES_COUNT; i++) {
                     int fieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed[layerIndex], Data[layerIndex]);
 
                     if (fieldChangedIndex == -1)
@@ -103,17 +102,17 @@ namespace Repetitionless.Data
                 }
             } else {
                 // Create a new texture
-                texture = new Texture2D(MaterialDataConstants.COMPRESSED_LAYER_VARIABLES_COUNT, Data.Length, DATA_TEXTURE_FORMAT, false);
+                texture = new Texture2D(Constants.COMPRESSED_LAYER_VARIABLES_COUNT, Data.Length, DATA_TEXTURE_FORMAT, false);
 
-                Color[] dataColours = new Color[MaterialDataConstants.COMPRESSED_LAYER_VARIABLES_COUNT * Data.Length];
+                Color[] dataColours = new Color[Constants.COMPRESSED_LAYER_VARIABLES_COUNT * Data.Length];
                 for (int i = 0; i < Data.Length; i++) {
                     // Compress all values
                     RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed[i], Data[i], true);
                     Color[] layerDataColours = GetLayerDataColour(layerIndex);
 
                     // Add colours to the main array
-                    int coloursOffset = MaterialDataConstants.COMPRESSED_LAYER_VARIABLES_COUNT * i;
-                    for (int x = 0; x < MaterialDataConstants.COMPRESSED_LAYER_VARIABLES_COUNT; x++) {
+                    int coloursOffset = Constants.COMPRESSED_LAYER_VARIABLES_COUNT * i;
+                    for (int x = 0; x < Constants.COMPRESSED_LAYER_VARIABLES_COUNT; x++) {
                         dataColours[coloursOffset + x] = layerDataColours[x];
                     }
                 }

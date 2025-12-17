@@ -1,9 +1,8 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
-namespace Repetitionless.TextureUtilities
+namespace Repetitionless.Editor.TextureUtilities
 {
     public static class TexturePacker
     {

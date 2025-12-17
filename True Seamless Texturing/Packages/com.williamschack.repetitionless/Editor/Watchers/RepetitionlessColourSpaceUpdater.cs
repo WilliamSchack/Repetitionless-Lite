@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-namespace Repetitionless.Watchers
+namespace Repetitionless.Editor.Watchers
 {
     using Data;
 
@@ -42,7 +42,7 @@ namespace Repetitionless.Watchers
             foreach(Material mat in materials) {
                 // Check each for what colour space it was packed in
                 MaterialDataManager materialData = new MaterialDataManager(mat);
-                RepetitionlessTextureDataSO textureData = materialData.LoadAsset<RepetitionlessTextureDataSO>(MaterialDataConstants.TEXTURE_DATA_FILE_NAME);
+                RepetitionlessTextureDataSO textureData = materialData.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
                 if (textureData == null) continue;
 
                 // Check the texture data if it was made in this colour space
@@ -71,7 +71,7 @@ namespace Repetitionless.Watchers
                     Texture2D albedoTexture = textureData.GetTextureData(i, 0, 0)[0].Texture;
                     if (albedoTexture == null) continue;
 
-                    int arrayIndex = i * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT;
+                    int arrayIndex = i * Constants.MATERIALS_PER_LAYER_COUNT;
                     textureData.AVTexturesDrawer.UpdateTexture(albedoTexture, arrayIndex, 0, true);
                 }
             }

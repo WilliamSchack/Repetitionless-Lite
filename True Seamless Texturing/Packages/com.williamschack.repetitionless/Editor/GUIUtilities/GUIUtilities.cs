@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEditor;
 
-namespace Repetitionless.GUIUtilities
+namespace Repetitionless.Editor.GUIUtilities
 {
     /// <summary>
     /// Many GUI functions to make inspector creation easier without MaterialProperties

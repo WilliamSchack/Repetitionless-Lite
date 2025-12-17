@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Repetitionless.Watchers
+namespace Repetitionless.Editor.Watchers
 {
     using Data;
 
@@ -10,8 +10,6 @@ namespace Repetitionless.Watchers
     {
 	    private static Material GetRepetitionlessMaterial(string assetPath)
         {
-            Debug.LogWarning("TEST ME ON OLDER UNITY VERSIONS");
-
             if (!assetPath.EndsWith(".mat"))
                 return null;
 

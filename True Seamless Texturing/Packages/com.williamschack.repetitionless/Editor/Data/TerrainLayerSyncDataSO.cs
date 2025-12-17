@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
-namespace Repetitionless.Data
+namespace Repetitionless.Editor.Data
 {
     using Variables;
     using GUIUtilities;
@@ -129,8 +129,8 @@ namespace Repetitionless.Data
                 // Wrapping in try to prevent infinite progress bar on an error
                 try {
                     MaterialDataManager materialData = new MaterialDataManager(mat);
-                    RepetitionlessMaterialDataSO materialProperties = materialData.LoadAsset<RepetitionlessMaterialDataSO>(MaterialDataConstants.PROPERTIES_FILE_NAME);
-                    RepetitionlessTextureDataSO  textureData        = materialData.LoadAsset<RepetitionlessTextureDataSO>(MaterialDataConstants.TEXTURE_DATA_FILE_NAME);
+                    RepetitionlessMaterialDataSO materialProperties = materialData.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
+                    RepetitionlessTextureDataSO  textureData        = materialData.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
 
                     if (materialProperties == null || textureData == null) {
                         Debug.LogError($"Could not find properties or textures for material {mat.name}");
@@ -158,7 +158,7 @@ namespace Repetitionless.Data
                     EditorUtility.DisplayProgressBar(progressBarTitle, "Updating Textures", 0.2f);
 
                     // Update diffuse, normal textures
-                    int arrayLayerIndex = layerIndex * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT + 0; // Using base material
+                    int arrayLayerIndex = layerIndex * Constants.MATERIALS_PER_LAYER_COUNT + 0; // Using base material
                     if(terrainLayer.diffuseTexture != textureData.GetTextureData(layerIndex, 0, 0)[0].Texture)
                         textureData.AVTexturesDrawer.UpdateTexture(terrainLayer.diffuseTexture, arrayLayerIndex, 0, true);
                     if(terrainLayer.normalMapTexture != textureData.GetTextureData(layerIndex, 0, 1)[0].Texture)
@@ -197,7 +197,7 @@ namespace Repetitionless.Data
         public void RemoveUnusedLayerTextures(Material material)
         {
             MaterialDataManager materialData = new MaterialDataManager(material);
-            RepetitionlessTextureDataSO textureData = materialData.LoadAsset<RepetitionlessTextureDataSO>(MaterialDataConstants.TEXTURE_DATA_FILE_NAME);
+            RepetitionlessTextureDataSO textureData = materialData.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
 
             // Check if the count differs
             // Only handles if textures need to be removed
@@ -220,9 +220,9 @@ namespace Repetitionless.Data
                 return;
 
             for (int i = terrainLayersCount; i < arrayDepth; i++) {
-                textureData.AVTexturesDrawer.RemoveArrayLayer(i * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT + 0);
-                textureData.AVTexturesDrawer.RemoveArrayLayer(i * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT + 1);
-                textureData.AVTexturesDrawer.RemoveArrayLayer(i * MaterialDataConstants.MATERIALS_PER_LAYER_COUNT + 2);
+                textureData.AVTexturesDrawer.RemoveArrayLayer(i * Constants.MATERIALS_PER_LAYER_COUNT + 0);
+                textureData.AVTexturesDrawer.RemoveArrayLayer(i * Constants.MATERIALS_PER_LAYER_COUNT + 1);
+                textureData.AVTexturesDrawer.RemoveArrayLayer(i * Constants.MATERIALS_PER_LAYER_COUNT + 2);
             }
         }
     }

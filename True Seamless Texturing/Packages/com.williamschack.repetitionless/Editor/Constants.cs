@@ -1,6 +1,6 @@
-namespace Repetitionless.Data
+namespace Repetitionless.Editor
 {
-    public static class MaterialDataConstants
+    public static class Constants
     {
         public const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
         public const string PROPERTIES_FILE_NAME = "Properties.asset";

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Repetitionless.Inspectors
+namespace Repetitionless.Editor.Inspectors
 {
     public class RepetitionlessMaterialEditorMaster : RepetitionlessMaterialEditorBase
     {

@@ -12,7 +12,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 
-namespace Repetitionless.CustomWindows
+namespace Repetitionless.Editor.CustomWindows
 {
     using System;
     using GUIUtilities;

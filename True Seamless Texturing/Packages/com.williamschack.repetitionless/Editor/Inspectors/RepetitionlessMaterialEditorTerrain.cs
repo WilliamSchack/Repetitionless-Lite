@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace Repetitionless.Inspectors
+namespace Repetitionless.Editor.Inspectors
 {
     using GUIUtilities;
     using TextureUtilities;

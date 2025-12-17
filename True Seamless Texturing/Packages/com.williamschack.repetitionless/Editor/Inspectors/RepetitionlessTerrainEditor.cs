@@ -3,13 +3,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
-namespace Repetitionless.Inspectors
+namespace Repetitionless.Editor.Inspectors
 {
-    using Helpers;
     using Data;
     
     [CustomEditor(typeof(RepetitionlessTerrain))]
-    public class RepetitionlessTerrainEditor : Editor
+    public class RepetitionlessTerrainEditor : UnityEditor.Editor
     {
         private RepetitionlessTerrain _main;
 
