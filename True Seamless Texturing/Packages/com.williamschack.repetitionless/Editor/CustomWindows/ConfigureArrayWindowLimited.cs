@@ -81,6 +81,7 @@ namespace Repetitionless.CustomWindows
             _arrayWrapMode = array.wrapMode;
             _arrayFilterMode = array.filterMode;
             _arrayAnisoLevel = array.anisoLevel;
+            _arrayLinear = !array.isDataSRGB;
             _arrayResolution = new Vector2Int(array.width, array.height);
 
             // Mipmaps cannot be generated if array doesn't have them

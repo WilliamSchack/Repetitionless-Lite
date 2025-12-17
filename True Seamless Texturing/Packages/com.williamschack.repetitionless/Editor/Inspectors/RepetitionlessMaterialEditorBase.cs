@@ -82,7 +82,10 @@ namespace Repetitionless.Inspectors
         protected RepetitionlessMaterialDataSO _materialProperties;
 
         // Array Settings Button
-        private GUIContent _settingsIconContent;
+
+        private GUIStyle _arraySettingsButtonStyle;
+
+        private GenericMenu _arraySettingsMenu;
 
         // Material Helpers
 
@@ -358,6 +361,27 @@ namespace Repetitionless.Inspectors
             return new TextureDrawerDetails(null, 0);
         }
 
+        private void ShowArrayConfigureWindow(int arrayIndex)
+        {
+            TextureArrayCustomChannelsGUIDrawer arrayDrawer = null;
+            switch (arrayIndex) {
+                case 0: arrayDrawer = _textureData.AVTexturesDrawer;  break;
+                case 1: arrayDrawer = _textureData.NSOTexturesDrawer; break;
+                case 2: arrayDrawer = _textureData.EMTexturesDrawer;  break;
+                case 3: arrayDrawer = _textureData.BMTexturesDrawer;  break;
+                default: return;
+            }
+
+            if (arrayDrawer.Array == null) {
+                Debug.LogWarning($"The texture array has no textures assigned to modify...");
+                return;
+            }
+
+            ConfigureArrayWindowLimited.ShowWindow(arrayDrawer.Array, $"Configuring ({arrayDrawer.Array.name})", (Texture2DArray newArray) => {
+                arrayDrawer.UpdateArray(newArray);
+            });
+        }
+
         #endregion
 
         #region GUI Calls
@@ -373,9 +397,16 @@ namespace Repetitionless.Inspectors
             _material = (Material)materialEditor.target;
             _editor = materialEditor;
 
-            // Initialize styles
-            _settingsIconContent = EditorGUIUtility.IconContent("Settings");
-            _settingsIconContent.tooltip = "Texture Array Settings";
+            // Initialize array settings style and menu
+            _arraySettingsButtonStyle = new GUIStyle("DropdownButton");
+            _arraySettingsButtonStyle.normal.textColor = GUI.skin.button.normal.textColor;
+            _arraySettingsButtonStyle.margin = GUI.skin.button.margin;
+
+            _arraySettingsMenu = new GenericMenu();
+            _arraySettingsMenu.AddItem(new GUIContent("AV Textures"),  false, () => { ShowArrayConfigureWindow(0); });
+            _arraySettingsMenu.AddItem(new GUIContent("NSO Textures"), false, () => { ShowArrayConfigureWindow(1); });
+            _arraySettingsMenu.AddItem(new GUIContent("EM Textures"),  false, () => { ShowArrayConfigureWindow(2); });
+            _arraySettingsMenu.AddItem(new GUIContent("BM Textures"),  false, () => { ShowArrayConfigureWindow(3); });
 
             // Setup data
             _dataManager = new MaterialDataManager(_material);
@@ -576,8 +607,13 @@ namespace Repetitionless.Inspectors
                 _editor.DoubleSidedGIField();
             }
 
-            // Data Folder
+            // Texture Array Settings
             GUILayout.Space(5);
+            if (EditorGUILayout.DropdownButton(new GUIContent("Array Settings"), FocusType.Keyboard, _arraySettingsButtonStyle)) {
+                _arraySettingsMenu.ShowAsContext();
+            }
+
+            // Data Folder
             if (GUILayout.Button("Ping Data Folder")) {
                 Object folderObj = AssetDatabase.LoadAssetAtPath(_dataManager.DataFolderPath(), typeof(Object));
                 EditorGUIUtility.PingObject(folderObj);
@@ -695,7 +731,6 @@ namespace Repetitionless.Inspectors
                 minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Random Scaling")).x;
                 minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Random Rotation")).x;
             }
-            minScaledTextWidth += (int)GUI.skin.button.CalcSize(_settingsIconContent).x;
             minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("-----------")).x; // Filler space
             minScaledTextWidth += extraWidth;
 
@@ -801,20 +836,6 @@ namespace Repetitionless.Inspectors
             if (showSR) {
                 // S=0,R=1, flip the value
                 DrawProperty(layerIndex, () => currentData.SmoothnessEnabled = GUILayout.Toolbar(currentData.SmoothnessEnabled ? 0 : 1, new GUIContent[] { new GUIContent(GetScaledText(minScaledTextWidth, "Smooth", "S"), "Using smoothness for material\n(Default unity material behaviour)"), new GUIContent(GetScaledText(minScaledTextWidth, "Rough", "R"), "Uses roughness for material (1 - smoothness)") }) == 0 ? true : false);
-            }
-
-            // Array settings button
-            if (GUILayout.Button(_settingsIconContent)) {
-                // Get the texture array for this material
-                TextureDrawerDetails textureDrawerDetails = GetTextureDrawerDetails(sectionIndex, currentData.PackedTexture);
-
-                string materialPrefix = GetMaterialPrefix(sectionIndex);
-                if (textureDrawerDetails.TextureDrawer.Array != null) {
-                    ConfigureArrayWindowLimited.ShowWindow(textureDrawerDetails.TextureDrawer.Array, $"{materialPrefix} Array", (Texture2DArray newArray) => {
-                        textureDrawerDetails.TextureDrawer.UpdateArray(newArray);
-                    });
-                } else
-                    Debug.LogWarning($"{materialPrefix} has no textures assigned to modify...");
             }
         }
 
