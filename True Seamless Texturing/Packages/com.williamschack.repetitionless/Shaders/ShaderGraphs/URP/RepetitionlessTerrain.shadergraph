@@ -1305,7 +1305,7 @@
     "m_AdditionalMotionVectorMode": 0,
     "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
-    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessMaterialEditorTerrain",
+    "m_CustomEditorGUI": "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain",
     "m_SupportVFX": false
 }
 
@@ -2429,7 +2429,7 @@
     "m_ObjectId": "52f7cb2ea01645a684d6bd320ae006e4",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1186.0001220703125,
+        "x": 1185.9998779296875,
         "y": 2689.0
     }
 }
@@ -3176,7 +3176,7 @@
     "m_ObjectId": "78fba43ca02a4f59b78481b0b304f8c3",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 887.0001220703125,
+        "x": 886.9998779296875,
         "y": 1983.9998779296875
     }
 }

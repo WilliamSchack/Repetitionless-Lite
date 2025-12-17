@@ -2205,7 +2205,7 @@
             "m_Id": "7a9420d2a68f4cad9cf4c54a00b399fd"
         }
     ],
-    "m_CustomEditorGUI": "Repetitionless.Inspectors.RepetitionlessMaterialEditorMaster",
+    "m_CustomEditorGUI": "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster",
     "m_SupportVFX": false,
     "m_SupportLineRendering": false
 }
@@ -3067,8 +3067,8 @@
     "m_ObjectId": "78fba43ca02a4f59b78481b0b304f8c3",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 663.0000610351563,
-        "y": 1956.0001220703125
+        "x": 662.9998779296875,
+        "y": 1955.9998779296875
     }
 }
 
