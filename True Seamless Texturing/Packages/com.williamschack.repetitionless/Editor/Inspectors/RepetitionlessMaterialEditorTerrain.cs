@@ -110,7 +110,11 @@ namespace Repetitionless.Inspectors
 
             _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _terrainLayers.Count) - 1;
 
-            GUILayout.Space(5);
+            GUI.enabled = false;
+            EditorGUILayout.ObjectField(new GUIContent("Terrain Layer", "The terrain layer that is being used for these fields. Modifying these fields that are in the layer will also update that layers fields."), _terrainLayers[_currentLayerIndex], typeof(TerrainLayer), false);
+            GUI.enabled = true;
+
+            GUILayout.Space(10);
 
             GUIUtilities.BeginBackgroundVertical();
             _showingTerrainLayers = GUIUtilities.DrawFoldout(_showingTerrainLayers, "Terrain Layers");

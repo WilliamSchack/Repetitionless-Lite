@@ -361,19 +361,10 @@ namespace Repetitionless.Inspectors
             return new TextureDrawerDetails(null, 0);
         }
 
-        private void ShowArrayConfigureWindow(int arrayIndex)
+        private void ShowArrayConfigureWindow(TextureArrayCustomChannelsGUIDrawer arrayDrawer)
         {
-            TextureArrayCustomChannelsGUIDrawer arrayDrawer = null;
-            switch (arrayIndex) {
-                case 0: arrayDrawer = _textureData.AVTexturesDrawer;  break;
-                case 1: arrayDrawer = _textureData.NSOTexturesDrawer; break;
-                case 2: arrayDrawer = _textureData.EMTexturesDrawer;  break;
-                case 3: arrayDrawer = _textureData.BMTexturesDrawer;  break;
-                default: return;
-            }
-
             if (arrayDrawer.Array == null) {
-                Debug.LogWarning($"The texture array has no textures assigned to modify...");
+                Debug.LogWarning($"The texture array has not been created yet, there are no textures assigned to modify...");
                 return;
             }
 
@@ -403,10 +394,10 @@ namespace Repetitionless.Inspectors
             _arraySettingsButtonStyle.margin = GUI.skin.button.margin;
 
             _arraySettingsMenu = new GenericMenu();
-            _arraySettingsMenu.AddItem(new GUIContent("AV Textures"),  false, () => { ShowArrayConfigureWindow(0); });
-            _arraySettingsMenu.AddItem(new GUIContent("NSO Textures"), false, () => { ShowArrayConfigureWindow(1); });
-            _arraySettingsMenu.AddItem(new GUIContent("EM Textures"),  false, () => { ShowArrayConfigureWindow(2); });
-            _arraySettingsMenu.AddItem(new GUIContent("BM Textures"),  false, () => { ShowArrayConfigureWindow(3); });
+            _arraySettingsMenu.AddItem(new GUIContent("AV Textures"),  false, () => { ShowArrayConfigureWindow(_textureData.AVTexturesDrawer); });
+            _arraySettingsMenu.AddItem(new GUIContent("NSO Textures"), false, () => { ShowArrayConfigureWindow(_textureData.NSOTexturesDrawer); });
+            _arraySettingsMenu.AddItem(new GUIContent("EM Textures"),  false, () => { ShowArrayConfigureWindow(_textureData.EMTexturesDrawer); });
+            _arraySettingsMenu.AddItem(new GUIContent("BM Textures"),  false, () => { ShowArrayConfigureWindow(_textureData.BMTexturesDrawer); });
 
             // Setup data
             _dataManager = new MaterialDataManager(_material);
@@ -609,7 +600,7 @@ namespace Repetitionless.Inspectors
 
             // Texture Array Settings
             GUILayout.Space(5);
-            if (EditorGUILayout.DropdownButton(new GUIContent("Array Settings"), FocusType.Keyboard, _arraySettingsButtonStyle)) {
+            if (EditorGUILayout.DropdownButton(new GUIContent("Array Settings", "Configure the array settings:\nAV: Albedo (rgb), Variation (a)\nNSO: Normal (rg), Smoothness (b), Occlussion (a)\nEM: Emission (rgb), Metallic (a)\nBM: Blend Mask (r)"), FocusType.Keyboard, _arraySettingsButtonStyle)) {
                 _arraySettingsMenu.ShowAsContext();
             }
 
