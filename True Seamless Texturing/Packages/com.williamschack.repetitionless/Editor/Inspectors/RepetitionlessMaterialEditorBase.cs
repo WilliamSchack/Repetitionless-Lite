@@ -118,6 +118,10 @@ namespace Repetitionless.Editor.Inspectors
 
         // ShaderGUI doesnt have an OnEnable function, using this instead
         private bool _firstSetup = true;
+
+
+        private LocalKeyword _triplanarKeyword;
+        private bool _triplanarEnabled = false;
         #endregion
 
         #region Helpers
@@ -388,6 +392,9 @@ namespace Repetitionless.Editor.Inspectors
             _material = (Material)materialEditor.target;
             _editor = materialEditor;
 
+            _triplanarKeyword = new LocalKeyword(_material.shader, Constants.TRIPLANAR_KEYWORD);
+            _triplanarEnabled = _material.IsKeywordEnabled(_triplanarKeyword);
+
             // Initialize array settings style and menu
             _arraySettingsButtonStyle = new GUIStyle("DropdownButton");
             _arraySettingsButtonStyle.normal.textColor = GUI.skin.button.normal.textColor;
@@ -447,10 +454,7 @@ namespace Repetitionless.Editor.Inspectors
 
         // Called when the material properties are first created
         // Do not need to call base, nothing happens
-        protected virtual void OnPropertiesCreated()
-        {
-            
-        }
+        protected virtual void OnPropertiesCreated() {}
 
         /// <summary>
         /// Base OnGUI function
@@ -591,15 +595,26 @@ namespace Repetitionless.Editor.Inspectors
             if (EditorGUI.EndChangeCheck())
                 uvSpaceProp.floatValue = (int)uvSpace;
 
+            // Triplanar
+            EditorGUI.BeginChangeCheck();
+            _triplanarEnabled = EditorGUILayout.Toggle(new GUIContent("Triplanar"), _triplanarEnabled);
+            if (EditorGUI.EndChangeCheck()) {
+                _material.SetKeyword(_triplanarKeyword, _triplanarEnabled);
+                _material.SetInt(Constants.TRIPLANAR_KEYWORD, _triplanarEnabled ? 1 : 0); // Required to save for some reason
+                EditorUtility.SetDirty(_material);
+            }
+
             // Advanced Options
             if (_editor != null) {
+                GUILayout.Space(10);
+
                 _editor.LightmapEmissionProperty();
                 _editor.RenderQueueField();
                 _editor.DoubleSidedGIField();
             }
 
             // Texture Array Settings
-            GUILayout.Space(5);
+            GUILayout.Space(10);
             if (EditorGUILayout.DropdownButton(new GUIContent("Array Settings", "Configure the array settings:\nAV: Albedo (rgb), Variation (a)\nNSO: Normal (rg), Smoothness (b), Occlussion (a)\nEM: Emission (rgb), Metallic (a)\nBM: Blend Mask (r)"), FocusType.Keyboard, _arraySettingsButtonStyle)) {
                 _arraySettingsMenu.ShowAsContext();
             }

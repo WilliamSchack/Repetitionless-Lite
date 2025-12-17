@@ -11,7 +11,7 @@
 
 void SampleRepetitionlessTerrain_float(
     // General Settings
-    SamplerState SS, float2 UV, float3 TangentNormalVector,
+    SamplerState SS, float2 UV, float3 TangentNormalVector, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
     int SurfaceType, int UVSpace, int DebuggingIndex,
 
@@ -122,7 +122,7 @@ void SampleRepetitionlessTerrain_float(
         float3 layerEmission  = emission;
 
         SampleRepetitionlessLayer_float(
-            SS, UV, TangentNormalVector,
+            SS, UV, TangentNormalVector, WorldNormalVector,
             WorldPosition, CameraPosition,
             SurfaceType, UVSpace, DebuggingIndex,
             i,

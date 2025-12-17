@@ -19,7 +19,7 @@
 // Uses assigned array properties variables
 void SampleRepetitionlessLayer_float(
     // General Settings
-    SamplerState SS, float2 UV, float3 TangentNormalVector,
+    SamplerState SS, float2 UV, float3 TangentNormalVector, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
     int SurfaceType, int UVSpace, int DebuggingIndex,
 
@@ -156,13 +156,6 @@ void SampleRepetitionlessLayer_float(
         materialMask *= blendMaskOpacity;
     }
 
-    // Use world space UVs if enabled
-    if (UVSpace == 1) {
-        // pos / 1000 to allow space for tiling
-        // Terrains are default 1000m^2 so this pretty much expands it to 1x1 on a terrain
-        UV = WorldPosition.xz / 1000;
-    }
-
     // ----------------------- Get Materials To Sample ------------------------- //
 
     int baseLayerIndex  = LayerIndex * 3 + 0;
@@ -198,6 +191,43 @@ void SampleRepetitionlessLayer_float(
 
     // Check base material
     samplingBase = farDistance != 1 && materialMask != 1;
+
+    // ----------------------- UVs / Triplanar ------------------------- // 
+
+    // Use world space UVs if enabled
+    if (UVSpace == 1) {
+        // pos / 1000 to allow space for tiling
+        // Terrains are default 1000m^2 so this pretty much expands it to 1x1 on a terrain
+        UV = WorldPosition.xz / 1000;
+    }
+
+#ifdef _REPETITIONLESS_TRIPLANAR
+    float3 triplanarWeights = pow(abs(WorldNormalVector), 8);
+    triplanarWeights /= dot(triplanarWeights, 1.0);
+
+    float2 triplanarUVs[3] = {
+        WorldPosition.yz / 1000,
+        WorldPosition.xz / 1000,
+        WorldPosition.xy / 1000
+    };
+
+    float triplanarWeightsArray[3] = {
+        triplanarWeights.x,
+        triplanarWeights.y,
+        triplanarWeights.z
+    };
+
+    float4 triplanarAlbedo = 0;
+
+    [unroll]
+    for (int i = 0; i < 3; i++) {
+        // Dont sample this side if not used
+        if (triplanarWeightsArray[i] < 0.01)
+            continue;
+
+        UV = triplanarUVs[i];
+
+#endif
 
     // ----------------------- Base Material ------------------------- //
     if (samplingBase) {
@@ -313,6 +343,14 @@ void SampleRepetitionlessLayer_float(
         emissionColor = lerp(emissionColor, blendEmissionColor, lerpFactor);
     }
 
+#ifdef _REPETITIONLESS_TRIPLANAR
+        triplanarAlbedo += albedoColor * triplanarWeightsArray[i];
+        albedoColor = 1;
+    } // End loop
+
+    albedoColor = triplanarAlbedo;
+#endif
+
     // ----------------------- Output ------------------------- //
 
     // Debugging
@@ -337,7 +375,7 @@ void SampleRepetitionlessLayer_float(
 // Uses assigned array properties texture
 void SampleRepetitionlessLayer_float(
     // General Settings
-    SamplerState SS, float2 UV, float3 TangentNormalVector,
+    SamplerState SS, float2 UV, float3 TangentNormalVector, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
     int SurfaceType, int UVSpace, int DebuggingIndex,
 
@@ -368,7 +406,7 @@ void SampleRepetitionlessLayer_float(
     GetArrayAssignedTextures(AssignedTexturesTexture, assignedAVTextures, assignedNSOTextures, assignedEVTextures, assignedBMTextures);
 
     SampleRepetitionlessLayer_float(
-        SS, UV, TangentNormalVector,
+        SS, UV, TangentNormalVector, WorldNormalVector,
         WorldPosition, CameraPosition,
         SurfaceType, UVSpace, DebuggingIndex,
         LayerIndex,

@@ -10,5 +10,7 @@ namespace Repetitionless.Editor
 
         public const int COMPRESSED_MATERIAL_VARIABLES_COUNT = 9;
         public const int COMPRESSED_LAYER_VARIABLES_COUNT = COMPRESSED_MATERIAL_VARIABLES_COUNT * MATERIALS_PER_LAYER_COUNT + 4;
+
+        public const string TRIPLANAR_KEYWORD = "_REPETITIONLESS_TRIPLANAR"; 
     }
 }
