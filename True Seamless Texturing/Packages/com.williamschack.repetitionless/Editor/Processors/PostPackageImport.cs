@@ -18,7 +18,8 @@ namespace Repetitionless.Editor.Processors
             if (WelcomeWindowShown())
                 return;
 
-            EditorApplication.delayCall += WelcomeWindow.Open;
+            // Open the window after importing
+            AssetDatabase.importPackageCompleted += PackageImported;
         }
 
         private static bool WelcomeWindowShown()
@@ -37,6 +38,12 @@ namespace Repetitionless.Editor.Processors
 
             File.Create(windowOpenedFilePathFul);
             return false;
+        }
+
+        private static void PackageImported(string packageName)
+        {
+            WelcomeWindow.Open();
+            AssetDatabase.importPackageCompleted -= PackageImported;
         }
     }
 }
