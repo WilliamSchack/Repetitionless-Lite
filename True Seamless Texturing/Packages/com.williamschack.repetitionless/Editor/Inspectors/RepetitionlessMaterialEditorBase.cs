@@ -402,6 +402,9 @@ namespace Repetitionless.Editor.Inspectors
             _material = (Material)materialEditor.target;
             _editor = materialEditor;
 
+             MaterialProperty uvSpaceProp = FindProperty("_UVSpace");
+            _prevUVSpace = (EUVSpace)uvSpaceProp.floatValue;
+            
             _triplanarKeyword = new LocalKeyword(_material.shader, Constants.TRIPLANAR_KEYWORD);
             _triplanarEnabled = _material.IsKeywordEnabled(_triplanarKeyword);
 

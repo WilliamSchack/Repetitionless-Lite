@@ -48,6 +48,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5393707556033817107, guid: 8570f72024b6b5e83afaa59fb9bde6eb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 515afe78808a3e6ea97f9dd7a3c13c29, type: 2}
+    - target: {fileID: -5393707556033817107, guid: 8570f72024b6b5e83afaa59fb9bde6eb, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8608c79427fcefeaa968ad48c9a83d02, type: 2}
+    - target: {fileID: -2191763634202495206, guid: 8570f72024b6b5e83afaa59fb9bde6eb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 515afe78808a3e6ea97f9dd7a3c13c29, type: 2}
+    - target: {fileID: -2191763634202495206, guid: 8570f72024b6b5e83afaa59fb9bde6eb, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8608c79427fcefeaa968ad48c9a83d02, type: 2}
     - target: {fileID: 919132149155446097, guid: 8570f72024b6b5e83afaa59fb9bde6eb, type: 3}
       propertyPath: m_Name
       value: Repetitionless_BIRP_Forest_pine_medium

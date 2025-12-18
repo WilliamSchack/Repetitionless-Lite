@@ -14,6 +14,7 @@ Material:
   m_ValidKeywords:
   - _BUILTIN_ALPHATEST_ON
   - _BUILTIN_AlphaClip
+  - _REPETITIONLESS_TRIPLANAR
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -101,6 +102,7 @@ Material:
     - _BUILTIN_ZWriteControl: 0
     - _DebuggingIndex: -1
     - _LayersCount: 1
+    - _REPETITIONLESS_TRIPLANAR: 1
     - _SurfaceTypeSetting: 0
     - _UVSpace: 1
     m_Colors: []

@@ -123,7 +123,7 @@ namespace Repetitionless.Editor.TextureUtilities
 
             // No textures are assigned in the data
             if (inputTextures.Count == 0) {
-                Debug.LogError("Input textures must be assigned...");
+                //Debug.LogError("Input textures must be assigned...");
                 return null;
             }
 

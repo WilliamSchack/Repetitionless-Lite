@@ -6,8 +6,6 @@ using UnityEditor;
 
 namespace Repetitionless.Samples
 {
-    using Helpers;
-
     public class TerrainSceneSettings : MonoBehaviour
     {
         [SerializeField] private Terrain[] _terrains;
