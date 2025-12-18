@@ -1,0 +1,22 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.CustomDialog
+  commentId: N:Repetitionless.Editor.CustomDialog
+  id: Repetitionless.Editor.CustomDialog
+  children:
+  - Repetitionless.Editor.CustomDialog.ShaderGUIDialog
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Editor.CustomDialog
+  nameWithType: Repetitionless.Editor.CustomDialog
+  fullName: Repetitionless.Editor.CustomDialog
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+references:
+- uid: Repetitionless.Editor.CustomDialog.ShaderGUIDialog
+  commentId: T:Repetitionless.Editor.CustomDialog.ShaderGUIDialog
+  name: ShaderGUIDialog
+  nameWithType: ShaderGUIDialog
+  fullName: Repetitionless.Editor.CustomDialog.ShaderGUIDialog

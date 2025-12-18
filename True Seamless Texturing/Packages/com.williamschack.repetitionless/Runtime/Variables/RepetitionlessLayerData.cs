@@ -108,35 +108,35 @@ namespace Repetitionless.Variables
         public RepetitionlessMaterialDataCompressed BlendMaterialData;
 
         /// <summary>
-        /// x: DistanceBlendEnabled
-        /// y: DistanceBlendMode
+        /// x: DistanceBlendEnabled<br />
+        /// y: DistanceBlendMode<br />
         /// zw: DistanceBlendMinMax
         /// </summary>
         public Vector4 DistanceBlendSettings;
 
         /// <summary>
-        /// The blend mask distance tiling offset:
+        /// The blend mask distance tiling offset:<br />
         /// xy: Tiling, zw: Offset
         /// </summary>
         public Vector4 BlendMaskDistanceTO;
 
         /// <summary>
-        /// x: Compressed Bools
-        ///   0 > MaterialBlendEnabled
-        ///   1 > BlendMaskAssigned
-        ///   2 > OverrideDistanceBlend
-        ///   3 > OverrideDistanceBlendTO
-        /// y: BlendMaskType
-        /// z: BlendMaskOpacity
+        /// x: Compressed Bools<br />
+        ///   0 > MaterialBlendEnabled<br />
+        ///   1 > BlendMaskAssigned<br />
+        ///   2 > OverrideDistanceBlend<br />
+        ///   3 > OverrideDistanceBlendTO<br />
+        /// y: BlendMaskType<br />
+        /// z: BlendMaskOpacity<br />
         /// w: BlendMaskStrength
         /// </summary>
         public Vector4 MaterialBlendSettings;
 
         /// <summary>
-        /// <b>IF USING NOISE MASK:</b>
-        /// x: BlendMaskNoiseScale
-        /// zw: BlendMaskNoiseOffset
-        /// <b>IF USING TEXTURE MASK:</b>
+        /// <b>IF USING NOISE MASK:</b><br />
+        /// x: BlendMaskNoiseScale<br />
+        /// zw: BlendMaskNoiseOffset<br />
+        /// <b>IF USING TEXTURE MASK:</b><br />
         /// xyzw: BlendMaskTextureTO
         /// </summary>
         public Vector4 MaterialBlendMaskTO;

@@ -52,26 +52,58 @@ nav:
     - TextureArrayEssentials:
       - TextureArrayUtilities: ShaderHLSL/TextureArrayEssentials.TextureArrayUtilities.md
   - Scripting API:
-    - Compression:
-      - BooleanCompression: Scripting/Repetitionless.Compression.BooleanCompression.md
-    - CustomDialog:
-      - ShaderGUIDialog: Scripting/Repetitionless.CustomDialog.ShaderGUIDialog.md
-    - CustomWindows:
-      - Texture2DArrayWindowBase: Scripting/Repetitionless.CustomWindows.Texture2DArrayWindowBase.md
-    - GUIUtilities:
-      - TextureArrayGUIDrawer: Scripting/Repetitionless.GUIUtilities.TextureArrayGUIDrawer.md
-      - GUIUtilities: Scripting/Repetitionless.GUIUtilities.GUIUtilities.md
-    - Inspectors:
-      - RepetitionlessGUIBase: Scripting/Repetitionless.Inspectors.RepetitionlessGUIBase.md
+    - Runtime:
+      - RepetitionlessTerrain: Scripting/Repetitionless.RepetitionlessTerrain.md
+      - Compression:
+        - BooleanCompression: Scripting/Repetitionless.Compression.BooleanCompression.md
       - Variables:
-        - MaterialFoldoutState: Scripting/Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState.md
-    - TextureUtilities:
-      - Texture2DArrayUtilities: Scripting/Repetitionless.TextureUtilities.Texture2DArrayUtilities.md
-      - TextureUtilities: Scripting/Repetitionless.TextureUtilities.TextureUtilities.md
-    - Variables:
-      - EDistanceBlendMode: Scripting/Repetitionless.Variables.EDistanceBlendMode.md
-      - ESurfaceType: Scripting/Repetitionless.Variables.ESurfaceType.md
-      - ETextureType: Scripting/Repetitionless.Variables.ETextureType.md
+        - EDistanceBlendMode: Scripting/Repetitionless.Variables.EDistanceBlendMode.md
+        - ESurfaceType: Scripting/Repetitionless.Variables.ESurfaceType.md
+        - ETextureType: Scripting/Repetitionless.Variables.ETextureType.md
+        - EUVSpace: Scripting/Repetitionless.Variables.EUVSpace.md
+        - RepetitionlessMaterialData: Scripting/Repetitionless.Variables.RepetitionlessMaterialData.md
+        - RepetitionlessMaterialDataCompressed: Scripting/Repetitionless.Variables.RepetitionlessMaterialDataCompressed.md
+        - RepetitionlessLayerData: Scripting/Repetitionless.Variables.RepetitionlessLayerData.md
+        - RepetitionlessLayerDataCompressed: Scripting/Repetitionless.Variables.RepetitionlessLayerDataCompressed.md
+        - SerializableDictionary: Scripting/Repetitionless.Variables.SerializableDictionary-2.md
+    - Editor:
+      - Data:
+        - MaterialDataManager: Scripting/Repetitionless.Editor.Data.MaterialDataManager.md
+        - RepetitionlessMaterialDataSO: Scripting/Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.md
+        - RepetitionlessTextureDataSO: Scripting/Repetitionless.Editor.Data.RepetitionlessTextureDataSO.md
+        - RepetitionlessTextureDataSO Variables:
+          - MaterialTextureData: Scripting/Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.md
+          - LayerTextureData: Scripting/Repetitionless.Editor.Data.RepetitionlessTextureDataSO.LayerTextureData.md
+        - TerrainLayerSyncDataSO: Scripting/Repetitionless.Editor.Data.TerrainLayerSyncDataSO.md
+        - TerrainLayerSyncDataSO Variables:
+          - TerrainLayerList: Scripting/Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList.md
+          - MaterialList: Scripting/Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList.md
+        - RepetitionlessDataPacker: Scripting/Repetitionless.Editor.Data.RepetitionlessDataPacker.md
+      - GUIUtilities:
+        - GUIUtilities: Scripting/Repetitionless.Editor.GUIUtilities.GUIUtilities.md
+        - TextureArrayCustomChannelsGUIDrawer: Scripting/Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.md
+      - Inspectors:
+        - RepetitionlessTerrainEditor: Scripting/Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.md
+        - RepetitionlessMaterialEditorMaster: Scripting/Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster.md
+        - RepetitionlessMaterialEditorTerrain: Scripting/Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.md
+        - RepetitionlessMaterialEditorBase: Scripting/Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.md
+        - RepetitionlessMaterialEditorBase Variables:
+          - MaterialFoldoutState: Scripting/Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.MaterialFoldoutState.md
+          - TextureDrawerDetails: Scripting/Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.md
+      - TextureUtilities:
+        - TexturePacker: Scripting/Repetitionless.Editor.TextureUtilities.TexturePacker.md
+        - TexturePacker Variables:
+          - TextureData: Scripting/Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.md
+          - TextureChannel: Scripting/Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel.md
+          - FromToChannel: Scripting/Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.md
+        - TextureUtilities: Scripting/Repetitionless.Editor.TextureUtilities.TextureUtilities.md
+        - Texture2DArrayUtilities: Scripting/Repetitionless.Editor.TextureUtilities.Texture2DArrayUtilities.md
+      - CustomDialog:
+        - ShaderGUIDialog: Scripting/Repetitionless.Editor.CustomDialog.ShaderGUIDialog.md
+      - CustomWindows:
+        - Texture2DArrayWindowBase: Scripting/Repetitionless.Editor.CustomWindows.Texture2DArrayWindowBase.md
+      - Processors:
+        - RepetitionlessColourSpaceUpdater: Scripting/Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.md
 theme:
     name: material
     logo: Images/Icon.png

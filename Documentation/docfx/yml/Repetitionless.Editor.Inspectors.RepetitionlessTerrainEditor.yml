@@ -45,7 +45,7 @@ items:
     ctor: UnityEditor.CustomEditor.#ctor(System.Type)
     arguments:
     - type: System.Type
-      value: {}
+      value: Repetitionless.RepetitionlessTerrain
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI
   commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI
   id: OnInspectorGUI

@@ -7,7 +7,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Repetitionless.CustomDialog
+namespace Repetitionless.Editor.CustomDialog
 {
     // Originally had another custom EditorWindow here which showed more details
     // Due to multiple errors with the "PropertiesGUI() is being called recursively" error it had to be changed back to the regular DisplayDialog

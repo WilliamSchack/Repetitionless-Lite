@@ -1,18 +1,18 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Repetitionless.CustomDialog.ShaderGUIDialog
-  commentId: T:Repetitionless.CustomDialog.ShaderGUIDialog
+- uid: Repetitionless.Editor.CustomDialog.ShaderGUIDialog
+  commentId: T:Repetitionless.Editor.CustomDialog.ShaderGUIDialog
   id: ShaderGUIDialog
-  parent: Repetitionless.CustomDialog
+  parent: Repetitionless.Editor.CustomDialog
   children:
-  - Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String,System.String)
-  - Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex(System.String,System.String,System.String,System.String,System.String)
+  - Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String,System.String)
+  - Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialogComplex(System.String,System.String,System.String,System.String,System.String)
   langs:
   - csharp
   - vb
   name: ShaderGUIDialog
   nameWithType: ShaderGUIDialog
-  fullName: Repetitionless.CustomDialog.ShaderGUIDialog
+  fullName: Repetitionless.Editor.CustomDialog.ShaderGUIDialog
   type: Class
   source:
     remote:
@@ -24,7 +24,7 @@ items:
     startLine: 18
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.CustomDialog
+  namespace: Repetitionless.Editor.CustomDialog
   summary: "\nWrapper to remove the &quot;PropertiesGUI() is being called recursively&quot; warning when calling EditorUtility.DisplayDialog in OnGUI within a ShaderGUI inherited class\n"
   example: []
   syntax:
@@ -32,16 +32,16 @@ items:
     content.vb: Public Module ShaderGUIDialog
   inheritance:
   - System.Object
-- uid: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String,System.String)
-  commentId: M:Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String,System.String)
+- uid: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String,System.String)
+  commentId: M:Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String,System.String)
   id: DisplayDialog(System.String,System.String,System.String,System.String)
-  parent: Repetitionless.CustomDialog.ShaderGUIDialog
+  parent: Repetitionless.Editor.CustomDialog.ShaderGUIDialog
   langs:
   - csharp
   - vb
   name: DisplayDialog(string, string, string, string)
   nameWithType: ShaderGUIDialog.DisplayDialog(string, string, string, string)
-  fullName: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog(string, string, string, string)
+  fullName: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(string, string, string, string)
   type: Method
   source:
     remote:
@@ -53,7 +53,7 @@ items:
     startLine: 38
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.CustomDialog
+  namespace: Repetitionless.Editor.CustomDialog
   summary: "\nDisplays a modal dialog removing the ShaderGUI specific warning\n"
   example: []
   syntax:
@@ -75,20 +75,20 @@ items:
       type: System.Boolean
       description: "\nIf the ok button was pressed\n"
     content.vb: Public Shared Function DisplayDialog(title As String, message As String, ok As String, cancel As String) As Boolean
-  overload: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog*
+  overload: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog*
   nameWithType.vb: ShaderGUIDialog.DisplayDialog(String, String, String, String)
-  fullName.vb: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog(String, String, String, String)
+  fullName.vb: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(String, String, String, String)
   name.vb: DisplayDialog(String, String, String, String)
-- uid: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex(System.String,System.String,System.String,System.String,System.String)
-  commentId: M:Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex(System.String,System.String,System.String,System.String,System.String)
+- uid: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialogComplex(System.String,System.String,System.String,System.String,System.String)
+  commentId: M:Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialogComplex(System.String,System.String,System.String,System.String,System.String)
   id: DisplayDialogComplex(System.String,System.String,System.String,System.String,System.String)
-  parent: Repetitionless.CustomDialog.ShaderGUIDialog
+  parent: Repetitionless.Editor.CustomDialog.ShaderGUIDialog
   langs:
   - csharp
   - vb
   name: DisplayDialogComplex(string, string, string, string, string)
   nameWithType: ShaderGUIDialog.DisplayDialogComplex(string, string, string, string, string)
-  fullName: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex(string, string, string, string, string)
+  fullName: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialogComplex(string, string, string, string, string)
   type: Method
   source:
     remote:
@@ -100,7 +100,7 @@ items:
     startLine: 74
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.CustomDialog
+  namespace: Repetitionless.Editor.CustomDialog
   summary: "\nDisplays a modal dialog with three buttons removing the ShaderGUI specific warning\n"
   example: []
   syntax:
@@ -125,27 +125,33 @@ items:
       type: System.Int32
       description: "\n0, 1, 2 for ok, cancel, alt responses respectively\n"
     content.vb: Public Shared Function DisplayDialogComplex(title As String, message As String, ok As String, cancel As String, alt As String) As Integer
-  overload: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex*
+  overload: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialogComplex*
   nameWithType.vb: ShaderGUIDialog.DisplayDialogComplex(String, String, String, String, String)
-  fullName.vb: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex(String, String, String, String, String)
+  fullName.vb: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialogComplex(String, String, String, String, String)
   name.vb: DisplayDialogComplex(String, String, String, String, String)
 references:
-- uid: Repetitionless.CustomDialog
-  commentId: N:Repetitionless.CustomDialog
-  name: Repetitionless.CustomDialog
-  nameWithType: Repetitionless.CustomDialog
-  fullName: Repetitionless.CustomDialog
+- uid: Repetitionless.Editor.CustomDialog
+  commentId: N:Repetitionless.Editor.CustomDialog
+  name: Repetitionless.Editor.CustomDialog
+  nameWithType: Repetitionless.Editor.CustomDialog
+  fullName: Repetitionless.Editor.CustomDialog
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.CustomDialog
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.CustomDialog
     name: CustomDialog
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.CustomDialog
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.CustomDialog
     name: CustomDialog
 - uid: System.Object
   commentId: T:System.Object
@@ -163,11 +169,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog*
-  commentId: Overload:Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog
+- uid: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog*
+  commentId: Overload:Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog
   name: DisplayDialog
   nameWithType: ShaderGUIDialog.DisplayDialog
-  fullName: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialog
+  fullName: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -188,11 +194,11 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
-- uid: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex*
-  commentId: Overload:Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex
+- uid: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialogComplex*
+  commentId: Overload:Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialogComplex
   name: DisplayDialogComplex
   nameWithType: ShaderGUIDialog.DisplayDialogComplex
-  fullName: Repetitionless.CustomDialog.ShaderGUIDialog.DisplayDialogComplex
+  fullName: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialogComplex
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System

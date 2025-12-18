@@ -154,7 +154,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless
   namespace: Repetitionless.Variables
-  summary: "\nx: DistanceBlendEnabled\ny: DistanceBlendMode\nzw: DistanceBlendMinMax\n"
+  summary: "\nx: DistanceBlendEnabled<br />\ny: DistanceBlendMode<br />\nzw: DistanceBlendMinMax\n"
   example: []
   syntax:
     content: public Vector4 DistanceBlendSettings
@@ -183,7 +183,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless
   namespace: Repetitionless.Variables
-  summary: "\nThe blend mask distance tiling offset:\nxy: Tiling, zw: Offset\n"
+  summary: "\nThe blend mask distance tiling offset:<br />\nxy: Tiling, zw: Offset\n"
   example: []
   syntax:
     content: public Vector4 BlendMaskDistanceTO
@@ -212,7 +212,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless
   namespace: Repetitionless.Variables
-  summary: "\nx: Compressed Bools\n0 > MaterialBlendEnabled\n1 > BlendMaskAssigned\n2 > OverrideDistanceBlend\n3 > OverrideDistanceBlendTO\ny: BlendMaskType\nz: BlendMaskOpacity\nw: BlendMaskStrength\n"
+  summary: "\nx: Compressed Bools<br />\n0 > MaterialBlendEnabled<br />\n1 > BlendMaskAssigned<br />\n2 > OverrideDistanceBlend<br />\n3 > OverrideDistanceBlendTO<br />\ny: BlendMaskType<br />\nz: BlendMaskOpacity<br />\nw: BlendMaskStrength\n"
   example: []
   syntax:
     content: public Vector4 MaterialBlendSettings
@@ -241,7 +241,7 @@ items:
   assemblies:
   - com.williamschack.Repetitionless
   namespace: Repetitionless.Variables
-  summary: "\n<strong>IF USING NOISE MASK:</strong>\nx: BlendMaskNoiseScale\nzw: BlendMaskNoiseOffset\n<strong>IF USING TEXTURE MASK:</strong>\nxyzw: BlendMaskTextureTO\n"
+  summary: "\n<strong>IF USING NOISE MASK:</strong><br />\nx: BlendMaskNoiseScale<br />\nzw: BlendMaskNoiseOffset<br />\n<strong>IF USING TEXTURE MASK:</strong><br />\nxyzw: BlendMaskTextureTO\n"
   example: []
   syntax:
     content: public Vector4 MaterialBlendMaskTO

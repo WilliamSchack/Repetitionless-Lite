@@ -73,7 +73,7 @@ items:
     ctor: UnityEditor.MenuItem.#ctor(System.String)
     arguments:
     - type: System.String
-      value: {}
+      value: Window/Repetitionless/Open Window
 references:
 - uid: Repetitionless.Editor.CustomWindows
   commentId: N:Repetitionless.Editor.CustomWindows

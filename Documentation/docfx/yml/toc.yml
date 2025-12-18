@@ -9,16 +9,16 @@
   items:
   - uid: Repetitionless.Compression.BooleanCompression
     name: BooleanCompression
-- uid: Repetitionless.CustomDialog
-  name: Repetitionless.CustomDialog
-  items:
-  - uid: Repetitionless.CustomDialog.ShaderGUIDialog
-    name: ShaderGUIDialog
 - uid: Repetitionless.Editor
   name: Repetitionless.Editor
   items:
   - uid: Repetitionless.Editor.Constants
     name: Constants
+- uid: Repetitionless.Editor.CustomDialog
+  name: Repetitionless.Editor.CustomDialog
+  items:
+  - uid: Repetitionless.Editor.CustomDialog.ShaderGUIDialog
+    name: ShaderGUIDialog
 - uid: Repetitionless.Editor.CustomWindows
   name: Repetitionless.Editor.CustomWindows
   items:
@@ -59,8 +59,6 @@
   - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
     name: TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
     name.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
-  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayGUIDrawer
-    name: TextureArrayGUIDrawer
 - uid: Repetitionless.Editor.Inspectors
   name: Repetitionless.Editor.Inspectors
   items:

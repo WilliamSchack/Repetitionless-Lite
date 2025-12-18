@@ -1,4 +1,4 @@
-# CustomDialog.ShaderGUIDialog
+# Editor.CustomDialog.ShaderGUIDialog
 
 ## Description
 

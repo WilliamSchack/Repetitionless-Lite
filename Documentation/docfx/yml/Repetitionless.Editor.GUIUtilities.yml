@@ -7,7 +7,6 @@ items:
   - Repetitionless.Editor.GUIUtilities.GUIUtilities
   - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
   - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
-  - Repetitionless.Editor.GUIUtilities.TextureArrayGUIDrawer
   langs:
   - csharp
   - vb
@@ -63,11 +62,6 @@ references:
   name: GUIUtilities
   nameWithType: GUIUtilities
   fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayGUIDrawer
-  commentId: T:Repetitionless.Editor.GUIUtilities.TextureArrayGUIDrawer
-  name: TextureArrayGUIDrawer
-  nameWithType: TextureArrayGUIDrawer
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayGUIDrawer
 - uid: Repetitionless.Editor.GUIUtilities
   commentId: N:Repetitionless.Editor.GUIUtilities
   name: Repetitionless.Editor.GUIUtilities
