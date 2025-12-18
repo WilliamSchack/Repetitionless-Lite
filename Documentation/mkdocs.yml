@@ -5,8 +5,8 @@ nav:
   - Installation: installation.md
   - Getting Started: getting-started.md
   - Samples: samples.md
-  - Using Regular Materials: using-materials.md
-  - Using Terrain Materials: using-terrains.md
+  - Using Regular Materials: material-regular.md
+  - Using Terrain Materials: material-terrains.md
   - Material Properties: material-properties.md
   - Shader Creation: shader-creation.md
   - Scripting: scripting.md
