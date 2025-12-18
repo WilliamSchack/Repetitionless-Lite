@@ -293,6 +293,11 @@ namespace Repetitionless.Editor.Inspectors
             GUILayout.Label("Textures", _headerStyle);
             GUILayout.Space(5);
 
+            if (_terrainLayers.Length > 32) {
+                EditorGUILayout.HelpBox("Over 32 terrain layers are assigned. Only 32 are supported, any extras will appear white.", MessageType.Warning);
+                GUILayout.Space(5);
+            }
+
             // Terrain Parent
             if (_settingUpParent) _settingUpParent = false;
             DrawParentProperty();
