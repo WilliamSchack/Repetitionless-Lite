@@ -17,7 +17,7 @@ Repetitionless includes a custom script to handle and sync materials unity terra
 
 ## Setting Up A Terrain
 
-To use a terrain with the repetitionless material you have to add a [`RepetitionlessTerrain` ](../Scripting/Repetitionless.RepetitionlessTerrain) component to the terrain which can be done as follows:
+To use a terrain with the repetitionless material you have to add a [`RepetitionlessTerrain`](Scripting/Repetitionless.RepetitionlessTerrain.md) component to the terrain which can be done as follows:
 
 1. Select the terrain you want to use
 2. Select `Add Component`

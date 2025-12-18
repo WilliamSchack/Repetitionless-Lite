@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../material-regular/">
+      
+      
+        <link rel="next" href="../material-properties/">
       
       
         
@@ -19,7 +23,7 @@
     
     
       
-        <title>Material terrain - Repetitionless</title>
+        <title>Using Terrain Materials - Repetitionless</title>
       
     
     
@@ -105,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Material terrain
+              Using Terrain Materials
             
           </span>
         </div>
@@ -360,10 +364,35 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../material-terrains.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using Terrain Materials
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -379,6 +408,90 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating A Material
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-a-terrain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting Up A Terrain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using The Script
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-multiple-terrains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Multiple Terrains
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-the-terrain-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editing The Terrain Layers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-the-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editing The Material
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3981,7 +4094,7 @@
 
 
 
-  <h1>Material terrain</h1>
+  <h1>Using Terrain Materials</h1>
 
 <p>Repetitionless includes a custom script to handle and sync materials unity terrains. To setup a terrain for the shader, follow the instructions below:</p>
 <h2 id="creating-a-material">Creating A Material</h2>
@@ -3999,7 +4112,7 @@
 <li>Material data is stored in a folder along side the material named "{MaterialName}_Data". This is automatically moved and deleted with the material but it will need to be manually copied when copying the material</li>
 </ul>
 <h2 id="setting-up-a-terrain">Setting Up A Terrain</h2>
-<p>To use a terrain with the repetitionless material you have to add a <a href="../Scripting/Repetitionless.RepetitionlessTerrain"><code>RepetitionlessTerrain</code> </a> component to the terrain which can be done as follows:</p>
+<p>To use a terrain with the repetitionless material you have to add a <a href="../Scripting/Repetitionless.RepetitionlessTerrain/"><code>RepetitionlessTerrain</code></a> component to the terrain which can be done as follows:</p>
 <ol>
 <li>Select the terrain you want to use</li>
 <li>Select <code>Add Component</code></li>

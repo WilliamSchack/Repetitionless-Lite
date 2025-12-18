@@ -30,11 +30,11 @@ For instructions on accessing the samples:
 
 For instructions on how to use the regular repetitionless shader:
 
-**View the [Using Regular Materials Page](using-materials.md)**
+**View the [Using Regular Materials Page](material-regular.md)**
 
 For instructions on how to use the terrain repetitionless shader:
 
-**View the [Using Terrain Materials Page](using-terrains.md)**
+**View the [Using Terrain Materials Page](material-terrain.md)**
 
 To view what each material property does:
 
