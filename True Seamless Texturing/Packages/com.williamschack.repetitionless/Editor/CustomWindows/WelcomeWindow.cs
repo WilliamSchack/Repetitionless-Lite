@@ -1,11 +1,11 @@
 #if UNITY_EDITOR
+using System.IO;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEditor;
 
 namespace Repetitionless.Editor.CustomWindows
 {
-    using System.IO;
     using GUIUtilities;
 
     public class WelcomeWindow : EditorWindow
@@ -27,12 +27,10 @@ namespace Repetitionless.Editor.CustomWindows
         private GUIStyle _boldLabelStyle;
         private GUIStyle _buttonStyle;
 
-        private Vector2 _scrollPos;
-
         private bool _stylesSetup = false;
 
         [MenuItem("Window/Repetitionless/Open Window")]
-        private static void Open()
+        public static void Open()
         {
             WelcomeWindow window = GetWindow<WelcomeWindow>(false, "Repetitionless ");
             window.Show();
@@ -74,12 +72,9 @@ namespace Repetitionless.Editor.CustomWindows
             }
 
             GUIUtilities.BeginBackgroundVertical();
-            //_scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
 
             DrawLogo();
             GUILayout.Space(10);
-
-            //GUILayout.FlexibleSpace();
 
             int buttonMinWidth = Screen.width / 2 - 15;
 
@@ -97,11 +92,10 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUILayout.Space(20);
 
-            GUILayout.Label("Welcome to repetitionless! To get started view the getting started page in the documentation for instructions on how to use the asset.", _boldLabelStyle);
+            GUILayout.Label("Welcome to repetitionless! To get started view the getting started page in the documentation for instructions on how to use the asset, or import the samples for examples.", _boldLabelStyle);
 
             GUILayout.FlexibleSpace();
 
-            //EditorGUILayout.EndScrollView();
             GUIUtilities.EndBackgroundVertical();
 
             EditorGUILayout.BeginHorizontal();

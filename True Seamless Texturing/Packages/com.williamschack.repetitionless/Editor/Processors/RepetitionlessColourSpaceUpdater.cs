@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-namespace Repetitionless.Editor.Watchers
+namespace Repetitionless.Editor.Processors
 {
     using Data;
 
