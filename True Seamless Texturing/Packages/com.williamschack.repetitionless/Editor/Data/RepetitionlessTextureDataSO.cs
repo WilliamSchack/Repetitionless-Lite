@@ -207,10 +207,10 @@ namespace Repetitionless.Editor.Data
             NSOTexturesDrawer.TextureFormat = TextureFormat.BC7;
             NSOTexturesDrawer.ArrayLinear   = true;
 
-            EMTexturesDrawer.TextureFormat  = TextureFormat.BC7;
+            EMTexturesDrawer.TextureFormat  = TextureFormat.DXT5;
             EMTexturesDrawer.ArrayLinear    = true;
             
-            BMTexturesDrawer.TextureFormat  = TextureFormat.BC7;
+            BMTexturesDrawer.TextureFormat  = TextureFormat.BC4;
             BMTexturesDrawer.ArrayLinear    = true;
 
 #if UNITY_EDITOR

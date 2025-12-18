@@ -3192,7 +3192,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "TriplanarKeyword",
     "m_DefaultReferenceName": "_TRIPLANARKEYWORD",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_REPETITIONLESS_TRIPLANAR",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",

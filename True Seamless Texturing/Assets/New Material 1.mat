@@ -181,7 +181,7 @@ Material:
     - _SrcBlend: 1
     - _SurfaceTypeSetting: 0
     - _UVSec: 0
-    - _UVSpace: 1
+    - _UVSpace: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
