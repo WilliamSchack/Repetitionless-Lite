@@ -105,13 +105,9 @@ namespace Repetitionless.Editor.Data
         public bool AssetExists(string fileName)
         {
             string assetPath = $"{DataFolderPath()}/{fileName}";
-            string projectPath = Application.dataPath;
+            string projectPath = Path.GetFullPath(Path.Combine(Application.dataPath, "../"));
 
-            // Remove "/Assets"
-            int lastDirIndex = projectPath.LastIndexOf("/");
-            projectPath = projectPath.Substring(0, lastDirIndex);
-
-            string fullPath = $"{projectPath}/{assetPath}";
+            string fullPath = $"{projectPath}{assetPath}";
             return File.Exists(fullPath);
         }
 

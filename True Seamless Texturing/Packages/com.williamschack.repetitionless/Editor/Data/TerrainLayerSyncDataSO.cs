@@ -10,7 +10,7 @@ namespace Repetitionless.Editor.Data
 
     public class TerrainLayerSyncDataSO : ScriptableObject
     {
-        private const string ASSET_PATH = "Packages/com.williamschack.repetitionless/Data/TerrainLayerSyncData.asset";
+        private const string ASSET_PATH = Constants.PACKAGE_DIR + "/Data/TerrainLayerSyncData.asset";
 
         // Use wrappers to allow serialization
         // Bit stupid but it works
