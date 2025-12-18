@@ -34,8 +34,8 @@ namespace Repetitionless
 
         private Terrain _terrain;
         public Terrain Terrain { get {
-                if (_terrain == null)
-                    _terrain = GetComponent<Terrain>();
+                if (_terrain == null && this != null)
+                    TryGetComponent<Terrain>(out _terrain);
                 
                 return _terrain;
             }

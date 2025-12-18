@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Repetitionless.Samples
 {
 #if UNITY_EDITOR
-    using Editor.Watchers;
+    using Editor.Processors;
 #endif
     // Used to check if the colour space matches the one in the sample scene
     // Updates it if they are mismatched
