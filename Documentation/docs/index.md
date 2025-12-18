@@ -2,6 +2,7 @@ Repetitionless is a set of shaders that removes texture tiling using multiple di
 
 - Voronoi noise and cell edge sampling to split up the texture and smooth between cells
 - Random scaling and rotation between cells
+- Triplanar sampling
 - Variation texture support to add variation to the material
 - Distance blending to either change the tiling and offset or material entirely at a set distance range
 - Material Blending to overlay a separate material ontop of the main one by different noise functions or a custom mask

@@ -4,6 +4,19 @@
 
 INSERT TUTORIAL VIDEO HERE
 
+## Welcome Screen
+
+When first importing the asset you will be greeted with a welcome screen with buttons to:
+
+- View Documentation
+- View and Reporting issues
+- Import samples
+
+To open this window again, you can find it in the toolbar at<br />
+`Windows > Repetitionless > Open Window`
+
+![image](Images/GettingStarted/WelcomeScreen.png)
+
 ## Sample Scenes
 
 The asset comes with 3 example scenes that you can view to see the different features of repetitionless and how to implement the materials
