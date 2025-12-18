@@ -54,7 +54,7 @@ Samples the base and edge colour if required and lerps them together using a reg
 ``` csharp
 float4 SampleRepetitionlessArrayTexture(
 	UnityTexture2DArray TextureArray,
-	int AssignedTextures,
+	int AssignedTextures[3],
 	int ConstantIndex,
 	SamplerState SS,
 	
@@ -70,7 +70,7 @@ float4 SampleRepetitionlessArrayTexture(
 | Parameter        | Description                                                                                                                                                        |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | TextureArray     | The texture to sample                                                                                                                                              |
-| AssignedTextures | The compressed assigned textures that contains which textures are assigned in the array                                                                            |
+| AssignedTextures | The compressed assigned textures that contains which textures are assigned in the array, each value in the array is 32 bools                                       |
 | ConstantIndex    | The constant index of the texture in the array<br>*(Doesnt care about how many textures are in the array, think of it as a constant within the max texture count)* |
 | SS               | Sampler state used for sampling the texture                                                                                                                        |
 | EdgeUV           | The UV to sample edges                                                                                                                                             |

@@ -26,12 +26,6 @@ bool GetCompressedValue(int CompressedValues, int Index)
     return (CompressedValues & (1 << Index)) != 0;
 }
 
-// Combines two halfs of a 32 bit integer
-int Combine16BitInts(int firstHalf, int secondHalf)
-{
-    return (((int)firstHalf) & 0xFFFF) | ((int)secondHalf << 16);
-}
-
 // Each element in the array is a chunk of 32 bools
 // Gets a compressed value at a given index from the input CompressedValues
 bool GetCompressedValue(int CompressedValues[BOOLEAN_COMPRESSION_MAX_CHUNKS], int Index)
@@ -41,6 +35,12 @@ bool GetCompressedValue(int CompressedValues[BOOLEAN_COMPRESSION_MAX_CHUNKS], in
     
     int valueIndex = Index % 32;
     return GetCompressedValue(chunkCompressedValues, valueIndex);
+}
+
+// Combines two halfs of a 32 bit integer
+int Combine16BitInts(int firstHalf, int secondHalf)
+{
+    return (((int)firstHalf) & 0xFFFF) | ((int)secondHalf << 16);
 }
 
 // Overwrites a value at a given index into the input CompressedValues

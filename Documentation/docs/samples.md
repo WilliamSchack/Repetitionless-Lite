@@ -1,5 +1,3 @@
-# Samples
-
 Samples are located in a folder which is hidden by default. To import the samples:
 
 ## Automatic

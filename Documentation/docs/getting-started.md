@@ -2,7 +2,7 @@
 
 ## Tutorial Video
 
-INSERT TUTORIAL VIDEO HERE
+TUTORIAL VIDEO HERE WHEN ITS FINISHED
 
 ## Welcome Screen
 
@@ -28,9 +28,17 @@ For instructions on accessing the samples:
 
 ## Using A Repetitionless Material
 
-For instructions on how to create and configure repetitionless materials:
+For instructions on how to use the regular repetitionless shader:
 
-**View the [Using Repetitionless Materials page](using-materials.md)**
+**View the [Using Regular Materials Page](using-materials.md)**
+
+For instructions on how to use the terrain repetitionless shader:
+
+**View the [Using Terrain Materials Page](using-terrains.md)**
+
+To view what each material property does:
+
+**View the [Material Properties Page](material-properties.md)**
 
 ## Creating Shaders
 

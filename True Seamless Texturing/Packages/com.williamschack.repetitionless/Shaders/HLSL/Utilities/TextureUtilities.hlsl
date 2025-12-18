@@ -23,11 +23,6 @@ float2 RotateUVDegrees(float2 UV, float2 Center, float Rotation)
 
 half3 UnpackNormalMap(float4 PackedNormal, float Strength = 1.0)
 {
-    // Approximate LinearToSRGB in linear colour space
-//#if !defined(UNITY_COLORSPACE_GAMMA)
-//    PackedNormal.rgb = pow(PackedNormal.rgb, 1/2.2);
-//#endif
-
     half3 normal = half3(PackedNormal.xy, 0);
     normal.xy = PackedNormal.xy * 2 - 1;
     normal.xy *= Strength;

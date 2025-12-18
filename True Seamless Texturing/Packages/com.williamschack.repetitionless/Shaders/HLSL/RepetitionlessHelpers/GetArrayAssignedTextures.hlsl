@@ -3,7 +3,9 @@
 
 #include "../Utilities/BooleanCompression.hlsl"
 
-void GetArrayAssignedTextures(UnityTexture2D tex,
+void GetArrayAssignedTextures(
+    UnityTexture2D tex,
+    
     out int AssignedAVTextures[3],
     out int AssignedNSOTextures[3],
     out int AssignedEMTextures[3],

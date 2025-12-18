@@ -57,6 +57,56 @@ Gets a compressed value at a given index from the input compressedValues
 
 ---
 
+## GetCompressedValue()
+
+### Declaration
+
+``` csharp
+bool GetCompressedValue(int CompressedValues[BOOLEAN_COMPRESSION_MAX_CHUNKS], int Index)
+```
+
+### Parameters
+
+| Parameter        | Description                                                        |
+| ---------------- | ------------------------------------------------------------------ |
+| CompressedValues | Compressed int of bool values, each value in the array is 32 bools |
+| Index            | Index of which bool value will be returned                         |
+
+### Returns
+
+Value at the given index
+
+### Description
+
+Gets a compressed value at a given index from the input compressedValues
+
+---
+
+## Combine16BitInts()
+
+### Declaration
+
+``` csharp
+bool Combine16BitInts(int firstHalf, int secondHalf)
+```
+
+### Parameters
+
+| Parameter  | Description                |
+| ---------- | -------------------------- |
+| firstHalf  | First half of the 32 bits  |
+| secondHalf | Second half of the 32 bits |
+
+### Returns
+
+The combined 32 bit integer
+
+### Description
+
+Combines two halfs of a 32 bit integer
+
+---
+
 ## AddCompressedValue_float()
 
 ### Declaration

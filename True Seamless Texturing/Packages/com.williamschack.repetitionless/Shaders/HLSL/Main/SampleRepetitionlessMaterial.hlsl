@@ -29,7 +29,7 @@ void SampleRepetitionlessMaterial(
     int AssignedEMTextures[3],
 
     // Material Data
-    RepetitionlessMaterialData MaterialData,
+    in RepetitionlessMaterialData MaterialData,
 
     // Outputs
     out float4 AlbedoColorOut,
