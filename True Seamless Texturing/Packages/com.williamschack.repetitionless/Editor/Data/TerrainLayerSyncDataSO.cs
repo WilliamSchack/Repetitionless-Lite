@@ -8,17 +8,48 @@ namespace Repetitionless.Editor.Data
     using Variables;
     using GUIUtilities;
 
+    /// <summary>
+    /// Syncs the terrain layers from the terrains to the materials<br />
+    /// Only one of this asset should exist
+    /// </summary>
     public class TerrainLayerSyncDataSO : ScriptableObject
     {
-        private const string ASSET_PATH = Constants.PACKAGE_DIR + "/Data/TerrainLayerSyncData.asset";
-
-        // Use wrappers to allow serialization
+        // Use wrappers to allow serialization with my jank dictionary implementation
         // Bit stupid but it works
-        [System.Serializable] public class TerrainLayerList { [SerializeField] public List<TerrainLayer> Items = new List<TerrainLayer>(); }
-        [System.Serializable] public class MaterialList     { [SerializeField] public List<Material> Items = new List<Material>(); }
 
+        /// <summary>
+        /// List of terrain layers<br />
+        /// Using a wrapper to allow serialization
+        /// </summary>
+        [System.Serializable] public class TerrainLayerList {
+            /// <summary>
+            /// The list of terrain layers
+            /// </summary>
+            [SerializeField] public List<TerrainLayer> Items = new List<TerrainLayer>();
+        }
+
+        /// <summary>
+        /// List of materials<br />
+        /// Using a wrapper to allow serialization
+        /// </summary>
+        [System.Serializable] public class MaterialList {
+            /// <summary>
+            /// The list of materials
+            /// </summary>
+            [SerializeField] public List<Material> Items = new List<Material>();
+        }
+
+        private const string ASSET_PATH = Constants.PACKAGE_PATH + "/Data/TerrainLayerSyncData.asset";
+
+        /// <summary>
+        /// Material to terrain layers dictionary
+        /// </summary>
         public SerializableDictionary<Material, TerrainLayerList> MaterialToTerrainLayer = new SerializableDictionary<Material, TerrainLayerList>();
+        /// <summary>
+        /// Terrain layer to materials dictionary
+        /// </summary>
         public SerializableDictionary<TerrainLayer, MaterialList> TerrainLayerToMaterial = new SerializableDictionary<TerrainLayer, MaterialList>();
+
         private static TerrainLayerSyncDataSO Create()
         {
             TerrainLayerSyncDataSO asset = CreateInstance<TerrainLayerSyncDataSO>();
@@ -27,6 +58,12 @@ namespace Repetitionless.Editor.Data
             return asset;
         } 
 
+        /// <summary>
+        /// Loads the sync data instance
+        /// </summary>
+        /// <returns>
+        /// The sync data object
+        /// </returns>
         public static TerrainLayerSyncDataSO Load()
         {
             TerrainLayerSyncDataSO asset = AssetDatabase.LoadAssetAtPath<TerrainLayerSyncDataSO>(ASSET_PATH);
@@ -35,12 +72,23 @@ namespace Repetitionless.Editor.Data
             return asset;
         }
 
+        /// <summary>
+        /// Saves this object
+        /// </summary>
         public void Save()
         {
             EditorUtility.SetDirty(this);
         }
 
-
+        /// <summary>
+        /// Updates the synced material and terrain layers, overriding the layers with the new ones for this material
+        /// </summary>
+        /// <param name="mat">
+        /// The material to update
+        /// </param>
+        /// <param name="layers">
+        /// The new terrain layers
+        /// </param>
         public void UpdateGlobalMaterialLayers(Material mat, TerrainLayer[] layers)
         {
             if (mat == null)
@@ -86,6 +134,12 @@ namespace Repetitionless.Editor.Data
             Save();
         }
 
+        /// <summary>
+        /// Removes a material from the lists
+        /// </summary>
+        /// <param name="mat">
+        /// The material to remove
+        /// </param>
         public void RemoveMaterial(Material mat)
         {
             if (!MaterialToTerrainLayer.ContainsKey(mat))
@@ -101,11 +155,18 @@ namespace Repetitionless.Editor.Data
                     TerrainLayerToMaterial.Remove(layer);
             }
 
-
-
             Save();
         }
 
+        /// <summary>
+        /// Updates the material properties and texture data for a specific terrain layer
+        /// </summary>
+        /// <param name="terrainLayer">
+        /// The terrain layer to use
+        /// </param>
+        /// <param name="material">
+        /// Used to only update a specific material
+        /// </param>
         public void UpdateLayerMaterialsData(TerrainLayer terrainLayer, Material material = null)
         {
             if (!TerrainLayerToMaterial.ContainsKey(terrainLayer))
@@ -194,6 +255,12 @@ namespace Repetitionless.Editor.Data
             if (nullMaterialFound) RemoveMaterial(null);
         }
 
+        /// <summary>
+        /// Removes any unused terrain layers for a material
+        /// </summary>
+        /// <param name="material">
+        /// The material to update
+        /// </param>
         public void RemoveUnusedLayerTextures(Material material)
         {
             MaterialDataManager materialData = new MaterialDataManager(material);

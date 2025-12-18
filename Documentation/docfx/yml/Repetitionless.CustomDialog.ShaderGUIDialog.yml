@@ -16,14 +16,14 @@ items:
   type: Class
   source:
     remote:
-      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomDialog/ShaderGUIDialog.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ShaderGUIDialog
-    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomDialog/ShaderGUIDialog.cs
     startLine: 18
   assemblies:
-  - com.williamschack.Repetitionless.CustomDialog
+  - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.CustomDialog
   summary: "\nWrapper to remove the &quot;PropertiesGUI() is being called recursively&quot; warning when calling EditorUtility.DisplayDialog in OnGUI within a ShaderGUI inherited class\n"
   example: []
@@ -45,14 +45,14 @@ items:
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomDialog/ShaderGUIDialog.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DisplayDialog
-    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomDialog/ShaderGUIDialog.cs
     startLine: 38
   assemblies:
-  - com.williamschack.Repetitionless.CustomDialog
+  - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.CustomDialog
   summary: "\nDisplays a modal dialog removing the ShaderGUI specific warning\n"
   example: []
@@ -92,14 +92,14 @@ items:
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomDialog/ShaderGUIDialog.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DisplayDialogComplex
-    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Editor/CustomDialog/ShaderGUIDialog.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomDialog/ShaderGUIDialog.cs
     startLine: 74
   assemblies:
-  - com.williamschack.Repetitionless.CustomDialog
+  - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.CustomDialog
   summary: "\nDisplays a modal dialog with three buttons removing the ShaderGUI specific warning\n"
   example: []

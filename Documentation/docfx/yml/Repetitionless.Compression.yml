@@ -13,7 +13,7 @@ items:
   fullName: Repetitionless.Compression
   type: Namespace
   assemblies:
-  - com.williamschack.Repetitionless.Compression
+  - com.williamschack.Repetitionless
 references:
 - uid: Repetitionless.Compression.BooleanCompression
   commentId: T:Repetitionless.Compression.BooleanCompression

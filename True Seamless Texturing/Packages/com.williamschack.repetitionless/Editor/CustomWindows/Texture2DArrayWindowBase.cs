@@ -176,7 +176,7 @@ namespace Repetitionless.Editor.CustomWindows
         protected GUIStyle _headerStyle;
 
         /// <summary>
-        /// Called when theGUI is first created<br />
+        /// Called when the GUI is first created<br />
         /// <b>base.CreateGUI(); Must be called before performing operations</b>
         /// </summary>
         protected virtual void CreateGUI()

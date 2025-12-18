@@ -1,0 +1,207 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
+  commentId: T:Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
+  id: TerrainLayerSyncDataSO.TerrainLayerList
+  parent: Repetitionless.Editor.Data
+  children:
+  - Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList.Items
+  langs:
+  - csharp
+  - vb
+  name: TerrainLayerSyncDataSO.TerrainLayerList
+  nameWithType: TerrainLayerSyncDataSO.TerrainLayerList
+  fullName: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/TerrainLayerSyncDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: TerrainLayerList
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/TerrainLayerSyncDataSO.cs
+    startLine: 23
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nList of terrain layers<br />\nUsing a wrapper to allow serialization\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public class TerrainLayerSyncDataSO.TerrainLayerList
+    content.vb: >-
+      <Serializable>
+
+      Public Class TerrainLayerSyncDataSO.TerrainLayerList
+  inheritance:
+  - System.Object
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+- uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList.Items
+  commentId: F:Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList.Items
+  id: Items
+  parent: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
+  langs:
+  - csharp
+  - vb
+  name: Items
+  nameWithType: TerrainLayerSyncDataSO.TerrainLayerList.Items
+  fullName: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList.Items
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/TerrainLayerSyncDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Items
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/TerrainLayerSyncDataSO.cs
+    startLine: 27
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nThe list of terrain layers\n"
+  example: []
+  syntax:
+    content: >-
+      [SerializeField]
+
+      public List<TerrainLayer> Items
+    return:
+      type: System.Collections.Generic.List{UnityEngine.TerrainLayer}
+    content.vb: >-
+      <SerializeField>
+
+      Public Items As List(Of TerrainLayer)
+  attributes:
+  - type: UnityEngine.SerializeField
+    ctor: UnityEngine.SerializeField.#ctor
+    arguments: []
+references:
+- uid: Repetitionless.Editor.Data
+  commentId: N:Repetitionless.Editor.Data
+  name: Repetitionless.Editor.Data
+  nameWithType: Repetitionless.Editor.Data
+  fullName: Repetitionless.Editor.Data
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.List{UnityEngine.TerrainLayer}
+  commentId: T:System.Collections.Generic.List{UnityEngine.TerrainLayer}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<TerrainLayer>
+  nameWithType: List<TerrainLayer>
+  fullName: System.Collections.Generic.List<UnityEngine.TerrainLayer>
+  nameWithType.vb: List(Of TerrainLayer)
+  fullName.vb: System.Collections.Generic.List(Of UnityEngine.TerrainLayer)
+  name.vb: List(Of TerrainLayer)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: <
+  - uid: UnityEngine.TerrainLayer
+    name: TerrainLayer
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: UnityEngine.TerrainLayer
+    name: TerrainLayer
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true

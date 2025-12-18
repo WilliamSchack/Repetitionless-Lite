@@ -1,0 +1,674 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Variables.RepetitionlessLayerData
+  commentId: T:Repetitionless.Variables.RepetitionlessLayerData
+  id: RepetitionlessLayerData
+  parent: Repetitionless.Variables
+  children:
+  - Repetitionless.Variables.RepetitionlessLayerData.BaseMaterialData
+  - Repetitionless.Variables.RepetitionlessLayerData.BlendMaskAssigned
+  - Repetitionless.Variables.RepetitionlessLayerData.BlendMaskDistanceTO
+  - Repetitionless.Variables.RepetitionlessLayerData.BlendMaskNoiseOffset
+  - Repetitionless.Variables.RepetitionlessLayerData.BlendMaskNoiseScale
+  - Repetitionless.Variables.RepetitionlessLayerData.BlendMaskOpacity
+  - Repetitionless.Variables.RepetitionlessLayerData.BlendMaskStrength
+  - Repetitionless.Variables.RepetitionlessLayerData.BlendMaskTextureTO
+  - Repetitionless.Variables.RepetitionlessLayerData.BlendMaskType
+  - Repetitionless.Variables.RepetitionlessLayerData.BlendMaterialData
+  - Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendEnabled
+  - Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendMinMax
+  - Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendMode
+  - Repetitionless.Variables.RepetitionlessLayerData.FarMaterialData
+  - Repetitionless.Variables.RepetitionlessLayerData.MaterialBlendEnabled
+  - Repetitionless.Variables.RepetitionlessLayerData.OverrideDistanceBlend
+  - Repetitionless.Variables.RepetitionlessLayerData.OverrideDistanceBlendTO
+  langs:
+  - csharp
+  - vb
+  name: RepetitionlessLayerData
+  nameWithType: RepetitionlessLayerData
+  fullName: Repetitionless.Variables.RepetitionlessLayerData
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RepetitionlessLayerData
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 7
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe layer data for a repetitionless material\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public class RepetitionlessLayerData
+    content.vb: >-
+      <Serializable>
+
+      Public Class RepetitionlessLayerData
+  inheritance:
+  - System.Object
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+- uid: Repetitionless.Variables.RepetitionlessLayerData.BaseMaterialData
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.BaseMaterialData
+  id: BaseMaterialData
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BaseMaterialData
+  nameWithType: RepetitionlessLayerData.BaseMaterialData
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.BaseMaterialData
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BaseMaterialData
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 15
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe base material data\n"
+  example: []
+  syntax:
+    content: >-
+      [SerializeField]
+
+      public RepetitionlessMaterialData BaseMaterialData
+    return:
+      type: Repetitionless.Variables.RepetitionlessMaterialData
+    content.vb: >-
+      <SerializeField>
+
+      Public BaseMaterialData As RepetitionlessMaterialData
+  attributes:
+  - type: UnityEngine.SerializeField
+    ctor: UnityEngine.SerializeField.#ctor
+    arguments: []
+- uid: Repetitionless.Variables.RepetitionlessLayerData.FarMaterialData
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.FarMaterialData
+  id: FarMaterialData
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: FarMaterialData
+  nameWithType: RepetitionlessLayerData.FarMaterialData
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.FarMaterialData
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: FarMaterialData
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 19
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe far material data\n"
+  example: []
+  syntax:
+    content: >-
+      [SerializeField]
+
+      public RepetitionlessMaterialData FarMaterialData
+    return:
+      type: Repetitionless.Variables.RepetitionlessMaterialData
+    content.vb: >-
+      <SerializeField>
+
+      Public FarMaterialData As RepetitionlessMaterialData
+  attributes:
+  - type: UnityEngine.SerializeField
+    ctor: UnityEngine.SerializeField.#ctor
+    arguments: []
+- uid: Repetitionless.Variables.RepetitionlessLayerData.BlendMaterialData
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.BlendMaterialData
+  id: BlendMaterialData
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BlendMaterialData
+  nameWithType: RepetitionlessLayerData.BlendMaterialData
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.BlendMaterialData
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BlendMaterialData
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 23
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe blend material data\n"
+  example: []
+  syntax:
+    content: >-
+      [SerializeField]
+
+      public RepetitionlessMaterialData BlendMaterialData
+    return:
+      type: Repetitionless.Variables.RepetitionlessMaterialData
+    content.vb: >-
+      <SerializeField>
+
+      Public BlendMaterialData As RepetitionlessMaterialData
+  attributes:
+  - type: UnityEngine.SerializeField
+    ctor: UnityEngine.SerializeField.#ctor
+    arguments: []
+- uid: Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendEnabled
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendEnabled
+  id: DistanceBlendEnabled
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: DistanceBlendEnabled
+  nameWithType: RepetitionlessLayerData.DistanceBlendEnabled
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendEnabled
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DistanceBlendEnabled
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 30
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nIf distance blend is enabled\n"
+  example: []
+  syntax:
+    content: public bool DistanceBlendEnabled
+    return:
+      type: System.Boolean
+    content.vb: Public DistanceBlendEnabled As Boolean
+- uid: Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendMode
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendMode
+  id: DistanceBlendMode
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: DistanceBlendMode
+  nameWithType: RepetitionlessLayerData.DistanceBlendMode
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendMode
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DistanceBlendMode
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 34
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe distance blend mode used\n"
+  example: []
+  syntax:
+    content: public EDistanceBlendMode DistanceBlendMode
+    return:
+      type: Repetitionless.Variables.EDistanceBlendMode
+    content.vb: Public DistanceBlendMode As EDistanceBlendMode
+- uid: Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendMinMax
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendMinMax
+  id: DistanceBlendMinMax
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: DistanceBlendMinMax
+  nameWithType: RepetitionlessLayerData.DistanceBlendMinMax
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.DistanceBlendMinMax
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DistanceBlendMinMax
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 38
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe distance blend min max\n"
+  example: []
+  syntax:
+    content: public Vector2 DistanceBlendMinMax
+    return:
+      type: UnityEngine.Vector2
+    content.vb: Public DistanceBlendMinMax As Vector2
+- uid: Repetitionless.Variables.RepetitionlessLayerData.MaterialBlendEnabled
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.MaterialBlendEnabled
+  id: MaterialBlendEnabled
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: MaterialBlendEnabled
+  nameWithType: RepetitionlessLayerData.MaterialBlendEnabled
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.MaterialBlendEnabled
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: MaterialBlendEnabled
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 45
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nIf material blend is enabled\n"
+  example: []
+  syntax:
+    content: public bool MaterialBlendEnabled
+    return:
+      type: System.Boolean
+    content.vb: Public MaterialBlendEnabled As Boolean
+- uid: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskAssigned
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.BlendMaskAssigned
+  id: BlendMaskAssigned
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BlendMaskAssigned
+  nameWithType: RepetitionlessLayerData.BlendMaskAssigned
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskAssigned
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BlendMaskAssigned
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 49
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nIf the blend mask texture is assigned\n"
+  example: []
+  syntax:
+    content: public bool BlendMaskAssigned
+    return:
+      type: System.Boolean
+    content.vb: Public BlendMaskAssigned As Boolean
+- uid: Repetitionless.Variables.RepetitionlessLayerData.OverrideDistanceBlend
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.OverrideDistanceBlend
+  id: OverrideDistanceBlend
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: OverrideDistanceBlend
+  nameWithType: RepetitionlessLayerData.OverrideDistanceBlend
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.OverrideDistanceBlend
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OverrideDistanceBlend
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 53
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nIf the blend material will be drawn at a distance instead of the distance material\n"
+  example: []
+  syntax:
+    content: public bool OverrideDistanceBlend
+    return:
+      type: System.Boolean
+    content.vb: Public OverrideDistanceBlend As Boolean
+- uid: Repetitionless.Variables.RepetitionlessLayerData.OverrideDistanceBlendTO
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.OverrideDistanceBlendTO
+  id: OverrideDistanceBlendTO
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: OverrideDistanceBlendTO
+  nameWithType: RepetitionlessLayerData.OverrideDistanceBlendTO
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.OverrideDistanceBlendTO
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OverrideDistanceBlendTO
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 57
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nIf the blend material at a distance will have a different tiling offset\n"
+  example: []
+  syntax:
+    content: public bool OverrideDistanceBlendTO
+    return:
+      type: System.Boolean
+    content.vb: Public OverrideDistanceBlendTO As Boolean
+- uid: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskType
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.BlendMaskType
+  id: BlendMaskType
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BlendMaskType
+  nameWithType: RepetitionlessLayerData.BlendMaskType
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskType
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BlendMaskType
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 61
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe blend mask type used\n"
+  example: []
+  syntax:
+    content: public ETextureType BlendMaskType
+    return:
+      type: Repetitionless.Variables.ETextureType
+    content.vb: Public BlendMaskType As ETextureType
+- uid: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskDistanceTO
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.BlendMaskDistanceTO
+  id: BlendMaskDistanceTO
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BlendMaskDistanceTO
+  nameWithType: RepetitionlessLayerData.BlendMaskDistanceTO
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskDistanceTO
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BlendMaskDistanceTO
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 66
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe blend mask distance tiling offset:<br />\nxy: Tiling, zw: Offset\n"
+  example: []
+  syntax:
+    content: public Vector4 BlendMaskDistanceTO
+    return:
+      type: UnityEngine.Vector4
+    content.vb: Public BlendMaskDistanceTO As Vector4
+- uid: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskOpacity
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.BlendMaskOpacity
+  id: BlendMaskOpacity
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BlendMaskOpacity
+  nameWithType: RepetitionlessLayerData.BlendMaskOpacity
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskOpacity
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BlendMaskOpacity
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 70
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe blend mask opacity\n"
+  example: []
+  syntax:
+    content: public float BlendMaskOpacity
+    return:
+      type: System.Single
+    content.vb: Public BlendMaskOpacity As Single
+- uid: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskStrength
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.BlendMaskStrength
+  id: BlendMaskStrength
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BlendMaskStrength
+  nameWithType: RepetitionlessLayerData.BlendMaskStrength
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskStrength
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BlendMaskStrength
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 74
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe blend mask strength\n"
+  example: []
+  syntax:
+    content: public float BlendMaskStrength
+    return:
+      type: System.Single
+    content.vb: Public BlendMaskStrength As Single
+- uid: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskNoiseScale
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.BlendMaskNoiseScale
+  id: BlendMaskNoiseScale
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BlendMaskNoiseScale
+  nameWithType: RepetitionlessLayerData.BlendMaskNoiseScale
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskNoiseScale
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BlendMaskNoiseScale
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 78
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe blend mask noise scale\n"
+  example: []
+  syntax:
+    content: public float BlendMaskNoiseScale
+    return:
+      type: System.Single
+    content.vb: Public BlendMaskNoiseScale As Single
+- uid: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskNoiseOffset
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.BlendMaskNoiseOffset
+  id: BlendMaskNoiseOffset
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BlendMaskNoiseOffset
+  nameWithType: RepetitionlessLayerData.BlendMaskNoiseOffset
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskNoiseOffset
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BlendMaskNoiseOffset
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 82
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe blend mask noise offset\n"
+  example: []
+  syntax:
+    content: public Vector2 BlendMaskNoiseOffset
+    return:
+      type: UnityEngine.Vector2
+    content.vb: Public BlendMaskNoiseOffset As Vector2
+- uid: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskTextureTO
+  commentId: F:Repetitionless.Variables.RepetitionlessLayerData.BlendMaskTextureTO
+  id: BlendMaskTextureTO
+  parent: Repetitionless.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BlendMaskTextureTO
+  nameWithType: RepetitionlessLayerData.BlendMaskTextureTO
+  fullName: Repetitionless.Variables.RepetitionlessLayerData.BlendMaskTextureTO
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BlendMaskTextureTO
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 87
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe blend mask texture tiling offset:<br />\nxy: Tiling, zw: Offset\n"
+  example: []
+  syntax:
+    content: public Vector4 BlendMaskTextureTO
+    return:
+      type: UnityEngine.Vector4
+    content.vb: Public BlendMaskTextureTO As Vector4
+references:
+- uid: Repetitionless.Variables
+  commentId: N:Repetitionless.Variables
+  name: Repetitionless.Variables
+  nameWithType: Repetitionless.Variables
+  fullName: Repetitionless.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Repetitionless.Variables.RepetitionlessMaterialData
+  commentId: T:Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Variables
+  name: RepetitionlessMaterialData
+  nameWithType: RepetitionlessMaterialData
+  fullName: Repetitionless.Variables.RepetitionlessMaterialData
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Repetitionless.Variables.EDistanceBlendMode
+  commentId: T:Repetitionless.Variables.EDistanceBlendMode
+  parent: Repetitionless.Variables
+  name: EDistanceBlendMode
+  nameWithType: EDistanceBlendMode
+  fullName: Repetitionless.Variables.EDistanceBlendMode
+- uid: UnityEngine.Vector2
+  commentId: T:UnityEngine.Vector2
+  parent: UnityEngine
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: UnityEngine.Vector2
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: Repetitionless.Variables.ETextureType
+  commentId: T:Repetitionless.Variables.ETextureType
+  parent: Repetitionless.Variables
+  name: ETextureType
+  nameWithType: ETextureType
+  fullName: Repetitionless.Variables.ETextureType
+- uid: UnityEngine.Vector4
+  commentId: T:UnityEngine.Vector4
+  parent: UnityEngine
+  isExternal: true
+  name: Vector4
+  nameWithType: Vector4
+  fullName: UnityEngine.Vector4
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single

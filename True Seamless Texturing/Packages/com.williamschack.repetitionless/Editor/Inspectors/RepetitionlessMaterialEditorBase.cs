@@ -42,11 +42,29 @@ namespace Repetitionless.Editor.Inspectors
             public bool VariationProperties = true;
         }
 
+        /// <summary>
+        /// Contains the texture drawer and channel for a texture
+        /// </summary>
         protected struct TextureDrawerDetails
         {
+            /// <summary>
+            /// The texture drawer used
+            /// </summary>
             public TextureArrayCustomChannelsGUIDrawer TextureDrawer;
+            /// <summary>
+            /// The channel index used to index into the texture data
+            /// </summary>
             public int ChannelIndex;
 
+            /// <summary>
+            /// TextureDrawerDetails Constructor
+            /// </summary>
+            /// <param name="textureDrawer">
+            /// The texture drawer used
+            /// </param>
+            /// <param name="channelIndex">
+            /// The channel index used to index into the texture data
+            /// </param>
             public TextureDrawerDetails(TextureArrayCustomChannelsGUIDrawer textureDrawer, int channelIndex)
             {
                 TextureDrawer = textureDrawer;
@@ -74,11 +92,27 @@ namespace Repetitionless.Editor.Inspectors
         private const string PROGRESS_BAR_TITLE = "Updating Material";
 
         // Overridable
+
+        /// <summary>
+        /// The max amount of layers for the material
+        /// </summary>
         protected virtual int _maxLayers => 1;
 
         // Data
+
+        /// <summary>
+        /// The data manager used for this material
+        /// </summary>
         protected MaterialDataManager _dataManager;
+
+        /// <summary>
+        /// The texture data for this material
+        /// </summary>
         protected RepetitionlessTextureDataSO _textureData;
+
+        /// <summary>
+        /// The material properties for this material
+        /// </summary>
         protected RepetitionlessMaterialDataSO _materialProperties;
 
         // Array Settings Button
@@ -182,11 +216,31 @@ namespace Repetitionless.Editor.Inspectors
             return "Base";
         }
 
+        /// <summary>
+        /// Gets the layer data for a layer
+        /// </summary>
+        /// <param name="layerIndex">
+        /// The layer to get the data from
+        /// </param>
+        /// <returns>
+        /// The layer data at a layer
+        /// </returns>
         protected RepetitionlessLayerData GetLayerData(int layerIndex = 0)
         {
             return _materialProperties.Data[layerIndex];
         }
 
+        /// <summary>
+        /// Gets the material data for a specific material
+        /// </summary>
+        /// <param name="layerIndex">
+        /// The layer to get the data from
+        /// </param>
+        /// <param name="sectionIndex">
+        /// The section to get the data from:
+        /// 0: Base, 1: Far, 2: Blend
+        /// </param>
+        /// <returns></returns>
         protected RepetitionlessMaterialData GetMaterialData(int layerIndex, int sectionIndex)
         {
             RepetitionlessMaterialData currentData = _materialProperties.Data[layerIndex].BaseMaterialData;
@@ -199,28 +253,12 @@ namespace Repetitionless.Editor.Inspectors
             return currentData;
         }
 
-        // Each gui function modifying the material properties should be using this function
-        // Must be called to properly save the properties
-        protected virtual void DrawProperty(int layerIndex, System.Action drawPropertyAction)
-        {
-            if (drawPropertyAction == null)
-                return;
-
-            MaterialProperty textureProperty = FindProperty(RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME);
-            if (_materialProperties != null && textureProperty.textureValue != null) {
-                Undo.RecordObjects(new Object[] {_materialProperties, (Texture2D)textureProperty.textureValue}, $"Modified {_material.name} property");
-            }
-
-            EditorGUI.BeginChangeCheck();
-            drawPropertyAction();
-            if (EditorGUI.EndChangeCheck())
-                UpdateMaterialPropertiesTexture(layerIndex);
-        }
-
         /// <summary>
-        /// Used to draw all the texture fields<br />
-        /// Can be overrided to change how textures are drawn
+        /// Used to draw all the texture fields
         /// </summary>
+        /// <param name="layerIndex">
+        /// The layer which the texture will be drawn
+        /// </param>
         /// <param name="sectionIndex">
         /// The section that this texture is in
         /// </param>
@@ -229,9 +267,6 @@ namespace Repetitionless.Editor.Inspectors
         /// </param>
         /// <param name="content">
         /// The GUIContent to use in the field
-        /// </param>
-        /// <param name="texturePropertyName">
-        /// The texture material property name
         /// </param>
         /// <returns>
         /// The rect that the texture field is using
@@ -264,6 +299,30 @@ namespace Repetitionless.Editor.Inspectors
             return lineRect;
         }
 
+        /// <summary>
+        /// Saves the material property if changed in the action<br />
+        /// <b>Each gui function modifying the material properties should be using this function</b>
+        /// </summary>
+        /// <param name="layerIndex">
+        /// The layer index 
+        /// </param>
+        /// <param name="drawPropertyAction"></param>
+        protected virtual void DrawProperty(int layerIndex, System.Action drawPropertyAction)
+        {
+            if (drawPropertyAction == null)
+                return;
+
+            MaterialProperty textureProperty = FindProperty(RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME);
+            if (_materialProperties != null && textureProperty.textureValue != null) {
+                Undo.RecordObjects(new Object[] {_materialProperties, (Texture2D)textureProperty.textureValue}, $"Modified {_material.name} property");
+            }
+
+            EditorGUI.BeginChangeCheck();
+            drawPropertyAction();
+            if (EditorGUI.EndChangeCheck())
+                UpdateMaterialPropertiesTexture(layerIndex);
+        }
+
         private void UpdateVariationTexture(int layerIndex, int sectionIndex, ETextureType prevVariationMode, bool forceRemove = false)
         {
             RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, sectionIndex);
@@ -276,7 +335,7 @@ namespace Repetitionless.Editor.Inspectors
                 // Set the texture to the default variation if none assigned
                 Texture2D texture = _textureData.GetTextureData(layerIndex, sectionIndex, 0)[1].Texture;
                 if (texture == null) {
-                    texture = Resources.Load<Texture2D>(Constants.DEFAULT_VARIATION_TEXTURE_NAME);
+                    texture = Resources.Load<Texture2D>(Constants.DEFAULT_VARIATION_TEXTURE_NAME_2K);
                 }
 
                 bool textureAdded = _textureData.AVTexturesDrawer.UpdateTexture(texture, sectionIndex, 1, true).Item2;
@@ -328,11 +387,11 @@ namespace Repetitionless.Editor.Inspectors
         /// Handles assigned textures that the shader uses to determine whether to use textures or values<br />
         /// Can be overrided to change how the assigned textures are set
         /// </summary>
+        /// <param name="layerIndex">
+        /// The layer that will be updated
+        /// </param>
         /// <param name="sectionIndex">
         /// The section that this texture is in
-        /// </param>
-        /// <param name="settingsProp">
-        /// The settings material property for this material section
         /// </param>
         /// <returns>
         /// The compressed assigned textures
@@ -342,11 +401,30 @@ namespace Repetitionless.Editor.Inspectors
             _materialProperties.UpdateAssignedTextures(_material, _textureData, sectionIndex, layerIndex);
         }
 
+        /// <summary>
+        /// Updates the material properties texture
+        /// </summary>
+        /// <param name="layerIndex">
+        /// The layer to update
+        /// </param>
         protected virtual void UpdateMaterialPropertiesTexture(int layerIndex)
         {
             _materialProperties.UpdateMaterialTexture(_material, layerIndex);
         }
 
+        /// <summary>
+        /// Gets the texture drawer details for a texture
+        /// </summary>
+        /// <param name="textureIndex">
+        /// The texture index:
+        /// 0: Albedo, 1: Metallic, 2: Smoothness, 3: Normal, 4: Occlussion, 5: Emission, 6: Variation
+        /// </param>
+        /// <param name="packedTexture">
+        /// If the drawer details for the packed texture will return
+        /// </param>
+        /// <returns>
+        /// The texture drawer detailsUpdateMaterialTexture
+        /// </returns>
         protected TextureDrawerDetails GetTextureDrawerDetails(int textureIndex, bool packedTexture)
         {
             if (packedTexture && textureIndex == 1) {
@@ -373,7 +451,7 @@ namespace Repetitionless.Editor.Inspectors
                 return;
             }
 
-            ConfigureArrayWindowLimited.ShowWindow(arrayDrawer.Array, $"Configuring ({arrayDrawer.Array.name})", (Texture2DArray newArray) => {
+            ConfigureArrayWindowLimited.Open(arrayDrawer.Array, $"Configuring ({arrayDrawer.Array.name})", (Texture2DArray newArray) => {
                 arrayDrawer.UpdateArray(newArray);
             });
         }
@@ -465,8 +543,10 @@ namespace Repetitionless.Editor.Inspectors
                 EditorUtility.ClearProgressBar();
         }
 
-        // Called when the material properties are first created
-        // Do not need to call base, nothing happens
+        /// <summary>
+        /// Called when the material properties are first created<br />
+        /// No need to call base, nothing happens
+        /// </summary>
         protected virtual void OnPropertiesCreated() {}
 
         /// <summary>
@@ -659,6 +739,9 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Draws a material section GUI
         /// </summary>
+        /// <param name="layerIndex">
+        /// The layer to draw
+        /// </param>
         /// <param name="sectionIndex">
         /// The material section index
         /// </param>
@@ -728,6 +811,12 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Draws the settings at the top of each material section
         /// </summary>
+        /// <param name="layerIndex">
+        /// The layer to draw
+        /// </param>
+        /// <param name="sectionIndex">
+        /// The section index to draw
+        /// </param>
         /// <param name="showNoise">
         /// Toggles if the noise settings are enabled
         /// </param>
@@ -781,11 +870,14 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Draws the left section of the material settings
         /// </summary>
-        /// <param name="compressedValues">
-        /// The compressed setting values to modify
+        /// <param name="currentData">
+        /// The current material data
         /// </param>
-        /// <param name="settingToggles">
-        /// The compressed settings toggles
+        /// <param name="layerIndex">
+        /// The layer to draw
+        /// </param>
+        /// <param name="sectionIndex">
+        /// The section index to draw
         /// </param>
         /// <param name="minScaledTextWidth">
         /// The minimum width required for labels to expand
@@ -827,11 +919,14 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Draws the right section of the material settings
         /// </summary>
-        /// <param name="compressedValues">
-        /// The compressed setting values to modify
+        /// <param name="currentData">
+        /// The current material data
         /// </param>
-        /// <param name="settingToggles">
-        /// The compressed settings toggles
+        /// <param name="layerIndex">
+        /// The layer to draw
+        /// </param>
+        /// <param name="sectionIndex">
+        /// The section index to draw
         /// </param>
         /// <param name="minScaledTextWidth">
         /// The minimum width required for labels to expand
@@ -876,6 +971,9 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Draws the main properties in a material section
         /// </summary>
+        /// <param name="layerIndex">
+        /// The layer to draw
+        /// </param>
         /// <param name="sectionIndex">
         /// The material section index
         /// </param>
@@ -959,6 +1057,12 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Draws the noise properties in a material section
         /// </summary>
+        /// <param name="layerIndex">
+        /// The layer to draw
+        /// </param>
+        /// <param name="sectionIndex">
+        /// The section index to draw
+        /// </param>
         protected virtual void DrawMaterialNoiseGUI(int layerIndex, int sectionIndex)
         {
             RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, sectionIndex);
@@ -989,6 +1093,9 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Draws the variation properties in a material section
         /// </summary>
+        /// <param name="layerIndex">
+        /// The layer to draw
+        /// </param>
         /// <param name="sectionIndex">
         /// The material section index
         /// </param>
@@ -1037,6 +1144,9 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Draws the base material GUI
         /// </summary>
+        /// <param name="layerIndex">
+        /// The layer to draw
+        /// </param>
         /// <param name="propertiesPrefix">
         /// The material property prefix for the material
         /// </param>
@@ -1052,6 +1162,9 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Draws the distance blend GUI
         /// </summary>
+        /// <param name="layerIndex">
+        /// The layer to draw
+        /// </param>
         /// <param name="propertiesPrefix">
         /// The material property prefix for the material
         /// </param>
@@ -1103,6 +1216,9 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Draws the blend material GUI
         /// </summary>
+        /// <param name="layerIndex">
+        /// The layer to draw
+        /// </param>
         /// <param name="propertiesPrefix">
         /// The material property prefix for the material
         /// </param>

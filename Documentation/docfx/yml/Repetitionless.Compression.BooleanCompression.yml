@@ -6,9 +6,12 @@ items:
   parent: Repetitionless.Compression
   children:
   - Repetitionless.Compression.BooleanCompression.AddValue(System.Int32,System.Int32,System.Boolean)
+  - Repetitionless.Compression.BooleanCompression.Combine16BitInts(System.UInt16,System.UInt16)
   - Repetitionless.Compression.BooleanCompression.CompressValues(System.Boolean[])
   - Repetitionless.Compression.BooleanCompression.GetValue(System.Int32,System.Int32)
   - Repetitionless.Compression.BooleanCompression.GetValues(System.Int32,System.Int32)
+  - Repetitionless.Compression.BooleanCompression.MAX_VALUES
+  - Repetitionless.Compression.BooleanCompression.Split32BitInt(System.Int32)
   langs:
   - csharp
   - vb
@@ -18,14 +21,14 @@ items:
   type: Class
   source:
     remote:
-      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BooleanCompression
-    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
     startLine: 12
   assemblies:
-  - com.williamschack.Repetitionless.Compression
+  - com.williamschack.Repetitionless
   namespace: Repetitionless.Compression
   summary: "\nUsed to compress and extract an array of boolean values in a single integer\n"
   example: []
@@ -34,6 +37,35 @@ items:
     content.vb: Public Module BooleanCompression
   inheritance:
   - System.Object
+- uid: Repetitionless.Compression.BooleanCompression.MAX_VALUES
+  commentId: F:Repetitionless.Compression.BooleanCompression.MAX_VALUES
+  id: MAX_VALUES
+  parent: Repetitionless.Compression.BooleanCompression
+  langs:
+  - csharp
+  - vb
+  name: MAX_VALUES
+  nameWithType: BooleanCompression.MAX_VALUES
+  fullName: Repetitionless.Compression.BooleanCompression.MAX_VALUES
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: MAX_VALUES
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
+    startLine: 17
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Compression
+  summary: "\nThe max values that can be stored in one compressed integer (32-bit integer)\n"
+  example: []
+  syntax:
+    content: public const int MAX_VALUES = 32
+    return:
+      type: System.Int32
+    content.vb: Public Const MAX_VALUES As Integer = 32
 - uid: Repetitionless.Compression.BooleanCompression.CompressValues(System.Boolean[])
   commentId: M:Repetitionless.Compression.BooleanCompression.CompressValues(System.Boolean[])
   id: CompressValues(System.Boolean[])
@@ -47,14 +79,14 @@ items:
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CompressValues
-    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
-    startLine: 23
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
+    startLine: 28
   assemblies:
-  - com.williamschack.Repetitionless.Compression
+  - com.williamschack.Repetitionless
   namespace: Repetitionless.Compression
   summary: "\nCompresses the input array of bools into an int\n"
   example: []
@@ -85,14 +117,14 @@ items:
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetValues
-    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
-    startLine: 50
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
+    startLine: 56
   assemblies:
-  - com.williamschack.Repetitionless.Compression
+  - com.williamschack.Repetitionless
   namespace: Repetitionless.Compression
   summary: "\nRetrieves all the boolean values stored in a compressed int\n"
   example: []
@@ -126,14 +158,14 @@ items:
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AddValue
-    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
-    startLine: 78
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
+    startLine: 86
   assemblies:
-  - com.williamschack.Repetitionless.Compression
+  - com.williamschack.Repetitionless
   namespace: Repetitionless.Compression
   summary: "\nOverwrites a value at a given index into the input compressedValues\n"
   example: []
@@ -170,14 +202,14 @@ items:
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetValue
-    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Compression/BooleanCompression.cs
-    startLine: 96
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
+    startLine: 110
   assemblies:
-  - com.williamschack.Repetitionless.Compression
+  - com.williamschack.Repetitionless
   namespace: Repetitionless.Compression
   summary: "\nGets a compressed value at a given index from the input compressedValues\n"
   example: []
@@ -198,6 +230,85 @@ items:
   nameWithType.vb: BooleanCompression.GetValue(Integer, Integer)
   fullName.vb: Repetitionless.Compression.BooleanCompression.GetValue(Integer, Integer)
   name.vb: GetValue(Integer, Integer)
+- uid: Repetitionless.Compression.BooleanCompression.Split32BitInt(System.Int32)
+  commentId: M:Repetitionless.Compression.BooleanCompression.Split32BitInt(System.Int32)
+  id: Split32BitInt(System.Int32)
+  parent: Repetitionless.Compression.BooleanCompression
+  langs:
+  - csharp
+  - vb
+  name: Split32BitInt(int)
+  nameWithType: BooleanCompression.Split32BitInt(int)
+  fullName: Repetitionless.Compression.BooleanCompression.Split32BitInt(int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Split32BitInt
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
+    startLine: 130
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Compression
+  summary: "\nSplits a 32 bit integer into two 16 bit integers\n"
+  example: []
+  syntax:
+    content: public static (ushort, ushort) Split32BitInt(int value)
+    parameters:
+    - id: value
+      type: System.Int32
+      description: "\nThe integer to split\n"
+    return:
+      type: System.ValueTuple{System.UInt16,System.UInt16}
+      description: "\nItem1: First half<br />\nItem2: Second half\n"
+    content.vb: Public Shared Function Split32BitInt(value As Integer) As (UShort, UShort)
+  overload: Repetitionless.Compression.BooleanCompression.Split32BitInt*
+  nameWithType.vb: BooleanCompression.Split32BitInt(Integer)
+  fullName.vb: Repetitionless.Compression.BooleanCompression.Split32BitInt(Integer)
+  name.vb: Split32BitInt(Integer)
+- uid: Repetitionless.Compression.BooleanCompression.Combine16BitInts(System.UInt16,System.UInt16)
+  commentId: M:Repetitionless.Compression.BooleanCompression.Combine16BitInts(System.UInt16,System.UInt16)
+  id: Combine16BitInts(System.UInt16,System.UInt16)
+  parent: Repetitionless.Compression.BooleanCompression
+  langs:
+  - csharp
+  - vb
+  name: Combine16BitInts(ushort, ushort)
+  nameWithType: BooleanCompression.Combine16BitInts(ushort, ushort)
+  fullName: Repetitionless.Compression.BooleanCompression.Combine16BitInts(ushort, ushort)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Combine16BitInts
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Compression/BooleanCompression.cs
+    startLine: 150
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Compression
+  summary: "\nCombines two 16 bit integers into a 32 bit integer\n"
+  example: []
+  syntax:
+    content: public static int Combine16BitInts(ushort firstHalf, ushort secondHalf)
+    parameters:
+    - id: firstHalf
+      type: System.UInt16
+      description: "\nThe first integer\n"
+    - id: secondHalf
+      type: System.UInt16
+      description: "\nThe second integer\n"
+    return:
+      type: System.Int32
+      description: "\nThe combined 32 bit integer\n"
+    content.vb: Public Shared Function Combine16BitInts(firstHalf As UShort, secondHalf As UShort) As Integer
+  overload: Repetitionless.Compression.BooleanCompression.Combine16BitInts*
+  nameWithType.vb: BooleanCompression.Combine16BitInts(UShort, UShort)
+  fullName.vb: Repetitionless.Compression.BooleanCompression.Combine16BitInts(UShort, UShort)
+  name.vb: Combine16BitInts(UShort, UShort)
 references:
 - uid: Repetitionless.Compression
   commentId: N:Repetitionless.Compression
@@ -232,6 +343,16 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Repetitionless.Compression.BooleanCompression.CompressValues*
   commentId: Overload:Repetitionless.Compression.BooleanCompression.CompressValues
   name: CompressValues
@@ -257,16 +378,6 @@ references:
     isExternal: true
   - name: (
   - name: )
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
 - uid: Repetitionless.Compression.BooleanCompression.GetValues*
   commentId: Overload:Repetitionless.Compression.BooleanCompression.GetValues
   name: GetValues
@@ -292,3 +403,74 @@ references:
   name: GetValue
   nameWithType: BooleanCompression.GetValue
   fullName: Repetitionless.Compression.BooleanCompression.GetValue
+- uid: Repetitionless.Compression.BooleanCompression.Split32BitInt*
+  commentId: Overload:Repetitionless.Compression.BooleanCompression.Split32BitInt
+  name: Split32BitInt
+  nameWithType: BooleanCompression.Split32BitInt
+  fullName: Repetitionless.Compression.BooleanCompression.Split32BitInt
+- uid: System.ValueTuple{System.UInt16,System.UInt16}
+  commentId: T:System.ValueTuple{System.UInt16,System.UInt16}
+  parent: System
+  definition: System.ValueTuple`2
+  name: (ushort, ushort)
+  nameWithType: (ushort, ushort)
+  fullName: (ushort, ushort)
+  nameWithType.vb: (UShort, UShort)
+  fullName.vb: (UShort, UShort)
+  name.vb: (UShort, UShort)
+  spec.csharp:
+  - name: (
+  - uid: System.UInt16
+    name: ushort
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.UInt16
+    name: ushort
+    isExternal: true
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.UInt16
+    name: UShort
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.UInt16
+    name: UShort
+    isExternal: true
+  - name: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: Repetitionless.Compression.BooleanCompression.Combine16BitInts*
+  commentId: Overload:Repetitionless.Compression.BooleanCompression.Combine16BitInts
+  name: Combine16BitInts
+  nameWithType: BooleanCompression.Combine16BitInts
+  fullName: Repetitionless.Compression.BooleanCompression.Combine16BitInts
+- uid: System.UInt16
+  commentId: T:System.UInt16
+  parent: System
+  isExternal: true
+  name: ushort
+  nameWithType: ushort
+  fullName: ushort
+  nameWithType.vb: UShort
+  fullName.vb: UShort
+  name.vb: UShort

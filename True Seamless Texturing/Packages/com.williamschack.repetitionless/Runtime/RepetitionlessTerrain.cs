@@ -18,6 +18,9 @@ using UnityEditor.SceneManagement;
 
 namespace Repetitionless
 {
+    /// <summary>
+    /// Handles Repetitionless materials interfacing with a terrain, automatically updating terrain textures and syncing the terrain layers to the material
+    /// </summary>
     [ExecuteInEditMode]
     [RequireComponent(typeof(Terrain))]
     public class RepetitionlessTerrain : MonoBehaviour
@@ -25,14 +28,29 @@ namespace Repetitionless
         private const int CONTROL_TEXTURE_COUNT = 8;
 
         [SerializeField] private Material _mainMaterial;
+
+        /// <summary>
+        /// The main material set in the inspector
+        /// </summary>
         public Material MainMaterial { get { return _mainMaterial; } }
         
         private Material _materialInstance;
+
+        /// <summary>
+        /// The instance of the material the terrain is using
+        /// </summary>
         public Material MaterialInstance { get { return _materialInstance; } }
 
+        /// <summary>
+        /// If modifying the terrain layers will automatically update the material
+        /// </summary>
         public bool AutoSaveTextures = true;
 
         private Terrain _terrain;
+
+        /// <summary>
+        /// The terrain being used
+        /// </summary>
         public Terrain Terrain { get {
                 if (_terrain == null && this != null)
                     TryGetComponent<Terrain>(out _terrain);
@@ -47,10 +65,24 @@ namespace Repetitionless
             }
         }
 
+        /// <summary>
+        /// The parent terrain that is handling this terrains material
+        /// </summary>
         [SerializeField] public RepetitionlessTerrain ParentTerrain;
 
+        /// <summary>
+        /// Callback when the terrain layers are changed
+        /// </summary>
         public Action<TerrainLayer[]> OnTerrainLayersChanged;
+
+        /// <summary>
+        /// Callback when the material is changed
+        /// </summary>
         public Action<Material> OnMaterialChanged;
+
+        /// <summary>
+        /// Callback when the material textures are updated
+        /// </summary>
         public Action OnMaterialTexturesUpdated;
 
     #if UNITY_EDITOR
@@ -109,6 +141,12 @@ namespace Repetitionless
     #endif
         }
 
+        /// <summary>
+        /// Creates a new material instance and updates the terrain
+        /// </summary>
+        /// <param name="material">
+        /// The material that will be instanced
+        /// </param>
         public void UpdateTerrainMaterial(Material material)
         {
             _mainMaterial = material;
@@ -130,7 +168,9 @@ namespace Repetitionless
             OnMaterialChanged?.Invoke(material);
         }
 
-        // Update control and holes textures
+        /// <summary>
+        /// Updates the terrain textures on the material instance
+        /// </summary>
         public void UpdateMaterialTerrainTextures()
         {
             // this == null to prevent error on end of build
@@ -156,11 +196,17 @@ namespace Repetitionless
             OnMaterialTexturesUpdated?.Invoke();
         }
 
+        /// <summary>
+        /// Updates the layer cound on the material instance
+        /// </summary>
         public void UpdateLayersCount()
         {
             _materialInstance.SetFloat("_LayersCount", _terrainData.alphamapLayers);
         }
 
+        /// <summary>
+        /// Updates the control textures on the material instance
+        /// </summary>
         public void UpdateControlTextures()
         {
             int controlTextureCount = Mathf.CeilToInt(_terrainData.alphamapLayers / 4.0f);
@@ -170,13 +216,22 @@ namespace Repetitionless
             }
         }
 
+        /// <summary>
+        /// Updates the holes texture on the material instance
+        /// </summary>
         public void UpdateHolesTexture()
         {
             _materialInstance.SetTexture("_TerrainHoles", _terrainData.holesTexture);
         }
 
     #if UNITY_EDITOR
-        // Assumes this is called from the editor before the current parent is updated
+        /// <summary>
+        /// Updates the parent callbacks<br />
+        /// Assumes this is called from the editor before the current parent is updated
+        /// </summary>
+        /// <param name="newParent">
+        /// The new parent being subscribed to
+        /// </param>
         public void UpdateParentCallback(RepetitionlessTerrain newParent)
         {
             ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
@@ -195,17 +250,35 @@ namespace Repetitionless
             _terrainData.terrainLayers = newTerrainLayers;
         }
 
+        /// <summary>
+        /// Updates the terrain material and its textures<br />
+        /// Called by the parent when its material has changed
+        /// </summary>
+        /// <param name="material">
+        /// The new material to use
+        /// </param>
         public void ParentMaterialChanged(Material material)
         {
             UpdateTerrainMaterial(material);
             UpdateMaterialTerrainTextures();
         }
 
+        /// <summary>
+        /// Updates the material terrain textures<br />
+        /// Called by the parent when its material has changed
+        /// </summary>
         public void ParentMaterialTexturesUpdated()
         {
             UpdateMaterialTerrainTextures();
         }
 
+        /// <summary>
+        /// Sets up a terrain neighbour with a RepetitionlessTerrain component with this terrain as its parent<br />
+        /// Called via the editor when a terrain is created beside this one
+        /// </summary>
+        /// <param name="newNeighbour">
+        /// The new terrain to setup
+        /// </param>
         public void SetupNewTerrainNeighbour(Terrain newNeighbour)
         {
             RepetitionlessTerrain repetitionlessTerrain;

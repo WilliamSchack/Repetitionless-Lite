@@ -1,0 +1,80 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Processors.PostPackageImport
+  commentId: T:Repetitionless.Editor.Processors.PostPackageImport
+  id: PostPackageImport
+  parent: Repetitionless.Editor.Processors
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: PostPackageImport
+  nameWithType: PostPackageImport
+  fullName: Repetitionless.Editor.Processors.PostPackageImport
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/PostPackageImport.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: PostPackageImport
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/PostPackageImport.cs
+    startLine: 9
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Processors
+  syntax:
+    content: >-
+      [InitializeOnLoad]
+
+      public class PostPackageImport
+    content.vb: >-
+      <InitializeOnLoad>
+
+      Public Class PostPackageImport
+  inheritance:
+  - System.Object
+  attributes:
+  - type: UnityEditor.InitializeOnLoadAttribute
+    ctor: UnityEditor.InitializeOnLoadAttribute.#ctor
+    arguments: []
+references:
+- uid: Repetitionless.Editor.Processors
+  commentId: N:Repetitionless.Editor.Processors
+  name: Repetitionless.Editor.Processors
+  nameWithType: Repetitionless.Editor.Processors
+  fullName: Repetitionless.Editor.Processors
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Processors
+    name: Processors
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Processors
+    name: Processors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System

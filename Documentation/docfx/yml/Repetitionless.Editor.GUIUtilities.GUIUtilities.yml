@@ -1,0 +1,1907 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  commentId: T:Repetitionless.Editor.GUIUtilities.GUIUtilities
+  id: GUIUtilities
+  parent: Repetitionless.Editor.GUIUtilities
+  children:
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundHorizontal
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundVertical
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldFoldoutStyle
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldHeaderLargeStyle
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawFoldout(System.Boolean,System.String)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge(System.String)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton(System.Boolean,System.String)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton(UnityEditor.MaterialProperty,System.String)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture(UnityEngine.Rect,UnityEngine.Texture2D,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture(UnityEngine.Texture2D,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray(UnityEngine.Rect,UnityEngine.Texture2DArray,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray(UnityEngine.Texture2DArray,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextures(UnityEngine.Texture2D[],UnityEngine.GUIContent[])
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Rect,UnityEngine.Texture2D,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Texture2D,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat(UnityEngine.Rect,UnityEngine.Texture2D,System.Single,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat(UnityEngine.Texture2D,System.Single,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt(UnityEngine.Rect,UnityEngine.Texture2D,System.Int32,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt(UnityEngine.Texture2D,System.Int32,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider(UnityEngine.Rect,UnityEngine.Texture2D,System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider(UnityEngine.Texture2D,System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Rect,UnityEngine.Texture2D,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Texture2D,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEditor.MaterialProperty,System.String,System.String)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4,System.String,System.String)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Rect,UnityEngine.Vector2,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Vector2,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField(UnityEngine.Rect,UnityEngine.Vector2Int,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField(UnityEngine.Vector2Int,UnityEngine.GUIContent)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundHorizontal
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundVertical
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.FOLDOUT_INDENT
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.GetLineRect(System.Single)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.LINE_HEIGHT
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.LINE_SPACING
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.MajorToggleButtonStyle
+  langs:
+  - csharp
+  - vb
+  name: GUIUtilities
+  nameWithType: GUIUtilities
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GUIUtilities
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 10
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nMany GUI functions to make inspector creation easier without MaterialProperties\n"
+  example: []
+  syntax:
+    content: public static class GUIUtilities
+    content.vb: Public Module GUIUtilities
+  inheritance:
+  - System.Object
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.LINE_HEIGHT
+  commentId: F:Repetitionless.Editor.GUIUtilities.GUIUtilities.LINE_HEIGHT
+  id: LINE_HEIGHT
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: LINE_HEIGHT
+  nameWithType: GUIUtilities.LINE_HEIGHT
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.LINE_HEIGHT
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: LINE_HEIGHT
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 17
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nThe height that one line takes in the inspector\n"
+  example: []
+  syntax:
+    content: public const int LINE_HEIGHT = 18
+    return:
+      type: System.Int32
+    content.vb: Public Const LINE_HEIGHT As Integer = 18
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.LINE_SPACING
+  commentId: F:Repetitionless.Editor.GUIUtilities.GUIUtilities.LINE_SPACING
+  id: LINE_SPACING
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: LINE_SPACING
+  nameWithType: GUIUtilities.LINE_SPACING
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.LINE_SPACING
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: LINE_SPACING
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 22
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nThe height in-between two lines in the inspector\n"
+  example: []
+  syntax:
+    content: public const int LINE_SPACING = 2
+    return:
+      type: System.Int32
+    content.vb: Public Const LINE_SPACING As Integer = 2
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.FOLDOUT_INDENT
+  commentId: F:Repetitionless.Editor.GUIUtilities.GUIUtilities.FOLDOUT_INDENT
+  id: FOLDOUT_INDENT
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: FOLDOUT_INDENT
+  nameWithType: GUIUtilities.FOLDOUT_INDENT
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.FOLDOUT_INDENT
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: FOLDOUT_INDENT
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 27
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nThe amount of left padding for foldouts\n"
+  example: []
+  syntax:
+    content: public const int FOLDOUT_INDENT = 10
+    return:
+      type: System.Int32
+    content.vb: Public Const FOLDOUT_INDENT As Integer = 10
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldHeaderLargeStyle
+  commentId: P:Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldHeaderLargeStyle
+  id: BoldHeaderLargeStyle
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: BoldHeaderLargeStyle
+  nameWithType: GUIUtilities.BoldHeaderLargeStyle
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldHeaderLargeStyle
+  type: Property
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BoldHeaderLargeStyle
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 37
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nStyle used for large headers\n"
+  example: []
+  syntax:
+    content: public static GUIStyle BoldHeaderLargeStyle { get; }
+    parameters: []
+    return:
+      type: UnityEngine.GUIStyle
+    content.vb: Public Shared ReadOnly Property BoldHeaderLargeStyle As GUIStyle
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldHeaderLargeStyle*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.MajorToggleButtonStyle
+  commentId: P:Repetitionless.Editor.GUIUtilities.GUIUtilities.MajorToggleButtonStyle
+  id: MajorToggleButtonStyle
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: MajorToggleButtonStyle
+  nameWithType: GUIUtilities.MajorToggleButtonStyle
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.MajorToggleButtonStyle
+  type: Property
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: MajorToggleButtonStyle
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 51
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nStyle for major toggle buttons\n"
+  example: []
+  syntax:
+    content: public static GUIStyle MajorToggleButtonStyle { get; }
+    parameters: []
+    return:
+      type: UnityEngine.GUIStyle
+    content.vb: Public Shared ReadOnly Property MajorToggleButtonStyle As GUIStyle
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.MajorToggleButtonStyle*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldFoldoutStyle
+  commentId: P:Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldFoldoutStyle
+  id: BoldFoldoutStyle
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: BoldFoldoutStyle
+  nameWithType: GUIUtilities.BoldFoldoutStyle
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldFoldoutStyle
+  type: Property
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BoldFoldoutStyle
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 65
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nStyle used for foldout headers\n"
+  example: []
+  syntax:
+    content: public static GUIStyle BoldFoldoutStyle { get; }
+    parameters: []
+    return:
+      type: UnityEngine.GUIStyle
+    content.vb: Public Shared ReadOnly Property BoldFoldoutStyle As GUIStyle
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldFoldoutStyle*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.GetLineRect(System.Single)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.GetLineRect(System.Single)
+  id: GetLineRect(System.Single)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetLineRect(float)
+  nameWithType: GUIUtilities.GetLineRect(float)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.GetLineRect(float)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GetLineRect
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 86
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nGets the rect of a single line, updating the GUILayout accordingly\n"
+  example: []
+  syntax:
+    content: public static Rect GetLineRect(float heightOverride = 20)
+    parameters:
+    - id: heightOverride
+      type: System.Single
+      description: "\nDefault <strong>20 (LINE_HEIGHT + LINE_SPACING)</strong><br />\nSets the height of the output rect\n"
+    return:
+      type: UnityEngine.Rect
+      description: "\nThe rect of a single line\n"
+    content.vb: Public Shared Function GetLineRect(heightOverride As Single = 20) As Rect
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.GetLineRect*
+  nameWithType.vb: GUIUtilities.GetLineRect(Single)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.GetLineRect(Single)
+  name.vb: GetLineRect(Single)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge(System.String)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge(System.String)
+  id: DrawHeaderLabelLarge(System.String)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawHeaderLabelLarge(string)
+  nameWithType: GUIUtilities.DrawHeaderLabelLarge(string)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge(string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawHeaderLabelLarge
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 104
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a Large Header Label\n"
+  example: []
+  syntax:
+    content: public static void DrawHeaderLabelLarge(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: "\nThe text to show\n"
+    content.vb: Public Shared Sub DrawHeaderLabelLarge(text As String)
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge*
+  nameWithType.vb: GUIUtilities.DrawHeaderLabelLarge(String)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge(String)
+  name.vb: DrawHeaderLabelLarge(String)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton(UnityEditor.MaterialProperty,System.String)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton(UnityEditor.MaterialProperty,System.String)
+  id: DrawMajorToggleButton(UnityEditor.MaterialProperty,System.String)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawMajorToggleButton(MaterialProperty, string)
+  nameWithType: GUIUtilities.DrawMajorToggleButton(MaterialProperty, string)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton(UnityEditor.MaterialProperty, string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawMajorToggleButton
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 125
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a large toggle button that uses and updates the inputted property<br />\nDisplays red when disabled, green when enabled\n"
+  example: []
+  syntax:
+    content: public static bool DrawMajorToggleButton(MaterialProperty property, string label)
+    parameters:
+    - id: property
+      type: UnityEditor.MaterialProperty
+      description: "\nThe material property to be used and modified for the toggle state\n"
+    - id: label
+      type: System.String
+      description: "\nThe text to show inside the button\n"
+    return:
+      type: System.Boolean
+      description: "\nThe button toggled state\n"
+    content.vb: Public Shared Function DrawMajorToggleButton([property] As MaterialProperty, label As String) As Boolean
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton*
+  nameWithType.vb: GUIUtilities.DrawMajorToggleButton(MaterialProperty, String)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton(UnityEditor.MaterialProperty, String)
+  name.vb: DrawMajorToggleButton(MaterialProperty, String)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton(System.Boolean,System.String)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton(System.Boolean,System.String)
+  id: DrawMajorToggleButton(System.Boolean,System.String)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawMajorToggleButton(bool, string)
+  nameWithType: GUIUtilities.DrawMajorToggleButton(bool, string)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton(bool, string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawMajorToggleButton
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 155
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a large toggle button using an input toggle state value<br />\nDisplays red when disabled, green when enabled\n"
+  example: []
+  syntax:
+    content: public static bool DrawMajorToggleButton(bool enabled, string label)
+    parameters:
+    - id: enabled
+      type: System.Boolean
+      description: "\nToggle state if the button is enabled\n"
+    - id: label
+      type: System.String
+      description: "\nThe text to show inside the button\n"
+    return:
+      type: System.Boolean
+      description: "\nThe button toggled state\n"
+    content.vb: Public Shared Function DrawMajorToggleButton(enabled As Boolean, label As String) As Boolean
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton*
+  nameWithType.vb: GUIUtilities.DrawMajorToggleButton(Boolean, String)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton(Boolean, String)
+  name.vb: DrawMajorToggleButton(Boolean, String)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray(UnityEngine.Texture2DArray,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray(UnityEngine.Texture2DArray,UnityEngine.GUIContent)
+  id: DrawTexture2DArray(UnityEngine.Texture2DArray,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTexture2DArray(Texture2DArray, GUIContent)
+  nameWithType: GUIUtilities.DrawTexture2DArray(Texture2DArray, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray(UnityEngine.Texture2DArray, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTexture2DArray
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 177
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a Texture2DArray field\n"
+  example: []
+  syntax:
+    content: public static Texture2DArray DrawTexture2DArray(Texture2DArray array, GUIContent content)
+    parameters:
+    - id: array
+      type: UnityEngine.Texture2DArray
+      description: "\nThe input Texture2DArray\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: UnityEngine.Texture2DArray
+      description: "\nThe Texture2DArray input into the inspector\n"
+    content.vb: Public Shared Function DrawTexture2DArray(array As Texture2DArray, content As GUIContent) As Texture2DArray
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray(UnityEngine.Rect,UnityEngine.Texture2DArray,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray(UnityEngine.Rect,UnityEngine.Texture2DArray,UnityEngine.GUIContent)
+  id: DrawTexture2DArray(UnityEngine.Rect,UnityEngine.Texture2DArray,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTexture2DArray(Rect, Texture2DArray, GUIContent)
+  nameWithType: GUIUtilities.DrawTexture2DArray(Rect, Texture2DArray, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray(UnityEngine.Rect, UnityEngine.Texture2DArray, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTexture2DArray
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 198
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a Texture2DArray field\n"
+  example: []
+  syntax:
+    content: public static Texture2DArray DrawTexture2DArray(Rect rect, Texture2DArray array, GUIContent content)
+    parameters:
+    - id: rect
+      type: UnityEngine.Rect
+      description: "\nThe space that the field will use\n"
+    - id: array
+      type: UnityEngine.Texture2DArray
+      description: "\nThe input Texture2DArray\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: UnityEngine.Texture2DArray
+      description: "\nThe Texture2DArray input into the inspector\n"
+    content.vb: Public Shared Function DrawTexture2DArray(rect As Rect, array As Texture2DArray, content As GUIContent) As Texture2DArray
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture(UnityEngine.Texture2D,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture(UnityEngine.Texture2D,UnityEngine.GUIContent)
+  id: DrawTexture(UnityEngine.Texture2D,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTexture(Texture2D, GUIContent)
+  nameWithType: GUIUtilities.DrawTexture(Texture2D, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture(UnityEngine.Texture2D, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTexture
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 228
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field\n"
+  example: []
+  syntax:
+    content: public static Texture2D DrawTexture(Texture2D texture, GUIContent content)
+    parameters:
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: UnityEngine.Texture2D
+      description: "\nThe texture input into the inspector\n"
+    content.vb: Public Shared Function DrawTexture(texture As Texture2D, content As GUIContent) As Texture2D
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture(UnityEngine.Rect,UnityEngine.Texture2D,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture(UnityEngine.Rect,UnityEngine.Texture2D,UnityEngine.GUIContent)
+  id: DrawTexture(UnityEngine.Rect,UnityEngine.Texture2D,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTexture(Rect, Texture2D, GUIContent)
+  nameWithType: GUIUtilities.DrawTexture(Rect, Texture2D, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture(UnityEngine.Rect, UnityEngine.Texture2D, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTexture
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 249
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field\n"
+  example: []
+  syntax:
+    content: public static Texture2D DrawTexture(Rect rect, Texture2D texture, GUIContent content)
+    parameters:
+    - id: rect
+      type: UnityEngine.Rect
+      description: "\nThe space that the field will use\n"
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: UnityEngine.Texture2D
+      description: "\nThe texture input into the inspector\n"
+    content.vb: Public Shared Function DrawTexture(rect As Rect, texture As Texture2D, content As GUIContent) As Texture2D
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt(UnityEngine.Texture2D,System.Int32,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt(UnityEngine.Texture2D,System.Int32,UnityEngine.GUIContent)
+  id: DrawTextureWithInt(UnityEngine.Texture2D,System.Int32,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTextureWithInt(Texture2D, int, GUIContent)
+  nameWithType: GUIUtilities.DrawTextureWithInt(Texture2D, int, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt(UnityEngine.Texture2D, int, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextureWithInt
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 289
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field with an accompanied integer value\n"
+  example: []
+  syntax:
+    content: public static (Texture2D, int) DrawTextureWithInt(Texture2D texture, int intValue, GUIContent content)
+    parameters:
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: intValue
+      type: System.Int32
+      description: "\nThe input integer value\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
+      description: "\nItem1: Texture, Item2: Int Value\n"
+    content.vb: Public Shared Function DrawTextureWithInt(texture As Texture2D, intValue As Integer, content As GUIContent) As (Texture2D, Integer)
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt*
+  nameWithType.vb: GUIUtilities.DrawTextureWithInt(Texture2D, Integer, GUIContent)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt(UnityEngine.Texture2D, Integer, UnityEngine.GUIContent)
+  name.vb: DrawTextureWithInt(Texture2D, Integer, GUIContent)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt(UnityEngine.Rect,UnityEngine.Texture2D,System.Int32,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt(UnityEngine.Rect,UnityEngine.Texture2D,System.Int32,UnityEngine.GUIContent)
+  id: DrawTextureWithInt(UnityEngine.Rect,UnityEngine.Texture2D,System.Int32,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTextureWithInt(Rect, Texture2D, int, GUIContent)
+  nameWithType: GUIUtilities.DrawTextureWithInt(Rect, Texture2D, int, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt(UnityEngine.Rect, UnityEngine.Texture2D, int, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextureWithInt
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 313
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field with an accompanied integer value\n"
+  example: []
+  syntax:
+    content: public static (Texture2D, int) DrawTextureWithInt(Rect rect, Texture2D texture, int intValue, GUIContent content)
+    parameters:
+    - id: rect
+      type: UnityEngine.Rect
+      description: "\nThe space that the field will use\n"
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: intValue
+      type: System.Int32
+      description: "\nThe input integer value\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
+      description: "\nItem1: Texture, Item2: Int Value\n"
+    content.vb: Public Shared Function DrawTextureWithInt(rect As Rect, texture As Texture2D, intValue As Integer, content As GUIContent) As (Texture2D, Integer)
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt*
+  nameWithType.vb: GUIUtilities.DrawTextureWithInt(Rect, Texture2D, Integer, GUIContent)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt(UnityEngine.Rect, UnityEngine.Texture2D, Integer, UnityEngine.GUIContent)
+  name.vb: DrawTextureWithInt(Rect, Texture2D, Integer, GUIContent)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider(UnityEngine.Texture2D,System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider(UnityEngine.Texture2D,System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  id: DrawTextureWithIntSlider(UnityEngine.Texture2D,System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTextureWithIntSlider(Texture2D, int, int, int, GUIContent)
+  nameWithType: GUIUtilities.DrawTextureWithIntSlider(Texture2D, int, int, int, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider(UnityEngine.Texture2D, int, int, int, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextureWithIntSlider
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 349
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field with an accompanied integer slider\n"
+  example: []
+  syntax:
+    content: public static (Texture2D, int) DrawTextureWithIntSlider(Texture2D texture, int sliderValue, int sliderMin, int sliderMax, GUIContent content)
+    parameters:
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: sliderValue
+      type: System.Int32
+      description: "\nThe input slider value\n"
+    - id: sliderMin
+      type: System.Int32
+      description: "\nThe minimum value that the slider will allow\n"
+    - id: sliderMax
+      type: System.Int32
+      description: "\nThe maximum value that the slider will allow\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
+      description: "\nItem1: Texture, Item2: Slider Value\n"
+    content.vb: Public Shared Function DrawTextureWithIntSlider(texture As Texture2D, sliderValue As Integer, sliderMin As Integer, sliderMax As Integer, content As GUIContent) As (Texture2D, Integer)
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider*
+  nameWithType.vb: GUIUtilities.DrawTextureWithIntSlider(Texture2D, Integer, Integer, Integer, GUIContent)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider(UnityEngine.Texture2D, Integer, Integer, Integer, UnityEngine.GUIContent)
+  name.vb: DrawTextureWithIntSlider(Texture2D, Integer, Integer, Integer, GUIContent)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider(UnityEngine.Rect,UnityEngine.Texture2D,System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider(UnityEngine.Rect,UnityEngine.Texture2D,System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  id: DrawTextureWithIntSlider(UnityEngine.Rect,UnityEngine.Texture2D,System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTextureWithIntSlider(Rect, Texture2D, int, int, int, GUIContent)
+  nameWithType: GUIUtilities.DrawTextureWithIntSlider(Rect, Texture2D, int, int, int, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider(UnityEngine.Rect, UnityEngine.Texture2D, int, int, int, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextureWithIntSlider
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 379
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field with an accompanied integer slider\n"
+  example: []
+  syntax:
+    content: public static (Texture2D, int) DrawTextureWithIntSlider(Rect rect, Texture2D texture, int sliderValue, int sliderMin, int sliderMax, GUIContent content)
+    parameters:
+    - id: rect
+      type: UnityEngine.Rect
+      description: "\nThe space that the field will use\n"
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: sliderValue
+      type: System.Int32
+      description: "\nThe input slider value\n"
+    - id: sliderMin
+      type: System.Int32
+      description: "\nThe minimum value that the slider will allow\n"
+    - id: sliderMax
+      type: System.Int32
+      description: "\nThe maximum value that the slider will allow\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
+      description: "\nItem1: Texture, Item2: Slider Value\n"
+    content.vb: Public Shared Function DrawTextureWithIntSlider(rect As Rect, texture As Texture2D, sliderValue As Integer, sliderMin As Integer, sliderMax As Integer, content As GUIContent) As (Texture2D, Integer)
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider*
+  nameWithType.vb: GUIUtilities.DrawTextureWithIntSlider(Rect, Texture2D, Integer, Integer, Integer, GUIContent)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider(UnityEngine.Rect, UnityEngine.Texture2D, Integer, Integer, Integer, UnityEngine.GUIContent)
+  name.vb: DrawTextureWithIntSlider(Rect, Texture2D, Integer, Integer, Integer, GUIContent)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat(UnityEngine.Texture2D,System.Single,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat(UnityEngine.Texture2D,System.Single,UnityEngine.GUIContent)
+  id: DrawTextureWithFloat(UnityEngine.Texture2D,System.Single,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTextureWithFloat(Texture2D, float, GUIContent)
+  nameWithType: GUIUtilities.DrawTextureWithFloat(Texture2D, float, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat(UnityEngine.Texture2D, float, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextureWithFloat
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 409
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field with an accompanied float value\n"
+  example: []
+  syntax:
+    content: public static (Texture2D, float) DrawTextureWithFloat(Texture2D texture, float floatValue, GUIContent content)
+    parameters:
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: floatValue
+      type: System.Single
+      description: "\nThe input float value\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
+      description: "\nItem1: Texture, Item2: Float Value\n"
+    content.vb: Public Shared Function DrawTextureWithFloat(texture As Texture2D, floatValue As Single, content As GUIContent) As (Texture2D, Single)
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat*
+  nameWithType.vb: GUIUtilities.DrawTextureWithFloat(Texture2D, Single, GUIContent)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat(UnityEngine.Texture2D, Single, UnityEngine.GUIContent)
+  name.vb: DrawTextureWithFloat(Texture2D, Single, GUIContent)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat(UnityEngine.Rect,UnityEngine.Texture2D,System.Single,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat(UnityEngine.Rect,UnityEngine.Texture2D,System.Single,UnityEngine.GUIContent)
+  id: DrawTextureWithFloat(UnityEngine.Rect,UnityEngine.Texture2D,System.Single,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTextureWithFloat(Rect, Texture2D, float, GUIContent)
+  nameWithType: GUIUtilities.DrawTextureWithFloat(Rect, Texture2D, float, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat(UnityEngine.Rect, UnityEngine.Texture2D, float, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextureWithFloat
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 433
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field with an accompanied float value\n"
+  example: []
+  syntax:
+    content: public static (Texture2D, float) DrawTextureWithFloat(Rect rect, Texture2D texture, float floatValue, GUIContent content)
+    parameters:
+    - id: rect
+      type: UnityEngine.Rect
+      description: "\nThe space that the field will use\n"
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: floatValue
+      type: System.Single
+      description: "\nThe input float value\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
+      description: "\nItem1: Texture, Item2: Float Value\n"
+    content.vb: Public Shared Function DrawTextureWithFloat(rect As Rect, texture As Texture2D, floatValue As Single, content As GUIContent) As (Texture2D, Single)
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat*
+  nameWithType.vb: GUIUtilities.DrawTextureWithFloat(Rect, Texture2D, Single, GUIContent)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat(UnityEngine.Rect, UnityEngine.Texture2D, Single, UnityEngine.GUIContent)
+  name.vb: DrawTextureWithFloat(Rect, Texture2D, Single, GUIContent)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Texture2D,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Texture2D,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
+  id: DrawTextureWithSlider(UnityEngine.Texture2D,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTextureWithSlider(Texture2D, float, float, float, GUIContent)
+  nameWithType: GUIUtilities.DrawTextureWithSlider(Texture2D, float, float, float, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Texture2D, float, float, float, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextureWithSlider
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 469
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field with an accompanied slider\n"
+  example: []
+  syntax:
+    content: public static (Texture2D, float) DrawTextureWithSlider(Texture2D texture, float sliderValue, float sliderMin, float sliderMax, GUIContent content)
+    parameters:
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: sliderValue
+      type: System.Single
+      description: "\nThe input slider value\n"
+    - id: sliderMin
+      type: System.Single
+      description: "\nThe minimum value that the slider will allow\n"
+    - id: sliderMax
+      type: System.Single
+      description: "\nThe maximum value that the slider will allow\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
+      description: "\nItem1: Texture, Item2: Slider Value\n"
+    content.vb: Public Shared Function DrawTextureWithSlider(texture As Texture2D, sliderValue As Single, sliderMin As Single, sliderMax As Single, content As GUIContent) As (Texture2D, Single)
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider*
+  nameWithType.vb: GUIUtilities.DrawTextureWithSlider(Texture2D, Single, Single, Single, GUIContent)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Texture2D, Single, Single, Single, UnityEngine.GUIContent)
+  name.vb: DrawTextureWithSlider(Texture2D, Single, Single, Single, GUIContent)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Rect,UnityEngine.Texture2D,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Rect,UnityEngine.Texture2D,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
+  id: DrawTextureWithSlider(UnityEngine.Rect,UnityEngine.Texture2D,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTextureWithSlider(Rect, Texture2D, float, float, float, GUIContent)
+  nameWithType: GUIUtilities.DrawTextureWithSlider(Rect, Texture2D, float, float, float, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Rect, UnityEngine.Texture2D, float, float, float, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextureWithSlider
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 499
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field with an accompanied slider\n"
+  example: []
+  syntax:
+    content: public static (Texture2D, float) DrawTextureWithSlider(Rect rect, Texture2D texture, float sliderValue, float sliderMin, float sliderMax, GUIContent content)
+    parameters:
+    - id: rect
+      type: UnityEngine.Rect
+      description: "\nThe space that the field will use\n"
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: sliderValue
+      type: System.Single
+      description: "\nThe input slider value\n"
+    - id: sliderMin
+      type: System.Single
+      description: "\nThe minimum value that the slider will allow\n"
+    - id: sliderMax
+      type: System.Single
+      description: "\nThe maximum value that the slider will allow\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: System.ValueTuple{UnityEngine.Texture2D,System.Single}
+      description: "\nItem1: Texture, Item2: Slider Value\n"
+    content.vb: Public Shared Function DrawTextureWithSlider(rect As Rect, texture As Texture2D, sliderValue As Single, sliderMin As Single, sliderMax As Single, content As GUIContent) As (Texture2D, Single)
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider*
+  nameWithType.vb: GUIUtilities.DrawTextureWithSlider(Rect, Texture2D, Single, Single, Single, GUIContent)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Rect, UnityEngine.Texture2D, Single, Single, Single, UnityEngine.GUIContent)
+  name.vb: DrawTextureWithSlider(Rect, Texture2D, Single, Single, Single, GUIContent)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Texture2D,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Texture2D,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
+  id: DrawTextureWithColor(UnityEngine.Texture2D,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTextureWithColor(Texture2D, Color, bool, GUIContent)
+  nameWithType: GUIUtilities.DrawTextureWithColor(Texture2D, Color, bool, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Texture2D, UnityEngine.Color, bool, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextureWithColor
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 532
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field with an accompanied color field\n"
+  example: []
+  syntax:
+    content: public static (Texture2D, Color) DrawTextureWithColor(Texture2D texture, Color colorValue, bool hdr, GUIContent content)
+    parameters:
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: colorValue
+      type: UnityEngine.Color
+      description: "\nThe input color value\n"
+    - id: hdr
+      type: System.Boolean
+      description: "\nIf the color is HDR\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: System.ValueTuple{UnityEngine.Texture2D,UnityEngine.Color}
+      description: "\nItem1: Texture, Item2: Color Value\n"
+    content.vb: Public Shared Function DrawTextureWithColor(texture As Texture2D, colorValue As Color, hdr As Boolean, content As GUIContent) As (Texture2D, Color)
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor*
+  nameWithType.vb: GUIUtilities.DrawTextureWithColor(Texture2D, Color, Boolean, GUIContent)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Texture2D, UnityEngine.Color, Boolean, UnityEngine.GUIContent)
+  name.vb: DrawTextureWithColor(Texture2D, Color, Boolean, GUIContent)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Rect,UnityEngine.Texture2D,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Rect,UnityEngine.Texture2D,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
+  id: DrawTextureWithColor(UnityEngine.Rect,UnityEngine.Texture2D,UnityEngine.Color,System.Boolean,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTextureWithColor(Rect, Texture2D, Color, bool, GUIContent)
+  nameWithType: GUIUtilities.DrawTextureWithColor(Rect, Texture2D, Color, bool, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Rect, UnityEngine.Texture2D, UnityEngine.Color, bool, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextureWithColor
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 559
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a single texture field with an accompanied color field\n"
+  example: []
+  syntax:
+    content: public static (Texture2D, Color) DrawTextureWithColor(Rect rect, Texture2D texture, Color colorValue, bool hdr, GUIContent content)
+    parameters:
+    - id: rect
+      type: UnityEngine.Rect
+      description: "\nThe space that the field will use\n"
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe input texture\n"
+    - id: colorValue
+      type: UnityEngine.Color
+      description: "\nThe input color value\n"
+    - id: hdr
+      type: System.Boolean
+      description: "\nIf the color is HDR\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: System.ValueTuple{UnityEngine.Texture2D,UnityEngine.Color}
+      description: "\nItem1: Texture, Item2: Color Value\n"
+    content.vb: Public Shared Function DrawTextureWithColor(rect As Rect, texture As Texture2D, colorValue As Color, hdr As Boolean, content As GUIContent) As (Texture2D, Color)
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor*
+  nameWithType.vb: GUIUtilities.DrawTextureWithColor(Rect, Texture2D, Color, Boolean, GUIContent)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor(UnityEngine.Rect, UnityEngine.Texture2D, UnityEngine.Color, Boolean, UnityEngine.GUIContent)
+  name.vb: DrawTextureWithColor(Rect, Texture2D, Color, Boolean, GUIContent)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextures(UnityEngine.Texture2D[],UnityEngine.GUIContent[])
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextures(UnityEngine.Texture2D[],UnityEngine.GUIContent[])
+  id: DrawTextures(UnityEngine.Texture2D[],UnityEngine.GUIContent[])
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTextures(Texture2D[], GUIContent[])
+  nameWithType: GUIUtilities.DrawTextures(Texture2D[], GUIContent[])
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextures(UnityEngine.Texture2D[], UnityEngine.GUIContent[])
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTextures
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 594
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws multiple texture fields in sequence from the given texture array\n"
+  example: []
+  syntax:
+    content: public static Texture2D[] DrawTextures(Texture2D[] textures, GUIContent[] content = null)
+    parameters:
+    - id: textures
+      type: UnityEngine.Texture2D[]
+      description: "\nThe input textures that will be drawn in order\n"
+    - id: content
+      type: UnityEngine.GUIContent[]
+      description: "\nThe GUIContent for each field in order\nIf unassigned each texture will be named &quot;Texture 1&quot;, &quot;Texture 2&quot;, ...\n"
+    return:
+      type: UnityEngine.Texture2D[]
+      description: "\nArray of textures input into the inspector\n"
+    content.vb: Public Shared Function DrawTextures(textures As Texture2D(), content As GUIContent() = Nothing) As Texture2D()
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextures*
+  nameWithType.vb: GUIUtilities.DrawTextures(Texture2D(), GUIContent())
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextures(UnityEngine.Texture2D(), UnityEngine.GUIContent())
+  name.vb: DrawTextures(Texture2D(), GUIContent())
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Vector2,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Vector2,UnityEngine.GUIContent)
+  id: DrawVector2Field(UnityEngine.Vector2,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawVector2Field(Vector2, GUIContent)
+  nameWithType: GUIUtilities.DrawVector2Field(Vector2, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Vector2, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawVector2Field
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 626
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a Vector2 field removing the space at the end which EditorGUI.Vector2Field draws\n"
+  example: []
+  syntax:
+    content: public static Vector2 DrawVector2Field(Vector2 value, GUIContent content)
+    parameters:
+    - id: value
+      type: UnityEngine.Vector2
+      description: "\nThe input Vector2 value\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: UnityEngine.Vector2
+      description: "\nThe Vector2 input into the inspector\n"
+    content.vb: Public Shared Function DrawVector2Field(value As Vector2, content As GUIContent) As Vector2
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Rect,UnityEngine.Vector2,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Rect,UnityEngine.Vector2,UnityEngine.GUIContent)
+  id: DrawVector2Field(UnityEngine.Rect,UnityEngine.Vector2,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawVector2Field(Rect, Vector2, GUIContent)
+  nameWithType: GUIUtilities.DrawVector2Field(Rect, Vector2, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Rect, UnityEngine.Vector2, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawVector2Field
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 647
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a Vector2 field removing the space at the end which EditorGUI.Vector2Field draws\n"
+  example: []
+  syntax:
+    content: public static Vector2 DrawVector2Field(Rect rect, Vector2 value, GUIContent content)
+    parameters:
+    - id: rect
+      type: UnityEngine.Rect
+      description: "\nThe space that the field will use\n"
+    - id: value
+      type: UnityEngine.Vector2
+      description: "\nThe input Vector2 value\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: UnityEngine.Vector2
+      description: "\nThe Vector2 input into the inspector\n"
+    content.vb: Public Shared Function DrawVector2Field(rect As Rect, value As Vector2, content As GUIContent) As Vector2
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField(UnityEngine.Vector2Int,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField(UnityEngine.Vector2Int,UnityEngine.GUIContent)
+  id: DrawVector2IntField(UnityEngine.Vector2Int,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawVector2IntField(Vector2Int, GUIContent)
+  nameWithType: GUIUtilities.DrawVector2IntField(Vector2Int, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField(UnityEngine.Vector2Int, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawVector2IntField
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 696
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a Vector2Int field removing the space at the end which EditorGUI.Vector2IntField draws\n"
+  example: []
+  syntax:
+    content: public static Vector2Int DrawVector2IntField(Vector2Int value, GUIContent content)
+    parameters:
+    - id: value
+      type: UnityEngine.Vector2Int
+      description: "\nThe input Vector2Int value\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: UnityEngine.Vector2Int
+      description: "\nThe Vector2Int input into the inspector\n"
+    content.vb: Public Shared Function DrawVector2IntField(value As Vector2Int, content As GUIContent) As Vector2Int
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField(UnityEngine.Rect,UnityEngine.Vector2Int,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField(UnityEngine.Rect,UnityEngine.Vector2Int,UnityEngine.GUIContent)
+  id: DrawVector2IntField(UnityEngine.Rect,UnityEngine.Vector2Int,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawVector2IntField(Rect, Vector2Int, GUIContent)
+  nameWithType: GUIUtilities.DrawVector2IntField(Rect, Vector2Int, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField(UnityEngine.Rect, UnityEngine.Vector2Int, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawVector2IntField
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 718
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a Vector2Int field removing the space at the end which EditorGUI.Vector2IntField draws\n"
+  example: []
+  syntax:
+    content: public static Vector2Int DrawVector2IntField(Rect rect, Vector2Int value, GUIContent content)
+    parameters:
+    - id: rect
+      type: UnityEngine.Rect
+      description: "\nThe space that the field will use\n"
+    - id: value
+      type: UnityEngine.Vector2Int
+      description: "\nThe input Vector2Int value\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent for the field\n"
+    return:
+      type: UnityEngine.Vector2Int
+      description: "\nThe Vector2Int input into the inspector\n"
+    content.vb: Public Shared Function DrawVector2IntField(rect As Rect, value As Vector2Int, content As GUIContent) As Vector2Int
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4,System.String,System.String)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4,System.String,System.String)
+  id: DrawTilingOffset(UnityEngine.Vector4,System.String,System.String)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTilingOffset(Vector4, string, string)
+  nameWithType: GUIUtilities.DrawTilingOffset(Vector4, string, string)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4, string, string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTilingOffset
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 768
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws tiling offset fields using and updating values in a float4 materialProperty<br />\nUses the DrawVector2Field function to remove empty space\n"
+  example: []
+  syntax:
+    content: public static Vector4 DrawTilingOffset(Vector4 tilingOffset, string tilingLabel = "Scale", string offsetLabel = "Offset")
+    parameters:
+    - id: tilingOffset
+      type: UnityEngine.Vector4
+      description: "\nThe initial tiling offset value\n"
+    - id: tilingLabel
+      type: System.String
+      description: "\nThe label to show for the tiling field\n"
+    - id: offsetLabel
+      type: System.String
+      description: "\nThe label to show for the offset field\n"
+    return:
+      type: UnityEngine.Vector4
+      description: "\nThe new tiling offset value\n"
+    content.vb: Public Shared Function DrawTilingOffset(tilingOffset As Vector4, tilingLabel As String = "Scale", offsetLabel As String = "Offset") As Vector4
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset*
+  nameWithType.vb: GUIUtilities.DrawTilingOffset(Vector4, String, String)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4, String, String)
+  name.vb: DrawTilingOffset(Vector4, String, String)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEditor.MaterialProperty,System.String,System.String)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEditor.MaterialProperty,System.String,System.String)
+  id: DrawTilingOffset(UnityEditor.MaterialProperty,System.String,System.String)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTilingOffset(MaterialProperty, string, string)
+  nameWithType: GUIUtilities.DrawTilingOffset(MaterialProperty, string, string)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEditor.MaterialProperty, string, string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTilingOffset
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 802
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws tiling offset fields using and updating values in a float4 materialProperty<br />\nUses the DrawVector2Field function to remove empty space\n"
+  example: []
+  syntax:
+    content: public static void DrawTilingOffset(MaterialProperty tilingOffsetProperty, string tilingLabel = "Scale", string offsetLabel = "Offset")
+    parameters:
+    - id: tilingOffsetProperty
+      type: UnityEditor.MaterialProperty
+      description: "\nA float4 property that will be used and updated for the tiling and offset values\n"
+    - id: tilingLabel
+      type: System.String
+      description: "\nThe label to show for the tiling field\n"
+    - id: offsetLabel
+      type: System.String
+      description: "\nThe label to show for the offset field\n"
+    content.vb: Public Shared Sub DrawTilingOffset(tilingOffsetProperty As MaterialProperty, tilingLabel As String = "Scale", offsetLabel As String = "Offset")
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset*
+  nameWithType.vb: GUIUtilities.DrawTilingOffset(MaterialProperty, String, String)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEditor.MaterialProperty, String, String)
+  name.vb: DrawTilingOffset(MaterialProperty, String, String)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawFoldout(System.Boolean,System.String)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawFoldout(System.Boolean,System.String)
+  id: DrawFoldout(System.Boolean,System.String)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawFoldout(bool, string)
+  nameWithType: GUIUtilities.DrawFoldout(bool, string)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawFoldout(bool, string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawFoldout
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 824
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws a foldout and updates the gui layout\n"
+  example: []
+  syntax:
+    content: public static bool DrawFoldout(bool foldout, string label)
+    parameters:
+    - id: foldout
+      type: System.Boolean
+      description: "\nIf the foldout state is enabled\n"
+    - id: label
+      type: System.String
+      description: "\nThe label on the foldout\n"
+    return:
+      type: System.Boolean
+      description: "\nThe foldout state\n"
+    content.vb: Public Shared Function DrawFoldout(foldout As Boolean, label As String) As Boolean
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawFoldout*
+  nameWithType.vb: GUIUtilities.DrawFoldout(Boolean, String)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawFoldout(Boolean, String)
+  name.vb: DrawFoldout(Boolean, String)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundVertical
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundVertical
+  id: BeginBackgroundVertical
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: BeginBackgroundVertical()
+  nameWithType: GUIUtilities.BeginBackgroundVertical()
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundVertical()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BeginBackgroundVertical
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 836
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nBegins a background in the same style as a HelpBox using GUILayout.BeginVertical\n"
+  example: []
+  syntax:
+    content: public static void BeginBackgroundVertical()
+    content.vb: Public Shared Sub BeginBackgroundVertical()
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundVertical*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundVertical
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundVertical
+  id: EndBackgroundVertical
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: EndBackgroundVertical()
+  nameWithType: GUIUtilities.EndBackgroundVertical()
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundVertical()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: EndBackgroundVertical
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 847
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nEnds the vertical background, same as calling GUILayout.EndVertical\n"
+  example: []
+  syntax:
+    content: public static void EndBackgroundVertical()
+    content.vb: Public Shared Sub EndBackgroundVertical()
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundVertical*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundHorizontal
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundHorizontal
+  id: BeginBackgroundHorizontal
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: BeginBackgroundHorizontal()
+  nameWithType: GUIUtilities.BeginBackgroundHorizontal()
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundHorizontal()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BeginBackgroundHorizontal
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 855
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nBegins a background in the same style as a HelpBox using GUILayout.BeginHorizontal\n"
+  example: []
+  syntax:
+    content: public static void BeginBackgroundHorizontal()
+    content.vb: Public Shared Sub BeginBackgroundHorizontal()
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundHorizontal*
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundHorizontal
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundHorizontal
+  id: EndBackgroundHorizontal
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: EndBackgroundHorizontal()
+  nameWithType: GUIUtilities.EndBackgroundHorizontal()
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundHorizontal()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: EndBackgroundHorizontal
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 866
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nEnds the horizontal background, same as calling GUILayout.EndHorizontal\n"
+  example: []
+  syntax:
+    content: public static void EndBackgroundHorizontal()
+    content.vb: Public Shared Sub EndBackgroundHorizontal()
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundHorizontal*
+references:
+- uid: Repetitionless.Editor.GUIUtilities
+  commentId: N:Repetitionless.Editor.GUIUtilities
+  name: Repetitionless.Editor.GUIUtilities
+  nameWithType: Repetitionless.Editor.GUIUtilities
+  fullName: Repetitionless.Editor.GUIUtilities
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.GUIUtilities
+    name: GUIUtilities
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.GUIUtilities
+    name: GUIUtilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldHeaderLargeStyle*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldHeaderLargeStyle
+  name: BoldHeaderLargeStyle
+  nameWithType: GUIUtilities.BoldHeaderLargeStyle
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldHeaderLargeStyle
+- uid: UnityEngine.GUIStyle
+  commentId: T:UnityEngine.GUIStyle
+  parent: UnityEngine
+  isExternal: true
+  name: GUIStyle
+  nameWithType: GUIStyle
+  fullName: UnityEngine.GUIStyle
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.MajorToggleButtonStyle*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.MajorToggleButtonStyle
+  name: MajorToggleButtonStyle
+  nameWithType: GUIUtilities.MajorToggleButtonStyle
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.MajorToggleButtonStyle
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldFoldoutStyle*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldFoldoutStyle
+  name: BoldFoldoutStyle
+  nameWithType: GUIUtilities.BoldFoldoutStyle
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.BoldFoldoutStyle
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.GetLineRect*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.GetLineRect
+  name: GetLineRect
+  nameWithType: GUIUtilities.GetLineRect
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.GetLineRect
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: UnityEngine.Rect
+  commentId: T:UnityEngine.Rect
+  parent: UnityEngine
+  isExternal: true
+  name: Rect
+  nameWithType: Rect
+  fullName: UnityEngine.Rect
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge
+  name: DrawHeaderLabelLarge
+  nameWithType: GUIUtilities.DrawHeaderLabelLarge
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawHeaderLabelLarge
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton
+  name: DrawMajorToggleButton
+  nameWithType: GUIUtilities.DrawMajorToggleButton
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawMajorToggleButton
+- uid: UnityEditor.MaterialProperty
+  commentId: T:UnityEditor.MaterialProperty
+  parent: UnityEditor
+  isExternal: true
+  name: MaterialProperty
+  nameWithType: MaterialProperty
+  fullName: UnityEditor.MaterialProperty
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: UnityEditor
+  commentId: N:UnityEditor
+  isExternal: true
+  name: UnityEditor
+  nameWithType: UnityEditor
+  fullName: UnityEditor
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray
+  name: DrawTexture2DArray
+  nameWithType: GUIUtilities.DrawTexture2DArray
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture2DArray
+- uid: UnityEngine.Texture2DArray
+  commentId: T:UnityEngine.Texture2DArray
+  parent: UnityEngine
+  isExternal: true
+  name: Texture2DArray
+  nameWithType: Texture2DArray
+  fullName: UnityEngine.Texture2DArray
+- uid: UnityEngine.GUIContent
+  commentId: T:UnityEngine.GUIContent
+  parent: UnityEngine
+  isExternal: true
+  name: GUIContent
+  nameWithType: GUIContent
+  fullName: UnityEngine.GUIContent
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture
+  name: DrawTexture
+  nameWithType: GUIUtilities.DrawTexture
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTexture
+- uid: UnityEngine.Texture2D
+  commentId: T:UnityEngine.Texture2D
+  parent: UnityEngine
+  isExternal: true
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: UnityEngine.Texture2D
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt
+  name: DrawTextureWithInt
+  nameWithType: GUIUtilities.DrawTextureWithInt
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithInt
+- uid: System.ValueTuple{UnityEngine.Texture2D,System.Int32}
+  commentId: T:System.ValueTuple{UnityEngine.Texture2D,System.Int32}
+  parent: System
+  definition: System.ValueTuple`2
+  name: (Texture2D, int)
+  nameWithType: (Texture2D, int)
+  fullName: (UnityEngine.Texture2D, int)
+  nameWithType.vb: (Texture2D, Integer)
+  fullName.vb: (UnityEngine.Texture2D, Integer)
+  name.vb: (Texture2D, Integer)
+  spec.csharp:
+  - name: (
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider
+  name: DrawTextureWithIntSlider
+  nameWithType: GUIUtilities.DrawTextureWithIntSlider
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithIntSlider
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat
+  name: DrawTextureWithFloat
+  nameWithType: GUIUtilities.DrawTextureWithFloat
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithFloat
+- uid: System.ValueTuple{UnityEngine.Texture2D,System.Single}
+  commentId: T:System.ValueTuple{UnityEngine.Texture2D,System.Single}
+  parent: System
+  definition: System.ValueTuple`2
+  name: (Texture2D, float)
+  nameWithType: (Texture2D, float)
+  fullName: (UnityEngine.Texture2D, float)
+  nameWithType.vb: (Texture2D, Single)
+  fullName.vb: (UnityEngine.Texture2D, Single)
+  name.vb: (Texture2D, Single)
+  spec.csharp:
+  - name: (
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider
+  name: DrawTextureWithSlider
+  nameWithType: GUIUtilities.DrawTextureWithSlider
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor
+  name: DrawTextureWithColor
+  nameWithType: GUIUtilities.DrawTextureWithColor
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithColor
+- uid: UnityEngine.Color
+  commentId: T:UnityEngine.Color
+  parent: UnityEngine
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: UnityEngine.Color
+- uid: System.ValueTuple{UnityEngine.Texture2D,UnityEngine.Color}
+  commentId: T:System.ValueTuple{UnityEngine.Texture2D,UnityEngine.Color}
+  parent: System
+  definition: System.ValueTuple`2
+  name: (Texture2D, Color)
+  nameWithType: (Texture2D, Color)
+  fullName: (UnityEngine.Texture2D, UnityEngine.Color)
+  spec.csharp:
+  - name: (
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: UnityEngine.Color
+    name: Color
+    isExternal: true
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: UnityEngine.Color
+    name: Color
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextures*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextures
+  name: DrawTextures
+  nameWithType: GUIUtilities.DrawTextures
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextures
+- uid: UnityEngine.Texture2D[]
+  isExternal: true
+  name: Texture2D[]
+  nameWithType: Texture2D[]
+  fullName: UnityEngine.Texture2D[]
+  nameWithType.vb: Texture2D()
+  fullName.vb: UnityEngine.Texture2D()
+  name.vb: Texture2D()
+  spec.csharp:
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: (
+  - name: )
+- uid: UnityEngine.GUIContent[]
+  isExternal: true
+  name: GUIContent[]
+  nameWithType: GUIContent[]
+  fullName: UnityEngine.GUIContent[]
+  nameWithType.vb: GUIContent()
+  fullName.vb: UnityEngine.GUIContent()
+  name.vb: GUIContent()
+  spec.csharp:
+  - uid: UnityEngine.GUIContent
+    name: GUIContent
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: UnityEngine.GUIContent
+    name: GUIContent
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field
+  name: DrawVector2Field
+  nameWithType: GUIUtilities.DrawVector2Field
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field
+- uid: UnityEngine.Vector2
+  commentId: T:UnityEngine.Vector2
+  parent: UnityEngine
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: UnityEngine.Vector2
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField
+  name: DrawVector2IntField
+  nameWithType: GUIUtilities.DrawVector2IntField
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField
+- uid: UnityEngine.Vector2Int
+  commentId: T:UnityEngine.Vector2Int
+  parent: UnityEngine
+  isExternal: true
+  name: Vector2Int
+  nameWithType: Vector2Int
+  fullName: UnityEngine.Vector2Int
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset
+  name: DrawTilingOffset
+  nameWithType: GUIUtilities.DrawTilingOffset
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset
+- uid: UnityEngine.Vector4
+  commentId: T:UnityEngine.Vector4
+  parent: UnityEngine
+  isExternal: true
+  name: Vector4
+  nameWithType: Vector4
+  fullName: UnityEngine.Vector4
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawFoldout*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawFoldout
+  name: DrawFoldout
+  nameWithType: GUIUtilities.DrawFoldout
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawFoldout
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundVertical*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundVertical
+  name: BeginBackgroundVertical
+  nameWithType: GUIUtilities.BeginBackgroundVertical
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundVertical
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundVertical*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundVertical
+  name: EndBackgroundVertical
+  nameWithType: GUIUtilities.EndBackgroundVertical
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundVertical
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundHorizontal*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundHorizontal
+  name: BeginBackgroundHorizontal
+  nameWithType: GUIUtilities.BeginBackgroundHorizontal
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.BeginBackgroundHorizontal
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundHorizontal*
+  commentId: Overload:Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundHorizontal
+  name: EndBackgroundHorizontal
+  nameWithType: GUIUtilities.EndBackgroundHorizontal
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.EndBackgroundHorizontal

@@ -1,0 +1,112 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.TextureUtilities
+  commentId: N:Repetitionless.Editor.TextureUtilities
+  id: Repetitionless.Editor.TextureUtilities
+  children:
+  - Repetitionless.Editor.TextureUtilities.Texture2DArrayUtilities
+  - Repetitionless.Editor.TextureUtilities.TexturePacker
+  - Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  - Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+  - Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  - Repetitionless.Editor.TextureUtilities.TextureUtilities
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Editor.TextureUtilities
+  nameWithType: Repetitionless.Editor.TextureUtilities
+  fullName: Repetitionless.Editor.TextureUtilities
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+references:
+- uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+  commentId: T:Repetitionless.Editor.TextureUtilities.TexturePacker
+  name: TexturePacker
+  nameWithType: TexturePacker
+  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker
+- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+  commentId: T:Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+  parent: Repetitionless.Editor.TextureUtilities
+  name: TexturePacker.TextureChannel
+  nameWithType: TexturePacker.TextureChannel
+  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+  spec.csharp:
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+    name: TexturePacker
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+    name: TextureChannel
+  spec.vb:
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+    name: TexturePacker
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+    name: TextureChannel
+- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  commentId: T:Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  name: TexturePacker.FromToChannel
+  nameWithType: TexturePacker.FromToChannel
+  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  spec.csharp:
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+    name: TexturePacker
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+    name: FromToChannel
+  spec.vb:
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+    name: TexturePacker
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+    name: FromToChannel
+- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  commentId: T:Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  name: TexturePacker.TextureData
+  nameWithType: TexturePacker.TextureData
+  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  spec.csharp:
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+    name: TexturePacker
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+    name: TextureData
+  spec.vb:
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+    name: TexturePacker
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+    name: TextureData
+- uid: Repetitionless.Editor.TextureUtilities.Texture2DArrayUtilities
+  commentId: T:Repetitionless.Editor.TextureUtilities.Texture2DArrayUtilities
+  name: Texture2DArrayUtilities
+  nameWithType: Texture2DArrayUtilities
+  fullName: Repetitionless.Editor.TextureUtilities.Texture2DArrayUtilities
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities
+  commentId: T:Repetitionless.Editor.TextureUtilities.TextureUtilities
+  name: TextureUtilities
+  nameWithType: TextureUtilities
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities
+- uid: Repetitionless.Editor.TextureUtilities
+  commentId: N:Repetitionless.Editor.TextureUtilities
+  name: Repetitionless.Editor.TextureUtilities
+  nameWithType: Repetitionless.Editor.TextureUtilities
+  fullName: Repetitionless.Editor.TextureUtilities
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities
+    name: TextureUtilities
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities
+    name: TextureUtilities

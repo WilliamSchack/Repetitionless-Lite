@@ -1,0 +1,716 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Constants
+  commentId: T:Repetitionless.Editor.Constants
+  id: Constants
+  parent: Repetitionless.Editor
+  children:
+  - Repetitionless.Editor.Constants.ARRAY_ASSIGNED_TEXTURES_ASSET_NAME
+  - Repetitionless.Editor.Constants.COMPRESSED_LAYER_VARIABLES_COUNT
+  - Repetitionless.Editor.Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT
+  - Repetitionless.Editor.Constants.DEFAULT_VARIATION_TEXTURE_NAME_2K
+  - Repetitionless.Editor.Constants.DEFAULT_VARIATION_TEXTURE_NAME_4K
+  - Repetitionless.Editor.Constants.DOCUMENTATION_URL
+  - Repetitionless.Editor.Constants.GITHUB_NEW_ISSUE_URL
+  - Repetitionless.Editor.Constants.GITHUB_URL
+  - Repetitionless.Editor.Constants.LOCAL_DOCUMENTATION_PATH
+  - Repetitionless.Editor.Constants.MATERIALS_PER_LAYER_COUNT
+  - Repetitionless.Editor.Constants.PACKAGE_NAME
+  - Repetitionless.Editor.Constants.PACKAGE_PATH
+  - Repetitionless.Editor.Constants.PROPERTIES_FILE_NAME
+  - Repetitionless.Editor.Constants.PROPERTIES_TEXTURE_ASSET_NAME
+  - Repetitionless.Editor.Constants.SAMPLES_PATH
+  - Repetitionless.Editor.Constants.SAMPLES_PATH_ASSETS
+  - Repetitionless.Editor.Constants.SAMPLES_PATH_BIRP
+  - Repetitionless.Editor.Constants.SAMPLES_PATH_HDRP
+  - Repetitionless.Editor.Constants.SAMPLES_PATH_URP
+  - Repetitionless.Editor.Constants.TEXTURE_DATA_FILE_NAME
+  - Repetitionless.Editor.Constants.TRIPLANAR_KEYWORD
+  langs:
+  - csharp
+  - vb
+  name: Constants
+  nameWithType: Constants
+  fullName: Repetitionless.Editor.Constants
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Constants
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 5
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nContains the main constants used for the Repetitionless asset\n"
+  example: []
+  syntax:
+    content: public static class Constants
+    content.vb: Public Module Constants
+  inheritance:
+  - System.Object
+- uid: Repetitionless.Editor.Constants.PACKAGE_NAME
+  commentId: F:Repetitionless.Editor.Constants.PACKAGE_NAME
+  id: PACKAGE_NAME
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: PACKAGE_NAME
+  nameWithType: Constants.PACKAGE_NAME
+  fullName: Repetitionless.Editor.Constants.PACKAGE_NAME
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: PACKAGE_NAME
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 10
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe package name\n"
+  example: []
+  syntax:
+    content: public const string PACKAGE_NAME = "com.williamschack.repetitionless"
+    return:
+      type: System.String
+    content.vb: Public Const PACKAGE_NAME As String = "com.williamschack.repetitionless"
+- uid: Repetitionless.Editor.Constants.PACKAGE_PATH
+  commentId: F:Repetitionless.Editor.Constants.PACKAGE_PATH
+  id: PACKAGE_PATH
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: PACKAGE_PATH
+  nameWithType: Constants.PACKAGE_PATH
+  fullName: Repetitionless.Editor.Constants.PACKAGE_PATH
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: PACKAGE_PATH
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 14
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe package path relative to the project path\n"
+  example: []
+  syntax:
+    content: public const string PACKAGE_PATH = "Packages/com.williamschack.repetitionless"
+    return:
+      type: System.String
+    content.vb: Public Const PACKAGE_PATH As String = "Packages/com.williamschack.repetitionless"
+- uid: Repetitionless.Editor.Constants.SAMPLES_PATH
+  commentId: F:Repetitionless.Editor.Constants.SAMPLES_PATH
+  id: SAMPLES_PATH
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: SAMPLES_PATH
+  nameWithType: Constants.SAMPLES_PATH
+  fullName: Repetitionless.Editor.Constants.SAMPLES_PATH
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SAMPLES_PATH
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 19
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe samples path relative to the project path\n"
+  example: []
+  syntax:
+    content: public const string SAMPLES_PATH = "Packages/com.williamschack.repetitionless/Samples~"
+    return:
+      type: System.String
+    content.vb: Public Const SAMPLES_PATH As String = "Packages/com.williamschack.repetitionless/Samples~"
+- uid: Repetitionless.Editor.Constants.SAMPLES_PATH_ASSETS
+  commentId: F:Repetitionless.Editor.Constants.SAMPLES_PATH_ASSETS
+  id: SAMPLES_PATH_ASSETS
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: SAMPLES_PATH_ASSETS
+  nameWithType: Constants.SAMPLES_PATH_ASSETS
+  fullName: Repetitionless.Editor.Constants.SAMPLES_PATH_ASSETS
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SAMPLES_PATH_ASSETS
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 23
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe core sample assets path relative to the project path\n"
+  example: []
+  syntax:
+    content: public const string SAMPLES_PATH_ASSETS = "Packages/com.williamschack.repetitionless/Samples~/Assets"
+    return:
+      type: System.String
+    content.vb: Public Const SAMPLES_PATH_ASSETS As String = "Packages/com.williamschack.repetitionless/Samples~/Assets"
+- uid: Repetitionless.Editor.Constants.SAMPLES_PATH_BIRP
+  commentId: F:Repetitionless.Editor.Constants.SAMPLES_PATH_BIRP
+  id: SAMPLES_PATH_BIRP
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: SAMPLES_PATH_BIRP
+  nameWithType: Constants.SAMPLES_PATH_BIRP
+  fullName: Repetitionless.Editor.Constants.SAMPLES_PATH_BIRP
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SAMPLES_PATH_BIRP
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 27
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe Built-In samples path relative to the project path\n"
+  example: []
+  syntax:
+    content: public const string SAMPLES_PATH_BIRP = "Packages/com.williamschack.repetitionless/Samples~/BIRP"
+    return:
+      type: System.String
+    content.vb: Public Const SAMPLES_PATH_BIRP As String = "Packages/com.williamschack.repetitionless/Samples~/BIRP"
+- uid: Repetitionless.Editor.Constants.SAMPLES_PATH_URP
+  commentId: F:Repetitionless.Editor.Constants.SAMPLES_PATH_URP
+  id: SAMPLES_PATH_URP
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: SAMPLES_PATH_URP
+  nameWithType: Constants.SAMPLES_PATH_URP
+  fullName: Repetitionless.Editor.Constants.SAMPLES_PATH_URP
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SAMPLES_PATH_URP
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 31
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe URP samples path relative to the project path\n"
+  example: []
+  syntax:
+    content: public const string SAMPLES_PATH_URP = "Packages/com.williamschack.repetitionless/Samples~/URP"
+    return:
+      type: System.String
+    content.vb: Public Const SAMPLES_PATH_URP As String = "Packages/com.williamschack.repetitionless/Samples~/URP"
+- uid: Repetitionless.Editor.Constants.SAMPLES_PATH_HDRP
+  commentId: F:Repetitionless.Editor.Constants.SAMPLES_PATH_HDRP
+  id: SAMPLES_PATH_HDRP
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: SAMPLES_PATH_HDRP
+  nameWithType: Constants.SAMPLES_PATH_HDRP
+  fullName: Repetitionless.Editor.Constants.SAMPLES_PATH_HDRP
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SAMPLES_PATH_HDRP
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 35
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe HDRP samples path relative to the project path\n"
+  example: []
+  syntax:
+    content: public const string SAMPLES_PATH_HDRP = "Packages/com.williamschack.repetitionless/Samples~/HDRP"
+    return:
+      type: System.String
+    content.vb: Public Const SAMPLES_PATH_HDRP As String = "Packages/com.williamschack.repetitionless/Samples~/HDRP"
+- uid: Repetitionless.Editor.Constants.DOCUMENTATION_URL
+  commentId: F:Repetitionless.Editor.Constants.DOCUMENTATION_URL
+  id: DOCUMENTATION_URL
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: DOCUMENTATION_URL
+  nameWithType: Constants.DOCUMENTATION_URL
+  fullName: Repetitionless.Editor.Constants.DOCUMENTATION_URL
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DOCUMENTATION_URL
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 40
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe online documentation url\n"
+  example: []
+  syntax:
+    content: public const string DOCUMENTATION_URL = "https://docs.wilschack.dev/repetitionless/"
+    return:
+      type: System.String
+    content.vb: Public Const DOCUMENTATION_URL As String = "https://docs.wilschack.dev/repetitionless/"
+- uid: Repetitionless.Editor.Constants.LOCAL_DOCUMENTATION_PATH
+  commentId: F:Repetitionless.Editor.Constants.LOCAL_DOCUMENTATION_PATH
+  id: LOCAL_DOCUMENTATION_PATH
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: LOCAL_DOCUMENTATION_PATH
+  nameWithType: Constants.LOCAL_DOCUMENTATION_PATH
+  fullName: Repetitionless.Editor.Constants.LOCAL_DOCUMENTATION_PATH
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: LOCAL_DOCUMENTATION_PATH
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 44
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe local documentation path relative to the project path\n"
+  example: []
+  syntax:
+    content: public const string LOCAL_DOCUMENTATION_PATH = "Packages/com.williamschack.repetitionless/OfflineDocumentation.pdf"
+    return:
+      type: System.String
+    content.vb: Public Const LOCAL_DOCUMENTATION_PATH As String = "Packages/com.williamschack.repetitionless/OfflineDocumentation.pdf"
+- uid: Repetitionless.Editor.Constants.GITHUB_URL
+  commentId: F:Repetitionless.Editor.Constants.GITHUB_URL
+  id: GITHUB_URL
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: GITHUB_URL
+  nameWithType: Constants.GITHUB_URL
+  fullName: Repetitionless.Editor.Constants.GITHUB_URL
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GITHUB_URL
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 49
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe github issues repo url\n"
+  example: []
+  syntax:
+    content: public const string GITHUB_URL = "https://github.com/WilliamSchack/Repetitionless-Issues"
+    return:
+      type: System.String
+    content.vb: Public Const GITHUB_URL As String = "https://github.com/WilliamSchack/Repetitionless-Issues"
+- uid: Repetitionless.Editor.Constants.GITHUB_NEW_ISSUE_URL
+  commentId: F:Repetitionless.Editor.Constants.GITHUB_NEW_ISSUE_URL
+  id: GITHUB_NEW_ISSUE_URL
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: GITHUB_NEW_ISSUE_URL
+  nameWithType: Constants.GITHUB_NEW_ISSUE_URL
+  fullName: Repetitionless.Editor.Constants.GITHUB_NEW_ISSUE_URL
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GITHUB_NEW_ISSUE_URL
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 53
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nLink to submit a new issue in the github repo\n"
+  example: []
+  syntax:
+    content: public const string GITHUB_NEW_ISSUE_URL = "https://github.com/WilliamSchack/Repetitionless-Issues/issues/new/choose"
+    return:
+      type: System.String
+    content.vb: Public Const GITHUB_NEW_ISSUE_URL As String = "https://github.com/WilliamSchack/Repetitionless-Issues/issues/new/choose"
+- uid: Repetitionless.Editor.Constants.TEXTURE_DATA_FILE_NAME
+  commentId: F:Repetitionless.Editor.Constants.TEXTURE_DATA_FILE_NAME
+  id: TEXTURE_DATA_FILE_NAME
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: TEXTURE_DATA_FILE_NAME
+  nameWithType: Constants.TEXTURE_DATA_FILE_NAME
+  fullName: Repetitionless.Editor.Constants.TEXTURE_DATA_FILE_NAME
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: TEXTURE_DATA_FILE_NAME
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 58
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe texture data asset file name that will be stored along side a material\n"
+  example: []
+  syntax:
+    content: public const string TEXTURE_DATA_FILE_NAME = "TextureData.asset"
+    return:
+      type: System.String
+    content.vb: Public Const TEXTURE_DATA_FILE_NAME As String = "TextureData.asset"
+- uid: Repetitionless.Editor.Constants.PROPERTIES_FILE_NAME
+  commentId: F:Repetitionless.Editor.Constants.PROPERTIES_FILE_NAME
+  id: PROPERTIES_FILE_NAME
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: PROPERTIES_FILE_NAME
+  nameWithType: Constants.PROPERTIES_FILE_NAME
+  fullName: Repetitionless.Editor.Constants.PROPERTIES_FILE_NAME
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: PROPERTIES_FILE_NAME
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 62
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe material properties asset file name that will be stored along side a material\n"
+  example: []
+  syntax:
+    content: public const string PROPERTIES_FILE_NAME = "Properties.asset"
+    return:
+      type: System.String
+    content.vb: Public Const PROPERTIES_FILE_NAME As String = "Properties.asset"
+- uid: Repetitionless.Editor.Constants.PROPERTIES_TEXTURE_ASSET_NAME
+  commentId: F:Repetitionless.Editor.Constants.PROPERTIES_TEXTURE_ASSET_NAME
+  id: PROPERTIES_TEXTURE_ASSET_NAME
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: PROPERTIES_TEXTURE_ASSET_NAME
+  nameWithType: Constants.PROPERTIES_TEXTURE_ASSET_NAME
+  fullName: Repetitionless.Editor.Constants.PROPERTIES_TEXTURE_ASSET_NAME
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: PROPERTIES_TEXTURE_ASSET_NAME
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 67
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe properties texture file name that will be stored along side a material\n"
+  example: []
+  syntax:
+    content: public const string PROPERTIES_TEXTURE_ASSET_NAME = "PropertiesTexture.asset"
+    return:
+      type: System.String
+    content.vb: Public Const PROPERTIES_TEXTURE_ASSET_NAME As String = "PropertiesTexture.asset"
+- uid: Repetitionless.Editor.Constants.ARRAY_ASSIGNED_TEXTURES_ASSET_NAME
+  commentId: F:Repetitionless.Editor.Constants.ARRAY_ASSIGNED_TEXTURES_ASSET_NAME
+  id: ARRAY_ASSIGNED_TEXTURES_ASSET_NAME
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: ARRAY_ASSIGNED_TEXTURES_ASSET_NAME
+  nameWithType: Constants.ARRAY_ASSIGNED_TEXTURES_ASSET_NAME
+  fullName: Repetitionless.Editor.Constants.ARRAY_ASSIGNED_TEXTURES_ASSET_NAME
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: ARRAY_ASSIGNED_TEXTURES_ASSET_NAME
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 71
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe array assigned textures texture file name that will be stored along side a material\n"
+  example: []
+  syntax:
+    content: public const string ARRAY_ASSIGNED_TEXTURES_ASSET_NAME = "AssignedTextures.asset"
+    return:
+      type: System.String
+    content.vb: Public Const ARRAY_ASSIGNED_TEXTURES_ASSET_NAME As String = "AssignedTextures.asset"
+- uid: Repetitionless.Editor.Constants.DEFAULT_VARIATION_TEXTURE_NAME_2K
+  commentId: F:Repetitionless.Editor.Constants.DEFAULT_VARIATION_TEXTURE_NAME_2K
+  id: DEFAULT_VARIATION_TEXTURE_NAME_2K
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: DEFAULT_VARIATION_TEXTURE_NAME_2K
+  nameWithType: Constants.DEFAULT_VARIATION_TEXTURE_NAME_2K
+  fullName: Repetitionless.Editor.Constants.DEFAULT_VARIATION_TEXTURE_NAME_2K
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DEFAULT_VARIATION_TEXTURE_NAME_2K
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 76
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe default variation texture file name with a resolution of 2048x2048\n"
+  example: []
+  syntax:
+    content: public const string DEFAULT_VARIATION_TEXTURE_NAME_2K = "repetitionless_VariationTexture_2048"
+    return:
+      type: System.String
+    content.vb: Public Const DEFAULT_VARIATION_TEXTURE_NAME_2K As String = "repetitionless_VariationTexture_2048"
+- uid: Repetitionless.Editor.Constants.DEFAULT_VARIATION_TEXTURE_NAME_4K
+  commentId: F:Repetitionless.Editor.Constants.DEFAULT_VARIATION_TEXTURE_NAME_4K
+  id: DEFAULT_VARIATION_TEXTURE_NAME_4K
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: DEFAULT_VARIATION_TEXTURE_NAME_4K
+  nameWithType: Constants.DEFAULT_VARIATION_TEXTURE_NAME_4K
+  fullName: Repetitionless.Editor.Constants.DEFAULT_VARIATION_TEXTURE_NAME_4K
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DEFAULT_VARIATION_TEXTURE_NAME_4K
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 80
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe default variation texture file name with a resolution of 4096x4096\n"
+  example: []
+  syntax:
+    content: public const string DEFAULT_VARIATION_TEXTURE_NAME_4K = "repetitionless_VariationTexture_4096"
+    return:
+      type: System.String
+    content.vb: Public Const DEFAULT_VARIATION_TEXTURE_NAME_4K As String = "repetitionless_VariationTexture_4096"
+- uid: Repetitionless.Editor.Constants.MATERIALS_PER_LAYER_COUNT
+  commentId: F:Repetitionless.Editor.Constants.MATERIALS_PER_LAYER_COUNT
+  id: MATERIALS_PER_LAYER_COUNT
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: MATERIALS_PER_LAYER_COUNT
+  nameWithType: Constants.MATERIALS_PER_LAYER_COUNT
+  fullName: Repetitionless.Editor.Constants.MATERIALS_PER_LAYER_COUNT
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: MATERIALS_PER_LAYER_COUNT
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 85
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nHow many materials are used per layer\n"
+  example: []
+  syntax:
+    content: public const int MATERIALS_PER_LAYER_COUNT = 3
+    return:
+      type: System.Int32
+    content.vb: Public Const MATERIALS_PER_LAYER_COUNT As Integer = 3
+- uid: Repetitionless.Editor.Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT
+  commentId: F:Repetitionless.Editor.Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT
+  id: COMPRESSED_MATERIAL_VARIABLES_COUNT
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: COMPRESSED_MATERIAL_VARIABLES_COUNT
+  nameWithType: Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT
+  fullName: Repetitionless.Editor.Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: COMPRESSED_MATERIAL_VARIABLES_COUNT
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 90
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nAmount of compressed variables per material\n"
+  example: []
+  syntax:
+    content: public const int COMPRESSED_MATERIAL_VARIABLES_COUNT = 9
+    return:
+      type: System.Int32
+    content.vb: Public Const COMPRESSED_MATERIAL_VARIABLES_COUNT As Integer = 9
+- uid: Repetitionless.Editor.Constants.COMPRESSED_LAYER_VARIABLES_COUNT
+  commentId: F:Repetitionless.Editor.Constants.COMPRESSED_LAYER_VARIABLES_COUNT
+  id: COMPRESSED_LAYER_VARIABLES_COUNT
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: COMPRESSED_LAYER_VARIABLES_COUNT
+  nameWithType: Constants.COMPRESSED_LAYER_VARIABLES_COUNT
+  fullName: Repetitionless.Editor.Constants.COMPRESSED_LAYER_VARIABLES_COUNT
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: COMPRESSED_LAYER_VARIABLES_COUNT
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 94
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nAmount of compressed variables per layer\n"
+  example: []
+  syntax:
+    content: public const int COMPRESSED_LAYER_VARIABLES_COUNT = 31
+    return:
+      type: System.Int32
+    content.vb: Public Const COMPRESSED_LAYER_VARIABLES_COUNT As Integer = 31
+- uid: Repetitionless.Editor.Constants.TRIPLANAR_KEYWORD
+  commentId: F:Repetitionless.Editor.Constants.TRIPLANAR_KEYWORD
+  id: TRIPLANAR_KEYWORD
+  parent: Repetitionless.Editor.Constants
+  langs:
+  - csharp
+  - vb
+  name: TRIPLANAR_KEYWORD
+  nameWithType: Constants.TRIPLANAR_KEYWORD
+  fullName: Repetitionless.Editor.Constants.TRIPLANAR_KEYWORD
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: TRIPLANAR_KEYWORD
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Constants.cs
+    startLine: 99
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor
+  summary: "\nThe triplanar keyword for repetitionless materials\n"
+  example: []
+  syntax:
+    content: public const string TRIPLANAR_KEYWORD = "_REPETITIONLESS_TRIPLANAR"
+    return:
+      type: System.String
+    content.vb: Public Const TRIPLANAR_KEYWORD As String = "_REPETITIONLESS_TRIPLANAR"
+references:
+- uid: Repetitionless.Editor
+  commentId: N:Repetitionless.Editor
+  name: Repetitionless.Editor
+  nameWithType: Repetitionless.Editor
+  fullName: Repetitionless.Editor
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer

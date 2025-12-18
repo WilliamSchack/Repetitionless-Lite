@@ -1,0 +1,348 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  commentId: T:Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  id: RepetitionlessMaterialDataCompressed
+  parent: Repetitionless.Variables
+  children:
+  - Repetitionless.Variables.RepetitionlessMaterialDataCompressed.AlbedoTint
+  - Repetitionless.Variables.RepetitionlessMaterialDataCompressed.EmissionColour
+  - Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings1
+  - Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings2
+  - Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings3
+  - Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings4
+  - Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings5
+  - Repetitionless.Variables.RepetitionlessMaterialDataCompressed.TilingOffset
+  - Repetitionless.Variables.RepetitionlessMaterialDataCompressed.VariationTO
+  langs:
+  - csharp
+  - vb
+  name: RepetitionlessMaterialDataCompressed
+  nameWithType: RepetitionlessMaterialDataCompressed
+  fullName: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  type: Struct
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RepetitionlessMaterialDataCompressed
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+    startLine: 181
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe compressed material data that will be passed to the shader for a repetitionless material\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public struct RepetitionlessMaterialDataCompressed
+    content.vb: >-
+      <Serializable>
+
+      Public Structure RepetitionlessMaterialDataCompressed
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+- uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings1
+  commentId: F:Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings1
+  id: Settings1
+  parent: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  langs:
+  - csharp
+  - vb
+  name: Settings1
+  nameWithType: RepetitionlessMaterialDataCompressed.Settings1
+  fullName: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings1
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Settings1
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+    startLine: 205
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nx: Compressed Bools<br />\n0 > NoiseEnabled<br />\n1 > RandomiseNoiseScaling<br />\n2 > RandomiseNoiseRotation<br />\n3 > SmoothnessEnabled<br />\n4 > VariationEnabled<br />\n5 > PackedTexture<br />\n6 > EmissionEnabled<br />\ny: Compressed Bools<br />\n0 > AlbedoAssigned<br />\n1 > MetallicAssigned<br />\n2 > SmoothnessAssigned<br />\n3 > NormalAssigned<br />\n4 > OcclussionAssigned<br />\n5 > EmissionAssigned<br />\n6 > VarationAssigned<br />\n7 > PackedTextureAssigned<br />\nz: Metallic<br />\nw: Smoothness/Roughness\n"
+  example: []
+  syntax:
+    content: public Vector4 Settings1
+    return:
+      type: UnityEngine.Vector4
+    content.vb: Public Settings1 As Vector4
+- uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings2
+  commentId: F:Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings2
+  id: Settings2
+  parent: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  langs:
+  - csharp
+  - vb
+  name: Settings2
+  nameWithType: RepetitionlessMaterialDataCompressed.Settings2
+  fullName: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings2
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Settings2
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+    startLine: 213
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nx: NormalScale<br />\ny: OcclussionStrength<br />\nz: AlphaClipping<br />\nw: NoiseAngleOffset\n"
+  example: []
+  syntax:
+    content: public Vector4 Settings2
+    return:
+      type: UnityEngine.Vector4
+    content.vb: Public Settings2 As Vector4
+- uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings3
+  commentId: F:Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings3
+  id: Settings3
+  parent: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  langs:
+  - csharp
+  - vb
+  name: Settings3
+  nameWithType: RepetitionlessMaterialDataCompressed.Settings3
+  fullName: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings3
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Settings3
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+    startLine: 221
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nx: NoiseScale<br />\ny: VariationMode<br />\nz: VariationOpacity<br />\nw: VariationBrightness\n"
+  example: []
+  syntax:
+    content: public Vector4 Settings3
+    return:
+      type: UnityEngine.Vector4
+    content.vb: Public Settings3 As Vector4
+- uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings4
+  commentId: F:Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings4
+  id: Settings4
+  parent: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  langs:
+  - csharp
+  - vb
+  name: Settings4
+  nameWithType: RepetitionlessMaterialDataCompressed.Settings4
+  fullName: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings4
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Settings4
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+    startLine: 229
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nx: VariationSmallScale<br />\ny: VariationMediumScale<br />\nz: VariationLargeScale<br />\nw: VariationNoiseStrength\n"
+  example: []
+  syntax:
+    content: public Vector4 Settings4
+    return:
+      type: UnityEngine.Vector4
+    content.vb: Public Settings4 As Vector4
+- uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings5
+  commentId: F:Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings5
+  id: Settings5
+  parent: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  langs:
+  - csharp
+  - vb
+  name: Settings5
+  nameWithType: RepetitionlessMaterialDataCompressed.Settings5
+  fullName: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.Settings5
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Settings5
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+    startLine: 235
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nxy: NoiseScalingMinMax<br />\nzw: NoiseRandomiseRotationMinMax\n"
+  example: []
+  syntax:
+    content: public Vector4 Settings5
+    return:
+      type: UnityEngine.Vector4
+    content.vb: Public Settings5 As Vector4
+- uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.AlbedoTint
+  commentId: F:Repetitionless.Variables.RepetitionlessMaterialDataCompressed.AlbedoTint
+  id: AlbedoTint
+  parent: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  langs:
+  - csharp
+  - vb
+  name: AlbedoTint
+  nameWithType: RepetitionlessMaterialDataCompressed.AlbedoTint
+  fullName: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.AlbedoTint
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: AlbedoTint
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+    startLine: 240
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe albedo tint\n"
+  example: []
+  syntax:
+    content: public Vector3 AlbedoTint
+    return:
+      type: UnityEngine.Vector3
+    content.vb: Public AlbedoTint As Vector3
+- uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.EmissionColour
+  commentId: F:Repetitionless.Variables.RepetitionlessMaterialDataCompressed.EmissionColour
+  id: EmissionColour
+  parent: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  langs:
+  - csharp
+  - vb
+  name: EmissionColour
+  nameWithType: RepetitionlessMaterialDataCompressed.EmissionColour
+  fullName: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.EmissionColour
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: EmissionColour
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+    startLine: 245
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe emission colour\n"
+  example: []
+  syntax:
+    content: public Vector3 EmissionColour
+    return:
+      type: UnityEngine.Vector3
+    content.vb: Public EmissionColour As Vector3
+- uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.TilingOffset
+  commentId: F:Repetitionless.Variables.RepetitionlessMaterialDataCompressed.TilingOffset
+  id: TilingOffset
+  parent: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  langs:
+  - csharp
+  - vb
+  name: TilingOffset
+  nameWithType: RepetitionlessMaterialDataCompressed.TilingOffset
+  fullName: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.TilingOffset
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: TilingOffset
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+    startLine: 251
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nThe tiling offset:<br />\nxy: Tiling, zw: Offset\n"
+  example: []
+  syntax:
+    content: public Vector4 TilingOffset
+    return:
+      type: UnityEngine.Vector4
+    content.vb: Public TilingOffset As Vector4
+- uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.VariationTO
+  commentId: F:Repetitionless.Variables.RepetitionlessMaterialDataCompressed.VariationTO
+  id: VariationTO
+  parent: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  langs:
+  - csharp
+  - vb
+  name: VariationTO
+  nameWithType: RepetitionlessMaterialDataCompressed.VariationTO
+  fullName: Repetitionless.Variables.RepetitionlessMaterialDataCompressed.VariationTO
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: VariationTO
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
+    startLine: 260
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\n<strong>IF USING NOISE:</strong><br />\nx: VariationNoiseScale<br />\nzw: VariationNoiseOffset<br />\n<strong>IF USING TEXTURE:</strong><br />\nxyzw: VariationTextureTO\n"
+  example: []
+  syntax:
+    content: public Vector4 VariationTO
+    return:
+      type: UnityEngine.Vector4
+    content.vb: Public VariationTO As Vector4
+references:
+- uid: Repetitionless.Variables
+  commentId: N:Repetitionless.Variables
+  name: Repetitionless.Variables
+  nameWithType: Repetitionless.Variables
+  fullName: Repetitionless.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+- uid: UnityEngine.Vector4
+  commentId: T:UnityEngine.Vector4
+  parent: UnityEngine
+  isExternal: true
+  name: Vector4
+  nameWithType: Vector4
+  fullName: UnityEngine.Vector4
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: UnityEngine.Vector3
+  commentId: T:UnityEngine.Vector3
+  parent: UnityEngine
+  isExternal: true
+  name: Vector3
+  nameWithType: Vector3
+  fullName: UnityEngine.Vector3

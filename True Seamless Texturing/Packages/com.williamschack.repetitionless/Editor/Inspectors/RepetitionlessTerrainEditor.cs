@@ -7,6 +7,9 @@ namespace Repetitionless.Editor.Inspectors
 {
     using Data;
     
+    /// <summary>
+    /// The editor for the repetitionless terrain component
+    /// </summary>
     [CustomEditor(typeof(RepetitionlessTerrain))]
     public class RepetitionlessTerrainEditor : UnityEditor.Editor
     {
@@ -153,6 +156,9 @@ namespace Repetitionless.Editor.Inspectors
             _main.UpdateMaterialTerrainTextures();
         }
 
+        /// <summary>
+        /// Base OnGUI function
+        /// </summary>
         public override void OnInspectorGUI()
         {   
             serializedObject.Update();

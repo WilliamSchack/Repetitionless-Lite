@@ -1,0 +1,174 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor
+  commentId: T:Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor
+  id: RepetitionlessTerrainEditor
+  parent: Repetitionless.Editor.Inspectors
+  children:
+  - Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI
+  langs:
+  - csharp
+  - vb
+  name: RepetitionlessTerrainEditor
+  nameWithType: RepetitionlessTerrainEditor
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessTerrainEditor.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RepetitionlessTerrainEditor
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessTerrainEditor.cs
+    startLine: 12
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Inspectors
+  summary: "\nThe editor for the repetitionless terrain component\n"
+  example: []
+  syntax:
+    content: >-
+      [CustomEditor(typeof(RepetitionlessTerrain))]
+
+      public class RepetitionlessTerrainEditor : Editor
+    content.vb: >-
+      <CustomEditor(GetType(RepetitionlessTerrain))>
+
+      Public Class RepetitionlessTerrainEditor Inherits Editor
+  inheritance:
+  - System.Object
+  - UnityEngine.Object
+  - UnityEngine.ScriptableObject
+  - UnityEditor.Editor
+  attributes:
+  - type: UnityEditor.CustomEditor
+    ctor: UnityEditor.CustomEditor.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: {}
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI
+  id: OnInspectorGUI
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor
+  langs:
+  - csharp
+  - vb
+  name: OnInspectorGUI()
+  nameWithType: RepetitionlessTerrainEditor.OnInspectorGUI()
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessTerrainEditor.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnInspectorGUI
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessTerrainEditor.cs
+    startLine: 161
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Inspectors
+  summary: "\nBase OnGUI function\n"
+  example: []
+  syntax:
+    content: public override void OnInspectorGUI()
+    content.vb: Public Overrides Sub OnInspectorGUI()
+  overridden: UnityEditor.Editor.OnInspectorGUI
+  overload: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI*
+references:
+- uid: Repetitionless.Editor.Inspectors
+  commentId: N:Repetitionless.Editor.Inspectors
+  name: Repetitionless.Editor.Inspectors
+  nameWithType: Repetitionless.Editor.Inspectors
+  fullName: Repetitionless.Editor.Inspectors
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Inspectors
+    name: Inspectors
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Inspectors
+    name: Inspectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: UnityEngine.Object
+  commentId: T:UnityEngine.Object
+  parent: UnityEngine
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: UnityEngine.Object
+- uid: UnityEngine.ScriptableObject
+  commentId: T:UnityEngine.ScriptableObject
+  parent: UnityEngine
+  isExternal: true
+  name: ScriptableObject
+  nameWithType: ScriptableObject
+  fullName: UnityEngine.ScriptableObject
+- uid: UnityEditor.Editor
+  commentId: T:UnityEditor.Editor
+  parent: UnityEditor
+  isExternal: true
+  name: Editor
+  nameWithType: Editor
+  fullName: UnityEditor.Editor
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: UnityEditor
+  commentId: N:UnityEditor
+  isExternal: true
+  name: UnityEditor
+  nameWithType: UnityEditor
+  fullName: UnityEditor
+- uid: UnityEditor.Editor.OnInspectorGUI
+  commentId: M:UnityEditor.Editor.OnInspectorGUI
+  parent: UnityEditor.Editor
+  isExternal: true
+  name: OnInspectorGUI()
+  nameWithType: Editor.OnInspectorGUI()
+  fullName: UnityEditor.Editor.OnInspectorGUI()
+  spec.csharp:
+  - uid: UnityEditor.Editor.OnInspectorGUI
+    name: OnInspectorGUI
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: UnityEditor.Editor.OnInspectorGUI
+    name: OnInspectorGUI
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI*
+  commentId: Overload:Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI
+  name: OnInspectorGUI
+  nameWithType: RepetitionlessTerrainEditor.OnInspectorGUI
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI

@@ -2,62 +2,143 @@ using UnityEngine;
 
 namespace Repetitionless.Variables
 {
+    /// <summary>
+    /// The layer data for a repetitionless material
+    /// </summary>
     [System.Serializable]
     public class RepetitionlessLayerData
     {
         // Materials
+
+        /// <summary>
+        /// The base material data
+        /// </summary>
         [SerializeField] public RepetitionlessMaterialData BaseMaterialData = new RepetitionlessMaterialData();
+        /// <summary>
+        /// The far material data
+        /// </summary>
         [SerializeField] public RepetitionlessMaterialData FarMaterialData = new RepetitionlessMaterialData();
+        /// <summary>
+        /// The blend material data
+        /// </summary>
         [SerializeField] public RepetitionlessMaterialData BlendMaterialData = new RepetitionlessMaterialData();
 
         // Distance Blend Settings
+
+        /// <summary>
+        /// If distance blend is enabled
+        /// </summary>
         public bool DistanceBlendEnabled = false;
+        /// <summary>
+        /// The distance blend mode used
+        /// </summary>
         public EDistanceBlendMode DistanceBlendMode = EDistanceBlendMode.TilingOffset;
+        /// <summary>
+        /// The distance blend min max
+        /// </summary>
         public Vector2 DistanceBlendMinMax = new Vector2(100, 150);
 
         // Blend Material Settings
+
+        /// <summary>
+        /// If material blend is enabled
+        /// </summary>
         public bool MaterialBlendEnabled = false;
+        /// <summary>
+        /// If the blend mask texture is assigned
+        /// </summary>
         public bool BlendMaskAssigned = false;
+        /// <summary>
+        /// If the blend material will be drawn at a distance instead of the distance material
+        /// </summary>
         public bool OverrideDistanceBlend = true;
+        /// <summary>
+        /// If the blend material at a distance will have a different tiling offset
+        /// </summary>
         public bool OverrideDistanceBlendTO = true;
+        /// <summary>
+        /// The blend mask type used
+        /// </summary>
         public ETextureType BlendMaskType = ETextureType.PerlinNoise;
+        /// <summary>
+        /// The blend mask distance tiling offset:<br />
+        /// xy: Tiling, zw: Offset
+        /// </summary>
         public Vector4 BlendMaskDistanceTO = new Vector4(1, 1, 0, 0);
+        /// <summary>
+        /// The blend mask opacity
+        /// </summary>
         public float BlendMaskOpacity = 1.0f;
+        /// <summary>
+        /// The blend mask strength
+        /// </summary>
         public float BlendMaskStrength = 1.0f;
+        /// <summary>
+        /// The blend mask noise scale
+        /// </summary>
         public float BlendMaskNoiseScale = 10.0f;
+        /// <summary>
+        /// The blend mask noise offset
+        /// </summary>
         public Vector2 BlendMaskNoiseOffset = Vector3.zero;
+        /// <summary>
+        /// The blend mask texture tiling offset:<br />
+        /// xy: Tiling, zw: Offset
+        /// </summary>
         public Vector4 BlendMaskTextureTO = new Vector4(1, 1, 0, 0);
     }
 
+    /// <summary>
+    /// The compressed layer data that will be passed to the shader fro a repetitionless material
+    /// </summary>
     [System.Serializable]
     public struct RepetitionlessLayerDataCompressed
     {
+        /// <summary>
+        /// The compressed base material data
+        /// </summary>
         public RepetitionlessMaterialDataCompressed BaseMaterialData;
+        /// <summary>
+        /// The compressed far material data
+        /// </summary>
         public RepetitionlessMaterialDataCompressed FarMaterialData;
+        /// <summary>
+        /// The compressed blend material data
+        /// </summary>
         public RepetitionlessMaterialDataCompressed BlendMaterialData;
 
-        // x: DistanceBlendEnabled
-        // y: DistanceBlendMode
-        // zw: DistanceBlendMinMax
+        /// <summary>
+        /// x: DistanceBlendEnabled
+        /// y: DistanceBlendMode
+        /// zw: DistanceBlendMinMax
+        /// </summary>
         public Vector4 DistanceBlendSettings;
 
+        /// <summary>
+        /// The blend mask distance tiling offset:
+        /// xy: Tiling, zw: Offset
+        /// </summary>
         public Vector4 BlendMaskDistanceTO;
 
-        // x: Compressed Bools
-        //   0 > MaterialBlendEnabled
-        //   1 > BlendMaskAssigned
-        //   2 > OverrideDistanceBlend
-        //   3 > OverrideDistanceBlendTO
-        // y: BlendMaskType
-        // z: BlendMaskOpacity
-        // w: BlendMaskStrength
+        /// <summary>
+        /// x: Compressed Bools
+        ///   0 > MaterialBlendEnabled
+        ///   1 > BlendMaskAssigned
+        ///   2 > OverrideDistanceBlend
+        ///   3 > OverrideDistanceBlendTO
+        /// y: BlendMaskType
+        /// z: BlendMaskOpacity
+        /// w: BlendMaskStrength
+        /// </summary>
         public Vector4 MaterialBlendSettings;
 
-        // IF USING NOISE MASK:
-        // x: BlendMaskNoiseScale
-        // zw: BlendMaskNoiseOffset
-        // IF USING TEXTURE MASK:
-        // xyzw: BlendMaskTextureTO
+        /// <summary>
+        /// <b>IF USING NOISE MASK:</b>
+        /// x: BlendMaskNoiseScale
+        /// zw: BlendMaskNoiseOffset
+        /// <b>IF USING TEXTURE MASK:</b>
+        /// xyzw: BlendMaskTextureTO
+        /// </summary>
         public Vector4 MaterialBlendMaskTO;
     }
 }

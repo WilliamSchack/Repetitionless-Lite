@@ -8,9 +8,12 @@ namespace Repetitionless.Editor.CustomWindows
 {
     using GUIUtilities;
 
+    /// <summary>
+    /// The welcome window that is shown when first installing the package
+    /// </summary>
     public class WelcomeWindow : EditorWindow
     {
-        private const string PACKAGE_PATH = Constants.PACKAGE_DIR + "/package.json";
+        private const string PACKAGE_PATH = Constants.PACKAGE_PATH + "/package.json";
 
         private const string LOGO_FILE_NAME = "repetitionless_WelcomeLogo";
         private const int LOGO_HEIGHT = 60;
@@ -29,6 +32,9 @@ namespace Repetitionless.Editor.CustomWindows
 
         private bool _stylesSetup = false;
 
+        /// <summary>
+        /// Opens the window
+        /// </summary>
         [MenuItem("Window/Repetitionless/Open Window")]
         public static void Open()
         {
@@ -36,7 +42,7 @@ namespace Repetitionless.Editor.CustomWindows
             window.Show();
         }
 
-        void CreateGUI()
+        private void CreateGUI()
         {
             _packageInfo = UnityEditor.PackageManager.PackageInfo.FindForAssetPath(PACKAGE_PATH);
 
@@ -63,7 +69,7 @@ namespace Repetitionless.Editor.CustomWindows
             _buttonStyle.fontSize = 14;
         }
 
-        void OnGUI()
+        private void OnGUI()
         {
             // Named styles must be created in OnGUI
             if (!_stylesSetup) {

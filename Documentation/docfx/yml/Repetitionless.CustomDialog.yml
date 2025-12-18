@@ -13,7 +13,7 @@ items:
   fullName: Repetitionless.CustomDialog
   type: Namespace
   assemblies:
-  - com.williamschack.Repetitionless.CustomDialog
+  - com.williamschack.Repetitionless.Editor
 references:
 - uid: Repetitionless.CustomDialog.ShaderGUIDialog
   commentId: T:Repetitionless.CustomDialog.ShaderGUIDialog

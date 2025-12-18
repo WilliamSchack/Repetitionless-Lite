@@ -10,14 +10,14 @@ Automatically creates and manages its own array when textures are modified
 
 ## Variables
 
-| Variable                                                               | Description                                                                                                                                                                                     |
-| ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Array                                                                  | The array used for this field                                                                                                                                                                   |
-| TextureFormat                                                          | The texture format of the array                                                                                                                                                                 |
-| TransferMipmaps                                                        | If mipmaps will be transferred from the texture to the array if possible                                                                                                                        |
-| ArrayLinear                                                            | If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br />Not Recommended in URP/HDRP as it will result in brighter textures     |
+| Variable | Description |
+|----------|-------------|
+| Array | The array used for this field |
+| TextureFormat | The texture format of the array |
+| TransferMipmaps | If mipmaps will be transferred from the texture to the array if possible |
+| ArrayLinear | If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br />Not Recommended in URP/HDRP as it will result in brighter textures |
 | TextureArrayGUIDrawer(MaterialProperty, MaterialProperty, int, string) | Create a TextureArrayGUIDrawer using the Array and Assigned Textures properties<br />The Texture2DArray asset will be stored in a folder accompanying the material. Can be moved after creation |
-| TextureArrayGUIDrawer(Material, string, string, int, string)           | Create a TextureArrayGUIDrawer using a material and property names<br />The Texture2DArray asset will be stored in a folder accompanying the material. Can be moved after creation              |
+| TextureArrayGUIDrawer(Material, string, string, int, string) | Create a TextureArrayGUIDrawer using a material and property names<br />The Texture2DArray asset will be stored in a folder accompanying the material. Can be moved after creation |
 
 ---
 
@@ -108,11 +108,11 @@ public (Texture2D, int) DrawTextureWithInt(int index, int intValue, GUIContent c
 
 ### Parameters
 
-| Parameter | Description                                                                                                                                                                       |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| index     | Index of the texture being changed in the desired array layout<br />Not the index of the current array layout or textures, think of it as a constant within the set texture count |
-| intValue  | The input integer value                                                                                                                                                           |
-| content   | The GUIContent for the field                                                                                                                                                      |
+| Parameter | Description |
+|-----------|-------------|
+| index | Index of the texture being changed in the desired array layout<br />Not the index of the current array layout or textures, think of it as a constant within the set texture count |
+| intValue | The input integer value |
+| content | The GUIContent for the field |
 
 ### Returns
 

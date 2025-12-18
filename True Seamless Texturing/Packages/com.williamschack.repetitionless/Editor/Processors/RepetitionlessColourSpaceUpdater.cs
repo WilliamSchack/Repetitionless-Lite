@@ -7,6 +7,9 @@ namespace Repetitionless.Editor.Processors
 {
     using Data;
 
+    /// <summary>
+    /// Checks for when the colour space is changed then handles update any repetitionless materials that require repacking
+    /// </summary>
     [InitializeOnLoad]
     public static class RepetitionlessColourSpaceUpdater
     {
@@ -35,6 +38,15 @@ namespace Repetitionless.Editor.Processors
             RepackMaterialsIfColourSpaceChanged(repetitionlessMaterials);
         }
 
+        /// <summary>
+        /// Repacks the textures on a set of repetitionless materials if they require it
+        /// </summary>
+        /// <param name="materials">
+        /// The materials that will be checked and updated
+        /// </param>
+        /// <param name="prompt">
+        /// If a dialog will show to confirm the change
+        /// </param>
         public static void RepackMaterialsIfColourSpaceChanged(List<Material> materials, bool prompt = true)
         {
             bool prompted = !prompt;

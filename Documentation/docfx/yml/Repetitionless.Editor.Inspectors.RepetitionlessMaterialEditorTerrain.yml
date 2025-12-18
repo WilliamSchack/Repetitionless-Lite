@@ -1,0 +1,1460 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  commentId: T:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  id: RepetitionlessMaterialEditorTerrain
+  parent: Repetitionless.Editor.Inspectors
+  children:
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain._maxLayers
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawProperty(System.Int32,System.Action)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawTexture(System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnEnable(UnityEditor.MaterialEditor)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
+  langs:
+  - csharp
+  - vb
+  name: RepetitionlessMaterialEditorTerrain
+  nameWithType: RepetitionlessMaterialEditorTerrain
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RepetitionlessMaterialEditorTerrain
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+    startLine: 16
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Inspectors
+  summary: "\nThe editor for the terrain repetitionless material\n"
+  example: []
+  syntax:
+    content: 'public class RepetitionlessMaterialEditorTerrain : RepetitionlessMaterialEditorBase'
+    content.vb: Public Class RepetitionlessMaterialEditorTerrain Inherits RepetitionlessMaterialEditorBase
+  inheritance:
+  - System.Object
+  - UnityEditor.ShaderGUI
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  inheritedMembers:
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.HEADER_PADDING
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SETTING_PADDING
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SCALED_TEXT_PADDING
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._dataManager
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._textureData
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._materialProperties
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._material
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._editor
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._cachedProperties
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._foldoutStates
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.FindProperty(System.String)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetScaledText(System.Int32,System.String,System.String)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetLayerData(System.Int32)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetMaterialData(System.Int32,System.Int32)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateAssignedTextures(System.Int32,System.Int32)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateMaterialPropertiesTexture(System.Int32)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetTextureDrawerDetails(System.Int32,System.Boolean)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialPropertiesGUI
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialGUI(System.Int32,System.Int32,System.String)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(System.Int32,System.Int32)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialNoiseGUI(System.Int32,System.Int32)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialVariationProperties(System.Int32,System.Int32)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawBaseMaterialGUI(System.Int32,System.String)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDistanceBlendGUI(System.Int32,System.String)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialBlendGUI(System.Int32,System.String)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDebugGUI
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain._maxLayers
+  commentId: P:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain._maxLayers
+  id: _maxLayers
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  langs:
+  - csharp
+  - vb
+  name: _maxLayers
+  nameWithType: RepetitionlessMaterialEditorTerrain._maxLayers
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain._maxLayers
+  type: Property
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: _maxLayers
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+    startLine: 21
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Inspectors
+  summary: "\nThe max amount of layers for the material\n"
+  example: []
+  syntax:
+    content: protected override int _maxLayers { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Protected Overrides ReadOnly Property _maxLayers As Integer
+  overridden: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._maxLayers
+  overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain._maxLayers*
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnEnable(UnityEditor.MaterialEditor)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnEnable(UnityEditor.MaterialEditor)
+  id: OnEnable(UnityEditor.MaterialEditor)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  langs:
+  - csharp
+  - vb
+  name: OnEnable(MaterialEditor)
+  nameWithType: RepetitionlessMaterialEditorTerrain.OnEnable(MaterialEditor)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnEnable(UnityEditor.MaterialEditor)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnEnable
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+    startLine: 37
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Inspectors
+  summary: "\nCalled when the inspector is first opened\n"
+  example: []
+  syntax:
+    content: public override void OnEnable(MaterialEditor materialEditor)
+    parameters:
+    - id: materialEditor
+      type: UnityEditor.MaterialEditor
+      description: "\nThe material editor being used\n"
+    content.vb: Public Overrides Sub OnEnable(materialEditor As MaterialEditor)
+  overridden: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnEnable(UnityEditor.MaterialEditor)
+  overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnEnable*
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
+  id: OnPropertiesCreated
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  langs:
+  - csharp
+  - vb
+  name: OnPropertiesCreated()
+  nameWithType: RepetitionlessMaterialEditorTerrain.OnPropertiesCreated()
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnPropertiesCreated
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+    startLine: 63
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Inspectors
+  summary: "\nCalled when the material properties are first created\n"
+  example: []
+  syntax:
+    content: protected override void OnPropertiesCreated()
+    content.vb: Protected Overrides Sub OnPropertiesCreated()
+  overridden: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+  overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated*
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  id: OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  langs:
+  - csharp
+  - vb
+  name: OnGUI(MaterialEditor, MaterialProperty[])
+  nameWithType: RepetitionlessMaterialEditorTerrain.OnGUI(MaterialEditor, MaterialProperty[])
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI(UnityEditor.MaterialEditor, UnityEditor.MaterialProperty[])
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnGUI
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+    startLine: 87
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Inspectors
+  summary: "\nBase OnGUI function\n"
+  example: []
+  syntax:
+    content: public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
+    parameters:
+    - id: materialEditor
+      type: UnityEditor.MaterialEditor
+      description: "\nThe material editor being used\n"
+    - id: properties
+      type: UnityEditor.MaterialProperty[]
+      description: "\nThe material properties\n"
+    content.vb: Public Overrides Sub OnGUI(materialEditor As MaterialEditor, properties As MaterialProperty())
+  overridden: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI*
+  nameWithType.vb: RepetitionlessMaterialEditorTerrain.OnGUI(MaterialEditor, MaterialProperty())
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI(UnityEditor.MaterialEditor, UnityEditor.MaterialProperty())
+  name.vb: OnGUI(MaterialEditor, MaterialProperty())
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawTexture(System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawTexture(System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  id: DrawTexture(System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  langs:
+  - csharp
+  - vb
+  name: DrawTexture(int, int, int, GUIContent)
+  nameWithType: RepetitionlessMaterialEditorTerrain.DrawTexture(int, int, int, GUIContent)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawTexture(int, int, int, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTexture
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+    startLine: 175
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Inspectors
+  summary: "\nUsed to draw all the texture fields\n"
+  example: []
+  syntax:
+    content: protected override Rect DrawTexture(int layerIndex, int sectionIndex, int textureIndex, GUIContent content)
+    parameters:
+    - id: layerIndex
+      type: System.Int32
+      description: "\nThe layer which the texture will be drawn\n"
+    - id: sectionIndex
+      type: System.Int32
+      description: "\nThe section that this texture is in\n"
+    - id: textureIndex
+      type: System.Int32
+      description: "\nThe index of the texture in this section\n"
+    - id: content
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent to use in the field\n"
+    return:
+      type: UnityEngine.Rect
+      description: "\nThe rect that the texture field is using\n"
+    content.vb: Protected Overrides Function DrawTexture(layerIndex As Integer, sectionIndex As Integer, textureIndex As Integer, content As GUIContent) As Rect
+  overridden: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawTexture(System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawTexture*
+  nameWithType.vb: RepetitionlessMaterialEditorTerrain.DrawTexture(Integer, Integer, Integer, GUIContent)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawTexture(Integer, Integer, Integer, UnityEngine.GUIContent)
+  name.vb: DrawTexture(Integer, Integer, Integer, GUIContent)
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawProperty(System.Int32,System.Action)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawProperty(System.Int32,System.Action)
+  id: DrawProperty(System.Int32,System.Action)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  langs:
+  - csharp
+  - vb
+  name: DrawProperty(int, Action)
+  nameWithType: RepetitionlessMaterialEditorTerrain.DrawProperty(int, Action)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawProperty(int, System.Action)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawProperty
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
+    startLine: 218
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Inspectors
+  summary: "\nSaves the material property if changed in the action<br />\n<strong>Each gui function modifying the material properties should be using this function</strong>\n"
+  example: []
+  syntax:
+    content: protected override void DrawProperty(int layerIndex, Action drawPropertyAction)
+    parameters:
+    - id: layerIndex
+      type: System.Int32
+      description: "\nThe layer index of this property\n"
+    - id: drawPropertyAction
+      type: System.Action
+      description: "\nThe draw function\n"
+    content.vb: Protected Overrides Sub DrawProperty(layerIndex As Integer, drawPropertyAction As Action)
+  overridden: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawProperty(System.Int32,System.Action)
+  overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawProperty*
+  nameWithType.vb: RepetitionlessMaterialEditorTerrain.DrawProperty(Integer, Action)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawProperty(Integer, System.Action)
+  name.vb: DrawProperty(Integer, Action)
+references:
+- uid: Repetitionless.Editor.Inspectors
+  commentId: N:Repetitionless.Editor.Inspectors
+  name: Repetitionless.Editor.Inspectors
+  nameWithType: Repetitionless.Editor.Inspectors
+  fullName: Repetitionless.Editor.Inspectors
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Inspectors
+    name: Inspectors
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Inspectors
+    name: Inspectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: UnityEditor.ShaderGUI
+  commentId: T:UnityEditor.ShaderGUI
+  parent: UnityEditor
+  isExternal: true
+  name: ShaderGUI
+  nameWithType: ShaderGUI
+  fullName: UnityEditor.ShaderGUI
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  commentId: T:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  parent: Repetitionless.Editor.Inspectors
+  name: RepetitionlessMaterialEditorBase
+  nameWithType: RepetitionlessMaterialEditorBase
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.HEADER_PADDING
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.HEADER_PADDING
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: HEADER_PADDING
+  nameWithType: RepetitionlessMaterialEditorBase.HEADER_PADDING
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.HEADER_PADDING
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SETTING_PADDING
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SETTING_PADDING
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: SETTING_PADDING
+  nameWithType: RepetitionlessMaterialEditorBase.SETTING_PADDING
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SETTING_PADDING
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SCALED_TEXT_PADDING
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SCALED_TEXT_PADDING
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: SCALED_TEXT_PADDING
+  nameWithType: RepetitionlessMaterialEditorBase.SCALED_TEXT_PADDING
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SCALED_TEXT_PADDING
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._dataManager
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._dataManager
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: _dataManager
+  nameWithType: RepetitionlessMaterialEditorBase._dataManager
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._dataManager
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._textureData
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._textureData
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: _textureData
+  nameWithType: RepetitionlessMaterialEditorBase._textureData
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._textureData
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._materialProperties
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._materialProperties
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: _materialProperties
+  nameWithType: RepetitionlessMaterialEditorBase._materialProperties
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._materialProperties
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._material
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._material
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: _material
+  nameWithType: RepetitionlessMaterialEditorBase._material
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._material
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._editor
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._editor
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: _editor
+  nameWithType: RepetitionlessMaterialEditorBase._editor
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._editor
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._cachedProperties
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._cachedProperties
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: _cachedProperties
+  nameWithType: RepetitionlessMaterialEditorBase._cachedProperties
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._cachedProperties
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._foldoutStates
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._foldoutStates
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: _foldoutStates
+  nameWithType: RepetitionlessMaterialEditorBase._foldoutStates
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._foldoutStates
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.FindProperty(System.String)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.FindProperty(System.String)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: FindProperty(string)
+  nameWithType: RepetitionlessMaterialEditorBase.FindProperty(string)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.FindProperty(string)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.FindProperty(String)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.FindProperty(String)
+  name.vb: FindProperty(String)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.FindProperty(System.String)
+    name: FindProperty
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.FindProperty(System.String)
+    name: FindProperty
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetScaledText(System.Int32,System.String,System.String)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetScaledText(System.Int32,System.String,System.String)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: GetScaledText(int, string, string)
+  nameWithType: RepetitionlessMaterialEditorBase.GetScaledText(int, string, string)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetScaledText(int, string, string)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.GetScaledText(Integer, String, String)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetScaledText(Integer, String, String)
+  name.vb: GetScaledText(Integer, String, String)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetScaledText(System.Int32,System.String,System.String)
+    name: GetScaledText
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetScaledText(System.Int32,System.String,System.String)
+    name: GetScaledText
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetLayerData(System.Int32)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetLayerData(System.Int32)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: GetLayerData(int)
+  nameWithType: RepetitionlessMaterialEditorBase.GetLayerData(int)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetLayerData(int)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.GetLayerData(Integer)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetLayerData(Integer)
+  name.vb: GetLayerData(Integer)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetLayerData(System.Int32)
+    name: GetLayerData
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetLayerData(System.Int32)
+    name: GetLayerData
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetMaterialData(System.Int32,System.Int32)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetMaterialData(System.Int32,System.Int32)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: GetMaterialData(int, int)
+  nameWithType: RepetitionlessMaterialEditorBase.GetMaterialData(int, int)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetMaterialData(int, int)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.GetMaterialData(Integer, Integer)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetMaterialData(Integer, Integer)
+  name.vb: GetMaterialData(Integer, Integer)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetMaterialData(System.Int32,System.Int32)
+    name: GetMaterialData
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetMaterialData(System.Int32,System.Int32)
+    name: GetMaterialData
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateAssignedTextures(System.Int32,System.Int32)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateAssignedTextures(System.Int32,System.Int32)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: UpdateAssignedTextures(int, int)
+  nameWithType: RepetitionlessMaterialEditorBase.UpdateAssignedTextures(int, int)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateAssignedTextures(int, int)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.UpdateAssignedTextures(Integer, Integer)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateAssignedTextures(Integer, Integer)
+  name.vb: UpdateAssignedTextures(Integer, Integer)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateAssignedTextures(System.Int32,System.Int32)
+    name: UpdateAssignedTextures
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateAssignedTextures(System.Int32,System.Int32)
+    name: UpdateAssignedTextures
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateMaterialPropertiesTexture(System.Int32)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateMaterialPropertiesTexture(System.Int32)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: UpdateMaterialPropertiesTexture(int)
+  nameWithType: RepetitionlessMaterialEditorBase.UpdateMaterialPropertiesTexture(int)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateMaterialPropertiesTexture(int)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.UpdateMaterialPropertiesTexture(Integer)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateMaterialPropertiesTexture(Integer)
+  name.vb: UpdateMaterialPropertiesTexture(Integer)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateMaterialPropertiesTexture(System.Int32)
+    name: UpdateMaterialPropertiesTexture
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateMaterialPropertiesTexture(System.Int32)
+    name: UpdateMaterialPropertiesTexture
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetTextureDrawerDetails(System.Int32,System.Boolean)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetTextureDrawerDetails(System.Int32,System.Boolean)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: GetTextureDrawerDetails(int, bool)
+  nameWithType: RepetitionlessMaterialEditorBase.GetTextureDrawerDetails(int, bool)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetTextureDrawerDetails(int, bool)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.GetTextureDrawerDetails(Integer, Boolean)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetTextureDrawerDetails(Integer, Boolean)
+  name.vb: GetTextureDrawerDetails(Integer, Boolean)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetTextureDrawerDetails(System.Int32,System.Boolean)
+    name: GetTextureDrawerDetails
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetTextureDrawerDetails(System.Int32,System.Boolean)
+    name: GetTextureDrawerDetails
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialPropertiesGUI
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialPropertiesGUI
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: DrawMaterialPropertiesGUI()
+  nameWithType: RepetitionlessMaterialEditorBase.DrawMaterialPropertiesGUI()
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialPropertiesGUI()
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialPropertiesGUI
+    name: DrawMaterialPropertiesGUI
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialPropertiesGUI
+    name: DrawMaterialPropertiesGUI
+  - name: (
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialGUI(System.Int32,System.Int32,System.String)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialGUI(System.Int32,System.Int32,System.String)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawMaterialGUI(int, int, string)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawMaterialGUI(int, int, string)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialGUI(int, int, string)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawMaterialGUI(Integer, Integer, String)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialGUI(Integer, Integer, String)
+  name.vb: DrawMaterialGUI(Integer, Integer, String)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialGUI(System.Int32,System.Int32,System.String)
+    name: DrawMaterialGUI
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialGUI(System.Int32,System.Int32,System.String)
+    name: DrawMaterialGUI
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawMaterialSettingsGUI(int, int, bool, bool, bool, bool, bool, int)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(int, int, bool, bool, bool, bool, bool, int)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(int, int, bool, bool, bool, bool, bool, int)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(Integer, Integer, Boolean, Boolean, Boolean, Boolean, Boolean, Integer)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(Integer, Integer, Boolean, Boolean, Boolean, Boolean, Boolean, Integer)
+  name.vb: DrawMaterialSettingsGUI(Integer, Integer, Boolean, Boolean, Boolean, Boolean, Boolean, Integer)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
+    name: DrawMaterialSettingsGUI
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
+    name: DrawMaterialSettingsGUI
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, int, int, int, bool, bool)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean)
+  name.vb: DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+    name: DrawLeftMaterialSettingsGUI
+  - name: (
+  - uid: Repetitionless.Variables.RepetitionlessMaterialData
+    name: RepetitionlessMaterialData
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+    name: DrawLeftMaterialSettingsGUI
+  - name: (
+  - uid: Repetitionless.Variables.RepetitionlessMaterialData
+    name: RepetitionlessMaterialData
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool, bool)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool, bool)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, int, int, int, bool, bool, bool)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean, Boolean)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean, Boolean)
+  name.vb: DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean, Boolean)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+    name: DrawRightMaterialSettingsGUI
+  - name: (
+  - uid: Repetitionless.Variables.RepetitionlessMaterialData
+    name: RepetitionlessMaterialData
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+    name: DrawRightMaterialSettingsGUI
+  - name: (
+  - uid: Repetitionless.Variables.RepetitionlessMaterialData
+    name: RepetitionlessMaterialData
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(System.Int32,System.Int32)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(System.Int32,System.Int32)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawMaterialMainProperties(int, int)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(int, int)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(int, int)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(Integer, Integer)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(Integer, Integer)
+  name.vb: DrawMaterialMainProperties(Integer, Integer)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(System.Int32,System.Int32)
+    name: DrawMaterialMainProperties
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(System.Int32,System.Int32)
+    name: DrawMaterialMainProperties
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialNoiseGUI(System.Int32,System.Int32)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialNoiseGUI(System.Int32,System.Int32)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawMaterialNoiseGUI(int, int)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawMaterialNoiseGUI(int, int)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialNoiseGUI(int, int)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawMaterialNoiseGUI(Integer, Integer)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialNoiseGUI(Integer, Integer)
+  name.vb: DrawMaterialNoiseGUI(Integer, Integer)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialNoiseGUI(System.Int32,System.Int32)
+    name: DrawMaterialNoiseGUI
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialNoiseGUI(System.Int32,System.Int32)
+    name: DrawMaterialNoiseGUI
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialVariationProperties(System.Int32,System.Int32)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialVariationProperties(System.Int32,System.Int32)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawMaterialVariationProperties(int, int)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawMaterialVariationProperties(int, int)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialVariationProperties(int, int)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawMaterialVariationProperties(Integer, Integer)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialVariationProperties(Integer, Integer)
+  name.vb: DrawMaterialVariationProperties(Integer, Integer)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialVariationProperties(System.Int32,System.Int32)
+    name: DrawMaterialVariationProperties
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialVariationProperties(System.Int32,System.Int32)
+    name: DrawMaterialVariationProperties
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawBaseMaterialGUI(System.Int32,System.String)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawBaseMaterialGUI(System.Int32,System.String)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawBaseMaterialGUI(int, string)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawBaseMaterialGUI(int, string)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawBaseMaterialGUI(int, string)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawBaseMaterialGUI(Integer, String)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawBaseMaterialGUI(Integer, String)
+  name.vb: DrawBaseMaterialGUI(Integer, String)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawBaseMaterialGUI(System.Int32,System.String)
+    name: DrawBaseMaterialGUI
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawBaseMaterialGUI(System.Int32,System.String)
+    name: DrawBaseMaterialGUI
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDistanceBlendGUI(System.Int32,System.String)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDistanceBlendGUI(System.Int32,System.String)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawDistanceBlendGUI(int, string)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawDistanceBlendGUI(int, string)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDistanceBlendGUI(int, string)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawDistanceBlendGUI(Integer, String)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDistanceBlendGUI(Integer, String)
+  name.vb: DrawDistanceBlendGUI(Integer, String)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDistanceBlendGUI(System.Int32,System.String)
+    name: DrawDistanceBlendGUI
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDistanceBlendGUI(System.Int32,System.String)
+    name: DrawDistanceBlendGUI
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialBlendGUI(System.Int32,System.String)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialBlendGUI(System.Int32,System.String)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawMaterialBlendGUI(int, string)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawMaterialBlendGUI(int, string)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialBlendGUI(int, string)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawMaterialBlendGUI(Integer, String)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialBlendGUI(Integer, String)
+  name.vb: DrawMaterialBlendGUI(Integer, String)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialBlendGUI(System.Int32,System.String)
+    name: DrawMaterialBlendGUI
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialBlendGUI(System.Int32,System.String)
+    name: DrawMaterialBlendGUI
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDebugGUI
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDebugGUI
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: DrawDebugGUI()
+  nameWithType: RepetitionlessMaterialEditorBase.DrawDebugGUI()
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDebugGUI()
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDebugGUI
+    name: DrawDebugGUI
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDebugGUI
+    name: DrawDebugGUI
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UnityEditor
+  commentId: N:UnityEditor
+  isExternal: true
+  name: UnityEditor
+  nameWithType: UnityEditor
+  fullName: UnityEditor
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._maxLayers
+  commentId: P:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._maxLayers
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: _maxLayers
+  nameWithType: RepetitionlessMaterialEditorBase._maxLayers
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._maxLayers
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain._maxLayers*
+  commentId: Overload:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain._maxLayers
+  name: _maxLayers
+  nameWithType: RepetitionlessMaterialEditorTerrain._maxLayers
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain._maxLayers
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnEnable(UnityEditor.MaterialEditor)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnEnable(UnityEditor.MaterialEditor)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: OnEnable(MaterialEditor)
+  nameWithType: RepetitionlessMaterialEditorBase.OnEnable(MaterialEditor)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnEnable(UnityEditor.MaterialEditor)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnEnable(UnityEditor.MaterialEditor)
+    name: OnEnable
+  - name: (
+  - uid: UnityEditor.MaterialEditor
+    name: MaterialEditor
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnEnable(UnityEditor.MaterialEditor)
+    name: OnEnable
+  - name: (
+  - uid: UnityEditor.MaterialEditor
+    name: MaterialEditor
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnEnable*
+  commentId: Overload:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnEnable
+  name: OnEnable
+  nameWithType: RepetitionlessMaterialEditorTerrain.OnEnable
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnEnable
+- uid: UnityEditor.MaterialEditor
+  commentId: T:UnityEditor.MaterialEditor
+  parent: UnityEditor
+  isExternal: true
+  name: MaterialEditor
+  nameWithType: MaterialEditor
+  fullName: UnityEditor.MaterialEditor
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: OnPropertiesCreated()
+  nameWithType: RepetitionlessMaterialEditorBase.OnPropertiesCreated()
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated()
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+    name: OnPropertiesCreated
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+    name: OnPropertiesCreated
+  - name: (
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated*
+  commentId: Overload:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
+  name: OnPropertiesCreated
+  nameWithType: RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: OnGUI(MaterialEditor, MaterialProperty[])
+  nameWithType: RepetitionlessMaterialEditorBase.OnGUI(MaterialEditor, MaterialProperty[])
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnGUI(UnityEditor.MaterialEditor, UnityEditor.MaterialProperty[])
+  nameWithType.vb: RepetitionlessMaterialEditorBase.OnGUI(MaterialEditor, MaterialProperty())
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnGUI(UnityEditor.MaterialEditor, UnityEditor.MaterialProperty())
+  name.vb: OnGUI(MaterialEditor, MaterialProperty())
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+    name: OnGUI
+  - name: (
+  - uid: UnityEditor.MaterialEditor
+    name: MaterialEditor
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: UnityEditor.MaterialProperty
+    name: MaterialProperty
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
+    name: OnGUI
+  - name: (
+  - uid: UnityEditor.MaterialEditor
+    name: MaterialEditor
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: UnityEditor.MaterialProperty
+    name: MaterialProperty
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI*
+  commentId: Overload:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI
+  name: OnGUI
+  nameWithType: RepetitionlessMaterialEditorTerrain.OnGUI
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI
+- uid: UnityEditor.MaterialProperty[]
+  isExternal: true
+  name: MaterialProperty[]
+  nameWithType: MaterialProperty[]
+  fullName: UnityEditor.MaterialProperty[]
+  nameWithType.vb: MaterialProperty()
+  fullName.vb: UnityEditor.MaterialProperty()
+  name.vb: MaterialProperty()
+  spec.csharp:
+  - uid: UnityEditor.MaterialProperty
+    name: MaterialProperty
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: UnityEditor.MaterialProperty
+    name: MaterialProperty
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawTexture(System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawTexture(System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawTexture(int, int, int, GUIContent)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawTexture(int, int, int, GUIContent)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawTexture(int, int, int, UnityEngine.GUIContent)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawTexture(Integer, Integer, Integer, GUIContent)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawTexture(Integer, Integer, Integer, UnityEngine.GUIContent)
+  name.vb: DrawTexture(Integer, Integer, Integer, GUIContent)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawTexture(System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+    name: DrawTexture
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: UnityEngine.GUIContent
+    name: GUIContent
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawTexture(System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
+    name: DrawTexture
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: UnityEngine.GUIContent
+    name: GUIContent
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawTexture*
+  commentId: Overload:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawTexture
+  name: DrawTexture
+  nameWithType: RepetitionlessMaterialEditorTerrain.DrawTexture
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawTexture
+- uid: UnityEngine.GUIContent
+  commentId: T:UnityEngine.GUIContent
+  parent: UnityEngine
+  isExternal: true
+  name: GUIContent
+  nameWithType: GUIContent
+  fullName: UnityEngine.GUIContent
+- uid: UnityEngine.Rect
+  commentId: T:UnityEngine.Rect
+  parent: UnityEngine
+  isExternal: true
+  name: Rect
+  nameWithType: Rect
+  fullName: UnityEngine.Rect
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawProperty(System.Int32,System.Action)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawProperty(System.Int32,System.Action)
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  isExternal: true
+  name: DrawProperty(int, Action)
+  nameWithType: RepetitionlessMaterialEditorBase.DrawProperty(int, Action)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawProperty(int, System.Action)
+  nameWithType.vb: RepetitionlessMaterialEditorBase.DrawProperty(Integer, Action)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawProperty(Integer, System.Action)
+  name.vb: DrawProperty(Integer, Action)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawProperty(System.Int32,System.Action)
+    name: DrawProperty
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Action
+    name: Action
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawProperty(System.Int32,System.Action)
+    name: DrawProperty
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Action
+    name: Action
+    isExternal: true
+  - name: )
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawProperty*
+  commentId: Overload:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawProperty
+  name: DrawProperty
+  nameWithType: RepetitionlessMaterialEditorTerrain.DrawProperty
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawProperty
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: System.Action

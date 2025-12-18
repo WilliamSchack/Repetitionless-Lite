@@ -12,7 +12,9 @@ namespace Repetitionless.Compression
     /// </summary>
     public static class BooleanCompression
     {
-        // 32-bit integer
+        /// <summary>
+        /// The max values that can be stored in one compressed integer (32-bit integer)
+        /// </summary>
         public const int MAX_VALUES = 32;
 
         /// <summary>
@@ -116,10 +118,16 @@ namespace Repetitionless.Compression
             return (compressedValues & (1 << index)) != 0;
         }
 
-
-        // Returns:
-        // Item1: first half
-        // Item2: second half
+        /// <summary>
+        /// Splits a 32 bit integer into two 16 bit integers
+        /// </summary>
+        /// <param name="value">
+        /// The integer to split
+        /// </param>
+        /// <returns>
+        /// Item1: First half<br />
+        /// Item2: Second half
+        /// </returns>
         public static (ushort, ushort) Split32BitInt(int value)
         {
             return (
@@ -128,6 +136,18 @@ namespace Repetitionless.Compression
             );
         }
 
+        /// <summary>
+        /// Combines two 16 bit integers into a 32 bit integer
+        /// </summary>
+        /// <param name="firstHalf">
+        /// The first integer
+        /// </param>
+        /// <param name="secondHalf">
+        /// The second integer
+        /// </param>
+        /// <returns>
+        /// The combined 32 bit integer
+        /// </returns>
         public static int Combine16BitInts(ushort firstHalf, ushort secondHalf)
         {
             return (((int)firstHalf) & 0xFFFF) | ((int)secondHalf << 16);

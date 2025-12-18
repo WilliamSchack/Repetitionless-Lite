@@ -16,14 +16,14 @@ items:
   type: Enum
   source:
     remote:
-      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: EDistanceBlendMode
-    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
-    startLine: 47
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 63
   assemblies:
-  - com.williamschack.Repetitionless.Variables
+  - com.williamschack.Repetitionless
   namespace: Repetitionless.Variables
   summary: "\nAvailable distance blend modes for Repetitionless Materials\n"
   example: []
@@ -43,14 +43,14 @@ items:
   type: Field
   source:
     remote:
-      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TilingOffset
-    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
-    startLine: 52
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 68
   assemblies:
-  - com.williamschack.Repetitionless.Variables
+  - com.williamschack.Repetitionless
   namespace: Repetitionless.Variables
   summary: "\nBlends into the same material with a different tiling and offset\n"
   example: []
@@ -71,14 +71,14 @@ items:
   type: Field
   source:
     remote:
-      path: True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Material
-    path: ../../True Seamless Texturing/Assets/Repetitionless/Scripts/Runtime/Variables/SeamlessEnums.cs
-    startLine: 57
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 73
   assemblies:
-  - com.williamschack.Repetitionless.Variables
+  - com.williamschack.Repetitionless
   namespace: Repetitionless.Variables
   summary: "\nBlends into a different material\n"
   example: []

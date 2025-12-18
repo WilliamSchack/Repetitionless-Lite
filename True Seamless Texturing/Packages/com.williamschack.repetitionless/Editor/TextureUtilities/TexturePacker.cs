@@ -4,19 +4,58 @@ using UnityEngine;
 
 namespace Repetitionless.Editor.TextureUtilities
 {
+    /// <summary>
+    /// Used to pack multiple textures into a single texture
+    /// </summary>
     public static class TexturePacker
     {
+        /// <summary>
+        /// The valid texture channels
+        /// </summary>
         public enum TextureChannel
         {
-            R, G, B, A
+            /// <summary>
+            /// Red channel
+            /// </summary>
+            R,
+            /// <summary>
+            /// Green channel
+            /// </summary>
+            G,
+            /// <summary>
+            /// Blue channel
+            /// </summary>
+            B,
+            /// <summary>
+            /// Alpha channel
+            /// </summary>
+            A
         }
 
+        /// <summary>
+        /// Contains which texture channel will be transfered to which other channel
+        /// </summary>
         [System.Serializable]
         public struct FromToChannel
         {
+            /// <summary>
+            /// The channel that will be taken from the original texture
+            /// </summary>
             public TextureChannel From;
+            /// <summary>
+            /// The channel which will be written to on the packed texture
+            /// </summary>
             public TextureChannel To;
 
+            /// <summary>
+            /// FromToChannel Constructor
+            /// </summary>
+            /// <param name="from">
+            /// The channel that will be taken from the original texture 
+            /// </param>
+            /// <param name="to">
+            /// The channel which will be written to
+            /// </param>
             public FromToChannel(TextureChannel from, TextureChannel to)
             {
                 From = from;
@@ -24,31 +63,82 @@ namespace Repetitionless.Editor.TextureUtilities
             }
         }
 
+        /// <summary>
+        /// Contains the data for a texture
+        /// </summary>
         [System.Serializable]
         public struct TextureData
         {
+            /// <summary>
+            /// The texture
+            /// </summary>
             public Texture2D Texture;
+            /// <summary>
+            /// If the texture will be ignored
+            /// </summary>
             public bool Disabled;
+            /// <summary>
+            /// If this texture is a data texture<br />
+            /// If enabled it will not be treated as srgb
+            /// </summary>
             public bool DataTexture;
+            /// <summary>
+            /// If this texture is a normal map<br />
+            /// If enabled it will not be treated as srgb and will be packed as a normal
+            /// </summary>
             public bool NormalMap;
+            /// <summary>
+            /// Which channels will be copied to which other channels
+            /// </summary>
             public List<FromToChannel> FromToChannels;
         }
 
+        /// <summary>
+        /// The texture data that will be passed to the compute shader
+        /// </summary>
         private struct TextureDataGPU
         {
+            /// <summary>
+            /// If this texture is a normal map<br />
+            /// If enabled it will not be treated as srgb and will be packed as a normal
+            /// </summary>
             public int NormalMap;
+            /// <summary>
+            /// If this texture is srgb
+            /// </summary>
             public int SRGB;
 
+            /// <summary>
+            /// How many channels are used (0 - 4)
+            /// </summary>
             public int ChannelsUsedAmount;
+            /// <summary>
+            /// The channels that will be taken from the original
+            /// </summary>
             public Vector4 FromChannels;
+            /// <summary>
+            /// The channels that will be written to on the packed texture
+            /// </summary>
             public Vector4 ToChannels;
         }
 
-        private const string SHADER_RESOURCES_PATH = "repetitionless_CreatePackedTexture";
+        private const string PACK_TEXTURE_COMPUTE_RESOURCES_PATH = "repetitionless_CreatePackedTexture";
 
         private const int THREADS_X = 8;
         private const int THREADS_Y = 8;
 
+        /// <summary>
+        /// Packs a set of textures
+        /// </summary>
+        /// <param name="textureData">
+        /// The textures being packed
+        /// </param>
+        /// <param name="defaultColours">
+        /// The default colours for each channel if they are not set
+        /// </param>
+        /// <returns>
+        /// The packed texture
+        /// </returns>
         public static Texture2D PackTextures(TextureData[] textureData, Vector4 defaultColours)
         {
             if (textureData.Length == 0 || textureData.Length > 4) {
@@ -56,7 +146,7 @@ namespace Repetitionless.Editor.TextureUtilities
                 return null;
             }
 
-            ComputeShader shader = Resources.Load<ComputeShader>(SHADER_RESOURCES_PATH);
+            ComputeShader shader = Resources.Load<ComputeShader>(PACK_TEXTURE_COMPUTE_RESOURCES_PATH);
             if (shader == null) {
                 Debug.LogError("Could not find texture packing compute shader...");
                 return null;

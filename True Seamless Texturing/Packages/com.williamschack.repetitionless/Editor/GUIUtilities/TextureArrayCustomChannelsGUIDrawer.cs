@@ -64,11 +64,26 @@ namespace Repetitionless.Editor.GUIUtilities
 
         // in:  per32TexturesIndex: (0-31: 0, 32-63: 1, ...)
         // out: assignedTextures from that range
-        System.Func<int, int>   _assignedTexturesChangedGetter;
+        private System.Func<int, int>   _assignedTexturesChangedGetter;
         // int0: per32TexturesIndex: (0-31: 0, 32-63: 1, ...)
         // int1: assignedTextures from that range
-        System.Action<int, int> _assignedTexturesChangedSetter;
-
+        private System.Action<int, int> _assignedTexturesChangedSetter;
+        
+        /// <summary>
+        /// Custom delegate to output a reference
+        /// </summary>
+        /// <typeparam name="TIn">
+        /// The input type
+        /// </typeparam>
+        /// <typeparam name="TOut">
+        /// The output type
+        /// </typeparam>
+        /// <param name="input">
+        /// The input
+        /// </param>
+        /// <returns>
+        /// The reference to value of type TOut
+        /// </returns>
         public delegate ref TOut RefFunc<TIn, TOut>(TIn input);
         private RefFunc<int, TexturePacker.TextureData[]> _getLayerChannelDataFunc;
 
@@ -78,8 +93,41 @@ namespace Repetitionless.Editor.GUIUtilities
         private List<int> _previousChannelsAssigned = new List<int>();
         private Vector4 _defaultChannelColours;
 
+        /// <summary>
+        /// Callback for when the texture is updated
+        /// </summary>
         public System.Action OnTextureUpdated;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="dataManager">
+        /// The material data manager that will be used
+        /// </param>
+        /// <param name="getLayerChannelData">
+        /// Getter for the layer channel data
+        /// </param>
+        /// <param name="saveTextureDataAction">
+        /// Function to save the texture data when its updated
+        /// </param>
+        /// <param name="assignedTexturesChangedGetter">
+        /// Getter for the assigned textures
+        /// </param>
+        /// <param name="assignedTexturesChangedSetter">
+        /// Setter for the assigned textures
+        /// </param>
+        /// <param name="defaultChannelColours">
+        /// The default channel colours for the packed texture
+        /// </param>
+        /// <param name="arrayProperty">
+        /// The material property for the array that will be updated
+        /// </param>
+        /// <param name="textureCount">
+        /// The max amount of textures that this array will hold
+        /// </param>
+        /// <param name="fileName">
+        /// The filename of the array asset
+        /// </param>
         public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, RefFunc<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, System.Func<int, int> assignedTexturesChangedGetter, System.Action<int, int> assignedTexturesChangedSetter, Vector4 defaultChannelColours, MaterialProperty arrayProperty, int textureCount, string fileName = null)
         {
             // Assign material
@@ -251,6 +299,12 @@ namespace Repetitionless.Editor.GUIUtilities
             return (chunkIndex, compressedAssignedTextures);
         }
 
+        /// <summary>
+        /// Deletes a layer from the texture array
+        /// </summary>
+        /// <param name="index">
+        /// The layer index
+        /// </param>
         public void RemoveArrayLayer(int index)
         {
             if (_array == null)
@@ -324,12 +378,18 @@ namespace Repetitionless.Editor.GUIUtilities
         /// </param>
         /// <param name="index">
         /// Index of the texture being changed in the desired array layout<br />
-        /// Not the index of the current array layout or textures, think of it as a constant within the set texture count
-        /// </param>
+        /// Not the index of the current array layout or textures, think of it as a constant within the set texture count</param>
         /// <param name="channelIndex">
         /// Index of the channel texture being changed at this index<br />
         /// Corresponds to the index in the initial given channelTexturesData
         /// </param>
+        /// <param name="force">
+        /// If the initial check is skipped
+        /// </param>
+        /// <returns>
+        /// Item1: The changed texture<br />
+        /// Item2: If the array was updated
+        /// </returns>
         public (Texture2D, bool) UpdateTexture(Texture2D newTexture, int index, int channelIndex, bool force = false)
         {
             if (EditorGUI.EndChangeCheck() || force) {
@@ -590,12 +650,47 @@ namespace Repetitionless.Editor.GUIUtilities
             return (newTexture, true);
         }
 
+        /// <summary>
+        /// Draws a texture from the array at a specific channel<br />
+        /// Gets the texture from the assigned texture data
+        /// </summary>
+        /// <param name="index">
+        /// The layer index of the texture
+        /// </param>
+        /// <param name="channelTextureIndex">
+        /// The channel index of the texture in the texture data
+        /// </param>
+        /// <param name="content">
+        /// The gui content for the field
+        /// </param>
+        /// <returns>
+        /// The assigned texture
+        /// </returns>
         public Texture2D DrawTexture(int index, int channelTextureIndex, GUIContent content)
         {
             Rect lineRect = GUIUtilities.GetLineRect();
             return DrawTexture(lineRect, index, channelTextureIndex, content);
         }
 
+        /// <summary>
+        /// Draws a texture from the array at a specific channel<br />
+        /// Gets the texture from the assigned texture data
+        /// </summary>
+        /// <param name="rect">
+        /// The rect that this field will use
+        /// </param>
+        /// <param name="index">
+        /// The layer index of the texture
+        /// </param>
+        /// <param name="channelTextureIndex">
+        /// The channel index of the texture in the texture data
+        /// </param>
+        /// <param name="content">
+        /// The gui content for the field
+        /// </param>
+        /// <returns>
+        /// The assigned texture
+        /// </returns>
         public Texture2D DrawTexture(Rect rect, int index, int channelTextureIndex, GUIContent content)
         {
             EditorGUI.BeginChangeCheck();

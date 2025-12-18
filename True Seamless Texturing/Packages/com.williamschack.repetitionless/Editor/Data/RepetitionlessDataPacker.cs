@@ -5,13 +5,34 @@ namespace Repetitionless.Editor.Data
     using Variables;
     using Compression;
 
+    /// <summary>
+    /// Compresses repetitionless material data
+    /// </summary>
     public static class RepetitionlessDataPacker
     {
+        /// <summary>
+        /// Converts a vector4 to a colour
+        /// </summary>
+        /// <param name="vector">
+        /// The vector to convert
+        /// </param>
+        /// <returns>
+        /// The colour
+        /// </returns>
         public static Color Vector4ToColour(Vector4 vector)
         {
             return new Color(vector.x, vector.y, vector.z, vector.w);
         }
 
+        /// <summary>
+        /// Converts a vector3 to a colour
+        /// </summary>
+        /// <param name="vector">
+        /// The vector to convert
+        /// </param>
+        /// <returns>
+        /// The colour
+        /// </returns>
         public static Color Vector3ToColour(Vector3 vector)
         {
             return new Color(vector.x, vector.y, vector.z);
@@ -56,6 +77,24 @@ namespace Repetitionless.Editor.Data
 
         // Returns the changed variable index in the struct
         // By default returns on the first changed value
+
+        /// <summary>
+        /// Updates changed values in the compressed material data based on the given material data
+        /// </summary>
+        /// <param name="compressedData">
+        /// Reference to the compressed data that will be updated
+        /// </param>
+        /// <param name="newData">
+        /// The new data to compress
+        /// </param>
+        /// <param name="updateAll">
+        /// If all the values will be updated if changed<br />
+        /// If disabled only the first changed value will update
+        /// </param>
+        /// <returns>
+        /// Returns the changed variable index in the struct<br />
+        /// If updateAll is enabled it will return the default -1
+        /// </returns>
         public static int UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed compressedData, RepetitionlessMaterialData newData, bool updateAll = false)
         {
             if (UpdateBoolsIfChanged(ref compressedData.Settings1.x,
@@ -126,8 +165,23 @@ namespace Repetitionless.Editor.Data
             return -1;
         }
 
-        // Returns the changed variable index in the struct, incrementing for each material
-        // By default returns on the first changed value
+        /// <summary>
+        /// Updates changed values in the compressed layer data based on the given layer data
+        /// </summary>
+        /// <param name="compressedData">
+        /// Reference to the compressed data that will be updated
+        /// </param>
+        /// <param name="newData">
+        /// The new data to compress
+        /// </param>
+        /// <param name="updateAll">
+        /// If all the values will be updated if changed<br />
+        /// If disabled only the first changed value will update
+        /// </param>
+        /// <returns>
+        /// Returns the changed variable index in the struct, incrementing for each material<br />
+        /// If updateAll is enabled it will return the default -1
+        /// </returns>
         public static int UpdateCompressedLayerData(ref RepetitionlessLayerDataCompressed compressedData, RepetitionlessLayerData newData, bool updateAll = false)
         {
             int baseMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.BaseMaterialData, newData.BaseMaterialData, updateAll);
@@ -177,6 +231,27 @@ namespace Repetitionless.Editor.Data
             return -1;
         }
 
+        /// <summary>
+        /// Gets a material field colour based on the given index
+        /// </summary>
+        /// <param name="compressedData">
+        /// The compressed data to get the value from
+        /// </param>
+        /// <param name="compressedFieldIndex">
+        /// The index of the compressed field to get:<br />
+        /// 0: Settings1<br />
+        /// 1: Settings2<br />
+        /// 2: Settings3<br />
+        /// 3: Settings4<br />
+        /// 4: Settings5<br />
+        /// 5: AlbedoTint<br />
+        /// 6: EmissionColour<br />
+        /// 7: TilingOffset<br />
+        /// 8: VariationTO
+        /// </param>
+        /// <returns>
+        /// The nullable field colour, will be null if compressedFieldIndex was outside the range of values
+        /// </returns>
         public static Color? GetMaterialFieldColour(RepetitionlessMaterialDataCompressed compressedData, int compressedFieldIndex)
         {
             switch(compressedFieldIndex) {
@@ -194,6 +269,25 @@ namespace Repetitionless.Editor.Data
             return null;
         }
 
+        /// <summary>
+        /// Gets a layer field colour based on the given index
+        /// </summary>
+        /// <param name="compressedData">
+        /// The compressed data to get the value from
+        /// </param>
+        /// <param name="compressedFieldIndex">
+        /// The index of the compressed field to get:<br />
+        /// 0-8: Base Material<br />
+        /// 9-17: Far Material<br />
+        /// 18-26: Blend Material<br />
+        /// 27: DistanceBlendSettings<br />
+        /// 28: BlendMaskDistanceTO<br />
+        /// 29: MaterialBlendSettings<br />
+        /// 30: MaterialBlendMaskTO
+        /// </param>
+        /// <returns>
+        /// The nullable field colour, will be null if compressedFieldIndex was outside the range of values
+        /// </returns>
         public static Color? GetLayerFieldColour(RepetitionlessLayerDataCompressed compressedData, int compressedFieldIndex)
         {
             int materialFieldIndex = compressedFieldIndex % Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT;

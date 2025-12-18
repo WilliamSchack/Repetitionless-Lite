@@ -8,20 +8,35 @@ namespace Repetitionless.Editor.Data
 {
     using Variables;
 
+    /// <summary>
+    /// Stores the material properties for a Repetitionless material<br />
+    /// Creates and manages a texture storing these properties that will be passed to the shader
+    /// </summary>
     [CreateAssetMenu]
     public class RepetitionlessMaterialDataSO : ScriptableObject
     {
+        /// <summary>
+        /// The properties texture material property
+        /// </summary>
         public const string PROPERTIES_TEXTURE_PROP_NAME = "_PropertiesTexture";
 
-        private const string TEXTURE_ASSET_NAME = "PropertiesTexture.asset";
         private const TextureFormat DATA_TEXTURE_FORMAT = TextureFormat.RGBAHalf;
 
-        // Dont modify data in the SO inspector, do it in the material inspector
-        public RepetitionlessLayerData[] Data;
+        /// <summary>
+        /// The data for the material<br />
+        /// Do not update this in the scriptable object, do it in the material inspector
+        /// </summary>
+        [HideInInspector] public RepetitionlessLayerData[] Data;
         [HideInInspector][SerializeField] private RepetitionlessLayerDataCompressed[] _dataCompressed;
 
-        MaterialDataManager _dataManager;
+        private MaterialDataManager _dataManager;
 
+        /// <summary>
+        /// Initializes this with a new set of data
+        /// </summary>
+        /// <param name="layerCount">
+        /// The max amount of terrain layers that will be used
+        /// </param>
         public void Init(int layerCount)
         {
             Data = new RepetitionlessLayerData[layerCount];
@@ -33,6 +48,9 @@ namespace Repetitionless.Editor.Data
                 _dataCompressed[i] = new RepetitionlessLayerDataCompressed();
         }
 
+        /// <summary>
+        /// Saves this object
+        /// </summary>
         public void Save()
         {
 #if UNITY_EDITOR
@@ -40,7 +58,13 @@ namespace Repetitionless.Editor.Data
 #endif
         }
 
-        // Must be called for each session using this SO
+        /// <summary>
+        /// Sets the data manager<br />
+        /// This is not serialized and this must be called for each session using this
+        /// </summary>
+        /// <param name="dataManager">
+        /// The data manager to use
+        /// </param>
         public void SetDataManager(MaterialDataManager dataManager)
         {
             _dataManager = dataManager;
@@ -62,17 +86,47 @@ namespace Repetitionless.Editor.Data
             return dataColours;
         }
 
+        /// <summary>
+        /// Updates the properties texture with the data saved in this object
+        /// </summary>
+        /// <param name="material">
+        /// The material that will have its texture property updated
+        /// </param>
+        /// <param name="layerIndex">
+        /// The layer that will be updated
+        /// </param>
         public void UpdateMaterialTexture(Material material, int layerIndex)
         {
             UpdateMaterialTexture(material, PROPERTIES_TEXTURE_PROP_NAME, layerIndex);
         }
 
+        /// <summary>
+        /// Updates the properties texture with the data saved in this object
+        /// </summary>
+        /// <param name="material">
+        /// The material that will have its texture property updated
+        /// </param>
+        /// <param name="texturePropertyName">
+        /// The name of the properties texture property
+        /// </param>
+        /// <param name="layerIndex">
+        /// The layer that will be updated
+        /// </param>
         public void UpdateMaterialTexture(Material material, string texturePropertyName, int layerIndex)
         {
             MaterialProperty textureProp = MaterialEditor.GetMaterialProperty(new Object[] { material }, texturePropertyName);
             UpdateMaterialTexture(textureProp, layerIndex);
         }
 
+        /// <summary>
+        /// Updates the properties texture with the data saved in this object
+        /// </summary>
+        /// <param name="property">
+        /// The properties texture property that will be updated
+        /// </param>
+        /// <param name="layerIndex">
+        /// The layer that will be updated
+        /// </param>
         public void UpdateMaterialTexture(MaterialProperty property, int layerIndex)
         {
             if (property.propertyType != UnityEngine.Rendering.ShaderPropertyType.Texture) {
@@ -81,9 +135,9 @@ namespace Repetitionless.Editor.Data
             }
 
             Texture2D texture;
-            if (_dataManager.AssetExists(TEXTURE_ASSET_NAME)) {
+            if (_dataManager.AssetExists(Constants.PROPERTIES_TEXTURE_ASSET_NAME)) {
                 // Load and modify the texture
-                texture = _dataManager.LoadAsset<Texture2D>(TEXTURE_ASSET_NAME);
+                texture = _dataManager.LoadAsset<Texture2D>(Constants.PROPERTIES_TEXTURE_ASSET_NAME);
                 
                 for (int i = 0; i < Constants.COMPRESSED_LAYER_VARIABLES_COUNT; i++) {
                     int fieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed[layerIndex], Data[layerIndex]);
@@ -120,13 +174,26 @@ namespace Repetitionless.Editor.Data
                 texture.SetPixels(dataColours);
                 texture.Apply();
 
-                _dataManager.CreateAsset(texture, TEXTURE_ASSET_NAME);
+                _dataManager.CreateAsset(texture, Constants.PROPERTIES_TEXTURE_ASSET_NAME);
             }
 
             if ((Texture2D)property.textureValue != texture)
                 property.textureValue = texture;
         }
 
+        /// <summary>
+        /// Gets the properties for a specific material
+        /// </summary>
+        /// <param name="layerIndex">
+        /// The layer that the material is in
+        /// </param>
+        /// <param name="materialIndex">
+        /// The index of the material:<br />
+        /// 0: Base, 1: Far, 2: Blend
+        /// </param>
+        /// <returns>
+        /// The properties for a specific material
+        /// </returns>
         public RepetitionlessMaterialData GetMaterialData(int layerIndex, int materialIndex)
         {
             RepetitionlessMaterialData currentData = Data[layerIndex].BaseMaterialData;
@@ -139,6 +206,22 @@ namespace Repetitionless.Editor.Data
             return currentData;
         }
 
+        /// <summary>
+        /// Updates the assigned textures and the property texture based on a texture data
+        /// </summary>
+        /// <param name="material">
+        /// The material that will have its texture property updated 
+        /// </param>
+        /// <param name="textureData">
+        /// The texture data that assigned textures will be read from
+        /// </param>
+        /// <param name="layerIndex">
+        /// The layer that the material is in
+        /// </param>
+        /// <param name="materialIndex">
+        /// The index of the material:<br />
+        /// 0: Base, 1: Far, 2: Blend
+        /// </param>
         public void UpdateAssignedTextures(Material material, RepetitionlessTextureDataSO textureData, int materialIndex, int layerIndex)
         {
             RepetitionlessTextureDataSO.MaterialTextureData materialTextureData = textureData.GetMaterialTextureData(layerIndex, materialIndex);

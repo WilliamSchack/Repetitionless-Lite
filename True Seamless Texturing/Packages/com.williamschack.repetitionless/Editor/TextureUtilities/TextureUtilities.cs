@@ -142,6 +142,15 @@ namespace Repetitionless.Editor.TextureUtilities
             return importer;
         }
 
+        /// <summary>
+        /// Returns if the inputted texture is imported as a normal map
+        /// </summary>
+        /// <param name="texture">
+        /// The texture to check
+        /// </param>
+        /// <returns>
+        /// If the texture is a normal map
+        /// </returns>
         public static bool TextureIsNormal(Texture2D texture)
         {
             TextureImporter importer = GetTextureImporter(texture);
@@ -150,6 +159,12 @@ namespace Repetitionless.Editor.TextureUtilities
             return importer.textureType == TextureImporterType.NormalMap;
         }
 
+        /// <summary>
+        /// Reimports a texture as a normal map
+        /// </summary>
+        /// <param name="texture">
+        /// The texture to update
+        /// </param>
         public static void SetTextureToNormal(Texture2D texture)
         {
             TextureImporter importer = GetTextureImporter(texture);

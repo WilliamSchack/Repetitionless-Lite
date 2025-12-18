@@ -1,0 +1,112 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Variables.EUVSpace
+  commentId: T:Repetitionless.Variables.EUVSpace
+  id: EUVSpace
+  parent: Repetitionless.Variables
+  children:
+  - Repetitionless.Variables.EUVSpace.Local
+  - Repetitionless.Variables.EUVSpace.World
+  langs:
+  - csharp
+  - vb
+  name: EUVSpace
+  nameWithType: EUVSpace
+  fullName: Repetitionless.Variables.EUVSpace
+  type: Enum
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: EUVSpace
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 26
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nAvailable UV spaces\n"
+  example: []
+  syntax:
+    content: public enum EUVSpace
+    content.vb: Public Enum EUVSpace
+- uid: Repetitionless.Variables.EUVSpace.Local
+  commentId: F:Repetitionless.Variables.EUVSpace.Local
+  id: Local
+  parent: Repetitionless.Variables.EUVSpace
+  langs:
+  - csharp
+  - vb
+  name: Local
+  nameWithType: EUVSpace.Local
+  fullName: Repetitionless.Variables.EUVSpace.Local
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Local
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 31
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nLocal uvs from the object\n"
+  example: []
+  syntax:
+    content: Local = 0
+    return:
+      type: Repetitionless.Variables.EUVSpace
+- uid: Repetitionless.Variables.EUVSpace.World
+  commentId: F:Repetitionless.Variables.EUVSpace.World
+  id: World
+  parent: Repetitionless.Variables.EUVSpace
+  langs:
+  - csharp
+  - vb
+  name: World
+  nameWithType: EUVSpace.World
+  fullName: Repetitionless.Variables.EUVSpace.World
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: World
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 36
+  assemblies:
+  - com.williamschack.Repetitionless
+  namespace: Repetitionless.Variables
+  summary: "\nWorld uvs from the world position\n"
+  example: []
+  syntax:
+    content: World = 1
+    return:
+      type: Repetitionless.Variables.EUVSpace
+references:
+- uid: Repetitionless.Variables
+  commentId: N:Repetitionless.Variables
+  name: Repetitionless.Variables
+  nameWithType: Repetitionless.Variables
+  fullName: Repetitionless.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+- uid: Repetitionless.Variables.EUVSpace
+  commentId: T:Repetitionless.Variables.EUVSpace
+  parent: Repetitionless.Variables
+  name: EUVSpace
+  nameWithType: EUVSpace
+  fullName: Repetitionless.Variables.EUVSpace

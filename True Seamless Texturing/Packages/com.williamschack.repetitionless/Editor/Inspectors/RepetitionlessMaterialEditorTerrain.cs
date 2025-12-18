@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -9,10 +10,15 @@ namespace Repetitionless.Editor.Inspectors
     using TextureUtilities;
     using Data;
     using Variables;
-    using System;
 
+    /// <summary>
+    /// The editor for the terrain repetitionless material
+    /// </summary>
     public class RepetitionlessMaterialEditorTerrain : RepetitionlessMaterialEditorBase
     {
+        /// <summary>
+        /// The max amount of layers for the material
+        /// </summary>
         protected override int _maxLayers => 32;
 
         private List<TerrainLayer> _terrainLayers;
@@ -23,6 +29,12 @@ namespace Repetitionless.Editor.Inspectors
         private GUIStyle _instanceHeaderStyle;
         private bool _isInstance = false;
 
+        /// <summary>
+        /// Called when the inspector is first opened
+        /// </summary>
+        /// <param name="materialEditor">
+        /// The material editor being used
+        /// </param>
         public override void OnEnable(MaterialEditor materialEditor)
         {
             // Check if this is an instance, disables gui pretty much
@@ -46,6 +58,9 @@ namespace Repetitionless.Editor.Inspectors
             _terrainLayers = syncData.MaterialToTerrainLayer.Get(_material)?.Items;
         }
 
+        /// <summary>
+        /// Called when the material properties are first created
+        /// </summary>
         protected override void OnPropertiesCreated()
         {
             // Set uv space to world
@@ -61,6 +76,15 @@ namespace Repetitionless.Editor.Inspectors
             }
         }
 
+        /// <summary>
+        /// Base OnGUI function
+        /// </summary>
+        /// <param name="materialEditor">
+        /// The material editor being used
+        /// </param>
+        /// <param name="properties">
+        /// The material properties
+        /// </param>
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
         {
             if (_isInstance) {
@@ -131,6 +155,24 @@ namespace Repetitionless.Editor.Inspectors
             GUIUtilities.EndBackgroundVertical();
         }
 
+        /// <summary>
+        /// Used to draw all the texture fields
+        /// </summary>
+        /// <param name="layerIndex">
+        /// The layer which the texture will be drawn
+        /// </param>
+        /// <param name="sectionIndex">
+        /// The section that this texture is in
+        /// </param>
+        /// <param name="textureIndex">
+        /// The index of the texture in this section
+        /// </param>
+        /// <param name="content">
+        /// The GUIContent to use in the field
+        /// </param>
+        /// <returns>
+        /// The rect that the texture field is using
+        /// </returns>
         protected override Rect DrawTexture(int layerIndex, int sectionIndex, int textureIndex, GUIContent content)
         {
             EditorGUI.BeginChangeCheck();
@@ -164,6 +206,16 @@ namespace Repetitionless.Editor.Inspectors
             return rect;
         }
 
+        /// <summary>
+        /// Saves the material property if changed in the action<br />
+        /// <b>Each gui function modifying the material properties should be using this function</b>
+        /// </summary>
+        /// <param name="layerIndex">
+        /// The layer index of this property
+        /// </param>
+        /// <param name="drawPropertyAction">
+        /// The draw function
+        /// </param>
         protected override void DrawProperty(int layerIndex, Action drawPropertyAction)
         {
             // Check for terrain layer properties

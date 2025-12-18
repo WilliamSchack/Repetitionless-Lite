@@ -6,24 +6,53 @@ using System.Linq;
 
 namespace Repetitionless.Editor.Data
 {
+    /// <summary>
+    /// Manages the data folder for a repetitionless material<br />
+    /// Stores the data in a folder accompanying the material
+    /// </summary>
     public class MaterialDataManager
     {
-        public const string DATA_FOLDER_SUFFIX = "_Data";
+        private const string DATA_FOLDER_SUFFIX = "_Data";
 
         private Material _material;
+
+        /// <summary>
+        /// The material this is handling data for
+        /// </summary>
         public Material Material { get { return _material; } }
 
+        /// <summary>
+        /// MaterialDataManager Constructor
+        /// </summary>
+        /// <param name="material">
+        /// The material to manage
+        /// </param>
         public MaterialDataManager(Material material)
         {
             _material = material;
         }
 
 #region Path
+        /// <summary>
+        /// Adds the folder suffix to the input name
+        /// </summary>
+        /// <param name="prefix">
+        /// The input folder name
+        /// </param>
+        /// <returns>
+        /// The new folder name
+        /// </returns>
         public static string GenerateFolderName(string prefix)
         {
             return prefix + DATA_FOLDER_SUFFIX;
         }
 
+        /// <summary>
+        /// Gets the path of the data folder parent
+        /// </summary>
+        /// <returns>
+        /// The parent folder path
+        /// </returns>
         public string DataFolderParentPath()
         {
             string materialPath = AssetDatabase.GetAssetPath(_material);   
@@ -33,11 +62,23 @@ namespace Repetitionless.Editor.Data
             return materialPath.Substring(0, lastDirIndex);
         }
 
+        /// <summary>
+        /// Gets the data folder name
+        /// </summary>
+        /// <returns>
+        /// The data folder name
+        /// </returns>
         public string DataFolderName()
         {
             return GenerateFolderName(_material.name);
         }
 
+        /// <summary>
+        /// Gets the data folder path
+        /// </summary>
+        /// <returns>
+        /// The data folder path
+        /// </returns>
         public string DataFolderPath()
         {
             string parentPath = DataFolderParentPath();
@@ -81,6 +122,18 @@ namespace Repetitionless.Editor.Data
 #endregion
 
 #region Asset Management
+        /// <summary>
+        /// Creates an asset in the data folder
+        /// </summary>
+        /// <param name="asset">
+        /// The asset to create
+        /// </param>
+        /// <param name="fileName">
+        /// The file name of the asset
+        /// </param>
+        /// <param name="overwrite">
+        /// If it will overwrite an asset with the same name if it exists
+        /// </param>
         public void CreateAsset(Object asset, string fileName, bool overwrite = false)
         {
             bool folderExists = CreateDataFolder();
@@ -93,6 +146,18 @@ namespace Repetitionless.Editor.Data
             AssetDatabase.Refresh();
         }
 
+        /// <summary>
+        /// Loads an asset from the data folder
+        /// </summary>
+        /// <typeparam name="T">
+        /// The asset type
+        /// </typeparam>
+        /// <param name="fileName">
+        /// The filename of the asset
+        /// </param>
+        /// <returns>
+        /// The asset
+        /// </returns>
         public T LoadAsset<T>(string fileName) where T : Object
         {
             string dataFolderPath = DataFolderPath();
@@ -102,6 +167,15 @@ namespace Repetitionless.Editor.Data
             return (T)AssetDatabase.LoadAssetAtPath(assetPath, typeof(T));
         }
 
+        /// <summary>
+        /// Checks if an asset exists in the data folder with the given name
+        /// </summary>
+        /// <param name="fileName">
+        /// The file name to check
+        /// </param>
+        /// <returns>
+        /// If the asset exists
+        /// </returns>
         public bool AssetExists(string fileName)
         {
             string assetPath = $"{DataFolderPath()}/{fileName}";
@@ -111,6 +185,12 @@ namespace Repetitionless.Editor.Data
             return File.Exists(fullPath);
         }
 
+        /// <summary>
+        /// Deletes an asset in the data folder with the given name if it exists
+        /// </summary>
+        /// <param name="fileName">
+        /// The asset file name
+        /// </param>
         public void DeleteAsset(string fileName)
         {
             string assetPath = $"{DataFolderPath()}/{fileName}";

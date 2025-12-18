@@ -1,0 +1,40 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Processors
+  commentId: N:Repetitionless.Editor.Processors
+  id: Repetitionless.Editor.Processors
+  children:
+  - Repetitionless.Editor.Processors.PostPackageImport
+  - Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
+  - Repetitionless.Editor.Processors.RepetitionlessMaterialProcessor
+  - Repetitionless.Editor.Processors.TerrainLayerPostprocessor
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Editor.Processors
+  nameWithType: Repetitionless.Editor.Processors
+  fullName: Repetitionless.Editor.Processors
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+references:
+- uid: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
+  commentId: T:Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
+  name: RepetitionlessColourSpaceUpdater
+  nameWithType: RepetitionlessColourSpaceUpdater
+  fullName: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
+- uid: Repetitionless.Editor.Processors.PostPackageImport
+  commentId: T:Repetitionless.Editor.Processors.PostPackageImport
+  name: PostPackageImport
+  nameWithType: PostPackageImport
+  fullName: Repetitionless.Editor.Processors.PostPackageImport
+- uid: Repetitionless.Editor.Processors.RepetitionlessMaterialProcessor
+  commentId: T:Repetitionless.Editor.Processors.RepetitionlessMaterialProcessor
+  name: RepetitionlessMaterialProcessor
+  nameWithType: RepetitionlessMaterialProcessor
+  fullName: Repetitionless.Editor.Processors.RepetitionlessMaterialProcessor
+- uid: Repetitionless.Editor.Processors.TerrainLayerPostprocessor
+  commentId: T:Repetitionless.Editor.Processors.TerrainLayerPostprocessor
+  name: TerrainLayerPostprocessor
+  nameWithType: TerrainLayerPostprocessor
+  fullName: Repetitionless.Editor.Processors.TerrainLayerPostprocessor

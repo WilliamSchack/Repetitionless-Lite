@@ -1,0 +1,602 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  commentId: T:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  id: RepetitionlessMaterialDataSO
+  parent: Repetitionless.Editor.Data
+  children:
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Data
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData(System.Int32,System.Int32)
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init(System.Int32)
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager(Repetitionless.Editor.Data.MaterialDataManager)
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures(UnityEngine.Material,Repetitionless.Editor.Data.RepetitionlessTextureDataSO,System.Int32,System.Int32)
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEditor.MaterialProperty,System.Int32)
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material,System.Int32)
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material,System.String,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: RepetitionlessMaterialDataSO
+  nameWithType: RepetitionlessMaterialDataSO
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RepetitionlessMaterialDataSO
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 14
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nStores the material properties for a Repetitionless material<br />\nCreates and manages a texture storing these properties that will be passed to the shader\n"
+  example: []
+  syntax:
+    content: >-
+      [CreateAssetMenu]
+
+      public class RepetitionlessMaterialDataSO : ScriptableObject
+    content.vb: >-
+      <CreateAssetMenu>
+
+      Public Class RepetitionlessMaterialDataSO Inherits ScriptableObject
+  inheritance:
+  - System.Object
+  - UnityEngine.Object
+  - UnityEngine.ScriptableObject
+  attributes:
+  - type: UnityEngine.CreateAssetMenuAttribute
+    ctor: UnityEngine.CreateAssetMenuAttribute.#ctor
+    arguments: []
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME
+  commentId: F:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME
+  id: PROPERTIES_TEXTURE_PROP_NAME
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: PROPERTIES_TEXTURE_PROP_NAME
+  nameWithType: RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: PROPERTIES_TEXTURE_PROP_NAME
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 20
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nThe properties texture material property\n"
+  example: []
+  syntax:
+    content: public const string PROPERTIES_TEXTURE_PROP_NAME = "_PropertiesTexture"
+    return:
+      type: System.String
+    content.vb: Public Const PROPERTIES_TEXTURE_PROP_NAME As String = "_PropertiesTexture"
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Data
+  commentId: F:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Data
+  id: Data
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: Data
+  nameWithType: RepetitionlessMaterialDataSO.Data
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Data
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Data
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 28
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nThe data for the material<br />\nDo not update this in the scriptable object, do it in the material inspector\n"
+  example: []
+  syntax:
+    content: >-
+      [HideInInspector]
+
+      public RepetitionlessLayerData[] Data
+    return:
+      type: Repetitionless.Variables.RepetitionlessLayerData[]
+    content.vb: >-
+      <HideInInspector>
+
+      Public Data As RepetitionlessLayerData()
+  attributes:
+  - type: UnityEngine.HideInInspector
+    ctor: UnityEngine.HideInInspector.#ctor
+    arguments: []
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init(System.Int32)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init(System.Int32)
+  id: Init(System.Int32)
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: Init(int)
+  nameWithType: RepetitionlessMaterialDataSO.Init(int)
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init(int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Init
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 39
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nInitializes this with a new set of data\n"
+  example: []
+  syntax:
+    content: public void Init(int layerCount)
+    parameters:
+    - id: layerCount
+      type: System.Int32
+      description: "\nThe max amount of terrain layers that will be used\n"
+    content.vb: Public Sub Init(layerCount As Integer)
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init*
+  nameWithType.vb: RepetitionlessMaterialDataSO.Init(Integer)
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init(Integer)
+  name.vb: Init(Integer)
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save
+  id: Save
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: Save()
+  nameWithType: RepetitionlessMaterialDataSO.Save()
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Save
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 53
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nSaves this object\n"
+  example: []
+  syntax:
+    content: public void Save()
+    content.vb: Public Sub Save()
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save*
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager(Repetitionless.Editor.Data.MaterialDataManager)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager(Repetitionless.Editor.Data.MaterialDataManager)
+  id: SetDataManager(Repetitionless.Editor.Data.MaterialDataManager)
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: SetDataManager(MaterialDataManager)
+  nameWithType: RepetitionlessMaterialDataSO.SetDataManager(MaterialDataManager)
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager(Repetitionless.Editor.Data.MaterialDataManager)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SetDataManager
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 67
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nSets the data manager<br />\nThis is not serialized and this must be called for each session using this\n"
+  example: []
+  syntax:
+    content: public void SetDataManager(MaterialDataManager dataManager)
+    parameters:
+    - id: dataManager
+      type: Repetitionless.Editor.Data.MaterialDataManager
+      description: "\nThe data manager to use\n"
+    content.vb: Public Sub SetDataManager(dataManager As MaterialDataManager)
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager*
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material,System.Int32)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material,System.Int32)
+  id: UpdateMaterialTexture(UnityEngine.Material,System.Int32)
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: UpdateMaterialTexture(Material, int)
+  nameWithType: RepetitionlessMaterialDataSO.UpdateMaterialTexture(Material, int)
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: UpdateMaterialTexture
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 97
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nUpdates the properties texture with the data saved in this object\n"
+  example: []
+  syntax:
+    content: public void UpdateMaterialTexture(Material material, int layerIndex)
+    parameters:
+    - id: material
+      type: UnityEngine.Material
+      description: "\nThe material that will have its texture property updated\n"
+    - id: layerIndex
+      type: System.Int32
+      description: "\nThe layer that will be updated\n"
+    content.vb: Public Sub UpdateMaterialTexture(material As Material, layerIndex As Integer)
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture*
+  nameWithType.vb: RepetitionlessMaterialDataSO.UpdateMaterialTexture(Material, Integer)
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material, Integer)
+  name.vb: UpdateMaterialTexture(Material, Integer)
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material,System.String,System.Int32)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material,System.String,System.Int32)
+  id: UpdateMaterialTexture(UnityEngine.Material,System.String,System.Int32)
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: UpdateMaterialTexture(Material, string, int)
+  nameWithType: RepetitionlessMaterialDataSO.UpdateMaterialTexture(Material, string, int)
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material, string, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: UpdateMaterialTexture
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 114
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nUpdates the properties texture with the data saved in this object\n"
+  example: []
+  syntax:
+    content: public void UpdateMaterialTexture(Material material, string texturePropertyName, int layerIndex)
+    parameters:
+    - id: material
+      type: UnityEngine.Material
+      description: "\nThe material that will have its texture property updated\n"
+    - id: texturePropertyName
+      type: System.String
+      description: "\nThe name of the properties texture property\n"
+    - id: layerIndex
+      type: System.Int32
+      description: "\nThe layer that will be updated\n"
+    content.vb: Public Sub UpdateMaterialTexture(material As Material, texturePropertyName As String, layerIndex As Integer)
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture*
+  nameWithType.vb: RepetitionlessMaterialDataSO.UpdateMaterialTexture(Material, String, Integer)
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material, String, Integer)
+  name.vb: UpdateMaterialTexture(Material, String, Integer)
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEditor.MaterialProperty,System.Int32)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEditor.MaterialProperty,System.Int32)
+  id: UpdateMaterialTexture(UnityEditor.MaterialProperty,System.Int32)
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: UpdateMaterialTexture(MaterialProperty, int)
+  nameWithType: RepetitionlessMaterialDataSO.UpdateMaterialTexture(MaterialProperty, int)
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEditor.MaterialProperty, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: UpdateMaterialTexture
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 129
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nUpdates the properties texture with the data saved in this object\n"
+  example: []
+  syntax:
+    content: public void UpdateMaterialTexture(MaterialProperty property, int layerIndex)
+    parameters:
+    - id: property
+      type: UnityEditor.MaterialProperty
+      description: "\nThe properties texture property that will be updated\n"
+    - id: layerIndex
+      type: System.Int32
+      description: "\nThe layer that will be updated\n"
+    content.vb: Public Sub UpdateMaterialTexture([property] As MaterialProperty, layerIndex As Integer)
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture*
+  nameWithType.vb: RepetitionlessMaterialDataSO.UpdateMaterialTexture(MaterialProperty, Integer)
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEditor.MaterialProperty, Integer)
+  name.vb: UpdateMaterialTexture(MaterialProperty, Integer)
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData(System.Int32,System.Int32)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData(System.Int32,System.Int32)
+  id: GetMaterialData(System.Int32,System.Int32)
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: GetMaterialData(int, int)
+  nameWithType: RepetitionlessMaterialDataSO.GetMaterialData(int, int)
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData(int, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GetMaterialData
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 196
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nGets the properties for a specific material\n"
+  example: []
+  syntax:
+    content: public RepetitionlessMaterialData GetMaterialData(int layerIndex, int materialIndex)
+    parameters:
+    - id: layerIndex
+      type: System.Int32
+      description: "\nThe layer that the material is in\n"
+    - id: materialIndex
+      type: System.Int32
+      description: "\nThe index of the material:<br />\n0: Base, 1: Far, 2: Blend\n"
+    return:
+      type: Repetitionless.Variables.RepetitionlessMaterialData
+      description: "\nThe properties for a specific material\n"
+    content.vb: Public Function GetMaterialData(layerIndex As Integer, materialIndex As Integer) As RepetitionlessMaterialData
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData*
+  nameWithType.vb: RepetitionlessMaterialDataSO.GetMaterialData(Integer, Integer)
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData(Integer, Integer)
+  name.vb: GetMaterialData(Integer, Integer)
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures(UnityEngine.Material,Repetitionless.Editor.Data.RepetitionlessTextureDataSO,System.Int32,System.Int32)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures(UnityEngine.Material,Repetitionless.Editor.Data.RepetitionlessTextureDataSO,System.Int32,System.Int32)
+  id: UpdateAssignedTextures(UnityEngine.Material,Repetitionless.Editor.Data.RepetitionlessTextureDataSO,System.Int32,System.Int32)
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: UpdateAssignedTextures(Material, RepetitionlessTextureDataSO, int, int)
+  nameWithType: RepetitionlessMaterialDataSO.UpdateAssignedTextures(Material, RepetitionlessTextureDataSO, int, int)
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures(UnityEngine.Material, Repetitionless.Editor.Data.RepetitionlessTextureDataSO, int, int)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: UpdateAssignedTextures
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 224
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nUpdates the assigned textures and the property texture based on a texture data\n"
+  example: []
+  syntax:
+    content: public void UpdateAssignedTextures(Material material, RepetitionlessTextureDataSO textureData, int materialIndex, int layerIndex)
+    parameters:
+    - id: material
+      type: UnityEngine.Material
+      description: "\nThe material that will have its texture property updated \n"
+    - id: textureData
+      type: Repetitionless.Editor.Data.RepetitionlessTextureDataSO
+      description: "\nThe texture data that assigned textures will be read from\n"
+    - id: materialIndex
+      type: System.Int32
+      description: "\nThe index of the material:<br />\n0: Base, 1: Far, 2: Blend\n"
+    - id: layerIndex
+      type: System.Int32
+      description: "\nThe layer that the material is in\n"
+    content.vb: Public Sub UpdateAssignedTextures(material As Material, textureData As RepetitionlessTextureDataSO, materialIndex As Integer, layerIndex As Integer)
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures*
+  nameWithType.vb: RepetitionlessMaterialDataSO.UpdateAssignedTextures(Material, RepetitionlessTextureDataSO, Integer, Integer)
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures(UnityEngine.Material, Repetitionless.Editor.Data.RepetitionlessTextureDataSO, Integer, Integer)
+  name.vb: UpdateAssignedTextures(Material, RepetitionlessTextureDataSO, Integer, Integer)
+references:
+- uid: Repetitionless.Editor.Data
+  commentId: N:Repetitionless.Editor.Data
+  name: Repetitionless.Editor.Data
+  nameWithType: Repetitionless.Editor.Data
+  fullName: Repetitionless.Editor.Data
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: UnityEngine.Object
+  commentId: T:UnityEngine.Object
+  parent: UnityEngine
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: UnityEngine.Object
+- uid: UnityEngine.ScriptableObject
+  commentId: T:UnityEngine.ScriptableObject
+  parent: UnityEngine
+  isExternal: true
+  name: ScriptableObject
+  nameWithType: ScriptableObject
+  fullName: UnityEngine.ScriptableObject
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Repetitionless.Variables.RepetitionlessLayerData[]
+  isExternal: true
+  name: RepetitionlessLayerData[]
+  nameWithType: RepetitionlessLayerData[]
+  fullName: Repetitionless.Variables.RepetitionlessLayerData[]
+  nameWithType.vb: RepetitionlessLayerData()
+  fullName.vb: Repetitionless.Variables.RepetitionlessLayerData()
+  name.vb: RepetitionlessLayerData()
+  spec.csharp:
+  - uid: Repetitionless.Variables.RepetitionlessLayerData
+    name: RepetitionlessLayerData
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Repetitionless.Variables.RepetitionlessLayerData
+    name: RepetitionlessLayerData
+  - name: (
+  - name: )
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init
+  name: Init
+  nameWithType: RepetitionlessMaterialDataSO.Init
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save
+  name: Save
+  nameWithType: RepetitionlessMaterialDataSO.Save
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager
+  name: SetDataManager
+  nameWithType: RepetitionlessMaterialDataSO.SetDataManager
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager
+- uid: Repetitionless.Editor.Data.MaterialDataManager
+  commentId: T:Repetitionless.Editor.Data.MaterialDataManager
+  parent: Repetitionless.Editor.Data
+  name: MaterialDataManager
+  nameWithType: MaterialDataManager
+  fullName: Repetitionless.Editor.Data.MaterialDataManager
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture
+  name: UpdateMaterialTexture
+  nameWithType: RepetitionlessMaterialDataSO.UpdateMaterialTexture
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture
+- uid: UnityEngine.Material
+  commentId: T:UnityEngine.Material
+  parent: UnityEngine
+  isExternal: true
+  name: Material
+  nameWithType: Material
+  fullName: UnityEngine.Material
+- uid: UnityEditor.MaterialProperty
+  commentId: T:UnityEditor.MaterialProperty
+  parent: UnityEditor
+  isExternal: true
+  name: MaterialProperty
+  nameWithType: MaterialProperty
+  fullName: UnityEditor.MaterialProperty
+- uid: UnityEditor
+  commentId: N:UnityEditor
+  isExternal: true
+  name: UnityEditor
+  nameWithType: UnityEditor
+  fullName: UnityEditor
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData
+  name: GetMaterialData
+  nameWithType: RepetitionlessMaterialDataSO.GetMaterialData
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData
+- uid: Repetitionless.Variables.RepetitionlessMaterialData
+  commentId: T:Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Variables
+  name: RepetitionlessMaterialData
+  nameWithType: RepetitionlessMaterialData
+  fullName: Repetitionless.Variables.RepetitionlessMaterialData
+- uid: Repetitionless.Variables
+  commentId: N:Repetitionless.Variables
+  name: Repetitionless.Variables
+  nameWithType: Repetitionless.Variables
+  fullName: Repetitionless.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Variables
+    name: Variables
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures
+  name: UpdateAssignedTextures
+  nameWithType: RepetitionlessMaterialDataSO.UpdateAssignedTextures
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures
+- uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO
+  commentId: T:Repetitionless.Editor.Data.RepetitionlessTextureDataSO
+  parent: Repetitionless.Editor.Data
+  name: RepetitionlessTextureDataSO
+  nameWithType: RepetitionlessTextureDataSO
+  fullName: Repetitionless.Editor.Data.RepetitionlessTextureDataSO

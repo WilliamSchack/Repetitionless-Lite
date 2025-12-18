@@ -750,6 +750,22 @@ namespace Repetitionless.Editor.GUIUtilities
             return new Vector2Int(xVal, yVal);
         }
 
+        /// <summary>
+        /// Draws tiling offset fields using and updating values in a float4 materialProperty<br />
+        /// Uses the DrawVector2Field function to remove empty space
+        /// </summary>
+        /// <param name="tilingOffset">
+        /// The initial tiling offset value
+        /// </param>
+        /// <param name="tilingLabel">
+        /// The label to show for the tiling field
+        /// </param>
+        /// <param name="offsetLabel">
+        /// The label to show for the offset field
+        /// </param>
+        /// <returns>
+        /// The new tiling offset value
+        /// </returns>
         public static Vector4 DrawTilingOffset(Vector4 tilingOffset, string tilingLabel = "Scale", string offsetLabel = "Offset")
         {
             Vector2 newTiling = new Vector2(tilingOffset.x, tilingOffset.y);

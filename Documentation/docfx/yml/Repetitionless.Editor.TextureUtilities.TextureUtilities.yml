@@ -1,0 +1,397 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities
+  commentId: T:Repetitionless.Editor.TextureUtilities.TextureUtilities
+  id: TextureUtilities
+  parent: Repetitionless.Editor.TextureUtilities
+  children:
+  - Repetitionless.Editor.TextureUtilities.TextureUtilities.COMPRESSED_TEXTURE_FORMATS
+  - Repetitionless.Editor.TextureUtilities.TextureUtilities.ResizeTexture(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)
+  - Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable(UnityEngine.Texture2D,System.Boolean)
+  - Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable(UnityEngine.Texture2D[],System.Boolean)
+  - Repetitionless.Editor.TextureUtilities.TextureUtilities.SetTextureToNormal(UnityEngine.Texture2D)
+  - Repetitionless.Editor.TextureUtilities.TextureUtilities.TextureIsNormal(UnityEngine.Texture2D)
+  langs:
+  - csharp
+  - vb
+  name: TextureUtilities
+  nameWithType: TextureUtilities
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: TextureUtilities
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+    startLine: 14
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.TextureUtilities
+  summary: "\nContains various helper functions for modifying textures\n"
+  example: []
+  syntax:
+    content: public static class TextureUtilities
+    content.vb: Public Module TextureUtilities
+  inheritance:
+  - System.Object
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities.COMPRESSED_TEXTURE_FORMATS
+  commentId: F:Repetitionless.Editor.TextureUtilities.TextureUtilities.COMPRESSED_TEXTURE_FORMATS
+  id: COMPRESSED_TEXTURE_FORMATS
+  parent: Repetitionless.Editor.TextureUtilities.TextureUtilities
+  langs:
+  - csharp
+  - vb
+  name: COMPRESSED_TEXTURE_FORMATS
+  nameWithType: TextureUtilities.COMPRESSED_TEXTURE_FORMATS
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities.COMPRESSED_TEXTURE_FORMATS
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: COMPRESSED_TEXTURE_FORMATS
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+    startLine: 19
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.TextureUtilities
+  summary: "\nList of all the compressed texture formats\n"
+  example: []
+  syntax:
+    content: public static readonly TextureFormat[] COMPRESSED_TEXTURE_FORMATS
+    return:
+      type: UnityEngine.TextureFormat[]
+    content.vb: Public Shared ReadOnly COMPRESSED_TEXTURE_FORMATS As TextureFormat()
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities.ResizeTexture(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)
+  commentId: M:Repetitionless.Editor.TextureUtilities.TextureUtilities.ResizeTexture(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)
+  id: ResizeTexture(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)
+  parent: Repetitionless.Editor.TextureUtilities.TextureUtilities
+  langs:
+  - csharp
+  - vb
+  name: ResizeTexture(Texture2D, int, int, FilterMode)
+  nameWithType: TextureUtilities.ResizeTexture(Texture2D, int, int, FilterMode)
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities.ResizeTexture(UnityEngine.Texture2D, int, int, UnityEngine.FilterMode)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: ResizeTexture
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+    startLine: 77
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.TextureUtilities
+  summary: "\nScales the input texture to the desired resolution<br />\nDoes not modify the original texture, returns a new resized one\n"
+  example: []
+  syntax:
+    content: public static Texture2D ResizeTexture(Texture2D texture, int newWidth, int newHeight, FilterMode filterMode = FilterMode.Bilinear)
+    parameters:
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe texture that will be resized\n"
+    - id: newWidth
+      type: System.Int32
+      description: "\nThe width of the output texture\n"
+    - id: newHeight
+      type: System.Int32
+      description: "\nThe height of the output texture\n"
+    - id: filterMode
+      type: UnityEngine.FilterMode
+      description: "\nThe filter mode used when resizing the texture\n"
+    return:
+      type: UnityEngine.Texture2D
+      description: "\nThe texture resized to the input resolution\n"
+    content.vb: Public Shared Function ResizeTexture(texture As Texture2D, newWidth As Integer, newHeight As Integer, filterMode As FilterMode = FilterMode.Bilinear) As Texture2D
+  overload: Repetitionless.Editor.TextureUtilities.TextureUtilities.ResizeTexture*
+  nameWithType.vb: TextureUtilities.ResizeTexture(Texture2D, Integer, Integer, FilterMode)
+  fullName.vb: Repetitionless.Editor.TextureUtilities.TextureUtilities.ResizeTexture(UnityEngine.Texture2D, Integer, Integer, UnityEngine.FilterMode)
+  name.vb: ResizeTexture(Texture2D, Integer, Integer, FilterMode)
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable(UnityEngine.Texture2D,System.Boolean)
+  commentId: M:Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable(UnityEngine.Texture2D,System.Boolean)
+  id: SetReadable(UnityEngine.Texture2D,System.Boolean)
+  parent: Repetitionless.Editor.TextureUtilities.TextureUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetReadable(Texture2D, bool)
+  nameWithType: TextureUtilities.SetReadable(Texture2D, bool)
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable(UnityEngine.Texture2D, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SetReadable
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+    startLine: 106
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.TextureUtilities
+  summary: "\nRe-Imports the input texture as readable if necessary\n"
+  example: []
+  syntax:
+    content: public static void SetReadable(Texture2D texture, bool logChanges = false)
+    parameters:
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe texture that will set to readable\n"
+    - id: logChanges
+      type: System.Boolean
+      description: "\nDebugs if the texture is set to readable if it is not already\n"
+    content.vb: Public Shared Sub SetReadable(texture As Texture2D, logChanges As Boolean = False)
+  overload: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable*
+  nameWithType.vb: TextureUtilities.SetReadable(Texture2D, Boolean)
+  fullName.vb: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable(UnityEngine.Texture2D, Boolean)
+  name.vb: SetReadable(Texture2D, Boolean)
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable(UnityEngine.Texture2D[],System.Boolean)
+  commentId: M:Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable(UnityEngine.Texture2D[],System.Boolean)
+  id: SetReadable(UnityEngine.Texture2D[],System.Boolean)
+  parent: Repetitionless.Editor.TextureUtilities.TextureUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetReadable(Texture2D[], bool)
+  nameWithType: TextureUtilities.SetReadable(Texture2D[], bool)
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable(UnityEngine.Texture2D[], bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SetReadable
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+    startLine: 129
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.TextureUtilities
+  summary: "\nRe-Imports the input textures as readable if necessary\n"
+  example: []
+  syntax:
+    content: public static void SetReadable(Texture2D[] textures, bool logChanges = false)
+    parameters:
+    - id: textures
+      type: UnityEngine.Texture2D[]
+      description: "\nThe array of textures that will set to readable\n"
+    - id: logChanges
+      type: System.Boolean
+      description: "\nDebugs if the texture is set to readable if it is not already\n"
+    content.vb: Public Shared Sub SetReadable(textures As Texture2D(), logChanges As Boolean = False)
+  overload: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable*
+  nameWithType.vb: TextureUtilities.SetReadable(Texture2D(), Boolean)
+  fullName.vb: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable(UnityEngine.Texture2D(), Boolean)
+  name.vb: SetReadable(Texture2D(), Boolean)
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities.TextureIsNormal(UnityEngine.Texture2D)
+  commentId: M:Repetitionless.Editor.TextureUtilities.TextureUtilities.TextureIsNormal(UnityEngine.Texture2D)
+  id: TextureIsNormal(UnityEngine.Texture2D)
+  parent: Repetitionless.Editor.TextureUtilities.TextureUtilities
+  langs:
+  - csharp
+  - vb
+  name: TextureIsNormal(Texture2D)
+  nameWithType: TextureUtilities.TextureIsNormal(Texture2D)
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities.TextureIsNormal(UnityEngine.Texture2D)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: TextureIsNormal
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+    startLine: 153
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.TextureUtilities
+  summary: "\nReturns if the inputted texture is imported as a normal map\n"
+  example: []
+  syntax:
+    content: public static bool TextureIsNormal(Texture2D texture)
+    parameters:
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe texture to check\n"
+    return:
+      type: System.Boolean
+      description: "\nIf the texture is a normal map\n"
+    content.vb: Public Shared Function TextureIsNormal(texture As Texture2D) As Boolean
+  overload: Repetitionless.Editor.TextureUtilities.TextureUtilities.TextureIsNormal*
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetTextureToNormal(UnityEngine.Texture2D)
+  commentId: M:Repetitionless.Editor.TextureUtilities.TextureUtilities.SetTextureToNormal(UnityEngine.Texture2D)
+  id: SetTextureToNormal(UnityEngine.Texture2D)
+  parent: Repetitionless.Editor.TextureUtilities.TextureUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetTextureToNormal(Texture2D)
+  nameWithType: TextureUtilities.SetTextureToNormal(Texture2D)
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetTextureToNormal(UnityEngine.Texture2D)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SetTextureToNormal
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TextureUtilities.cs
+    startLine: 167
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.TextureUtilities
+  summary: "\nReimports a texture as a normal map\n"
+  example: []
+  syntax:
+    content: public static void SetTextureToNormal(Texture2D texture)
+    parameters:
+    - id: texture
+      type: UnityEngine.Texture2D
+      description: "\nThe texture to update\n"
+    content.vb: Public Shared Sub SetTextureToNormal(texture As Texture2D)
+  overload: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetTextureToNormal*
+references:
+- uid: Repetitionless.Editor.TextureUtilities
+  commentId: N:Repetitionless.Editor.TextureUtilities
+  name: Repetitionless.Editor.TextureUtilities
+  nameWithType: Repetitionless.Editor.TextureUtilities
+  fullName: Repetitionless.Editor.TextureUtilities
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities
+    name: TextureUtilities
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities
+    name: TextureUtilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UnityEngine.TextureFormat[]
+  isExternal: true
+  name: TextureFormat[]
+  nameWithType: TextureFormat[]
+  fullName: UnityEngine.TextureFormat[]
+  nameWithType.vb: TextureFormat()
+  fullName.vb: UnityEngine.TextureFormat()
+  name.vb: TextureFormat()
+  spec.csharp:
+  - uid: UnityEngine.TextureFormat
+    name: TextureFormat
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: UnityEngine.TextureFormat
+    name: TextureFormat
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities.ResizeTexture*
+  commentId: Overload:Repetitionless.Editor.TextureUtilities.TextureUtilities.ResizeTexture
+  name: ResizeTexture
+  nameWithType: TextureUtilities.ResizeTexture
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities.ResizeTexture
+- uid: UnityEngine.Texture2D
+  commentId: T:UnityEngine.Texture2D
+  parent: UnityEngine
+  isExternal: true
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: UnityEngine.Texture2D
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: UnityEngine.FilterMode
+  commentId: T:UnityEngine.FilterMode
+  parent: UnityEngine
+  isExternal: true
+  name: FilterMode
+  nameWithType: FilterMode
+  fullName: UnityEngine.FilterMode
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable*
+  commentId: Overload:Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable
+  name: SetReadable
+  nameWithType: TextureUtilities.SetReadable
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetReadable
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: UnityEngine.Texture2D[]
+  isExternal: true
+  name: Texture2D[]
+  nameWithType: Texture2D[]
+  fullName: UnityEngine.Texture2D[]
+  nameWithType.vb: Texture2D()
+  fullName.vb: UnityEngine.Texture2D()
+  name.vb: Texture2D()
+  spec.csharp:
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: UnityEngine.Texture2D
+    name: Texture2D
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities.TextureIsNormal*
+  commentId: Overload:Repetitionless.Editor.TextureUtilities.TextureUtilities.TextureIsNormal
+  name: TextureIsNormal
+  nameWithType: TextureUtilities.TextureIsNormal
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities.TextureIsNormal
+- uid: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetTextureToNormal*
+  commentId: Overload:Repetitionless.Editor.TextureUtilities.TextureUtilities.SetTextureToNormal
+  name: SetTextureToNormal
+  nameWithType: TextureUtilities.SetTextureToNormal
+  fullName: Repetitionless.Editor.TextureUtilities.TextureUtilities.SetTextureToNormal

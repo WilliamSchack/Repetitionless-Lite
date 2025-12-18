@@ -1,0 +1,101 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Inspectors
+  commentId: N:Repetitionless.Editor.Inspectors
+  id: Repetitionless.Editor.Inspectors
+  children:
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.MaterialFoldoutState
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  - Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Editor.Inspectors
+  nameWithType: Repetitionless.Editor.Inspectors
+  fullName: Repetitionless.Editor.Inspectors
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+references:
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  commentId: T:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  parent: Repetitionless.Editor.Inspectors
+  name: RepetitionlessMaterialEditorBase
+  nameWithType: RepetitionlessMaterialEditorBase
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.MaterialFoldoutState
+  commentId: T:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.MaterialFoldoutState
+  name: RepetitionlessMaterialEditorBase.MaterialFoldoutState
+  nameWithType: RepetitionlessMaterialEditorBase.MaterialFoldoutState
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.MaterialFoldoutState
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+    name: RepetitionlessMaterialEditorBase
+  - name: .
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.MaterialFoldoutState
+    name: MaterialFoldoutState
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+    name: RepetitionlessMaterialEditorBase
+  - name: .
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.MaterialFoldoutState
+    name: MaterialFoldoutState
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails
+  commentId: T:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails
+  parent: Repetitionless.Editor.Inspectors
+  name: RepetitionlessMaterialEditorBase.TextureDrawerDetails
+  nameWithType: RepetitionlessMaterialEditorBase.TextureDrawerDetails
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails
+  spec.csharp:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+    name: RepetitionlessMaterialEditorBase
+  - name: .
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails
+    name: TextureDrawerDetails
+  spec.vb:
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+    name: RepetitionlessMaterialEditorBase
+  - name: .
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails
+    name: TextureDrawerDetails
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster
+  commentId: T:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster
+  name: RepetitionlessMaterialEditorMaster
+  nameWithType: RepetitionlessMaterialEditorMaster
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor
+  commentId: T:Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor
+  name: RepetitionlessTerrainEditor
+  nameWithType: RepetitionlessTerrainEditor
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  commentId: T:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+  name: RepetitionlessMaterialEditorTerrain
+  nameWithType: RepetitionlessMaterialEditorTerrain
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+- uid: Repetitionless.Editor.Inspectors
+  commentId: N:Repetitionless.Editor.Inspectors
+  name: Repetitionless.Editor.Inspectors
+  nameWithType: Repetitionless.Editor.Inspectors
+  fullName: Repetitionless.Editor.Inspectors
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Inspectors
+    name: Inspectors
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Inspectors
+    name: Inspectors

@@ -21,9 +21,19 @@ namespace Repetitionless.Variables
         Transparent
     }
     
+    /// <summary>
+    /// Available UV spaces
+    /// </summary>
     public enum EUVSpace
     {
+        /// <summary>
+        /// Local uvs from the object
+        /// </summary>
         Local,
+
+        /// <summary>
+        /// World uvs from the world position
+        /// </summary>
         World
     }
 

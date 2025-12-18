@@ -1,0 +1,172 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData
+  commentId: T:Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData
+  id: RepetitionlessTextureDataSO.MaterialTextureData
+  parent: Repetitionless.Editor.Data
+  children:
+  - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.AVTextures
+  - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.EMTextures
+  - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.NSOTextures
+  langs:
+  - csharp
+  - vb
+  name: RepetitionlessTextureDataSO.MaterialTextureData
+  nameWithType: RepetitionlessTextureDataSO.MaterialTextureData
+  fullName: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData
+  type: Struct
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: MaterialTextureData
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
+    startLine: 37
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nContains the texture data for a repetitionless material\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public struct RepetitionlessTextureDataSO.MaterialTextureData
+    content.vb: >-
+      <Serializable>
+
+      Public Structure RepetitionlessTextureDataSO.MaterialTextureData
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+- uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.AVTextures
+  commentId: F:Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.AVTextures
+  id: AVTextures
+  parent: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData
+  langs:
+  - csharp
+  - vb
+  name: AVTextures
+  nameWithType: RepetitionlessTextureDataSO.MaterialTextureData.AVTextures
+  fullName: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.AVTextures
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: AVTextures
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
+    startLine: 43
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nThe AVTextures: Albedo (rgb), Variation (a)\n"
+  example: []
+  syntax:
+    content: public TexturePacker.TextureData[] AVTextures
+    return:
+      type: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]
+    content.vb: Public AVTextures As TexturePacker.TextureData()
+- uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.NSOTextures
+  commentId: F:Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.NSOTextures
+  id: NSOTextures
+  parent: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData
+  langs:
+  - csharp
+  - vb
+  name: NSOTextures
+  nameWithType: RepetitionlessTextureDataSO.MaterialTextureData.NSOTextures
+  fullName: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.NSOTextures
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: NSOTextures
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
+    startLine: 47
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nThe NSOTextures: Normal (rg), Smoothness (b), Occlussion (a)\n"
+  example: []
+  syntax:
+    content: public TexturePacker.TextureData[] NSOTextures
+    return:
+      type: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]
+    content.vb: Public NSOTextures As TexturePacker.TextureData()
+- uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.EMTextures
+  commentId: F:Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.EMTextures
+  id: EMTextures
+  parent: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData
+  langs:
+  - csharp
+  - vb
+  name: EMTextures
+  nameWithType: RepetitionlessTextureDataSO.MaterialTextureData.EMTextures
+  fullName: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.EMTextures
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: EMTextures
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
+    startLine: 51
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nThe EMTextures: Emission (rgb), Metallic (a)\n"
+  example: []
+  syntax:
+    content: public TexturePacker.TextureData[] EMTextures
+    return:
+      type: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]
+    content.vb: Public EMTextures As TexturePacker.TextureData()
+references:
+- uid: Repetitionless.Editor.Data
+  commentId: N:Repetitionless.Editor.Data
+  name: Repetitionless.Editor.Data
+  nameWithType: Repetitionless.Editor.Data
+  fullName: Repetitionless.Editor.Data
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]
+  isExternal: true
+  name: TextureData[]
+  nameWithType: TexturePacker.TextureData[]
+  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]
+  nameWithType.vb: TexturePacker.TextureData()
+  fullName.vb: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData()
+  name.vb: TextureData()
+  spec.csharp:
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+    name: TextureData
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+    name: TextureData
+  - name: (
+  - name: )

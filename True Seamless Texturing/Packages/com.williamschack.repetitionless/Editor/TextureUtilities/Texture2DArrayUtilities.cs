@@ -67,9 +67,7 @@ namespace Repetitionless.Editor.TextureUtilities
         /// If mipmaps will be transferred from the textures to the array
         /// </param>
         /// <param name="linear">
-        /// If the output array will be linear<br />
-        /// Recommended in the Built-In Render Pipeline only when including normal maps<br />
-        /// <b>Not Recommended in URP/HDRP as it will result in brighter textures</b>
+        /// If the output array will be linear
         /// </param>
         /// <returns>
         /// A Texture2DArray with the input textures and settings
@@ -131,9 +129,7 @@ namespace Repetitionless.Editor.TextureUtilities
         /// If mipmaps will be transferred from the textures to the array
         /// </param>
         /// <param name="linear">
-        /// If the output array will be linear<br />
-        /// Recommended in the Built-In Render Pipeline only when including normal maps<br />
-        /// <b>Not Recommended in URP/HDRP as it will result in brighter textures</b>
+        /// If the output array will be linear
         /// </param>
         /// <returns>
         /// A Texture2DArray with the input textures and settings
@@ -146,6 +142,29 @@ namespace Repetitionless.Editor.TextureUtilities
             return CreateArrayAutoResize(textures, textureFormat, resolution, transferMipmaps, linear);
         }
 
+        /// <summary>
+        /// Creates a new Texture2DArray with the given textures taking into account unsupported formats<br />
+        /// Resolution will be the resolution of the first input texture<br />
+        /// Automatically resizes all textures to the resolution of the first
+        /// </summary>
+        /// <param name="textures">
+        /// The textures that will be in the array
+        /// </param>
+        /// <param name="textureFormat">
+        /// The texture format of the output array
+        /// </param>
+        /// <param name="resolution">
+        /// The resolution of the new texture array
+        /// </param>
+        /// <param name="transferMipmaps">
+        /// If mipmaps will be transferred from the textures to the array
+        /// </param>
+        /// <param name="linear">
+        /// If the output array will be linear
+        /// </param>
+        /// <returns>
+        /// A Texture2DArray with the input textures and settings
+        /// </returns>
         public static Texture2DArray CreateArrayAutoResize(Texture2D[] textures, TextureFormat textureFormat, Vector2Int resolution, bool transferMipmaps = true, bool linear = false)
         {
             // Set textures to readable if not already
@@ -185,9 +204,7 @@ namespace Repetitionless.Editor.TextureUtilities
         /// If mipmaps will be transferred from the textures to the array
         /// </param>
         /// <param name="linear">
-        /// If the output array will be linear<br />
-        /// Recommended in the Built-In Render Pipeline only when including normal maps<br />
-        /// <b>Not Recommended in URP/HDRP as it will result in brighter textures</b>
+        /// If the output array will be linear
         /// </param>
         /// <returns>
         /// A Texture2DArray with the input textures and settings

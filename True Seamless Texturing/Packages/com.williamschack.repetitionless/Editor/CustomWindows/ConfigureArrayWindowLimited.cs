@@ -18,6 +18,9 @@ namespace Repetitionless.Editor.CustomWindows
     using GUIUtilities;
     using TextureUtilities;
 
+    /// <summary>
+    /// A window used to configure a texture array
+    /// </summary>
     public class ConfigureArrayWindowLimited : Texture2DArrayWindowBase
     {
         private Texture2DArray _array;
@@ -26,18 +29,30 @@ namespace Repetitionless.Editor.CustomWindows
         private List<bool> _texturesChanged;
         private int _actualTexCount;
 
-        protected string HeaderString = "Array";
-        protected Action<Texture2DArray> OnTextureRecreatedCallback = null;
+        private string HeaderString = "Array";
+        private Action<Texture2DArray> OnTextureRecreatedCallback = null;
 
-        public static void ShowWindow(Texture2DArray array, string header = "Array", Action<Texture2DArray> onTextureRecreatedCallback = null)
+        /// <summary>
+        /// Opens the window
+        /// </summary>
+        /// <param name="array">
+        /// The array to modify
+        /// </param>
+        /// <param name="header">
+        /// The header text
+        /// </param>
+        /// <param name="onTextureRecreatedCallback">
+        /// Callback for when the texture is recreated
+        /// </param>
+        public static void Open(Texture2DArray array, string header = "Array", Action<Texture2DArray> onTextureRecreatedCallback = null)
         {
-            ConfigureArrayWindowLimited window = ShowWindow();
+            ConfigureArrayWindowLimited window = Open();
             window.UpdateArrayVariables(array);
             window.HeaderString = header;
             window.OnTextureRecreatedCallback = onTextureRecreatedCallback;
         }
 
-        protected static ConfigureArrayWindowLimited ShowWindow()
+        private static ConfigureArrayWindowLimited Open()
         {
             ConfigureArrayWindowLimited window = GetWindow<ConfigureArrayWindowLimited>(false, "Configure Array");
             window.Show();
@@ -88,6 +103,10 @@ namespace Repetitionless.Editor.CustomWindows
             _mipmapsSettingEnabled = _arrayMipMaps;
         }
 
+        /// <summary>
+        /// Called when the GUI is first created
+        /// </summary>
+
         protected override void CreateGUI()
         {
             _canAddRemoveTextures = false;
@@ -105,6 +124,9 @@ namespace Repetitionless.Editor.CustomWindows
             }
         }
 
+        /// <summary>
+        /// Called every GUI update, used due to other tasks in OnGUI
+        /// </summary>
         protected override void OnGUIUpdate()
         {
             GUILayout.Label(HeaderString, _headerStyle);
@@ -164,6 +186,12 @@ namespace Repetitionless.Editor.CustomWindows
             GUI.enabled = true;
         }
 
+        /// <summary>
+        /// Called when the add button is clicked in the ReorderableList GUI
+        /// </summary>
+        /// <param name="list">
+        /// The ReorderableList used for displaying the GUI
+        /// </param>
         protected override void OnTextureAdd(ReorderableList list)
         {
             _actualTexCount++;
@@ -173,6 +201,12 @@ namespace Repetitionless.Editor.CustomWindows
                 base.OnTextureAdd(list);
         }
 
+        /// <summary>
+        /// Called when the remove button or delete key is pressed in the ReorderableList GUI
+        /// </summary>
+        /// <param name="list">
+        /// The ReorderableList used for displaying the GUI
+        /// </param>
         protected override void OnTextureRemove(ReorderableList list)
         {
             _actualTexCount--;
@@ -182,6 +216,18 @@ namespace Repetitionless.Editor.CustomWindows
                 base.OnTextureRemove(list);
         }
 
+        /// <summary>
+        /// Called when the textures are reordered in the ReorderableList GUI
+        /// </summary>
+        /// <param name="list">
+        /// The ReorderableList used for displaying the GUI
+        /// </param>
+        /// <param name="oldActiveElement">
+        /// The previous index of the reordered element
+        /// </param>
+        /// <param name="newActiveElement">
+        /// The new index of the reordered element
+        /// </param>
         protected override void OnTexturesReorder(ReorderableList list, int oldActiveElement, int newActiveElement)
         {
             base.OnTexturesReorder(list, oldActiveElement, newActiveElement);
@@ -198,6 +244,12 @@ namespace Repetitionless.Editor.CustomWindows
             }
         }
 
+        /// <summary>
+        /// Called every update while anything is dragged over the window
+        /// </summary>
+        /// <param name="objectReferences">
+        /// The items that are being dragged
+        /// </param>
         protected override void OnDragUpdate(UnityEngine.Object[] objectReferences)
         {
             base.OnDragUpdate(objectReferences);
@@ -208,6 +260,12 @@ namespace Repetitionless.Editor.CustomWindows
             }
         }
 
+         /// <summary>
+        /// Called when the drag is complete over the window
+        /// </summary>
+        /// <param name="objectReferences">
+        /// The items that are being dragged
+        /// </param>
         protected override void OnDragPerform(UnityEngine.Object[] objectReferences)
         {
             int prevTexCount = _textures.Count;
@@ -223,6 +281,15 @@ namespace Repetitionless.Editor.CustomWindows
             }
         }
 
+        /// <summary>
+        /// Calculates the height of an element for the ReorderableList GUI where the textures are assigned
+        /// </summary>
+        /// <param name="index">
+        /// Index of the texture list which the height is being calculated for the ReorderableList GUI
+        /// </param>
+        /// <returns>
+        /// Height that the element will use
+        /// </returns>
         protected override float CalculateElementHeight(int index)
         {
             float height = base.CalculateElementHeight(index);
@@ -265,6 +332,22 @@ namespace Repetitionless.Editor.CustomWindows
             return height;
         }
 
+        /// <summary>
+        /// Draws a texture element in the textures list
+        /// </summary>
+        /// <param name="rect">
+        /// Rect with all the available space in the element<br />
+        /// Available space is calculated and can be changed in CalculateElementHeight
+        /// </param>
+        /// <param name="index">
+        /// The index of the current element in the textures list
+        /// </param>
+        /// <param name="isActive">
+        /// If this element is is being moved or interacted with in the GUI
+        /// </param>
+        /// <param name="isFocused">
+        /// If this element is selected in the GUI
+        /// </param>
         protected override void DrawTextureField(Rect rect, int index, bool isActive, bool isFocused)
         {
             // Setup help box rect

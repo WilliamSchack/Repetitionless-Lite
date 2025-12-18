@@ -1,0 +1,154 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.CustomWindows.WelcomeWindow
+  commentId: T:Repetitionless.Editor.CustomWindows.WelcomeWindow
+  id: WelcomeWindow
+  parent: Repetitionless.Editor.CustomWindows
+  children:
+  - Repetitionless.Editor.CustomWindows.WelcomeWindow.Open
+  langs:
+  - csharp
+  - vb
+  name: WelcomeWindow
+  nameWithType: WelcomeWindow
+  fullName: Repetitionless.Editor.CustomWindows.WelcomeWindow
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: WelcomeWindow
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
+    startLine: 13
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.CustomWindows
+  summary: "\nThe welcome window that is shown when first installing the package\n"
+  example: []
+  syntax:
+    content: 'public class WelcomeWindow : EditorWindow'
+    content.vb: Public Class WelcomeWindow Inherits EditorWindow
+  inheritance:
+  - System.Object
+  - UnityEngine.Object
+  - UnityEngine.ScriptableObject
+  - UnityEditor.EditorWindow
+- uid: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open
+  commentId: M:Repetitionless.Editor.CustomWindows.WelcomeWindow.Open
+  id: Open
+  parent: Repetitionless.Editor.CustomWindows.WelcomeWindow
+  langs:
+  - csharp
+  - vb
+  name: Open()
+  nameWithType: WelcomeWindow.Open()
+  fullName: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Open
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
+    startLine: 37
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.CustomWindows
+  summary: "\nOpens the window\n"
+  example: []
+  syntax:
+    content: >-
+      [MenuItem("Window/Repetitionless/Open Window")]
+
+      public static void Open()
+    content.vb: >-
+      <MenuItem("Window/Repetitionless/Open Window")>
+
+      Public Shared Sub Open()
+  overload: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open*
+  attributes:
+  - type: UnityEditor.MenuItem
+    ctor: UnityEditor.MenuItem.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: {}
+references:
+- uid: Repetitionless.Editor.CustomWindows
+  commentId: N:Repetitionless.Editor.CustomWindows
+  name: Repetitionless.Editor.CustomWindows
+  nameWithType: Repetitionless.Editor.CustomWindows
+  fullName: Repetitionless.Editor.CustomWindows
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.CustomWindows
+    name: CustomWindows
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.CustomWindows
+    name: CustomWindows
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: UnityEngine.Object
+  commentId: T:UnityEngine.Object
+  parent: UnityEngine
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: UnityEngine.Object
+- uid: UnityEngine.ScriptableObject
+  commentId: T:UnityEngine.ScriptableObject
+  parent: UnityEngine
+  isExternal: true
+  name: ScriptableObject
+  nameWithType: ScriptableObject
+  fullName: UnityEngine.ScriptableObject
+- uid: UnityEditor.EditorWindow
+  commentId: T:UnityEditor.EditorWindow
+  parent: UnityEditor
+  isExternal: true
+  name: EditorWindow
+  nameWithType: EditorWindow
+  fullName: UnityEditor.EditorWindow
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: UnityEditor
+  commentId: N:UnityEditor
+  isExternal: true
+  name: UnityEditor
+  nameWithType: UnityEditor
+  fullName: UnityEditor
+- uid: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open*
+  commentId: Overload:Repetitionless.Editor.CustomWindows.WelcomeWindow.Open
+  name: Open
+  nameWithType: WelcomeWindow.Open
+  fullName: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open

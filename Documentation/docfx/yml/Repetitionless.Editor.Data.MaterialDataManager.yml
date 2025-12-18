@@ -1,0 +1,538 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Data.MaterialDataManager
+  commentId: T:Repetitionless.Editor.Data.MaterialDataManager
+  id: MaterialDataManager
+  parent: Repetitionless.Editor.Data
+  children:
+  - Repetitionless.Editor.Data.MaterialDataManager.#ctor(UnityEngine.Material)
+  - Repetitionless.Editor.Data.MaterialDataManager.AssetExists(System.String)
+  - Repetitionless.Editor.Data.MaterialDataManager.CreateAsset(UnityEngine.Object,System.String,System.Boolean)
+  - Repetitionless.Editor.Data.MaterialDataManager.DataFolderName
+  - Repetitionless.Editor.Data.MaterialDataManager.DataFolderParentPath
+  - Repetitionless.Editor.Data.MaterialDataManager.DataFolderPath
+  - Repetitionless.Editor.Data.MaterialDataManager.DeleteAsset(System.String)
+  - Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName(System.String)
+  - Repetitionless.Editor.Data.MaterialDataManager.LoadAsset``1(System.String)
+  - Repetitionless.Editor.Data.MaterialDataManager.Material
+  langs:
+  - csharp
+  - vb
+  name: MaterialDataManager
+  nameWithType: MaterialDataManager
+  fullName: Repetitionless.Editor.Data.MaterialDataManager
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: MaterialDataManager
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 12
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nManages the data folder for a repetitionless material<br />\nStores the data in a folder accompanying the material\n"
+  example: []
+  syntax:
+    content: public class MaterialDataManager
+    content.vb: Public Class MaterialDataManager
+  inheritance:
+  - System.Object
+- uid: Repetitionless.Editor.Data.MaterialDataManager.Material
+  commentId: P:Repetitionless.Editor.Data.MaterialDataManager.Material
+  id: Material
+  parent: Repetitionless.Editor.Data.MaterialDataManager
+  langs:
+  - csharp
+  - vb
+  name: Material
+  nameWithType: MaterialDataManager.Material
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.Material
+  type: Property
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Material
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 21
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nThe material this is handling data for\n"
+  example: []
+  syntax:
+    content: public Material Material { get; }
+    parameters: []
+    return:
+      type: UnityEngine.Material
+    content.vb: Public ReadOnly Property Material As Material
+  overload: Repetitionless.Editor.Data.MaterialDataManager.Material*
+- uid: Repetitionless.Editor.Data.MaterialDataManager.#ctor(UnityEngine.Material)
+  commentId: M:Repetitionless.Editor.Data.MaterialDataManager.#ctor(UnityEngine.Material)
+  id: '#ctor(UnityEngine.Material)'
+  parent: Repetitionless.Editor.Data.MaterialDataManager
+  langs:
+  - csharp
+  - vb
+  name: MaterialDataManager(Material)
+  nameWithType: MaterialDataManager.MaterialDataManager(Material)
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.MaterialDataManager(UnityEngine.Material)
+  type: Constructor
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: .ctor
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 29
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nMaterialDataManager Constructor\n"
+  example: []
+  syntax:
+    content: public MaterialDataManager(Material material)
+    parameters:
+    - id: material
+      type: UnityEngine.Material
+      description: "\nThe material to manage\n"
+    content.vb: Public Sub New(material As Material)
+  overload: Repetitionless.Editor.Data.MaterialDataManager.#ctor*
+  nameWithType.vb: MaterialDataManager.New(Material)
+  fullName.vb: Repetitionless.Editor.Data.MaterialDataManager.New(UnityEngine.Material)
+  name.vb: New(Material)
+- uid: Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName(System.String)
+  commentId: M:Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName(System.String)
+  id: GenerateFolderName(System.String)
+  parent: Repetitionless.Editor.Data.MaterialDataManager
+  langs:
+  - csharp
+  - vb
+  name: GenerateFolderName(string)
+  nameWithType: MaterialDataManager.GenerateFolderName(string)
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName(string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GenerateFolderName
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 44
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nAdds the folder suffix to the input name\n"
+  example: []
+  syntax:
+    content: public static string GenerateFolderName(string prefix)
+    parameters:
+    - id: prefix
+      type: System.String
+      description: "\nThe input folder name\n"
+    return:
+      type: System.String
+      description: "\nThe new folder name\n"
+    content.vb: Public Shared Function GenerateFolderName(prefix As String) As String
+  overload: Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName*
+  nameWithType.vb: MaterialDataManager.GenerateFolderName(String)
+  fullName.vb: Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName(String)
+  name.vb: GenerateFolderName(String)
+- uid: Repetitionless.Editor.Data.MaterialDataManager.DataFolderParentPath
+  commentId: M:Repetitionless.Editor.Data.MaterialDataManager.DataFolderParentPath
+  id: DataFolderParentPath
+  parent: Repetitionless.Editor.Data.MaterialDataManager
+  langs:
+  - csharp
+  - vb
+  name: DataFolderParentPath()
+  nameWithType: MaterialDataManager.DataFolderParentPath()
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.DataFolderParentPath()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DataFolderParentPath
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 55
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nGets the path of the data folder parent\n"
+  example: []
+  syntax:
+    content: public string DataFolderParentPath()
+    return:
+      type: System.String
+      description: "\nThe parent folder path\n"
+    content.vb: Public Function DataFolderParentPath() As String
+  overload: Repetitionless.Editor.Data.MaterialDataManager.DataFolderParentPath*
+- uid: Repetitionless.Editor.Data.MaterialDataManager.DataFolderName
+  commentId: M:Repetitionless.Editor.Data.MaterialDataManager.DataFolderName
+  id: DataFolderName
+  parent: Repetitionless.Editor.Data.MaterialDataManager
+  langs:
+  - csharp
+  - vb
+  name: DataFolderName()
+  nameWithType: MaterialDataManager.DataFolderName()
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.DataFolderName()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DataFolderName
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 70
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nGets the data folder name\n"
+  example: []
+  syntax:
+    content: public string DataFolderName()
+    return:
+      type: System.String
+      description: "\nThe data folder name\n"
+    content.vb: Public Function DataFolderName() As String
+  overload: Repetitionless.Editor.Data.MaterialDataManager.DataFolderName*
+- uid: Repetitionless.Editor.Data.MaterialDataManager.DataFolderPath
+  commentId: M:Repetitionless.Editor.Data.MaterialDataManager.DataFolderPath
+  id: DataFolderPath
+  parent: Repetitionless.Editor.Data.MaterialDataManager
+  langs:
+  - csharp
+  - vb
+  name: DataFolderPath()
+  nameWithType: MaterialDataManager.DataFolderPath()
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.DataFolderPath()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DataFolderPath
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 81
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nGets the data folder path\n"
+  example: []
+  syntax:
+    content: public string DataFolderPath()
+    return:
+      type: System.String
+      description: "\nThe data folder path\n"
+    content.vb: Public Function DataFolderPath() As String
+  overload: Repetitionless.Editor.Data.MaterialDataManager.DataFolderPath*
+- uid: Repetitionless.Editor.Data.MaterialDataManager.CreateAsset(UnityEngine.Object,System.String,System.Boolean)
+  commentId: M:Repetitionless.Editor.Data.MaterialDataManager.CreateAsset(UnityEngine.Object,System.String,System.Boolean)
+  id: CreateAsset(UnityEngine.Object,System.String,System.Boolean)
+  parent: Repetitionless.Editor.Data.MaterialDataManager
+  langs:
+  - csharp
+  - vb
+  name: CreateAsset(Object, string, bool)
+  nameWithType: MaterialDataManager.CreateAsset(Object, string, bool)
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.CreateAsset(UnityEngine.Object, string, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateAsset
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 136
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nCreates an asset in the data folder\n"
+  example: []
+  syntax:
+    content: public void CreateAsset(Object asset, string fileName, bool overwrite = false)
+    parameters:
+    - id: asset
+      type: UnityEngine.Object
+      description: "\nThe asset to create\n"
+    - id: fileName
+      type: System.String
+      description: "\nThe file name of the asset\n"
+    - id: overwrite
+      type: System.Boolean
+      description: "\nIf it will overwrite an asset with the same name if it exists\n"
+    content.vb: Public Sub CreateAsset(asset As [Object], fileName As String, overwrite As Boolean = False)
+  overload: Repetitionless.Editor.Data.MaterialDataManager.CreateAsset*
+  nameWithType.vb: MaterialDataManager.CreateAsset(Object, String, Boolean)
+  fullName.vb: Repetitionless.Editor.Data.MaterialDataManager.CreateAsset(UnityEngine.Object, String, Boolean)
+  name.vb: CreateAsset(Object, String, Boolean)
+- uid: Repetitionless.Editor.Data.MaterialDataManager.LoadAsset``1(System.String)
+  commentId: M:Repetitionless.Editor.Data.MaterialDataManager.LoadAsset``1(System.String)
+  id: LoadAsset``1(System.String)
+  parent: Repetitionless.Editor.Data.MaterialDataManager
+  langs:
+  - csharp
+  - vb
+  name: LoadAsset<T>(string)
+  nameWithType: MaterialDataManager.LoadAsset<T>(string)
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.LoadAsset<T>(string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: LoadAsset
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 160
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nLoads an asset from the data folder\n"
+  example: []
+  syntax:
+    content: 'public T LoadAsset<T>(string fileName) where T : Object'
+    parameters:
+    - id: fileName
+      type: System.String
+      description: "\nThe filename of the asset\n"
+    typeParameters:
+    - id: T
+      description: "\nThe asset type\n"
+    return:
+      type: '{T}'
+      description: "\nThe asset\n"
+    content.vb: Public Function LoadAsset(Of T As [Object])(fileName As String) As T
+  overload: Repetitionless.Editor.Data.MaterialDataManager.LoadAsset*
+  nameWithType.vb: MaterialDataManager.LoadAsset(Of T)(String)
+  fullName.vb: Repetitionless.Editor.Data.MaterialDataManager.LoadAsset(Of T)(String)
+  name.vb: LoadAsset(Of T)(String)
+- uid: Repetitionless.Editor.Data.MaterialDataManager.AssetExists(System.String)
+  commentId: M:Repetitionless.Editor.Data.MaterialDataManager.AssetExists(System.String)
+  id: AssetExists(System.String)
+  parent: Repetitionless.Editor.Data.MaterialDataManager
+  langs:
+  - csharp
+  - vb
+  name: AssetExists(string)
+  nameWithType: MaterialDataManager.AssetExists(string)
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.AssetExists(string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: AssetExists
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 178
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nChecks if an asset exists in the data folder with the given name\n"
+  example: []
+  syntax:
+    content: public bool AssetExists(string fileName)
+    parameters:
+    - id: fileName
+      type: System.String
+      description: "\nThe file name to check\n"
+    return:
+      type: System.Boolean
+      description: "\nIf the asset exists\n"
+    content.vb: Public Function AssetExists(fileName As String) As Boolean
+  overload: Repetitionless.Editor.Data.MaterialDataManager.AssetExists*
+  nameWithType.vb: MaterialDataManager.AssetExists(String)
+  fullName.vb: Repetitionless.Editor.Data.MaterialDataManager.AssetExists(String)
+  name.vb: AssetExists(String)
+- uid: Repetitionless.Editor.Data.MaterialDataManager.DeleteAsset(System.String)
+  commentId: M:Repetitionless.Editor.Data.MaterialDataManager.DeleteAsset(System.String)
+  id: DeleteAsset(System.String)
+  parent: Repetitionless.Editor.Data.MaterialDataManager
+  langs:
+  - csharp
+  - vb
+  name: DeleteAsset(string)
+  nameWithType: MaterialDataManager.DeleteAsset(string)
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.DeleteAsset(string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DeleteAsset
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 193
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nDeletes an asset in the data folder with the given name if it exists\n"
+  example: []
+  syntax:
+    content: public void DeleteAsset(string fileName)
+    parameters:
+    - id: fileName
+      type: System.String
+      description: "\nThe asset file name\n"
+    content.vb: Public Sub DeleteAsset(fileName As String)
+  overload: Repetitionless.Editor.Data.MaterialDataManager.DeleteAsset*
+  nameWithType.vb: MaterialDataManager.DeleteAsset(String)
+  fullName.vb: Repetitionless.Editor.Data.MaterialDataManager.DeleteAsset(String)
+  name.vb: DeleteAsset(String)
+references:
+- uid: Repetitionless.Editor.Data
+  commentId: N:Repetitionless.Editor.Data
+  name: Repetitionless.Editor.Data
+  nameWithType: Repetitionless.Editor.Data
+  fullName: Repetitionless.Editor.Data
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Repetitionless.Editor.Data.MaterialDataManager.Material*
+  commentId: Overload:Repetitionless.Editor.Data.MaterialDataManager.Material
+  name: Material
+  nameWithType: MaterialDataManager.Material
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.Material
+- uid: UnityEngine.Material
+  commentId: T:UnityEngine.Material
+  parent: UnityEngine
+  isExternal: true
+  name: Material
+  nameWithType: Material
+  fullName: UnityEngine.Material
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: Repetitionless.Editor.Data.MaterialDataManager.#ctor*
+  commentId: Overload:Repetitionless.Editor.Data.MaterialDataManager.#ctor
+  name: MaterialDataManager
+  nameWithType: MaterialDataManager.MaterialDataManager
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.MaterialDataManager
+  nameWithType.vb: MaterialDataManager.New
+  fullName.vb: Repetitionless.Editor.Data.MaterialDataManager.New
+  name.vb: New
+- uid: Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName*
+  commentId: Overload:Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName
+  name: GenerateFolderName
+  nameWithType: MaterialDataManager.GenerateFolderName
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Repetitionless.Editor.Data.MaterialDataManager.DataFolderParentPath*
+  commentId: Overload:Repetitionless.Editor.Data.MaterialDataManager.DataFolderParentPath
+  name: DataFolderParentPath
+  nameWithType: MaterialDataManager.DataFolderParentPath
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.DataFolderParentPath
+- uid: Repetitionless.Editor.Data.MaterialDataManager.DataFolderName*
+  commentId: Overload:Repetitionless.Editor.Data.MaterialDataManager.DataFolderName
+  name: DataFolderName
+  nameWithType: MaterialDataManager.DataFolderName
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.DataFolderName
+- uid: Repetitionless.Editor.Data.MaterialDataManager.DataFolderPath*
+  commentId: Overload:Repetitionless.Editor.Data.MaterialDataManager.DataFolderPath
+  name: DataFolderPath
+  nameWithType: MaterialDataManager.DataFolderPath
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.DataFolderPath
+- uid: Repetitionless.Editor.Data.MaterialDataManager.CreateAsset*
+  commentId: Overload:Repetitionless.Editor.Data.MaterialDataManager.CreateAsset
+  name: CreateAsset
+  nameWithType: MaterialDataManager.CreateAsset
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.CreateAsset
+- uid: UnityEngine.Object
+  commentId: T:UnityEngine.Object
+  parent: UnityEngine
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: UnityEngine.Object
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Repetitionless.Editor.Data.MaterialDataManager.LoadAsset*
+  commentId: Overload:Repetitionless.Editor.Data.MaterialDataManager.LoadAsset
+  name: LoadAsset
+  nameWithType: MaterialDataManager.LoadAsset
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.LoadAsset
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  commentId: '!:T'
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Repetitionless.Editor.Data.MaterialDataManager.AssetExists*
+  commentId: Overload:Repetitionless.Editor.Data.MaterialDataManager.AssetExists
+  name: AssetExists
+  nameWithType: MaterialDataManager.AssetExists
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.AssetExists
+- uid: Repetitionless.Editor.Data.MaterialDataManager.DeleteAsset*
+  commentId: Overload:Repetitionless.Editor.Data.MaterialDataManager.DeleteAsset
+  name: DeleteAsset
+  nameWithType: MaterialDataManager.DeleteAsset
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.DeleteAsset

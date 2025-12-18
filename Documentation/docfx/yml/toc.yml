@@ -1,4 +1,9 @@
 ### YamlMime:TableOfContent
+- uid: Repetitionless
+  name: Repetitionless
+  items:
+  - uid: Repetitionless.RepetitionlessTerrain
+    name: RepetitionlessTerrain
 - uid: Repetitionless.Compression
   name: Repetitionless.Compression
   items:
@@ -9,37 +14,93 @@
   items:
   - uid: Repetitionless.CustomDialog.ShaderGUIDialog
     name: ShaderGUIDialog
-- uid: Repetitionless.CustomWindows
-  name: Repetitionless.CustomWindows
+- uid: Repetitionless.Editor
+  name: Repetitionless.Editor
   items:
-  - uid: Repetitionless.CustomWindows.ConfigureArrayWindowLimited
+  - uid: Repetitionless.Editor.Constants
+    name: Constants
+- uid: Repetitionless.Editor.CustomWindows
+  name: Repetitionless.Editor.CustomWindows
+  items:
+  - uid: Repetitionless.Editor.CustomWindows.ConfigureArrayWindowLimited
     name: ConfigureArrayWindowLimited
-  - uid: Repetitionless.CustomWindows.Texture2DArrayWindowBase
+  - uid: Repetitionless.Editor.CustomWindows.Texture2DArrayWindowBase
     name: Texture2DArrayWindowBase
-- uid: Repetitionless.GUIUtilities
-  name: Repetitionless.GUIUtilities
+  - uid: Repetitionless.Editor.CustomWindows.WelcomeWindow
+    name: WelcomeWindow
+- uid: Repetitionless.Editor.Data
+  name: Repetitionless.Editor.Data
   items:
-  - uid: Repetitionless.GUIUtilities.GUIUtilities
+  - uid: Repetitionless.Editor.Data.MaterialDataManager
+    name: MaterialDataManager
+  - uid: Repetitionless.Editor.Data.RepetitionlessDataPacker
+    name: RepetitionlessDataPacker
+  - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+    name: RepetitionlessMaterialDataSO
+  - uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO
+    name: RepetitionlessTextureDataSO
+  - uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.LayerTextureData
+    name: RepetitionlessTextureDataSO.LayerTextureData
+  - uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData
+    name: RepetitionlessTextureDataSO.MaterialTextureData
+  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO
+    name: TerrainLayerSyncDataSO
+  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
+    name: TerrainLayerSyncDataSO.MaterialList
+  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
+    name: TerrainLayerSyncDataSO.TerrainLayerList
+- uid: Repetitionless.Editor.GUIUtilities
+  name: Repetitionless.Editor.GUIUtilities
+  items:
+  - uid: Repetitionless.Editor.GUIUtilities.GUIUtilities
     name: GUIUtilities
-  - uid: Repetitionless.GUIUtilities.TextureArrayGUIDrawer
+  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+    name: TextureArrayCustomChannelsGUIDrawer
+  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+    name: TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
+    name.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
+  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayGUIDrawer
     name: TextureArrayGUIDrawer
-- uid: Repetitionless.Inspectors
-  name: Repetitionless.Inspectors
+- uid: Repetitionless.Editor.Inspectors
+  name: Repetitionless.Editor.Inspectors
   items:
-  - uid: Repetitionless.Inspectors.RepetitionlessGUIBase
-    name: RepetitionlessGUIBase
-  - uid: Repetitionless.Inspectors.RepetitionlessGUIBase.MaterialFoldoutState
-    name: RepetitionlessGUIBase.MaterialFoldoutState
-  - uid: Repetitionless.Inspectors.RepetitionlessMasterGUI
-    name: RepetitionlessMasterGUI
-  - uid: Repetitionless.Inspectors.RepetitionlessTerrainGUI
-    name: RepetitionlessTerrainGUI
-- uid: Repetitionless.TextureUtilities
-  name: Repetitionless.TextureUtilities
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+    name: RepetitionlessMaterialEditorBase
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.MaterialFoldoutState
+    name: RepetitionlessMaterialEditorBase.MaterialFoldoutState
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails
+    name: RepetitionlessMaterialEditorBase.TextureDrawerDetails
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster
+    name: RepetitionlessMaterialEditorMaster
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
+    name: RepetitionlessMaterialEditorTerrain
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor
+    name: RepetitionlessTerrainEditor
+- uid: Repetitionless.Editor.Processors
+  name: Repetitionless.Editor.Processors
   items:
-  - uid: Repetitionless.TextureUtilities.Texture2DArrayUtilities
+  - uid: Repetitionless.Editor.Processors.PostPackageImport
+    name: PostPackageImport
+  - uid: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
+    name: RepetitionlessColourSpaceUpdater
+  - uid: Repetitionless.Editor.Processors.RepetitionlessMaterialProcessor
+    name: RepetitionlessMaterialProcessor
+  - uid: Repetitionless.Editor.Processors.TerrainLayerPostprocessor
+    name: TerrainLayerPostprocessor
+- uid: Repetitionless.Editor.TextureUtilities
+  name: Repetitionless.Editor.TextureUtilities
+  items:
+  - uid: Repetitionless.Editor.TextureUtilities.Texture2DArrayUtilities
     name: Texture2DArrayUtilities
-  - uid: Repetitionless.TextureUtilities.TextureUtilities
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+    name: TexturePacker
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+    name: TexturePacker.FromToChannel
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+    name: TexturePacker.TextureChannel
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+    name: TexturePacker.TextureData
+  - uid: Repetitionless.Editor.TextureUtilities.TextureUtilities
     name: TextureUtilities
 - uid: Repetitionless.Variables
   name: Repetitionless.Variables
@@ -50,3 +111,16 @@
     name: ESurfaceType
   - uid: Repetitionless.Variables.ETextureType
     name: ETextureType
+  - uid: Repetitionless.Variables.EUVSpace
+    name: EUVSpace
+  - uid: Repetitionless.Variables.RepetitionlessLayerData
+    name: RepetitionlessLayerData
+  - uid: Repetitionless.Variables.RepetitionlessLayerDataCompressed
+    name: RepetitionlessLayerDataCompressed
+  - uid: Repetitionless.Variables.RepetitionlessMaterialData
+    name: RepetitionlessMaterialData
+  - uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+    name: RepetitionlessMaterialDataCompressed
+  - uid: Repetitionless.Variables.SerializableDictionary`2
+    name: SerializableDictionary<TKey, TValue>
+    name.vb: SerializableDictionary(Of TKey, TValue)

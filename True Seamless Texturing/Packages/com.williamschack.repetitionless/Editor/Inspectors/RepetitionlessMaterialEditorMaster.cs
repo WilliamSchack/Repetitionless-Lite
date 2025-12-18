@@ -4,8 +4,20 @@ using UnityEditor;
 
 namespace Repetitionless.Editor.Inspectors
 {
+    /// <summary>
+    /// The editor for the regular repetitionless material
+    /// </summary>
     public class RepetitionlessMaterialEditorMaster : RepetitionlessMaterialEditorBase
     {
+        /// <summary>
+        /// Base OnGUI function
+        /// </summary>
+        /// <param name="materialEditor">
+        /// The material editor being used
+        /// </param>
+        /// <param name="properties">
+        /// The material properties
+        /// </param>
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
         {
             base.OnGUI(materialEditor, properties);

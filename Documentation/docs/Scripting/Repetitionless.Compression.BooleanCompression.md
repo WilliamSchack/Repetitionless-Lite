@@ -4,6 +4,12 @@
 
 Used to compress and extract an array of boolean values in a single integer
 
+## Variables
+
+| Variable | Description |
+|----------|-------------|
+| MAX_VALUES | The max values that can be stored in one compressed integer (32-bit integer) |
+
 ---
 
 ## CompressValues(params bool[])
@@ -103,6 +109,56 @@ Value at the given index
 ### Description
 
 Gets a compressed value at a given index from the input compressedValues
+
+---
+
+## Split32BitInt(int)
+
+### Declaration
+
+``` csharp
+public static (ushort, ushort) Split32BitInt(int value)
+```
+
+### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| value | The integer to split |
+
+### Returns
+
+Item1: First half<br />
+Item2: Second half
+
+### Description
+
+Splits a 32 bit integer into two 16 bit integers
+
+---
+
+## Combine16BitInts(ushort, ushort)
+
+### Declaration
+
+``` csharp
+public static int Combine16BitInts(ushort firstHalf, ushort secondHalf)
+```
+
+### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| firstHalf | The first integer |
+| secondHalf | The second integer |
+
+### Returns
+
+The combined 32 bit integer
+
+### Description
+
+Combines two 16 bit integers into a 32 bit integer
 
 ---
 

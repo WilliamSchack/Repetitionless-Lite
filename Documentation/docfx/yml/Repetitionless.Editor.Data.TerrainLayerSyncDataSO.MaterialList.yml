@@ -1,0 +1,207 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
+  commentId: T:Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
+  id: TerrainLayerSyncDataSO.MaterialList
+  parent: Repetitionless.Editor.Data
+  children:
+  - Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList.Items
+  langs:
+  - csharp
+  - vb
+  name: TerrainLayerSyncDataSO.MaterialList
+  nameWithType: TerrainLayerSyncDataSO.MaterialList
+  fullName: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/TerrainLayerSyncDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: MaterialList
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/TerrainLayerSyncDataSO.cs
+    startLine: 34
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nList of materials<br />\nUsing a wrapper to allow serialization\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public class TerrainLayerSyncDataSO.MaterialList
+    content.vb: >-
+      <Serializable>
+
+      Public Class TerrainLayerSyncDataSO.MaterialList
+  inheritance:
+  - System.Object
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+- uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList.Items
+  commentId: F:Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList.Items
+  id: Items
+  parent: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
+  langs:
+  - csharp
+  - vb
+  name: Items
+  nameWithType: TerrainLayerSyncDataSO.MaterialList.Items
+  fullName: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList.Items
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/TerrainLayerSyncDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Items
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/TerrainLayerSyncDataSO.cs
+    startLine: 38
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nThe list of materials\n"
+  example: []
+  syntax:
+    content: >-
+      [SerializeField]
+
+      public List<Material> Items
+    return:
+      type: System.Collections.Generic.List{UnityEngine.Material}
+    content.vb: >-
+      <SerializeField>
+
+      Public Items As List(Of Material)
+  attributes:
+  - type: UnityEngine.SerializeField
+    ctor: UnityEngine.SerializeField.#ctor
+    arguments: []
+references:
+- uid: Repetitionless.Editor.Data
+  commentId: N:Repetitionless.Editor.Data
+  name: Repetitionless.Editor.Data
+  nameWithType: Repetitionless.Editor.Data
+  fullName: Repetitionless.Editor.Data
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.List{UnityEngine.Material}
+  commentId: T:System.Collections.Generic.List{UnityEngine.Material}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Material>
+  nameWithType: List<Material>
+  fullName: System.Collections.Generic.List<UnityEngine.Material>
+  nameWithType.vb: List(Of Material)
+  fullName.vb: System.Collections.Generic.List(Of UnityEngine.Material)
+  name.vb: List(Of Material)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: <
+  - uid: UnityEngine.Material
+    name: Material
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: UnityEngine.Material
+    name: Material
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true

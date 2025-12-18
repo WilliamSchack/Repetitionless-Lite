@@ -1,0 +1,189 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  commentId: T:Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  id: TexturePacker.FromToChannel
+  parent: Repetitionless.Editor.TextureUtilities
+  children:
+  - Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.#ctor(Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel,Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel)
+  - Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.From
+  - Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.To
+  langs:
+  - csharp
+  - vb
+  name: TexturePacker.FromToChannel
+  nameWithType: TexturePacker.FromToChannel
+  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  type: Struct
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: FromToChannel
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+    startLine: 37
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.TextureUtilities
+  summary: "\nContains which texture channel will be transfered to which other channel\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public struct TexturePacker.FromToChannel
+    content.vb: >-
+      <Serializable>
+
+      Public Structure TexturePacker.FromToChannel
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.From
+  commentId: F:Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.From
+  id: From
+  parent: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  langs:
+  - csharp
+  - vb
+  name: From
+  nameWithType: TexturePacker.FromToChannel.From
+  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.From
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: From
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+    startLine: 43
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.TextureUtilities
+  summary: "\nThe channel that will be taken from the original texture\n"
+  example: []
+  syntax:
+    content: public TexturePacker.TextureChannel From
+    return:
+      type: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+    content.vb: Public From As TexturePacker.TextureChannel
+- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.To
+  commentId: F:Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.To
+  id: To
+  parent: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  langs:
+  - csharp
+  - vb
+  name: To
+  nameWithType: TexturePacker.FromToChannel.To
+  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.To
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: To
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+    startLine: 47
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.TextureUtilities
+  summary: "\nThe channel which will be written to on the packed texture\n"
+  example: []
+  syntax:
+    content: public TexturePacker.TextureChannel To
+    return:
+      type: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+    content.vb: Public [To] As TexturePacker.TextureChannel
+- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.#ctor(Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel,Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel)
+  commentId: M:Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.#ctor(Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel,Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel)
+  id: '#ctor(Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel,Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel)'
+  parent: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  langs:
+  - csharp
+  - vb
+  name: FromToChannel(TextureChannel, TextureChannel)
+  nameWithType: TexturePacker.FromToChannel.FromToChannel(TexturePacker.TextureChannel, TexturePacker.TextureChannel)
+  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.FromToChannel(Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel, Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel)
+  type: Constructor
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: .ctor
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+    startLine: 58
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.TextureUtilities
+  summary: "\nFromToChannel Constructor\n"
+  example: []
+  syntax:
+    content: public FromToChannel(TexturePacker.TextureChannel from, TexturePacker.TextureChannel to)
+    parameters:
+    - id: from
+      type: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+      description: "\nThe channel that will be taken from the original texture \n"
+    - id: to
+      type: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+      description: "\nThe channel which will be written to\n"
+    content.vb: Public Sub New(from As TexturePacker.TextureChannel, [to] As TexturePacker.TextureChannel)
+  overload: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.#ctor*
+  nameWithType.vb: TexturePacker.FromToChannel.New(TexturePacker.TextureChannel, TexturePacker.TextureChannel)
+  fullName.vb: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.New(Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel, Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel)
+  name.vb: New(TextureChannel, TextureChannel)
+references:
+- uid: Repetitionless.Editor.TextureUtilities
+  commentId: N:Repetitionless.Editor.TextureUtilities
+  name: Repetitionless.Editor.TextureUtilities
+  nameWithType: Repetitionless.Editor.TextureUtilities
+  fullName: Repetitionless.Editor.TextureUtilities
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities
+    name: TextureUtilities
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities
+    name: TextureUtilities
+- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+  commentId: T:Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+  parent: Repetitionless.Editor.TextureUtilities
+  name: TexturePacker.TextureChannel
+  nameWithType: TexturePacker.TextureChannel
+  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+  spec.csharp:
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+    name: TexturePacker
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+    name: TextureChannel
+  spec.vb:
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+    name: TexturePacker
+  - name: .
+  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+    name: TextureChannel
+- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.#ctor*
+  commentId: Overload:Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.#ctor
+  name: FromToChannel
+  nameWithType: TexturePacker.FromToChannel.FromToChannel
+  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.FromToChannel
+  nameWithType.vb: TexturePacker.FromToChannel.New
+  fullName.vb: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel.New
+  name.vb: New
