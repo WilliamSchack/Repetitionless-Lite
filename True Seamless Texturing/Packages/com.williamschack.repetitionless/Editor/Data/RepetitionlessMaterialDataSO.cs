@@ -129,7 +129,12 @@ namespace Repetitionless.Editor.Data
         /// </param>
         public void UpdateMaterialTexture(MaterialProperty property, int layerIndex)
         {
-            if (property.propertyType != UnityEngine.Rendering.ShaderPropertyType.Texture) {
+#if UNITY_6000_2_OR_NEWER
+            if (property.propertyType != UnityEngine.Rendering.ShaderPropertyType.Texture
+#else
+            if (property.type != MaterialProperty.PropType.Texture
+#endif
+            ){
                 Debug.LogError("Property type must be a texture");
                 return;
             }
