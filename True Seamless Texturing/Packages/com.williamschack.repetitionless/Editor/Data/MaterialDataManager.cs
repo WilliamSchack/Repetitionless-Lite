@@ -19,7 +19,7 @@ namespace Repetitionless.Editor.Data
         /// <summary>
         /// The material this is handling data for
         /// </summary>
-        public Material Material { get { return _material; } }
+        public Material Material => _material;
 
         /// <summary>
         /// MaterialDataManager Constructor

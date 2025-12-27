@@ -29,7 +29,7 @@ namespace Repetitionless.Editor.GUIUtilities
         /// <summary>
         /// The array used for this field
         /// </summary>
-        public Texture2DArray Array { get { return _array; } }
+        public Texture2DArray Array => _array;
 
         // Array Settings
 

@@ -130,11 +130,11 @@ namespace Repetitionless.Editor.Data
         public void UpdateMaterialTexture(MaterialProperty property, int layerIndex)
         {
 #if UNITY_6000_2_OR_NEWER
-            if (property.propertyType != UnityEngine.Rendering.ShaderPropertyType.Texture
+            if (property.propertyType != UnityEngine.Rendering.ShaderPropertyType.Texture)
 #else
-            if (property.type != MaterialProperty.PropType.Texture
+            if (property.type != MaterialProperty.PropType.Texture)
 #endif
-            ){
+            {
                 Debug.LogError("Property type must be a texture");
                 return;
             }
@@ -245,7 +245,7 @@ namespace Repetitionless.Editor.Data
 
             Data[layerIndex].BlendMaskAssigned = textureData.LayersTextureData[layerIndex].BlendMaskTexture[0].Texture != null;
 
-            UpdateMaterialTexture(material, PROPERTIES_TEXTURE_PROP_NAME, layerIndex);
+            UpdateMaterialTexture(material, layerIndex);
         }
     #endif
     }

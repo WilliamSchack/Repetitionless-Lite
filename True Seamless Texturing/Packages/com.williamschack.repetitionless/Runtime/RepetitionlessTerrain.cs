@@ -32,14 +32,14 @@ namespace Repetitionless
         /// <summary>
         /// The main material set in the inspector
         /// </summary>
-        public Material MainMaterial { get { return _mainMaterial; } }
+        public Material MainMaterial => _mainMaterial;
         
         private Material _materialInstance;
 
         /// <summary>
         /// The instance of the material the terrain is using
         /// </summary>
-        public Material MaterialInstance { get { return _materialInstance; } }
+        public Material MaterialInstance => _materialInstance;
 
         /// <summary>
         /// If modifying the terrain layers will automatically update the material
@@ -59,11 +59,7 @@ namespace Repetitionless
             }
         }
 
-        private TerrainData _terrainData {
-            get {
-                return Terrain?.terrainData;
-            }
-        }
+        private TerrainData _terrainData => Terrain?.terrainData;
 
         /// <summary>
         /// The parent terrain that is handling this terrains material
