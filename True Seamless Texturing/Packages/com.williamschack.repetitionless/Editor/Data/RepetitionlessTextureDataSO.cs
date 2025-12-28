@@ -453,7 +453,7 @@ namespace Repetitionless.Editor.Data
 
             ushort[] pixelData = GetAssignedTexturesData();
             texture.SetPixelData(pixelData, 0);
-            texture.Apply();
+            texture.Apply(false);
 
             if ((Texture2D)property.textureValue != texture)
                 property.textureValue = texture;

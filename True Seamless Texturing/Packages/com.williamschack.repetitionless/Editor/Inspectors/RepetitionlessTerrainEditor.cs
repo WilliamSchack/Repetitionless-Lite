@@ -173,14 +173,22 @@ namespace Repetitionless.Editor.Inspectors
 
             // Update global layers sync data for layer saving
             if (TerrainLayersUpdated() && !_settingUpParent) {
+                bool updatingLayers = true;
                 if (_main.ParentTerrain != null)
+                    updatingLayers = EditorUtility.DisplayDialog("Updating Terrain Layers", "This will remove the parent from this terrain, do you want to continue?", "Continue", "Cancel");
+
+                if (updatingLayers) {
                     _parentTerrainProp.objectReferenceValue = null;
 
-                SyncLayersToMaterial();
-                if (_autoSaveProp.boolValue)
-                    UpdateMaterialTerrainLayerTextures();
+                    SyncLayersToMaterial();
+                    if (_autoSaveProp.boolValue)
+                        UpdateMaterialTerrainLayerTextures();
 
-                _main.OnTerrainLayersChanged?.Invoke(_terrainData.terrainLayers);
+                    _main.OnTerrainLayersChanged?.Invoke(_terrainData.terrainLayers);
+                } else {
+                    // Set terrain layers back to previous
+                    _terrainData.terrainLayers = _terrainLayers;
+                }
             }
 
             // Add scripts to terrain neighbours if added
