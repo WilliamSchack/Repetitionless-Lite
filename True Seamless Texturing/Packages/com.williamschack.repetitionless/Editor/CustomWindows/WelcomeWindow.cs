@@ -82,7 +82,7 @@ namespace Repetitionless.Editor.CustomWindows
             DrawLogo();
             GUILayout.Space(10);
 
-            int buttonMinWidth = Screen.width / 2 - 15;
+            float buttonMinWidth = position.width / 2 - 15;
 
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Online Documentation",  GUILayout.MinWidth(buttonMinWidth))) OpenDocumentation(false);
@@ -104,8 +104,10 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUIUtilities.EndBackgroundVertical();
 
+            EditorGUILayout.HelpBox("Thanks for using Repetitionless, please consider leaving a review on the Asset Store to support development, any feedback is appreciated!", MessageType.Info);
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.HelpBox("Thanks for using Repetitionless, please consider leaving a review on the Asset Store to support development", MessageType.Info);
+            if (GUILayout.Button("Asset Store", GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.ASSET_STORE_REVIEW_URL);
+            if (GUILayout.Button("Itch.io",     GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.ASSET_ITCH_URL);
             EditorGUILayout.EndHorizontal();
 
             GUIUtilities.BeginBackgroundHorizontal();
