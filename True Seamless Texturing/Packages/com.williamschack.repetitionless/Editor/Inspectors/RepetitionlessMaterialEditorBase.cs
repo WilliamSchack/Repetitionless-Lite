@@ -460,7 +460,10 @@ namespace Repetitionless.Editor.Inspectors
         {
             _triplanarEnabled = enabled;
 
-            _material.SetKeyword(_triplanarKeyword, enabled);
+            // Using a keyword variable with SetKeyword sometimes gives errors
+            if (enabled) _material.EnableKeyword(Constants.TRIPLANAR_KEYWORD);
+            else         _material.DisableKeyword(Constants.TRIPLANAR_KEYWORD);
+
             _material.SetInt(Constants.TRIPLANAR_KEYWORD, enabled ? 1 : 0); // Required to save for some reason
             EditorUtility.SetDirty(_material);
         }
@@ -483,8 +486,7 @@ namespace Repetitionless.Editor.Inspectors
              MaterialProperty uvSpaceProp = FindProperty("_UVSpace");
             _prevUVSpace = (EUVSpace)uvSpaceProp.floatValue;
             
-            _triplanarKeyword = new LocalKeyword(_material.shader, Constants.TRIPLANAR_KEYWORD);
-            _triplanarEnabled = _material.IsKeywordEnabled(_triplanarKeyword);
+            _triplanarEnabled = _material.IsKeywordEnabled(Constants.TRIPLANAR_KEYWORD);
 
             // Initialize array settings style and menu
             _arraySettingsButtonStyle = new GUIStyle("DropdownButton");
