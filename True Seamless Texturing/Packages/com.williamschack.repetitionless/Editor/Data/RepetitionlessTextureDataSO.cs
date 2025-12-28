@@ -17,6 +17,8 @@ namespace Repetitionless.Editor.Data
     /// </summary>
     public class RepetitionlessTextureDataSO : ScriptableObject
     {
+        private const TextureFormat TEXTURE_FORMAT = TextureFormat.RGBA64;
+
         /// <summary>
         /// The material property name of the array assigned textures texture
         /// </summary>
@@ -396,15 +398,12 @@ namespace Repetitionless.Editor.Data
             return;
         }
 
-        // Returns:
-        // Item1: First half
-        // Item2: Second half
         private ushort[] GetAssignedTexturesData()
         {
             // Split assigned textures value into two 16 bit integers
             // Cannot store single 32 bit integers in a texture
 
-            ushort[] data = new ushort[8 * 3]; // 8 pixels, 3 channels
+            ushort[] data = new ushort[8 * 4]; // 8 pixels, 4 channels
             for (int section = 0; section < 4; section++) {
                 for (int chunk = 0; chunk < 3; chunk++) {
                     int value = GetAssignedTexturesValue(section, chunk);
@@ -416,6 +415,13 @@ namespace Repetitionless.Editor.Data
                     data[offsetFirst]  = valueSplit.Item1;
                     data[offsetSecond] = valueSplit.Item2;
                 }
+
+                // Alpha is unused
+                // Only including an alpha because RGB48 doesnt work sometimes?
+                int offsetFirstAlpha = (section * 2 + 0) * 3 + 3;
+                int offsetSecondAlpha = (section * 2 + 1) * 3 + 3;
+                data[offsetFirstAlpha] = 0;
+                data[offsetSecondAlpha] = 0;
             }
 
             return data;
@@ -447,7 +453,7 @@ namespace Repetitionless.Editor.Data
                 texture = _dataManager.LoadAsset<Texture2D>(Constants.ARRAY_ASSIGNED_TEXTURES_ASSET_NAME);
             } else {
                 // Create a new texture
-                texture = new Texture2D(2, 4, TextureFormat.RGB48, false);
+                texture = new Texture2D(2, 4, TEXTURE_FORMAT, false);
                 _dataManager.CreateAsset(texture, Constants.ARRAY_ASSIGNED_TEXTURES_ASSET_NAME);
             }
 

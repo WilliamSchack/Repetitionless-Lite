@@ -38,7 +38,7 @@ namespace Repetitionless.Editor.CustomWindows
         [MenuItem("Window/Repetitionless/Open Window")]
         public static void Open()
         {
-            WelcomeWindow window = GetWindow<WelcomeWindow>(false, "Repetitionless ");
+            WelcomeWindow window = GetWindow<WelcomeWindow>(false, "Repetitionless");
             window.Show();
         }
 
