@@ -526,12 +526,6 @@ namespace Repetitionless.Editor.CustomWindows
         /// </summary>
         protected virtual void DisplayWarnings()
         {
-            // If using linear on non-birp display warning
-            if (_arrayLinear && GraphicsSettings.defaultRenderPipeline != null)
-            {
-                EditorGUILayout.HelpBox("Linear set to enabled while in URP/HDRP will result in a brighter texture output", MessageType.Warning);
-            }
-
             // If using mipmaps display warnings for some resolutions
             if (_arrayMipMaps)
             {
