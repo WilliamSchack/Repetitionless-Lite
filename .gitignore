@@ -79,3 +79,7 @@ crashlytics-build.properties
 
 # Builds
 /Testing\ Builds
+
+# Imported Samples
+/True Seamless Texturing/Assets/Samples/Repetitionless
+True Seamless Texturing/Assets/Samples/Repetitionless.meta

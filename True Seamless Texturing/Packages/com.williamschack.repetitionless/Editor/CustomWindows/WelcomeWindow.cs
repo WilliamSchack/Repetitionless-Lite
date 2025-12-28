@@ -104,7 +104,7 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUIUtilities.EndBackgroundVertical();
 
-            EditorGUILayout.HelpBox("Thanks for using Repetitionless, please consider leaving a review on the Asset Store to support development, any feedback is appreciated!", MessageType.Info);
+            EditorGUILayout.HelpBox("Thanks for using Repetitionless, please consider leaving a review to support development, any feedback is appreciated!", MessageType.Info);
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Asset Store", GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.ASSET_STORE_REVIEW_URL);
             if (GUILayout.Button("Itch.io",     GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.ASSET_ITCH_URL);
