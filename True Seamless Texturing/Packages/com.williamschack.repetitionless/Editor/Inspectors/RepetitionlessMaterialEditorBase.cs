@@ -9,6 +9,7 @@ namespace Repetitionless.Editor.Inspectors
     using GUIUtilities;
     using TextureUtilities;
     using CustomWindows;
+    using CustomDialog;
     using Variables;
     using Data;
 
@@ -118,8 +119,6 @@ namespace Repetitionless.Editor.Inspectors
         // Array Settings Button
 
         private GUIStyle _arraySettingsButtonStyle;
-
-        private GenericMenu _arraySettingsMenu;
 
         // Material Helpers
 
@@ -493,12 +492,6 @@ namespace Repetitionless.Editor.Inspectors
             _arraySettingsButtonStyle.normal.textColor = GUI.skin.button.normal.textColor;
             _arraySettingsButtonStyle.margin = GUI.skin.button.margin;
 
-            _arraySettingsMenu = new GenericMenu();
-            _arraySettingsMenu.AddItem(new GUIContent("AV Textures"),  false, () => { ShowArrayConfigureWindow(_textureData.AVTexturesDrawer); });
-            _arraySettingsMenu.AddItem(new GUIContent("NSO Textures"), false, () => { ShowArrayConfigureWindow(_textureData.NSOTexturesDrawer); });
-            _arraySettingsMenu.AddItem(new GUIContent("EM Textures"),  false, () => { ShowArrayConfigureWindow(_textureData.EMTexturesDrawer); });
-            _arraySettingsMenu.AddItem(new GUIContent("BM Textures"),  false, () => { ShowArrayConfigureWindow(_textureData.BMTexturesDrawer); });
-
             // Setup data
             _dataManager = new MaterialDataManager(_material);
 
@@ -726,7 +719,18 @@ namespace Repetitionless.Editor.Inspectors
             // Texture Array Settings
             GUILayout.Space(10);
             if (EditorGUILayout.DropdownButton(new GUIContent("Array Settings", "Configure the array settings:\nAV: Albedo (rgb), Variation (a)\nNSO: Normal (rg), Smoothness (b), Occlussion (a)\nEM: Emission (rgb), Metallic (a)\nBM: Blend Mask (r)"), FocusType.Keyboard, _arraySettingsButtonStyle)) {
-                _arraySettingsMenu.ShowAsContext();
+                // Create the menu with only the created arrays
+
+                GenericMenu arrayMenu = new GenericMenu();
+                bool addedItem = false;
+
+                if (_textureData.AVTexturesDrawer.Array != null)  { arrayMenu.AddItem(new GUIContent("AV Textures"),  false, () => { ShowArrayConfigureWindow(_textureData.AVTexturesDrawer); });  addedItem = true; }
+                if (_textureData.NSOTexturesDrawer.Array != null) { arrayMenu.AddItem(new GUIContent("NSO Textures"), false, () => { ShowArrayConfigureWindow(_textureData.NSOTexturesDrawer); }); addedItem = true; }
+                if (_textureData.EMTexturesDrawer.Array != null)  { arrayMenu.AddItem(new GUIContent("EM Textures"),  false, () => { ShowArrayConfigureWindow(_textureData.EMTexturesDrawer); });  addedItem = true; }
+                if (_textureData.BMTexturesDrawer.Array != null)  { arrayMenu.AddItem(new GUIContent("BM Textures"),  false, () => { ShowArrayConfigureWindow(_textureData.BMTexturesDrawer); });  addedItem = true; }
+
+                if (addedItem) arrayMenu.ShowAsContext();
+                else           ShaderGUIDialog.DisplayDialog("Cant Configure Arrays", "No textures are assigned so no arrays have been created. Textures need to be assigned before the arrays can be configured.", "OK", "");
             }
 
             // Data Folder
