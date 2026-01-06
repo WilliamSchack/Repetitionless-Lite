@@ -1181,7 +1181,7 @@
     "m_ObjectId": "032a91fd8751470b8bc5b5a2bb1096e5",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1138.999755859375,
+        "x": 1138.9998779296875,
         "y": 2665.0
     }
 }
@@ -1605,8 +1605,8 @@
     "m_ObjectId": "19d4874b048847f382a74bf505188aca",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 623.9998779296875,
-        "y": 1833.9998779296875
+        "x": 624.0,
+        "y": 1834.0001220703125
     }
 }
 
@@ -6197,10 +6197,10 @@
     "m_Guid": {
         "m_GuidSerialized": "d457cc67-2660-4131-8191-77a5552e4f51"
     },
-    "m_Name": "TriplanarKeyword",
+    "m_Name": "REPETITIONLESS_TRIPLANAR",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "TriplanarKeyword",
-    "m_DefaultReferenceName": "_TRIPLANARKEYWORD",
+    "m_RefNameGeneratedByDisplayName": "REPETITIONLESS_TRIPLANAR",
+    "m_DefaultReferenceName": "_REPETITIONLESS_TRIPLANAR",
     "m_OverrideReferenceName": "_REPETITIONLESS_TRIPLANAR",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

@@ -3188,10 +3188,10 @@
     "m_Guid": {
         "m_GuidSerialized": "88f275e3-f70a-47b4-8cb0-2c9b41c5c50b"
     },
-    "m_Name": "TriplanarKeyword",
+    "m_Name": "REPETITIONLESS_TRIPLANAR",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "TriplanarKeyword",
-    "m_DefaultReferenceName": "_TRIPLANARKEYWORD",
+    "m_RefNameGeneratedByDisplayName": "REPETITIONLESS_TRIPLANAR",
+    "m_DefaultReferenceName": "_REPETITIONLESS_TRIPLANAR",
     "m_OverrideReferenceName": "_REPETITIONLESS_TRIPLANAR",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -5075,7 +5075,7 @@
     "m_ObjectId": "df4e91497634418b8c0a28aae606bda3",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 982.0,
+        "x": 982.0000610351563,
         "y": 1858.0
     }
 }

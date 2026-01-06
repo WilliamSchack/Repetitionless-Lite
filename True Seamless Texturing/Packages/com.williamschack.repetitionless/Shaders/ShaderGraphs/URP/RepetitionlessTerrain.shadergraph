@@ -4026,10 +4026,10 @@
     "m_Guid": {
         "m_GuidSerialized": "156b3c60-435e-4574-9d92-54a64b8474d9"
     },
-    "m_Name": "TriplanarKeyword",
+    "m_Name": "REPETITIONLESS_TRIPLANAR",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "TriplanarKeyword",
-    "m_DefaultReferenceName": "_TRIPLANARKEYWORD",
+    "m_RefNameGeneratedByDisplayName": "REPETITIONLESS_TRIPLANAR",
+    "m_DefaultReferenceName": "_REPETITIONLESS_TRIPLANAR",
     "m_OverrideReferenceName": "_REPETITIONLESS_TRIPLANAR",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -5788,7 +5788,7 @@
     "m_ObjectId": "e80d2ba1ea164ac7a45185835c1cd08e",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 930.0,
+        "x": 929.9999389648438,
         "y": 1859.0
     }
 }
@@ -6126,8 +6126,8 @@
     "m_ObjectId": "eeda33e179ad4eb583fbd32997f23eff",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1232.0,
-        "y": 2690.0
+        "x": 1231.9998779296875,
+        "y": 2689.999755859375
     }
 }
 
