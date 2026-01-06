@@ -32,6 +32,44 @@ namespace Repetitionless.Editor.Data
             _material = material;
         }
 
+#if UNITY_EDITOR
+        /// <summary>
+        /// Gets a data manager from the path of an asset inside the data folder
+        /// </summary>
+        /// <param name="path">
+        /// The path of the asset from inside the data folder
+        /// </param>
+        public MaterialDataManager(Object dataAsset)
+        {
+            string assetPath = AssetDatabase.GetAssetPath(dataAsset);
+
+            // Get the folder paths that material is contained in
+            DirectoryInfo dataFolder = new DirectoryInfo(Path.GetDirectoryName(assetPath));
+            DirectoryInfo parentFolder = dataFolder.Parent;
+
+            // Convert parent path back to project relative (DirectoryInfo converts to full path)
+            string projectPath = Application.dataPath;
+            string projectRelativeParentPath = parentFolder.FullName.Replace(projectPath, "");
+            projectRelativeParentPath = $"Assets{projectRelativeParentPath}"; // Add Assets back
+
+            // Get Material
+            string materialFileName = dataFolder.Name;
+            materialFileName = materialFileName.Substring(0, materialFileName.Length - 5); // Remove _Data
+            materialFileName += ".mat";
+
+            string materialPath = $"{projectRelativeParentPath}/{materialFileName}";
+
+            Material mat = AssetDatabase.LoadAssetAtPath<Material>(materialPath);
+
+            if (mat == null) {
+                Debug.LogError("Unable to find material from data asset...");
+                return;
+            }
+
+            _material = mat;
+        }
+#endif
+
 #region Path
         /// <summary>
         /// Adds the folder suffix to the input name
