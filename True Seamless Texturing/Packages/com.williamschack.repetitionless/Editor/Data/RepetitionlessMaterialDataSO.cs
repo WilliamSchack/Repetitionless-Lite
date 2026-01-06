@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+using Repetitionless.Runtime.Variables;
+
 namespace Repetitionless.Editor.Data
 {
-    using Variables;
-
     /// <summary>
     /// Stores the material properties for a Repetitionless material<br />
     /// Creates and manages a texture storing these properties that will be passed to the shader

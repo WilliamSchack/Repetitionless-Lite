@@ -1,4 +1,4 @@
-namespace Repetitionless.Variables
+namespace Repetitionless.Runtime.Variables
 {
     /// <summary>
     /// Available surface types for Repetitionless Materials

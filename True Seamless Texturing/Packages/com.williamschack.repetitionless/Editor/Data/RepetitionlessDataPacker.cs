@@ -1,10 +1,10 @@
 using UnityEngine;
 
+using Repetitionless.Runtime.Variables;
+using Repetitionless.Runtime.Compression;
+
 namespace Repetitionless.Editor.Data
 {
-    using Variables;
-    using Compression;
-
     /// <summary>
     /// Compresses repetitionless material data
     /// </summary>
@@ -67,7 +67,7 @@ namespace Repetitionless.Editor.Data
             for (int i = 0; i < values.Length; i++) {
                 if (targetBools[i] == values[i])
                     continue;
-
+                
                 target = BooleanCompression.AddValue((int)target, i, values[i]);
                 valueChanged = true;
             }

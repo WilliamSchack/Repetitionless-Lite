@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-namespace Repetitionless.Compression
+namespace Repetitionless.Runtime.Compression
 {
     /// <summary>
     /// Used to compress and extract an array of boolean values in a single integer

@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEditor;
 
+using Repetitionless.Runtime.Variables;
+
 namespace Repetitionless.Editor.Inspectors
 {
     using GUIUtilities;
     using TextureUtilities;
     using CustomWindows;
     using CustomDialog;
-    using Variables;
     using Data;
 
     /// <summary>

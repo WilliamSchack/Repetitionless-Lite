@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+using Repetitionless.Runtime.Variables;
+
 namespace Repetitionless.Editor.Inspectors
 {
     using GUIUtilities;
     using TextureUtilities;
     using Data;
-    using Variables;
 
     /// <summary>
     /// The editor for the terrain repetitionless material

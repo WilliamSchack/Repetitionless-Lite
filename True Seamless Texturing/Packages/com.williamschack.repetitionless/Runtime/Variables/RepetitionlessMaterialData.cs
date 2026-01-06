@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Repetitionless.Variables
+namespace Repetitionless.Runtime.Variables
 {
     /// <summary>
     /// The material data for a repetitionless material

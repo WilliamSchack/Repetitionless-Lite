@@ -3,9 +3,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
+using Repetitionless.Runtime.Variables;
+
 namespace Repetitionless.Editor.Data
 {
-    using Variables;
     using GUIUtilities;
 
     /// <summary>

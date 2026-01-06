@@ -3,6 +3,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
+using Repetitionless.Runtime;
+
 namespace Repetitionless.Editor.Inspectors
 {
     using Data;

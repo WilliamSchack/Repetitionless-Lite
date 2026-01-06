@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Repetitionless.Variables
+namespace Repetitionless.Runtime.Variables
 {
     /// <summary>
     /// A simple serializable dictionary that uses two lists for keys and values

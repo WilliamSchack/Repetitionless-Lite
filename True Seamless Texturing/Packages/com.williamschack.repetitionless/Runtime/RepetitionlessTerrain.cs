@@ -16,7 +16,7 @@ using UnityEditor.SceneManagement;
 // Scene saved
 // Undo/Redo
 
-namespace Repetitionless
+namespace Repetitionless.Runtime
 {
     /// <summary>
     /// Handles Repetitionless materials interfacing with a terrain, automatically updating terrain textures and syncing the terrain layers to the material

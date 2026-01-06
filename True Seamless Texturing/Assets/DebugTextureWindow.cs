@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-using Repetitionless.Compression;
+using Repetitionless.Runtime.Compression;
 using Repetitionless.Editor.GUIUtilities;
 
 public class DebugTextureWindow : EditorWindow

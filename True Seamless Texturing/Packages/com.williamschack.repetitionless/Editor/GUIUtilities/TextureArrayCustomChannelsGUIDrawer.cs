@@ -9,9 +9,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
+using Repetitionless.Runtime.Compression;
+
 namespace Repetitionless.Editor.GUIUtilities
 {
-    using Compression;
     using TextureUtilities;
     using Data;
     using CustomDialog;

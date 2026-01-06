@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+using Repetitionless.Runtime;
+
 namespace Repetitionless.Samples
 {
     public class TerrainSceneSettings : MonoBehaviour
