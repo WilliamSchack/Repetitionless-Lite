@@ -147,12 +147,11 @@ void SampleRepetitionlessMaterial(
     float4 avTexture = 0;
     float4 nsoTexture = 0;
     float4 emTexture = 0;
-    if (samplingAV)  avTexture  = SampleRepetitionlessArrayTexture(AVTextures, AssignedAVTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+    if (samplingAV)  avTexture  = SampleRepetitionlessArrayTexture(AVTextures,  AssignedAVTextures,  ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
     if (samplingNSO) nsoTexture = SampleRepetitionlessArrayTexture(NSOTextures, AssignedNSOTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
-    if (samplingEM)  emTexture  = SampleRepetitionlessArrayTexture(EMTextures, AssignedEMTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+    if (samplingEM)  emTexture  = SampleRepetitionlessArrayTexture(EMTextures,  AssignedEMTextures,  ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
 
     // Albedo
-    //if (samplingAV) avTexture.rgb = LinearToSRGB(avTexture).rgb;
     AlbedoColorOut = samplingAV ? float4(avTexture.rgb, 1) : 1;
     AlbedoColorOut *= float4(MaterialData.AlbedoTint, 1);
 

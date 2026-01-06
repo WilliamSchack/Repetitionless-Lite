@@ -33,17 +33,15 @@ public class DebugTextureWindow : EditorWindow
         GUILayout.Space(10);
         _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
 
-        int channels = 3;
+        int channels = 4;
         for (int i = 0; i < _textureData.Length / channels; i++) {
             GUIUtilities.DrawHeaderLabelLarge($"Pixel {i}");
 
             int dataIndex = i * channels;
-            ushort[] data = {
-                _textureData[dataIndex + 0],
-                _textureData[dataIndex + 1],
-                _textureData[dataIndex + 2],
-                _textureData[dataIndex + 3]
-            };
+            ushort[] data = new ushort[channels];
+            for (int j = 0; j < channels; j++) {
+                data[j] = _textureData[dataIndex + j];
+            }
 
             for (int x = 0; x < data.Length; x++) {
                 int value = data[x];

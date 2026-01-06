@@ -132,7 +132,7 @@ void SampleRepetitionlessLayer_float(
     float  smoothness    = 0;
     float  occlussion    = 0;
     float3 emissionColor = 0;
-    
+
     float materialMask = 0;
     float farDistance  = 0;
 

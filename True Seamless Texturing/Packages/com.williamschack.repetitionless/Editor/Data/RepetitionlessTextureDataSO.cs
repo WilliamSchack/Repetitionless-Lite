@@ -404,25 +404,26 @@ namespace Repetitionless.Editor.Data
             // Split assigned textures value into two 16 bit integers
             // Cannot store single 32 bit integers in a texture
 
-            ushort[] data = new ushort[8 * 4]; // 8 pixels, 4 channels
+            int channels = 4;
+
+            ushort[] data = new ushort[8 * channels]; // 8 pixels
             for (int section = 0; section < 4; section++) {
+                // x = 0 first half, x = 1 second half
+                int offsetFirst  = (section * 2 + 0) * channels;
+                int offsetSecond = (section * 2 + 1) * channels;
+
                 for (int chunk = 0; chunk < 3; chunk++) {
                     int value = GetAssignedTexturesValue(section, chunk);
                     (ushort, ushort) valueSplit = BooleanCompression.Split32BitInt(value);
 
-                    // x = 0 first half, x = 1 second half
-                    int offsetFirst    = (section * 2 + 0) * 3 + chunk;
-                    int offsetSecond   = (section * 2 + 1) * 3 + chunk;
-                    data[offsetFirst]  = valueSplit.Item1;
-                    data[offsetSecond] = valueSplit.Item2;
+                    data[offsetFirst + chunk]  = valueSplit.Item1;
+                    data[offsetSecond + chunk] = valueSplit.Item2;
                 }
 
                 // Alpha is unused
                 // Only including an alpha because RGB48 doesnt work sometimes?
-                int offsetFirstAlpha = (section * 2 + 0) * 3 + 3;
-                int offsetSecondAlpha = (section * 2 + 1) * 3 + 3;
-                data[offsetFirstAlpha] = 0;
-                data[offsetSecondAlpha] = 0;
+                data[offsetFirst + 3]  = 0;
+                data[offsetSecond + 3] = 0;
             }
 
             return data;
