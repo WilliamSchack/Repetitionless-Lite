@@ -26,10 +26,27 @@ namespace Repetitionless.Editor.Processors
                 if (terrainLayer == null || !_syncData.TerrainLayerToMaterial.ContainsKey(terrainLayer))
                     continue;
 
-                _syncData.UpdateLayerMaterialsData(terrainLayer);
+                UpdateAllRepetitionlessDataUsingLayer(terrainLayer);
             }
 
             return paths;
+        }
+
+        private static void UpdateAllRepetitionlessDataUsingLayer(TerrainLayer layer)
+        {
+            string[] layerSOGuids = AssetDatabase.FindAssets("t:RepetitionlessTerrainLayersSO", new string[] { "Assets" });
+
+            foreach (string guid in layerSOGuids) {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                if (path == "") continue;
+
+                RepetitionlessTerrainLayersSO so = AssetDatabase.LoadAssetAtPath<RepetitionlessTerrainLayersSO>(path);
+                if (so == null || so.TerrainLayers == null) continue;
+
+                // Update data
+                if (so.TerrainLayers.Contains(layer))
+                    so.UpdateLayerMaterialData(layer);
+            }
         }
     }
 }
