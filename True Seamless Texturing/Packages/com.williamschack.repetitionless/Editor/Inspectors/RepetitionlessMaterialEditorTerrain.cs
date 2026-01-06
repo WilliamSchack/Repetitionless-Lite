@@ -22,7 +22,9 @@ namespace Repetitionless.Editor.Inspectors
         /// </summary>
         protected override int _maxLayers => 32;
 
-        private List<TerrainLayer> _terrainLayers;
+        private RepetitionlessTerrainLayersSO _materialTerrainLayers;
+
+        private List<TerrainLayer> _terrainLayers => _materialTerrainLayers.TerrainLayers;
 
         private int _currentLayerIndex = 0;
         private bool _showingTerrainLayers = false;
@@ -51,12 +53,19 @@ namespace Repetitionless.Editor.Inspectors
 
             base.OnEnable(materialEditor);
 
+            // Get terrain layer data SO
+            if (_dataManager.AssetExists(Constants.TERRAIN_LAYERS_DATA_FILE_NAME))
+                _materialTerrainLayers = _dataManager.LoadAsset<RepetitionlessTerrainLayersSO>(Constants.TERRAIN_LAYERS_DATA_FILE_NAME);
+            else {
+                _materialTerrainLayers = ScriptableObject.CreateInstance<RepetitionlessTerrainLayersSO>();
+                _dataManager.CreateAsset(_materialTerrainLayers, Constants.TERRAIN_LAYERS_DATA_FILE_NAME);
+
+                _materialTerrainLayers.Save();
+                AssetDatabase.SaveAssetIfDirty(_materialTerrainLayers);
+            }
+
             // Set terrain compatible tag
             _material.SetOverrideTag("TerrainCompatible", "True");
-
-            // Load terrain layers
-            TerrainLayerSyncDataSO syncData = TerrainLayerSyncDataSO.Load();
-            _terrainLayers = syncData.MaterialToTerrainLayer.Get(_material)?.Items;
         }
 
         /// <summary>

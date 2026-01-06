@@ -14,14 +14,14 @@ namespace Repetitionless.Editor.Data
 
     public class RepetitionlessTerrainLayersSO : ScriptableObject
     {
-        [SerializeField] private List<TerrainLayer> _terrainLayers;
+        [SerializeField] private List<TerrainLayer> _terrainLayers = new List<TerrainLayer>();
         public List<TerrainLayer> TerrainLayers => _terrainLayers;
 
         private MaterialDataManager _dataManagerCache;
         private MaterialDataManager _dataManager {
             get {
                 if (_dataManagerCache != null)
-                    return _dataManager;
+                    return _dataManagerCache;
 
                 _dataManagerCache = new MaterialDataManager(this);
                 return _dataManager;

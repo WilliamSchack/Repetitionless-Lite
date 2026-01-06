@@ -34,7 +34,8 @@ namespace Repetitionless.Editor.Data
 
 #if UNITY_EDITOR
         /// <summary>
-        /// Gets a data manager from the path of an asset inside the data folder
+        /// Gets a data manager from the path of an asset inside the data folder<br />
+        /// If the main material cannot be found, Material will be null
         /// </summary>
         /// <param name="path">
         /// The path of the asset from inside the data folder

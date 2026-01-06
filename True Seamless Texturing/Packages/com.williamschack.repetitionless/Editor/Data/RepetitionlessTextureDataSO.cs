@@ -103,7 +103,7 @@ namespace Repetitionless.Editor.Data
         private MaterialDataManager _dataManager {
             get {
                 if (_dataManagerCache != null)
-                    return _dataManager;
+                    return _dataManagerCache;
 
                 _dataManagerCache = new MaterialDataManager(this);
                 return _dataManager;
