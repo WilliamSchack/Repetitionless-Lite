@@ -512,11 +512,10 @@ namespace Repetitionless.Editor.Inspectors
                 AssetDatabase.SaveAssetIfDirty(_textureData);
             }
 
-            _textureData.SetupTextureDrawers(_dataManager);
+            _textureData.SetupTextureDrawers();
 
             if (_dataManager.AssetExists(Constants.PROPERTIES_FILE_NAME)) {
                 _materialProperties = _dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
-                _materialProperties.SetDataManager(_dataManager);
             } else {
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Properties", 0.3f);
                 progressBarUsed = true;
@@ -524,7 +523,6 @@ namespace Repetitionless.Editor.Inspectors
                 _materialProperties = ScriptableObject.CreateInstance<RepetitionlessMaterialDataSO>();
                 _dataManager.CreateAsset(_materialProperties, Constants.PROPERTIES_FILE_NAME);
                 _materialProperties.Init(_maxLayers);
-                _materialProperties.SetDataManager(_dataManager);
                 
                 _materialProperties.Save();
                 AssetDatabase.SaveAssetIfDirty(_materialProperties);

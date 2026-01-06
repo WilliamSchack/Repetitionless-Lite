@@ -78,7 +78,7 @@ namespace Repetitionless.Editor.Processors
                 }
 
                 // Repack AV Textures, others dont matter they are always linear
-                textureData.SetupTextureDrawers(materialData);
+                textureData.SetupTextureDrawers();
                 for (int i = 0; i < textureData.LayersTextureData.Length; i++) {
                     Texture2D albedoTexture = textureData.GetTextureData(i, 0, 0)[0].Texture;
                     if (albedoTexture == null) continue;

@@ -201,8 +201,7 @@ namespace Repetitionless.Editor.Data
                     }
 
                     // Setup data
-                    materialProperties.SetDataManager(materialData);
-                    textureData.SetupTextureDrawers(materialData);
+                    textureData.SetupTextureDrawers();
 
                     // Get the layer index
                     int layerIndex = MaterialToTerrainLayer.Get(mat).Items.IndexOf(terrainLayer);
@@ -272,7 +271,7 @@ namespace Repetitionless.Editor.Data
             List<TerrainLayer> terrainLayers = MaterialToTerrainLayer.Get(material)?.Items;
             if (terrainLayers == null) return;
 
-            textureData.SetupTextureDrawers(materialData);
+            textureData.SetupTextureDrawers();
             RemoveArrayLayer(textureData.AVTexturesDrawer,  textureData, terrainLayers.Count);
             RemoveArrayLayer(textureData.NSOTexturesDrawer, textureData, terrainLayers.Count);
             RemoveArrayLayer(textureData.EMTexturesDrawer,  textureData, terrainLayers.Count);

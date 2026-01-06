@@ -99,7 +99,16 @@ namespace Repetitionless.Editor.Data
         [HideInInspector] public ColorSpace PackedColourSpace = ColorSpace.Uninitialized;
 
         // Non-Serializable
-        private MaterialDataManager _dataManager;
+        private MaterialDataManager _dataManagerCache;
+        private MaterialDataManager _dataManager {
+            get {
+                if (_dataManagerCache != null)
+                    return _dataManager;
+
+                _dataManagerCache = new MaterialDataManager(this);
+                return _dataManager;
+            }
+        }
 
         /// <summary>
         /// The AVTextures drawer<br />
@@ -484,13 +493,11 @@ namespace Repetitionless.Editor.Data
         /// <param name="dataManager">
         /// The data manager to use
         /// </param>
-        public void SetupTextureDrawers(MaterialDataManager dataManager)
+        public void SetupTextureDrawers()
         {
 #if UNITY_EDITOR
             if (AVTexturesDrawer != null) AVTexturesDrawer.OnTextureUpdated -= UpdatePackedColourSpace;
 #endif
-
-            _dataManager = dataManager;
 
             MaterialProperty avTexturesProp  = GetTexturesProp(0);
             MaterialProperty nsoTexturesProp = GetTexturesProp(1);

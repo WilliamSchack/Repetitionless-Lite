@@ -29,7 +29,16 @@ namespace Repetitionless.Editor.Data
         [HideInInspector] public RepetitionlessLayerData[] Data;
         [HideInInspector][SerializeField] private RepetitionlessLayerDataCompressed[] _dataCompressed;
 
-        private MaterialDataManager _dataManager;
+        private MaterialDataManager _dataManagerCache;
+        private MaterialDataManager _dataManager {
+            get {
+                if (_dataManagerCache != null)
+                    return _dataManager;
+
+                _dataManagerCache = new MaterialDataManager(this);
+                return _dataManager;
+            }
+        }
 
         /// <summary>
         /// Initializes this with a new set of data
@@ -56,18 +65,6 @@ namespace Repetitionless.Editor.Data
 #if UNITY_EDITOR
             EditorUtility.SetDirty(this);
 #endif
-        }
-
-        /// <summary>
-        /// Sets the data manager<br />
-        /// This is not serialized and this must be called for each session using this
-        /// </summary>
-        /// <param name="dataManager">
-        /// The data manager to use
-        /// </param>
-        public void SetDataManager(MaterialDataManager dataManager)
-        {
-            _dataManager = dataManager;
         }
 
     #if UNITY_EDITOR
