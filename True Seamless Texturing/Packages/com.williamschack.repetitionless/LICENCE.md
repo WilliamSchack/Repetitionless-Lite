@@ -13,6 +13,14 @@ Texture Array Essentials (https://u3d.as/3s4d)
 
 Scripts from this asset have a notice at the top
 
+// Noise Shaders
+
+Classic and Simplex noise functions are originally created by Stefan Gustavson but modified by Keijiro Takahashi for use in unity.
+The code is free and open source under the MIT License
+
+Github: https://github.com/keijiro/NoiseShader
+License: https://github.com/keijiro/NoiseShader/blob/master/LICENSE
+
 // =========== SAMPLES =========== //
 
 // Trees
