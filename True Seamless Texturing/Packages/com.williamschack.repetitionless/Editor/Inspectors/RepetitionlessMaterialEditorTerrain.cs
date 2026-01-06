@@ -136,7 +136,7 @@ namespace Repetitionless.Editor.Inspectors
 
             GUIUtilities.DrawHeaderLabelLarge("Terrain");
 
-            if (_terrainLayers == null) {
+            if (_terrainLayers == null || _terrainLayers.Count == 0) {
                 GUILayout.Label("No terrain layers found, editing layer 1");
                 GUIUtilities.EndBackgroundVertical();
                 return;
