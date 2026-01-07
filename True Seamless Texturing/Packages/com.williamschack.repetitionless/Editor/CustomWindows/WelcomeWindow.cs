@@ -32,13 +32,17 @@ namespace Repetitionless.Editor.CustomWindows
 
         private bool _stylesSetup = false;
 
+        private bool _showWelcomeMessage = false;
+
         /// <summary>
         /// Opens the window
         /// </summary>
         [MenuItem("Window/Repetitionless/Open Window")]
-        public static void Open()
+        public static void Open(bool showWelcomeMessage = false)
         {
             WelcomeWindow window = GetWindow<WelcomeWindow>(false, "Repetitionless");
+            window._showWelcomeMessage = showWelcomeMessage;
+
             window.Show();
         }
 
@@ -96,9 +100,10 @@ namespace Repetitionless.Editor.CustomWindows
 
             if (GUILayout.Button("Import Samples")) ImportSamples();
 
-            GUILayout.Space(20);
-
-            GUILayout.Label("Welcome to repetitionless! To get started view the getting started page in the documentation for instructions on how to use the asset, or import the samples for examples.", _boldLabelStyle);
+            if (_showWelcomeMessage) {
+                GUILayout.Space(20);
+                GUILayout.Label("Welcome to repetitionless! To get started view the getting started page in the documentation for instructions on how to use the asset, or import the samples for examples.", _boldLabelStyle);
+            }
 
             GUILayout.FlexibleSpace();
 

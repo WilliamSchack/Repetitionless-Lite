@@ -42,7 +42,7 @@ namespace Repetitionless.Editor.Processors
 
         private static void PackageImported(string packageName)
         {
-            WelcomeWindow.Open();
+            WelcomeWindow.Open(true);
             AssetDatabase.importPackageCompleted -= PackageImported;
         }
     }

@@ -3,7 +3,9 @@
   <Project Path="asset-store-tools-editor.csproj" />
   <Project Path="com.williamschack.Repetitionless.Editor.csproj" />
   <Project Path="SingularityGroup.HotReload.Runtime.Public.csproj" />
+  <Project Path="com.williamschack.Repetitionless.Samples.Editor.csproj" />
   <Project Path="SingularityGroup.HotReload.Runtime.csproj" />
   <Project Path="com.williamschack.Repetitionless.Runtime.csproj" />
+  <Project Path="com.williamschack.Repetitionless.Samples.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
 </Solution>
