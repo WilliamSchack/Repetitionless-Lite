@@ -127,6 +127,7 @@ MonoBehaviour:
       VariationNoiseScale: 100
       VariationNoiseOffset: {x: 0, y: 0}
       VariationTextureTO: {x: 5, y: 5, z: 0, w: 0}
+    GlobalTilingOffset: {x: 1, y: 1, z: 0, w: 0}
     DistanceBlendEnabled: 0
     DistanceBlendMode: 0
     DistanceBlendMinMax: {x: 100, y: 150}
@@ -176,3 +177,4 @@ MonoBehaviour:
     BlendMaskDistanceTO: {x: 0, y: 0, z: 0, w: 0}
     MaterialBlendSettings: {x: 0, y: 0, z: 0, w: 0}
     MaterialBlendMaskTO: {x: 0, y: 0, z: 0, w: 0}
+  _globalTilingOffset: {x: 1, y: 1, z: 0, w: 0}

@@ -21,7 +21,7 @@ MonoBehaviour:
       VariationEnabled: 0
       PackedTexture: 0
       EmissionEnabled: 0
-      AlbedoAssigned: 0
+      AlbedoAssigned: 1
       MetallicAssigned: 0
       SmoothnessAssigned: 0
       NormalAssigned: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
       VariationNoiseScale: 100
       VariationNoiseOffset: {x: 0, y: 0}
       VariationTextureTO: {x: 5, y: 5, z: 0, w: 0}
+    GlobalTilingOffset: {x: 1, y: 1, z: 0, w: 0}
     DistanceBlendEnabled: 0
     DistanceBlendMode: 0
     DistanceBlendMinMax: {x: 100, y: 150}
@@ -143,19 +144,19 @@ MonoBehaviour:
     BlendMaskTextureTO: {x: 1, y: 1, z: 0, w: 0}
   _dataCompressed:
   - BaseMaterialData:
-      Settings1: {x: 0, y: 0, z: 0, w: 0}
-      Settings2: {x: 0, y: 0, z: 0, w: 0}
-      Settings3: {x: 0, y: 0, z: 0, w: 0}
-      Settings4: {x: 0, y: 0, z: 0, w: 0}
-      Settings5: {x: 0, y: 0, z: 0, w: 0}
-      AlbedoTint: {x: 0, y: 0, z: 0}
+      Settings1: {x: 15, y: 1, z: 0, w: 0.5}
+      Settings2: {x: 1, y: 1, z: 0.5, w: 2}
+      Settings3: {x: 5, y: 2, z: 0.5, w: 0.3}
+      Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
+      Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
+      AlbedoTint: {x: 1, y: 1, z: 1}
       EmissionColour: {x: 0, y: 0, z: 0}
-      TilingOffset: {x: 0, y: 0, z: 0, w: 0}
-      VariationTO: {x: 0, y: 0, z: 0, w: 0}
+      TilingOffset: {x: 2, y: 2, z: 0, w: 0}
+      VariationTO: {x: 5, y: 5, z: 0, w: 0}
     FarMaterialData:
-      Settings1: {x: 0, y: 0, z: 0, w: 0}
-      Settings2: {x: 0, y: 0, z: 0, w: 0}
-      Settings3: {x: 0, y: 0, z: 0, w: 0}
+      Settings1: {x: 15, y: 0, z: 0, w: 0.5}
+      Settings2: {x: 1, y: 1, z: 0.5, w: 2}
+      Settings3: {x: 5, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 0, y: 0, z: 0, w: 0}
       Settings5: {x: 0, y: 0, z: 0, w: 0}
       AlbedoTint: {x: 0, y: 0, z: 0}
@@ -176,3 +177,4 @@ MonoBehaviour:
     BlendMaskDistanceTO: {x: 0, y: 0, z: 0, w: 0}
     MaterialBlendSettings: {x: 0, y: 0, z: 0, w: 0}
     MaterialBlendMaskTO: {x: 0, y: 0, z: 0, w: 0}
+  _globalTilingOffset: {x: 1, y: 1, z: 0, w: 0}
