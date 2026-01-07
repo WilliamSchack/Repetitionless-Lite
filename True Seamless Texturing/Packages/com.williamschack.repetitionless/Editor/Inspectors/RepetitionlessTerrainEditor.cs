@@ -114,7 +114,10 @@ namespace Repetitionless.Editor.Inspectors
 
         private void GetMaterialTerrainLayersData(Material mat)
         {
-            if (mat == null) return;
+            if (mat == null) {
+                _materialTerrainLayers = null;
+                return;
+            }
 
             MaterialDataManager dataManager = new MaterialDataManager(mat);
             _materialTerrainLayers = dataManager.LoadAsset<RepetitionlessTerrainLayersSO>(Constants.TERRAIN_LAYERS_DATA_FILE_NAME);
@@ -225,14 +228,19 @@ namespace Repetitionless.Editor.Inspectors
 
                         if (_materialTerrainLayers != null)
                             _materialTerrainLayers.ClearTerrainLayers();
-
                         GetMaterialTerrainLayersData(newMat);
-                        _main.UpdateTerrainMaterial(newMat);
+
+                        _main.UpdateTerrainMaterial(newMat, false);
+
+                        Debug.Log(_materialTerrainLayers);
 
                         // Assign textures after a frame so the material is properly assigned
                         EditorApplication.delayCall += () => {
                             UpdateMaterialTerrainLayerTextures();
                             SyncLayersToMaterial();
+
+                            // Assign after material has been initialized, will cause white light otherwise
+                            EditorApplication.delayCall += _main.AssignMaterialInstance;
                         };
                     } else {
                         _incorrectMaterial = true;
@@ -244,7 +252,8 @@ namespace Repetitionless.Editor.Inspectors
                     _autoSaveProp.boolValue = true;
 
                     if (_materialTerrainLayers != null)
-                            _materialTerrainLayers.ClearTerrainLayers();
+                        _materialTerrainLayers.ClearTerrainLayers();
+                    GetMaterialTerrainLayersData(null);
                 }
             }
         }

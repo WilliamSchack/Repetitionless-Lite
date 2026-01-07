@@ -74,7 +74,7 @@ namespace Repetitionless.Runtime
         /// <summary>
         /// Callback when the material is changed
         /// </summary>
-        public Action<Material> OnMaterialChanged;
+        public Action<Material> OnMaterialAssigned;
 
         /// <summary>
         /// Callback when the material textures are updated
@@ -105,11 +105,11 @@ namespace Repetitionless.Runtime
 
             if (ParentTerrain != null) {
                 ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
-                ParentTerrain.OnMaterialChanged         -= ParentMaterialChanged;
+                ParentTerrain.OnMaterialAssigned         -= ParentMaterialChanged;
                 ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
 
                 ParentTerrain.OnTerrainLayersChanged    += ParentTerrainLayersChanged;
-                ParentTerrain.OnMaterialChanged         += ParentMaterialChanged;
+                ParentTerrain.OnMaterialAssigned         += ParentMaterialChanged;
                 ParentTerrain.OnMaterialTexturesUpdated += ParentMaterialTexturesUpdated;
             }
 
@@ -131,7 +131,7 @@ namespace Repetitionless.Runtime
 
             if (ParentTerrain != null) {
                 ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
-                ParentTerrain.OnMaterialChanged         -= ParentMaterialChanged;
+                ParentTerrain.OnMaterialAssigned         -= ParentMaterialChanged;
                 ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
             }
     #endif
@@ -143,7 +143,7 @@ namespace Repetitionless.Runtime
         /// <param name="material">
         /// The material that will be instanced
         /// </param>
-        public void UpdateTerrainMaterial(Material material)
+        public void UpdateTerrainMaterial(Material material, bool assignMaterial = true)
         {
             _mainMaterial = material;
 
@@ -159,9 +159,19 @@ namespace Repetitionless.Runtime
                 _materialInstance = null;
             }
 
-            Terrain.materialTemplate = _materialInstance;
+            if (assignMaterial)
+                AssignMaterialInstance();
+        }
 
-            OnMaterialChanged?.Invoke(material);
+        /// <summary>
+        /// Assigns the currently used material instance to the terrain
+        /// </summary>
+        public void AssignMaterialInstance()
+        {
+            Debug.Log("ASSIGN INSTANCE");
+
+            Terrain.materialTemplate = _materialInstance;
+            OnMaterialAssigned?.Invoke(_mainMaterial);
         }
 
         /// <summary>
@@ -231,12 +241,12 @@ namespace Repetitionless.Runtime
         public void UpdateParentCallback(RepetitionlessTerrain newParent)
         {
             ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
-            ParentTerrain.OnMaterialChanged         -= ParentMaterialChanged;
+            ParentTerrain.OnMaterialAssigned         -= ParentMaterialChanged;
             ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
 
             if (newParent != null) {
                 newParent.OnTerrainLayersChanged    += ParentTerrainLayersChanged;
-                newParent.OnMaterialChanged         += ParentMaterialChanged;
+                newParent.OnMaterialAssigned         += ParentMaterialChanged;
                 newParent.OnMaterialTexturesUpdated += ParentMaterialTexturesUpdated;
             }
         }
