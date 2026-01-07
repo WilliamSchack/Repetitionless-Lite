@@ -674,7 +674,7 @@ namespace Repetitionless.Editor.Inspectors
                         break;
                 }
 
-                _materialProperties.ForceOnDataChangedCallback();
+                _materialProperties.CallOnExternalDataChanged();
             }
 
             // UV Space
@@ -692,7 +692,7 @@ namespace Repetitionless.Editor.Inspectors
                     SetTriplanarEnabled(false);
                 }
 
-                _materialProperties.ForceOnDataChangedCallback();
+                _materialProperties.CallOnExternalDataChanged();
             }
 
             // Triplanar
@@ -711,7 +711,7 @@ namespace Repetitionless.Editor.Inspectors
                     uvSpaceProp.floatValue = (int)_prevUVSpace;                   
                 }
 
-                _materialProperties.ForceOnDataChangedCallback();
+                _materialProperties.CallOnExternalDataChanged();
             }
 
             // Global Tiling & Offset
@@ -1351,7 +1351,7 @@ namespace Repetitionless.Editor.Inspectors
                 // If just started debugging, get previous debugging index
                 if (!prevDebugging) {
                     debuggingIndexProp.floatValue = _prevDebugIndex;
-                    _materialProperties.ForceOnDataChangedCallback();
+                    _materialProperties.CallOnExternalDataChanged();
                 }
 
                 // Title Label
@@ -1372,13 +1372,13 @@ namespace Repetitionless.Editor.Inspectors
                 if (EditorGUI.EndChangeCheck()) {
                     debuggingIndexProp.floatValue = debuggingIndex;
 
-                    _materialProperties.ForceOnDataChangedCallback();
+                    _materialProperties.CallOnExternalDataChanged();
                 }
             } else if (debuggingIndexProp.floatValue != -1) {
                 _prevDebugIndex = (int)debuggingIndexProp.floatValue;
                 debuggingIndexProp.floatValue = -1;
 
-                _materialProperties.ForceOnDataChangedCallback();
+                _materialProperties.CallOnExternalDataChanged();
             }
 
             // End Background

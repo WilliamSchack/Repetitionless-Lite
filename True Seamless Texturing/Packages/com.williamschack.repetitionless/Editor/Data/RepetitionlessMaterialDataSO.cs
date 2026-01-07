@@ -47,7 +47,11 @@ namespace Repetitionless.Editor.Data
             set => SetGlobalTilingOffset(value);
         }
 
-        public System.Action OnDataChanged;
+        /// <summary>
+        /// This is called by other classes when they have changed properties and manually called this<br />
+        /// It is not called when regular properties are changed by this class
+        /// </summary>
+        public System.Action OnExternalDataChanged;
 
         /// <summary>
         /// Initializes this with a new set of data
@@ -106,11 +110,11 @@ namespace Repetitionless.Editor.Data
         }
 
         /// <summary>
-        /// Invokes the OnDataChanged callback
+        /// Invokes the OnForcedDataChanged callback
         /// </summary>
-        public void ForceOnDataChangedCallback()
+        public void CallOnExternalDataChanged()
         {
-            OnDataChanged?.Invoke();
+            OnExternalDataChanged?.Invoke();
         }
 
         /// <summary>

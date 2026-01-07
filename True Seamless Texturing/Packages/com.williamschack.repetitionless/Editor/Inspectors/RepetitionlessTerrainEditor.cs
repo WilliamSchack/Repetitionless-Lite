@@ -110,7 +110,7 @@ namespace Repetitionless.Editor.Inspectors
         private void GetMaterialTerrainLayersData(Material mat)
         {
             if (_materialTextureData != null) _materialTextureData.OnDataChanged -= UpdateMaterialTerrainTextures;
-            if (_materialProperties != null)  _materialProperties.OnDataChanged  -= UpdateMaterialTerrainTextures;
+            if (_materialProperties != null)  _materialProperties.OnExternalDataChanged  -= UpdateMaterialTerrainTextures;
 
             if (mat == null) {
                 _materialTerrainData = null;
@@ -125,7 +125,7 @@ namespace Repetitionless.Editor.Inspectors
             _materialProperties  = dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
 
             _materialTextureData.OnDataChanged += UpdateMaterialTerrainTextures;
-            _materialProperties.OnDataChanged  += UpdateMaterialTerrainTextures;
+            _materialProperties.OnExternalDataChanged  += UpdateMaterialTerrainTextures;
         }
 
         private void OnEnable()
