@@ -234,7 +234,7 @@ namespace Repetitionless.Editor.TextureUtilities
                     int returned = ShaderGUIDialog.DisplayDialogComplex(
                         "Texture Resolution Difference",
                         $"Texture: {texture.width}x{texture.height} Array: {resolution.x}x{resolution.y}\n"
-                        + "Texture size is not the same as the array. Would you like to resize this texture to the array resolution, or resize the array to this texture resolution?",
+                        + "Texture size is not the same as the array. Would you like to resize this texture to the array resolution, or resize the array to this texture resolution?\n(This will not change the original texture)",
                         "Resize Texture", "Cancel", "Resize Array"
                     );
 
@@ -398,7 +398,7 @@ namespace Repetitionless.Editor.TextureUtilities
                 int returned = ShaderGUIDialog.DisplayDialogComplex(
                     "Texture Resolution Difference",
                     $"Texture: {texture.width}x{texture.height} Array: {array.width}x{array.height}\n"
-                    + "Texture size is not the same as they array. Would you like to resize this texture to the array resolution, or resize the array to this texture resolution?",
+                    + "Texture size is not the same as they array. Would you like to resize this texture to the array resolution, or resize the array to this texture resolution?\n(This will not change the original texture)",
                     "Resize Texture", "Cancel", "Resize Array"
                 );
 

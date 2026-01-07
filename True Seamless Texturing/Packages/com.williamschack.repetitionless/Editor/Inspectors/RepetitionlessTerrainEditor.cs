@@ -82,17 +82,6 @@ namespace Repetitionless.Editor.Inspectors
             // Update global data for terrain layer saving
             _materialTerrainData.UpdateTerrainLayers(_terrainData.terrainLayers);
 
-            // If any terrain layers added have the default tiling, change it to the repetitionless default tiling
-            Vector2 defaultTerrainLayerTiling   = new Vector2(2, 2);
-            Vector2 defaultRepetitionlessTiling = new Vector2(100, 100);
-
-            TerrainLayer[] addedTerrainLayers   = _terrainData.terrainLayers.Except(_terrainLayers).ToArray();
-            for (int i = 0; i < addedTerrainLayers.Length; i++) {
-                TerrainLayer terrainLayer = addedTerrainLayers[i];
-                if (terrainLayer.tileSize == defaultTerrainLayerTiling)
-                    terrainLayer.tileSize = defaultRepetitionlessTiling;
-            }
-
             // Update layers
             _terrainLayers = _terrainData.terrainLayers;
         }
