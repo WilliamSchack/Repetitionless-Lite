@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86c98a44b94ebc1b3b1f54733139dac6, type: 3}
   m_Name: TextureData
-  m_EditorClassIdentifier: com.williamschack.Repetitionless.Editor::Repetitionless.Data.RepetitionlessTextureDataSO
+  m_EditorClassIdentifier: com.williamschack.Repetitionless.Editor::Repetitionless.Editor.Data.RepetitionlessTextureDataSO
   LayersTextureData:
   - BaseMaterialTextures:
       AVTextures:

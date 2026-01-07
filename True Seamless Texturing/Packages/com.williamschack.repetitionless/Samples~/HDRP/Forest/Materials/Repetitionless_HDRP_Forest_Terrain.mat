@@ -96,11 +96,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EMTextures:
-        m_Texture: {fileID: 18700000, guid: 3ed7b3214e3f8af598bf2e3660e2ab5f, type: 2}
+        m_Texture: {fileID: 18700000, guid: de33c1553d20a3d499e6ded907eb0ab2, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NSOTextures:
-        m_Texture: {fileID: 18700000, guid: 2106655f0dca8d08fa3dbbcff1fefe0b, type: 2}
+        m_Texture: {fileID: 18700000, guid: d8852b8cf5cd3c7cb89cee42b5d65153, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PropertiesTexture:

@@ -55,8 +55,6 @@ namespace Repetitionless.Editor.Data
         /// </param>
         public void Init(int layerCount)
         {
-            Debug.Log("INIT");
-
             Data = new RepetitionlessLayerData[layerCount];
             for (int i = 0; i < layerCount; i++)
                 Data[i] = new RepetitionlessLayerData();
@@ -265,9 +263,6 @@ namespace Repetitionless.Editor.Data
             Data[layerIndex].BlendMaskAssigned = textureData.LayersTextureData[layerIndex].BlendMaskTexture[0].Texture != null;
 
             Save();
-
-            Debug.Log("UPDATING ASSIGNED");
-            Debug.Log(currentData.AlbedoAssigned);
 
             UpdateMaterialTexture(material, layerIndex);
         }

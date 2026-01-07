@@ -250,8 +250,7 @@ namespace Repetitionless.Editor.GUIUtilities
 
                 // Add textures to array in correct positions
                 int currentIndex = 0;
-                for (int i = 0; i < assignedTextures.Length; i++)
-                {
+                for (int i = 0; i < assignedTextures.Length; i++) {
                     if (assignedTextures[i]) {
                         _textures[i] = textures[currentIndex];
                         currentIndex++;

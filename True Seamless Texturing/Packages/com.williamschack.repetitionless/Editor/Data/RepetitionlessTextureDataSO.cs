@@ -401,8 +401,6 @@ namespace Repetitionless.Editor.Data
 
         private void AssignedTexturesSetter(int sectionIndex, int chunkIndex, int compressedValues)
         {
-            Debug.Log("updating assigned textures");
-
             ref int assignedTexturesVal = ref GetAssignedTexturesValue(sectionIndex, chunkIndex);
             assignedTexturesVal = compressedValues;
 

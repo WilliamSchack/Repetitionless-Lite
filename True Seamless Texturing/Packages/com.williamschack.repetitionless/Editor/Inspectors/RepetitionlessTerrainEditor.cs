@@ -221,8 +221,6 @@ namespace Repetitionless.Editor.Inspectors
 
                         _main.UpdateTerrainMaterial(newMat, false);
 
-                        Debug.Log(_materialTerrainData);
-
                         // Assign textures after a frame so the material is properly assigned
                         EditorApplication.delayCall += () => {
                             UpdateMaterialTerrainLayerTextures();
