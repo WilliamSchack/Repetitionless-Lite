@@ -32,7 +32,7 @@ namespace Repetitionless.Editor.Processors
                 string path = AssetDatabase.GUIDToAssetPath(guid);
                 if (path == "") continue;
 
-                RepetitionlessTerrainLayersSO so = AssetDatabase.LoadAssetAtPath<RepetitionlessTerrainLayersSO>(path);
+                RepetitionlessTerrainDataSO so = AssetDatabase.LoadAssetAtPath<RepetitionlessTerrainDataSO>(path);
                 if (so == null || so.TerrainLayers == null) continue;
 
                 // Update data

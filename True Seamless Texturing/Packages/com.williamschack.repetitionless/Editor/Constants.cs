@@ -23,7 +23,7 @@ namespace Repetitionless.Editor
 
         public const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
         public const string PROPERTIES_FILE_NAME = "Properties.asset";
-        public const string TERRAIN_LAYERS_DATA_FILE_NAME = "TerrainLayers.asset";
+        public const string TERRAIN_DATA_FILE_NAME = "TerrainData.asset";
 
         public const string PROPERTIES_TEXTURE_ASSET_NAME = "PropertiesTexture.asset";
         public const string ARRAY_ASSIGNED_TEXTURES_ASSET_NAME = "AssignedTextures.asset";

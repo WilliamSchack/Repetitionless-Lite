@@ -26,7 +26,7 @@ namespace Repetitionless.Editor.Inspectors
         private TerrainLayer[] _terrainLayers;
         private Terrain[] _terrainNeighbours = new Terrain[4];
 
-        private RepetitionlessTerrainLayersSO _materialTerrainLayers;
+        private RepetitionlessTerrainDataSO _materialTerrainData;
 
         private GUIStyle _headerStyle;
         private GUIStyle _headerStyleError;
@@ -80,7 +80,7 @@ namespace Repetitionless.Editor.Inspectors
                 return;
 
             // Update global data for terrain layer saving
-            _materialTerrainLayers.UpdateTerrainLayers(_terrainData.terrainLayers);
+            _materialTerrainData.UpdateTerrainLayers(_terrainData.terrainLayers);
 
             // If any terrain layers added have the default tiling, change it to the repetitionless default tiling
             Vector2 defaultTerrainLayerTiling   = new Vector2(2, 2);
@@ -106,7 +106,7 @@ namespace Repetitionless.Editor.Inspectors
 
                 // Will only update changed layers
                 for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
-                    _materialTerrainLayers.UpdateLayerMaterialData(_terrainData.terrainLayers[i]);
+                    _materialTerrainData.UpdateLayerMaterialData(_terrainData.terrainLayers[i]);
 
                 _main.UpdateMaterialTerrainTextures();
             };
@@ -115,12 +115,12 @@ namespace Repetitionless.Editor.Inspectors
         private void GetMaterialTerrainLayersData(Material mat)
         {
             if (mat == null) {
-                _materialTerrainLayers = null;
+                _materialTerrainData = null;
                 return;
             }
 
             MaterialDataManager dataManager = new MaterialDataManager(mat);
-            _materialTerrainLayers = dataManager.LoadAsset<RepetitionlessTerrainLayersSO>(Constants.TERRAIN_LAYERS_DATA_FILE_NAME);
+            _materialTerrainData = dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
         }
 
         private void OnEnable()
@@ -226,13 +226,13 @@ namespace Repetitionless.Editor.Inspectors
                         _parentTerrainProp.objectReferenceValue = null;
                         _autoSaveProp.boolValue = true;
 
-                        if (_materialTerrainLayers != null)
-                            _materialTerrainLayers.ClearTerrainLayers();
+                        if (_materialTerrainData != null)
+                            _materialTerrainData.ClearTerrainLayers();
                         GetMaterialTerrainLayersData(newMat);
 
                         _main.UpdateTerrainMaterial(newMat, false);
 
-                        Debug.Log(_materialTerrainLayers);
+                        Debug.Log(_materialTerrainData);
 
                         // Assign textures after a frame so the material is properly assigned
                         EditorApplication.delayCall += () => {
@@ -251,8 +251,8 @@ namespace Repetitionless.Editor.Inspectors
                     _parentTerrainProp.objectReferenceValue = null;
                     _autoSaveProp.boolValue = true;
 
-                    if (_materialTerrainLayers != null)
-                        _materialTerrainLayers.ClearTerrainLayers();
+                    if (_materialTerrainData != null)
+                        _materialTerrainData.ClearTerrainLayers();
                     GetMaterialTerrainLayersData(null);
                 }
             }

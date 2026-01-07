@@ -12,7 +12,7 @@ namespace Repetitionless.Editor.Data
 {
     using GUIUtilities;
 
-    public class RepetitionlessTerrainLayersSO : ScriptableObject
+    public class RepetitionlessTerrainDataSO : ScriptableObject
     {
         [SerializeField] private List<TerrainLayer> _terrainLayers = new List<TerrainLayer>();
         public List<TerrainLayer> TerrainLayers => _terrainLayers;
@@ -27,6 +27,8 @@ namespace Repetitionless.Editor.Data
                 return _dataManager;
             }
         }
+
+        public Vector4 TerrainGlobalScaleOffset = new Vector4(150, 150, 0, 0);
 
         /// <summary>
         /// Saves this object
