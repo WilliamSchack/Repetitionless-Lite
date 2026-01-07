@@ -319,8 +319,10 @@ namespace Repetitionless.Editor.Inspectors
 
             EditorGUI.BeginChangeCheck();
             drawPropertyAction();
-            if (EditorGUI.EndChangeCheck())
+            if (EditorGUI.EndChangeCheck()) {
                 UpdateMaterialPropertiesTexture(layerIndex);
+                _materialProperties.Save();
+            }
         }
 
         private void UpdateVariationTexture(int layerIndex, int sectionIndex, ETextureType prevVariationMode, bool forceRemove = false)

@@ -24,7 +24,7 @@ namespace Repetitionless.Editor.Data
                     return _dataManagerCache;
 
                 _dataManagerCache = new MaterialDataManager(this);
-                return _dataManager;
+                return _dataManagerCache;
             }
         }
 

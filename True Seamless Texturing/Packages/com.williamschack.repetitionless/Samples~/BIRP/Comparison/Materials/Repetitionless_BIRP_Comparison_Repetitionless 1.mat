@@ -41,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AssignedTexturesTexture:
-        m_Texture: {fileID: 2800000, guid: 8ff80826db496628b90b72870cea5ba0, type: 2}
+        m_Texture: {fileID: 2800000, guid: 53bf71c359e6139e38d74ec200fb579e, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BMTextures:

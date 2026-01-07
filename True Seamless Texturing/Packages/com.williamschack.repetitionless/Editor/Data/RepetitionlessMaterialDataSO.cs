@@ -36,7 +36,7 @@ namespace Repetitionless.Editor.Data
                     return _dataManagerCache;
 
                 _dataManagerCache = new MaterialDataManager(this);
-                return _dataManager;
+                return _dataManagerCache;
             }
         }
 
@@ -55,6 +55,8 @@ namespace Repetitionless.Editor.Data
         /// </param>
         public void Init(int layerCount)
         {
+            Debug.Log("INIT");
+
             Data = new RepetitionlessLayerData[layerCount];
             for (int i = 0; i < layerCount; i++)
                 Data[i] = new RepetitionlessLayerData();
@@ -62,6 +64,8 @@ namespace Repetitionless.Editor.Data
             _dataCompressed = new RepetitionlessLayerDataCompressed[layerCount];
             for (int i = 0; i < layerCount; i++)
                 _dataCompressed[i] = new RepetitionlessLayerDataCompressed();
+
+            Save();
         }
 
         /// <summary>
@@ -97,6 +101,8 @@ namespace Repetitionless.Editor.Data
             foreach (RepetitionlessLayerData layerData in Data) {
                 layerData.GlobalTilingOffset = _globalTilingOffset;
             }
+
+            Save();
         }
 
         /// <summary>
@@ -257,6 +263,11 @@ namespace Repetitionless.Editor.Data
             currentData.PackedTextureAssigned = packedTextureAssigned;
 
             Data[layerIndex].BlendMaskAssigned = textureData.LayersTextureData[layerIndex].BlendMaskTexture[0].Texture != null;
+
+            Save();
+
+            Debug.Log("UPDATING ASSIGNED");
+            Debug.Log(currentData.AlbedoAssigned);
 
             UpdateMaterialTexture(material, layerIndex);
         }

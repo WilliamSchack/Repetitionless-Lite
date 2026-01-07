@@ -102,11 +102,11 @@ namespace Repetitionless.Editor.Data
         private MaterialDataManager _dataManagerCache;
         private MaterialDataManager _dataManager {
             get {
-                if (_dataManagerCache != null)
+                if (_dataManagerCache?.Material != null)
                     return _dataManagerCache;
 
                 _dataManagerCache = new MaterialDataManager(this);
-                return _dataManager;
+                return _dataManagerCache;
             }
         }
 
@@ -401,6 +401,8 @@ namespace Repetitionless.Editor.Data
 
         private void AssignedTexturesSetter(int sectionIndex, int chunkIndex, int compressedValues)
         {
+            Debug.Log("updating assigned textures");
+
             ref int assignedTexturesVal = ref GetAssignedTexturesValue(sectionIndex, chunkIndex);
             assignedTexturesVal = compressedValues;
 

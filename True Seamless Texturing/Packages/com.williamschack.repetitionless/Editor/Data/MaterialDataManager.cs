@@ -48,10 +48,11 @@ namespace Repetitionless.Editor.Data
             DirectoryInfo dataFolder = new DirectoryInfo(Path.GetDirectoryName(assetPath));
             DirectoryInfo parentFolder = dataFolder.Parent;
 
-            // Convert parent path back to project relative (DirectoryInfo converts to full path)
-            string projectPath = Application.dataPath;
-            string projectRelativeParentPath = parentFolder.FullName.Replace(projectPath, "");
-            projectRelativeParentPath = $"Assets{projectRelativeParentPath}"; // Add Assets back
+            // Convert parent path to project path taking into account assets or packages
+            DirectoryInfo projectPath = new DirectoryInfo(Application.dataPath);
+
+            string projectRelativeParentPath = parentFolder.FullName.Replace(projectPath.Parent.FullName, "");
+            projectRelativeParentPath = projectRelativeParentPath.Substring(1, projectRelativeParentPath.Length - 1); // Remove first /
 
             // Get Material
             string materialFileName = dataFolder.Name;
