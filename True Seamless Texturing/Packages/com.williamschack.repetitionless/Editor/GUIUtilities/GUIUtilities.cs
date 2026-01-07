@@ -766,7 +766,7 @@ namespace Repetitionless.Editor.GUIUtilities
         /// <returns>
         /// The new tiling offset value
         /// </returns>
-        public static Vector4 DrawTilingOffset(Vector4 tilingOffset, string tilingLabel = "Scale", string offsetLabel = "Offset")
+        public static Vector4 DrawTilingOffset(Vector4 tilingOffset, string tilingLabel = "Tiling", string offsetLabel = "Offset")
         {
             Vector2 newTiling = new Vector2(tilingOffset.x, tilingOffset.y);
             EditorGUI.BeginChangeCheck();

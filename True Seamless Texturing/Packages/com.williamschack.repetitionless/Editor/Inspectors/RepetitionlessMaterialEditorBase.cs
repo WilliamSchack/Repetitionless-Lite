@@ -1060,7 +1060,7 @@ namespace Repetitionless.Editor.Inspectors
             if (surfaceTypeProp.floatValue == 1.0f)
                 DrawProperty(layerIndex, () => currentData.AlphaClipping = EditorGUI.Slider(GUIUtilities.GetLineRect(), "Alpha Clipping", currentData.AlphaClipping, 0, 1));
 
-            // Scale & OffsetDrawTexture
+            // Scale & Offset
             DrawProperty(layerIndex, () => currentData.TilingOffset = GUIUtilities.DrawTilingOffset(currentData.TilingOffset));
         }
 
@@ -1145,7 +1145,7 @@ namespace Repetitionless.Editor.Inspectors
                 DrawTexture(layerIndex, sectionIndex, 6, new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"));
                 
                 // Tiling & Offset
-                DrawProperty(layerIndex, () => currentData.VariationTextureTO = GUIUtilities.DrawTilingOffset(currentData.VariationTextureTO, "Variation Scale", "Variation Offset"));
+                DrawProperty(layerIndex, () => currentData.VariationTextureTO = GUIUtilities.DrawTilingOffset(currentData.VariationTextureTO, "Variation Tiling", "Variation Offset"));
             }
         }
         #endregion
