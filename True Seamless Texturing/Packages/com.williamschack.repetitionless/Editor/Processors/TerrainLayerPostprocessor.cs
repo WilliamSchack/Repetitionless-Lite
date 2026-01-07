@@ -24,6 +24,8 @@ namespace Repetitionless.Editor.Processors
 
         private static void UpdateAllRepetitionlessDataUsingLayer(TerrainLayer layer)
         {
+            // Find all the repetitionless terrain layer SOs and update them if they include this layer
+
             string[] layerSOGuids = AssetDatabase.FindAssets("t:RepetitionlessTerrainLayersSO", new string[] { "Assets" });
 
             foreach (string guid in layerSOGuids) {

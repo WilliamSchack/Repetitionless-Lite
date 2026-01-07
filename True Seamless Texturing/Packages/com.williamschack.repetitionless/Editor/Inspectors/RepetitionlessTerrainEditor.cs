@@ -255,7 +255,14 @@ namespace Repetitionless.Editor.Inspectors
             EditorGUILayout.PropertyField(_parentTerrainProp);
             if (EditorGUI.EndChangeCheck()) {
                 RepetitionlessTerrain newTerrain = (RepetitionlessTerrain)_parentTerrainProp.objectReferenceValue;
+
                 if (newTerrain != null) {
+                    // Cannot assign this terrain as the parent
+                    if (newTerrain == _main) {
+                        _parentTerrainProp.objectReferenceValue = _main.ParentTerrain;
+                        return;
+                    }
+
                     bool assigning = true;
                     if (_materialProp.objectReferenceValue != null)
                         assigning = EditorUtility.DisplayDialog("Assigning terrain parent", "This will overwrite the current material and terrain layers with the ones in the assigned terrain, do you want to continue?", "Continue", "Cancel");
