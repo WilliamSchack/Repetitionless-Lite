@@ -168,8 +168,6 @@ namespace Repetitionless.Runtime
         /// </summary>
         public void AssignMaterialInstance()
         {
-            Debug.Log("ASSIGN INSTANCE");
-
             Terrain.materialTemplate = _materialInstance;
             OnMaterialAssigned?.Invoke(_mainMaterial);
         }

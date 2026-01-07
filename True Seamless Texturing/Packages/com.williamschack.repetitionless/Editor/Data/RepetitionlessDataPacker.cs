@@ -95,7 +95,7 @@ namespace Repetitionless.Editor.Data
         /// Returns the changed variable index in the struct<br />
         /// If updateAll is enabled it will return the default -1
         /// </returns>
-        public static int UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed compressedData, RepetitionlessMaterialData newData, bool updateAll = false)
+        public static int UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed compressedData, RepetitionlessMaterialData newData, Vector4 globalTilingOffset, bool updateAll = false)
         {
             if (UpdateBoolsIfChanged(ref compressedData.Settings1.x,
                 newData.NoiseEnabled,
@@ -145,7 +145,7 @@ namespace Repetitionless.Editor.Data
             if (UpdateColourIfChanged(ref compressedData.AlbedoTint, newData.AlbedoTint) && !updateAll)         return 5;
             if (UpdateColourIfChanged(ref compressedData.EmissionColour, newData.EmissionColour) && !updateAll) return 6;
 
-            if (UpdateGenericIfChanged<Vector4>(ref compressedData.TilingOffset, newData.TilingOffset) && !updateAll) return 7;
+            if (UpdateGenericIfChanged<Vector4>(ref compressedData.TilingOffset, newData.TilingOffset + globalTilingOffset) && !updateAll) return 7;
 
             if (newData.VariationMode == ETextureType.CustomTexture) {
                 if (UpdateGenericIfChanged<Vector4>(ref compressedData.VariationTO, newData.VariationTextureTO) && !updateAll) return 8;
@@ -184,13 +184,13 @@ namespace Repetitionless.Editor.Data
         /// </returns>
         public static int UpdateCompressedLayerData(ref RepetitionlessLayerDataCompressed compressedData, RepetitionlessLayerData newData, bool updateAll = false)
         {
-            int baseMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.BaseMaterialData, newData.BaseMaterialData, updateAll);
+            int baseMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.BaseMaterialData, newData.BaseMaterialData, newData.GlobalTilingOffset, updateAll);
             if (baseMaterialChangedIndex != -1 && !updateAll) return baseMaterialChangedIndex;
 
-            int farMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.FarMaterialData, newData.FarMaterialData, updateAll);
+            int farMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.FarMaterialData, newData.FarMaterialData, newData.GlobalTilingOffset, updateAll);
             if (farMaterialChangedIndex != -1 && !updateAll) return farMaterialChangedIndex + Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT;
 
-            int blendMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.BlendMaterialData, newData.BlendMaterialData, updateAll);
+            int blendMaterialChangedIndex = UpdateCompressedMaterialData(ref compressedData.BlendMaterialData, newData.BlendMaterialData, newData.GlobalTilingOffset, updateAll);
             if (blendMaterialChangedIndex != -1 && !updateAll) return blendMaterialChangedIndex + Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT * 2;
 
             int startingChangedIndex = Constants.COMPRESSED_MATERIAL_VARIABLES_COUNT * Constants.MATERIALS_PER_LAYER_COUNT;

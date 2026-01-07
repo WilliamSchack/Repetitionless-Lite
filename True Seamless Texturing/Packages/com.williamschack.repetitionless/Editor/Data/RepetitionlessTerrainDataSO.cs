@@ -28,8 +28,6 @@ namespace Repetitionless.Editor.Data
             }
         }
 
-        public Vector4 TerrainGlobalScaleOffset = new Vector4(150, 150, 0, 0);
-
         /// <summary>
         /// Saves this object
         /// </summary>

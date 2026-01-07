@@ -706,6 +706,9 @@ namespace Repetitionless.Editor.Inspectors
                 }
             }
 
+            // Global Tiling & Offset
+            DrawProperty(0, () => { _materialProperties.GlobalTilingOffset = GUIUtilities.DrawTilingOffset(_materialProperties.GlobalTilingOffset, "Global Tiling", "Global Offset"); });
+
             // Advanced Options
             if (_editor != null) {
                 GUILayout.Space(10);

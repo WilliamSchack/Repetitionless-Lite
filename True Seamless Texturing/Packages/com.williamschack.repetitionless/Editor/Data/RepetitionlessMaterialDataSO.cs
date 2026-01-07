@@ -40,6 +40,13 @@ namespace Repetitionless.Editor.Data
             }
         }
 
+        // The global tiling offset that is being used for all the data
+        [HideInInspector][SerializeField] private Vector4 _globalTilingOffset = new Vector4(1, 1, 0, 0);
+        [HideInInspector] public Vector4 GlobalTilingOffset {
+            get => _globalTilingOffset;
+            set => SetGlobalTilingOffset(value);
+        }
+
         /// <summary>
         /// Initializes this with a new set of data
         /// </summary>
@@ -81,6 +88,15 @@ namespace Repetitionless.Editor.Data
             }
 
             return dataColours;
+        }
+
+        public void SetGlobalTilingOffset(Vector4 tilingOffset)
+        {
+            _globalTilingOffset = tilingOffset;
+
+            foreach (RepetitionlessLayerData layerData in Data) {
+                layerData.GlobalTilingOffset = _globalTilingOffset;
+            }
         }
 
         /// <summary>

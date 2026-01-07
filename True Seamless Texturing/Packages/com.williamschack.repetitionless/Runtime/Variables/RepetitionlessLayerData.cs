@@ -23,6 +23,13 @@ namespace Repetitionless.Runtime.Variables
         /// </summary>
         [SerializeField] public RepetitionlessMaterialData BlendMaterialData = new RepetitionlessMaterialData();
 
+        // Global Settings
+
+        /// <summary>
+        /// When packing this will update all the materials tiling offset
+        /// </summary>
+        public Vector4 GlobalTilingOffset = new Vector4(1, 1, 0, 0);
+
         // Distance Blend Settings
 
         /// <summary>

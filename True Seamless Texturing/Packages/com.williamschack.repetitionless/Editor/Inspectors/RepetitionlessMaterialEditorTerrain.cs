@@ -17,6 +17,8 @@ namespace Repetitionless.Editor.Inspectors
     /// </summary>
     public class RepetitionlessMaterialEditorTerrain : RepetitionlessMaterialEditorBase
     {
+        private static readonly Vector4 DEFAULT_GLOBAL_TILING_OFFSET = new Vector4(100, 100, 0, 0);
+
         /// <summary>
         /// The max amount of layers for the material
         /// </summary>
@@ -77,13 +79,8 @@ namespace Repetitionless.Editor.Inspectors
             MaterialProperty uvSpaceProp = FindProperty("_UVSpace");
             uvSpaceProp.floatValue = (int)EUVSpace.World;
 
-            // Set all tiling offset values to 100
-            Vector4 defaultTilingOffset = new Vector4(100, 100, 0, 0);
-            for (int i = 0; i < _materialProperties.Data.Length; i++) {
-                _materialProperties.Data[i].BaseMaterialData.TilingOffset  = defaultTilingOffset;
-                _materialProperties.Data[i].FarMaterialData.TilingOffset   = defaultTilingOffset / 2;
-                _materialProperties.Data[i].BlendMaterialData.TilingOffset = defaultTilingOffset;
-            }
+            // Update default global tiling offset
+            _materialProperties.SetGlobalTilingOffset(DEFAULT_GLOBAL_TILING_OFFSET);
         }
 
         /// <summary>
@@ -230,9 +227,10 @@ namespace Repetitionless.Editor.Inspectors
         {
             // Check for terrain layer properties
             RepetitionlessMaterialData baseData = GetMaterialData(layerIndex, 0);
-            float prevMetallic       = baseData.Metallic;
-            float prevSmoothness     = baseData.SmoothnessRoughness;
-            Vector4 prevTilingOffset = baseData.TilingOffset;
+            float prevMetallic             = baseData.Metallic;
+            float prevSmoothness           = baseData.SmoothnessRoughness;
+            Vector4 prevTilingOffset       = baseData.TilingOffset;
+            Vector4 prevGlobalTilingOffset = _materialProperties.GlobalTilingOffset;
 
             EditorGUI.BeginChangeCheck();
             base.DrawProperty(layerIndex, drawPropertyAction);
@@ -252,6 +250,13 @@ namespace Repetitionless.Editor.Inspectors
             if (prevTilingOffset != baseData.TilingOffset) {
                 terrainLayer.tileSize   = new Vector2(baseData.TilingOffset.x, baseData.TilingOffset.y);
                 terrainLayer.tileOffset = new Vector2(baseData.TilingOffset.z, baseData.TilingOffset.w);
+            }
+
+            if (prevGlobalTilingOffset != _materialProperties.GlobalTilingOffset) {
+                // Update for all layers, by default only updates layer 0
+                for (int i = 1; i < _maxLayers; i++) {
+                    UpdateMaterialPropertiesTexture(i);
+                }
             }
         }
     }
