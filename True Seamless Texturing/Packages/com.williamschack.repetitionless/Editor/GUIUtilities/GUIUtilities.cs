@@ -754,43 +754,6 @@ namespace Repetitionless.Editor.GUIUtilities
         /// Draws tiling offset fields using and updating values in a float4 materialProperty<br />
         /// Uses the DrawVector2Field function to remove empty space
         /// </summary>
-        /// <param name="tilingOffset">
-        /// The initial tiling offset value
-        /// </param>
-        /// <param name="tilingLabel">
-        /// The label to show for the tiling field
-        /// </param>
-        /// <param name="offsetLabel">
-        /// The label to show for the offset field
-        /// </param>
-        /// <returns>
-        /// The new tiling offset value
-        /// </returns>
-        public static Vector4 DrawTilingOffset(Vector4 tilingOffset, string tilingLabel = "Tiling", string offsetLabel = "Offset")
-        {
-            Vector2 newTiling = new Vector2(tilingOffset.x, tilingOffset.y);
-            EditorGUI.BeginChangeCheck();
-            newTiling = DrawVector2Field(newTiling, new GUIContent(tilingLabel));
-            if (EditorGUI.EndChangeCheck()) {
-                tilingOffset.x = newTiling.x;
-                tilingOffset.y = newTiling.y;
-            }
-
-            Vector2 newOffset = new Vector2(tilingOffset.z, tilingOffset.w);
-            EditorGUI.BeginChangeCheck();
-            newOffset = DrawVector2Field(newOffset, new GUIContent(offsetLabel));
-            if (EditorGUI.EndChangeCheck()) {
-                tilingOffset.z = newOffset.x;
-                tilingOffset.w = newOffset.y;
-            }
-
-            return tilingOffset;
-        }
-
-        /// <summary>
-        /// Draws tiling offset fields using and updating values in a float4 materialProperty<br />
-        /// Uses the DrawVector2Field function to remove empty space
-        /// </summary>
         /// <param name="tilingOffsetProperty">
         /// A float4 property that will be used and updated for the tiling and offset values
         /// </param>
@@ -808,6 +771,64 @@ namespace Repetitionless.Editor.GUIUtilities
             tilingOffset = DrawTilingOffset(tilingOffset, tilingLabel, offsetLabel);
             if (EditorGUI.EndChangeCheck())
                 tilingOffsetProperty.vectorValue = tilingOffset;
+        }
+
+        /// <summary>
+        /// Draws tiling offset fields using and updating values in a float4 materialProperty<br />
+        /// Uses the DrawVector2Field function to remove empty space
+        /// </summary>
+        /// <param name="tilingOffset">
+        /// The initial tiling offset value
+        /// </param>
+        /// <param name="tilingLabel">
+        /// The label to show for the tiling field
+        /// </param>
+        /// <param name="offsetLabel">
+        /// The label to show for the offset field
+        /// </param>
+        /// <returns>
+        /// The new tiling offset value
+        /// </returns>
+        public static Vector4 DrawTilingOffset(Vector4 tilingOffset, string tilingLabel = "Tiling", string offsetLabel = "Offset")
+        {
+            return DrawTilingOffset(tilingOffset, new GUIContent(tilingLabel), new GUIContent(offsetLabel));
+        }
+
+        /// <summary>
+        /// Draws tiling offset fields using and updating values in a float4 materialProperty<br />
+        /// Uses the DrawVector2Field function to remove empty space
+        /// </summary>
+        /// <param name="tilingOffset">
+        /// The initial tiling offset value
+        /// </param>
+        /// <param name="tilingContent">
+        /// The GUIContent to show for the tiling field
+        /// </param>
+        /// <param name="offsetContent">
+        /// The GUIContent to show for the offset field
+        /// </param>
+        /// <returns>
+        /// The new tiling offset value
+        /// </returns>
+        public static Vector4 DrawTilingOffset(Vector4 tilingOffset, GUIContent tilingContent, GUIContent offsetContent)
+        {
+            Vector2 newTiling = new Vector2(tilingOffset.x, tilingOffset.y);
+            EditorGUI.BeginChangeCheck();
+            newTiling = DrawVector2Field(newTiling, tilingContent);
+            if (EditorGUI.EndChangeCheck()) {
+                tilingOffset.x = newTiling.x;
+                tilingOffset.y = newTiling.y;
+            }
+
+            Vector2 newOffset = new Vector2(tilingOffset.z, tilingOffset.w);
+            EditorGUI.BeginChangeCheck();
+            newOffset = DrawVector2Field(newOffset, offsetContent);
+            if (EditorGUI.EndChangeCheck()) {
+                tilingOffset.z = newOffset.x;
+                tilingOffset.w = newOffset.y;
+            }
+
+            return tilingOffset;
         }
 
         /// <summary>
