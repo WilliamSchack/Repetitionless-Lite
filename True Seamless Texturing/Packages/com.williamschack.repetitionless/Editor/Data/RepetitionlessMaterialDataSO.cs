@@ -47,6 +47,8 @@ namespace Repetitionless.Editor.Data
             set => SetGlobalTilingOffset(value);
         }
 
+        public System.Action OnDataChanged;
+
         /// <summary>
         /// Initializes this with a new set of data
         /// </summary>
@@ -101,6 +103,14 @@ namespace Repetitionless.Editor.Data
             }
 
             Save();
+        }
+
+        /// <summary>
+        /// Invokes the OnDataChanged callback
+        /// </summary>
+        public void ForceOnDataChangedCallback()
+        {
+            OnDataChanged?.Invoke();
         }
 
         /// <summary>

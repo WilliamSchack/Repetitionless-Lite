@@ -1,5 +1,4 @@
 #if UNITY_EDITOR
-using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
@@ -27,6 +26,8 @@ namespace Repetitionless.Editor.Inspectors
         private Terrain[] _terrainNeighbours = new Terrain[4];
 
         private RepetitionlessTerrainDataSO _materialTerrainData;
+        private RepetitionlessTextureDataSO _materialTextureData;
+        private RepetitionlessMaterialDataSO _materialProperties;
 
         private GUIStyle _headerStyle;
         private GUIStyle _headerStyleError;
@@ -101,21 +102,36 @@ namespace Repetitionless.Editor.Inspectors
             };
         }
 
+        private void UpdateMaterialTerrainTextures()
+        {
+            _main.UpdateMaterialTerrainTextures();
+        }
+
         private void GetMaterialTerrainLayersData(Material mat)
         {
+            if (_materialTextureData != null) _materialTextureData.OnDataChanged -= UpdateMaterialTerrainTextures;
+            if (_materialProperties != null)  _materialProperties.OnDataChanged  -= UpdateMaterialTerrainTextures;
+
             if (mat == null) {
                 _materialTerrainData = null;
+                _materialTextureData = null;
+                _materialProperties  = null;
                 return;
             }
 
             MaterialDataManager dataManager = new MaterialDataManager(mat);
             _materialTerrainData = dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
+            _materialTextureData = dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
+            _materialProperties  = dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
+
+            _materialTextureData.OnDataChanged += UpdateMaterialTerrainTextures;
+            _materialProperties.OnDataChanged  += UpdateMaterialTerrainTextures;
         }
 
         private void OnEnable()
         {
-            Undo.undoRedoPerformed -= OnUndoRedo;
-            Undo.undoRedoPerformed += OnUndoRedo;
+            Undo.undoRedoPerformed -= UpdateMaterialTerrainTextures;
+            Undo.undoRedoPerformed += UpdateMaterialTerrainTextures;
 
             _main = (RepetitionlessTerrain)serializedObject.targetObject;
             GetMaterialTerrainLayersData(_main.MainMaterial);
@@ -147,14 +163,7 @@ namespace Repetitionless.Editor.Inspectors
 
         private void OnDisable()
         {
-            Undo.undoRedoPerformed -= OnUndoRedo;
-        }
-
-        // Check in the editor since we only care when we are editing this terrain
-        private void OnUndoRedo()
-        {
-            // Hole texture tends to break on undo, may aswell update other textures aswell incase anything happens
-            _main.UpdateMaterialTerrainTextures();
+            Undo.undoRedoPerformed -= UpdateMaterialTerrainTextures;
         }
 
         /// <summary>

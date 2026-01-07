@@ -131,6 +131,8 @@ namespace Repetitionless.Editor.Data
         /// </summary>
         public TextureArrayCustomChannelsGUIDrawer BMTexturesDrawer;
 
+        public System.Action OnDataChanged;
+
         /// <summary>
         /// Initializes this with a new set of texture data
         /// </summary>
@@ -477,6 +479,11 @@ namespace Repetitionless.Editor.Data
         }
 
 #if UNITY_EDITOR
+        private void OnTextureUpdated()
+        {
+            OnDataChanged?.Invoke();
+        }
+
         private void UpdatePackedColourSpace()
         {
             
@@ -496,7 +503,14 @@ namespace Repetitionless.Editor.Data
         public void SetupTextureDrawers()
         {
 #if UNITY_EDITOR
-            if (AVTexturesDrawer != null) AVTexturesDrawer.OnTextureUpdated -= UpdatePackedColourSpace;
+            if (AVTexturesDrawer != null) {
+                AVTexturesDrawer.OnTextureUpdated -= UpdatePackedColourSpace;
+
+                AVTexturesDrawer.OnTextureUpdated  -= OnTextureUpdated;
+                NSOTexturesDrawer.OnTextureUpdated -= OnTextureUpdated;
+                EMTexturesDrawer.OnTextureUpdated  -= OnTextureUpdated;
+                BMTexturesDrawer.OnTextureUpdated  -= OnTextureUpdated;
+            }
 #endif
 
             MaterialProperty avTexturesProp  = GetTexturesProp(0);
@@ -523,6 +537,11 @@ namespace Repetitionless.Editor.Data
 
 #if UNITY_EDITOR
             AVTexturesDrawer.OnTextureUpdated += UpdatePackedColourSpace;
+
+            AVTexturesDrawer.OnTextureUpdated  += OnTextureUpdated;
+            NSOTexturesDrawer.OnTextureUpdated += OnTextureUpdated;
+            EMTexturesDrawer.OnTextureUpdated  += OnTextureUpdated;
+            BMTexturesDrawer.OnTextureUpdated  += OnTextureUpdated;
 #endif
         }
 

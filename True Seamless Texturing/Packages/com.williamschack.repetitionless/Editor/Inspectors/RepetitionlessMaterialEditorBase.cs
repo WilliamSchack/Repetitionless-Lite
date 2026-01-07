@@ -673,6 +673,8 @@ namespace Repetitionless.Editor.Inspectors
                         }
                         break;
                 }
+
+                _materialProperties.ForceOnDataChangedCallback();
             }
 
             // UV Space
@@ -689,6 +691,8 @@ namespace Repetitionless.Editor.Inspectors
                 if (uvSpace == EUVSpace.Local) {
                     SetTriplanarEnabled(false);
                 }
+
+                _materialProperties.ForceOnDataChangedCallback();
             }
 
             // Triplanar
@@ -706,6 +710,8 @@ namespace Repetitionless.Editor.Inspectors
                 if (!_triplanarEnabled) {
                     uvSpaceProp.floatValue = (int)_prevUVSpace;                   
                 }
+
+                _materialProperties.ForceOnDataChangedCallback();
             }
 
             // Global Tiling & Offset
@@ -1336,6 +1342,7 @@ namespace Repetitionless.Editor.Inspectors
 
             // Debug Toggle
             bool prevDebugging = debuggingIndexProp.floatValue != -1;
+
             bool debugging = GUIUtilities.DrawMajorToggleButton(prevDebugging, "Debug");
 
             if (debugging) {
@@ -1344,6 +1351,7 @@ namespace Repetitionless.Editor.Inspectors
                 // If just started debugging, get previous debugging index
                 if (!prevDebugging) {
                     debuggingIndexProp.floatValue = _prevDebugIndex;
+                    _materialProperties.ForceOnDataChangedCallback();
                 }
 
                 // Title Label
@@ -1361,11 +1369,16 @@ namespace Repetitionless.Editor.Inspectors
                 EditorGUI.BeginChangeCheck();
                 float debuggingIndex = debuggingIndexProp.floatValue;
                 debuggingIndex = GUILayout.SelectionGrid((int)debuggingIndex, debugValues, 1);
-                if (EditorGUI.EndChangeCheck())
+                if (EditorGUI.EndChangeCheck()) {
                     debuggingIndexProp.floatValue = debuggingIndex;
+
+                    _materialProperties.ForceOnDataChangedCallback();
+                }
             } else if (debuggingIndexProp.floatValue != -1) {
                 _prevDebugIndex = (int)debuggingIndexProp.floatValue;
                 debuggingIndexProp.floatValue = -1;
+
+                _materialProperties.ForceOnDataChangedCallback();
             }
 
             // End Background

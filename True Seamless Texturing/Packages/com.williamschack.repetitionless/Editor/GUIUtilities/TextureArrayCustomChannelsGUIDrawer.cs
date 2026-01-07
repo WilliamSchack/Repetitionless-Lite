@@ -644,9 +644,10 @@ namespace Repetitionless.Editor.GUIUtilities
                 
                 // Set texture
                 _textures[index] = newTexture;
+                
+                OnTextureUpdated?.Invoke();
             }
 
-            OnTextureUpdated?.Invoke();
             return (newTexture, true);
         }
 
