@@ -1,6 +1,6 @@
 using UnityEditor.PackageManager;
 
-namespace Repetitionless.Editor.Data
+namespace Repetitionless.Editor.Config
 {
     public static class RepetitionlessPackageInfo
     {

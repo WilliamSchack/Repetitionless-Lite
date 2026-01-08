@@ -7,15 +7,13 @@ using UnityEditor;
 namespace Repetitionless.Editor.CustomWindows
 {
     using GUIUtilities;
-    using Data;
+    using Config;
 
     /// <summary>
     /// The welcome window that is shown when first installing the package
     /// </summary>
     public class WelcomeWindow : EditorWindow
     {
-        private const string PACKAGE_PATH = Constants.PACKAGE_PATH + "/package.json";
-
         private const string LOGO_FILE_NAME = "repetitionless_WelcomeLogo";
         private const int LOGO_HEIGHT = 60;
         private const int LOGO_PADDING = 3;

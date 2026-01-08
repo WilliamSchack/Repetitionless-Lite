@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 
-namespace Repetitionless.Editor.Data
+namespace Repetitionless.Editor.Config
 {
     public static class RepetitionlessPrefs
     {
