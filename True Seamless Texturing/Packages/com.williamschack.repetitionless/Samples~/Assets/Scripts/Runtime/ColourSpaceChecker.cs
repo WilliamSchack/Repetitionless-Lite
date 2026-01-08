@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Repetitionless.Samples
+namespace Repetitionless.Runtime.Samples
 {
 #if UNITY_EDITOR
     using Editor.Processors;

@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEditor;
 
+using Repetitionless.Runtime.Samples;
+
 namespace Repetitionless.Editor.Samples
 {
-    using Repetitionless.Samples;
-
     [CustomEditor(typeof(TerrainSceneSettings))]
     public class TerrainSceneSettingsEditor : UnityEditor.Editor
     {

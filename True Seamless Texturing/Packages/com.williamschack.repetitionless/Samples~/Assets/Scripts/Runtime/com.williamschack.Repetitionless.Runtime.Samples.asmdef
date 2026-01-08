@@ -1,5 +1,5 @@
 {
-    "name": "com.williamschack.Repetitionless.Samples",
+    "name": "com.williamschack.Repetitionless.Runtime.Samples",
     "rootNamespace": "",
     "references": [
         "GUID:a620bba248562f4889995c340a74987a",

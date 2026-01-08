@@ -1,5 +1,5 @@
 {
-    "name": "com.williamschack.Repetitionless.Samples.Editor",
+    "name": "com.williamschack.Repetitionless.Editor.Samples",
     "rootNamespace": "",
     "references": [
         "GUID:cea62e3c30e135774b649b33eb3b133c"
