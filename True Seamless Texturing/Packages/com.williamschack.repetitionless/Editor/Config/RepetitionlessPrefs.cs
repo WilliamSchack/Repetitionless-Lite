@@ -15,7 +15,12 @@ namespace Repetitionless.Editor.Config
         internal class Prefs
         {
             public bool WelcomeWindowShown = false;
-            public string LastCheckedVersion = "0.0.0";
+            public bool ReviewPopupShown = false;
+            
+            public string LastProcessedVersion = "0.0.0";
+            
+            public int LastDateUsed = 0;
+            public int NumDaysActive = 0;
         }
 
         private static Prefs _prefsCache;
