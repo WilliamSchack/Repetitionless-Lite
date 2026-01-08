@@ -717,7 +717,7 @@ namespace Repetitionless.Editor.Inspectors
             DrawProperty(0, () => {
                 _materialProperties.GlobalTilingOffset = GUIUtilities.DrawTilingOffset(
                     _materialProperties.GlobalTilingOffset,
-                    new GUIContent("Global Tiling", "Multiplied onto each materials tiling"),
+                    new GUIContent("Global Tiling", "Multiplied with each materials tiling"),
                     new GUIContent("Global Offset", "Added onto each materials offset")
                 );
             });

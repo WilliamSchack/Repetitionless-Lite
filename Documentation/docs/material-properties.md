@@ -1,3 +1,16 @@
+## Data Folder
+
+All the properties and textures are stored in a folder along side the material named<br />
+`<Material Name>_RepetitionlessData`
+
+This folder is automatically handled and you do not need to worry about it
+
+*This folder will automatically be moved and deleted with the material but will not be copied so if you need to copy a material you will need to manually copy the folder aswell*
+
+![image](Images/MaterialProperties/DataFolder.png)
+
+## Material Properties
+
 ![image](Images/MaterialProperties/MaterialProperties.png)
 
 Has all the general properties for the material
@@ -7,6 +20,8 @@ Has all the general properties for the material
 | Surface Type                     | The surface type of the material<br>0: Opaque<br>1: Cutout<br>2: Transparent                                                                                                                                                                                                        |
 | UV Space                         | Sets the UV Space<br>0: Local<br>1: World<br>*Note that with world space UVs you will require larger Tiling*                                                                                                                                                                        |
 | Triplanar                        | Enables triplanar sampling and forces world UVs<br>*Note that the first time this is set for a material it will take some time to finish as it will recompile the shader, it will be near instant for subsequent toggles*                                                           |
+| Global Tiling                    | This is multiplied with each materials tiling                                                                                                                                                                                                                                       |
+| Global Offset                    | This is added onto each of the materials offset                                                                                                                                                                                                                                     |
 | Global Illuminattion             | Controls if the global illumination is baked or realtime<br>0: Realtime<br>1: Baked<br>2: None                                                                                                                                                                                      |
 | Render Queue                     | Changes when the material is drawn                                                                                                                                                                                                                                                  |
 | Double Sided Global Illumination | If the lightmapper accounts for both sides of the geometry when calculating Global Illumination                                                                                                                                                                                     |

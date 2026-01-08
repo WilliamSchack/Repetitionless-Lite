@@ -33,7 +33,7 @@ To open the sample scenes you can go to their respective folders and open the sc
 
 ## Sample Settings
 
-The samples have a settings object that allows you to:
+The samples have a settings object that has buttons to:
 
 - Toggle between the repetitionless and regular lit materials
 - Modify and view the material settings used
