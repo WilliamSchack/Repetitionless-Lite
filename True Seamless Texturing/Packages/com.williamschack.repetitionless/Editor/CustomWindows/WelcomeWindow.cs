@@ -38,6 +38,14 @@ namespace Repetitionless.Editor.CustomWindows
         /// Opens the window
         /// </summary>
         [MenuItem("Window/Repetitionless/Open Window")]
+        public static void Open()
+        {
+            Open(false);
+        }
+
+        /// <summary>
+        /// Opens the window
+        /// </summary>
         public static void Open(bool showWelcomeMessage = false)
         {
             WelcomeWindow window = GetWindow<WelcomeWindow>(false, "Repetitionless");
