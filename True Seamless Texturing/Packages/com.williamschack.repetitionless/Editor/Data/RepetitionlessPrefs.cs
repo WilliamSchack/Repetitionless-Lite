@@ -1,8 +1,6 @@
 using System;
-using System.ComponentModel;
 using System.IO;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace Repetitionless.Editor.Data
 {
@@ -17,7 +15,7 @@ namespace Repetitionless.Editor.Data
         }
 
         private static Prefs _prefsCache;
-        private static Prefs _prefs => _prefsCache ??= LoadPrefs();
+        public static Prefs Data => _prefsCache ??= LoadPrefs();
 
         private static FileInfo GetPrefsFileInfo()
         {
@@ -61,8 +59,8 @@ namespace Repetitionless.Editor.Data
 
         public static void UpdatePrefs(Action<Prefs> updater)
         {
-            updater(_prefs);
-            WritePrefs(_prefs);
+            updater(Data);
+            WritePrefs(Data);
         }
     }
 }

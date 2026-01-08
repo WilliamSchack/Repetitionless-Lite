@@ -7,6 +7,7 @@ using UnityEditor;
 namespace Repetitionless.Editor.CustomWindows
 {
     using GUIUtilities;
+    using Data;
 
     /// <summary>
     /// The welcome window that is shown when first installing the package
@@ -18,8 +19,6 @@ namespace Repetitionless.Editor.CustomWindows
         private const string LOGO_FILE_NAME = "repetitionless_WelcomeLogo";
         private const int LOGO_HEIGHT = 60;
         private const int LOGO_PADDING = 3;
-
-        private UnityEditor.PackageManager.PackageInfo _packageInfo;
 
         private Texture _logoTextureDark;
         private Texture _logoTextureLight;
@@ -56,8 +55,6 @@ namespace Repetitionless.Editor.CustomWindows
 
         private void CreateGUI()
         {
-            _packageInfo = UnityEditor.PackageManager.PackageInfo.FindForAssetPath(PACKAGE_PATH);
-
             _logoTextureDark = Resources.Load<Texture>($"{LOGO_FILE_NAME}_Dark");
             _logoTextureLight = Resources.Load<Texture>($"{LOGO_FILE_NAME}_Light");
             _logoBackgroundDarkColour = new Color(20 / 256f, 20 / 256f, 20 / 256f);
@@ -125,7 +122,7 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUIUtilities.BeginBackgroundHorizontal();
     
-            GUILayout.Label($"v{_packageInfo.version}", _boldLabelStyle);
+            GUILayout.Label($"v{RepetitionlessPackageInfo.Info.version}", _boldLabelStyle);
 
             GUILayout.FlexibleSpace();
             GUIUtilities.EndBackgroundHorizontal();
@@ -172,7 +169,7 @@ namespace Repetitionless.Editor.CustomWindows
             string samplesCorePathFull = $"{projectPath}{Constants.SAMPLES_PATH_ASSETS}";
             string samplesPipelinePathFull = projectPath;
 
-            string targetBasePath = $"Assets/Samples/Repetitionless/{_packageInfo.version}";
+            string targetBasePath = $"Assets/Samples/Repetitionless/{RepetitionlessPackageInfo.Info.version}";
             string targetBasePathFull = $"{projectPath}{targetBasePath}";
 
             string targetCorePathFull = $"{targetBasePath}/Core Sample Assets";
