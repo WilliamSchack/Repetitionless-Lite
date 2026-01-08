@@ -6,10 +6,9 @@ namespace Repetitionless.Editor
         public const string ASSET_STORE_REVIEW_URL = ASSET_STORE_URL + "#reviews";
         public const string ASSET_ITCH_URL = "https://wilschack.itch.io/repetitionless";
 
-        public const string LIBRARY_PATH = "Library/com.williamschack.repetitionless";
-
         public const string PACKAGE_NAME = "com.williamschack.repetitionless";
         public const string PACKAGE_PATH = "Packages/" + PACKAGE_NAME;
+        public const string LIBRARY_PATH = "Library/" + PACKAGE_NAME;
 
         public const string SAMPLES_PATH = PACKAGE_PATH + "/Samples~";
         public const string SAMPLES_PATH_ASSETS = SAMPLES_PATH + "/Assets";

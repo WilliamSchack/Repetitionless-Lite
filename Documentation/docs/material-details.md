@@ -7,7 +7,7 @@ This folder is automatically handled and you do not need to worry about it
 
 *This folder will automatically be moved and deleted with the material but will not be copied so if you need to copy a material you will need to manually copy the folder aswell*
 
-![image](Images/MaterialProperties/DataFolder.png)
+![image](Images/MaterialDetails/DataFolder.png)
 
 ## Texture Packing
 
@@ -23,3 +23,13 @@ Arrays are split into:
 *Only the required arrays are created*
 
 ***To view what each property does, visit the [Material Properties](material-properties.md) page***
+
+## Colour Space
+
+sRGB textures (Albedo/Colour) are packed with the set colour space in mind. They will need to be repacked when changing the colour space
+
+There is a popup when changing the colour space if any textures need to be repacked that will automatically repack the textures for you.<br />
+Make sure to select **Update Textures to \<Colour Space\>** for the textures to look correct
+
+![image](Images/MaterialDetails/ColourSpacePopup.png)
+
