@@ -14,6 +14,8 @@ Creates and manages a texture storing these properties that will be passed to th
 |----------|-------------|
 | PROPERTIES_TEXTURE_PROP_NAME | The properties texture material property |
 | Data | The data for the material<br />Do not update this in the scriptable object, do it in the material inspector |
+| GlobalTilingOffset | The global tiling offset that is being used for all the data |
+| OnExternalDataChanged | This is called by other classes when they have changed properties and manually called this<br />It is not called when regular properties are changed by this class |
 
 ---
 
@@ -51,25 +53,37 @@ Saves this object
 
 ---
 
-## SetDataManager(MaterialDataManager)
+## SetGlobalTilingOffset(Vector4)
 
 ### Declaration
 
 ``` csharp
-public void SetDataManager(MaterialDataManager dataManager)
+public void SetGlobalTilingOffset(Vector4 tilingOffset)
 ```
 
 ### Parameters
 
 | Parameter | Description |
 |-----------|-------------|
-| dataManager | The data manager to use |
+| tilingOffset | The new tiling offset to use |
 
 ### Description
 
-Sets the data manager
+Sets the global tiling and offset for every layer
 
-This is not serialized and this must be called for each session using this
+---
+
+## CallOnExternalDataChanged()
+
+### Declaration
+
+``` csharp
+public void CallOnExternalDataChanged()
+```
+
+### Description
+
+Invokes the OnForcedDataChanged callback
 
 ---
 

@@ -8,24 +8,17 @@ namespace Repetitionless.Editor.Config
     /// Used to update repetitionless prefs<br />
     /// Prefs are project relative and Stored in "Library/com.williamschack.repetitionless/prefs.json"
     /// </summary>
-    public static class RepetitionlessPrefs
+    internal static class RepetitionlessPrefs
     {
         private const string PREFS_FILE_PATH = Constants.LIBRARY_PATH + "/prefs.json";
 
-        /// <summary>
-        /// Stores the repetitionless prefs
-        /// </summary>
-        public class Prefs
+        internal class Prefs
         {
             public bool WelcomeWindowShown = false;
             public string LastCheckedVersion = "0.0.0";
         }
 
         private static Prefs _prefsCache;
-
-        /// <summary>
-        /// The prefs stored for this project
-        /// </summary>
         public static Prefs Data => _prefsCache ??= LoadPrefs();
 
         private static FileInfo GetPrefsFileInfo()

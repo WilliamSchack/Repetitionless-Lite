@@ -57,12 +57,12 @@ Converts a vector3 to a colour
 
 ---
 
-## UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed, RepetitionlessMaterialData, bool)
+## UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed, RepetitionlessMaterialData, Vector4, bool)
 
 ### Declaration
 
 ``` csharp
-public static int UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed compressedData, RepetitionlessMaterialData newData, bool updateAll = false)
+public static int UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed compressedData, RepetitionlessMaterialData newData, Vector4 globalTilingOffset, bool updateAll = false)
 ```
 
 ### Parameters
@@ -71,6 +71,7 @@ public static int UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCom
 |-----------|-------------|
 | compressedData | Reference to the compressed data that will be updated |
 | newData | The new data to compress |
+| globalTilingOffset | The global tiling offset for the material |
 | updateAll | If all the values will be updated if changed<br />If disabled only the first changed value will update |
 
 ### Returns

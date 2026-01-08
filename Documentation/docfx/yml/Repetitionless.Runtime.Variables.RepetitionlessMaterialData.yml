@@ -1,53 +1,53 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Repetitionless.Variables.RepetitionlessMaterialData
-  commentId: T:Repetitionless.Variables.RepetitionlessMaterialData
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   id: RepetitionlessMaterialData
-  parent: Repetitionless.Variables
+  parent: Repetitionless.Runtime.Variables
   children:
-  - Repetitionless.Variables.RepetitionlessMaterialData.AlbedoAssigned
-  - Repetitionless.Variables.RepetitionlessMaterialData.AlbedoTint
-  - Repetitionless.Variables.RepetitionlessMaterialData.AlphaClipping
-  - Repetitionless.Variables.RepetitionlessMaterialData.EmissionAssigned
-  - Repetitionless.Variables.RepetitionlessMaterialData.EmissionColour
-  - Repetitionless.Variables.RepetitionlessMaterialData.EmissionEnabled
-  - Repetitionless.Variables.RepetitionlessMaterialData.Metallic
-  - Repetitionless.Variables.RepetitionlessMaterialData.MetallicAssigned
-  - Repetitionless.Variables.RepetitionlessMaterialData.NoiseAngleOffset
-  - Repetitionless.Variables.RepetitionlessMaterialData.NoiseEnabled
-  - Repetitionless.Variables.RepetitionlessMaterialData.NoiseRandomiseRotationMinMax
-  - Repetitionless.Variables.RepetitionlessMaterialData.NoiseScale
-  - Repetitionless.Variables.RepetitionlessMaterialData.NoiseScalingMinMax
-  - Repetitionless.Variables.RepetitionlessMaterialData.NormalAssigned
-  - Repetitionless.Variables.RepetitionlessMaterialData.NormalScale
-  - Repetitionless.Variables.RepetitionlessMaterialData.OcclussionAssigned
-  - Repetitionless.Variables.RepetitionlessMaterialData.OcclussionStrength
-  - Repetitionless.Variables.RepetitionlessMaterialData.PackedTexture
-  - Repetitionless.Variables.RepetitionlessMaterialData.PackedTextureAssigned
-  - Repetitionless.Variables.RepetitionlessMaterialData.RandomiseNoiseRotation
-  - Repetitionless.Variables.RepetitionlessMaterialData.RandomiseNoiseScaling
-  - Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessAssigned
-  - Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessEnabled
-  - Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessRoughness
-  - Repetitionless.Variables.RepetitionlessMaterialData.TilingOffset
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationAssigned
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationBrightness
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationEnabled
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationLargeScale
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationMediumScale
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationMode
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseOffset
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseScale
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseStrength
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationOpacity
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationSmallScale
-  - Repetitionless.Variables.RepetitionlessMaterialData.VariationTextureTO
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlbedoAssigned
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlbedoTint
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlphaClipping
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionAssigned
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionColour
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionEnabled
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.Metallic
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.MetallicAssigned
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseAngleOffset
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseEnabled
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseRandomiseRotationMinMax
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseScale
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseScalingMinMax
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NormalAssigned
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NormalScale
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.OcclussionAssigned
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.OcclussionStrength
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.PackedTexture
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.PackedTextureAssigned
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.RandomiseNoiseRotation
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.RandomiseNoiseScaling
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessAssigned
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessEnabled
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessRoughness
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.TilingOffset
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationAssigned
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationBrightness
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationEnabled
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationLargeScale
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationMediumScale
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationMode
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseOffset
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseScale
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseStrength
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationOpacity
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationSmallScale
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationTextureTO
   langs:
   - csharp
   - vb
   name: RepetitionlessMaterialData
   nameWithType: RepetitionlessMaterialData
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   type: Class
   source:
     remote:
@@ -58,8 +58,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 7
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe material data for a repetitionless material\n"
   example: []
   syntax:
@@ -77,16 +77,16 @@ items:
   - type: System.SerializableAttribute
     ctor: System.SerializableAttribute.#ctor
     arguments: []
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.NoiseEnabled
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.NoiseEnabled
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseEnabled
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseEnabled
   id: NoiseEnabled
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: NoiseEnabled
   nameWithType: RepetitionlessMaterialData.NoiseEnabled
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.NoiseEnabled
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseEnabled
   type: Field
   source:
     remote:
@@ -97,8 +97,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 15
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf noise is enabled\n"
   example: []
   syntax:
@@ -106,16 +106,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public NoiseEnabled As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.RandomiseNoiseScaling
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.RandomiseNoiseScaling
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.RandomiseNoiseScaling
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.RandomiseNoiseScaling
   id: RandomiseNoiseScaling
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: RandomiseNoiseScaling
   nameWithType: RepetitionlessMaterialData.RandomiseNoiseScaling
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.RandomiseNoiseScaling
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.RandomiseNoiseScaling
   type: Field
   source:
     remote:
@@ -126,8 +126,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 19
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf each cell will randomly scale\n"
   example: []
   syntax:
@@ -135,16 +135,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public RandomiseNoiseScaling As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.RandomiseNoiseRotation
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.RandomiseNoiseRotation
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.RandomiseNoiseRotation
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.RandomiseNoiseRotation
   id: RandomiseNoiseRotation
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: RandomiseNoiseRotation
   nameWithType: RepetitionlessMaterialData.RandomiseNoiseRotation
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.RandomiseNoiseRotation
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.RandomiseNoiseRotation
   type: Field
   source:
     remote:
@@ -155,8 +155,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 23
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf each cell will randomly rotate\n"
   example: []
   syntax:
@@ -164,16 +164,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public RandomiseNoiseRotation As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessEnabled
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessEnabled
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessEnabled
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessEnabled
   id: SmoothnessEnabled
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: SmoothnessEnabled
   nameWithType: RepetitionlessMaterialData.SmoothnessEnabled
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessEnabled
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessEnabled
   type: Field
   source:
     remote:
@@ -184,8 +184,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 27
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf smoothness or roughness is used\n"
   example: []
   syntax:
@@ -193,16 +193,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public SmoothnessEnabled As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationEnabled
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationEnabled
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationEnabled
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationEnabled
   id: VariationEnabled
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationEnabled
   nameWithType: RepetitionlessMaterialData.VariationEnabled
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationEnabled
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationEnabled
   type: Field
   source:
     remote:
@@ -213,8 +213,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 31
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf texture variation is enabled\n"
   example: []
   syntax:
@@ -222,16 +222,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public VariationEnabled As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.PackedTexture
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.PackedTexture
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.PackedTexture
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.PackedTexture
   id: PackedTexture
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: PackedTexture
   nameWithType: RepetitionlessMaterialData.PackedTexture
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.PackedTexture
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.PackedTexture
   type: Field
   source:
     remote:
@@ -242,8 +242,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 35
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf a packed texture is used\n"
   example: []
   syntax:
@@ -251,16 +251,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public PackedTexture As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.EmissionEnabled
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.EmissionEnabled
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionEnabled
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionEnabled
   id: EmissionEnabled
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: EmissionEnabled
   nameWithType: RepetitionlessMaterialData.EmissionEnabled
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.EmissionEnabled
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionEnabled
   type: Field
   source:
     remote:
@@ -271,8 +271,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 39
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf emission is enabled\n"
   example: []
   syntax:
@@ -280,16 +280,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public EmissionEnabled As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.AlbedoAssigned
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.AlbedoAssigned
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlbedoAssigned
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlbedoAssigned
   id: AlbedoAssigned
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: AlbedoAssigned
   nameWithType: RepetitionlessMaterialData.AlbedoAssigned
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.AlbedoAssigned
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlbedoAssigned
   type: Field
   source:
     remote:
@@ -300,8 +300,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 46
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf the albedo texture is assigned\n"
   example: []
   syntax:
@@ -309,16 +309,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public AlbedoAssigned As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.MetallicAssigned
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.MetallicAssigned
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.MetallicAssigned
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.MetallicAssigned
   id: MetallicAssigned
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: MetallicAssigned
   nameWithType: RepetitionlessMaterialData.MetallicAssigned
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.MetallicAssigned
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.MetallicAssigned
   type: Field
   source:
     remote:
@@ -329,8 +329,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 50
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf the metallic texture is assigned\n"
   example: []
   syntax:
@@ -338,16 +338,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public MetallicAssigned As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessAssigned
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessAssigned
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessAssigned
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessAssigned
   id: SmoothnessAssigned
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: SmoothnessAssigned
   nameWithType: RepetitionlessMaterialData.SmoothnessAssigned
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessAssigned
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessAssigned
   type: Field
   source:
     remote:
@@ -358,8 +358,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 54
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf the smoothness texture is assigned\n"
   example: []
   syntax:
@@ -367,16 +367,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public SmoothnessAssigned As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.NormalAssigned
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.NormalAssigned
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NormalAssigned
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NormalAssigned
   id: NormalAssigned
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: NormalAssigned
   nameWithType: RepetitionlessMaterialData.NormalAssigned
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.NormalAssigned
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NormalAssigned
   type: Field
   source:
     remote:
@@ -387,8 +387,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 58
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf the normal texture is assigned\n"
   example: []
   syntax:
@@ -396,16 +396,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public NormalAssigned As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.OcclussionAssigned
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.OcclussionAssigned
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.OcclussionAssigned
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.OcclussionAssigned
   id: OcclussionAssigned
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: OcclussionAssigned
   nameWithType: RepetitionlessMaterialData.OcclussionAssigned
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.OcclussionAssigned
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.OcclussionAssigned
   type: Field
   source:
     remote:
@@ -416,8 +416,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 62
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf the occlussion texture is assigned\n"
   example: []
   syntax:
@@ -425,16 +425,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public OcclussionAssigned As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.EmissionAssigned
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.EmissionAssigned
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionAssigned
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionAssigned
   id: EmissionAssigned
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: EmissionAssigned
   nameWithType: RepetitionlessMaterialData.EmissionAssigned
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.EmissionAssigned
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionAssigned
   type: Field
   source:
     remote:
@@ -445,8 +445,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 66
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf the emission texture is assigned\n"
   example: []
   syntax:
@@ -454,16 +454,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public EmissionAssigned As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationAssigned
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationAssigned
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationAssigned
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationAssigned
   id: VariationAssigned
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationAssigned
   nameWithType: RepetitionlessMaterialData.VariationAssigned
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationAssigned
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationAssigned
   type: Field
   source:
     remote:
@@ -474,8 +474,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 70
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf the variation texture is assigned\n"
   example: []
   syntax:
@@ -483,16 +483,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public VariationAssigned As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.PackedTextureAssigned
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.PackedTextureAssigned
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.PackedTextureAssigned
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.PackedTextureAssigned
   id: PackedTextureAssigned
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: PackedTextureAssigned
   nameWithType: RepetitionlessMaterialData.PackedTextureAssigned
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.PackedTextureAssigned
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.PackedTextureAssigned
   type: Field
   source:
     remote:
@@ -503,8 +503,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 74
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nIf the packed texture is assigned\n"
   example: []
   syntax:
@@ -512,16 +512,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public PackedTextureAssigned As Boolean
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.AlbedoTint
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.AlbedoTint
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlbedoTint
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlbedoTint
   id: AlbedoTint
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: AlbedoTint
   nameWithType: RepetitionlessMaterialData.AlbedoTint
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.AlbedoTint
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlbedoTint
   type: Field
   source:
     remote:
@@ -532,8 +532,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 81
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe albedo tint\n"
   example: []
   syntax:
@@ -541,16 +541,16 @@ items:
     return:
       type: UnityEngine.Color
     content.vb: Public AlbedoTint As Color
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.EmissionColour
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.EmissionColour
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionColour
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionColour
   id: EmissionColour
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: EmissionColour
   nameWithType: RepetitionlessMaterialData.EmissionColour
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.EmissionColour
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.EmissionColour
   type: Field
   source:
     remote:
@@ -561,8 +561,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 85
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe emission colour\n"
   example: []
   syntax:
@@ -570,16 +570,16 @@ items:
     return:
       type: UnityEngine.Color
     content.vb: Public EmissionColour As Color
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.TilingOffset
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.TilingOffset
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.TilingOffset
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.TilingOffset
   id: TilingOffset
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: TilingOffset
   nameWithType: RepetitionlessMaterialData.TilingOffset
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.TilingOffset
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.TilingOffset
   type: Field
   source:
     remote:
@@ -590,8 +590,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 91
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe tiling offset:<br />\nxy: Tiling, zw: Offset\n"
   example: []
   syntax:
@@ -599,16 +599,16 @@ items:
     return:
       type: UnityEngine.Vector4
     content.vb: Public TilingOffset As Vector4
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.Metallic
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.Metallic
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.Metallic
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.Metallic
   id: Metallic
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: Metallic
   nameWithType: RepetitionlessMaterialData.Metallic
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.Metallic
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.Metallic
   type: Field
   source:
     remote:
@@ -619,8 +619,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 96
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe metallic value\n"
   example: []
   syntax:
@@ -628,16 +628,16 @@ items:
     return:
       type: System.Single
     content.vb: Public Metallic As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessRoughness
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessRoughness
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessRoughness
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessRoughness
   id: SmoothnessRoughness
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: SmoothnessRoughness
   nameWithType: RepetitionlessMaterialData.SmoothnessRoughness
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.SmoothnessRoughness
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.SmoothnessRoughness
   type: Field
   source:
     remote:
@@ -648,8 +648,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 100
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe smoothness/roughness value\n"
   example: []
   syntax:
@@ -657,16 +657,16 @@ items:
     return:
       type: System.Single
     content.vb: Public SmoothnessRoughness As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.NormalScale
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.NormalScale
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NormalScale
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NormalScale
   id: NormalScale
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: NormalScale
   nameWithType: RepetitionlessMaterialData.NormalScale
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.NormalScale
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NormalScale
   type: Field
   source:
     remote:
@@ -677,8 +677,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 104
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe normal scale\n"
   example: []
   syntax:
@@ -686,16 +686,16 @@ items:
     return:
       type: System.Single
     content.vb: Public NormalScale As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.OcclussionStrength
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.OcclussionStrength
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.OcclussionStrength
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.OcclussionStrength
   id: OcclussionStrength
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: OcclussionStrength
   nameWithType: RepetitionlessMaterialData.OcclussionStrength
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.OcclussionStrength
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.OcclussionStrength
   type: Field
   source:
     remote:
@@ -706,8 +706,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 108
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe occlussion strength\n"
   example: []
   syntax:
@@ -715,16 +715,16 @@ items:
     return:
       type: System.Single
     content.vb: Public OcclussionStrength As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.AlphaClipping
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.AlphaClipping
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlphaClipping
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlphaClipping
   id: AlphaClipping
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: AlphaClipping
   nameWithType: RepetitionlessMaterialData.AlphaClipping
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.AlphaClipping
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.AlphaClipping
   type: Field
   source:
     remote:
@@ -735,8 +735,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 112
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe alpha clipping value\n"
   example: []
   syntax:
@@ -744,16 +744,16 @@ items:
     return:
       type: System.Single
     content.vb: Public AlphaClipping As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.NoiseAngleOffset
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.NoiseAngleOffset
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseAngleOffset
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseAngleOffset
   id: NoiseAngleOffset
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: NoiseAngleOffset
   nameWithType: RepetitionlessMaterialData.NoiseAngleOffset
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.NoiseAngleOffset
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseAngleOffset
   type: Field
   source:
     remote:
@@ -764,8 +764,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 119
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe angle offset for the noise\n"
   example: []
   syntax:
@@ -773,16 +773,16 @@ items:
     return:
       type: System.Single
     content.vb: Public NoiseAngleOffset As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.NoiseScale
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.NoiseScale
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseScale
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseScale
   id: NoiseScale
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: NoiseScale
   nameWithType: RepetitionlessMaterialData.NoiseScale
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.NoiseScale
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseScale
   type: Field
   source:
     remote:
@@ -793,8 +793,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 123
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe scale of the noise\n"
   example: []
   syntax:
@@ -802,16 +802,16 @@ items:
     return:
       type: System.Single
     content.vb: Public NoiseScale As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.NoiseScalingMinMax
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.NoiseScalingMinMax
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseScalingMinMax
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseScalingMinMax
   id: NoiseScalingMinMax
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: NoiseScalingMinMax
   nameWithType: RepetitionlessMaterialData.NoiseScalingMinMax
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.NoiseScalingMinMax
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseScalingMinMax
   type: Field
   source:
     remote:
@@ -822,8 +822,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 127
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe random noise scaling min max\n"
   example: []
   syntax:
@@ -831,16 +831,16 @@ items:
     return:
       type: UnityEngine.Vector2
     content.vb: Public NoiseScalingMinMax As Vector2
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.NoiseRandomiseRotationMinMax
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.NoiseRandomiseRotationMinMax
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseRandomiseRotationMinMax
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseRandomiseRotationMinMax
   id: NoiseRandomiseRotationMinMax
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: NoiseRandomiseRotationMinMax
   nameWithType: RepetitionlessMaterialData.NoiseRandomiseRotationMinMax
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.NoiseRandomiseRotationMinMax
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.NoiseRandomiseRotationMinMax
   type: Field
   source:
     remote:
@@ -851,8 +851,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 131
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe random noise rotation min max\n"
   example: []
   syntax:
@@ -860,16 +860,16 @@ items:
     return:
       type: UnityEngine.Vector2
     content.vb: Public NoiseRandomiseRotationMinMax As Vector2
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationMode
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationMode
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationMode
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationMode
   id: VariationMode
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationMode
   nameWithType: RepetitionlessMaterialData.VariationMode
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationMode
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationMode
   type: Field
   source:
     remote:
@@ -880,25 +880,25 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 138
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe variation mode used\n"
   example: []
   syntax:
     content: public ETextureType VariationMode
     return:
-      type: Repetitionless.Variables.ETextureType
+      type: Repetitionless.Runtime.Variables.ETextureType
     content.vb: Public VariationMode As ETextureType
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationOpacity
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationOpacity
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationOpacity
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationOpacity
   id: VariationOpacity
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationOpacity
   nameWithType: RepetitionlessMaterialData.VariationOpacity
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationOpacity
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationOpacity
   type: Field
   source:
     remote:
@@ -909,8 +909,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 142
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe variation opacity\n"
   example: []
   syntax:
@@ -918,16 +918,16 @@ items:
     return:
       type: System.Single
     content.vb: Public VariationOpacity As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationBrightness
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationBrightness
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationBrightness
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationBrightness
   id: VariationBrightness
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationBrightness
   nameWithType: RepetitionlessMaterialData.VariationBrightness
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationBrightness
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationBrightness
   type: Field
   source:
     remote:
@@ -938,8 +938,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 146
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe variation brightness\n"
   example: []
   syntax:
@@ -947,16 +947,16 @@ items:
     return:
       type: System.Single
     content.vb: Public VariationBrightness As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationSmallScale
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationSmallScale
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationSmallScale
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationSmallScale
   id: VariationSmallScale
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationSmallScale
   nameWithType: RepetitionlessMaterialData.VariationSmallScale
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationSmallScale
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationSmallScale
   type: Field
   source:
     remote:
@@ -967,8 +967,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 150
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe variation small sample scale\n"
   example: []
   syntax:
@@ -976,16 +976,16 @@ items:
     return:
       type: System.Single
     content.vb: Public VariationSmallScale As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationMediumScale
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationMediumScale
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationMediumScale
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationMediumScale
   id: VariationMediumScale
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationMediumScale
   nameWithType: RepetitionlessMaterialData.VariationMediumScale
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationMediumScale
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationMediumScale
   type: Field
   source:
     remote:
@@ -996,8 +996,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 154
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe variation medium sample scale\n"
   example: []
   syntax:
@@ -1005,16 +1005,16 @@ items:
     return:
       type: System.Single
     content.vb: Public VariationMediumScale As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationLargeScale
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationLargeScale
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationLargeScale
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationLargeScale
   id: VariationLargeScale
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationLargeScale
   nameWithType: RepetitionlessMaterialData.VariationLargeScale
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationLargeScale
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationLargeScale
   type: Field
   source:
     remote:
@@ -1025,8 +1025,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 158
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe variation large sample scale\n"
   example: []
   syntax:
@@ -1034,16 +1034,16 @@ items:
     return:
       type: System.Single
     content.vb: Public VariationLargeScale As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseStrength
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseStrength
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseStrength
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseStrength
   id: VariationNoiseStrength
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationNoiseStrength
   nameWithType: RepetitionlessMaterialData.VariationNoiseStrength
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseStrength
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseStrength
   type: Field
   source:
     remote:
@@ -1054,8 +1054,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 162
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe variation noise strength\n"
   example: []
   syntax:
@@ -1063,16 +1063,16 @@ items:
     return:
       type: System.Single
     content.vb: Public VariationNoiseStrength As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseScale
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseScale
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseScale
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseScale
   id: VariationNoiseScale
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationNoiseScale
   nameWithType: RepetitionlessMaterialData.VariationNoiseScale
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseScale
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseScale
   type: Field
   source:
     remote:
@@ -1083,8 +1083,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 166
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe variation noise scale\n"
   example: []
   syntax:
@@ -1092,16 +1092,16 @@ items:
     return:
       type: System.Single
     content.vb: Public VariationNoiseScale As Single
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseOffset
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseOffset
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseOffset
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseOffset
   id: VariationNoiseOffset
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationNoiseOffset
   nameWithType: RepetitionlessMaterialData.VariationNoiseOffset
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationNoiseOffset
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationNoiseOffset
   type: Field
   source:
     remote:
@@ -1112,8 +1112,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 170
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe variation noise offset\n"
   example: []
   syntax:
@@ -1121,16 +1121,16 @@ items:
     return:
       type: UnityEngine.Vector2
     content.vb: Public VariationNoiseOffset As Vector2
-- uid: Repetitionless.Variables.RepetitionlessMaterialData.VariationTextureTO
-  commentId: F:Repetitionless.Variables.RepetitionlessMaterialData.VariationTextureTO
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationTextureTO
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationTextureTO
   id: VariationTextureTO
-  parent: Repetitionless.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   langs:
   - csharp
   - vb
   name: VariationTextureTO
   nameWithType: RepetitionlessMaterialData.VariationTextureTO
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData.VariationTextureTO
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationTextureTO
   type: Field
   source:
     remote:
@@ -1141,8 +1141,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessMaterialData.cs
     startLine: 175
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe variation texture tiling offset:<br />\nxy: Tiling, zw: Offset\n"
   example: []
   syntax:
@@ -1151,22 +1151,28 @@ items:
       type: UnityEngine.Vector4
     content.vb: Public VariationTextureTO As Vector4
 references:
-- uid: Repetitionless.Variables
-  commentId: N:Repetitionless.Variables
-  name: Repetitionless.Variables
-  nameWithType: Repetitionless.Variables
-  fullName: Repetitionless.Variables
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
 - uid: System.Object
   commentId: T:System.Object
@@ -1231,9 +1237,9 @@ references:
   name: Vector2
   nameWithType: Vector2
   fullName: UnityEngine.Vector2
-- uid: Repetitionless.Variables.ETextureType
-  commentId: T:Repetitionless.Variables.ETextureType
-  parent: Repetitionless.Variables
+- uid: Repetitionless.Runtime.Variables.ETextureType
+  commentId: T:Repetitionless.Runtime.Variables.ETextureType
+  parent: Repetitionless.Runtime.Variables
   name: ETextureType
   nameWithType: ETextureType
-  fullName: Repetitionless.Variables.ETextureType
+  fullName: Repetitionless.Runtime.Variables.ETextureType

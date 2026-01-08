@@ -87,6 +87,9 @@ namespace Repetitionless.Editor.Data
         /// <param name="newData">
         /// The new data to compress
         /// </param>
+        /// <param name="globalTilingOffset">
+        /// The global tiling offset for the material
+        /// </param>
         /// <param name="updateAll">
         /// If all the values will be updated if changed<br />
         /// If disabled only the first changed value will update

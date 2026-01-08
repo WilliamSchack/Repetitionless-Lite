@@ -19,6 +19,7 @@ Handles drawing and updating the texture arrays
 | NSOTexturesDrawer | The NSOTextures drawer<br />Not serialized, needs to be setup with SetupTextureDrawers for each session using this |
 | EMTexturesDrawer | The EMTextures drawer<br />Not serialized, needs to be setup with SetupTextureDrawers for each session using this |
 | BMTexturesDrawer | The BMTextures drawer<br />Not serialized, needs to be setup with SetupTextureDrawers for each session using this |
+| OnDataChanged | Callback for when any of the textures are changed |
 
 ---
 
@@ -130,19 +131,13 @@ Updates the array assigned textures texture
 
 ---
 
-## SetupTextureDrawers(MaterialDataManager)
+## SetupTextureDrawers()
 
 ### Declaration
 
 ``` csharp
-public void SetupTextureDrawers(MaterialDataManager dataManager)
+public void SetupTextureDrawers()
 ```
-
-### Parameters
-
-| Parameter | Description |
-|-----------|-------------|
-| dataManager | The data manager to use |
 
 ### Description
 

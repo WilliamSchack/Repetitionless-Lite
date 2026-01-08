@@ -1,0 +1,124 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  id: Repetitionless.Runtime.Variables
+  children:
+  - Repetitionless.Runtime.Variables.EDistanceBlendMode
+  - Repetitionless.Runtime.Variables.ESurfaceType
+  - Repetitionless.Runtime.Variables.ETextureType
+  - Repetitionless.Runtime.Variables.EUVSpace
+  - Repetitionless.Runtime.Variables.RepetitionlessLayerData
+  - Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+  - Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
+  - Repetitionless.Runtime.Variables.SerializableDictionary`2
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+references:
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables
+  name: RepetitionlessMaterialData
+  nameWithType: RepetitionlessMaterialData
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
+  parent: Repetitionless.Runtime.Variables
+  name: RepetitionlessMaterialDataCompressed
+  nameWithType: RepetitionlessMaterialDataCompressed
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2
+  commentId: T:Repetitionless.Runtime.Variables.SerializableDictionary`2
+  name: SerializableDictionary<TKey, TValue>
+  nameWithType: SerializableDictionary<TKey, TValue>
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>
+  nameWithType.vb: SerializableDictionary(Of TKey, TValue)
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue)
+  name.vb: SerializableDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: Repetitionless.Runtime.Variables.SerializableDictionary`2
+    name: SerializableDictionary
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: Repetitionless.Runtime.Variables.SerializableDictionary`2
+    name: SerializableDictionary
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: Repetitionless.Runtime.Variables.ESurfaceType
+  commentId: T:Repetitionless.Runtime.Variables.ESurfaceType
+  parent: Repetitionless.Runtime.Variables
+  name: ESurfaceType
+  nameWithType: ESurfaceType
+  fullName: Repetitionless.Runtime.Variables.ESurfaceType
+- uid: Repetitionless.Runtime.Variables.EUVSpace
+  commentId: T:Repetitionless.Runtime.Variables.EUVSpace
+  parent: Repetitionless.Runtime.Variables
+  name: EUVSpace
+  nameWithType: EUVSpace
+  fullName: Repetitionless.Runtime.Variables.EUVSpace
+- uid: Repetitionless.Runtime.Variables.ETextureType
+  commentId: T:Repetitionless.Runtime.Variables.ETextureType
+  parent: Repetitionless.Runtime.Variables
+  name: ETextureType
+  nameWithType: ETextureType
+  fullName: Repetitionless.Runtime.Variables.ETextureType
+- uid: Repetitionless.Runtime.Variables.EDistanceBlendMode
+  commentId: T:Repetitionless.Runtime.Variables.EDistanceBlendMode
+  parent: Repetitionless.Runtime.Variables
+  name: EDistanceBlendMode
+  nameWithType: EDistanceBlendMode
+  fullName: Repetitionless.Runtime.Variables.EDistanceBlendMode
+- uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessLayerData
+  parent: Repetitionless.Runtime.Variables
+  name: RepetitionlessLayerData
+  nameWithType: RepetitionlessLayerData
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessLayerData
+- uid: Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
+  parent: Repetitionless.Runtime.Variables
+  name: RepetitionlessLayerDataCompressed
+  nameWithType: RepetitionlessLayerDataCompressed
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables

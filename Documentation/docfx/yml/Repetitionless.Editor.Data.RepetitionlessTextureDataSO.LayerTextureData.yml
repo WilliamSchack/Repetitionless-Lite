@@ -23,7 +23,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: LayerTextureData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 57
+    startLine: 60
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -62,7 +62,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BaseMaterialTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 63
+    startLine: 66
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -91,7 +91,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: FarMaterialTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 68
+    startLine: 71
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -120,7 +120,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BlendMaterialTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 72
+    startLine: 75
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -149,7 +149,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BlendMaskTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 78
+    startLine: 81
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data

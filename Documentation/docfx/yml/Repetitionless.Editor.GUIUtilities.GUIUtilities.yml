@@ -30,6 +30,7 @@ items:
   - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTextureWithSlider(UnityEngine.Texture2D,System.Single,System.Single,System.Single,UnityEngine.GUIContent)
   - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEditor.MaterialProperty,System.String,System.String)
   - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4,System.String,System.String)
+  - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4,UnityEngine.GUIContent,UnityEngine.GUIContent)
   - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Rect,UnityEngine.Vector2,UnityEngine.GUIContent)
   - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2Field(UnityEngine.Vector2,UnityEngine.GUIContent)
   - Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField(UnityEngine.Rect,UnityEngine.Vector2Int,UnityEngine.GUIContent)
@@ -1243,50 +1244,6 @@ items:
       description: "\nThe Vector2Int input into the inspector\n"
     content.vb: Public Shared Function DrawVector2IntField(rect As Rect, value As Vector2Int, content As GUIContent) As Vector2Int
   overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawVector2IntField*
-- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4,System.String,System.String)
-  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4,System.String,System.String)
-  id: DrawTilingOffset(UnityEngine.Vector4,System.String,System.String)
-  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
-  langs:
-  - csharp
-  - vb
-  name: DrawTilingOffset(Vector4, string, string)
-  nameWithType: GUIUtilities.DrawTilingOffset(Vector4, string, string)
-  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4, string, string)
-  type: Method
-  source:
-    remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
-      branch: main
-      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
-    id: DrawTilingOffset
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
-    startLine: 768
-  assemblies:
-  - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
-  summary: "\nDraws tiling offset fields using and updating values in a float4 materialProperty<br />\nUses the DrawVector2Field function to remove empty space\n"
-  example: []
-  syntax:
-    content: public static Vector4 DrawTilingOffset(Vector4 tilingOffset, string tilingLabel = "Scale", string offsetLabel = "Offset")
-    parameters:
-    - id: tilingOffset
-      type: UnityEngine.Vector4
-      description: "\nThe initial tiling offset value\n"
-    - id: tilingLabel
-      type: System.String
-      description: "\nThe label to show for the tiling field\n"
-    - id: offsetLabel
-      type: System.String
-      description: "\nThe label to show for the offset field\n"
-    return:
-      type: UnityEngine.Vector4
-      description: "\nThe new tiling offset value\n"
-    content.vb: Public Shared Function DrawTilingOffset(tilingOffset As Vector4, tilingLabel As String = "Scale", offsetLabel As String = "Offset") As Vector4
-  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset*
-  nameWithType.vb: GUIUtilities.DrawTilingOffset(Vector4, String, String)
-  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4, String, String)
-  name.vb: DrawTilingOffset(Vector4, String, String)
 - uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEditor.MaterialProperty,System.String,System.String)
   commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEditor.MaterialProperty,System.String,System.String)
   id: DrawTilingOffset(UnityEditor.MaterialProperty,System.String,System.String)
@@ -1305,7 +1262,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTilingOffset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
-    startLine: 802
+    startLine: 765
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -1328,6 +1285,91 @@ items:
   nameWithType.vb: GUIUtilities.DrawTilingOffset(MaterialProperty, String, String)
   fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEditor.MaterialProperty, String, String)
   name.vb: DrawTilingOffset(MaterialProperty, String, String)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4,System.String,System.String)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4,System.String,System.String)
+  id: DrawTilingOffset(UnityEngine.Vector4,System.String,System.String)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTilingOffset(Vector4, string, string)
+  nameWithType: GUIUtilities.DrawTilingOffset(Vector4, string, string)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4, string, string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTilingOffset
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 791
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws tiling offset fields using and updating values in a float4 materialProperty<br />\nUses the DrawVector2Field function to remove empty space\n"
+  example: []
+  syntax:
+    content: public static Vector4 DrawTilingOffset(Vector4 tilingOffset, string tilingLabel = "Tiling", string offsetLabel = "Offset")
+    parameters:
+    - id: tilingOffset
+      type: UnityEngine.Vector4
+      description: "\nThe initial tiling offset value\n"
+    - id: tilingLabel
+      type: System.String
+      description: "\nThe label to show for the tiling field\n"
+    - id: offsetLabel
+      type: System.String
+      description: "\nThe label to show for the offset field\n"
+    return:
+      type: UnityEngine.Vector4
+      description: "\nThe new tiling offset value\n"
+    content.vb: Public Shared Function DrawTilingOffset(tilingOffset As Vector4, tilingLabel As String = "Tiling", offsetLabel As String = "Offset") As Vector4
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset*
+  nameWithType.vb: GUIUtilities.DrawTilingOffset(Vector4, String, String)
+  fullName.vb: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4, String, String)
+  name.vb: DrawTilingOffset(Vector4, String, String)
+- uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4,UnityEngine.GUIContent,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4,UnityEngine.GUIContent,UnityEngine.GUIContent)
+  id: DrawTilingOffset(UnityEngine.Vector4,UnityEngine.GUIContent,UnityEngine.GUIContent)
+  parent: Repetitionless.Editor.GUIUtilities.GUIUtilities
+  langs:
+  - csharp
+  - vb
+  name: DrawTilingOffset(Vector4, GUIContent, GUIContent)
+  nameWithType: GUIUtilities.DrawTilingOffset(Vector4, GUIContent, GUIContent)
+  fullName: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset(UnityEngine.Vector4, UnityEngine.GUIContent, UnityEngine.GUIContent)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DrawTilingOffset
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
+    startLine: 812
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.GUIUtilities
+  summary: "\nDraws tiling offset fields using and updating values in a float4 materialProperty<br />\nUses the DrawVector2Field function to remove empty space\n"
+  example: []
+  syntax:
+    content: public static Vector4 DrawTilingOffset(Vector4 tilingOffset, GUIContent tilingContent, GUIContent offsetContent)
+    parameters:
+    - id: tilingOffset
+      type: UnityEngine.Vector4
+      description: "\nThe initial tiling offset value\n"
+    - id: tilingContent
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent to show for the tiling field\n"
+    - id: offsetContent
+      type: UnityEngine.GUIContent
+      description: "\nThe GUIContent to show for the offset field\n"
+    return:
+      type: UnityEngine.Vector4
+      description: "\nThe new tiling offset value\n"
+    content.vb: Public Shared Function DrawTilingOffset(tilingOffset As Vector4, tilingContent As GUIContent, offsetContent As GUIContent) As Vector4
+  overload: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawTilingOffset*
 - uid: Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawFoldout(System.Boolean,System.String)
   commentId: M:Repetitionless.Editor.GUIUtilities.GUIUtilities.DrawFoldout(System.Boolean,System.String)
   id: DrawFoldout(System.Boolean,System.String)
@@ -1346,7 +1388,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawFoldout
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
-    startLine: 824
+    startLine: 845
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -1387,7 +1429,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BeginBackgroundVertical
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
-    startLine: 836
+    startLine: 857
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -1415,7 +1457,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: EndBackgroundVertical
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
-    startLine: 847
+    startLine: 868
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -1443,7 +1485,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BeginBackgroundHorizontal
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
-    startLine: 855
+    startLine: 876
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -1471,7 +1513,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: EndBackgroundHorizontal
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/GUIUtilities.cs
-    startLine: 866
+    startLine: 887
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities

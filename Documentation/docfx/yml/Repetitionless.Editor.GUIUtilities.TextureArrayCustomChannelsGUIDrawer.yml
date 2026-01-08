@@ -32,7 +32,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureArrayCustomChannelsGUIDrawer
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 22
+    startLine: 23
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -61,7 +61,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Array
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 31
+    startLine: 32
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -92,7 +92,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureFormat
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 38
+    startLine: 39
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -121,7 +121,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TransferMipmaps
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 43
+    startLine: 44
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -150,7 +150,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ArrayLinear
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 50
+    startLine: 51
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -179,7 +179,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTextureUpdated
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 98
+    startLine: 99
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -208,7 +208,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: .ctor
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 130
+    startLine: 131
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -381,7 +381,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 668
+    startLine: 669
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -425,7 +425,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 693
+    startLine: 694
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -472,7 +472,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureAssignedAt
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 709
+    startLine: 710
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities
@@ -510,7 +510,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DeleteArray
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 717
+    startLine: 718
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.GUIUtilities

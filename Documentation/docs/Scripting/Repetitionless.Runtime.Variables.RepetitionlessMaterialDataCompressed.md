@@ -1,0 +1,22 @@
+# Runtime.Variables.RepetitionlessMaterialDataCompressed
+
+## Description
+
+The compressed material data that will be passed to the shader for a repetitionless material
+
+## Members
+
+| Member | Description |
+|--------|-------------|
+| Settings1 | x: Compressed Bools<br />0 > NoiseEnabled<br />1 > RandomiseNoiseScaling<br />2 > RandomiseNoiseRotation<br />3 > SmoothnessEnabled<br />4 > VariationEnabled<br />5 > PackedTexture<br />6 > EmissionEnabled<br />y: Compressed Bools<br />0 > AlbedoAssigned<br />1 > MetallicAssigned<br />2 > SmoothnessAssigned<br />3 > NormalAssigned<br />4 > OcclussionAssigned<br />5 > EmissionAssigned<br />6 > VarationAssigned<br />7 > PackedTextureAssigned<br />z: Metallic<br />w: Smoothness/Roughness |
+| Settings2 | x: NormalScale<br />y: OcclussionStrength<br />z: AlphaClipping<br />w: NoiseAngleOffset |
+| Settings3 | x: NoiseScale<br />y: VariationMode<br />z: VariationOpacity<br />w: VariationBrightness |
+| Settings4 | x: VariationSmallScale<br />y: VariationMediumScale<br />z: VariationLargeScale<br />w: VariationNoiseStrength |
+| Settings5 | xy: NoiseScalingMinMax<br />zw: NoiseRandomiseRotationMinMax |
+| AlbedoTint | The albedo tint |
+| EmissionColour | The emission colour |
+| TilingOffset | The tiling offset:<br />xy: Tiling, zw: Offset |
+| VariationTO | <strong>IF USING NOISE:</strong><br />x: VariationNoiseScale<br />zw: VariationNoiseOffset<br /><strong>IF USING TEXTURE:</strong><br />xyzw: VariationTextureTO |
+
+---
+

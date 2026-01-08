@@ -16,7 +16,7 @@ items:
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawBaseMaterialGUI(System.Int32,System.String)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDebugGUI
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawDistanceBlendGUI(System.Int32,System.String)
-  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialBlendGUI(System.Int32,System.String)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialGUI(System.Int32,System.Int32,System.String)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(System.Int32,System.Int32)
@@ -25,7 +25,7 @@ items:
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialVariationProperties(System.Int32,System.Int32)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawProperty(System.Int32,System.Action)
-  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawTexture(System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.FindProperty(System.String)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetLayerData(System.Int32)
@@ -54,7 +54,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessMaterialEditorBase
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 19
+    startLine: 21
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -87,7 +87,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: HEADER_PADDING
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 79
+    startLine: 81
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -116,7 +116,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SETTING_PADDING
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 84
+    startLine: 86
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -145,7 +145,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SCALED_TEXT_PADDING
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 89
+    startLine: 91
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -174,7 +174,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _maxLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 98
+    startLine: 100
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -205,7 +205,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _dataManager
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 105
+    startLine: 107
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -234,7 +234,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _textureData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 110
+    startLine: 112
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -263,7 +263,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _materialProperties
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 115
+    startLine: 117
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -408,7 +408,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: FindProperty
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 171
+    startLine: 170
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -446,7 +446,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetScaledText
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 191
+    startLine: 190
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -490,7 +490,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetLayerData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 227
+    startLine: 226
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -503,7 +503,7 @@ items:
       type: System.Int32
       description: "\nThe layer to get the data from\n"
     return:
-      type: Repetitionless.Variables.RepetitionlessLayerData
+      type: Repetitionless.Runtime.Variables.RepetitionlessLayerData
       description: "\nThe layer data at a layer\n"
     content.vb: Protected Function GetLayerData(layerIndex As Integer = 0) As RepetitionlessLayerData
   overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetLayerData*
@@ -528,7 +528,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetMaterialData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 243
+    startLine: 242
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -544,7 +544,7 @@ items:
       type: System.Int32
       description: "\nThe section to get the data from:\n0: Base, 1: Far, 2: Blend\n"
     return:
-      type: Repetitionless.Variables.RepetitionlessMaterialData
+      type: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
       description: ''
     content.vb: Protected Function GetMaterialData(layerIndex As Integer, sectionIndex As Integer) As RepetitionlessMaterialData
   overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetMaterialData*
@@ -569,7 +569,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 273
+    startLine: 272
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -616,7 +616,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawProperty
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 309
+    startLine: 308
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -654,7 +654,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateAssignedTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 398
+    startLine: 399
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -692,7 +692,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateMaterialPropertiesTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 409
+    startLine: 410
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -727,7 +727,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetTextureDrawerDetails
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 427
+    startLine: 428
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -768,7 +768,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnEnable
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 476
+    startLine: 483
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -800,7 +800,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnPropertiesCreated
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 549
+    startLine: 547
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -828,7 +828,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 560
+    startLine: 558
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -867,7 +867,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawMaterialPropertiesGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 589
+    startLine: 587
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -895,7 +895,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawMaterialGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 750
+    startLine: 771
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -936,7 +936,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawMaterialSettingsGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 838
+    startLine: 859
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -974,16 +974,16 @@ items:
   nameWithType.vb: RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(Integer, Integer, Boolean, Boolean, Boolean, Boolean, Boolean, Integer)
   fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(Integer, Integer, Boolean, Boolean, Boolean, Boolean, Boolean, Integer)
   name.vb: DrawMaterialSettingsGUI(Integer, Integer, Boolean, Boolean, Boolean, Boolean, Boolean, Integer)
-- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
-  id: DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  id: DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
   parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
   langs:
   - csharp
   - vb
   name: DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool)
   nameWithType: RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool)
-  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, int, int, int, bool, bool)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData, int, int, int, bool, bool)
   type: Method
   source:
     remote:
@@ -992,7 +992,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawLeftMaterialSettingsGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 893
+    startLine: 914
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -1002,7 +1002,7 @@ items:
     content: protected virtual void DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData currentData, int layerIndex, int sectionIndex, int minScaledTextWidth, bool showNoise = true, bool showVariation = true)
     parameters:
     - id: currentData
-      type: Repetitionless.Variables.RepetitionlessMaterialData
+      type: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
       description: "\nThe current material data\n"
     - id: layerIndex
       type: System.Int32
@@ -1022,18 +1022,18 @@ items:
     content.vb: Protected Overridable Sub DrawLeftMaterialSettingsGUI(currentData As RepetitionlessMaterialData, layerIndex As Integer, sectionIndex As Integer, minScaledTextWidth As Integer, showNoise As Boolean = True, showVariation As Boolean = True)
   overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI*
   nameWithType.vb: RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean)
-  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean)
   name.vb: DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean)
-- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
-  id: DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  id: DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
   parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
   langs:
   - csharp
   - vb
   name: DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool, bool)
   nameWithType: RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool, bool)
-  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, int, int, int, bool, bool, bool)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData, int, int, int, bool, bool, bool)
   type: Method
   source:
     remote:
@@ -1042,7 +1042,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawRightMaterialSettingsGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 945
+    startLine: 966
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -1052,7 +1052,7 @@ items:
     content: protected virtual void DrawRightMaterialSettingsGUI(RepetitionlessMaterialData currentData, int layerIndex, int sectionIndex, int minScaledTextWidth, bool showPT = true, bool showEmission = true, bool showSR = true)
     parameters:
     - id: currentData
-      type: Repetitionless.Variables.RepetitionlessMaterialData
+      type: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
       description: "\nThe current material data\n"
     - id: layerIndex
       type: System.Int32
@@ -1075,7 +1075,7 @@ items:
     content.vb: Protected Overridable Sub DrawRightMaterialSettingsGUI(currentData As RepetitionlessMaterialData, layerIndex As Integer, sectionIndex As Integer, minScaledTextWidth As Integer, showPT As Boolean = True, showEmission As Boolean = True, showSR As Boolean = True)
   overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI*
   nameWithType.vb: RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean, Boolean)
-  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean, Boolean)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean, Boolean)
   name.vb: DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean, Boolean)
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(System.Int32,System.Int32)
   commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(System.Int32,System.Int32)
@@ -1095,7 +1095,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawMaterialMainProperties
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 979
+    startLine: 1000
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -1133,7 +1133,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawMaterialNoiseGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 1065
+    startLine: 1086
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -1171,7 +1171,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawMaterialVariationProperties
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 1101
+    startLine: 1122
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -1209,7 +1209,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawBaseMaterialGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 1152
+    startLine: 1173
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -1247,7 +1247,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawDistanceBlendGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 1170
+    startLine: 1191
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -1285,7 +1285,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawMaterialBlendGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 1224
+    startLine: 1245
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -1323,7 +1323,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawDebugGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 1318
+    startLine: 1339
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -1639,40 +1639,46 @@ references:
   name: GetLayerData
   nameWithType: RepetitionlessMaterialEditorBase.GetLayerData
   fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetLayerData
-- uid: Repetitionless.Variables.RepetitionlessLayerData
-  commentId: T:Repetitionless.Variables.RepetitionlessLayerData
-  parent: Repetitionless.Variables
+- uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessLayerData
+  parent: Repetitionless.Runtime.Variables
   name: RepetitionlessLayerData
   nameWithType: RepetitionlessLayerData
-  fullName: Repetitionless.Variables.RepetitionlessLayerData
-- uid: Repetitionless.Variables
-  commentId: N:Repetitionless.Variables
-  name: Repetitionless.Variables
-  nameWithType: Repetitionless.Variables
-  fullName: Repetitionless.Variables
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessLayerData
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetMaterialData*
   commentId: Overload:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetMaterialData
   name: GetMaterialData
   nameWithType: RepetitionlessMaterialEditorBase.GetMaterialData
   fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetMaterialData
-- uid: Repetitionless.Variables.RepetitionlessMaterialData
-  commentId: T:Repetitionless.Variables.RepetitionlessMaterialData
-  parent: Repetitionless.Variables
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables
   name: RepetitionlessMaterialData
   nameWithType: RepetitionlessMaterialData
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawTexture*
   commentId: Overload:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawTexture
   name: DrawTexture

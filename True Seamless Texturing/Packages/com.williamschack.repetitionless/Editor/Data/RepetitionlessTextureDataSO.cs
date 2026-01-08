@@ -131,6 +131,9 @@ namespace Repetitionless.Editor.Data
         /// </summary>
         public TextureArrayCustomChannelsGUIDrawer BMTexturesDrawer;
 
+        /// <summary>
+        /// Callback for when any of the textures are changed
+        /// </summary>
         public System.Action OnDataChanged;
 
         /// <summary>

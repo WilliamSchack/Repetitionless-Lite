@@ -20,7 +20,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessTerrainEditor
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessTerrainEditor.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -45,7 +45,7 @@ items:
     ctor: UnityEditor.CustomEditor.#ctor(System.Type)
     arguments:
     - type: System.Type
-      value: Repetitionless.RepetitionlessTerrain
+      value: Repetitionless.Runtime.RepetitionlessTerrain
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI
   commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI
   id: OnInspectorGUI
@@ -64,7 +64,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnInspectorGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessTerrainEditor.cs
-    startLine: 161
+    startLine: 171
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors

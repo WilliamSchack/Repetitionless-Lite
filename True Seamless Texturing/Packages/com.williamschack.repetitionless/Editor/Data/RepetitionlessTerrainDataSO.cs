@@ -12,9 +12,16 @@ namespace Repetitionless.Editor.Data
 {
     using GUIUtilities;
 
+    /// <summary>
+    /// Stores the terrain data for a Repetitionless material
+    /// </summary>
     public class RepetitionlessTerrainDataSO : ScriptableObject
     {
         [SerializeField] private List<TerrainLayer> _terrainLayers = new List<TerrainLayer>();
+
+        /// <summary>
+        /// The terrain layers linked to this material
+        /// </summary>
         public List<TerrainLayer> TerrainLayers => _terrainLayers;
 
         private MaterialDataManager _dataManagerCache;
@@ -59,6 +66,12 @@ namespace Repetitionless.Editor.Data
             Save();
         }
 
+        /// <summary>
+        /// Updates the layer linked to the inputted terrain layer on the material
+        /// </summary>
+        /// <param name="terrainLayer">
+        /// The terrain layer to update
+        /// </param>
         public void UpdateLayerMaterialData(TerrainLayer terrainLayer)
         {
             Material mat = _dataManager.Material;

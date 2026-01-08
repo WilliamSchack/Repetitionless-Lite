@@ -7,12 +7,10 @@ items:
   - Repetitionless.Editor.Data.MaterialDataManager
   - Repetitionless.Editor.Data.RepetitionlessDataPacker
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.LayerTextureData
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData
-  - Repetitionless.Editor.Data.TerrainLayerSyncDataSO
-  - Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
-  - Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
   langs:
   - csharp
   - vb
@@ -23,6 +21,11 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Editor
 references:
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  commentId: T:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  name: RepetitionlessTerrainDataSO
+  nameWithType: RepetitionlessTerrainDataSO
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
 - uid: Repetitionless.Editor.Data.MaterialDataManager
   commentId: T:Repetitionless.Editor.Data.MaterialDataManager
   parent: Repetitionless.Editor.Data
@@ -35,46 +38,6 @@ references:
   name: RepetitionlessMaterialDataSO
   nameWithType: RepetitionlessMaterialDataSO
   fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
-- uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO
-  commentId: T:Repetitionless.Editor.Data.TerrainLayerSyncDataSO
-  parent: Repetitionless.Editor.Data
-  name: TerrainLayerSyncDataSO
-  nameWithType: TerrainLayerSyncDataSO
-  fullName: Repetitionless.Editor.Data.TerrainLayerSyncDataSO
-- uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
-  commentId: T:Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
-  name: TerrainLayerSyncDataSO.TerrainLayerList
-  nameWithType: TerrainLayerSyncDataSO.TerrainLayerList
-  fullName: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
-  spec.csharp:
-  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO
-    name: TerrainLayerSyncDataSO
-  - name: .
-  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
-    name: TerrainLayerList
-  spec.vb:
-  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO
-    name: TerrainLayerSyncDataSO
-  - name: .
-  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
-    name: TerrainLayerList
-- uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
-  commentId: T:Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
-  name: TerrainLayerSyncDataSO.MaterialList
-  nameWithType: TerrainLayerSyncDataSO.MaterialList
-  fullName: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
-  spec.csharp:
-  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO
-    name: TerrainLayerSyncDataSO
-  - name: .
-  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
-    name: MaterialList
-  spec.vb:
-  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO
-    name: TerrainLayerSyncDataSO
-  - name: .
-  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
-    name: MaterialList
 - uid: Repetitionless.Editor.Data.RepetitionlessDataPacker
   commentId: T:Repetitionless.Editor.Data.RepetitionlessDataPacker
   name: RepetitionlessDataPacker

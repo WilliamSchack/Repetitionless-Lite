@@ -1,0 +1,40 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Runtime
+  commentId: N:Repetitionless.Runtime
+  id: Repetitionless.Runtime
+  children:
+  - Repetitionless.Runtime.RepetitionlessTerrain
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Runtime
+  nameWithType: Repetitionless.Runtime
+  fullName: Repetitionless.Runtime
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+references:
+- uid: Repetitionless.Runtime.RepetitionlessTerrain
+  commentId: T:Repetitionless.Runtime.RepetitionlessTerrain
+  parent: Repetitionless.Runtime
+  name: RepetitionlessTerrain
+  nameWithType: RepetitionlessTerrain
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain
+- uid: Repetitionless.Runtime
+  commentId: N:Repetitionless.Runtime
+  name: Repetitionless.Runtime
+  nameWithType: Repetitionless.Runtime
+  fullName: Repetitionless.Runtime
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime

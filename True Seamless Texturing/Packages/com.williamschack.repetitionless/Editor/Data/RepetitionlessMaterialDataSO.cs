@@ -39,8 +39,11 @@ namespace Repetitionless.Editor.Data
             }
         }
 
-        // The global tiling offset that is being used for all the data
         [HideInInspector][SerializeField] private Vector4 _globalTilingOffset = new Vector4(1, 1, 0, 0);
+
+        /// <summary>
+        /// The global tiling offset that is being used for all the data
+        /// </summary>
         [HideInInspector] public Vector4 GlobalTilingOffset {
             get => _globalTilingOffset;
             set => SetGlobalTilingOffset(value);
@@ -97,6 +100,12 @@ namespace Repetitionless.Editor.Data
             return dataColours;
         }
 
+        /// <summary>
+        /// Sets the global tiling and offset for every layer
+        /// </summary>
+        /// <param name="tilingOffset">
+        /// The new tiling offset to use
+        /// </param>
         public void SetGlobalTilingOffset(Vector4 tilingOffset)
         {
             _globalTilingOffset = tilingOffset;

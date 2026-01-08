@@ -143,6 +143,9 @@ namespace Repetitionless.Runtime
         /// <param name="material">
         /// The material that will be instanced
         /// </param>
+        /// <param name="assignMaterial">
+        /// If the material instance should be assigned to the terrain
+        /// </param>
         public void UpdateTerrainMaterial(Material material, bool assignMaterial = true)
         {
             _mainMaterial = material;

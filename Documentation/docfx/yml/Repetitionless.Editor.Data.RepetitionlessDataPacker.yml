@@ -5,10 +5,10 @@ items:
   id: RepetitionlessDataPacker
   parent: Repetitionless.Editor.Data
   children:
-  - Repetitionless.Editor.Data.RepetitionlessDataPacker.GetLayerFieldColour(Repetitionless.Variables.RepetitionlessLayerDataCompressed,System.Int32)
-  - Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour(Repetitionless.Variables.RepetitionlessMaterialDataCompressed,System.Int32)
-  - Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData(Repetitionless.Variables.RepetitionlessLayerDataCompressed@,Repetitionless.Variables.RepetitionlessLayerData,System.Boolean)
-  - Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData(Repetitionless.Variables.RepetitionlessMaterialDataCompressed@,Repetitionless.Variables.RepetitionlessMaterialData,System.Boolean)
+  - Repetitionless.Editor.Data.RepetitionlessDataPacker.GetLayerFieldColour(Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed,System.Int32)
+  - Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour(Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed,System.Int32)
+  - Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData(Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed@,Repetitionless.Runtime.Variables.RepetitionlessLayerData,System.Boolean)
+  - Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData(Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed@,Repetitionless.Runtime.Variables.RepetitionlessMaterialData,UnityEngine.Vector4,System.Boolean)
   - Repetitionless.Editor.Data.RepetitionlessDataPacker.Vector3ToColour(UnityEngine.Vector3)
   - Repetitionless.Editor.Data.RepetitionlessDataPacker.Vector4ToColour(UnityEngine.Vector4)
   langs:
@@ -106,16 +106,16 @@ items:
       description: "\nThe colour\n"
     content.vb: Public Shared Function Vector3ToColour(vector As Vector3) As Color
   overload: Repetitionless.Editor.Data.RepetitionlessDataPacker.Vector3ToColour*
-- uid: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData(Repetitionless.Variables.RepetitionlessMaterialDataCompressed@,Repetitionless.Variables.RepetitionlessMaterialData,System.Boolean)
-  commentId: M:Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData(Repetitionless.Variables.RepetitionlessMaterialDataCompressed@,Repetitionless.Variables.RepetitionlessMaterialData,System.Boolean)
-  id: UpdateCompressedMaterialData(Repetitionless.Variables.RepetitionlessMaterialDataCompressed@,Repetitionless.Variables.RepetitionlessMaterialData,System.Boolean)
+- uid: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData(Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed@,Repetitionless.Runtime.Variables.RepetitionlessMaterialData,UnityEngine.Vector4,System.Boolean)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData(Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed@,Repetitionless.Runtime.Variables.RepetitionlessMaterialData,UnityEngine.Vector4,System.Boolean)
+  id: UpdateCompressedMaterialData(Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed@,Repetitionless.Runtime.Variables.RepetitionlessMaterialData,UnityEngine.Vector4,System.Boolean)
   parent: Repetitionless.Editor.Data.RepetitionlessDataPacker
   langs:
   - csharp
   - vb
-  name: UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed, RepetitionlessMaterialData, bool)
-  nameWithType: RepetitionlessDataPacker.UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed, RepetitionlessMaterialData, bool)
-  fullName: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData(ref Repetitionless.Variables.RepetitionlessMaterialDataCompressed, Repetitionless.Variables.RepetitionlessMaterialData, bool)
+  name: UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed, RepetitionlessMaterialData, Vector4, bool)
+  nameWithType: RepetitionlessDataPacker.UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed, RepetitionlessMaterialData, Vector4, bool)
+  fullName: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData(ref Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed, Repetitionless.Runtime.Variables.RepetitionlessMaterialData, UnityEngine.Vector4, bool)
   type: Method
   source:
     remote:
@@ -124,42 +124,45 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateCompressedMaterialData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessDataPacker.cs
-    startLine: 97
+    startLine: 100
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
   summary: "\nUpdates changed values in the compressed material data based on the given material data\n"
   example: []
   syntax:
-    content: public static int UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed compressedData, RepetitionlessMaterialData newData, bool updateAll = false)
+    content: public static int UpdateCompressedMaterialData(ref RepetitionlessMaterialDataCompressed compressedData, RepetitionlessMaterialData newData, Vector4 globalTilingOffset, bool updateAll = false)
     parameters:
     - id: compressedData
-      type: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+      type: Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
       description: "\nReference to the compressed data that will be updated\n"
     - id: newData
-      type: Repetitionless.Variables.RepetitionlessMaterialData
+      type: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
       description: "\nThe new data to compress\n"
+    - id: globalTilingOffset
+      type: UnityEngine.Vector4
+      description: "\nThe global tiling offset for the material\n"
     - id: updateAll
       type: System.Boolean
       description: "\nIf all the values will be updated if changed<br />\nIf disabled only the first changed value will update\n"
     return:
       type: System.Int32
       description: "\nReturns the changed variable index in the struct<br />\nIf updateAll is enabled it will return the default -1\n"
-    content.vb: Public Shared Function UpdateCompressedMaterialData(compressedData As RepetitionlessMaterialDataCompressed, newData As RepetitionlessMaterialData, updateAll As Boolean = False) As Integer
+    content.vb: Public Shared Function UpdateCompressedMaterialData(compressedData As RepetitionlessMaterialDataCompressed, newData As RepetitionlessMaterialData, globalTilingOffset As Vector4, updateAll As Boolean = False) As Integer
   overload: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData*
-  nameWithType.vb: RepetitionlessDataPacker.UpdateCompressedMaterialData(RepetitionlessMaterialDataCompressed, RepetitionlessMaterialData, Boolean)
-  fullName.vb: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData(Repetitionless.Variables.RepetitionlessMaterialDataCompressed, Repetitionless.Variables.RepetitionlessMaterialData, Boolean)
-  name.vb: UpdateCompressedMaterialData(RepetitionlessMaterialDataCompressed, RepetitionlessMaterialData, Boolean)
-- uid: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData(Repetitionless.Variables.RepetitionlessLayerDataCompressed@,Repetitionless.Variables.RepetitionlessLayerData,System.Boolean)
-  commentId: M:Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData(Repetitionless.Variables.RepetitionlessLayerDataCompressed@,Repetitionless.Variables.RepetitionlessLayerData,System.Boolean)
-  id: UpdateCompressedLayerData(Repetitionless.Variables.RepetitionlessLayerDataCompressed@,Repetitionless.Variables.RepetitionlessLayerData,System.Boolean)
+  nameWithType.vb: RepetitionlessDataPacker.UpdateCompressedMaterialData(RepetitionlessMaterialDataCompressed, RepetitionlessMaterialData, Vector4, Boolean)
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData(Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed, Repetitionless.Runtime.Variables.RepetitionlessMaterialData, UnityEngine.Vector4, Boolean)
+  name.vb: UpdateCompressedMaterialData(RepetitionlessMaterialDataCompressed, RepetitionlessMaterialData, Vector4, Boolean)
+- uid: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData(Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed@,Repetitionless.Runtime.Variables.RepetitionlessLayerData,System.Boolean)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData(Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed@,Repetitionless.Runtime.Variables.RepetitionlessLayerData,System.Boolean)
+  id: UpdateCompressedLayerData(Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed@,Repetitionless.Runtime.Variables.RepetitionlessLayerData,System.Boolean)
   parent: Repetitionless.Editor.Data.RepetitionlessDataPacker
   langs:
   - csharp
   - vb
   name: UpdateCompressedLayerData(ref RepetitionlessLayerDataCompressed, RepetitionlessLayerData, bool)
   nameWithType: RepetitionlessDataPacker.UpdateCompressedLayerData(ref RepetitionlessLayerDataCompressed, RepetitionlessLayerData, bool)
-  fullName: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData(ref Repetitionless.Variables.RepetitionlessLayerDataCompressed, Repetitionless.Variables.RepetitionlessLayerData, bool)
+  fullName: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData(ref Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed, Repetitionless.Runtime.Variables.RepetitionlessLayerData, bool)
   type: Method
   source:
     remote:
@@ -168,7 +171,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateCompressedLayerData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessDataPacker.cs
-    startLine: 184
+    startLine: 194
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -178,10 +181,10 @@ items:
     content: public static int UpdateCompressedLayerData(ref RepetitionlessLayerDataCompressed compressedData, RepetitionlessLayerData newData, bool updateAll = false)
     parameters:
     - id: compressedData
-      type: Repetitionless.Variables.RepetitionlessLayerDataCompressed
+      type: Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
       description: "\nReference to the compressed data that will be updated\n"
     - id: newData
-      type: Repetitionless.Variables.RepetitionlessLayerData
+      type: Repetitionless.Runtime.Variables.RepetitionlessLayerData
       description: "\nThe new data to compress\n"
     - id: updateAll
       type: System.Boolean
@@ -192,18 +195,18 @@ items:
     content.vb: Public Shared Function UpdateCompressedLayerData(compressedData As RepetitionlessLayerDataCompressed, newData As RepetitionlessLayerData, updateAll As Boolean = False) As Integer
   overload: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData*
   nameWithType.vb: RepetitionlessDataPacker.UpdateCompressedLayerData(RepetitionlessLayerDataCompressed, RepetitionlessLayerData, Boolean)
-  fullName.vb: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData(Repetitionless.Variables.RepetitionlessLayerDataCompressed, Repetitionless.Variables.RepetitionlessLayerData, Boolean)
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData(Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed, Repetitionless.Runtime.Variables.RepetitionlessLayerData, Boolean)
   name.vb: UpdateCompressedLayerData(RepetitionlessLayerDataCompressed, RepetitionlessLayerData, Boolean)
-- uid: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour(Repetitionless.Variables.RepetitionlessMaterialDataCompressed,System.Int32)
-  commentId: M:Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour(Repetitionless.Variables.RepetitionlessMaterialDataCompressed,System.Int32)
-  id: GetMaterialFieldColour(Repetitionless.Variables.RepetitionlessMaterialDataCompressed,System.Int32)
+- uid: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour(Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed,System.Int32)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour(Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed,System.Int32)
+  id: GetMaterialFieldColour(Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed,System.Int32)
   parent: Repetitionless.Editor.Data.RepetitionlessDataPacker
   langs:
   - csharp
   - vb
   name: GetMaterialFieldColour(RepetitionlessMaterialDataCompressed, int)
   nameWithType: RepetitionlessDataPacker.GetMaterialFieldColour(RepetitionlessMaterialDataCompressed, int)
-  fullName: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour(Repetitionless.Variables.RepetitionlessMaterialDataCompressed, int)
+  fullName: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour(Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed, int)
   type: Method
   source:
     remote:
@@ -212,7 +215,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetMaterialFieldColour
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessDataPacker.cs
-    startLine: 254
+    startLine: 264
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -222,7 +225,7 @@ items:
     content: public static Color? GetMaterialFieldColour(RepetitionlessMaterialDataCompressed compressedData, int compressedFieldIndex)
     parameters:
     - id: compressedData
-      type: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+      type: Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
       description: "\nThe compressed data to get the value from\n"
     - id: compressedFieldIndex
       type: System.Int32
@@ -233,18 +236,18 @@ items:
     content.vb: Public Shared Function GetMaterialFieldColour(compressedData As RepetitionlessMaterialDataCompressed, compressedFieldIndex As Integer) As Color?
   overload: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour*
   nameWithType.vb: RepetitionlessDataPacker.GetMaterialFieldColour(RepetitionlessMaterialDataCompressed, Integer)
-  fullName.vb: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour(Repetitionless.Variables.RepetitionlessMaterialDataCompressed, Integer)
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour(Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed, Integer)
   name.vb: GetMaterialFieldColour(RepetitionlessMaterialDataCompressed, Integer)
-- uid: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetLayerFieldColour(Repetitionless.Variables.RepetitionlessLayerDataCompressed,System.Int32)
-  commentId: M:Repetitionless.Editor.Data.RepetitionlessDataPacker.GetLayerFieldColour(Repetitionless.Variables.RepetitionlessLayerDataCompressed,System.Int32)
-  id: GetLayerFieldColour(Repetitionless.Variables.RepetitionlessLayerDataCompressed,System.Int32)
+- uid: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetLayerFieldColour(Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed,System.Int32)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessDataPacker.GetLayerFieldColour(Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed,System.Int32)
+  id: GetLayerFieldColour(Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed,System.Int32)
   parent: Repetitionless.Editor.Data.RepetitionlessDataPacker
   langs:
   - csharp
   - vb
   name: GetLayerFieldColour(RepetitionlessLayerDataCompressed, int)
   nameWithType: RepetitionlessDataPacker.GetLayerFieldColour(RepetitionlessLayerDataCompressed, int)
-  fullName: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetLayerFieldColour(Repetitionless.Variables.RepetitionlessLayerDataCompressed, int)
+  fullName: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetLayerFieldColour(Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed, int)
   type: Method
   source:
     remote:
@@ -253,7 +256,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetLayerFieldColour
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessDataPacker.cs
-    startLine: 290
+    startLine: 300
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -263,7 +266,7 @@ items:
     content: public static Color? GetLayerFieldColour(RepetitionlessLayerDataCompressed compressedData, int compressedFieldIndex)
     parameters:
     - id: compressedData
-      type: Repetitionless.Variables.RepetitionlessLayerDataCompressed
+      type: Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
       description: "\nThe compressed data to get the value from\n"
     - id: compressedFieldIndex
       type: System.Int32
@@ -274,7 +277,7 @@ items:
     content.vb: Public Shared Function GetLayerFieldColour(compressedData As RepetitionlessLayerDataCompressed, compressedFieldIndex As Integer) As Color?
   overload: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetLayerFieldColour*
   nameWithType.vb: RepetitionlessDataPacker.GetLayerFieldColour(RepetitionlessLayerDataCompressed, Integer)
-  fullName.vb: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetLayerFieldColour(Repetitionless.Variables.RepetitionlessLayerDataCompressed, Integer)
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetLayerFieldColour(Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed, Integer)
   name.vb: GetLayerFieldColour(RepetitionlessLayerDataCompressed, Integer)
 references:
 - uid: Repetitionless.Editor.Data
@@ -358,18 +361,18 @@ references:
   name: UpdateCompressedMaterialData
   nameWithType: RepetitionlessDataPacker.UpdateCompressedMaterialData
   fullName: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedMaterialData
-- uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
-  commentId: T:Repetitionless.Variables.RepetitionlessMaterialDataCompressed
-  parent: Repetitionless.Variables
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
+  parent: Repetitionless.Runtime.Variables
   name: RepetitionlessMaterialDataCompressed
   nameWithType: RepetitionlessMaterialDataCompressed
-  fullName: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
-- uid: Repetitionless.Variables.RepetitionlessMaterialData
-  commentId: T:Repetitionless.Variables.RepetitionlessMaterialData
-  parent: Repetitionless.Variables
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables
   name: RepetitionlessMaterialData
   nameWithType: RepetitionlessMaterialData
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -390,40 +393,46 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
-- uid: Repetitionless.Variables
-  commentId: N:Repetitionless.Variables
-  name: Repetitionless.Variables
-  nameWithType: Repetitionless.Variables
-  fullName: Repetitionless.Variables
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
 - uid: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData*
   commentId: Overload:Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData
   name: UpdateCompressedLayerData
   nameWithType: RepetitionlessDataPacker.UpdateCompressedLayerData
   fullName: Repetitionless.Editor.Data.RepetitionlessDataPacker.UpdateCompressedLayerData
-- uid: Repetitionless.Variables.RepetitionlessLayerDataCompressed
-  commentId: T:Repetitionless.Variables.RepetitionlessLayerDataCompressed
-  parent: Repetitionless.Variables
+- uid: Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
+  parent: Repetitionless.Runtime.Variables
   name: RepetitionlessLayerDataCompressed
   nameWithType: RepetitionlessLayerDataCompressed
-  fullName: Repetitionless.Variables.RepetitionlessLayerDataCompressed
-- uid: Repetitionless.Variables.RepetitionlessLayerData
-  commentId: T:Repetitionless.Variables.RepetitionlessLayerData
-  parent: Repetitionless.Variables
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
+- uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessLayerData
+  parent: Repetitionless.Runtime.Variables
   name: RepetitionlessLayerData
   nameWithType: RepetitionlessLayerData
-  fullName: Repetitionless.Variables.RepetitionlessLayerData
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessLayerData
 - uid: Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour*
   commentId: Overload:Repetitionless.Editor.Data.RepetitionlessDataPacker.GetMaterialFieldColour
   name: GetMaterialFieldColour

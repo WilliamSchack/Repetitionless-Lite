@@ -24,3 +24,23 @@ Opens the window
 
 ---
 
+## Open(bool)
+
+### Declaration
+
+``` csharp
+public static void Open(bool showWelcomeMessage = false)
+```
+
+### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| showWelcomeMessage | If the welcome message is shown |
+
+### Description
+
+Opens the window
+
+---
+

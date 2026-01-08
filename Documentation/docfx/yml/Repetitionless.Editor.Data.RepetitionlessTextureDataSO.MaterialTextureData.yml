@@ -22,7 +22,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: MaterialTextureData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 37
+    startLine: 40
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -59,7 +59,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AVTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 43
+    startLine: 46
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -88,7 +88,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: NSOTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 47
+    startLine: 50
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -117,7 +117,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: EMTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 51
+    startLine: 54
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data

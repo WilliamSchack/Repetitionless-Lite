@@ -1,33 +1,34 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Repetitionless.RepetitionlessTerrain
-  commentId: T:Repetitionless.RepetitionlessTerrain
+- uid: Repetitionless.Runtime.RepetitionlessTerrain
+  commentId: T:Repetitionless.Runtime.RepetitionlessTerrain
   id: RepetitionlessTerrain
-  parent: Repetitionless
+  parent: Repetitionless.Runtime
   children:
-  - Repetitionless.RepetitionlessTerrain.AutoSaveTextures
-  - Repetitionless.RepetitionlessTerrain.MainMaterial
-  - Repetitionless.RepetitionlessTerrain.MaterialInstance
-  - Repetitionless.RepetitionlessTerrain.OnMaterialChanged
-  - Repetitionless.RepetitionlessTerrain.OnMaterialTexturesUpdated
-  - Repetitionless.RepetitionlessTerrain.OnTerrainLayersChanged
-  - Repetitionless.RepetitionlessTerrain.ParentMaterialChanged(UnityEngine.Material)
-  - Repetitionless.RepetitionlessTerrain.ParentMaterialTexturesUpdated
-  - Repetitionless.RepetitionlessTerrain.ParentTerrain
-  - Repetitionless.RepetitionlessTerrain.SetupNewTerrainNeighbour(UnityEngine.Terrain)
-  - Repetitionless.RepetitionlessTerrain.Terrain
-  - Repetitionless.RepetitionlessTerrain.UpdateControlTextures
-  - Repetitionless.RepetitionlessTerrain.UpdateHolesTexture
-  - Repetitionless.RepetitionlessTerrain.UpdateLayersCount
-  - Repetitionless.RepetitionlessTerrain.UpdateMaterialTerrainTextures
-  - Repetitionless.RepetitionlessTerrain.UpdateParentCallback(Repetitionless.RepetitionlessTerrain)
-  - Repetitionless.RepetitionlessTerrain.UpdateTerrainMaterial(UnityEngine.Material)
+  - Repetitionless.Runtime.RepetitionlessTerrain.AssignMaterialInstance
+  - Repetitionless.Runtime.RepetitionlessTerrain.AutoSaveTextures
+  - Repetitionless.Runtime.RepetitionlessTerrain.MainMaterial
+  - Repetitionless.Runtime.RepetitionlessTerrain.MaterialInstance
+  - Repetitionless.Runtime.RepetitionlessTerrain.OnMaterialAssigned
+  - Repetitionless.Runtime.RepetitionlessTerrain.OnMaterialTexturesUpdated
+  - Repetitionless.Runtime.RepetitionlessTerrain.OnTerrainLayersChanged
+  - Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialChanged(UnityEngine.Material)
+  - Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialTexturesUpdated
+  - Repetitionless.Runtime.RepetitionlessTerrain.ParentTerrain
+  - Repetitionless.Runtime.RepetitionlessTerrain.SetupNewTerrainNeighbour(UnityEngine.Terrain)
+  - Repetitionless.Runtime.RepetitionlessTerrain.Terrain
+  - Repetitionless.Runtime.RepetitionlessTerrain.UpdateControlTextures
+  - Repetitionless.Runtime.RepetitionlessTerrain.UpdateHolesTexture
+  - Repetitionless.Runtime.RepetitionlessTerrain.UpdateLayersCount
+  - Repetitionless.Runtime.RepetitionlessTerrain.UpdateMaterialTerrainTextures
+  - Repetitionless.Runtime.RepetitionlessTerrain.UpdateParentCallback(Repetitionless.Runtime.RepetitionlessTerrain)
+  - Repetitionless.Runtime.RepetitionlessTerrain.UpdateTerrainMaterial(UnityEngine.Material,System.Boolean)
   langs:
   - csharp
   - vb
   name: RepetitionlessTerrain
   nameWithType: RepetitionlessTerrain
-  fullName: Repetitionless.RepetitionlessTerrain
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain
   type: Class
   source:
     remote:
@@ -38,8 +39,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
     startLine: 23
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nHandles Repetitionless materials interfacing with a terrain, automatically updating terrain textures and syncing the terrain layers to the material\n"
   example: []
   syntax:
@@ -65,16 +66,16 @@ items:
   - type: UnityEngine.ExecuteInEditMode
     ctor: UnityEngine.ExecuteInEditMode.#ctor
     arguments: []
-- uid: Repetitionless.RepetitionlessTerrain.MainMaterial
-  commentId: P:Repetitionless.RepetitionlessTerrain.MainMaterial
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.MainMaterial
+  commentId: P:Repetitionless.Runtime.RepetitionlessTerrain.MainMaterial
   id: MainMaterial
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: MainMaterial
   nameWithType: RepetitionlessTerrain.MainMaterial
-  fullName: Repetitionless.RepetitionlessTerrain.MainMaterial
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.MainMaterial
   type: Property
   source:
     remote:
@@ -85,8 +86,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
     startLine: 34
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nThe main material set in the inspector\n"
   example: []
   syntax:
@@ -95,17 +96,17 @@ items:
     return:
       type: UnityEngine.Material
     content.vb: Public ReadOnly Property MainMaterial As Material
-  overload: Repetitionless.RepetitionlessTerrain.MainMaterial*
-- uid: Repetitionless.RepetitionlessTerrain.MaterialInstance
-  commentId: P:Repetitionless.RepetitionlessTerrain.MaterialInstance
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.MainMaterial*
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.MaterialInstance
+  commentId: P:Repetitionless.Runtime.RepetitionlessTerrain.MaterialInstance
   id: MaterialInstance
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: MaterialInstance
   nameWithType: RepetitionlessTerrain.MaterialInstance
-  fullName: Repetitionless.RepetitionlessTerrain.MaterialInstance
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.MaterialInstance
   type: Property
   source:
     remote:
@@ -116,8 +117,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
     startLine: 41
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nThe instance of the material the terrain is using\n"
   example: []
   syntax:
@@ -126,17 +127,17 @@ items:
     return:
       type: UnityEngine.Material
     content.vb: Public ReadOnly Property MaterialInstance As Material
-  overload: Repetitionless.RepetitionlessTerrain.MaterialInstance*
-- uid: Repetitionless.RepetitionlessTerrain.AutoSaveTextures
-  commentId: F:Repetitionless.RepetitionlessTerrain.AutoSaveTextures
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.MaterialInstance*
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.AutoSaveTextures
+  commentId: F:Repetitionless.Runtime.RepetitionlessTerrain.AutoSaveTextures
   id: AutoSaveTextures
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: AutoSaveTextures
   nameWithType: RepetitionlessTerrain.AutoSaveTextures
-  fullName: Repetitionless.RepetitionlessTerrain.AutoSaveTextures
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.AutoSaveTextures
   type: Field
   source:
     remote:
@@ -147,8 +148,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
     startLine: 46
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nIf modifying the terrain layers will automatically update the material\n"
   example: []
   syntax:
@@ -156,16 +157,16 @@ items:
     return:
       type: System.Boolean
     content.vb: Public AutoSaveTextures As Boolean
-- uid: Repetitionless.RepetitionlessTerrain.Terrain
-  commentId: P:Repetitionless.RepetitionlessTerrain.Terrain
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.Terrain
+  commentId: P:Repetitionless.Runtime.RepetitionlessTerrain.Terrain
   id: Terrain
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: Terrain
   nameWithType: RepetitionlessTerrain.Terrain
-  fullName: Repetitionless.RepetitionlessTerrain.Terrain
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.Terrain
   type: Property
   source:
     remote:
@@ -176,8 +177,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
     startLine: 53
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nThe terrain being used\n"
   example: []
   syntax:
@@ -186,17 +187,17 @@ items:
     return:
       type: UnityEngine.Terrain
     content.vb: Public ReadOnly Property Terrain As Terrain
-  overload: Repetitionless.RepetitionlessTerrain.Terrain*
-- uid: Repetitionless.RepetitionlessTerrain.ParentTerrain
-  commentId: F:Repetitionless.RepetitionlessTerrain.ParentTerrain
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.Terrain*
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.ParentTerrain
+  commentId: F:Repetitionless.Runtime.RepetitionlessTerrain.ParentTerrain
   id: ParentTerrain
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: ParentTerrain
   nameWithType: RepetitionlessTerrain.ParentTerrain
-  fullName: Repetitionless.RepetitionlessTerrain.ParentTerrain
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.ParentTerrain
   type: Field
   source:
     remote:
@@ -205,10 +206,10 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ParentTerrain
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 70
+    startLine: 66
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nThe parent terrain that is handling this terrains material\n"
   example: []
   syntax:
@@ -217,7 +218,7 @@ items:
 
       public RepetitionlessTerrain ParentTerrain
     return:
-      type: Repetitionless.RepetitionlessTerrain
+      type: Repetitionless.Runtime.RepetitionlessTerrain
     content.vb: >-
       <SerializeField>
 
@@ -226,16 +227,16 @@ items:
   - type: UnityEngine.SerializeField
     ctor: UnityEngine.SerializeField.#ctor
     arguments: []
-- uid: Repetitionless.RepetitionlessTerrain.OnTerrainLayersChanged
-  commentId: F:Repetitionless.RepetitionlessTerrain.OnTerrainLayersChanged
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.OnTerrainLayersChanged
+  commentId: F:Repetitionless.Runtime.RepetitionlessTerrain.OnTerrainLayersChanged
   id: OnTerrainLayersChanged
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: OnTerrainLayersChanged
   nameWithType: RepetitionlessTerrain.OnTerrainLayersChanged
-  fullName: Repetitionless.RepetitionlessTerrain.OnTerrainLayersChanged
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.OnTerrainLayersChanged
   type: Field
   source:
     remote:
@@ -244,10 +245,10 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTerrainLayersChanged
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 75
+    startLine: 71
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nCallback when the terrain layers are changed\n"
   example: []
   syntax:
@@ -255,45 +256,45 @@ items:
     return:
       type: System.Action{UnityEngine.TerrainLayer[]}
     content.vb: Public OnTerrainLayersChanged As Action(Of TerrainLayer())
-- uid: Repetitionless.RepetitionlessTerrain.OnMaterialChanged
-  commentId: F:Repetitionless.RepetitionlessTerrain.OnMaterialChanged
-  id: OnMaterialChanged
-  parent: Repetitionless.RepetitionlessTerrain
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.OnMaterialAssigned
+  commentId: F:Repetitionless.Runtime.RepetitionlessTerrain.OnMaterialAssigned
+  id: OnMaterialAssigned
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
-  name: OnMaterialChanged
-  nameWithType: RepetitionlessTerrain.OnMaterialChanged
-  fullName: Repetitionless.RepetitionlessTerrain.OnMaterialChanged
+  name: OnMaterialAssigned
+  nameWithType: RepetitionlessTerrain.OnMaterialAssigned
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.OnMaterialAssigned
   type: Field
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
-    id: OnMaterialChanged
+    id: OnMaterialAssigned
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 80
+    startLine: 76
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nCallback when the material is changed\n"
   example: []
   syntax:
-    content: public Action<Material> OnMaterialChanged
+    content: public Action<Material> OnMaterialAssigned
     return:
       type: System.Action{UnityEngine.Material}
-    content.vb: Public OnMaterialChanged As Action(Of Material)
-- uid: Repetitionless.RepetitionlessTerrain.OnMaterialTexturesUpdated
-  commentId: F:Repetitionless.RepetitionlessTerrain.OnMaterialTexturesUpdated
+    content.vb: Public OnMaterialAssigned As Action(Of Material)
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.OnMaterialTexturesUpdated
+  commentId: F:Repetitionless.Runtime.RepetitionlessTerrain.OnMaterialTexturesUpdated
   id: OnMaterialTexturesUpdated
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: OnMaterialTexturesUpdated
   nameWithType: RepetitionlessTerrain.OnMaterialTexturesUpdated
-  fullName: Repetitionless.RepetitionlessTerrain.OnMaterialTexturesUpdated
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.OnMaterialTexturesUpdated
   type: Field
   source:
     remote:
@@ -302,10 +303,10 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnMaterialTexturesUpdated
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 85
+    startLine: 81
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nCallback when the material textures are updated\n"
   example: []
   syntax:
@@ -313,16 +314,16 @@ items:
     return:
       type: System.Action
     content.vb: Public OnMaterialTexturesUpdated As Action
-- uid: Repetitionless.RepetitionlessTerrain.UpdateTerrainMaterial(UnityEngine.Material)
-  commentId: M:Repetitionless.RepetitionlessTerrain.UpdateTerrainMaterial(UnityEngine.Material)
-  id: UpdateTerrainMaterial(UnityEngine.Material)
-  parent: Repetitionless.RepetitionlessTerrain
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateTerrainMaterial(UnityEngine.Material,System.Boolean)
+  commentId: M:Repetitionless.Runtime.RepetitionlessTerrain.UpdateTerrainMaterial(UnityEngine.Material,System.Boolean)
+  id: UpdateTerrainMaterial(UnityEngine.Material,System.Boolean)
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
-  name: UpdateTerrainMaterial(Material)
-  nameWithType: RepetitionlessTerrain.UpdateTerrainMaterial(Material)
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateTerrainMaterial(UnityEngine.Material)
+  name: UpdateTerrainMaterial(Material, bool)
+  nameWithType: RepetitionlessTerrain.UpdateTerrainMaterial(Material, bool)
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateTerrainMaterial(UnityEngine.Material, bool)
   type: Method
   source:
     remote:
@@ -331,30 +332,64 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTerrainMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 149
+    startLine: 148
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nCreates a new material instance and updates the terrain\n"
   example: []
   syntax:
-    content: public void UpdateTerrainMaterial(Material material)
+    content: public void UpdateTerrainMaterial(Material material, bool assignMaterial = true)
     parameters:
     - id: material
       type: UnityEngine.Material
       description: "\nThe material that will be instanced\n"
-    content.vb: Public Sub UpdateTerrainMaterial(material As Material)
-  overload: Repetitionless.RepetitionlessTerrain.UpdateTerrainMaterial*
-- uid: Repetitionless.RepetitionlessTerrain.UpdateMaterialTerrainTextures
-  commentId: M:Repetitionless.RepetitionlessTerrain.UpdateMaterialTerrainTextures
+    - id: assignMaterial
+      type: System.Boolean
+      description: "\nIf the material instance should be assigned to the terrain\n"
+    content.vb: Public Sub UpdateTerrainMaterial(material As Material, assignMaterial As Boolean = True)
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.UpdateTerrainMaterial*
+  nameWithType.vb: RepetitionlessTerrain.UpdateTerrainMaterial(Material, Boolean)
+  fullName.vb: Repetitionless.Runtime.RepetitionlessTerrain.UpdateTerrainMaterial(UnityEngine.Material, Boolean)
+  name.vb: UpdateTerrainMaterial(Material, Boolean)
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.AssignMaterialInstance
+  commentId: M:Repetitionless.Runtime.RepetitionlessTerrain.AssignMaterialInstance
+  id: AssignMaterialInstance
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
+  langs:
+  - csharp
+  - vb
+  name: AssignMaterialInstance()
+  nameWithType: RepetitionlessTerrain.AssignMaterialInstance()
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.AssignMaterialInstance()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: AssignMaterialInstance
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
+    startLine: 171
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
+  summary: "\nAssigns the currently used material instance to the terrain\n"
+  example: []
+  syntax:
+    content: public void AssignMaterialInstance()
+    content.vb: Public Sub AssignMaterialInstance()
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.AssignMaterialInstance*
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateMaterialTerrainTextures
+  commentId: M:Repetitionless.Runtime.RepetitionlessTerrain.UpdateMaterialTerrainTextures
   id: UpdateMaterialTerrainTextures
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: UpdateMaterialTerrainTextures()
   nameWithType: RepetitionlessTerrain.UpdateMaterialTerrainTextures()
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateMaterialTerrainTextures()
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateMaterialTerrainTextures()
   type: Method
   source:
     remote:
@@ -363,26 +398,26 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateMaterialTerrainTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 173
+    startLine: 180
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nUpdates the terrain textures on the material instance\n"
   example: []
   syntax:
     content: public void UpdateMaterialTerrainTextures()
     content.vb: Public Sub UpdateMaterialTerrainTextures()
-  overload: Repetitionless.RepetitionlessTerrain.UpdateMaterialTerrainTextures*
-- uid: Repetitionless.RepetitionlessTerrain.UpdateLayersCount
-  commentId: M:Repetitionless.RepetitionlessTerrain.UpdateLayersCount
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.UpdateMaterialTerrainTextures*
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateLayersCount
+  commentId: M:Repetitionless.Runtime.RepetitionlessTerrain.UpdateLayersCount
   id: UpdateLayersCount
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: UpdateLayersCount()
   nameWithType: RepetitionlessTerrain.UpdateLayersCount()
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateLayersCount()
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateLayersCount()
   type: Method
   source:
     remote:
@@ -391,26 +426,26 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateLayersCount
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 201
+    startLine: 208
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nUpdates the layer cound on the material instance\n"
   example: []
   syntax:
     content: public void UpdateLayersCount()
     content.vb: Public Sub UpdateLayersCount()
-  overload: Repetitionless.RepetitionlessTerrain.UpdateLayersCount*
-- uid: Repetitionless.RepetitionlessTerrain.UpdateControlTextures
-  commentId: M:Repetitionless.RepetitionlessTerrain.UpdateControlTextures
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.UpdateLayersCount*
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateControlTextures
+  commentId: M:Repetitionless.Runtime.RepetitionlessTerrain.UpdateControlTextures
   id: UpdateControlTextures
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: UpdateControlTextures()
   nameWithType: RepetitionlessTerrain.UpdateControlTextures()
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateControlTextures()
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateControlTextures()
   type: Method
   source:
     remote:
@@ -419,26 +454,26 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 209
+    startLine: 216
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nUpdates the control textures on the material instance\n"
   example: []
   syntax:
     content: public void UpdateControlTextures()
     content.vb: Public Sub UpdateControlTextures()
-  overload: Repetitionless.RepetitionlessTerrain.UpdateControlTextures*
-- uid: Repetitionless.RepetitionlessTerrain.UpdateHolesTexture
-  commentId: M:Repetitionless.RepetitionlessTerrain.UpdateHolesTexture
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.UpdateControlTextures*
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateHolesTexture
+  commentId: M:Repetitionless.Runtime.RepetitionlessTerrain.UpdateHolesTexture
   id: UpdateHolesTexture
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: UpdateHolesTexture()
   nameWithType: RepetitionlessTerrain.UpdateHolesTexture()
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateHolesTexture()
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateHolesTexture()
   type: Method
   source:
     remote:
@@ -447,26 +482,26 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateHolesTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 221
+    startLine: 228
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nUpdates the holes texture on the material instance\n"
   example: []
   syntax:
     content: public void UpdateHolesTexture()
     content.vb: Public Sub UpdateHolesTexture()
-  overload: Repetitionless.RepetitionlessTerrain.UpdateHolesTexture*
-- uid: Repetitionless.RepetitionlessTerrain.UpdateParentCallback(Repetitionless.RepetitionlessTerrain)
-  commentId: M:Repetitionless.RepetitionlessTerrain.UpdateParentCallback(Repetitionless.RepetitionlessTerrain)
-  id: UpdateParentCallback(Repetitionless.RepetitionlessTerrain)
-  parent: Repetitionless.RepetitionlessTerrain
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.UpdateHolesTexture*
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateParentCallback(Repetitionless.Runtime.RepetitionlessTerrain)
+  commentId: M:Repetitionless.Runtime.RepetitionlessTerrain.UpdateParentCallback(Repetitionless.Runtime.RepetitionlessTerrain)
+  id: UpdateParentCallback(Repetitionless.Runtime.RepetitionlessTerrain)
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: UpdateParentCallback(RepetitionlessTerrain)
   nameWithType: RepetitionlessTerrain.UpdateParentCallback(RepetitionlessTerrain)
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateParentCallback(Repetitionless.RepetitionlessTerrain)
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateParentCallback(Repetitionless.Runtime.RepetitionlessTerrain)
   type: Method
   source:
     remote:
@@ -475,30 +510,30 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateParentCallback
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 234
+    startLine: 241
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nUpdates the parent callbacks<br />\nAssumes this is called from the editor before the current parent is updated\n"
   example: []
   syntax:
     content: public void UpdateParentCallback(RepetitionlessTerrain newParent)
     parameters:
     - id: newParent
-      type: Repetitionless.RepetitionlessTerrain
+      type: Repetitionless.Runtime.RepetitionlessTerrain
       description: "\nThe new parent being subscribed to\n"
     content.vb: Public Sub UpdateParentCallback(newParent As RepetitionlessTerrain)
-  overload: Repetitionless.RepetitionlessTerrain.UpdateParentCallback*
-- uid: Repetitionless.RepetitionlessTerrain.ParentMaterialChanged(UnityEngine.Material)
-  commentId: M:Repetitionless.RepetitionlessTerrain.ParentMaterialChanged(UnityEngine.Material)
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.UpdateParentCallback*
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialChanged(UnityEngine.Material)
+  commentId: M:Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialChanged(UnityEngine.Material)
   id: ParentMaterialChanged(UnityEngine.Material)
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: ParentMaterialChanged(Material)
   nameWithType: RepetitionlessTerrain.ParentMaterialChanged(Material)
-  fullName: Repetitionless.RepetitionlessTerrain.ParentMaterialChanged(UnityEngine.Material)
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialChanged(UnityEngine.Material)
   type: Method
   source:
     remote:
@@ -507,10 +542,10 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ParentMaterialChanged
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 259
+    startLine: 266
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nUpdates the terrain material and its textures<br />\nCalled by the parent when its material has changed\n"
   example: []
   syntax:
@@ -520,17 +555,17 @@ items:
       type: UnityEngine.Material
       description: "\nThe new material to use\n"
     content.vb: Public Sub ParentMaterialChanged(material As Material)
-  overload: Repetitionless.RepetitionlessTerrain.ParentMaterialChanged*
-- uid: Repetitionless.RepetitionlessTerrain.ParentMaterialTexturesUpdated
-  commentId: M:Repetitionless.RepetitionlessTerrain.ParentMaterialTexturesUpdated
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialChanged*
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialTexturesUpdated
+  commentId: M:Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialTexturesUpdated
   id: ParentMaterialTexturesUpdated
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: ParentMaterialTexturesUpdated()
   nameWithType: RepetitionlessTerrain.ParentMaterialTexturesUpdated()
-  fullName: Repetitionless.RepetitionlessTerrain.ParentMaterialTexturesUpdated()
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialTexturesUpdated()
   type: Method
   source:
     remote:
@@ -539,26 +574,26 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ParentMaterialTexturesUpdated
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 269
+    startLine: 276
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nUpdates the material terrain textures<br />\nCalled by the parent when its material has changed\n"
   example: []
   syntax:
     content: public void ParentMaterialTexturesUpdated()
     content.vb: Public Sub ParentMaterialTexturesUpdated()
-  overload: Repetitionless.RepetitionlessTerrain.ParentMaterialTexturesUpdated*
-- uid: Repetitionless.RepetitionlessTerrain.SetupNewTerrainNeighbour(UnityEngine.Terrain)
-  commentId: M:Repetitionless.RepetitionlessTerrain.SetupNewTerrainNeighbour(UnityEngine.Terrain)
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialTexturesUpdated*
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.SetupNewTerrainNeighbour(UnityEngine.Terrain)
+  commentId: M:Repetitionless.Runtime.RepetitionlessTerrain.SetupNewTerrainNeighbour(UnityEngine.Terrain)
   id: SetupNewTerrainNeighbour(UnityEngine.Terrain)
-  parent: Repetitionless.RepetitionlessTerrain
+  parent: Repetitionless.Runtime.RepetitionlessTerrain
   langs:
   - csharp
   - vb
   name: SetupNewTerrainNeighbour(Terrain)
   nameWithType: RepetitionlessTerrain.SetupNewTerrainNeighbour(Terrain)
-  fullName: Repetitionless.RepetitionlessTerrain.SetupNewTerrainNeighbour(UnityEngine.Terrain)
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.SetupNewTerrainNeighbour(UnityEngine.Terrain)
   type: Method
   source:
     remote:
@@ -567,10 +602,10 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupNewTerrainNeighbour
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 281
+    startLine: 288
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime
   summary: "\nSets up a terrain neighbour with a RepetitionlessTerrain component with this terrain as its parent<br />\nCalled via the editor when a terrain is created beside this one\n"
   example: []
   syntax:
@@ -580,13 +615,25 @@ items:
       type: UnityEngine.Terrain
       description: "\nThe new terrain to setup\n"
     content.vb: Public Sub SetupNewTerrainNeighbour(newNeighbour As Terrain)
-  overload: Repetitionless.RepetitionlessTerrain.SetupNewTerrainNeighbour*
+  overload: Repetitionless.Runtime.RepetitionlessTerrain.SetupNewTerrainNeighbour*
 references:
-- uid: Repetitionless
-  commentId: N:Repetitionless
-  name: Repetitionless
-  nameWithType: Repetitionless
-  fullName: Repetitionless
+- uid: Repetitionless.Runtime
+  commentId: N:Repetitionless.Runtime
+  name: Repetitionless.Runtime
+  nameWithType: Repetitionless.Runtime
+  fullName: Repetitionless.Runtime
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -637,11 +684,11 @@ references:
   name: UnityEngine
   nameWithType: UnityEngine
   fullName: UnityEngine
-- uid: Repetitionless.RepetitionlessTerrain.MainMaterial*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.MainMaterial
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.MainMaterial*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.MainMaterial
   name: MainMaterial
   nameWithType: RepetitionlessTerrain.MainMaterial
-  fullName: Repetitionless.RepetitionlessTerrain.MainMaterial
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.MainMaterial
 - uid: UnityEngine.Material
   commentId: T:UnityEngine.Material
   parent: UnityEngine
@@ -649,11 +696,11 @@ references:
   name: Material
   nameWithType: Material
   fullName: UnityEngine.Material
-- uid: Repetitionless.RepetitionlessTerrain.MaterialInstance*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.MaterialInstance
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.MaterialInstance*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.MaterialInstance
   name: MaterialInstance
   nameWithType: RepetitionlessTerrain.MaterialInstance
-  fullName: Repetitionless.RepetitionlessTerrain.MaterialInstance
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.MaterialInstance
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -664,11 +711,11 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
-- uid: Repetitionless.RepetitionlessTerrain.Terrain*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.Terrain
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.Terrain*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.Terrain
   name: Terrain
   nameWithType: RepetitionlessTerrain.Terrain
-  fullName: Repetitionless.RepetitionlessTerrain.Terrain
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.Terrain
 - uid: UnityEngine.Terrain
   commentId: T:UnityEngine.Terrain
   parent: UnityEngine
@@ -676,12 +723,12 @@ references:
   name: Terrain
   nameWithType: Terrain
   fullName: UnityEngine.Terrain
-- uid: Repetitionless.RepetitionlessTerrain
-  commentId: T:Repetitionless.RepetitionlessTerrain
-  parent: Repetitionless
+- uid: Repetitionless.Runtime.RepetitionlessTerrain
+  commentId: T:Repetitionless.Runtime.RepetitionlessTerrain
+  parent: Repetitionless.Runtime
   name: RepetitionlessTerrain
   nameWithType: RepetitionlessTerrain
-  fullName: Repetitionless.RepetitionlessTerrain
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain
 - uid: System.Action{UnityEngine.TerrainLayer[]}
   commentId: T:System.Action{UnityEngine.TerrainLayer[]}
   parent: System
@@ -778,48 +825,53 @@ references:
   name: Action
   nameWithType: Action
   fullName: System.Action
-- uid: Repetitionless.RepetitionlessTerrain.UpdateTerrainMaterial*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.UpdateTerrainMaterial
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateTerrainMaterial*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.UpdateTerrainMaterial
   name: UpdateTerrainMaterial
   nameWithType: RepetitionlessTerrain.UpdateTerrainMaterial
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateTerrainMaterial
-- uid: Repetitionless.RepetitionlessTerrain.UpdateMaterialTerrainTextures*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.UpdateMaterialTerrainTextures
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateTerrainMaterial
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.AssignMaterialInstance*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.AssignMaterialInstance
+  name: AssignMaterialInstance
+  nameWithType: RepetitionlessTerrain.AssignMaterialInstance
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.AssignMaterialInstance
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateMaterialTerrainTextures*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.UpdateMaterialTerrainTextures
   name: UpdateMaterialTerrainTextures
   nameWithType: RepetitionlessTerrain.UpdateMaterialTerrainTextures
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateMaterialTerrainTextures
-- uid: Repetitionless.RepetitionlessTerrain.UpdateLayersCount*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.UpdateLayersCount
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateMaterialTerrainTextures
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateLayersCount*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.UpdateLayersCount
   name: UpdateLayersCount
   nameWithType: RepetitionlessTerrain.UpdateLayersCount
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateLayersCount
-- uid: Repetitionless.RepetitionlessTerrain.UpdateControlTextures*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.UpdateControlTextures
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateLayersCount
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateControlTextures*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.UpdateControlTextures
   name: UpdateControlTextures
   nameWithType: RepetitionlessTerrain.UpdateControlTextures
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateControlTextures
-- uid: Repetitionless.RepetitionlessTerrain.UpdateHolesTexture*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.UpdateHolesTexture
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateControlTextures
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateHolesTexture*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.UpdateHolesTexture
   name: UpdateHolesTexture
   nameWithType: RepetitionlessTerrain.UpdateHolesTexture
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateHolesTexture
-- uid: Repetitionless.RepetitionlessTerrain.UpdateParentCallback*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.UpdateParentCallback
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateHolesTexture
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.UpdateParentCallback*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.UpdateParentCallback
   name: UpdateParentCallback
   nameWithType: RepetitionlessTerrain.UpdateParentCallback
-  fullName: Repetitionless.RepetitionlessTerrain.UpdateParentCallback
-- uid: Repetitionless.RepetitionlessTerrain.ParentMaterialChanged*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.ParentMaterialChanged
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.UpdateParentCallback
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialChanged*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialChanged
   name: ParentMaterialChanged
   nameWithType: RepetitionlessTerrain.ParentMaterialChanged
-  fullName: Repetitionless.RepetitionlessTerrain.ParentMaterialChanged
-- uid: Repetitionless.RepetitionlessTerrain.ParentMaterialTexturesUpdated*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.ParentMaterialTexturesUpdated
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialChanged
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialTexturesUpdated*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialTexturesUpdated
   name: ParentMaterialTexturesUpdated
   nameWithType: RepetitionlessTerrain.ParentMaterialTexturesUpdated
-  fullName: Repetitionless.RepetitionlessTerrain.ParentMaterialTexturesUpdated
-- uid: Repetitionless.RepetitionlessTerrain.SetupNewTerrainNeighbour*
-  commentId: Overload:Repetitionless.RepetitionlessTerrain.SetupNewTerrainNeighbour
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.ParentMaterialTexturesUpdated
+- uid: Repetitionless.Runtime.RepetitionlessTerrain.SetupNewTerrainNeighbour*
+  commentId: Overload:Repetitionless.Runtime.RepetitionlessTerrain.SetupNewTerrainNeighbour
   name: SetupNewTerrainNeighbour
   nameWithType: RepetitionlessTerrain.SetupNewTerrainNeighbour
-  fullName: Repetitionless.RepetitionlessTerrain.SetupNewTerrainNeighbour
+  fullName: Repetitionless.Runtime.RepetitionlessTerrain.SetupNewTerrainNeighbour

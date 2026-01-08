@@ -1,0 +1,424 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  commentId: T:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  id: RepetitionlessTerrainDataSO
+  parent: Repetitionless.Editor.Data
+  children:
+  - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.ClearTerrainLayers
+  - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures
+  - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save
+  - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.TerrainLayers
+  - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer)
+  - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateTerrainLayers(UnityEngine.TerrainLayer[])
+  langs:
+  - csharp
+  - vb
+  name: RepetitionlessTerrainDataSO
+  nameWithType: RepetitionlessTerrainDataSO
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RepetitionlessTerrainDataSO
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+    startLine: 17
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nStores the terrain data for a Repetitionless material\n"
+  example: []
+  syntax:
+    content: 'public class RepetitionlessTerrainDataSO : ScriptableObject'
+    content.vb: Public Class RepetitionlessTerrainDataSO Inherits ScriptableObject
+  inheritance:
+  - System.Object
+  - UnityEngine.Object
+  - UnityEngine.ScriptableObject
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.TerrainLayers
+  commentId: P:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.TerrainLayers
+  id: TerrainLayers
+  parent: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  langs:
+  - csharp
+  - vb
+  name: TerrainLayers
+  nameWithType: RepetitionlessTerrainDataSO.TerrainLayers
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.TerrainLayers
+  type: Property
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: TerrainLayers
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+    startLine: 24
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nThe terrain layers linked to this material\n"
+  example: []
+  syntax:
+    content: public List<TerrainLayer> TerrainLayers { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{UnityEngine.TerrainLayer}
+    content.vb: Public ReadOnly Property TerrainLayers As List(Of TerrainLayer)
+  overload: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.TerrainLayers*
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save
+  id: Save
+  parent: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  langs:
+  - csharp
+  - vb
+  name: Save()
+  nameWithType: RepetitionlessTerrainDataSO.Save()
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Save
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+    startLine: 40
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nSaves this object\n"
+  example: []
+  syntax:
+    content: public void Save()
+    content.vb: Public Sub Save()
+  overload: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save*
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateTerrainLayers(UnityEngine.TerrainLayer[])
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateTerrainLayers(UnityEngine.TerrainLayer[])
+  id: UpdateTerrainLayers(UnityEngine.TerrainLayer[])
+  parent: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  langs:
+  - csharp
+  - vb
+  name: UpdateTerrainLayers(TerrainLayer[])
+  nameWithType: RepetitionlessTerrainDataSO.UpdateTerrainLayers(TerrainLayer[])
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateTerrainLayers(UnityEngine.TerrainLayer[])
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: UpdateTerrainLayers
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+    startLine: 53
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nUpdates the terrain layers, overwrites the currently set with the inputted layers\n"
+  example: []
+  syntax:
+    content: public void UpdateTerrainLayers(TerrainLayer[] layers)
+    parameters:
+    - id: layers
+      type: UnityEngine.TerrainLayer[]
+      description: "\nThe new terrain layers to use\n"
+    content.vb: Public Sub UpdateTerrainLayers(layers As TerrainLayer())
+  overload: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateTerrainLayers*
+  nameWithType.vb: RepetitionlessTerrainDataSO.UpdateTerrainLayers(TerrainLayer())
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateTerrainLayers(UnityEngine.TerrainLayer())
+  name.vb: UpdateTerrainLayers(TerrainLayer())
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.ClearTerrainLayers
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.ClearTerrainLayers
+  id: ClearTerrainLayers
+  parent: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  langs:
+  - csharp
+  - vb
+  name: ClearTerrainLayers()
+  nameWithType: RepetitionlessTerrainDataSO.ClearTerrainLayers()
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.ClearTerrainLayers()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: ClearTerrainLayers
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+    startLine: 62
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nClears the terrain layers\n"
+  example: []
+  syntax:
+    content: public void ClearTerrainLayers()
+    content.vb: Public Sub ClearTerrainLayers()
+  overload: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.ClearTerrainLayers*
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer)
+  id: UpdateLayerMaterialData(UnityEngine.TerrainLayer)
+  parent: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  langs:
+  - csharp
+  - vb
+  name: UpdateLayerMaterialData(TerrainLayer)
+  nameWithType: RepetitionlessTerrainDataSO.UpdateLayerMaterialData(TerrainLayer)
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: UpdateLayerMaterialData
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+    startLine: 74
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nUpdates the layer linked to the inputted terrain layer on the material\n"
+  example: []
+  syntax:
+    content: public void UpdateLayerMaterialData(TerrainLayer terrainLayer)
+    parameters:
+    - id: terrainLayer
+      type: UnityEngine.TerrainLayer
+      description: "\nThe terrain layer to update\n"
+    content.vb: Public Sub UpdateLayerMaterialData(terrainLayer As TerrainLayer)
+  overload: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData*
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures
+  id: RemoveUnusedLayerTextures
+  parent: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  langs:
+  - csharp
+  - vb
+  name: RemoveUnusedLayerTextures()
+  nameWithType: RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures()
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RemoveUnusedLayerTextures
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+    startLine: 151
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nRemoves any unused terrain layers for a material\n"
+  example: []
+  syntax:
+    content: public void RemoveUnusedLayerTextures()
+    content.vb: Public Sub RemoveUnusedLayerTextures()
+  overload: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures*
+references:
+- uid: Repetitionless.Editor.Data
+  commentId: N:Repetitionless.Editor.Data
+  name: Repetitionless.Editor.Data
+  nameWithType: Repetitionless.Editor.Data
+  fullName: Repetitionless.Editor.Data
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: UnityEngine.Object
+  commentId: T:UnityEngine.Object
+  parent: UnityEngine
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: UnityEngine.Object
+- uid: UnityEngine.ScriptableObject
+  commentId: T:UnityEngine.ScriptableObject
+  parent: UnityEngine
+  isExternal: true
+  name: ScriptableObject
+  nameWithType: ScriptableObject
+  fullName: UnityEngine.ScriptableObject
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.TerrainLayers*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.TerrainLayers
+  name: TerrainLayers
+  nameWithType: RepetitionlessTerrainDataSO.TerrainLayers
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.TerrainLayers
+- uid: System.Collections.Generic.List{UnityEngine.TerrainLayer}
+  commentId: T:System.Collections.Generic.List{UnityEngine.TerrainLayer}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<TerrainLayer>
+  nameWithType: List<TerrainLayer>
+  fullName: System.Collections.Generic.List<UnityEngine.TerrainLayer>
+  nameWithType.vb: List(Of TerrainLayer)
+  fullName.vb: System.Collections.Generic.List(Of UnityEngine.TerrainLayer)
+  name.vb: List(Of TerrainLayer)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: <
+  - uid: UnityEngine.TerrainLayer
+    name: TerrainLayer
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: UnityEngine.TerrainLayer
+    name: TerrainLayer
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save
+  name: Save
+  nameWithType: RepetitionlessTerrainDataSO.Save
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateTerrainLayers*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateTerrainLayers
+  name: UpdateTerrainLayers
+  nameWithType: RepetitionlessTerrainDataSO.UpdateTerrainLayers
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateTerrainLayers
+- uid: UnityEngine.TerrainLayer[]
+  isExternal: true
+  name: TerrainLayer[]
+  nameWithType: TerrainLayer[]
+  fullName: UnityEngine.TerrainLayer[]
+  nameWithType.vb: TerrainLayer()
+  fullName.vb: UnityEngine.TerrainLayer()
+  name.vb: TerrainLayer()
+  spec.csharp:
+  - uid: UnityEngine.TerrainLayer
+    name: TerrainLayer
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: UnityEngine.TerrainLayer
+    name: TerrainLayer
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.ClearTerrainLayers*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.ClearTerrainLayers
+  name: ClearTerrainLayers
+  nameWithType: RepetitionlessTerrainDataSO.ClearTerrainLayers
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.ClearTerrainLayers
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData
+  name: UpdateLayerMaterialData
+  nameWithType: RepetitionlessTerrainDataSO.UpdateLayerMaterialData
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData
+- uid: UnityEngine.TerrainLayer
+  commentId: T:UnityEngine.TerrainLayer
+  parent: UnityEngine
+  isExternal: true
+  name: TerrainLayer
+  nameWithType: TerrainLayer
+  fullName: UnityEngine.TerrainLayer
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures
+  name: RemoveUnusedLayerTextures
+  nameWithType: RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures

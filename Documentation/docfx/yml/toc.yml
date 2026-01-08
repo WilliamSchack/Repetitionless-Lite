@@ -1,19 +1,9 @@
 ### YamlMime:TableOfContent
-- uid: Repetitionless
-  name: Repetitionless
+- uid: Repetitionless.Editor.Config
+  name: Repetitionless.Editor.Config
   items:
-  - uid: Repetitionless.RepetitionlessTerrain
-    name: RepetitionlessTerrain
-- uid: Repetitionless.Compression
-  name: Repetitionless.Compression
-  items:
-  - uid: Repetitionless.Compression.BooleanCompression
-    name: BooleanCompression
-- uid: Repetitionless.Editor
-  name: Repetitionless.Editor
-  items:
-  - uid: Repetitionless.Editor.Constants
-    name: Constants
+  - uid: Repetitionless.Editor.Config.RepetitionlessPackageInfo
+    name: RepetitionlessPackageInfo
 - uid: Repetitionless.Editor.CustomDialog
   name: Repetitionless.Editor.CustomDialog
   items:
@@ -37,18 +27,14 @@
     name: RepetitionlessDataPacker
   - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
     name: RepetitionlessMaterialDataSO
+  - uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+    name: RepetitionlessTerrainDataSO
   - uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO
     name: RepetitionlessTextureDataSO
   - uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.LayerTextureData
     name: RepetitionlessTextureDataSO.LayerTextureData
   - uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData
     name: RepetitionlessTextureDataSO.MaterialTextureData
-  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO
-    name: TerrainLayerSyncDataSO
-  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.MaterialList
-    name: TerrainLayerSyncDataSO.MaterialList
-  - uid: Repetitionless.Editor.Data.TerrainLayerSyncDataSO.TerrainLayerList
-    name: TerrainLayerSyncDataSO.TerrainLayerList
 - uid: Repetitionless.Editor.GUIUtilities
   name: Repetitionless.Editor.GUIUtilities
   items:
@@ -100,25 +86,35 @@
     name: TexturePacker.TextureData
   - uid: Repetitionless.Editor.TextureUtilities.TextureUtilities
     name: TextureUtilities
-- uid: Repetitionless.Variables
-  name: Repetitionless.Variables
+- uid: Repetitionless.Runtime
+  name: Repetitionless.Runtime
   items:
-  - uid: Repetitionless.Variables.EDistanceBlendMode
+  - uid: Repetitionless.Runtime.RepetitionlessTerrain
+    name: RepetitionlessTerrain
+- uid: Repetitionless.Runtime.Compression
+  name: Repetitionless.Runtime.Compression
+  items:
+  - uid: Repetitionless.Runtime.Compression.BooleanCompression
+    name: BooleanCompression
+- uid: Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  items:
+  - uid: Repetitionless.Runtime.Variables.EDistanceBlendMode
     name: EDistanceBlendMode
-  - uid: Repetitionless.Variables.ESurfaceType
+  - uid: Repetitionless.Runtime.Variables.ESurfaceType
     name: ESurfaceType
-  - uid: Repetitionless.Variables.ETextureType
+  - uid: Repetitionless.Runtime.Variables.ETextureType
     name: ETextureType
-  - uid: Repetitionless.Variables.EUVSpace
+  - uid: Repetitionless.Runtime.Variables.EUVSpace
     name: EUVSpace
-  - uid: Repetitionless.Variables.RepetitionlessLayerData
+  - uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData
     name: RepetitionlessLayerData
-  - uid: Repetitionless.Variables.RepetitionlessLayerDataCompressed
+  - uid: Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
     name: RepetitionlessLayerDataCompressed
-  - uid: Repetitionless.Variables.RepetitionlessMaterialData
+  - uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
     name: RepetitionlessMaterialData
-  - uid: Repetitionless.Variables.RepetitionlessMaterialDataCompressed
+  - uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
     name: RepetitionlessMaterialDataCompressed
-  - uid: Repetitionless.Variables.SerializableDictionary`2
+  - uid: Repetitionless.Runtime.Variables.SerializableDictionary`2
     name: SerializableDictionary<TKey, TValue>
     name.vb: SerializableDictionary(Of TKey, TValue)

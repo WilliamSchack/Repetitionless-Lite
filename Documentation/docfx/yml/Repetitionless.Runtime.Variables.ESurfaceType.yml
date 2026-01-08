@@ -1,19 +1,19 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Repetitionless.Variables.ESurfaceType
-  commentId: T:Repetitionless.Variables.ESurfaceType
+- uid: Repetitionless.Runtime.Variables.ESurfaceType
+  commentId: T:Repetitionless.Runtime.Variables.ESurfaceType
   id: ESurfaceType
-  parent: Repetitionless.Variables
+  parent: Repetitionless.Runtime.Variables
   children:
-  - Repetitionless.Variables.ESurfaceType.Cutout
-  - Repetitionless.Variables.ESurfaceType.Opaque
-  - Repetitionless.Variables.ESurfaceType.Transparent
+  - Repetitionless.Runtime.Variables.ESurfaceType.Cutout
+  - Repetitionless.Runtime.Variables.ESurfaceType.Opaque
+  - Repetitionless.Runtime.Variables.ESurfaceType.Transparent
   langs:
   - csharp
   - vb
   name: ESurfaceType
   nameWithType: ESurfaceType
-  fullName: Repetitionless.Variables.ESurfaceType
+  fullName: Repetitionless.Runtime.Variables.ESurfaceType
   type: Enum
   source:
     remote:
@@ -24,23 +24,23 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
     startLine: 5
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nAvailable surface types for Repetitionless Materials\n"
   example: []
   syntax:
     content: public enum ESurfaceType
     content.vb: Public Enum ESurfaceType
-- uid: Repetitionless.Variables.ESurfaceType.Opaque
-  commentId: F:Repetitionless.Variables.ESurfaceType.Opaque
+- uid: Repetitionless.Runtime.Variables.ESurfaceType.Opaque
+  commentId: F:Repetitionless.Runtime.Variables.ESurfaceType.Opaque
   id: Opaque
-  parent: Repetitionless.Variables.ESurfaceType
+  parent: Repetitionless.Runtime.Variables.ESurfaceType
   langs:
   - csharp
   - vb
   name: Opaque
   nameWithType: ESurfaceType.Opaque
-  fullName: Repetitionless.Variables.ESurfaceType.Opaque
+  fullName: Repetitionless.Runtime.Variables.ESurfaceType.Opaque
   type: Field
   source:
     remote:
@@ -51,24 +51,24 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
     startLine: 10
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nOpaque surface with no transparency\n"
   example: []
   syntax:
     content: Opaque = 0
     return:
-      type: Repetitionless.Variables.ESurfaceType
-- uid: Repetitionless.Variables.ESurfaceType.Cutout
-  commentId: F:Repetitionless.Variables.ESurfaceType.Cutout
+      type: Repetitionless.Runtime.Variables.ESurfaceType
+- uid: Repetitionless.Runtime.Variables.ESurfaceType.Cutout
+  commentId: F:Repetitionless.Runtime.Variables.ESurfaceType.Cutout
   id: Cutout
-  parent: Repetitionless.Variables.ESurfaceType
+  parent: Repetitionless.Runtime.Variables.ESurfaceType
   langs:
   - csharp
   - vb
   name: Cutout
   nameWithType: ESurfaceType.Cutout
-  fullName: Repetitionless.Variables.ESurfaceType.Cutout
+  fullName: Repetitionless.Runtime.Variables.ESurfaceType.Cutout
   type: Field
   source:
     remote:
@@ -79,24 +79,24 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
     startLine: 15
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nTransparentCutout surface (Opaque with alpha clipping)\n"
   example: []
   syntax:
     content: Cutout = 1
     return:
-      type: Repetitionless.Variables.ESurfaceType
-- uid: Repetitionless.Variables.ESurfaceType.Transparent
-  commentId: F:Repetitionless.Variables.ESurfaceType.Transparent
+      type: Repetitionless.Runtime.Variables.ESurfaceType
+- uid: Repetitionless.Runtime.Variables.ESurfaceType.Transparent
+  commentId: F:Repetitionless.Runtime.Variables.ESurfaceType.Transparent
   id: Transparent
-  parent: Repetitionless.Variables.ESurfaceType
+  parent: Repetitionless.Runtime.Variables.ESurfaceType
   langs:
   - csharp
   - vb
   name: Transparent
   nameWithType: ESurfaceType.Transparent
-  fullName: Repetitionless.Variables.ESurfaceType.Transparent
+  fullName: Repetitionless.Runtime.Variables.ESurfaceType.Transparent
   type: Field
   source:
     remote:
@@ -107,35 +107,41 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
     startLine: 20
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nTransparent surface\n"
   example: []
   syntax:
     content: Transparent = 2
     return:
-      type: Repetitionless.Variables.ESurfaceType
+      type: Repetitionless.Runtime.Variables.ESurfaceType
 references:
-- uid: Repetitionless.Variables
-  commentId: N:Repetitionless.Variables
-  name: Repetitionless.Variables
-  nameWithType: Repetitionless.Variables
-  fullName: Repetitionless.Variables
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
-- uid: Repetitionless.Variables.ESurfaceType
-  commentId: T:Repetitionless.Variables.ESurfaceType
-  parent: Repetitionless.Variables
+- uid: Repetitionless.Runtime.Variables.ESurfaceType
+  commentId: T:Repetitionless.Runtime.Variables.ESurfaceType
+  parent: Repetitionless.Runtime.Variables
   name: ESurfaceType
   nameWithType: ESurfaceType
-  fullName: Repetitionless.Variables.ESurfaceType
+  fullName: Repetitionless.Runtime.Variables.ESurfaceType

@@ -6,6 +6,7 @@ items:
   parent: Repetitionless.Editor.Data
   children:
   - Repetitionless.Editor.Data.MaterialDataManager.#ctor(UnityEngine.Material)
+  - Repetitionless.Editor.Data.MaterialDataManager.#ctor(UnityEngine.Object)
   - Repetitionless.Editor.Data.MaterialDataManager.AssetExists(System.String)
   - Repetitionless.Editor.Data.MaterialDataManager.CreateAsset(UnityEngine.Object,System.String,System.Boolean)
   - Repetitionless.Editor.Data.MaterialDataManager.DataFolderName
@@ -106,6 +107,40 @@ items:
   nameWithType.vb: MaterialDataManager.New(Material)
   fullName.vb: Repetitionless.Editor.Data.MaterialDataManager.New(UnityEngine.Material)
   name.vb: New(Material)
+- uid: Repetitionless.Editor.Data.MaterialDataManager.#ctor(UnityEngine.Object)
+  commentId: M:Repetitionless.Editor.Data.MaterialDataManager.#ctor(UnityEngine.Object)
+  id: '#ctor(UnityEngine.Object)'
+  parent: Repetitionless.Editor.Data.MaterialDataManager
+  langs:
+  - csharp
+  - vb
+  name: MaterialDataManager(Object)
+  nameWithType: MaterialDataManager.MaterialDataManager(Object)
+  fullName: Repetitionless.Editor.Data.MaterialDataManager.MaterialDataManager(UnityEngine.Object)
+  type: Constructor
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: .ctor
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
+    startLine: 42
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nGets a data manager from the path of an asset inside the data folder<br />\nIf the main material cannot be found, Material will be null\n"
+  example: []
+  syntax:
+    content: public MaterialDataManager(Object dataAsset)
+    parameters:
+    - id: dataAsset
+      type: UnityEngine.Object
+    content.vb: Public Sub New(dataAsset As [Object])
+  overload: Repetitionless.Editor.Data.MaterialDataManager.#ctor*
+  nameWithType.vb: MaterialDataManager.New(Object)
+  fullName.vb: Repetitionless.Editor.Data.MaterialDataManager.New(UnityEngine.Object)
+  name.vb: New(Object)
 - uid: Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName(System.String)
   commentId: M:Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName(System.String)
   id: GenerateFolderName(System.String)
@@ -124,7 +159,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GenerateFolderName
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 44
+    startLine: 84
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -162,7 +197,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DataFolderParentPath
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 55
+    startLine: 95
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -193,7 +228,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DataFolderName
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 70
+    startLine: 110
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -224,7 +259,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DataFolderPath
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 81
+    startLine: 121
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -255,7 +290,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateAsset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 136
+    startLine: 176
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -296,7 +331,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: LoadAsset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 160
+    startLine: 200
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -337,7 +372,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AssetExists
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 178
+    startLine: 218
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -375,7 +410,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DeleteAsset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 193
+    startLine: 233
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -458,6 +493,13 @@ references:
   nameWithType.vb: MaterialDataManager.New
   fullName.vb: Repetitionless.Editor.Data.MaterialDataManager.New
   name.vb: New
+- uid: UnityEngine.Object
+  commentId: T:UnityEngine.Object
+  parent: UnityEngine
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: UnityEngine.Object
 - uid: Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName*
   commentId: Overload:Repetitionless.Editor.Data.MaterialDataManager.GenerateFolderName
   name: GenerateFolderName
@@ -493,13 +535,6 @@ references:
   name: CreateAsset
   nameWithType: MaterialDataManager.CreateAsset
   fullName: Repetitionless.Editor.Data.MaterialDataManager.CreateAsset
-- uid: UnityEngine.Object
-  commentId: T:UnityEngine.Object
-  parent: UnityEngine
-  isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: UnityEngine.Object
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System

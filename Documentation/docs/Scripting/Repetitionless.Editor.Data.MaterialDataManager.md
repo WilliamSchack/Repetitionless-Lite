@@ -14,6 +14,7 @@ Stores the data in a folder accompanying the material
 |----------|-------------|
 | Material | The material this is handling data for |
 | MaterialDataManager(Material) | MaterialDataManager Constructor |
+| MaterialDataManager(Object) | Gets a data manager from the path of an asset inside the data folder<br />If the main material cannot be found, Material will be null |
 
 ---
 

@@ -1,21 +1,21 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Repetitionless.Variables.SerializableDictionary`2
-  commentId: T:Repetitionless.Variables.SerializableDictionary`2
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2
+  commentId: T:Repetitionless.Runtime.Variables.SerializableDictionary`2
   id: SerializableDictionary`2
-  parent: Repetitionless.Variables
+  parent: Repetitionless.Runtime.Variables
   children:
-  - Repetitionless.Variables.SerializableDictionary`2.ContainsKey(`0)
-  - Repetitionless.Variables.SerializableDictionary`2.Count
-  - Repetitionless.Variables.SerializableDictionary`2.Get(`0)
-  - Repetitionless.Variables.SerializableDictionary`2.Remove(`0)
-  - Repetitionless.Variables.SerializableDictionary`2.Set(`0,`1)
+  - Repetitionless.Runtime.Variables.SerializableDictionary`2.ContainsKey(`0)
+  - Repetitionless.Runtime.Variables.SerializableDictionary`2.Count
+  - Repetitionless.Runtime.Variables.SerializableDictionary`2.Get(`0)
+  - Repetitionless.Runtime.Variables.SerializableDictionary`2.Remove(`0)
+  - Repetitionless.Runtime.Variables.SerializableDictionary`2.Set(`0,`1)
   langs:
   - csharp
   - vb
   name: SerializableDictionary<TKey, TValue>
   nameWithType: SerializableDictionary<TKey, TValue>
-  fullName: Repetitionless.Variables.SerializableDictionary<TKey, TValue>
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>
   type: Class
   source:
     remote:
@@ -26,8 +26,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SerializableDictionary.cs
     startLine: 14
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nA simple serializable dictionary that uses two lists for keys and values\n"
   example: []
   syntax:
@@ -51,18 +51,18 @@ items:
     ctor: System.SerializableAttribute.#ctor
     arguments: []
   nameWithType.vb: SerializableDictionary(Of TKey, TValue)
-  fullName.vb: Repetitionless.Variables.SerializableDictionary(Of TKey, TValue)
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue)
   name.vb: SerializableDictionary(Of TKey, TValue)
-- uid: Repetitionless.Variables.SerializableDictionary`2.Count
-  commentId: P:Repetitionless.Variables.SerializableDictionary`2.Count
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2.Count
+  commentId: P:Repetitionless.Runtime.Variables.SerializableDictionary`2.Count
   id: Count
-  parent: Repetitionless.Variables.SerializableDictionary`2
+  parent: Repetitionless.Runtime.Variables.SerializableDictionary`2
   langs:
   - csharp
   - vb
   name: Count
   nameWithType: SerializableDictionary<TKey, TValue>.Count
-  fullName: Repetitionless.Variables.SerializableDictionary<TKey, TValue>.Count
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>.Count
   type: Property
   source:
     remote:
@@ -73,8 +73,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SerializableDictionary.cs
     startLine: 23
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nThe amount of values stored\n"
   example: []
   syntax:
@@ -83,19 +83,19 @@ items:
     return:
       type: System.Int32
     content.vb: Public ReadOnly Property Count As Integer
-  overload: Repetitionless.Variables.SerializableDictionary`2.Count*
+  overload: Repetitionless.Runtime.Variables.SerializableDictionary`2.Count*
   nameWithType.vb: SerializableDictionary(Of TKey, TValue).Count
-  fullName.vb: Repetitionless.Variables.SerializableDictionary(Of TKey, TValue).Count
-- uid: Repetitionless.Variables.SerializableDictionary`2.Get(`0)
-  commentId: M:Repetitionless.Variables.SerializableDictionary`2.Get(`0)
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue).Count
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2.Get(`0)
+  commentId: M:Repetitionless.Runtime.Variables.SerializableDictionary`2.Get(`0)
   id: Get(`0)
-  parent: Repetitionless.Variables.SerializableDictionary`2
+  parent: Repetitionless.Runtime.Variables.SerializableDictionary`2
   langs:
   - csharp
   - vb
   name: Get(TKey)
   nameWithType: SerializableDictionary<TKey, TValue>.Get(TKey)
-  fullName: Repetitionless.Variables.SerializableDictionary<TKey, TValue>.Get(TKey)
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>.Get(TKey)
   type: Method
   source:
     remote:
@@ -106,8 +106,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SerializableDictionary.cs
     startLine: 34
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nGets a value at the index of key\n"
   example: []
   syntax:
@@ -120,19 +120,19 @@ items:
       type: '{TValue}'
       description: "\nA value at the index of key\n"
     content.vb: Public Function [Get](key As TKey) As TValue
-  overload: Repetitionless.Variables.SerializableDictionary`2.Get*
+  overload: Repetitionless.Runtime.Variables.SerializableDictionary`2.Get*
   nameWithType.vb: SerializableDictionary(Of TKey, TValue).Get(TKey)
-  fullName.vb: Repetitionless.Variables.SerializableDictionary(Of TKey, TValue).Get(TKey)
-- uid: Repetitionless.Variables.SerializableDictionary`2.Set(`0,`1)
-  commentId: M:Repetitionless.Variables.SerializableDictionary`2.Set(`0,`1)
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue).Get(TKey)
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2.Set(`0,`1)
+  commentId: M:Repetitionless.Runtime.Variables.SerializableDictionary`2.Set(`0,`1)
   id: Set(`0,`1)
-  parent: Repetitionless.Variables.SerializableDictionary`2
+  parent: Repetitionless.Runtime.Variables.SerializableDictionary`2
   langs:
   - csharp
   - vb
   name: Set(TKey, TValue)
   nameWithType: SerializableDictionary<TKey, TValue>.Set(TKey, TValue)
-  fullName: Repetitionless.Variables.SerializableDictionary<TKey, TValue>.Set(TKey, TValue)
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>.Set(TKey, TValue)
   type: Method
   source:
     remote:
@@ -143,8 +143,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SerializableDictionary.cs
     startLine: 52
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nSets a value at a key and creates a new entry if not found\n"
   example: []
   syntax:
@@ -157,19 +157,19 @@ items:
       type: '{TValue}'
       description: "\nThe value to set at key\n"
     content.vb: Public Sub [Set](key As TKey, value As TValue)
-  overload: Repetitionless.Variables.SerializableDictionary`2.Set*
+  overload: Repetitionless.Runtime.Variables.SerializableDictionary`2.Set*
   nameWithType.vb: SerializableDictionary(Of TKey, TValue).Set(TKey, TValue)
-  fullName.vb: Repetitionless.Variables.SerializableDictionary(Of TKey, TValue).Set(TKey, TValue)
-- uid: Repetitionless.Variables.SerializableDictionary`2.Remove(`0)
-  commentId: M:Repetitionless.Variables.SerializableDictionary`2.Remove(`0)
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue).Set(TKey, TValue)
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2.Remove(`0)
+  commentId: M:Repetitionless.Runtime.Variables.SerializableDictionary`2.Remove(`0)
   id: Remove(`0)
-  parent: Repetitionless.Variables.SerializableDictionary`2
+  parent: Repetitionless.Runtime.Variables.SerializableDictionary`2
   langs:
   - csharp
   - vb
   name: Remove(TKey)
   nameWithType: SerializableDictionary<TKey, TValue>.Remove(TKey)
-  fullName: Repetitionless.Variables.SerializableDictionary<TKey, TValue>.Remove(TKey)
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>.Remove(TKey)
   type: Method
   source:
     remote:
@@ -180,8 +180,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SerializableDictionary.cs
     startLine: 70
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nRemoves a value at the index of key\n"
   example: []
   syntax:
@@ -191,19 +191,19 @@ items:
       type: '{TKey}'
       description: "\nThe key used to index into values\n"
     content.vb: Public Sub Remove(key As TKey)
-  overload: Repetitionless.Variables.SerializableDictionary`2.Remove*
+  overload: Repetitionless.Runtime.Variables.SerializableDictionary`2.Remove*
   nameWithType.vb: SerializableDictionary(Of TKey, TValue).Remove(TKey)
-  fullName.vb: Repetitionless.Variables.SerializableDictionary(Of TKey, TValue).Remove(TKey)
-- uid: Repetitionless.Variables.SerializableDictionary`2.ContainsKey(`0)
-  commentId: M:Repetitionless.Variables.SerializableDictionary`2.ContainsKey(`0)
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue).Remove(TKey)
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2.ContainsKey(`0)
+  commentId: M:Repetitionless.Runtime.Variables.SerializableDictionary`2.ContainsKey(`0)
   id: ContainsKey(`0)
-  parent: Repetitionless.Variables.SerializableDictionary`2
+  parent: Repetitionless.Runtime.Variables.SerializableDictionary`2
   langs:
   - csharp
   - vb
   name: ContainsKey(TKey)
   nameWithType: SerializableDictionary<TKey, TValue>.ContainsKey(TKey)
-  fullName: Repetitionless.Variables.SerializableDictionary<TKey, TValue>.ContainsKey(TKey)
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>.ContainsKey(TKey)
   type: Method
   source:
     remote:
@@ -214,8 +214,8 @@ items:
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SerializableDictionary.cs
     startLine: 89
   assemblies:
-  - com.williamschack.Repetitionless
-  namespace: Repetitionless.Variables
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
   summary: "\nGets if a value has been set at a key\n"
   example: []
   syntax:
@@ -228,26 +228,32 @@ items:
       type: System.Boolean
       description: "\nIf the key has been set\n"
     content.vb: Public Function ContainsKey(key As TKey) As Boolean
-  overload: Repetitionless.Variables.SerializableDictionary`2.ContainsKey*
+  overload: Repetitionless.Runtime.Variables.SerializableDictionary`2.ContainsKey*
   nameWithType.vb: SerializableDictionary(Of TKey, TValue).ContainsKey(TKey)
-  fullName.vb: Repetitionless.Variables.SerializableDictionary(Of TKey, TValue).ContainsKey(TKey)
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue).ContainsKey(TKey)
 references:
-- uid: Repetitionless.Variables
-  commentId: N:Repetitionless.Variables
-  name: Repetitionless.Variables
-  nameWithType: Repetitionless.Variables
-  fullName: Repetitionless.Variables
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
 - uid: System.Object
   commentId: T:System.Object
@@ -265,13 +271,13 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Repetitionless.Variables.SerializableDictionary`2.Count*
-  commentId: Overload:Repetitionless.Variables.SerializableDictionary`2.Count
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2.Count*
+  commentId: Overload:Repetitionless.Runtime.Variables.SerializableDictionary`2.Count
   name: Count
   nameWithType: SerializableDictionary<TKey, TValue>.Count
-  fullName: Repetitionless.Variables.SerializableDictionary<TKey, TValue>.Count
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>.Count
   nameWithType.vb: SerializableDictionary(Of TKey, TValue).Count
-  fullName.vb: Repetitionless.Variables.SerializableDictionary(Of TKey, TValue).Count
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue).Count
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -282,13 +288,13 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
-- uid: Repetitionless.Variables.SerializableDictionary`2.Get*
-  commentId: Overload:Repetitionless.Variables.SerializableDictionary`2.Get
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2.Get*
+  commentId: Overload:Repetitionless.Runtime.Variables.SerializableDictionary`2.Get
   name: Get
   nameWithType: SerializableDictionary<TKey, TValue>.Get
-  fullName: Repetitionless.Variables.SerializableDictionary<TKey, TValue>.Get
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>.Get
   nameWithType.vb: SerializableDictionary(Of TKey, TValue).Get
-  fullName.vb: Repetitionless.Variables.SerializableDictionary(Of TKey, TValue).Get
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue).Get
 - uid: '{TKey}'
   commentId: '!:TKey'
   definition: TKey
@@ -309,27 +315,27 @@ references:
   name: TValue
   nameWithType: TValue
   fullName: TValue
-- uid: Repetitionless.Variables.SerializableDictionary`2.Set*
-  commentId: Overload:Repetitionless.Variables.SerializableDictionary`2.Set
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2.Set*
+  commentId: Overload:Repetitionless.Runtime.Variables.SerializableDictionary`2.Set
   name: Set
   nameWithType: SerializableDictionary<TKey, TValue>.Set
-  fullName: Repetitionless.Variables.SerializableDictionary<TKey, TValue>.Set
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>.Set
   nameWithType.vb: SerializableDictionary(Of TKey, TValue).Set
-  fullName.vb: Repetitionless.Variables.SerializableDictionary(Of TKey, TValue).Set
-- uid: Repetitionless.Variables.SerializableDictionary`2.Remove*
-  commentId: Overload:Repetitionless.Variables.SerializableDictionary`2.Remove
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue).Set
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2.Remove*
+  commentId: Overload:Repetitionless.Runtime.Variables.SerializableDictionary`2.Remove
   name: Remove
   nameWithType: SerializableDictionary<TKey, TValue>.Remove
-  fullName: Repetitionless.Variables.SerializableDictionary<TKey, TValue>.Remove
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>.Remove
   nameWithType.vb: SerializableDictionary(Of TKey, TValue).Remove
-  fullName.vb: Repetitionless.Variables.SerializableDictionary(Of TKey, TValue).Remove
-- uid: Repetitionless.Variables.SerializableDictionary`2.ContainsKey*
-  commentId: Overload:Repetitionless.Variables.SerializableDictionary`2.ContainsKey
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue).Remove
+- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2.ContainsKey*
+  commentId: Overload:Repetitionless.Runtime.Variables.SerializableDictionary`2.ContainsKey
   name: ContainsKey
   nameWithType: SerializableDictionary<TKey, TValue>.ContainsKey
-  fullName: Repetitionless.Variables.SerializableDictionary<TKey, TValue>.ContainsKey
+  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>.ContainsKey
   nameWithType.vb: SerializableDictionary(Of TKey, TValue).ContainsKey
-  fullName.vb: Repetitionless.Variables.SerializableDictionary(Of TKey, TValue).ContainsKey
+  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue).ContainsKey
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System

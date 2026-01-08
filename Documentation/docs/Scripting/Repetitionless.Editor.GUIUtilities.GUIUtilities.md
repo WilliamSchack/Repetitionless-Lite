@@ -621,12 +621,36 @@ Draws a Vector2Int field removing the space at the end which EditorGUI.Vector2In
 
 ---
 
+## DrawTilingOffset(MaterialProperty, string, string)
+
+### Declaration
+
+``` csharp
+public static void DrawTilingOffset(MaterialProperty tilingOffsetProperty, string tilingLabel = "Scale", string offsetLabel = "Offset")
+```
+
+### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| tilingOffsetProperty | A float4 property that will be used and updated for the tiling and offset values |
+| tilingLabel | The label to show for the tiling field |
+| offsetLabel | The label to show for the offset field |
+
+### Description
+
+Draws tiling offset fields using and updating values in a float4 materialProperty
+
+Uses the DrawVector2Field function to remove empty space
+
+---
+
 ## DrawTilingOffset(Vector4, string, string)
 
 ### Declaration
 
 ``` csharp
-public static Vector4 DrawTilingOffset(Vector4 tilingOffset, string tilingLabel = "Scale", string offsetLabel = "Offset")
+public static Vector4 DrawTilingOffset(Vector4 tilingOffset, string tilingLabel = "Tiling", string offsetLabel = "Offset")
 ```
 
 ### Parameters
@@ -649,21 +673,25 @@ Uses the DrawVector2Field function to remove empty space
 
 ---
 
-## DrawTilingOffset(MaterialProperty, string, string)
+## DrawTilingOffset(Vector4, GUIContent, GUIContent)
 
 ### Declaration
 
 ``` csharp
-public static void DrawTilingOffset(MaterialProperty tilingOffsetProperty, string tilingLabel = "Scale", string offsetLabel = "Offset")
+public static Vector4 DrawTilingOffset(Vector4 tilingOffset, GUIContent tilingContent, GUIContent offsetContent)
 ```
 
 ### Parameters
 
 | Parameter | Description |
 |-----------|-------------|
-| tilingOffsetProperty | A float4 property that will be used and updated for the tiling and offset values |
-| tilingLabel | The label to show for the tiling field |
-| offsetLabel | The label to show for the offset field |
+| tilingOffset | The initial tiling offset value |
+| tilingContent | The GUIContent to show for the tiling field |
+| offsetContent | The GUIContent to show for the offset field |
+
+### Returns
+
+The new tiling offset value
 
 ### Description
 

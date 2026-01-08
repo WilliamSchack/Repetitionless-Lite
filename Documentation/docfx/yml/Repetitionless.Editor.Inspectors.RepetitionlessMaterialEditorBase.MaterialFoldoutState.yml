@@ -22,7 +22,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: MaterialFoldoutState
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 26
+    startLine: 28
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -51,7 +51,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: MainProperties
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 31
+    startLine: 33
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -80,7 +80,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: NoiseProperties
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 36
+    startLine: 38
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -109,7 +109,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: VariationProperties
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-    startLine: 41
+    startLine: 43
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors

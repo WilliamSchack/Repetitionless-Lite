@@ -14,11 +14,12 @@ items:
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.Init(System.Int32)
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.LayersTextureData
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.NSOTexturesDrawer
+  - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.OnDataChanged
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.PackedColourSpace
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.Save
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupLayer(System.Int32)
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupMaterial(Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData@)
-  - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupTextureDrawers(Repetitionless.Editor.Data.MaterialDataManager)
+  - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupTextureDrawers
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.TEXTURE_PROP_NAME
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.UpdateAssignedTexturesTexture
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO.UpdateAssignedTexturesTexture(UnityEditor.MaterialProperty)
@@ -37,7 +38,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessTextureDataSO
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -68,7 +69,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TEXTURE_PROP_NAME
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 22
+    startLine: 25
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -97,7 +98,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: LayersTextureData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 84
+    startLine: 87
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -126,7 +127,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PackedColourSpace
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 95
+    startLine: 98
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -165,7 +166,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AVTexturesDrawer
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 104
+    startLine: 116
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -194,7 +195,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: NSOTexturesDrawer
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 109
+    startLine: 121
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -223,7 +224,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: EMTexturesDrawer
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 114
+    startLine: 126
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -252,7 +253,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BMTexturesDrawer
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 119
+    startLine: 131
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -263,6 +264,35 @@ items:
     return:
       type: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
     content.vb: Public BMTexturesDrawer As TextureArrayCustomChannelsGUIDrawer
+- uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.OnDataChanged
+  commentId: F:Repetitionless.Editor.Data.RepetitionlessTextureDataSO.OnDataChanged
+  id: OnDataChanged
+  parent: Repetitionless.Editor.Data.RepetitionlessTextureDataSO
+  langs:
+  - csharp
+  - vb
+  name: OnDataChanged
+  nameWithType: RepetitionlessTextureDataSO.OnDataChanged
+  fullName: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.OnDataChanged
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnDataChanged
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
+    startLine: 136
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nCallback for when any of the textures are changed\n"
+  example: []
+  syntax:
+    content: public Action OnDataChanged
+    return:
+      type: System.Action
+    content.vb: Public OnDataChanged As Action
 - uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.Init(System.Int32)
   commentId: M:Repetitionless.Editor.Data.RepetitionlessTextureDataSO.Init(System.Int32)
   id: Init(System.Int32)
@@ -281,7 +311,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Init
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 127
+    startLine: 144
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -316,7 +346,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupLayer
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 142
+    startLine: 159
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -351,7 +381,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 169
+    startLine: 186
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -386,7 +416,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Save
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 329
+    startLine: 346
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -414,7 +444,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateAssignedTexturesTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 426
+    startLine: 448
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -442,7 +472,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateAssignedTexturesTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 441
+    startLine: 463
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -456,16 +486,16 @@ items:
       description: "\nThe assigned textures property that will be updated\n"
     content.vb: Public Sub UpdateAssignedTexturesTexture([property] As MaterialProperty)
   overload: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.UpdateAssignedTexturesTexture*
-- uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupTextureDrawers(Repetitionless.Editor.Data.MaterialDataManager)
-  commentId: M:Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupTextureDrawers(Repetitionless.Editor.Data.MaterialDataManager)
-  id: SetupTextureDrawers(Repetitionless.Editor.Data.MaterialDataManager)
+- uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupTextureDrawers
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupTextureDrawers
+  id: SetupTextureDrawers
   parent: Repetitionless.Editor.Data.RepetitionlessTextureDataSO
   langs:
   - csharp
   - vb
-  name: SetupTextureDrawers(MaterialDataManager)
-  nameWithType: RepetitionlessTextureDataSO.SetupTextureDrawers(MaterialDataManager)
-  fullName: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupTextureDrawers(Repetitionless.Editor.Data.MaterialDataManager)
+  name: SetupTextureDrawers()
+  nameWithType: RepetitionlessTextureDataSO.SetupTextureDrawers()
+  fullName: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupTextureDrawers()
   type: Method
   source:
     remote:
@@ -474,19 +504,15 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupTextureDrawers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 478
+    startLine: 505
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
   summary: "\nInitializes the texture drawers<br />\nThese are not serialized and this must be called for each session using them\n"
   example: []
   syntax:
-    content: public void SetupTextureDrawers(MaterialDataManager dataManager)
-    parameters:
-    - id: dataManager
-      type: Repetitionless.Editor.Data.MaterialDataManager
-      description: "\nThe data manager to use\n"
-    content.vb: Public Sub SetupTextureDrawers(dataManager As MaterialDataManager)
+    content: public void SetupTextureDrawers()
+    content.vb: Public Sub SetupTextureDrawers()
   overload: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupTextureDrawers*
 - uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.GetMaterialTextureData(System.Int32,System.Int32)
   commentId: M:Repetitionless.Editor.Data.RepetitionlessTextureDataSO.GetMaterialTextureData(System.Int32,System.Int32)
@@ -506,7 +532,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetMaterialTextureData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 524
+    startLine: 561
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -547,7 +573,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetTextureData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 550
+    startLine: 587
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -588,7 +614,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetTextureData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 578
+    startLine: 615
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -632,7 +658,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdatePackedTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTextureDataSO.cs
-    startLine: 612
+    startLine: 649
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -779,6 +805,13 @@ references:
   - name: .
   - uid: Repetitionless.Editor.GUIUtilities
     name: GUIUtilities
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
 - uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.Init*
   commentId: Overload:Repetitionless.Editor.Data.RepetitionlessTextureDataSO.Init
   name: Init
@@ -850,12 +883,6 @@ references:
   name: SetupTextureDrawers
   nameWithType: RepetitionlessTextureDataSO.SetupTextureDrawers
   fullName: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.SetupTextureDrawers
-- uid: Repetitionless.Editor.Data.MaterialDataManager
-  commentId: T:Repetitionless.Editor.Data.MaterialDataManager
-  parent: Repetitionless.Editor.Data
-  name: MaterialDataManager
-  nameWithType: MaterialDataManager
-  fullName: Repetitionless.Editor.Data.MaterialDataManager
 - uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.GetMaterialTextureData*
   commentId: Overload:Repetitionless.Editor.Data.RepetitionlessTextureDataSO.GetMaterialTextureData
   name: GetMaterialTextureData

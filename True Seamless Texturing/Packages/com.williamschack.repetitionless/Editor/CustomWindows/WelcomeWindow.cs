@@ -43,6 +43,9 @@ namespace Repetitionless.Editor.CustomWindows
         /// <summary>
         /// Opens the window
         /// </summary>
+        /// <param name="showWelcomeMessage">
+        /// If the welcome message is shown
+        /// </param>
         public static void Open(bool showWelcomeMessage = false)
         {
             WelcomeWindow window = GetWindow<WelcomeWindow>(false, "Repetitionless");

@@ -5,12 +5,15 @@ items:
   id: RepetitionlessMaterialDataSO
   parent: Repetitionless.Editor.Data
   children:
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.CallOnExternalDataChanged
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Data
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData(System.Int32,System.Int32)
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GlobalTilingOffset
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init(System.Int32)
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.OnExternalDataChanged
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save
-  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager(Repetitionless.Editor.Data.MaterialDataManager)
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset(UnityEngine.Vector4)
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures(UnityEngine.Material,Repetitionless.Editor.Data.RepetitionlessTextureDataSO,System.Int32,System.Int32)
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEditor.MaterialProperty,System.Int32)
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material,System.Int32)
@@ -36,22 +39,12 @@ items:
   summary: "\nStores the material properties for a Repetitionless material<br />\nCreates and manages a texture storing these properties that will be passed to the shader\n"
   example: []
   syntax:
-    content: >-
-      [CreateAssetMenu]
-
-      public class RepetitionlessMaterialDataSO : ScriptableObject
-    content.vb: >-
-      <CreateAssetMenu>
-
-      Public Class RepetitionlessMaterialDataSO Inherits ScriptableObject
+    content: 'public class RepetitionlessMaterialDataSO : ScriptableObject'
+    content.vb: Public Class RepetitionlessMaterialDataSO Inherits ScriptableObject
   inheritance:
   - System.Object
   - UnityEngine.Object
   - UnityEngine.ScriptableObject
-  attributes:
-  - type: UnityEngine.CreateAssetMenuAttribute
-    ctor: UnityEngine.CreateAssetMenuAttribute.#ctor
-    arguments: []
 - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME
   commentId: F:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME
   id: PROPERTIES_TEXTURE_PROP_NAME
@@ -70,7 +63,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PROPERTIES_TEXTURE_PROP_NAME
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 20
+    startLine: 19
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -99,7 +92,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Data
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 28
+    startLine: 27
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -111,7 +104,7 @@ items:
 
       public RepetitionlessLayerData[] Data
     return:
-      type: Repetitionless.Variables.RepetitionlessLayerData[]
+      type: Repetitionless.Runtime.Variables.RepetitionlessLayerData[]
     content.vb: >-
       <HideInInspector>
 
@@ -120,6 +113,76 @@ items:
   - type: UnityEngine.HideInInspector
     ctor: UnityEngine.HideInInspector.#ctor
     arguments: []
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GlobalTilingOffset
+  commentId: P:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GlobalTilingOffset
+  id: GlobalTilingOffset
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: GlobalTilingOffset
+  nameWithType: RepetitionlessMaterialDataSO.GlobalTilingOffset
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GlobalTilingOffset
+  type: Property
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GlobalTilingOffset
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 46
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nThe global tiling offset that is being used for all the data\n"
+  example: []
+  syntax:
+    content: >-
+      [HideInInspector]
+
+      public Vector4 GlobalTilingOffset { get; set; }
+    parameters: []
+    return:
+      type: UnityEngine.Vector4
+    content.vb: >-
+      <HideInInspector>
+
+      Public Property GlobalTilingOffset As Vector4
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GlobalTilingOffset*
+  attributes:
+  - type: UnityEngine.HideInInspector
+    ctor: UnityEngine.HideInInspector.#ctor
+    arguments: []
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.OnExternalDataChanged
+  commentId: F:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.OnExternalDataChanged
+  id: OnExternalDataChanged
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: OnExternalDataChanged
+  nameWithType: RepetitionlessMaterialDataSO.OnExternalDataChanged
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.OnExternalDataChanged
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: OnExternalDataChanged
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 55
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nThis is called by other classes when they have changed properties and manually called this<br />\nIt is not called when regular properties are changed by this class\n"
+  example: []
+  syntax:
+    content: public Action OnExternalDataChanged
+    return:
+      type: System.Action
+    content.vb: Public OnExternalDataChanged As Action
 - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init(System.Int32)
   commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init(System.Int32)
   id: Init(System.Int32)
@@ -138,7 +201,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Init
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 39
+    startLine: 63
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -173,7 +236,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Save
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 53
+    startLine: 79
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -183,38 +246,66 @@ items:
     content: public void Save()
     content.vb: Public Sub Save()
   overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save*
-- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager(Repetitionless.Editor.Data.MaterialDataManager)
-  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager(Repetitionless.Editor.Data.MaterialDataManager)
-  id: SetDataManager(Repetitionless.Editor.Data.MaterialDataManager)
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset(UnityEngine.Vector4)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset(UnityEngine.Vector4)
+  id: SetGlobalTilingOffset(UnityEngine.Vector4)
   parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
   langs:
   - csharp
   - vb
-  name: SetDataManager(MaterialDataManager)
-  nameWithType: RepetitionlessMaterialDataSO.SetDataManager(MaterialDataManager)
-  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager(Repetitionless.Editor.Data.MaterialDataManager)
+  name: SetGlobalTilingOffset(Vector4)
+  nameWithType: RepetitionlessMaterialDataSO.SetGlobalTilingOffset(Vector4)
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset(UnityEngine.Vector4)
   type: Method
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
-    id: SetDataManager
+    id: SetGlobalTilingOffset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 67
+    startLine: 108
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
-  summary: "\nSets the data manager<br />\nThis is not serialized and this must be called for each session using this\n"
+  summary: "\nSets the global tiling and offset for every layer\n"
   example: []
   syntax:
-    content: public void SetDataManager(MaterialDataManager dataManager)
+    content: public void SetGlobalTilingOffset(Vector4 tilingOffset)
     parameters:
-    - id: dataManager
-      type: Repetitionless.Editor.Data.MaterialDataManager
-      description: "\nThe data manager to use\n"
-    content.vb: Public Sub SetDataManager(dataManager As MaterialDataManager)
-  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager*
+    - id: tilingOffset
+      type: UnityEngine.Vector4
+      description: "\nThe new tiling offset to use\n"
+    content.vb: Public Sub SetGlobalTilingOffset(tilingOffset As Vector4)
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset*
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.CallOnExternalDataChanged
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.CallOnExternalDataChanged
+  id: CallOnExternalDataChanged
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: CallOnExternalDataChanged()
+  nameWithType: RepetitionlessMaterialDataSO.CallOnExternalDataChanged()
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.CallOnExternalDataChanged()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CallOnExternalDataChanged
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 122
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nInvokes the OnForcedDataChanged callback\n"
+  example: []
+  syntax:
+    content: public void CallOnExternalDataChanged()
+    content.vb: Public Sub CallOnExternalDataChanged()
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.CallOnExternalDataChanged*
 - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material,System.Int32)
   commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material,System.Int32)
   id: UpdateMaterialTexture(UnityEngine.Material,System.Int32)
@@ -233,7 +324,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateMaterialTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 97
+    startLine: 136
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -271,7 +362,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateMaterialTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 114
+    startLine: 153
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -312,7 +403,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateMaterialTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 129
+    startLine: 168
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -350,7 +441,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetMaterialData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 196
+    startLine: 240
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -366,7 +457,7 @@ items:
       type: System.Int32
       description: "\nThe index of the material:<br />\n0: Base, 1: Far, 2: Blend\n"
     return:
-      type: Repetitionless.Variables.RepetitionlessMaterialData
+      type: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
       description: "\nThe properties for a specific material\n"
     content.vb: Public Function GetMaterialData(layerIndex As Integer, materialIndex As Integer) As RepetitionlessMaterialData
   overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData*
@@ -391,7 +482,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateAssignedTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 224
+    startLine: 268
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -487,24 +578,43 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: Repetitionless.Variables.RepetitionlessLayerData[]
+- uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData[]
   isExternal: true
   name: RepetitionlessLayerData[]
   nameWithType: RepetitionlessLayerData[]
-  fullName: Repetitionless.Variables.RepetitionlessLayerData[]
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessLayerData[]
   nameWithType.vb: RepetitionlessLayerData()
-  fullName.vb: Repetitionless.Variables.RepetitionlessLayerData()
+  fullName.vb: Repetitionless.Runtime.Variables.RepetitionlessLayerData()
   name.vb: RepetitionlessLayerData()
   spec.csharp:
-  - uid: Repetitionless.Variables.RepetitionlessLayerData
+  - uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData
     name: RepetitionlessLayerData
   - name: '['
   - name: ']'
   spec.vb:
-  - uid: Repetitionless.Variables.RepetitionlessLayerData
+  - uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData
     name: RepetitionlessLayerData
   - name: (
   - name: )
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GlobalTilingOffset*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GlobalTilingOffset
+  name: GlobalTilingOffset
+  nameWithType: RepetitionlessMaterialDataSO.GlobalTilingOffset
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GlobalTilingOffset
+- uid: UnityEngine.Vector4
+  commentId: T:UnityEngine.Vector4
+  parent: UnityEngine
+  isExternal: true
+  name: Vector4
+  nameWithType: Vector4
+  fullName: UnityEngine.Vector4
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
 - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init*
   commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Init
   name: Init
@@ -525,17 +635,16 @@ references:
   name: Save
   nameWithType: RepetitionlessMaterialDataSO.Save
   fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save
-- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager*
-  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager
-  name: SetDataManager
-  nameWithType: RepetitionlessMaterialDataSO.SetDataManager
-  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetDataManager
-- uid: Repetitionless.Editor.Data.MaterialDataManager
-  commentId: T:Repetitionless.Editor.Data.MaterialDataManager
-  parent: Repetitionless.Editor.Data
-  name: MaterialDataManager
-  nameWithType: MaterialDataManager
-  fullName: Repetitionless.Editor.Data.MaterialDataManager
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset
+  name: SetGlobalTilingOffset
+  nameWithType: RepetitionlessMaterialDataSO.SetGlobalTilingOffset
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.CallOnExternalDataChanged*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.CallOnExternalDataChanged
+  name: CallOnExternalDataChanged
+  nameWithType: RepetitionlessMaterialDataSO.CallOnExternalDataChanged
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.CallOnExternalDataChanged
 - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture*
   commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture
   name: UpdateMaterialTexture
@@ -566,28 +675,34 @@ references:
   name: GetMaterialData
   nameWithType: RepetitionlessMaterialDataSO.GetMaterialData
   fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.GetMaterialData
-- uid: Repetitionless.Variables.RepetitionlessMaterialData
-  commentId: T:Repetitionless.Variables.RepetitionlessMaterialData
-  parent: Repetitionless.Variables
+- uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+  commentId: T:Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+  parent: Repetitionless.Runtime.Variables
   name: RepetitionlessMaterialData
   nameWithType: RepetitionlessMaterialData
-  fullName: Repetitionless.Variables.RepetitionlessMaterialData
-- uid: Repetitionless.Variables
-  commentId: N:Repetitionless.Variables
-  name: Repetitionless.Variables
-  nameWithType: Repetitionless.Variables
-  fullName: Repetitionless.Variables
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
   - name: .
-  - uid: Repetitionless.Variables
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
     name: Variables
 - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures*
   commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures

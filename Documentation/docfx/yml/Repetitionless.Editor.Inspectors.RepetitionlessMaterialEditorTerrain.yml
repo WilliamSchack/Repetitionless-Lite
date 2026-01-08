@@ -25,7 +25,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessMaterialEditorTerrain
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -59,8 +59,8 @@ items:
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialPropertiesGUI
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialGUI(System.Int32,System.Int32,System.String)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
-  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
-  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialMainProperties(System.Int32,System.Int32)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialNoiseGUI(System.Int32,System.Int32)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialVariationProperties(System.Int32,System.Int32)
@@ -86,7 +86,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _maxLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 21
+    startLine: 24
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -118,7 +118,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnEnable
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 37
+    startLine: 42
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -151,7 +151,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnPropertiesCreated
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 63
+    startLine: 75
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -180,7 +180,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 87
+    startLine: 94
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -219,7 +219,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 175
+    startLine: 182
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -267,7 +267,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawProperty
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 218
+    startLine: 225
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -785,21 +785,21 @@ references:
     name: Integer
     isExternal: true
   - name: )
-- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
   parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
   isExternal: true
   name: DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool)
   nameWithType: RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool)
-  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, int, int, int, bool, bool)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData, int, int, int, bool, bool)
   nameWithType.vb: RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean)
-  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean)
   name.vb: DrawLeftMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean)
   spec.csharp:
-  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
     name: DrawLeftMaterialSettingsGUI
   - name: (
-  - uid: Repetitionless.Variables.RepetitionlessMaterialData
+  - uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
     name: RepetitionlessMaterialData
   - name: ','
   - name: " "
@@ -828,10 +828,10 @@ references:
     isExternal: true
   - name: )
   spec.vb:
-  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawLeftMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
     name: DrawLeftMaterialSettingsGUI
   - name: (
-  - uid: Repetitionless.Variables.RepetitionlessMaterialData
+  - uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
     name: RepetitionlessMaterialData
   - name: ','
   - name: " "
@@ -859,21 +859,21 @@ references:
     name: Boolean
     isExternal: true
   - name: )
-- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
   parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
   isExternal: true
   name: DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool, bool)
   nameWithType: RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, int, int, int, bool, bool, bool)
-  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, int, int, int, bool, bool, bool)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData, int, int, int, bool, bool, bool)
   nameWithType.vb: RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean, Boolean)
-  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean, Boolean)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean, Boolean)
   name.vb: DrawRightMaterialSettingsGUI(RepetitionlessMaterialData, Integer, Integer, Integer, Boolean, Boolean, Boolean)
   spec.csharp:
-  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
     name: DrawRightMaterialSettingsGUI
   - name: (
-  - uid: Repetitionless.Variables.RepetitionlessMaterialData
+  - uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
     name: RepetitionlessMaterialData
   - name: ','
   - name: " "
@@ -907,10 +907,10 @@ references:
     isExternal: true
   - name: )
   spec.vb:
-  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawRightMaterialSettingsGUI(Repetitionless.Runtime.Variables.RepetitionlessMaterialData,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
     name: DrawRightMaterialSettingsGUI
   - name: (
-  - uid: Repetitionless.Variables.RepetitionlessMaterialData
+  - uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
     name: RepetitionlessMaterialData
   - name: ','
   - name: " "
