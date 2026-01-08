@@ -4,10 +4,17 @@ using UnityEngine;
 
 namespace Repetitionless.Editor.Config
 {
+    /// <summary>
+    /// Used to update repetitionless prefs<br />
+    /// Prefs are project relative and Stored in "Library/com.williamschack.repetitionless/prefs.json"
+    /// </summary>
     public static class RepetitionlessPrefs
     {
         private const string PREFS_FILE_PATH = Constants.LIBRARY_PATH + "/prefs.json";
 
+        /// <summary>
+        /// Stores the repetitionless prefs
+        /// </summary>
         public class Prefs
         {
             public bool WelcomeWindowShown = false;
@@ -15,6 +22,10 @@ namespace Repetitionless.Editor.Config
         }
 
         private static Prefs _prefsCache;
+
+        /// <summary>
+        /// The prefs stored for this project
+        /// </summary>
         public static Prefs Data => _prefsCache ??= LoadPrefs();
 
         private static FileInfo GetPrefsFileInfo()
@@ -57,6 +68,12 @@ namespace Repetitionless.Editor.Config
             File.WriteAllText(prefsFileInfo.FullName, prefsJson);
         }
 
+        /// <summary>
+        /// Writes the prefs after calling the updater action
+        /// </summary>
+        /// <param name="updater">
+        /// The action used to modify the prefs before writing them
+        /// </param>
         public static void UpdatePrefs(Action<Prefs> updater)
         {
             updater(Data);
