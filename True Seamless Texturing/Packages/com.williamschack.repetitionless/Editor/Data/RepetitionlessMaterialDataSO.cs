@@ -12,7 +12,6 @@ namespace Repetitionless.Editor.Data
     /// Stores the material properties for a Repetitionless material<br />
     /// Creates and manages a texture storing these properties that will be passed to the shader
     /// </summary>
-    [CreateAssetMenu]
     public class RepetitionlessMaterialDataSO : ScriptableObject
     {
         /// <summary>
