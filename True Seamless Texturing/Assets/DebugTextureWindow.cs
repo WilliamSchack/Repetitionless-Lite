@@ -23,9 +23,8 @@ public class DebugTextureWindow : EditorWindow
     {
         _texture = (Texture2D)EditorGUILayout.ObjectField(_texture, typeof(Texture2D), false);
 
-        if (GUILayout.Button("Read assigned textures texture")) {
+        if (GUILayout.Button("Read assigned textures texture"))
             ReadTextureDetails();
-        }
 
         if (_textureData == null)
             return;
