@@ -462,12 +462,19 @@ namespace Repetitionless.Editor.Inspectors
         {
             _triplanarEnabled = enabled;
 
-            // Using a keyword variable with SetKeyword sometimes gives errors
-            if (enabled) _material.EnableKeyword(Constants.TRIPLANAR_KEYWORD);
-            else         _material.DisableKeyword(Constants.TRIPLANAR_KEYWORD);
+            // Delay call to prevent recursive warnings, this will take a while if variant not cached
+            EditorApplication.delayCall += () => {
+                EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, $"Toggling Triplanar", 1.0f);
 
-            _material.SetInt(Constants.TRIPLANAR_KEYWORD, enabled ? 1 : 0); // Required to save for some reason
-            EditorUtility.SetDirty(_material);
+                // Using a keyword variable with SetKeyword sometimes gives errors
+                if (enabled) _material.EnableKeyword(Constants.TRIPLANAR_KEYWORD);
+                else         _material.DisableKeyword(Constants.TRIPLANAR_KEYWORD);
+
+                _material.SetInt(Constants.TRIPLANAR_KEYWORD, enabled ? 1 : 0); // Required to save for some reason
+                EditorUtility.SetDirty(_material);
+
+                EditorUtility.ClearProgressBar();
+            };
         }
 
         #endregion
