@@ -690,9 +690,8 @@ namespace Repetitionless.Editor.Inspectors
                 _prevUVSpace = uvSpace;
 
                 // If setting uv space to local, disable triplanar
-                if (uvSpace == EUVSpace.Local) {
+                if (uvSpace == EUVSpace.Local)
                     SetTriplanarEnabled(false);
-                }
 
                 _materialProperties.CallOnExternalDataChanged();
             }
@@ -704,14 +703,12 @@ namespace Repetitionless.Editor.Inspectors
                 SetTriplanarEnabled(_triplanarEnabled);
 
                 // If enabled set uv space to world
-                if (_triplanarEnabled && uvSpace == (int)EUVSpace.Local) {
+                if (_triplanarEnabled && uvSpace == (int)EUVSpace.Local)
                     uvSpaceProp.floatValue = (int)EUVSpace.World;
-                }
 
                 // If disabling triplanar, set uv space back to what it was before
-                if (!_triplanarEnabled) {
-                    uvSpaceProp.floatValue = (int)_prevUVSpace;                   
-                }
+                if (!_triplanarEnabled)
+                    uvSpaceProp.floatValue = (int)_prevUVSpace;
 
                 _materialProperties.CallOnExternalDataChanged();
             }
