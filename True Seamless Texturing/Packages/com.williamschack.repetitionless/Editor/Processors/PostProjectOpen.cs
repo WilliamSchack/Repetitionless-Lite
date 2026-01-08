@@ -12,8 +12,6 @@ namespace Repetitionless.Editor.Processors
     {
         static PostProjectOpen()
         {
-            EditorApplication.delayCall += ShowReviewPopup;
-
             RepetitionlessPrefs.UpdatePrefs((p) => {
                 UpdateDaysUsed(p);
             });
@@ -22,8 +20,11 @@ namespace Repetitionless.Editor.Processors
                 RepetitionlessPrefs.UpdatePrefs((p) => {
                     p.ReviewPopupShown = true;
                 });
-
-                EditorApplication.delayCall += ShowReviewPopup;
+                
+                // Double delay call to make sure editor is initialized
+                EditorApplication.delayCall += () => {
+                    EditorApplication.delayCall += ShowReviewPopup;
+                };
             }
         }
 
@@ -50,7 +51,7 @@ namespace Repetitionless.Editor.Processors
         {
             int selected = EditorUtility.DisplayDialogComplex(
                 "Review Repetitionless",
-                "Thank for using Repetitionless! Please consider leaving a review to support development, any feedback is appreciated!",
+                "Thank for using Repetitionless! Pease consider leaving a review to support the asset and its development. Any feedback is appreciated!",
                 "Itch.io",
                 "Asset Store",
                 "Cancel"
