@@ -145,7 +145,14 @@ namespace Repetitionless.Editor.Data
             if (UpdateColourIfChanged(ref compressedData.AlbedoTint, newData.AlbedoTint) && !updateAll)         return 5;
             if (UpdateColourIfChanged(ref compressedData.EmissionColour, newData.EmissionColour) && !updateAll) return 6;
 
-            if (UpdateGenericIfChanged<Vector4>(ref compressedData.TilingOffset, newData.TilingOffset + globalTilingOffset) && !updateAll) return 7;
+            // Tiling is multiplied, offset is added
+            Vector4 compressedTilingOffset = newData.TilingOffset;
+            compressedTilingOffset.x *= globalTilingOffset.x;
+            compressedTilingOffset.y *= globalTilingOffset.y;
+            compressedTilingOffset.z += globalTilingOffset.z;
+            compressedTilingOffset.w += globalTilingOffset.w;
+
+            if (UpdateGenericIfChanged<Vector4>(ref compressedData.TilingOffset, compressedTilingOffset) && !updateAll) return 7;
 
             if (newData.VariationMode == ETextureType.CustomTexture) {
                 if (UpdateGenericIfChanged<Vector4>(ref compressedData.VariationTO, newData.VariationTextureTO) && !updateAll) return 8;
