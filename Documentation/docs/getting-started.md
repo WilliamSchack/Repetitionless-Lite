@@ -30,6 +30,10 @@ For instructions on accessing the samples:
 
 ## Using A Repetitionless Material
 
+**There are details you need to know when using the materials:**
+
+**View the [Material Details Page](material-details.md)**
+
 For instructions on how to use the regular repetitionless shader:
 
 **View the [Using Regular Materials Page](material-regular.md)**

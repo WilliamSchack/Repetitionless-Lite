@@ -1,14 +1,3 @@
-## Data Folder
-
-All the properties and textures are stored in a folder along side the material named<br />
-`<Material Name>_RepetitionlessData`
-
-This folder is automatically handled and you do not need to worry about it
-
-*This folder will automatically be moved and deleted with the material but will not be copied so if you need to copy a material you will need to manually copy the folder aswell*
-
-![image](Images/MaterialProperties/DataFolder.png)
-
 ## Material Properties
 
 ![image](Images/MaterialProperties/MaterialProperties.png)
