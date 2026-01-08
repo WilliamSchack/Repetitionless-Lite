@@ -12,7 +12,7 @@ namespace Repetitionless.Editor.Data
     /// </summary>
     public class MaterialDataManager
     {
-        private const string DATA_FOLDER_SUFFIX = "_Data";
+        private const string DATA_FOLDER_SUFFIX = "_RepetitionlessData";
 
         private Material _material;
 
@@ -56,7 +56,7 @@ namespace Repetitionless.Editor.Data
 
             // Get Material
             string materialFileName = dataFolder.Name;
-            materialFileName = materialFileName.Substring(0, materialFileName.Length - 5); // Remove _Data
+            materialFileName = materialFileName.Substring(0, materialFileName.Length - DATA_FOLDER_SUFFIX.Length); // Remove Data folder suffix
             materialFileName += ".mat";
 
             string materialPath = $"{projectRelativeParentPath}/{materialFileName}";
