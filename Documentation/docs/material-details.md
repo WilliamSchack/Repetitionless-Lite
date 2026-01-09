@@ -20,9 +20,7 @@ Arrays are split into:
 - EMTextures: Emission (rgb), Metallic (a)
 - BMTextures: Blend Mask (r)
 
-*Only the required arrays are created*
-
-***To view what each property does, visit the [Material Properties](material-properties.md) page***
+*Only the required arrays are created, and only the used textures are stored*
 
 ## Colour Space
 
@@ -32,4 +30,6 @@ There is a popup when changing the colour space if any textures need to be repac
 Make sure to select **Update Textures to \<Colour Space\>** for the textures to look correct
 
 ![image](Images/MaterialDetails/ColourSpacePopup.png)
+
+***To view what each property does, visit the [Material Properties](material-properties.md) page***
 
