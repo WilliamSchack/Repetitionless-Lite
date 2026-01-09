@@ -1,7 +1,4 @@
 {
-  "Repetitionless.Editor.Config": "Repetitionless.Editor.Config.yml",
-  "Repetitionless.Editor.Config.RepetitionlessPackageInfo": "Repetitionless.Editor.Config.RepetitionlessPackageInfo.yml",
-  "Repetitionless.Editor.Config.RepetitionlessPackageInfo.Info": "Repetitionless.Editor.Config.RepetitionlessPackageInfo.yml",
   "Repetitionless.Editor.CustomDialog": "Repetitionless.Editor.CustomDialog.yml",
   "Repetitionless.Editor.CustomDialog.ShaderGUIDialog": "Repetitionless.Editor.CustomDialog.ShaderGUIDialog.yml",
   "Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String,System.String)": "Repetitionless.Editor.CustomDialog.ShaderGUIDialog.yml",
@@ -239,6 +236,7 @@
   "Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.OnInspectorGUI": "Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor.yml",
   "Repetitionless.Editor.Processors": "Repetitionless.Editor.Processors.yml",
   "Repetitionless.Editor.Processors.PostPackageImport": "Repetitionless.Editor.Processors.PostPackageImport.yml",
+  "Repetitionless.Editor.Processors.PostProjectOpen": "Repetitionless.Editor.Processors.PostProjectOpen.yml",
   "Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater": "Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.yml",
   "Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.RepackMaterialsIfColourSpaceChanged(System.Collections.Generic.List{UnityEngine.Material},System.Boolean)": "Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.yml",
   "Repetitionless.Editor.Processors.RepetitionlessMaterialProcessor": "Repetitionless.Editor.Processors.RepetitionlessMaterialProcessor.yml",
@@ -398,11 +396,5 @@
   "Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.Settings4": "Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.yml",
   "Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.Settings5": "Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.yml",
   "Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.TilingOffset": "Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.yml",
-  "Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.VariationTO": "Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.yml",
-  "Repetitionless.Runtime.Variables.SerializableDictionary`2": "Repetitionless.Runtime.Variables.SerializableDictionary-2.yml",
-  "Repetitionless.Runtime.Variables.SerializableDictionary`2.ContainsKey(`0)": "Repetitionless.Runtime.Variables.SerializableDictionary-2.yml",
-  "Repetitionless.Runtime.Variables.SerializableDictionary`2.Count": "Repetitionless.Runtime.Variables.SerializableDictionary-2.yml",
-  "Repetitionless.Runtime.Variables.SerializableDictionary`2.Get(`0)": "Repetitionless.Runtime.Variables.SerializableDictionary-2.yml",
-  "Repetitionless.Runtime.Variables.SerializableDictionary`2.Remove(`0)": "Repetitionless.Runtime.Variables.SerializableDictionary-2.yml",
-  "Repetitionless.Runtime.Variables.SerializableDictionary`2.Set(`0,`1)": "Repetitionless.Runtime.Variables.SerializableDictionary-2.yml"
+  "Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.VariationTO": "Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.yml"
 }

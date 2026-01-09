@@ -65,7 +65,6 @@ namespace Repetitionless.Editor.CustomWindows
         /// Default: <b>false</b><br />
         /// If the output array will be linear<br />
         /// Recommended in the Built-In Render Pipeline only when including normal maps<br />
-        /// <b>Not Recommended in URP/HDRP as it will result in brighter textures</b><br />
         /// <i>Modifiable in the window</i>
         /// </summary>
         protected bool _arrayLinear;

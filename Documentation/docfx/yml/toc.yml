@@ -1,9 +1,4 @@
 ### YamlMime:TableOfContent
-- uid: Repetitionless.Editor.Config
-  name: Repetitionless.Editor.Config
-  items:
-  - uid: Repetitionless.Editor.Config.RepetitionlessPackageInfo
-    name: RepetitionlessPackageInfo
 - uid: Repetitionless.Editor.CustomDialog
   name: Repetitionless.Editor.CustomDialog
   items:
@@ -65,6 +60,8 @@
   items:
   - uid: Repetitionless.Editor.Processors.PostPackageImport
     name: PostPackageImport
+  - uid: Repetitionless.Editor.Processors.PostProjectOpen
+    name: PostProjectOpen
   - uid: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
     name: RepetitionlessColourSpaceUpdater
   - uid: Repetitionless.Editor.Processors.RepetitionlessMaterialProcessor
@@ -115,6 +112,3 @@
     name: RepetitionlessMaterialData
   - uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
     name: RepetitionlessMaterialDataCompressed
-  - uid: Repetitionless.Runtime.Variables.SerializableDictionary`2
-    name: SerializableDictionary<TKey, TValue>
-    name.vb: SerializableDictionary(Of TKey, TValue)

@@ -15,7 +15,7 @@ Base class for creating the Create/Configure Array windows in Texture Array Esse
 | _textureErrors | <strong>AUTOMATICALLY UPDATES</strong><br />Which textures have an error that needs to be addressed<br />Should be updated in tandem with _textures and _texturesResizing |
 | _arrayTextureFormatIndex | Default: <strong>Index Of TextureFormat.DXT5</strong><br />The format index of the output array<br /><em>Modifiable in the window</em> |
 | _arrayMipMaps | Default: <strong>true</strong><br />If the output array will transfer mipmaps from the inputted textures<br /><em>Modifiable in the window</em> |
-| _arrayLinear | Default: <strong>false</strong><br />If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br /><strong>Not Recommended in URP/HDRP as it will result in brighter textures</strong><br /><em>Modifiable in the window</em> |
+| _arrayLinear | Default: <strong>false</strong><br />If the output array will be linear<br />Recommended in the Built-In Render Pipeline only when including normal maps<br /><em>Modifiable in the window</em> |
 | _arrayWrapMode | Default: <strong>TextureWrapMode.Repeat</strong><br />The Wrap Mode of the output array<br /><em>Modifiable in the window</em> |
 | _arrayFilterMode | Default: <strong>FilterMode.Bilinear</strong><br />The Filter Mode of the output array<br /><em>Modifiable in the window</em> |
 | _arrayAnisoLevel | Default: <strong>1</strong><br />The Aniso Level of the output array<br /><em>Modifiable in the window</em> |

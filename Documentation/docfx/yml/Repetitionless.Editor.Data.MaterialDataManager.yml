@@ -125,7 +125,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: .ctor
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 42
+    startLine: 41
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -159,7 +159,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GenerateFolderName
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 84
+    startLine: 82
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -197,7 +197,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DataFolderParentPath
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 95
+    startLine: 93
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -228,7 +228,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DataFolderName
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 110
+    startLine: 108
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -259,7 +259,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DataFolderPath
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 121
+    startLine: 119
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -290,7 +290,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateAsset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 176
+    startLine: 174
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -331,7 +331,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: LoadAsset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 200
+    startLine: 198
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -372,7 +372,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AssetExists
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 218
+    startLine: 216
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -410,7 +410,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DeleteAsset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-    startLine: 233
+    startLine: 231
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data

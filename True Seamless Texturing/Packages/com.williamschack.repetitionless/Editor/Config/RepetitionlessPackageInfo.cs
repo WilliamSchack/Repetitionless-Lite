@@ -6,7 +6,7 @@ namespace Repetitionless.Editor.Config
     /// <summary>
     /// Used to retrieve the package info for repetitionless
     /// </summary>
-    public static class RepetitionlessPackageInfo
+    internal static class RepetitionlessPackageInfo
     {
         private const string PACKAGE_INFO_PATH = Constants.PACKAGE_PATH + "/package.json";
 

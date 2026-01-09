@@ -5,6 +5,7 @@ items:
   id: Repetitionless.Editor.Processors
   children:
   - Repetitionless.Editor.Processors.PostPackageImport
+  - Repetitionless.Editor.Processors.PostProjectOpen
   - Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
   - Repetitionless.Editor.Processors.RepetitionlessMaterialProcessor
   - Repetitionless.Editor.Processors.TerrainLayerPostprocessor
@@ -23,6 +24,11 @@ references:
   name: RepetitionlessColourSpaceUpdater
   nameWithType: RepetitionlessColourSpaceUpdater
   fullName: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
+- uid: Repetitionless.Editor.Processors.PostProjectOpen
+  commentId: T:Repetitionless.Editor.Processors.PostProjectOpen
+  name: PostProjectOpen
+  nameWithType: PostProjectOpen
+  fullName: Repetitionless.Editor.Processors.PostProjectOpen
 - uid: Repetitionless.Editor.Processors.PostPackageImport
   commentId: T:Repetitionless.Editor.Processors.PostPackageImport
   name: PostPackageImport

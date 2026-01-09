@@ -12,7 +12,6 @@ items:
   - Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
   - Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   - Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
-  - Repetitionless.Runtime.Variables.SerializableDictionary`2
   langs:
   - csharp
   - vb
@@ -35,34 +34,6 @@ references:
   name: RepetitionlessMaterialDataCompressed
   nameWithType: RepetitionlessMaterialDataCompressed
   fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed
-- uid: Repetitionless.Runtime.Variables.SerializableDictionary`2
-  commentId: T:Repetitionless.Runtime.Variables.SerializableDictionary`2
-  name: SerializableDictionary<TKey, TValue>
-  nameWithType: SerializableDictionary<TKey, TValue>
-  fullName: Repetitionless.Runtime.Variables.SerializableDictionary<TKey, TValue>
-  nameWithType.vb: SerializableDictionary(Of TKey, TValue)
-  fullName.vb: Repetitionless.Runtime.Variables.SerializableDictionary(Of TKey, TValue)
-  name.vb: SerializableDictionary(Of TKey, TValue)
-  spec.csharp:
-  - uid: Repetitionless.Runtime.Variables.SerializableDictionary`2
-    name: SerializableDictionary
-  - name: <
-  - name: TKey
-  - name: ','
-  - name: " "
-  - name: TValue
-  - name: '>'
-  spec.vb:
-  - uid: Repetitionless.Runtime.Variables.SerializableDictionary`2
-    name: SerializableDictionary
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TKey
-  - name: ','
-  - name: " "
-  - name: TValue
-  - name: )
 - uid: Repetitionless.Runtime.Variables.ESurfaceType
   commentId: T:Repetitionless.Runtime.Variables.ESurfaceType
   parent: Repetitionless.Runtime.Variables
