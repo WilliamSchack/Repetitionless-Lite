@@ -32,7 +32,6 @@ namespace Repetitionless.Editor.Data
             _material = material;
         }
 
-#if UNITY_EDITOR
         /// <summary>
         /// Gets a data manager from the path of an asset inside the data folder<br />
         /// If the main material cannot be found, Material will be null
@@ -70,7 +69,6 @@ namespace Repetitionless.Editor.Data
 
             _material = mat;
         }
-#endif
 
 #region Path
         /// <summary>

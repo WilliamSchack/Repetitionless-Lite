@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 
 using Repetitionless.Runtime.Variables;
@@ -322,3 +323,4 @@ namespace Repetitionless.Editor.Data
         }
     }
 }
+#endif

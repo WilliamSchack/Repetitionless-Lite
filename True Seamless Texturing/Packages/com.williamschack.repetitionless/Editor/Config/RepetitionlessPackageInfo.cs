@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor.PackageManager;
 
 namespace Repetitionless.Editor.Config
@@ -22,3 +23,4 @@ namespace Repetitionless.Editor.Config
         }
     }
 }
+#endif
