@@ -1,3 +1,11 @@
+## Features Video
+
+[https://youtu.be/eKiRkv_N6s4](https://youtu.be/eKiRkv_N6s4)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eKiRkv_N6s4?si=5YnrQHsuJgCFMS2R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Description
+
 Repetitionless is a set of shaders that removes texture tiling using multiple different toggleable techniques including:
 
 - Voronoi noise and cell edge sampling to split up the texture and smooth between cells
