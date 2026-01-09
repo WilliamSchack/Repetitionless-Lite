@@ -22,6 +22,15 @@ Arrays are split into:
 
 *Only the required arrays are created, and only the used textures are stored*
 
+The downside to texture arrays is that they can only have one resolution each array of textures, but this is automatically handled. This is also per array so for example the albedo textures can be a different resolution to the normal textures
+
+When you assign a texture that is not the same resolution as the array, there is a popup that lets you either:
+
+- Resize all the textures in the array to the resolution of the new texture
+- Resize the texture to the same resolution as the array
+
+![image](Images/MaterialDetails/TextureArrayResize.png)
+
 ## Colour Space
 
 sRGB textures (Albedo/Colour) are packed with the set colour space in mind. They will need to be repacked when changing the colour space
