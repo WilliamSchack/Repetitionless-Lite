@@ -6,21 +6,16 @@ name: Manual workflow
 # or API.
 on:
   workflow_dispatch:
-    # Inputs the workflow accepts.
     inputs:
       release_notes_updated:
         description: 'Have you updated the release notes?'
         default: false
         required: true
         type: boolean
-      name:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
-        # Default value if no value is explicitly provided
-        default: 'World'
-        # Input has to be provided for the workflow to run
+      version:
+        description: 'Version tag (no leading "v")'
+        default: ''
         required: true
-        # The data type of the input
         type: string
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -31,16 +26,19 @@ jobs:
       - name: Validating Inputs
         if: ${{ github.event.inputs.release_notes_updated != 'true' }}
         run: exit 1
-    
-  # This workflow contains a single job called "greet"
-  greet:
-    needs: validation
-  
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  update_package_info:
+    runs-on: ubuntu-latest
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+      - uses: actions/checkout@v3
+      - name: Write new version
+        working-directory: "./app/True Seamless Texturing/Packages/com.williamschack.repetitionless"
+        run: jq '.version = "${{ github.event.inputs.version }}"' package.json
+        
+
+  #test_package:
+ #  needs: [ validation, update_package_info ]
+ # 
+ #   runs-on: ubuntu-latest
+ #   steps:
+ #     - name: Testing 2023.3.26f1
