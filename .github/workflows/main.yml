@@ -29,8 +29,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validating Inputs
-        if: ${{ github.event.inputs.environment == 'True' }}
-        run: echo "Inputs validated, continuing workflow"
+        if: ${{ github.event.inputs.release_notes_updated != 'true' }}
+        run: exit 1
     
   # This workflow contains a single job called "greet"
   greet:
