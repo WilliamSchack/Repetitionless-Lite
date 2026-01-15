@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Write new version
-        working-directory: "./app/True Seamless Texturing/Packages/com.williamschack.repetitionless"
+        working-directory: "True Seamless Texturing/Packages/com.williamschack.repetitionless"
         run: jq '.version = "${{ github.event.inputs.version }}"' package.json
         
 
