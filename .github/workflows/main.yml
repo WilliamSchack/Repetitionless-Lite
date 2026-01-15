@@ -8,6 +8,11 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
+      release_notes_updated:
+        description: 'Have you updated the release notes?'
+        default: false
+        required: true
+        type: boolean
       name:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Person to greet'
