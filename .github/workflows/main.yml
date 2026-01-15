@@ -25,8 +25,17 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validating Inputs
+        if: ${{ github.event.inputs.environment == 'True' }}
+        run: echo "Inputs validated, continuing workflow"
+    
   # This workflow contains a single job called "greet"
   greet:
+    needs: validation
+  
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
