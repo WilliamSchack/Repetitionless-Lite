@@ -17,6 +17,8 @@ public static class AutoPackageMaker
     private static Type _uploaderWindowType;
     private static EditorWindow _uploaderWindow;
 
+    private static EditorApplication.CallbackFunction _uploadProgressCallback;
+
 #region Reflection Helpers
     private static T GetPrivateField<T>(object obj, string fieldName)
     {
@@ -179,7 +181,25 @@ public static class AutoPackageMaker
             // Export and Upload
             var uploadElement = GetPrivateField<object>(hybridWorkflowElement, "UploadElement");
             CallPrivateFunction(uploadElement, "Upload", null);
+
+            // Get progress
+            ProgressBar progressBar = GetPrivateField<ProgressBar>(uploadElement, "_uploadProgressBar");
+            _uploadProgressCallback = () => { GetProgress(progressBar); };
+            EditorApplication.update += _uploadProgressCallback;
         };
+    }
+
+    static void GetProgress(ProgressBar progressBar)
+    {
+        Debug.Log($"Upload Progress: {progressBar.value.ToString("F2")}%");
+
+        if (progressBar.value < 100.0f || progressBar.title.Contains("%"))
+            return;
+
+        Debug.Log(progressBar.title);
+
+        EditorApplication.update -= _uploadProgressCallback;
+        _uploadProgressCallback = null;
     }
 }
 #endif
