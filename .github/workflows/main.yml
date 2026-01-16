@@ -15,9 +15,7 @@ on:
         type: string
 
 permissions:
-  contents: read
-  actions: read
-  packages: read
+  contents: write
 
 jobs:
   validation:
@@ -32,8 +30,11 @@ jobs:
     name: Testing Package
     runs-on: ubuntu-latest
     needs: validation
+    strategy:
+      matrix:
+        unityVersion: [ 2021.3.26f1 ]
     steps:
-      - name: Testing 2021.3.26f1
+      - name: Testing Unity Versions
         uses: game-ci/unity-test-runner@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -42,7 +43,7 @@ jobs:
         with:
           projectPath: "./TrueSeamlessTexturing/Packages/com.williamschack.repetitionless"
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          unityVersion: 2021.3.26f1
+          unityVersion: ${{ matrix.unityVersion }}
           packageMode: true
 
   update_files:
