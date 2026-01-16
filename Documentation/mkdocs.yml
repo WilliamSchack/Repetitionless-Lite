@@ -129,13 +129,10 @@ markdown_extensions:
   - pymdownx.superfences
 plugins:
   - search
-# Remove comments on all below when building as pdf
-  - with-pdf:
+  - to-pdf:
         author: William Schack
         copyright: (C) 2025 William Schack
         cover: true
         cover_title: Repetitionless
         cover_subtitle: The offline documentation can be hard to follow so using the online documentation is recommended which you can find at https://docs.wilschack.dev/repetitionless. You can still use this if you need though, it has all the same information
         toc_level: 2
-extra_css:
-  - pdf-style.css
