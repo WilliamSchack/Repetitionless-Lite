@@ -32,7 +32,7 @@ jobs:
     needs: validation
     steps:
       - name: Testing 2021.3.26f1
-       working-directory: "True Seamless Texturing/Packages/com.williamschack.repetitionless"
+       working-directory: "TrueSeamlessTexturing/Packages/com.williamschack.repetitionless"
         uses: game-ci/unity-test-runner@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -64,7 +64,7 @@ jobs:
           mv "Documentation/site/pdf/document.pdf" "True Seamless Texturing/Packages/com.williamschack.repetitionless/OfflineDocumentation.pdf"
           rmdir "Documentation/site/pdf"
       - name: Write new version to package.json
-        working-directory: "True Seamless Texturing/Packages/com.williamschack.repetitionless"
+        working-directory: "TrueSeamlessTexturing/Packages/com.williamschack.repetitionless"
         run: |
           jq '.version = "${{ github.event.inputs.version }}"' package.json > package.tmp
           mv package.tmp package.json
