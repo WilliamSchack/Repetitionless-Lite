@@ -32,13 +32,14 @@ jobs:
     needs: validation
     steps:
       - name: Testing 2021.3.26f1
+       working-directory: "True Seamless Texturing/Packages/com.williamschack.repetitionless"
         uses: game-ci/unity-test-runner@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          projectPath: "TrueSeamlessTexturing/Packages/com.williamschack.repetitionless"
+          projectPath: "./"
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           unityVersion: 2021.3.26f1
           packageMode: true
