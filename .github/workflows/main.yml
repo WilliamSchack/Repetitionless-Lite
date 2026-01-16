@@ -27,11 +27,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validating Inputs
-        if: ${{ inputs.release_notes_updated != 'true' }}
-        run: |
-          exit 1
+        if: ${{ github.event.inputs.release_notes_updated != 'true' }}
+        run: exit 1
 
   update_files:
+    needs: validation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -51,11 +51,11 @@ jobs:
       - name: Write new version to package.json
         working-directory: "True Seamless Texturing/Packages/com.williamschack.repetitionless"
         run: |
-          jq '.version = "${{ inputs.version }}"' package.json'
+          jq '.version = "${{ github.event.inputs.version }}"' package.json'
       - name: Push changes
         run: |
-          git config --global user.name '${{ env.GIT_USER_NAME }}'
-          git config --global user.email '${{ env.GIT_USER_EMAIL }}'
+          git config --global user.name '${{ github.event.env.GIT_USER_NAME }}'
+          git config --global user.email '${{ github.event.env.GIT_USER_EMAIL }}'
           git add -A
           git commit -m '[automated commit] v${{ inputs.version }} Updated docs and package.json'
           git push   
