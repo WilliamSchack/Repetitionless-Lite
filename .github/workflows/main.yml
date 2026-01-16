@@ -1,9 +1,5 @@
-# This is a basic workflow that is manually triggered
+name: Setup New Release
 
-name: Manual workflow
-
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
 on:
   workflow_dispatch:
     inputs:
@@ -21,7 +17,6 @@ on:
 permissions:
   contents: write
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   validation:
     runs-on: ubuntu-latest
@@ -51,11 +46,11 @@ jobs:
       - name: Write new version to package.json
         working-directory: "True Seamless Texturing/Packages/com.williamschack.repetitionless"
         run: |
-          jq '.version = "${{ github.event.inputs.version }}"' package.json
+          jq '.version = "v${{ github.event.inputs.version }}"' package.json
       - name: Push changes
         run: |
-          git config --global user.name '${{ github.event.env.GIT_USER_NAME }}'
-          git config --global user.email '${{ github.event.env.GIT_USER_EMAIL }}'
+          git config --global user.name '${{ secrets.GIT_USER_NAME }}'
+          git config --global user.email '${{ secrets.GIT_USER_EMAIL }}'
           git add -A
           git commit -m '[automated commit] v${{ inputs.version }} Updated docs and package.json'
           git push   
