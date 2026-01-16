@@ -1,7 +1,7 @@
 {
   "name": "com.williamschack.repetitionless",
   "displayName": "Repetitionless",
-  "version": "1.0.0",
+  "version": "test-release",
   "unity": "2021.3",
   "unityRelease": "26f1",
   "description": "Repetitionless is a set of shaders that removes texture repetition using various toggleable techniques with additional support for unity terrains, supporting BIRP, URP, and HDRP",
@@ -31,19 +31,19 @@
       "path": "Samples~/Assets"
     },
     {
-        "displayName": "BIRP Examples",
-        "description": "Contains 3 seperate example scenes showcasing the materials.\nFor the Built-In Render pipeline",
-        "path": "Samples~/BIRP"
+      "displayName": "BIRP Examples",
+      "description": "Contains 3 seperate example scenes showcasing the materials.\nFor the Built-In Render pipeline",
+      "path": "Samples~/BIRP"
     },
     {
-        "displayName": "URP Examples",
-        "description": "Contains 3 seperate example scenes showcasing the materials.\nFor URP",
-        "path": "Samples~/URP"
+      "displayName": "URP Examples",
+      "description": "Contains 3 seperate example scenes showcasing the materials.\nFor URP",
+      "path": "Samples~/URP"
     },
     {
-        "displayName": "HDRP Examples",
-        "description": "Contains 3 seperate example scenes showcasing the materials.\nFor HDRP",
-        "path": "Samples~/HDRP"
+      "displayName": "HDRP Examples",
+      "description": "Contains 3 seperate example scenes showcasing the materials.\nFor HDRP",
+      "path": "Samples~/HDRP"
     }
   ]
 }
