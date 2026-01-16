@@ -1,0 +1,185 @@
+#if UNITY_EDITOR
+using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEditor;
+using System;
+using System.Collections;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+
+public static class AutoPackageMaker
+{
+    private const string REPETITIONLESS_PACKAGE_DISPLAY_NAME = "Repetitionless";
+    private const string REPETITIONLESS_PACKAGE_NAME = "com.williamschack.repetitionless";
+    private const string REPETITIONLESS_PACKAGE_DIR = "/Packages/" + REPETITIONLESS_PACKAGE_NAME + "/";
+
+    private static Type _uploaderWindowType;
+    private static EditorWindow _uploaderWindow;
+
+#region Reflection Helpers
+    private static T GetPrivateField<T>(object obj, string fieldName)
+    {
+        var field = obj.GetType().GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
+        if (field == null)
+            Debug.LogError($"Field '{fieldName}' not found on type {obj.GetType().FullName}");
+        return (T)field.GetValue(obj);
+    }
+
+    private static void SetPrivateField(object obj, string fieldName, object value)
+    {
+        var field = obj.GetType().GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
+        if (field == null)
+            Debug.LogError($"Field '{fieldName}' not found on type {obj.GetType().FullName}");
+        field.SetValue(obj, value);
+    }
+
+    private static object CallPrivateFunction(object obj, string methodName, params object[] args)
+    {
+        var method = obj.GetType().GetMethod(methodName, BindingFlags.Instance | BindingFlags.NonPublic);
+        if (method == null)
+            Debug.LogError($"Method '{methodName}' not found on type {obj.GetType().FullName}");
+        return method.Invoke(obj, args);
+    }
+#endregion
+
+    [MenuItem("Repetitionless/Reflection Shenanigans", false, 1)]
+    public static void CreateAndUpload()
+    {
+        if (_uploaderWindowType == null) {
+            _uploaderWindowType =
+                AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(a => a.GetTypes())
+                .FirstOrDefault(t =>
+                    t.FullName == "AssetStoreTools.Uploader.UploaderWindow");
+
+        }
+        
+        _uploaderWindow = EditorWindow.GetWindow(_uploaderWindowType);
+        _uploaderWindow.Show();
+
+        // Remove cached window to ensure variables are initialized
+        object cachingService = GetPrivateField<object>(_uploaderWindow, "_cachingService");
+        VisualElement cachedWindow = GetPrivateField<VisualElement>(cachingService, "_cachedUploaderWindow");
+
+        if (cachedWindow != null) {
+            cachedWindow.RemoveFromHierarchy();
+            cachedWindow.Clear();
+
+            SetPrivateField(cachingService, "_cachedUploaderWindow", null);
+            CallPrivateFunction(_uploaderWindow, "SetupWindow", null);
+        }
+
+        // Wait for login authentication
+        object loginView = GetPrivateField<object>(_uploaderWindow, "_loginView");
+        var loginViewType = loginView.GetType();
+
+        Action<object> handler = async user => UploaderAuthenticated();
+        var evt = loginViewType.GetEvent("OnAuthenticated", BindingFlags.Instance | BindingFlags.Public);
+
+        Delegate typedHandler = Delegate.CreateDelegate(evt.EventHandlerType, handler.Target, handler.Method, false);
+        evt.AddEventHandler(loginView, typedHandler);
+    }
+
+    private static void UploaderAuthenticated()
+    {
+        object accountToolbar = GetPrivateField<object>(_uploaderWindow, "_accountToolbar");
+        var toolbarType = accountToolbar.GetType();
+
+        var onRefreshField = toolbarType.GetField("OnRefresh", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        var onRefreshDelegate = onRefreshField.GetValue(accountToolbar) as Func<Task>;
+
+        if (onRefreshDelegate != null) {
+            // Call the refresh logic and await it
+            Task refreshTask = onRefreshDelegate.Invoke();
+            refreshTask.ContinueWith(t =>
+            {
+                if (t.Exception != null)
+                    Debug.LogError(t.Exception);
+                else
+                    PackagesRefreshed();
+            });
+        }
+    }
+
+    private static void PackagesRefreshed()
+    {
+        object packageListView = GetPrivateField<object>(_uploaderWindow, "_packageListView");
+        ScrollView packagesScrollView = GetPrivateField<ScrollView>(packageListView, "_packageScrollView");
+
+        // First element will be a draft if there is one
+        object packageGroupElement = packagesScrollView.Children().ElementAt(0);
+
+        if (!packageGroupElement.GetType().Name.Contains("PackageGroupElement")){
+            Debug.LogError("No draft exists, please create a draft to upload");
+            return;
+        }
+        
+        var groupNameProp = packageGroupElement.GetType().GetProperty("Name");
+        string groupName = groupNameProp.GetValue(packageGroupElement) as string;
+
+        if (groupName != "Draft") {
+            Debug.LogError("No draft exists, please create a draft to upload");
+            return;
+        }
+
+        // Find the repetitionless package
+        IList packageElements = GetPrivateField<IList>(packageGroupElement, "_packageElements");
+
+        foreach (object packageElement in packageElements) {
+            var package = GetPrivateField<object>(packageElement, "_package");
+            var packageNameProp = package.GetType().GetProperty("Name");
+            string packageName = packageNameProp.GetValue(package) as string;
+
+            if (packageName != REPETITIONLESS_PACKAGE_DISPLAY_NAME)
+                continue;
+
+            UploadPackage(packageElement);
+            return;
+        }
+    }
+
+    // Must be called from the main thread
+    private static void UploadPackage(object packageElement)
+    {
+        // Toggle must be executed in the main thread, delayCall is called from the main thread
+        EditorApplication.delayCall += () => {
+            // Setup element
+            CallPrivateFunction(packageElement, "Toggle", null);
+            object contentElement = GetPrivateField<object>(packageElement, "_contentElement");
+
+            // Get and Select UPM package workflow (HybridPackageWorkflow)
+            object packageContent = GetPrivateField<object>(contentElement, "_content");
+            IList workflowElements = GetPrivateField<IList>(contentElement, "_workflowElements");
+
+            object hybridWorkflowElement = null;
+            object hybridWorkflow = null;
+            foreach (object workflowElement in workflowElements) {
+                if (workflowElement.GetType().Name.Contains("HybridPackageWorkflow")) {
+                    hybridWorkflowElement = workflowElement;
+                    hybridWorkflow = GetPrivateField<object>(workflowElement, "_workflow");
+
+                    var setActiveWorkflowMethod = packageContent.GetType().GetMethod("SetActiveWorkflow");
+                    setActiveWorkflowMethod.Invoke(packageContent, new object[] { hybridWorkflow });
+                    break;
+                }
+            }
+
+            if (hybridWorkflow == null) {
+                Debug.LogError("Could not find HybridPackageWorkflow");
+                return;
+            }
+
+            // Set the package path
+            object pathSelectionElement = GetPrivateField<object>(hybridWorkflowElement, "PathSelectionElement");
+
+            var setPathMethod = pathSelectionElement.GetType().GetMethod("SetPath");
+            setPathMethod.Invoke(pathSelectionElement, new object[] { REPETITIONLESS_PACKAGE_DIR });
+
+            // Export and Upload
+            var uploadElement = GetPrivateField<object>(hybridWorkflowElement, "UploadElement");
+            CallPrivateFunction(uploadElement, "Upload", null);
+        };
+    }
+}
+#endif
