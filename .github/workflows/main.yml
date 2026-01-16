@@ -38,7 +38,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          projectPath: "True Seamless Texturing/Packages/com.williamschack.repetitionless"
+          projectPath: "True%20Seamless%20Texturing/Packages/com.williamschack.repetitionless"
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           unityVersion: 2021.3.26f1
           packageMode: true
