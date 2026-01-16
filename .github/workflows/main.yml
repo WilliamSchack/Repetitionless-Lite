@@ -46,7 +46,8 @@ jobs:
       - name: Write new version to package.json
         working-directory: "True Seamless Texturing/Packages/com.williamschack.repetitionless"
         run: |
-          jq '.version = "v${{ github.event.inputs.version }}"' package.json
+          jq '.version = "${{ github.event.inputs.version }}"' package.json > package.tmp
+          mv package.tmp package.json
       - name: Push changes
         run: |
           git config --global user.name '${{ secrets.GIT_USER_NAME }}'
