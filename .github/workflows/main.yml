@@ -31,6 +31,15 @@ jobs:
     runs-on: ubuntu-22.04
     needs: validation
     steps:
+      - name: Free Up Storage
+        uses: jlumbroso/free-disk-space@main
+        with:
+          android: true
+          dotnet: false
+          haskell: false
+          large-packages: false
+          docker-images: false
+          swap-storage: false
       - uses: actions/checkout@v4
       - name: Cache Library
         uses: actions/cache@v3
