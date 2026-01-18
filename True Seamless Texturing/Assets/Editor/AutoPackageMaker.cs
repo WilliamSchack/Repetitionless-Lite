@@ -283,7 +283,12 @@ public static class AutoPackageMaker
 
             // Save to env variable if in batch mode
             if (Application.isBatchMode) {
-                Environment.SetEnvironmentVariable(ENV_OUT_PACKAGE_PATH, _packagePath);
+                Environment.SetEnvironmentVariable(
+                    ENV_OUT_PACKAGE_PATH,
+                    _packagePath,
+                    EnvironmentVariableTarget.Machine
+                );
+
                 Debug.Log($"Path saved to {ENV_OUT_PACKAGE_PATH}");
             }
 
