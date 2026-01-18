@@ -7,6 +7,7 @@ using System.Collections;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.IO;
 
 public static class AutoPackageMaker
 {
@@ -16,6 +17,7 @@ public static class AutoPackageMaker
 
     private const string ENV_IN_UNITY_EMAIL = "UNITY_EMAIL";
     private const string ENV_IN_UNITY_PASSWORD = "UNITY_PASSWORD";
+    private const string ENV_IN_PACKAGE_VERSION = "PACKAGE_VERSION";
     private const string ENV_OUT_PACKAGE_PATH = "PACKAGE_PATH";
 
     private static object _hybridWorkflow = null;
@@ -264,10 +266,20 @@ public static class AutoPackageMaker
             // Path is project relative, make it absolute
             string rootProjectPath = Application.dataPath.Substring(0, Application.dataPath.Length - "Assets".Length);
             string packagePathRelative = (string)packagePathProp.GetValue(unityPackageUploaderSettings);
+            string tempPackagePath = rootProjectPath + packagePathRelative;
 
-            _packagePath = rootProjectPath + packagePathRelative;
+            string packageSuffix = "output";
+            if (Application.isBatchMode)
+                packageSuffix = Environment.GetEnvironmentVariable(ENV_IN_PACKAGE_VERSION);
 
-            Debug.Log($"Package exported to: {_packagePath}");
+            string newPackageName = $"Repetitionless_{packageSuffix}.unitypackage";
+            string newPackagePath = rootProjectPath + newPackageName;
+
+            // Copy temp package to persistent dir
+            File.Copy(tempPackagePath, newPackagePath);
+            _packagePath = newPackagePath;
+
+            Debug.Log($"Package copied to: {_packagePath}");
 
             // Save to env variable if in batch mode
             if (Application.isBatchMode) {
