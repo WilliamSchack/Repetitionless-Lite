@@ -58,7 +58,7 @@ public static class AutoPackageMaker
     private static void Finish()
     {
         // Only quit in batchmode
-        if (SystemInfo.graphicsDeviceName != null)
+        if (!Application.isBatchMode)
             return;
 
         EditorApplication.Exit(0);
@@ -270,7 +270,7 @@ public static class AutoPackageMaker
             Debug.Log($"Package exported to: {_packagePath}");
 
             // Save to env variable if in batch mode
-            if (SystemInfo.graphicsDeviceName != null) {
+            if (Application.isBatchMode) {
                 Environment.SetEnvironmentVariable(ENV_OUT_PACKAGE_PATH, _packagePath);
                 Debug.Log($"Path saved to {ENV_OUT_PACKAGE_PATH}");
             }
