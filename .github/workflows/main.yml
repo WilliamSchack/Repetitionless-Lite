@@ -110,7 +110,7 @@ jobs:
     needs: update_files_and_build
     strategy:
       matrix:
-        package-download-dir: [ opt ]
+        package-download-dir: [ "/opt" ]
         release-notes-filename: [ ReleaseNotes.md ]
     steps:
       - uses: actions/checkout@v4
@@ -120,7 +120,7 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           name: repetitionless-package
-          path: /${{ matrix.package-download-dir }}
+          path: ${{ matrix.package-download-dir }}
       - name: Find Package
         run: |
           FILE=$(find ${{ matrix.package-download-dir }} -type f -name "*.unitypackage" | head -n 1)
@@ -132,5 +132,6 @@ jobs:
       - name: Create Github Release
         uses: softprops/action-gh-release@v2.5.0
         with:
+          tag_name: v${{ github.event.inputs.version }}
           body_path: ${{ matrix.release-notes-filename }}
           files: ${{ env.PACKAGE_PATH }}
