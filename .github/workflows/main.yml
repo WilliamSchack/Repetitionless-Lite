@@ -26,18 +26,51 @@ jobs:
         if: ${{ github.event.inputs.release_notes_updated != 'true' }}
         run: exit 1
 
+  update_files:
+    name: Updating Files
+    runs-on: ubuntu-latest
+    needs: validation
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install mkdocs
+        working-directory: "Documentation"
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Build Docs
+        working-directory: "Documentation"
+        run: |
+          mkdocs build
+      - name: Move offline docs
+        run: |
+          mv "Documentation/site/pdf/document.pdf" "True Seamless Texturing/Packages/com.williamschack.repetitionless/OfflineDocumentation.pdf"
+          rmdir "Documentation/site/pdf"
+      - name: Write new version to package.json
+        working-directory: "True Seamless Texturing/Packages/com.williamschack.repetitionless"
+        run: |
+          jq '.version = "${{ github.event.inputs.version }}"' package.json > package.tmp
+          mv package.tmp package.json
+      - name: Push changes
+        run: |
+          git config --global user.name '${{ secrets.GIT_USER_NAME }}'
+          git config --global user.email '${{ secrets.GIT_USER_EMAIL }}'
+          git add -A
+          git commit -m '[automated commit] v${{ inputs.version }} Updated docs and package.json'
+          git push
+
   build_package:
     name: Building Package
     runs-on: ubuntu-22.04
-    needs: validation
+    needs: update_files
     steps:
+        # Only clear the required storage to finish quicker
       - name: Free Up Storage
         uses: jlumbroso/free-disk-space@main
         with:
-          android: true
-          dotnet: false
-          haskell: false
-          large-packages: false
+          android: false
+          dotnet: true
+          haskell: true
+          large-packages: true
           docker-images: false
           swap-storage: false
       - uses: actions/checkout@v4
@@ -73,38 +106,39 @@ jobs:
           -executeMethod AutoPackageMaker.CreateAndUpload \
           -stackTraceLogType None \
           -logFile -
-      - name: Test package path
-        run: |
-          echo "Found package at path: '${{ env.PACKAGE_PATH }}'"
-      
-  update_files:
-    name: Updating Files
+      - name: Upload Package Artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: repetitionless-package
+          path: ${{ env.PACKAGE_PATH }}
+
+  create_release:
+    name: Create Github Release
     runs-on: ubuntu-latest
     needs: build_package
+    strategy:
+      matrix:
+        package-download-dir: [ opt ]
+        release-notes-filename: [ ReleaseNotes.md ]
     steps:
       - uses: actions/checkout@v4
-      - name: Install mkdocs
-        working-directory: "Documentation"
+        with:
+          sparse-checkout: ${{ matrix.release-notes-filename }}
+      - name: Download Package
+        uses: actions/download-artifact@v6
+        with:
+          name: repetitionless-package
+          path: /${{ matrix.package-download-dir }}
+      - name: Find Package
         run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-      - name: Build Docs
-        working-directory: "Documentation"
+          FILE=$(find ${{ matrix.package-download-dir }} -type f -name "*.unitypackage" | head -n 1)
+          echo "PACKAGE_PATH=$FILE" >> $GITHUB_ENV
+      - name: Get Release Notes
+        id: release-notes
         run: |
-          mkdocs build
-      - name: Move offline docs
-        run: |
-          mv "Documentation/site/pdf/document.pdf" "True Seamless Texturing/Packages/com.williamschack.repetitionless/OfflineDocumentation.pdf"
-          rmdir "Documentation/site/pdf"
-      - name: Write new version to package.json
-        working-directory: "True Seamless Texturing/Packages/com.williamschack.repetitionless"
-        run: |
-          jq '.version = "${{ github.event.inputs.version }}"' package.json > package.tmp
-          mv package.tmp package.json
-      - name: Push changes
-        run: |
-          git config --global user.name '${{ secrets.GIT_USER_NAME }}'
-          git config --global user.email '${{ secrets.GIT_USER_EMAIL }}'
-          git add -A
-          git commit -m '[automated commit] v${{ inputs.version }} Updated docs and package.json'
-          git push
+          echo "release-notes=$(cat ${{ matrix.release-notes-filename }})" >> $GITHUB_OUTPUT
+      - name: Create Github Release
+        uses: softprops/action-gh-release@v2.5.0
+        with:
+          body_path: ${{ matrix.release-notes-filename }}
+          files: ${{ env.PACKAGE_PATH }}
