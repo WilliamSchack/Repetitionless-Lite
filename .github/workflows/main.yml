@@ -46,7 +46,14 @@ jobs:
           password: ${{ secrets.UNITY_PASSWORD }}
       - name: Export and Upload Package
         run: |
-          "${{ steps.unity-setup.outputs.unity-editor-path }}" -projectPath "${{ steps.unity-setup.outputs.unity-project-path }}" -executeMethod AutoPackageMaker.CreateAndUpload -stackTraceLogType None -logFile -
+          "${{ steps.unity-setup.outputs.unity-editor-path }}" \
+          -projectPath "${{ steps.unity-setup.outputs.unity-project-path }}" \
+          -batchmode \
+          -nographics \
+          -quit \
+          -executeMethod AutoPackageMaker.CreateAndUpload \
+          -stackTraceLogType None \
+          -logFile -
       
   update_files:
     name: Updating Files
