@@ -93,12 +93,25 @@ public static class AutoPackageMaker
         var cloudAuthenticationAvailableMethod = authenticationServiceType.GetMethod("CloudAuthenticationAvailable");
         bool cloudAuthAvailable = (bool)cloudAuthenticationAvailableMethod.Invoke(authenticationService, new object[] { null, null });
 
-        if (!cloudAuthAvailable) {
-            Debug.LogError("Cloud authentication not available");
+        cloudAuthAvailable = false;
+        if (cloudAuthAvailable) {
+            Debug.Log("Cloud authentication available, logging in...");
+            CallPrivateFunction(loginView, "LoginWithCloudToken");
             return;
         }
 
-        CallPrivateFunction(loginView, "LoginWithCloudToken");
+        Debug.Log("Cloud authentication not available, getting login from Environment Variables...");
+
+        string unityEmail = Environment.GetEnvironmentVariable("UNITY_EMAIL");
+        string unityPassword = Environment.GetEnvironmentVariable("UNITY_PASSWORD");
+
+        TextField emailField = GetPrivateField<TextField>(loginView, "_emailField");
+        TextField passwordField = GetPrivateField<TextField>(loginView, "_passwordField");
+
+        emailField.value = unityEmail;
+        passwordField.value = unityPassword;
+
+        CallPrivateFunction(loginView, "LoginWithCredentials");
     }
 
     private static void UploaderAuthenticated()
