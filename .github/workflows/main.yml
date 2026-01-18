@@ -8,6 +8,11 @@ on:
         default: false
         required: true
         type: boolean
+      draft_created:
+        description: 'Have you created a Unity package draft?'
+        default: false
+        required: true
+        type: boolean
       version:
         description: 'Version tag (no leading "v")'
         default: ''
@@ -23,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validating Inputs
-        if: ${{ github.event.inputs.release_notes_updated != 'true' }}
+        if: ${{ github.event.inputs.release_notes_updated != 'true' || github.event.inputs.draft_created != 'true' }}
         run: exit 1
 
   update_files_and_build:
