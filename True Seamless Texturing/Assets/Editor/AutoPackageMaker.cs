@@ -14,15 +14,25 @@ public static class AutoPackageMaker
     private const string REPETITIONLESS_PACKAGE_NAME = "com.williamschack.repetitionless";
     private const string REPETITIONLESS_PACKAGE_DIR = "/Packages/" + REPETITIONLESS_PACKAGE_NAME + "/";
 
+    private const string ENV_IN_UNITY_EMAIL = "UNITY_EMAIL";
+    private const string ENV_IN_UNITY_PASSWORD = "UNITY_PASSWORD";
+    private const string ENV_OUT_PACKAGE_PATH = "PACKAGE_PATH";
+
+    private static object _hybridWorkflow = null;
+    private static string _packagePath = "";
+
     private static Type _uploaderWindowType;
     private static EditorWindow _uploaderWindow;
 
     private static EditorApplication.CallbackFunction _uploadProgressCallback;
 
 #region Reflection Helpers
-    private static T GetPrivateField<T>(object obj, string fieldName)
+    private static T GetPrivateField<T>(object obj, string fieldName, bool inBaseClass = false)
     {
-        var field = obj.GetType().GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
+        var type = obj.GetType();
+        if (inBaseClass) type = type.BaseType;
+
+        var field = type.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
         if (field == null)
             Debug.LogError($"Field '{fieldName}' not found on type {obj.GetType().FullName}");
         return (T)field.GetValue(obj);
@@ -112,8 +122,8 @@ public static class AutoPackageMaker
 
         Debug.Log("Cloud authentication not available, getting login from Environment Variables...");
 
-        string unityEmail = Environment.GetEnvironmentVariable("UNITY_EMAIL");
-        string unityPassword = Environment.GetEnvironmentVariable("UNITY_PASSWORD");
+        string unityEmail = Environment.GetEnvironmentVariable(ENV_IN_UNITY_EMAIL);
+        string unityPassword = Environment.GetEnvironmentVariable(ENV_IN_UNITY_PASSWORD);
 
         TextField emailField = GetPrivateField<TextField>(loginView, "_emailField");
         TextField passwordField = GetPrivateField<TextField>(loginView, "_passwordField");
@@ -206,19 +216,20 @@ public static class AutoPackageMaker
             IList workflowElements = GetPrivateField<IList>(contentElement, "_workflowElements");
 
             object hybridWorkflowElement = null;
-            object hybridWorkflow = null;
+            _hybridWorkflow = null;
+
             foreach (object workflowElement in workflowElements) {
                 if (workflowElement.GetType().Name.Contains("HybridPackageWorkflow")) {
                     hybridWorkflowElement = workflowElement;
-                    hybridWorkflow = GetPrivateField<object>(workflowElement, "_workflow");
+                    _hybridWorkflow = GetPrivateField<object>(workflowElement, "_workflow");
 
                     var setActiveWorkflowMethod = packageContent.GetType().GetMethod("SetActiveWorkflow");
-                    setActiveWorkflowMethod.Invoke(packageContent, new object[] { hybridWorkflow });
+                    setActiveWorkflowMethod.Invoke(packageContent, new object[] { _hybridWorkflow });
                     break;
                 }
             }
 
-            if (hybridWorkflow == null) {
+            if (_hybridWorkflow == null) {
                 Debug.LogError("Could not find HybridPackageWorkflow");
                 Finish();
 
@@ -244,7 +255,32 @@ public static class AutoPackageMaker
 
     static void GetProgress(ProgressBar progressBar)
     {
-        Debug.Log($"Upload Progress: {progressBar.value.ToString("F2")}%");
+        // Get package path if not got already
+        if (progressBar.value > 0.0f && _packagePath == "") {
+            object unityPackageUploader = GetPrivateField<object>(_hybridWorkflow, "_activeUploader", true);
+            object unityPackageUploaderSettings = GetPrivateField<object>(unityPackageUploader, "_settings");
+            var packagePathProp = unityPackageUploaderSettings.GetType().GetProperty("UnityPackagePath");
+
+            // Path is project relative, make it absolute
+            string rootProjectPath = Application.dataPath.Substring(0, Application.dataPath.Length - "Assets".Length);
+            string packagePathRelative = (string)packagePathProp.GetValue(unityPackageUploaderSettings);
+
+            _packagePath = rootProjectPath + packagePathRelative;
+
+            Debug.Log($"Package exported to: {_packagePath}");
+
+            // Save to env variable if in batch mode
+            if (SystemInfo.graphicsDeviceName != null) {
+                Environment.SetEnvironmentVariable(ENV_OUT_PACKAGE_PATH, _packagePath);
+                Debug.Log($"Path saved to {ENV_OUT_PACKAGE_PATH}");
+            }
+
+            Debug.Log("Starting upload...");
+        }
+
+        // Only start showing progress when package exported
+        if (_packagePath != "")
+            Debug.Log($"Upload Progress: {progressBar.value.ToString("F2")}%");
 
         if (progressBar.value < 100.0f || progressBar.title.Contains("%"))
             return;
