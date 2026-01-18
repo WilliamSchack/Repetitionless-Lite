@@ -72,15 +72,29 @@ public static class AutoPackageMaker
             CallPrivateFunction(_uploaderWindow, "SetupWindow", null);
         }
 
-        // Wait for login authentication
+        // Subscribe to login authentication
         object loginView = GetPrivateField<object>(_uploaderWindow, "_loginView");
         var loginViewType = loginView.GetType();
 
-        Action<object> handler = async user => UploaderAuthenticated();
+        Action<object> handler = user => UploaderAuthenticated();
         var evt = loginViewType.GetEvent("OnAuthenticated", BindingFlags.Instance | BindingFlags.Public);
 
         Delegate typedHandler = Delegate.CreateDelegate(evt.EventHandlerType, handler.Target, handler.Method, false);
         evt.AddEventHandler(loginView, typedHandler);
+
+        // Login
+        object authenticationService = GetPrivateField<object>(loginView, "_authenticationService");
+        var authenticationServiceType = authenticationService.GetType();
+
+        var cloudAuthenticationAvailableMethod = authenticationServiceType.GetMethod("CloudAuthenticationAvailable");
+        bool cloudAuthAvailable = (bool)cloudAuthenticationAvailableMethod.Invoke(authenticationService, new object[] { null, null });
+
+        if (!cloudAuthAvailable) {
+            Debug.LogError("Cloud authentication not available");
+            return;
+        }
+
+        CallPrivateFunction(loginView, "LoginWithCloudToken");
     }
 
     private static void UploaderAuthenticated()
