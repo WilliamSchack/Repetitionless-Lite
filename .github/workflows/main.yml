@@ -34,7 +34,7 @@ jobs:
       - name: Setup Unity
         uses: kuler90/setup-unity@v1
         with:
-          prokect-path: "True Seamless Texturing"
+          project-path: "True Seamless Texturing"
       - name: Activate Unity
         uses: kuler90/activate-unity@v1
         with:
