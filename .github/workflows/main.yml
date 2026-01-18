@@ -57,6 +57,9 @@ jobs:
           -executeMethod AutoPackageMaker.CreateAndUpload \
           -stackTraceLogType None \
           -logFile -
+      - name: Test package path
+        run: |
+          echo "Found package at path: '${{ env.PACKAGE_PATH }}'"
       
   update_files:
     name: Updating Files
