@@ -45,6 +45,15 @@ public static class AutoPackageMaker
     }
 #endregion
 
+    private static void Finish()
+    {
+        // Only quit in batchmode
+        if (SystemInfo.graphicsDeviceName != null)
+            return;
+
+        EditorApplication.Exit(0);
+    }
+
     [MenuItem("Repetitionless/Reflection Shenanigans", false, 1)]
     public static void CreateAndUpload()
     {
@@ -93,11 +102,12 @@ public static class AutoPackageMaker
         var cloudAuthenticationAvailableMethod = authenticationServiceType.GetMethod("CloudAuthenticationAvailable");
         bool cloudAuthAvailable = (bool)cloudAuthenticationAvailableMethod.Invoke(authenticationService, new object[] { null, null });
 
-        cloudAuthAvailable = false;
         if (cloudAuthAvailable) {
             Debug.Log("Cloud authentication available, logging in...");
+
             CallPrivateFunction(loginView, "LoginWithCloudToken");
             return;
+
         }
 
         Debug.Log("Cloud authentication not available, getting login from Environment Variables...");
@@ -149,6 +159,8 @@ public static class AutoPackageMaker
 
         if (!packageGroupElement.GetType().Name.Contains("PackageGroupElement")){
             Debug.LogError("No draft exists, please create a draft to upload");
+            Finish();
+
             return;
         }
         
@@ -157,6 +169,8 @@ public static class AutoPackageMaker
 
         if (groupName != "Draft") {
             Debug.LogError("No draft exists, please create a draft to upload");
+            Finish();
+
             return;
         }
 
@@ -179,7 +193,7 @@ public static class AutoPackageMaker
     // Must be called from the main thread
     private static void UploadPackage(object packageElement)
     {
-        Debug.Log("Uploading Package...");        
+        Debug.Log("Uploading Package...");
 
         // Toggle must be executed in the main thread, delayCall is called from the main thread
         EditorApplication.delayCall += () => {
@@ -206,6 +220,8 @@ public static class AutoPackageMaker
 
             if (hybridWorkflow == null) {
                 Debug.LogError("Could not find HybridPackageWorkflow");
+                Finish();
+
                 return;
             }
 
@@ -237,6 +253,8 @@ public static class AutoPackageMaker
 
         EditorApplication.update -= _uploadProgressCallback;
         _uploadProgressCallback = null;
+
+        Finish();
     }
 }
 #endif
