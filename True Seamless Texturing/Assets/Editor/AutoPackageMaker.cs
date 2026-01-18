@@ -48,6 +48,8 @@ public static class AutoPackageMaker
     [MenuItem("Repetitionless/Reflection Shenanigans", false, 1)]
     public static void CreateAndUpload()
     {
+        Debug.Log("Starting export and upload...");
+
         if (_uploaderWindowType == null) {
             _uploaderWindowType =
                 AppDomain.CurrentDomain.GetAssemblies()
@@ -59,6 +61,8 @@ public static class AutoPackageMaker
         
         _uploaderWindow = EditorWindow.GetWindow(_uploaderWindowType);
         _uploaderWindow.Show();
+
+        Debug.Log($"Got window: {_uploaderWindow}");
 
         // Remove cached window to ensure variables are initialized
         object cachingService = GetPrivateField<object>(_uploaderWindow, "_cachingService");
@@ -99,6 +103,8 @@ public static class AutoPackageMaker
 
     private static void UploaderAuthenticated()
     {
+        Debug.Log("Uploader Authenticated...");
+
         object accountToolbar = GetPrivateField<object>(_uploaderWindow, "_accountToolbar");
         var toolbarType = accountToolbar.GetType();
 
@@ -120,6 +126,8 @@ public static class AutoPackageMaker
 
     private static void PackagesRefreshed()
     {
+        Debug.Log("Found Packages...");
+
         object packageListView = GetPrivateField<object>(_uploaderWindow, "_packageListView");
         ScrollView packagesScrollView = GetPrivateField<ScrollView>(packageListView, "_packageScrollView");
 
@@ -158,6 +166,8 @@ public static class AutoPackageMaker
     // Must be called from the main thread
     private static void UploadPackage(object packageElement)
     {
+        Debug.Log("Uploading Package...");        
+
         // Toggle must be executed in the main thread, delayCall is called from the main thread
         EditorApplication.delayCall += () => {
             // Setup element
