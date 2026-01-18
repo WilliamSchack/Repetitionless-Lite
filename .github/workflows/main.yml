@@ -28,7 +28,7 @@ jobs:
 
   build_package:
     name: Building Package
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: validation
     steps:
       - uses: actions/checkout@v4
