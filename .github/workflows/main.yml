@@ -55,6 +55,7 @@ jobs:
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          PACKAGE_VERSION: ${{ github.event.inputs.version }}
         run: |
           "${{ steps.unity-setup.outputs.unity-editor-path }}" \
           -projectPath "${{ steps.unity-setup.outputs.unity-project-path }}" \
