@@ -18,6 +18,8 @@ public static class AutoPackageMaker
     private const string ENV_IN_UNITY_EMAIL = "UNITY_EMAIL";
     private const string ENV_IN_UNITY_PASSWORD = "UNITY_PASSWORD";
     private const string ENV_IN_PACKAGE_VERSION = "PACKAGE_VERSION";
+    private const string ENV_IN_GIITHUB_ENV_PATH = "GITHUB_ENV";
+
     private const string ENV_OUT_PACKAGE_PATH = "PACKAGE_PATH";
 
     private static object _hybridWorkflow = null;
@@ -283,13 +285,13 @@ public static class AutoPackageMaker
 
             // Save to env variable if in batch mode
             if (Application.isBatchMode) {
-                Environment.SetEnvironmentVariable(
-                    ENV_OUT_PACKAGE_PATH,
-                    _packagePath,
-                    EnvironmentVariableTarget.Machine
-                );
+                // Githubs env is a file, get that file and write new var to it
+                string githubEnvPath = Environment.GetEnvironmentVariable(ENV_IN_GIITHUB_ENV_PATH);
+                if (githubEnvPath != "") {
+                    File.AppendAllText(githubEnvPath, $"{ENV_OUT_PACKAGE_PATH}={_packagePath}");
 
-                Debug.Log($"Path saved to {ENV_OUT_PACKAGE_PATH}");
+                    Debug.Log($"Path saved to {ENV_OUT_PACKAGE_PATH}");
+                }
             }
 
             Debug.Log("Starting upload...");
