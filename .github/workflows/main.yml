@@ -32,19 +32,22 @@ jobs:
     needs: validation
     steps:
       - uses: actions/checkout@v4
-      - name: Install FUSE
-        run: |
-          sudo apt-get update
-          sudo apt-get install fuse
-      - name: Setup Unity
-        uses: kuler90/setup-unity@v1
+      - uses: buildalon/unity-setup@v2
+        id: unity-setup
         with:
-          project-path: "True Seamless Texturing"
+          version-file: 'True Seamless Texturing/ProjectSettings/ProjectVersion.txt'
       - name: Activate Unity
-        uses: kuler90/activate-unity@v1
+        uses: game-ci/unity-activate@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          unity-username: ${{ secrets.UNITY_EMAIL }}
-          unity-password: ${{ secrets.UNITY_PASSWORD }}
+          unityVersion: auto
+          projectPath: ${{ steps.unity-setup.outputs.unity-project-path }}
+      - name: Export and Upload Package
+        run: |
+          "${{ steps.unity-setup.outputs.unity-editor-path }}" -projectPath "${{ steps.unity-setup.outputs.unity-project-path }}" -executeMethod AutoPackageMaker.CreateAndUpload -logFile -
       
   update_files:
     name: Updating Files
