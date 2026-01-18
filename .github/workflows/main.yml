@@ -32,24 +32,18 @@ jobs:
     needs: validation
     steps:
       - uses: actions/checkout@v4
-      - name: Get Unity Version
-        id: get-unity-version
-        run: |
-          echo "version=$(grep -o -E "[0-9]+\.[0-9]+\.[0-9]+[a-z][0-9]+" "ProjectVersion.txt" | head -1)" >> $GITHUB_OUTPUT
       - name: Install Unity
         uses: buildalon/unity-setup@v2
         id: unity-setup
         with:
-          unity-version: ${{ steps.get-unity-version.outputs.version }}
+          version-file: 'True Seamless Texturing/ProjectSettings/ProjectVersion.txt'
           cache-installation: true
       - name: Activate Unity
-        uses: game-ci/unity-activate@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        uses: buildalon/activate-unity-license@v2
         with:
-          unityVersion: ${{ steps.get-unity-version.outputs.version }}
+          license: 'Personal'
+          username: ${{ secrets.UNITY_EMAIL }}
+          password: ${{ secrets.UNITY_PASSWORD }}
       - name: Export and Upload Package
         run: |
           "${{ steps.unity-setup.outputs.unity-editor-path }}" -projectPath "${{ steps.unity-setup.outputs.unity-project-path }}" -executeMethod AutoPackageMaker.CreateAndUpload -logFile -
