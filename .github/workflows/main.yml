@@ -32,6 +32,13 @@ jobs:
     needs: validation
     steps:
       - uses: actions/checkout@v4
+      - name: Cache Library
+        uses: actions/cache@v3
+        with:
+          path: "True Seamless Texturing/Library"
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
       - name: Install Unity
         uses: buildalon/unity-setup@v2
         id: unity-setup
