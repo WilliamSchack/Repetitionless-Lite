@@ -19,7 +19,7 @@ Classic and Simplex noise functions are originally created by Stefan Gustavson b
 The code is free and open source under the MIT License
 
 Github: https://github.com/keijiro/NoiseShader
-License: https://github.com/keijiro/NoiseShader/blob/master/LICENSE
+License (MIT): View Third-Party Notices.txt or visit (https://github.com/keijiro/NoiseShader/blob/master/LICENSE)
 
 // =========== SAMPLES =========== //
 
@@ -30,7 +30,7 @@ EZ Tree is free and open source under the MIT License
 
 Website: https://www.eztree.dev
 Github: https://github.com/dgreenheck/ez-tree
-License: https://github.com/dgreenheck/ez-tree/blob/main/LICENSE
+License (MIT): View Third-Party Notices.txt or visit (https://github.com/dgreenheck/ez-tree/blob/main/LICENSE)
 
 // Textures and HDRI
 
@@ -38,4 +38,4 @@ HDRI and Textures are from Polyhaven
 Polyhaven assets are under the CC0 License
 
 Website: https://polyhaven.com/
-License: https://polyhaven.com/license
+License (CCO): View Third-Party Notices.txt or visit (https://polyhaven.com/license)
