@@ -117,25 +117,22 @@ def UpdateDraft(session: requests.Session, draftId: str, details: dict):
 
     # Convert package details to draft update format
     draftDetails = {
-        "path": f"/management/package-version/{packageDetails["id"]}",
-        "data": {
-            "category_id": packageDetails["category_id"],
-            "price": packageDetails["price"],
-            "version_name": packageDetails["version_name"],
-            "portal_version": packageDetails["portal_version"],
-            "ptags": packageDetails["ptags"],
-            "metadata": [
-                {
-                    "language": language,
-                    "name": languageDetails["name"],
-                    "elevator_pitch": languageDetails["elevator_pitch"],
-                    "key_features": languageDetails["key_features"],
-                    "optional_description": languageDetails["optional_description"],
-                    "release_notes": languageDetails["release_notes"],
-                    "compatibility_info": languageDetails["compatibility_info"]
-                }
-            ]
-        }
+        "category_id": packageDetails["category_id"],
+        "price": packageDetails["price"],
+        "version_name": packageDetails["version_name"],
+        "portal_version": packageDetails["portal_version"],
+        "ptags": packageDetails["ptags"],
+        "metadata": [
+            {
+                "language": language,
+                "name": languageDetails["name"],
+                "elevator_pitch": languageDetails["elevator_pitch"],
+                "key_features": languageDetails["key_features"],
+                "optional_description": languageDetails["optional_description"],
+                "release_notes": languageDetails["release_notes"],
+                "compatibility_info": languageDetails["compatibility_info"]
+            }
+        ]
     }
 
     # Insert new details
@@ -144,7 +141,10 @@ def UpdateDraft(session: requests.Session, draftId: str, details: dict):
     # Update draft
     response = session.post(
         "https://publisher.unity.com/publisher-v2-api/proxy",
-        json = draftDetails
+        json = {
+            "path": f"/management/package-version/{packageDetails["id"]}",
+            "data": draftDetails
+        }
     )
 
     return 0
@@ -198,7 +198,5 @@ packageId = GetPackageId(session, "Repetitionless")
 draftId = GetDraftId(session, packageId)
 
 UpdateDraft(session, draftId, {
-    "data": {
-        "version_name": newVersion
-    }
+    "version_name": newVersion
 })
