@@ -158,6 +158,20 @@ def DeleteDraft(session: requests.Session, draftId: str):
         }
     )
 
+# Untested
+def SubmitDraft(session: requests.Session, draftId: str, autoPublish: bool, submitMessage: str):
+    response = session.post(
+        "https://publisher.unity.com/publisher-v2-api/proxy",
+        json = {
+            "path": f"/management/submit/{draftId}",
+            "data": {
+                "auto_publish": ("Y" if autoPublish else "N"),
+                "submit_message": submitMessage,
+                "termsaccept": "3"
+            }
+        }
+    )
+
 # Inputs
 unityEmail = sys.argv[1]
 unityPass = sys.argv[2]
