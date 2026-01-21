@@ -169,24 +169,9 @@ jobs:
       - name: Convert release notes to html
         run: |
           md2html ${{ matrix.release-setup-folder }}/ReleaseNotes.md > ${{ matrix.release-setup-folder }}/ReleaseNotes.html
-      - name: Get Two Factor
-        id: interactive-auth
-        uses: boasihq/interactive-inputs@v2
-        with:
-          ngrok-authtoken: ${{ secrets.NGROK_AUTH_TOKEN }}
-          timeout: 300
-          interactive: |
-            fields:
-              - label: two-factor-code
-                properties:
-                  display: Two Factor Authentication
-                  type: text
-                  description: Enter the code at the very start of the circle
-                  required: true
-                  placeholder: 000000
       - name: Update Unity Package
         run: |
-          python ${{ matrix.release-setup-folder }}/ReleaseUnity.py  ${{ secrets.UNITY_EMAIL }} ${{ secrets.UNITY_PASSWORD }} ${{ github.event.inputs.version }} ReleaseNotes.html ${{ steps.interactive-auth.outputs.two-factor-code }}
+          python ${{ matrix.release-setup-folder }}/ReleaseUnity.py  ${{ secrets.UNITY_EMAIL }} ${{ secrets.UNITY_PASSWORD }} ${{ github.event.inputs.version }} ReleaseNotes.html
 
   # cleanup:
   #   name: Cleanup
