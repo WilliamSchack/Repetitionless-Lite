@@ -35,5 +35,5 @@ UnityAPI.Packages.UpdateDraft(session, draftId, {
     ]
 })
 
-# print("Submitting")
-# UnityAPI.Packages.SubmitDraft(session, draftId, False, "")
+print("Submitting")
+UnityAPI.Packages.SubmitDraft(session, draftId, False, "")
