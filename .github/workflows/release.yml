@@ -18,33 +18,33 @@ jobs:
         if: ${{ github.event.inputs.confirmation != 'true' }}
         run: exit 1
 
-#   create_public_release:
-#     name: Creating Release In Issues Repo
-#     runs-on: ubuntu-latest
-#     needs: validation
-#     strategy:
-#       matrix:
-#         release-setup-folder: [ "ReleaseSetup" ]
-#     steps:
-#       - name: Get Release Notes
-#         uses: actions/checkout@v4
-#         with:
-#           sparse-checkout: ${{ matrix.release-setup-folder }}
-#           fetch-depth: 0
-#       - name: Get Latest Release
-#         id: latest-tag
-#         uses: WyriHaximus/github-action-get-previous-tag@v1
-#       - name: Add Public Suffix
-#         run: |
-#           cat ${{ matrix.release-setup-folder }}/PublicReleaseNotesPrefix.md ${{ matrix.release-setup-folder }}/ReleaseNotes.md \
-#           > ${{ matrix.release-setup-folder }}/PublicReleaseNotes.md
-#       - name: Create Release
-#         uses: softprops/action-gh-release@v2.5.0
-#         with:
-#           tag_name: ${{ steps.latest-tag.outputs.tag }}
-#           body_path: ${{ matrix.release-setup-folder }}/PublicReleaseNotes.md
-#           repository: WilliamSchack/Repetitionless-Issues
-#           token: ${{ secrets.ACTIONS_PAT_TOKEN }}
+  create_public_release:
+    name: Creating Release In Issues Repo
+    runs-on: ubuntu-latest
+    needs: validation
+    strategy:
+      matrix:
+        release-setup-folder: [ "ReleaseSetup" ]
+    steps:
+      - name: Get Release Notes
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: ${{ matrix.release-setup-folder }}
+          fetch-depth: 0
+      - name: Get Latest Release
+        id: latest-tag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+      - name: Add Public Suffix
+        run: |
+          cat ${{ matrix.release-setup-folder }}/PublicReleaseNotesPrefix.md ${{ matrix.release-setup-folder }}/ReleaseNotes.md \
+          > ${{ matrix.release-setup-folder }}/PublicReleaseNotes.md
+      - name: Create Release
+        uses: softprops/action-gh-release@v2.5.0
+        with:
+          tag_name: ${{ steps.latest-tag.outputs.tag }}
+          body_path: ${{ matrix.release-setup-folder }}/PublicReleaseNotes.md
+          repository: WilliamSchack/Repetitionless-Issues
+          token: ${{ secrets.ACTIONS_PAT_TOKEN }}
 
   update_docs:
     name: Updating Docs
