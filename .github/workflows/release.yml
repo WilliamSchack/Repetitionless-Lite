@@ -58,12 +58,13 @@ jobs:
       - name: Checkout Website
         uses: actions/checkout@v4
         with:
+          repository: WilliamSchack/Website
+          token: ${{ secrets.ACTIONS_PAT_TOKEN }}
           path: Website
       - name: Get Built Docs
         uses: actions/checkout@v4
         with:
           sparse-checkout: ${{ matrix.release-setup-folder }}
-          fetch-depth: 0
           path: Docs
       - name: Overwrite Docs
         run: |
