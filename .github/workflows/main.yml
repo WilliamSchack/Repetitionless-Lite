@@ -162,7 +162,6 @@ jobs:
           repository: WilliamSchack/UnityPublisherAPI
           token: ${{ secrets.ACTIONS_PAT_TOKEN }}
           path: ${{ matrix.release-setup-folder }}/UnityPublisherAPI
-      - uses: actions/setup-python@v6
       - name: Install md2html
         run: |
           npm install -g markdown

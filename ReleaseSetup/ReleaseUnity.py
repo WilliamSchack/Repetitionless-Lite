@@ -13,7 +13,7 @@ newVersionTag = sys.argv[3]
 releaseNotesHtmlFile = sys.argv[4]
 
 # Read html file
-releaseNotesHtml = open(os.path.join(__location, releaseNotesHtmlFile), "r").read()
+releaseNotesHtml = open(os.path.join(__location__, releaseNotesHtmlFile), "r").read()
 releaseNotesHtml = releaseNotesHtml.replace("\n", "")
 
 # Update package details
