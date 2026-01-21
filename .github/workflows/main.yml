@@ -133,10 +133,6 @@ jobs:
       #   run: |
       #     FILE=$(find ${{ matrix.package-download-dir }} -type f -name "*.unitypackage" | head -n 1)
       #     echo "PACKAGE_PATH=$FILE" >> $GITHUB_ENV
-      - name: Get Release Notes
-        id: release-notes
-        run: |
-          echo "release-notes=$(cat ${{ matrix.release-notes-filename }})" >> $GITHUB_OUTPUT
       - name: Create Github Release
         uses: softprops/action-gh-release@v2.5.0
         with:
