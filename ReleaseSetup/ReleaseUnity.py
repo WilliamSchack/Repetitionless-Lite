@@ -21,7 +21,7 @@ releaseNotesHtml = releaseNotesHtml.replace("\n", "")
 
 # Update package details
 print("Authorising...")
-session = UnityAPI.Authorisation.GetAuthenticatedSession(unityEmail, unityPass)
+session = UnityAPI.Authorisation.GetAuthenticatedSession(unityEmail, unityPass, twoFactorCode)
 print("Successfully Authorised!")
 
 print("Creating/Getting Draft...")
