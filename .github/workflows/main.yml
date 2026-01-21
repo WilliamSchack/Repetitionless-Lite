@@ -166,15 +166,15 @@ jobs:
       - name: Install md2html
         run: |
           npm install -g markdown
+      - run: ls ${{ matrix.release-setup-folder }}
       - name: Convert release notes to html
         run: |
           cd ${{ matrix.release-setup-folder }}
-          md2html ReleaseNotes.md > ReleaseNotes.html
-      - run: ls .
+          md2html ${{ matrix.release-setup-folder }}/ReleaseNotes.md > ${{ matrix.release-setup-folder }}/ReleaseNotes.html
       - name: Update Unity Package
         run: |
           cd ${{ matrix.release-setup-folder }}
-          python ./ReleaseUnity.py  ${{ secrets.UNITY_EMAIL }} ${{ secrets.UNITY_PASSWORD }} ${{ github.event.inputs.version }} ReleaseNotes.html
+          python ${{ matrix.release-setup-folder }}/ReleaseUnity.py  ${{ secrets.UNITY_EMAIL }} ${{ secrets.UNITY_PASSWORD }} ${{ github.event.inputs.version }} ReleaseNotes.html
 
   # cleanup:
   #   name: Cleanup
