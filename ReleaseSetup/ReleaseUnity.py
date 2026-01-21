@@ -1,5 +1,9 @@
+import os
 import sys
 import UnityPublisherAPI as UnityAPI
+
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 # Inputs
 unityEmail = sys.argv[1]
@@ -9,7 +13,7 @@ newVersionTag = sys.argv[3]
 releaseNotesHtmlFile = sys.argv[4]
 
 # Read html file
-releaseNotesHtml = open(releaseNotesHtmlFile, "r").read()
+releaseNotesHtml = open(os.path.join(__location, releaseNotesHtmlFile), "r").read()
 releaseNotesHtml = releaseNotesHtml.replace("\n", "")
 
 # Update package details
