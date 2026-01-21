@@ -186,7 +186,7 @@ jobs:
                   placeholder: 000000
       - name: Update Unity Package
         run: |
-          python ${{ matrix.release-setup-folder }}/ReleaseUnity.py  ${{ secrets.UNITY_EMAIL }} ${{ secrets.UNITY_PASSWORD }} ${{ github.event.inputs.version }} ReleaseNotes.html ${{ steps.interactive-auth.two-factor-code }}
+          python ${{ matrix.release-setup-folder }}/ReleaseUnity.py  ${{ secrets.UNITY_EMAIL }} ${{ secrets.UNITY_PASSWORD }} ${{ github.event.inputs.version }} ReleaseNotes.html ${{ steps.interactive-auth.outputs.two-factor-code }}
 
   # cleanup:
   #   name: Cleanup
