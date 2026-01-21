@@ -1,4 +1,4 @@
-name: Setup New Release
+name: Prepare and Submit New Release
 
 on:
   workflow_dispatch:
