@@ -161,7 +161,7 @@ jobs:
         with:
           repository: WilliamSchack/UnityPublisherAPI
           token: ${{ secrets.ACTIONS_PAT_TOKEN }}
-          path: ${{ matrix.release-setup-folder }}
+          path: ${{ matrix.release-setup-folder }}/UnityPublisherAPI
       - uses: actions/setup-python@v6
       - name: Install md2html
         run: |
@@ -169,11 +169,9 @@ jobs:
       - run: ls ${{ matrix.release-setup-folder }}
       - name: Convert release notes to html
         run: |
-          cd ${{ matrix.release-setup-folder }}
           md2html ${{ matrix.release-setup-folder }}/ReleaseNotes.md > ${{ matrix.release-setup-folder }}/ReleaseNotes.html
       - name: Update Unity Package
         run: |
-          cd ${{ matrix.release-setup-folder }}
           python ${{ matrix.release-setup-folder }}/ReleaseUnity.py  ${{ secrets.UNITY_EMAIL }} ${{ secrets.UNITY_PASSWORD }} ${{ github.event.inputs.version }} ReleaseNotes.html
 
   # cleanup:
