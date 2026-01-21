@@ -30,6 +30,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           sparse-checkout: ${{ matrix.release-setup-folder }}
+          fetch-depth: 0
       - name: Get Latest Release
         id: latest-tag
         uses: WyriHaximus/github-action-get-previous-tag@v1
