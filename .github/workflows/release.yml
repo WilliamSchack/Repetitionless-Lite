@@ -65,16 +65,22 @@ jobs:
         uses: actions/checkout@v4
         with:
           sparse-checkout: ${{ matrix.release-setup-folder }}
+          fetch-depth: 0
           path: Docs
       - name: Overwrite Docs
         run: |
           rm -r Website/${{ matrix.website-docs-folder }}
           cp -R Docs/${{ matrix.local-docs-folder }} Website/${{ matrix.website-docs-folder }}
+      - name: Get Latest Release
+        id: latest-tag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+        with:
+          workingDirectory: Docs
       - name: Push Docs
         run: |
           cd Website
           git config --global user.name '${{ secrets.GIT_ACTIONS_NAME }}'
           git config --global user.email '${{ secrets.GIT_ACTIONS_EMAIL }}'
           git add -A
-          git commit -m '[automated commit] v${{ inputs.version }} Updated docs and package.json'
+          git commit -m '[automated commit] Updated Repetitionless docs to v${{ steps.latest-tag.outputs.tag }}'
           git push
