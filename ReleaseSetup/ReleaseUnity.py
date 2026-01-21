@@ -12,6 +12,9 @@ unityPass = sys.argv[2]
 newVersionTag = sys.argv[3]
 releaseNotesHtmlFile = sys.argv[4]
 
+twoFactorCode = ""
+if (len(sys.argv) >= 5): twoFactorCode = sys.argv[5]
+
 # Read html file
 releaseNotesHtml = open(os.path.join(__location__, releaseNotesHtmlFile), "r").read()
 releaseNotesHtml = releaseNotesHtml.replace("\n", "")
