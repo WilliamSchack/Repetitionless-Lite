@@ -8,11 +8,6 @@ on:
         default: false
         required: true
         type: boolean
-      draft_created:
-        description: 'Have you created a Unity package draft?'
-        default: false
-        required: true
-        type: boolean
       version:
         description: 'Version tag (no leading "v")'
         default: ''
