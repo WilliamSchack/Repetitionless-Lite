@@ -8,6 +8,10 @@ on:
         default: false
         required: true
         type: boolean
+      itch_two_factor:
+        description: 'Input this as it refreshes'
+        required: true
+        type: string
 
 jobs:
   validation:
@@ -15,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validating Inputs
-        if: ${{ github.event.inputs.confirmation != 'true' }}
+        if: ${{ github.event.inputs.confirmation != 'true' || github.event.inputs.itch_two_factor != '' }}
         run: exit 1
 
   # create_public_release:
@@ -85,49 +89,87 @@ jobs:
   #         git commit -m '[automated commit] Updated Repetitionless docs to ${{ steps.latest-tag.outputs.tag }}'
   #         git push
 
-  publish_itch:
-    name: Publishing Package To Itch
-    runs-on: ubuntu-latest
-    needs: validation
-    strategy:
+  # publish_itch:
+  #   name: Publishing Package To Itch
+  #   runs-on: ubuntu-latest
+  #   needs: validation
+  #   strategy:
+  #     matrix:
+  #       package-download-dir: [ "package" ]
+  #   steps:
+  #     - name: Get Repo Details
+  #       uses: actions/checkout@v4
+  #       with:
+  #         sparse-checkout: sparse-checkout-cone-mode: false # Dont checkout anything
+  #         fetch-depth: 0
+  #     - name: Setup butler
+  #       uses: remarkablegames/setup-butler@v2
+  #     - name: Download Latest Package
+  #       uses: robinraju/release-downloader@v1
+  #       with:
+  #         latest: true
+  #         fileName: '*.unitypackage'
+  #         tarBall: false
+  #         zipBall: false
+  #         out-file-path: ${{ matrix.package-download-dir }}
+  #     - name: Get Latest Release
+  #       id: latest-tag
+  #       uses: WyriHaximus/github-action-get-previous-tag@v1
+  #     - name: Find And Rename Package
+  #       run: |
+  #         DOWNLOADED_PATH="$(find ${{ matrix.package-download-dir }} -type f -name "*.unitypackage" | head -n 1)"
+  #         MOVED_PATH="$(dirname "$FILE")/Repetitionless-${{ steps.latest-tag.outputs.tag }}.unitypackage"
+  #         mv "$DOWNLOADED_PATH" "$MOVED_PATH"
+  #         echo "PACKAGE_PATH=$MOVED_PATH" >> $GITHUB_ENV
+  #     - name: Upload Package To Itch
+  #       env:
+  #         BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+  #       run: |         # Remove leading "v" from tag
+  #         RAW_VERSION="$(echo ${{ steps.latest-tag.outputs.tag }} | cut -c 2-)"
+  #         butler push ${{ env.PACKAGE_PATH }} wilschack/repetitionless:win-linux-mac --userversion $RAW_VERSION
+  #     - name: Wait For Package Upload
+  #       env:
+  #         BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+  #       run: |
+  #         butler status wilschack/repetitionless:win-linux-mac
+
+    publish_itch_devlog:
+      name: Publishing Release Notes To Itch
+      runs-on: ubuntu-latest
+      needs: validation
+      strategy:
       matrix:
-        package-download-dir: [ "package" ]
         release-setup-folder: [ "ReleaseSetup" ]
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          sparse-checkout: ${{ matrix.release-setup-folder }}
-          fetch-depth: 0
-      - name: Setup butler
-        uses: remarkablegames/setup-butler@v2
-      - name: Download Latest Package
-        uses: robinraju/release-downloader@v1
-        with:
-          latest: true
-          fileName: '*.unitypackage'
-          tarBall: false
-          zipBall: false
-          out-file-path: ${{ matrix.package-download-dir }}
-      - name: Get Latest Release
-        id: latest-tag
-        uses: WyriHaximus/github-action-get-previous-tag@v1
-      - name: Find And Rename Package
-        run: |
-          DOWNLOADED_PATH="$(find ${{ matrix.package-download-dir }} -type f -name "*.unitypackage" | head -n 1)"
-          MOVED_PATH="$(dirname "$FILE")/Repetitionless-${{ steps.latest-tag.outputs.tag }}.unitypackage"
-          mv "$DOWNLOADED_PATH" "$MOVED_PATH"
-          echo "PACKAGE_PATH=$MOVED_PATH" >> $GITHUB_ENV
-      - name: Upload Package To Itch
-        env:
-          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-        run: |         # Remove leading "v" from tag
-          RAW_VERSION="$(echo ${{ steps.latest-tag.outputs.tag }} | cut -c 2-)"
-          butler push ${{ env.PACKAGE_PATH }} wilschack/repetitionless:win-linux-mac --userversion $RAW_VERSION
-      - name: Wait For Package Upload
-        env:
-          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-        run: |
-          butler status wilschack/repetitionless:win-linux-mac
+      steps:
+        - name: Get Release Setup Files
+          uses: actions/checkout@v4
+          with:
+            sparse-checkout: ${{ matrix.release-setup-folder }}
+            fetch-depth: 0
+        - name: Get Itch Publisher API
+          uses: actions/checkout@v4
+          with:
+            repository: WilliamSchack/ItchPublisherAPI
+            token: ${{ secrets.ACTIONS_PAT_TOKEN }}
+            path: ${{ matrix.release-setup-folder }}/ItchPublisherAPI
+        - name: Install Package Dependencies
+          working-directory: ${{ matrix.release-setup-folder }}/ItchPublisherAPI
+          run: |
+            pip install --upgrade pip
+            pip install -r requirements.txt
+        - name: Install md2html
+          run: |
+            npm install -g markdown
+        - name: Convert release notes to html
+          run: |
+            md2html ${{ matrix.release-setup-folder }}/ReleaseNotes.md > ${{ matrix.release-setup-folder }}/ReleaseNotes.html
+        - name: Get Latest Release
+          id: latest-tag
+          uses: WyriHaximus/github-action-get-previous-tag@v1
+        - name: Publish Devlog
+          run: |
+            python ${{ matrix.release-setup-folder }}/CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ github.event.inputs.itch_two_factor }} ${{ steps.latest-tag.outputs.tag }} ${{ matrix.release-setup-folder }}/ReleaseNotes.html
+        
 
     # Upload Package
     # Upload Release Notes

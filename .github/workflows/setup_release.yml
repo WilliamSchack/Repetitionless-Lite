@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validating Inputs
-        if: ${{ github.event.inputs.release_notes_updated != 'true' }}
+        if: ${{ github.event.inputs.release_notes_updated != 'true' || github.event.inputs.version != '' }}
         run: exit 1
 
   update_files_and_build:
