@@ -121,7 +121,7 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |         # Remove leading "v" from tag
-          RAW_VERSION="$(${{ steps.latest-tag.outputs.tag }}:1)"
+          RAW_VERSION="$(echo ${{ steps.latest-tag.outputs.tag }} | cut -c 2-)"
           butler push ${{ env.PACKAGE_PATH }} wilschack/repetitionless:win-linux-mac --userversion $RAW_VERSION
       - name: Wait For Package Upload
         env:
