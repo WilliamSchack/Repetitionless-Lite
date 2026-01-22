@@ -9,7 +9,7 @@ on:
         required: true
         type: boolean
       itch_two_factor:
-        description: 'Input this as it refreshes'
+        description: 'Itch Two Factor Auth Code'
         required: true
         type: string
 
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validating Inputs
-        if: ${{ github.event.inputs.confirmation != 'true' || github.event.inputs.itch_two_factor != '' }}
+        if: ${{ github.event.inputs.confirmation != 'true' || github.event.inputs.itch_two_factor == '' }}
         run: exit 1
 
   # create_public_release:
