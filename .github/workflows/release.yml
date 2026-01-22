@@ -148,11 +148,13 @@ jobs:
           repository: WilliamSchack/ItchPublisherAPI
           token: ${{ secrets.ACTIONS_PAT_TOKEN }}
           path: ${{ matrix.release-setup-folder }}/ItchPublisherAPI
-      - name: Install Package Dependencies
+      - name: Install Package Dependencies (pip)
         working-directory: ${{ matrix.release-setup-folder }}/ItchPublisherAPI
         run: |
           pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements.text
+      - name: Install Package Dependencies (chrome)
+        uses: browser-actions/setup-chrome@v2
       - name: Install md2html
         run: |
           npm install -g markdown
