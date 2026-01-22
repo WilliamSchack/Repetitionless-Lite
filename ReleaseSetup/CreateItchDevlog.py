@@ -21,5 +21,4 @@ releaseNotesHtml = releaseNotesHtml.replace("\n", "")
 session = ItchAPI.Authorisation.GetAuthenticatedSession(itchEmail, itchPass, itchTwoFactor)
 packageId = ItchAPI.Packages.GetPackageId(session, "Repetitionless")
 
-lastFileId = ItchAPI.Packages.GetLastUploadedFileId(session, packageId)
-ItchAPI.Packages.PublishNewDevlog(session, packageId, newVersion, releaseNotesHtml, [ lastFileId ])
+ItchAPI.Packages.PublishNewDevlog(session, packageId, newVersion, releaseNotesHtml)
