@@ -13,16 +13,12 @@ itchTwoFactor = sys.argv[3]
 newVersion = f"v{sys.argv[4]}"
 releaseNotesHtmlFile = sys.argv[5]
 
-chromePath = ""
-if (len(sys.argv) > 6):
-    chromePath = sys.argv[6]
-
 # Read html file
 releaseNotesHtml = open(os.path.join(__location__, releaseNotesHtmlFile), "r").read()
 releaseNotesHtml = releaseNotesHtml.replace("\n", "")
 
 # Create new devlog post
-session = ItchAPI.Authorisation.GetAuthenticatedSession(itchEmail, itchPass, itchTwoFactor, chromePath)
+session = ItchAPI.Authorisation.GetAuthenticatedSession(itchEmail, itchPass, itchTwoFactor)
 packageId = ItchAPI.Packages.GetPackageId(session, "Repetitionless")
 
 ItchAPI.Packages.PublishNewDevlog(session, packageId, newVersion, releaseNotesHtml)
