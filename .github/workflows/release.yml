@@ -121,7 +121,7 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-          butler push ${{ env.PACKAGE_PATH }} wilschack/repetitionless
+          butler push ${{ env.PACKAGE_PATH }} wilschack/repetitionless:win-linux-mac
 
     # Upload Package
     # Upload Release Notes
