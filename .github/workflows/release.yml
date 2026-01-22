@@ -119,7 +119,7 @@ jobs:
           echo "PACKAGE_PATH=$MOVED_PATH" >> $GITHUB_ENV
       - name: Upload Package To Itch
         env:
-          BUTLER_API_KEY ${{ secrets.BUTLER_API_KEY }}
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
           butler push ${{ env.PACKAGE_PATH }} wilschack/repetitionless
 
