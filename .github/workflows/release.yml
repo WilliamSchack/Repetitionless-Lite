@@ -82,7 +82,7 @@ jobs:
   #         git config --global user.name '${{ secrets.GIT_ACTIONS_NAME }}'
   #         git config --global user.email '${{ secrets.GIT_ACTIONS_EMAIL }}'
   #         git add -A
-  #         git commit -m '[automated commit] Updated Repetitionless docs to v${{ steps.latest-tag.outputs.tag }}'
+  #         git commit -m '[automated commit] Updated Repetitionless docs to ${{ steps.latest-tag.outputs.tag }}'
   #         git push
 
   publish_itch:
@@ -92,7 +92,13 @@ jobs:
     strategy:
       matrix:
         package-download-dir: [ "/package" ]
+        release-setup-folder: [ "ReleaseSetup" ]
     steps:
+      - name: Checkout Repo For tag
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: ${{ matrix.release-setup-folder }}
+          fetch-depth: 0
       - name: Setup butler
         uses: remarkablegames/setup-butler@v2
       - name: Download Latest Package
@@ -103,10 +109,15 @@ jobs:
           tarBall: false
           zipBall: false
           out-file-path: ${{ matrix.package-download-dir }}
-      - name: Find Package
+      - name: Get Latest Release
+        id: latest-tag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+      - name: Find And Rename Package
         run: |
-          FILE=$(find ${{ matrix.package-download-dir }} -type f -name "*.unitypackage" | head -n 1)
-          echo "PACKAGE_PATH=$FILE" >> $GITHUB_ENV
+          DOWNLOADED_PATH=$(find ${{ matrix.package-download-dir }} -type f -name "*.unitypackage" | head -n 1)
+          MOVED_PATH=$(dirname "$FILE")/Repetitionless-${{ steps.latest-tag.outputs.tag }}.unitypackage
+          mv "$DOWNLOADED_PATH" "$MOVED_PATH"
+          echo "PACKAGE_PATH=$MOVED_PATH" >> $GITHUB_ENV
       - name: Upload Package To Itch
         env:
           BUTLER_API_KEY ${{ secrets.BUTLER_API_KEY }}
