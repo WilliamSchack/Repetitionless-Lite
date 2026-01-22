@@ -115,7 +115,7 @@ jobs:
     needs: update_files_and_build
     strategy:
       matrix:
-        package-download-dir: [ "/package" ]
+        package-download-dir: [ "package" ]
         release-notes-filename: [ "ReleaseSetup/ReleaseNotes.md" ]
     steps:
       - uses: actions/checkout@v4

@@ -91,11 +91,10 @@ jobs:
     needs: validation
     strategy:
       matrix:
-        package-download-dir: [ "/package" ]
+        package-download-dir: [ "package" ]
         release-setup-folder: [ "ReleaseSetup" ]
     steps:
-      - name: Checkout Repo For tag
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           sparse-checkout: ${{ matrix.release-setup-folder }}
           fetch-depth: 0
