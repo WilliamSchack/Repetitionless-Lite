@@ -113,15 +113,21 @@ jobs:
         uses: WyriHaximus/github-action-get-previous-tag@v1
       - name: Find And Rename Package
         run: |
-          DOWNLOADED_PATH=$(find ${{ matrix.package-download-dir }} -type f -name "*.unitypackage" | head -n 1)
-          MOVED_PATH=$(dirname "$FILE")/Repetitionless-${{ steps.latest-tag.outputs.tag }}.unitypackage
+          DOWNLOADED_PATH="$(find ${{ matrix.package-download-dir }} -type f -name "*.unitypackage" | head -n 1)"
+          MOVED_PATH="$(dirname "$FILE")/Repetitionless-${{ steps.latest-tag.outputs.tag }}.unitypackage"
           mv "$DOWNLOADED_PATH" "$MOVED_PATH"
           echo "PACKAGE_PATH=$MOVED_PATH" >> $GITHUB_ENV
       - name: Upload Package To Itch
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |         # Remove leading "v" from tag
+          RAW_VERSION="$(${{ steps.latest-tag.outputs.tag }}:1)"
+          butler push ${{ env.PACKAGE_PATH }} wilschack/repetitionless:win-linux-mac --userversion $RAW_VERSION
+      - name: Wait For Package Upload
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-          butler push ${{ env.PACKAGE_PATH }} wilschack/repetitionless:win-linux-mac
+          butler status wilschack/repetitionless:win-linux-mac
 
     # Upload Package
     # Upload Release Notes
