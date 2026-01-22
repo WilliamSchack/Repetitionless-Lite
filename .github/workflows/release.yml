@@ -154,6 +154,7 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
       - name: Install Package Dependencies (chrome)
+        id: setup-chrome
         uses: browser-actions/setup-chrome@v2
       - name: Install md2html
         run: |
@@ -182,7 +183,7 @@ jobs:
       - name: Publish Devlog
         working-directory: ${{ matrix.release-setup-folder }}
         run: |
-          python CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ steps.interactive-auth.outputs.two-factor-code }} ${{ steps.latest-tag.outputs.tag }} ReleaseNotes.html
+          python CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ steps.interactive-auth.outputs.two-factor-code }} ${{ steps.latest-tag.outputs.tag }} ReleaseNotes.html ${{ steps.setup-chrome.outputs.chrome-path }}
         
 
     # Upload Package
