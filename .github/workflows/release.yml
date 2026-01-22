@@ -154,6 +154,12 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
           python -m patchright install chromium --with-deps
+      - name: Setup Display
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+          Xvfb :99 -screen 0 1920x1080x24 &
+          echo "DISPLAY=:99" >> $GITHUB_ENV
       - name: Install md2html
         run: |
           npm install -g markdown
