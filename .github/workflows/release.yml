@@ -152,7 +152,7 @@ jobs:
         working-directory: ${{ matrix.release-setup-folder }}/ItchPublisherAPI
         run: |
           pip install --upgrade pip
-          pip install -r requirements.text
+          pip install -r requirements.txt
       - name: Install Package Dependencies (chrome)
         uses: browser-actions/setup-chrome@v2
       - name: Install md2html
