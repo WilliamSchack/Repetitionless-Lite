@@ -133,42 +133,42 @@ jobs:
   #       run: |
   #         butler status wilschack/repetitionless:win-linux-mac
 
-    publish_itch_devlog:
-      name: Publishing Release Notes To Itch
-      runs-on: ubuntu-latest
-      needs: validation
-      strategy:
+  publish_itch_devlog:
+    name: Publishing Release Notes To Itch
+    runs-on: ubuntu-latest
+    needs: validation
+    strategy:
       matrix:
         release-setup-folder: [ "ReleaseSetup" ]
-      steps:
-        - name: Get Release Setup Files
-          uses: actions/checkout@v4
-          with:
-            sparse-checkout: ${{ matrix.release-setup-folder }}
-            fetch-depth: 0
-        - name: Get Itch Publisher API
-          uses: actions/checkout@v4
-          with:
-            repository: WilliamSchack/ItchPublisherAPI
-            token: ${{ secrets.ACTIONS_PAT_TOKEN }}
-            path: ${{ matrix.release-setup-folder }}/ItchPublisherAPI
-        - name: Install Package Dependencies
-          working-directory: ${{ matrix.release-setup-folder }}/ItchPublisherAPI
-          run: |
-            pip install --upgrade pip
-            pip install -r requirements.txt
-        - name: Install md2html
-          run: |
-            npm install -g markdown
-        - name: Convert release notes to html
-          run: |
-            md2html ${{ matrix.release-setup-folder }}/ReleaseNotes.md > ${{ matrix.release-setup-folder }}/ReleaseNotes.html
-        - name: Get Latest Release
-          id: latest-tag
-          uses: WyriHaximus/github-action-get-previous-tag@v1
-        - name: Publish Devlog
-          run: |
-            python ${{ matrix.release-setup-folder }}/CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ github.event.inputs.itch_two_factor }} ${{ steps.latest-tag.outputs.tag }} ${{ matrix.release-setup-folder }}/ReleaseNotes.html
+    steps:
+      - name: Get Release Setup Files
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: ${{ matrix.release-setup-folder }}
+          fetch-depth: 0
+      - name: Get Itch Publisher API
+        uses: actions/checkout@v4
+        with:
+          repository: WilliamSchack/ItchPublisherAPI
+          token: ${{ secrets.ACTIONS_PAT_TOKEN }}
+          path: ${{ matrix.release-setup-folder }}/ItchPublisherAPI
+      - name: Install Package Dependencies
+        working-directory: ${{ matrix.release-setup-folder }}/ItchPublisherAPI
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Install md2html
+        run: |
+          npm install -g markdown
+      - name: Convert release notes to html
+        run: |
+          md2html ${{ matrix.release-setup-folder }}/ReleaseNotes.md > ${{ matrix.release-setup-folder }}/ReleaseNotes.html
+      - name: Get Latest Release
+        id: latest-tag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+      - name: Publish Devlog
+        run: |
+          python ${{ matrix.release-setup-folder }}/CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ github.event.inputs.itch_two_factor }} ${{ steps.latest-tag.outputs.tag }} ${{ matrix.release-setup-folder }}/ReleaseNotes.html
         
 
     # Upload Package
