@@ -8,10 +8,6 @@ on:
         default: false
         required: true
         type: boolean
-      itch_two_factor:
-        description: 'Itch Two Factor Auth Code'
-        required: true
-        type: string
 
 jobs:
   validation:
@@ -19,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validating Inputs
-        if: ${{ github.event.inputs.confirmation != 'true' || github.event.inputs.itch_two_factor == '' }}
+        if: ${{ github.event.inputs.confirmation != 'true' }}
         run: exit 1
 
   # create_public_release:
@@ -166,9 +162,25 @@ jobs:
       - name: Get Latest Release
         id: latest-tag
         uses: WyriHaximus/github-action-get-previous-tag@v1
+      - name: Get Itch Two Factor Code
+        id: interactive-auth
+        uses: boasihq/interactive-inputs@v2
+        with:
+          ngrok-authtoken: ${{ secrets.NGROK_AUTH_TOKEN }}
+          timeout: 300
+          interactive: |
+            fields:
+              - label: two-factor-code
+                properties:
+                  display: Two Factor Authentication
+                  type: text
+                  description: Enter the code as it refreshes for the longest window
+                  required: true
+                  placeholder: 000000
       - name: Publish Devlog
+        working-directory: ${{ matrix.release-setup-folder }}
         run: |
-          python ${{ matrix.release-setup-folder }}/CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ github.event.inputs.itch_two_factor }} ${{ steps.latest-tag.outputs.tag }} ${{ matrix.release-setup-folder }}/ReleaseNotes.html
+          python CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ steps.interactive-auth.outputs.two-factor-code }} ${{ steps.latest-tag.outputs.tag }} ReleaseNotes.html
         
 
     # Upload Package
