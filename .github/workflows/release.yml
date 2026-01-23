@@ -188,7 +188,7 @@ jobs:
       - name: Publish Devlog
         working-directory: ${{ matrix.release-setup-folder }}
         run: |
-          python CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ steps.interactive-auth.outputs.two-factor-code }} ${{ steps.latest-tag.outputs.tag }} ReleaseNotes.html
+          python CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ steps.interactive-auth.outputs.two-factor-code }} ${{ steps.latest-tag.outputs.tag }} ReleaseNotes.html ${{ steps.setup-chrome.outputs.chrome-path }}
         
 
     # Upload Package
