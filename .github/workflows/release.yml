@@ -153,7 +153,8 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-      # - name: Install Package Dependencies (chrome)
+      - name: Install Package Dependencies (chrome)
+        uses: browser-actions/setup-chrome@v2
       - name: Setup Display
         run: |
           sudo apt-get update
