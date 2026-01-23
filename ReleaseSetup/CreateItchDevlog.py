@@ -10,7 +10,7 @@ itchEmail = sys.argv[1]
 itchPass = sys.argv[2]
 itchTwoFactor = sys.argv[3]
 
-newVersion = f"v{sys.argv[4]}"
+newVersion = sys.argv[4]
 releaseNotesHtmlFile = sys.argv[5]
 
 # Read html file
