@@ -22,7 +22,13 @@ releaseNotesHtml = open(os.path.join(__location__, releaseNotesHtmlFile), "r").r
 releaseNotesHtml = releaseNotesHtml.replace("\n", "")
 
 # Create new devlog post
+print("Authenticating...")
 session = ItchAPI.Authorisation.GetAuthenticatedSession(itchEmail, itchPass, itchTwoFactor, chromePath)
+
+print("Getting package...")
 packageId = ItchAPI.Packages.GetPackageId(session, "Repetitionless")
 
+print("Posting devlog...")
 ItchAPI.Packages.PublishNewDevlog(session, packageId, newVersion, releaseNotesHtml)
+
+print("Successfully complete!")
