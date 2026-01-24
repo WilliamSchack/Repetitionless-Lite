@@ -18,116 +18,116 @@ jobs:
         if: ${{ github.event.inputs.confirmation != 'true' }}
         run: exit 1
 
-  # create_public_release:
-  #   name: Creating Release In Issues Repo
-  #   runs-on: ubuntu-latest
-  #   needs: validation
-  #   strategy:
-  #     matrix:
-  #       release-setup-folder: [ "ReleaseSetup" ]
-  #   steps:
-  #     - name: Get Release Notes
-  #       uses: actions/checkout@v4
-  #       with:
-  #         sparse-checkout: ${{ matrix.release-setup-folder }}
-  #         fetch-depth: 0
-  #     - name: Get Latest Release
-  #       id: latest-tag
-  #       uses: WyriHaximus/github-action-get-previous-tag@v1
-  #     - name: Add Public Suffix
-  #       run: |
-  #         cat ${{ matrix.release-setup-folder }}/PublicReleaseNotesPrefix.md ${{ matrix.release-setup-folder }}/ReleaseNotes.md \
-  #         > ${{ matrix.release-setup-folder }}/PublicReleaseNotes.md
-  #     - name: Create Release
-  #       uses: softprops/action-gh-release@v2.5.0
-  #       with:
-  #         tag_name: ${{ steps.latest-tag.outputs.tag }}
-  #         body_path: ${{ matrix.release-setup-folder }}/PublicReleaseNotes.md
-  #         repository: WilliamSchack/Repetitionless-Issues
-  #         token: ${{ secrets.ACTIONS_PAT_TOKEN }}
+  create_public_release:
+    name: Creating Release In Issues Repo
+    runs-on: ubuntu-latest
+    needs: validation
+    strategy:
+      matrix:
+        release-setup-folder: [ "ReleaseSetup" ]
+    steps:
+      - name: Get Release Notes
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: ${{ matrix.release-setup-folder }}
+          fetch-depth: 0
+      - name: Get Latest Release
+        id: latest-tag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+      - name: Add Public Suffix
+        run: |
+          cat ${{ matrix.release-setup-folder }}/PublicReleaseNotesPrefix.md ${{ matrix.release-setup-folder }}/ReleaseNotes.md \
+          > ${{ matrix.release-setup-folder }}/PublicReleaseNotes.md
+      - name: Create Release
+        uses: softprops/action-gh-release@v2.5.0
+        with:
+          tag_name: ${{ steps.latest-tag.outputs.tag }}
+          body_path: ${{ matrix.release-setup-folder }}/PublicReleaseNotes.md
+          repository: WilliamSchack/Repetitionless-Issues
+          token: ${{ secrets.ACTIONS_PAT_TOKEN }}
 
-  # update_docs:
-  #   name: Updating Docs
-  #   runs-on: ubuntu-latest
-  #   needs: validation
-  #   strategy:
-  #     matrix:
-  #       website-docs-folder: [ "docs/repetitionless" ]
-  #       local-docs-folder: [ "Documentation/site" ]
-  #   steps:
-  #     - name: Checkout Website
-  #       uses: actions/checkout@v4
-  #       with:
-  #         repository: WilliamSchack/Website
-  #         token: ${{ secrets.ACTIONS_PAT_TOKEN }}
-  #         path: Website
-  #     - name: Get Built Docs
-  #       uses: actions/checkout@v4
-  #       with:
-  #         sparse-checkout: ${{ matrix.release-setup-folder }}
-  #         fetch-depth: 0
-  #         path: Docs
-  #     - name: Overwrite Docs
-  #       run: |
-  #         rm -r Website/${{ matrix.website-docs-folder }}
-  #         cp -R Docs/${{ matrix.local-docs-folder }} Website/${{ matrix.website-docs-folder }}
-  #     - name: Get Latest Release
-  #       id: latest-tag
-  #       uses: WyriHaximus/github-action-get-previous-tag@v1
-  #       with:
-  #         workingDirectory: Docs
-  #     - name: Push Docs
-  #       run: |
-  #         cd Website
-  #         git config --global user.name '${{ secrets.GIT_ACTIONS_NAME }}'
-  #         git config --global user.email '${{ secrets.GIT_ACTIONS_EMAIL }}'
-  #         git add -A
-  #         git commit -m '[automated commit] Updated Repetitionless docs to ${{ steps.latest-tag.outputs.tag }}'
-  #         git push
+  update_docs:
+    name: Updating Docs
+    runs-on: ubuntu-latest
+    needs: validation
+    strategy:
+      matrix:
+        website-docs-folder: [ "docs/repetitionless" ]
+        local-docs-folder: [ "Documentation/site" ]
+    steps:
+      - name: Checkout Website
+        uses: actions/checkout@v4
+        with:
+          repository: WilliamSchack/Website
+          token: ${{ secrets.ACTIONS_PAT_TOKEN }}
+          path: Website
+      - name: Get Built Docs
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: ${{ matrix.release-setup-folder }}
+          fetch-depth: 0
+          path: Docs
+      - name: Overwrite Docs
+        run: |
+          rm -r Website/${{ matrix.website-docs-folder }}
+          cp -R Docs/${{ matrix.local-docs-folder }} Website/${{ matrix.website-docs-folder }}
+      - name: Get Latest Release
+        id: latest-tag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+        with:
+          workingDirectory: Docs
+      - name: Push Docs
+        run: |
+          cd Website
+          git config --global user.name '${{ secrets.GIT_ACTIONS_NAME }}'
+          git config --global user.email '${{ secrets.GIT_ACTIONS_EMAIL }}'
+          git add -A
+          git commit -m '[automated commit] Updated Repetitionless docs to ${{ steps.latest-tag.outputs.tag }}'
+          git push
 
-  # publish_itch:
-  #   name: Publishing Package To Itch
-  #   runs-on: ubuntu-latest
-  #   needs: validation
-  #   strategy:
-  #     matrix:
-  #       package-download-dir: [ "package" ]
-  #   steps:
-  #     - name: Get Repo Details
-  #       uses: actions/checkout@v4
-  #       with:
-  #         sparse-checkout: sparse-checkout-cone-mode: false # Dont checkout anything
-  #         fetch-depth: 0
-  #     - name: Setup butler
-  #       uses: remarkablegames/setup-butler@v2
-  #     - name: Download Latest Package
-  #       uses: robinraju/release-downloader@v1
-  #       with:
-  #         latest: true
-  #         fileName: '*.unitypackage'
-  #         tarBall: false
-  #         zipBall: false
-  #         out-file-path: ${{ matrix.package-download-dir }}
-  #     - name: Get Latest Release
-  #       id: latest-tag
-  #       uses: WyriHaximus/github-action-get-previous-tag@v1
-  #     - name: Find And Rename Package
-  #       run: |
-  #         DOWNLOADED_PATH="$(find ${{ matrix.package-download-dir }} -type f -name "*.unitypackage" | head -n 1)"
-  #         MOVED_PATH="$(dirname "$FILE")/Repetitionless-${{ steps.latest-tag.outputs.tag }}.unitypackage"
-  #         mv "$DOWNLOADED_PATH" "$MOVED_PATH"
-  #         echo "PACKAGE_PATH=$MOVED_PATH" >> $GITHUB_ENV
-  #     - name: Upload Package To Itch
-  #       env:
-  #         BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-  #       run: |         # Remove leading "v" from tag
-  #         RAW_VERSION="$(echo ${{ steps.latest-tag.outputs.tag }} | cut -c 2-)"
-  #         butler push ${{ env.PACKAGE_PATH }} wilschack/repetitionless:win-linux-mac --userversion $RAW_VERSION
-  #     - name: Wait For Package Upload
-  #       env:
-  #         BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-  #       run: |
-  #         butler status wilschack/repetitionless:win-linux-mac
+  publish_itch:
+    name: Publishing Package To Itch
+    runs-on: ubuntu-latest
+    needs: validation
+    strategy:
+      matrix:
+        package-download-dir: [ "package" ]
+    steps:
+      - name: Get Repo Details
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: sparse-checkout-cone-mode: false # Dont checkout anything
+          fetch-depth: 0
+      - name: Setup butler
+        uses: remarkablegames/setup-butler@v2
+      - name: Download Latest Package
+        uses: robinraju/release-downloader@v1
+        with:
+          latest: true
+          fileName: '*.unitypackage'
+          tarBall: false
+          zipBall: false
+          out-file-path: ${{ matrix.package-download-dir }}
+      - name: Get Latest Release
+        id: latest-tag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+      - name: Find And Rename Package
+        run: |
+          DOWNLOADED_PATH="$(find ${{ matrix.package-download-dir }} -type f -name "*.unitypackage" | head -n 1)"
+          MOVED_PATH="$(dirname "$FILE")/Repetitionless-${{ steps.latest-tag.outputs.tag }}.unitypackage"
+          mv "$DOWNLOADED_PATH" "$MOVED_PATH"
+          echo "PACKAGE_PATH=$MOVED_PATH" >> $GITHUB_ENV
+      - name: Upload Package To Itch
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |         # Remove leading "v" from tag
+          RAW_VERSION="$(echo ${{ steps.latest-tag.outputs.tag }} | cut -c 2-)"
+          butler push ${{ env.PACKAGE_PATH }} wilschack/repetitionless:win-linux-mac --userversion $RAW_VERSION
+      - name: Wait For Package Upload
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          butler status wilschack/repetitionless:win-linux-mac
 
   publish_itch_devlog:
     name: Publishing Release Notes To Itch
@@ -187,7 +187,8 @@ jobs:
       - name: Publish Devlog
         working-directory: ${{ matrix.release-setup-folder }}
         run: |
-          xvfb-run -a -s "-screen 0 640x480x8" python CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ steps.interactive-auth.outputs.two-factor-code }} ${{ steps.latest-tag.outputs.tag }} ReleaseNotes.html ${{ steps.setup-chrome.outputs.chrome-path }}
+          xvfb-run -a -s "-screen 0 640x480x8" \
+          python CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ steps.interactive-auth.outputs.two-factor-code }} ${{ steps.latest-tag.outputs.tag }} ReleaseNotes.html ${{ steps.setup-chrome.outputs.chrome-path }}
         
 
     # Upload Package
