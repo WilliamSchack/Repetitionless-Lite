@@ -177,13 +177,13 @@ jobs:
           timeout: 300
           interactive: |
             fields:
-            - label: two-factor-code
+              - label: two-factor-code
                 properties:
-                display: Two Factor Authentication
-                type: text
-                description: Enter the code as it refreshes for the longest window
-                required: true
-                placeholder: 000000
+                  display: Two Factor Authentication
+                  type: text
+                  description: Enter the code as it refreshes for the longest window
+                  required: true
+                  placeholder: 000000
       - name: Publish Devlog
         working-directory: ${{ matrix.release-setup-folder }}
         run: |
