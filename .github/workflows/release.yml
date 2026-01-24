@@ -159,9 +159,7 @@ jobs:
       - name: Setup Display
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb
-          Xvfb :99 -screen 0 1920x1080x24 &
-          echo "DISPLAY=:99" >> $GITHUB_ENV
+          sudo apt-get install xvfb python3-tk python3-dev
       - name: Install md2html
         run: |
           npm install -g markdown
@@ -189,7 +187,7 @@ jobs:
       - name: Publish Devlog
         working-directory: ${{ matrix.release-setup-folder }}
         run: |
-          python CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} 0 ${{ steps.latest-tag.outputs.tag }} ReleaseNotes.html ${{ steps.setup-chrome.outputs.chrome-path }}
+          xvfb-run -a -s "-screen 0 640x480x8" python CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} 0 ${{ steps.latest-tag.outputs.tag }} ReleaseNotes.html ${{ steps.setup-chrome.outputs.chrome-path }}
         
 
     # Upload Package
