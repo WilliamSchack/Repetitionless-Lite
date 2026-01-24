@@ -169,25 +169,25 @@ jobs:
       - name: Get Latest Release
         id: latest-tag
         uses: WyriHaximus/github-action-get-previous-tag@v1
-      # - name: Get Itch Two Factor Code
-      #   id: interactive-auth
-      #   uses: boasihq/interactive-inputs@v2
-      #   with:
-      #     ngrok-authtoken: ${{ secrets.NGROK_AUTH_TOKEN }}
-      #     timeout: 300
-      #     interactive: |
-      #       fields:
-      #         - label: two-factor-code
-      #           properties:
-      #             display: Two Factor Authentication
-      #             type: text
-      #             description: Enter the code as it refreshes for the longest window
-      #             required: true
-      #             placeholder: 000000
+      - name: Get Itch Two Factor Code
+        id: interactive-auth
+        uses: boasihq/interactive-inputs@v2
+        with:
+          ngrok-authtoken: ${{ secrets.NGROK_AUTH_TOKEN }}
+          timeout: 300
+          interactive: |
+            fields:
+            - label: two-factor-code
+                properties:
+                display: Two Factor Authentication
+                type: text
+                description: Enter the code as it refreshes for the longest window
+                required: true
+                placeholder: 000000
       - name: Publish Devlog
         working-directory: ${{ matrix.release-setup-folder }}
         run: |
-          xvfb-run -a -s "-screen 0 640x480x8" python CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} 0 ${{ steps.latest-tag.outputs.tag }} ReleaseNotes.html ${{ steps.setup-chrome.outputs.chrome-path }}
+          xvfb-run -a -s "-screen 0 640x480x8" python CreateItchDevlog.py ${{ secrets.ITCH_EMAIL }} ${{ secrets.ITCH_PASSWORD }} ${{ steps.interactive-auth.outputs.two-factor-code }} ${{ steps.latest-tag.outputs.tag }} ReleaseNotes.html ${{ steps.setup-chrome.outputs.chrome-path }}
         
 
     # Upload Package
