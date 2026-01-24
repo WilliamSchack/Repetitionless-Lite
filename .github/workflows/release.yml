@@ -96,7 +96,8 @@ jobs:
       - name: Get Repo Details
         uses: actions/checkout@v4
         with:
-          sparse-checkout: sparse-checkout-cone-mode: false # Dont checkout anything
+          sparse-checkout: ''
+          sparse-checkout-cone-mode: false # Dont checkout anything
           fetch-depth: 0
       - name: Setup butler
         uses: remarkablegames/setup-butler@v2
