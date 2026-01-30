@@ -9,6 +9,19 @@ namespace Repetitionless.Editor.Updating
 {
     internal static class UpdateChecker
     {
+        [Serializable]
+        private struct GithubTagResponse
+        {
+            // Only name is needed
+            public string name;
+        }
+
+        [Serializable]
+        private struct GithubTagResponseArray
+        {
+            public GithubTagResponse[] items;
+        }
+
         private static HttpClient _client = new HttpClient();
         private static string _versionCache = "";
 
@@ -38,11 +51,11 @@ namespace Repetitionless.Editor.Updating
             Task<string> getContentTask = response.Content.ReadAsStringAsync();
             getContentTask.Wait();
 
-            // Use dynamic json
-            dynamic responseData = JArray.Parse(getContentTask.Result);
-            
-            // Latest tag will always be first in the array
-            _versionCache = responseData[0]["name"];
+            // JSONUtility cannot read json arrays, put the array in an object
+            string wrappedJson = $"{{\"items\":{getContentTask.Result}}}";
+            GithubTagResponseArray responseJson = JsonUtility.FromJson<GithubTagResponseArray>(wrappedJson);
+
+            _versionCache = responseJson.items[0].name;
             return _versionCache;
         }
 
