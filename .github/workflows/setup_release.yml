@@ -142,7 +142,7 @@ jobs:
         uses: WyriHaximus/github-action-get-previous-tag@v1
       - name: Adding Changelog To Release Notes
         run: |
-          sed -i '1s|^|**Full Changelog**: https://github.com/WilliamSchack/True-Seamless-Texturing/compare/${{ steps.latest-tag.outputs.tag }}...${{ github.event.inputs.version }}\n\n|' ${{ matrix.release-notes-filename }}
+          sed -i '1s|^|**Full Changelog**: https://github.com/WilliamSchack/True-Seamless-Texturing/compare/${{ steps.latest-tag.outputs.tag }}...v${{ github.event.inputs.version }}\n\n|' ${{ matrix.release-notes-filename }}
       - name: Create Github Release
         uses: softprops/action-gh-release@v2.5.0
         with:
