@@ -136,11 +136,22 @@ namespace Repetitionless.Editor.CustomWindows
             }
 
             EditorGUILayout.HelpBox("Thank for using Repetitionless! Pease consider leaving a review to support the asset and its development. Any feedback is appreciated!", MessageType.Info);
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Asset Store", GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.ASSET_STORE_REVIEW_URL);
-            if (GUILayout.Button("Itch.io",     GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.ASSET_ITCH_URL);
-            EditorGUILayout.EndHorizontal();
 
+            switch (RepetitionlessPackageInfo.PackageSource) {
+                case RepetitionlessPackageInfo.EPackageSource.Unknown:
+                    EditorGUILayout.BeginHorizontal();
+                    if (GUILayout.Button("Asset Store", GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.ASSET_STORE_REVIEW_URL);
+                    if (GUILayout.Button("Itch.io",     GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.ASSET_ITCH_URL);
+                    EditorGUILayout.EndHorizontal();
+                    break;
+                case RepetitionlessPackageInfo.EPackageSource.AssetStore:
+                    if (GUILayout.Button("Leave A Review")) Application.OpenURL(Constants.ASSET_STORE_REVIEW_URL);
+                    break;
+                case RepetitionlessPackageInfo.EPackageSource.Itch:
+                    if (GUILayout.Button("Leave A Review")) Application.OpenURL(Constants.ASSET_ITCH_URL);
+                    break;
+            }
+            
             GUIUtilities.BeginBackgroundHorizontal();
     
             GUILayout.Label($"v{RepetitionlessPackageInfo.Info.version}", _boldLabelStyle);

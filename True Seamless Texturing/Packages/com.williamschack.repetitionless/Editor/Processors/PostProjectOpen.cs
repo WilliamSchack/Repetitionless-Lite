@@ -49,24 +49,44 @@ namespace Repetitionless.Editor.Processors
 
         private static void ShowReviewPopup()
         {
-            int selected = EditorUtility.DisplayDialogComplex(
-                "Review Repetitionless",
-                "Thank for using Repetitionless! Pease consider leaving a review to support the asset and its development. Any feedback is appreciated!",
-                "Itch.io",
-                "Asset Store",
-                "Cancel"
-            );
+            string title = "Review Repetitionless";
+            string message = "Thank for using Repetitionless! Pease consider leaving a review to support the asset and its development. Any feedback is appreciated!";
+
+            RepetitionlessPackageInfo.EPackageSource packageSource = RepetitionlessPackageInfo.PackageSource;
 
             string url = "";
-            switch (selected) {
-                case 0: // Itch.io
-                    url = Constants.ASSET_ITCH_URL;
-                    break;
-                case 1: // Asset Store
-                    url = Constants.ASSET_STORE_REVIEW_URL;
-                    break;
-                case 2: // Cancel
+            if (packageSource == RepetitionlessPackageInfo.EPackageSource.Unknown) {
+                int selected = EditorUtility.DisplayDialogComplex(
+                    title,
+                    message,
+                    "Itch.io",
+                    "Asset Store",
+                    "Cancel"
+                );
+
+                url = "";
+                switch (selected) {
+                    case 0: // Itch.io
+                        url = Constants.ASSET_ITCH_URL;
+                        break;
+                    case 1: // Asset Store
+                        url = Constants.ASSET_STORE_REVIEW_URL;
+                        break;
+                    case 2: // Cancel
+                        return;
+                }
+            } else {
+                bool openReviewPage = EditorUtility.DisplayDialog(
+                    title,
+                    message,
+                    "Ok",
+                    "Cancel"
+                );
+
+                if (!openReviewPage)
                     return;
+
+                url = packageSource == RepetitionlessPackageInfo.EPackageSource.AssetStore ? Constants.ASSET_STORE_REVIEW_URL : Constants.ASSET_ITCH_URL;
             }
 
             Application.OpenURL(url);
