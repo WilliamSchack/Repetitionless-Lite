@@ -476,13 +476,20 @@ namespace Repetitionless.Editor.Inspectors
 
         private void DrawTextureChannelPicker(Rect lineRect, int layerIndex, int sectionIndex, int texturesIndex, int elementIndex, int channelIndex)
         {
+            ref TexturePacker.TextureData textureData = ref _textureData.GetTextureData(layerIndex, sectionIndex, texturesIndex)[elementIndex];
+
             Rect rect = lineRect;
             rect.x += lineRect.width - CHANNEL_PICKER_WIDTH;
             rect.width = CHANNEL_PICKER_WIDTH;
 
-            ref TexturePacker.TextureData textureData = ref _textureData.GetTextureData(layerIndex, sectionIndex, texturesIndex)[elementIndex];
+            EditorGUI.BeginChangeCheck();
             TexturePacker.TextureChannel textureChannel = (TexturePacker.TextureChannel)EditorGUI.EnumPopup(rect, new GUIContent("", "The texture channel to read from"), textureData.FromToChannels[channelIndex].From);
             textureData.FromToChannels[channelIndex] = new TexturePacker.FromToChannel(textureChannel, textureData.FromToChannels[channelIndex].To);
+
+            if (EditorGUI.EndChangeCheck()) {
+                _textureData.Save();
+                AssetDatabase.SaveAssetIfDirty(_textureData);
+            }
         }
 
         #endregion
