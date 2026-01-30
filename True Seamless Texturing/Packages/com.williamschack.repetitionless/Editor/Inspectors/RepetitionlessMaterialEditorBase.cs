@@ -91,6 +91,8 @@ namespace Repetitionless.Editor.Inspectors
         /// </summary>
         protected const int SCALED_TEXT_PADDING = 10;
 
+        private const int CHANNEL_PICKER_WIDTH = 50;
+
         private const string PROGRESS_BAR_TITLE = "Updating Material";
 
         // Overridable
@@ -470,6 +472,17 @@ namespace Repetitionless.Editor.Inspectors
                 _material.SetInt(Constants.TRIPLANAR_KEYWORD, enabled ? 1 : 0); // Required to save for some reason
                 EditorUtility.SetDirty(_material);
             };
+        }
+
+        private void DrawTextureChannelPicker(Rect lineRect, int layerIndex, int sectionIndex, int texturesIndex, int elementIndex, int channelIndex)
+        {
+            Rect rect = lineRect;
+            rect.x += lineRect.width - CHANNEL_PICKER_WIDTH;
+            rect.width = CHANNEL_PICKER_WIDTH;
+
+            ref TexturePacker.TextureData textureData = ref _textureData.GetTextureData(layerIndex, sectionIndex, texturesIndex)[elementIndex];
+            TexturePacker.TextureChannel textureChannel = (TexturePacker.TextureChannel)EditorGUI.EnumPopup(rect, new GUIContent("", "The texture channel to read from"), textureData.FromToChannels[channelIndex].From);
+            textureData.FromToChannels[channelIndex] = new TexturePacker.FromToChannel(textureChannel, textureData.FromToChannels[channelIndex].To);
         }
 
         #endregion
@@ -1031,17 +1044,26 @@ namespace Repetitionless.Editor.Inspectors
                 Rect metallicSliderRect = DrawTexture(layerIndex, sectionIndex, 1, new GUIContent("Metallic", "Metallic (R)"));
                 if (!currentData.MetallicAssigned)
                     DrawProperty(layerIndex, () => currentData.Metallic = EditorGUI.Slider(metallicSliderRect, currentData.Metallic, 0, 1));
+                else
+                    DrawTextureChannelPicker(metallicSliderRect, layerIndex, sectionIndex, 2, 1, 0);
 
                 // Smoothness/Roughness
                 string smoothnessText = currentData.SmoothnessEnabled ? "Smoothness" : "Roughness";
                 Rect smoothnessSliderRect = DrawTexture(layerIndex, sectionIndex, 2, new GUIContent(smoothnessText, $"{smoothnessText} (R)"));
                 if (!currentData.SmoothnessAssigned)
                     DrawProperty(layerIndex, () => currentData.SmoothnessRoughness = EditorGUI.Slider(smoothnessSliderRect, currentData.SmoothnessRoughness, 0, 1));
+                else
+                    DrawTextureChannelPicker(smoothnessSliderRect, layerIndex, sectionIndex, 1, 1, 0);
 
                 // Occlussion Map
-                Rect occlussionStrengthSliderRect = DrawTexture(layerIndex, sectionIndex, 4, new GUIContent("Occlussion", "Occlussion (R)"));
-                if (currentData.OcclussionAssigned)
-                    DrawProperty(layerIndex, () => currentData.OcclussionStrength = EditorGUI.Slider(occlussionStrengthSliderRect, currentData.OcclussionStrength, 0, 1));
+                Rect occlussionLabelRect = DrawTexture(layerIndex, sectionIndex, 4, new GUIContent("Occlussion", "Occlussion (R)"));
+                if (currentData.OcclussionAssigned) {
+                    Rect sliderRect = occlussionLabelRect;
+                    sliderRect.width -= CHANNEL_PICKER_WIDTH + 5;
+
+                    DrawProperty(layerIndex, () => currentData.OcclussionStrength = EditorGUI.Slider(sliderRect, currentData.OcclussionStrength, 0, 1));
+                    DrawTextureChannelPicker(occlussionLabelRect, layerIndex, sectionIndex, 1, 2, 0);
+                }
             }
 
             // Emission
@@ -1153,8 +1175,10 @@ namespace Repetitionless.Editor.Inspectors
                 DrawProperty(layerIndex, () => currentData.VariationNoiseOffset = GUIUtilities.DrawVector2Field(currentData.VariationNoiseOffset, new GUIContent("Noise Offset")));
             } else {
                 // Texture
-                DrawTexture(layerIndex, sectionIndex, 6, new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"));
-                
+                Rect channelPickerRect = DrawTexture(layerIndex, sectionIndex, 6, new GUIContent("Variation Texture", "Variation (R), other channels are ignored\n\nTexture that is drawn onto other materials, can cause visible tiling"));
+                if (currentData.VariationAssigned)
+                    DrawTextureChannelPicker(channelPickerRect, layerIndex, sectionIndex, 0, 1, 0);
+
                 // Tiling & Offset
                 DrawProperty(layerIndex, () => currentData.VariationTextureTO = GUIUtilities.DrawTilingOffset(currentData.VariationTextureTO, "Variation Tiling", "Variation Offset"));
             }
