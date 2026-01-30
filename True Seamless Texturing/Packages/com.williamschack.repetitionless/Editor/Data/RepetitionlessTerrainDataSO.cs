@@ -36,6 +36,11 @@ namespace Repetitionless.Editor.Data
         }
 
         /// <summary>
+        /// Toggles if textures and settings are automatically saved and loaded to and from the terrain layers
+        /// </summary>
+        public bool AutoSyncLayers = true;
+
+        /// <summary>
         /// Saves this object
         /// </summary>
         public void Save()
@@ -72,8 +77,11 @@ namespace Repetitionless.Editor.Data
         /// <param name="terrainLayer">
         /// The terrain layer to update
         /// </param>
-        public void UpdateLayerMaterialData(TerrainLayer terrainLayer)
+        public void UpdateLayerMaterialData(TerrainLayer terrainLayer, bool forceUpdate = false)
         {
+            if (!AutoSyncLayers && !forceUpdate)
+                return;
+
             Material mat = _dataManager.Material;
             if (mat == null) return;
 

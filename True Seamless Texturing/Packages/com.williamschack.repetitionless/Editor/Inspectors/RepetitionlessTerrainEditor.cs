@@ -88,7 +88,7 @@ namespace Repetitionless.Editor.Inspectors
         }
 
         // Save textures to the material
-        private void UpdateMaterialTerrainLayerTextures()
+        private void UpdateMaterialTerrainLayerTextures(bool forceUpdate = false)
         {
             EditorApplication.delayCall += () => {
                 if (_main.MainMaterial == null || _terrainData == null)
@@ -96,7 +96,7 @@ namespace Repetitionless.Editor.Inspectors
 
                 // Will only update changed layers
                 for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
-                    _materialTerrainData.UpdateLayerMaterialData(_terrainData.terrainLayers[i]);
+                    _materialTerrainData.UpdateLayerMaterialData(_terrainData.terrainLayers[i], forceUpdate);
 
                 _main.UpdateMaterialTerrainTextures();
             };
@@ -191,7 +191,7 @@ namespace Repetitionless.Editor.Inspectors
                     _parentTerrainProp.objectReferenceValue = null;
 
                     SyncLayersToMaterial();
-                    if (_autoSaveProp.boolValue)
+                    if (_autoSaveProp.boolValue && _materialTerrainData.AutoSyncLayers)
                         UpdateMaterialTerrainLayerTextures();
 
                     _main.OnTerrainLayersChanged?.Invoke(_terrainData.terrainLayers);
@@ -232,7 +232,7 @@ namespace Repetitionless.Editor.Inspectors
 
                         // Assign textures after a frame so the material is properly assigned
                         EditorApplication.delayCall += () => {
-                            UpdateMaterialTerrainLayerTextures();
+                            UpdateMaterialTerrainLayerTextures(true);
                             SyncLayersToMaterial();
 
                             // Assign after material has been initialized, will cause white light otherwise
@@ -345,13 +345,19 @@ namespace Repetitionless.Editor.Inspectors
                 EditorGUILayout.HelpBox("This terrain is taking the material and terrain layers from the parent terrain assigned above. Change the terrain layers, material, or remove the parent to use this terrains textures", MessageType.Info);
             } else {
                 GUILayout.Space(10);
-                
+
+                if (!_materialTerrainData.AutoSyncLayers) {
+                    EditorGUILayout.HelpBox("Auto sync is disabled in the material, layers will not be auto saved", MessageType.Info);
+                    GUI.enabled = false;
+                }
+
                 Color prevBackgroundColor = GUI.backgroundColor;
-                GUI.backgroundColor = _autoSaveProp.boolValue ? Color.green : Color.red;
-
+                GUI.backgroundColor = _materialTerrainData.AutoSyncLayers && _autoSaveProp.boolValue ? Color.green : Color.red;
                 _autoSaveProp.boolValue = GUILayout.Toggle(_autoSaveProp.boolValue, "Auto Save Textures", _toggleStyle, GUILayout.Height(30));
-
                 GUI.backgroundColor = prevBackgroundColor;
+
+                if (!_materialTerrainData.AutoSyncLayers)
+                    GUI.enabled = true;
 
                 if (GUILayout.Button(new GUIContent("Save Textures", "Manually save the data from the terrain layers to the material"), GUILayout.Height(30))) {
                     // Incase the material was changed to something different
@@ -359,7 +365,7 @@ namespace Repetitionless.Editor.Inspectors
                         _main.UpdateTerrainMaterial(_main.MainMaterial);
 
                     SyncLayersToMaterial();
-                    UpdateMaterialTerrainLayerTextures();
+                    UpdateMaterialTerrainLayerTextures(true);
                 }
             }
         }
