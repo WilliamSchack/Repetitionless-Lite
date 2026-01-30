@@ -21,6 +21,7 @@ namespace Repetitionless.Editor
 
         public const string GITHUB_URL = "https://github.com/WilliamSchack/Repetitionless-Issues";
         public const string GITHUB_NEW_ISSUE_URL = GITHUB_URL + "/issues/new/choose";
+        public const string GITHUB_TAGS_URL = "https://api.github.com/repos/WilliamSchack/Repetitionless-Issues/tags";
 
         public const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
         public const string PROPERTIES_FILE_NAME = "Properties.asset";

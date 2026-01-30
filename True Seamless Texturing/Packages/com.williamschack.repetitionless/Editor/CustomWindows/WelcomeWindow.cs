@@ -8,6 +8,7 @@ namespace Repetitionless.Editor.CustomWindows
 {
     using GUIUtilities;
     using Config;
+    using Updating;
 
     /// <summary>
     /// The welcome window that is shown when first installing the package
@@ -26,8 +27,12 @@ namespace Repetitionless.Editor.CustomWindows
         private GUIStyle _headerStyle;
         private GUIStyle _boldLabelStyle;
         private GUIStyle _buttonStyle;
+        private GUIStyle _largeButtonStyle;
 
         private bool _stylesSetup = false;
+
+        private bool _updateAvailable = false;
+        private string _remoteVersion = "";
 
         private bool _showWelcomeMessage = false;
 
@@ -60,6 +65,11 @@ namespace Repetitionless.Editor.CustomWindows
             _logoTextureLight = Resources.Load<Texture>($"{LOGO_FILE_NAME}_Light");
             _logoBackgroundDarkColour = new Color(20 / 256f, 20 / 256f, 20 / 256f);
             _logoBackgroundLightColour = new Color(240 / 256f, 240 / 256f, 240 / 256f);
+
+            _updateAvailable = UpdateChecker.UpdateAvailable("test");
+            //_updateAvailable = UpdateChecker.UpdateAvailable($"v{RepetitionlessPackageInfo.Info.version}");
+            if (_updateAvailable)
+                _remoteVersion = UpdateChecker.GetLatestVersion();
         }
 
         private void SetupStyles()
@@ -77,6 +87,9 @@ namespace Repetitionless.Editor.CustomWindows
             _buttonStyle = new GUIStyle("button");
             _buttonStyle.fontStyle = FontStyle.Bold;
             _buttonStyle.fontSize = 14;
+
+            _largeButtonStyle = new GUIStyle(_buttonStyle);
+            _largeButtonStyle.fontSize = 18;
         }
 
         private void OnGUI()
@@ -90,6 +103,7 @@ namespace Repetitionless.Editor.CustomWindows
             GUIUtilities.BeginBackgroundVertical();
 
             DrawLogo();
+
             GUILayout.Space(10);
 
             float buttonMinWidth = position.width / 2 - 15;
@@ -114,6 +128,12 @@ namespace Repetitionless.Editor.CustomWindows
             GUILayout.FlexibleSpace();
 
             GUIUtilities.EndBackgroundVertical();
+
+            if (_updateAvailable) {
+                if (GUILayout.Button($"Update to {_remoteVersion}", _largeButtonStyle)) {
+                    
+                }
+            }
 
             EditorGUILayout.HelpBox("Thank for using Repetitionless! Pease consider leaving a review to support the asset and its development. Any feedback is appreciated!", MessageType.Info);
             EditorGUILayout.BeginHorizontal();
