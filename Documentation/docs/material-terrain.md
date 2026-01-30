@@ -17,7 +17,7 @@ Repetitionless includes a custom script to handle and sync materials unity terra
 
 ## Setting Up A Terrain
 
-To use a terrain with the repetitionless material you have to add a [`RepetitionlessTerrain`](Scripting/Repetitionless.RepetitionlessTerrain.md) component to the terrain which can be done as follows:
+To use a terrain with the repetitionless material you have to add a [`RepetitionlessTerrain`](Scripting/Repetitionless.Runtime.RepetitionlessTerrain.md) component to the terrain which can be done as follows:
 
 1. Select the terrain you want to use
 2. Select `Add Component`
@@ -58,7 +58,9 @@ On terrains with the RepetitionlessTerrain, when using the Create Neighbour Terr
 
 ## Editing The Terrain Layers
 
-After modifying any field in the terrain layer and saving, it will automatically update those properties in any material that is linked to that layer
+![image](Images/TerrainMaterial/LayersAutoSync.png)
+
+After modifying any field in the terrain layer and saving, it will automatically update those properties in any material that is linked to that layer if the auto sync is enabled. You can manually load or save to and from the layer with the buttons
 
 The properties effected and what they link to include:
 

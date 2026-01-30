@@ -43,6 +43,10 @@ Contains all the settings for a material. Settings can be enabled and disabled t
 
 This is shown for each enabled material (Base material, distance blend material, blend material)
 
+***When a texture is assigned for fields that only use one texture channel, it will have a dropdown where you can choose which channel to use***
+
+![image](Images/MaterialProperties/TextureChannelSelection.png)
+
 ### MainProperties
 
 | Property             | Description                                                                                                                                                                                                                    |
