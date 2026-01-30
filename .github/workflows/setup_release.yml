@@ -183,6 +183,7 @@ jobs:
     name: Cleanup
     runs-on: ubuntu-latest
     needs: [ create_release, unity_publish]
+    if: always()
     steps:
     - name: Remove Artifacts
       uses: geekyeggo/delete-artifact@v5
