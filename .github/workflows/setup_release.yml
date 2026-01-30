@@ -32,7 +32,8 @@ jobs:
     needs: validation
     strategy:
       matrix:
-        project-path: [ ReleaseNotes.md ]
+        project-path: [ "True Seamless Texturing" ]
+        documentation-path: [ "Documentation" ]
     steps:
       - name: Free Up Storage
         uses: jlumbroso/free-disk-space@main
@@ -45,20 +46,22 @@ jobs:
           swap-storage: false
       - uses: actions/checkout@v4
         with:
-          sparse-checkout:  ${{ matrix.project-path }}
+          sparse-checkout:  |
+            ${{ matrix.project-path }}
+            ${{ matrix.documentation-path }}
       - name: Install mkdocs
-        working-directory: "Documentation"
+        working-directory: ${{ matrix.documentation-path }}
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
       - name: Build Docs
-        working-directory: "Documentation"
+        working-directory: ${{ matrix.documentation-path }}
         run: |
           mkdocs build
       - name: Move offline docs
         run: |
-          mv "Documentation/site/pdf/document.pdf" "${{ matrix.project-path }}/Packages/com.williamschack.repetitionless/OfflineDocumentation.pdf"
-          rmdir "Documentation/site/pdf"
+          mv "${{ matrix.documentation-path }}/site/pdf/document.pdf" "${{ matrix.project-path }}/Packages/com.williamschack.repetitionless/OfflineDocumentation.pdf"
+          rmdir "${{ matrix.documentation-path }}/site/pdf"
       - name: Write new version to package.json
         working-directory: "${{ matrix.project-path }}/Packages/com.williamschack.repetitionless"
         run: |
