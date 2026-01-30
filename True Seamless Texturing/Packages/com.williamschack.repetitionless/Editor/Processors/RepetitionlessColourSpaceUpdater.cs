@@ -10,12 +10,14 @@ namespace Repetitionless.Editor.Processors
     /// <summary>
     /// Checks for when the colour space is changed then handles update any repetitionless materials that require repacking
     /// </summary>
-    [InitializeOnLoad]
     public static class RepetitionlessColourSpaceUpdater
     {
         private static ColorSpace _colourSpace = ColorSpace.Uninitialized;
 
-        static RepetitionlessColourSpaceUpdater()
+        /// <summary>
+        /// Called on project open in PostProjectOpen
+        /// </summary>
+        public static void Initialize()
         {
             _colourSpace = PlayerSettings.colorSpace;
             EditorApplication.projectChanged += ProjectChanged;

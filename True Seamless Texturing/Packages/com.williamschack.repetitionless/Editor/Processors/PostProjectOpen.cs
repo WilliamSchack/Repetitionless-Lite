@@ -5,17 +5,31 @@ using UnityEditor;
 
 namespace Repetitionless.Editor.Processors
 {
+    using CustomWindows;
     using Config;
+    using Updating;
 
     [InitializeOnLoad]
     public static class PostProjectOpen
     {
         static PostProjectOpen()
         {
+            if (!IsEditorStartup())
+                return;
+
+            // Setup colour space checker
+            RepetitionlessColourSpaceUpdater.Initialize();
+
+            // Open window if update available
+            if (UpdateChecker.UpdateAvailable($"v{RepetitionlessPackageInfo.Info.version}"))
+                WelcomeWindow.Open(showUpdateMessage: true);
+
+            // Update prefs days used
             RepetitionlessPrefs.UpdatePrefs((p) => {
                 UpdateDaysUsed(p);
             });
 
+            // Check for review popup
             if (RepetitionlessPrefs.Data.NumDaysActive >= Constants.DAYS_UNTIL_REVIEW_POPUP && !RepetitionlessPrefs.Data.ReviewPopupShown) {
                 RepetitionlessPrefs.UpdatePrefs((p) => {
                     p.ReviewPopupShown = true;
@@ -26,6 +40,22 @@ namespace Repetitionless.Editor.Processors
                     EditorApplication.delayCall += ShowReviewPopup;
                 };
             }
+        }
+
+        // InitializeOnLoad is called every domain reload, this makes sure its only on startup
+        private static bool IsEditorStartup()
+        {
+            long sessionId = EditorAnalyticsSessionInfo.id;
+            long lastSessionId = RepetitionlessPrefs.Data.LastSessionId;
+
+            if (sessionId == lastSessionId)
+                return false;
+
+            RepetitionlessPrefs.UpdatePrefs((p) => {
+                p.LastSessionId = sessionId;
+            });
+
+            return true;
         }
 
         private static void UpdateDaysUsed(RepetitionlessPrefs.Prefs prefs)

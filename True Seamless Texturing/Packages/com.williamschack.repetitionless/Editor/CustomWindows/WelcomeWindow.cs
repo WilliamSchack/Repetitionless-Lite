@@ -35,6 +35,7 @@ namespace Repetitionless.Editor.CustomWindows
         private string _remoteVersion = "";
 
         private bool _showWelcomeMessage = false;
+        private bool _showUpdateMessage = false;
 
         /// <summary>
         /// Opens the window
@@ -51,10 +52,11 @@ namespace Repetitionless.Editor.CustomWindows
         /// <param name="showWelcomeMessage">
         /// If the welcome message is shown
         /// </param>
-        public static void Open(bool showWelcomeMessage = false)
+        public static void Open(bool showWelcomeMessage = false, bool showUpdateMessage = false)
         {
             WelcomeWindow window = GetWindow<WelcomeWindow>(false, "Repetitionless");
             window._showWelcomeMessage = showWelcomeMessage;
+            window._showUpdateMessage = showUpdateMessage;
 
             window.Show();
         }
@@ -122,6 +124,19 @@ namespace Repetitionless.Editor.CustomWindows
             if (_showWelcomeMessage) {
                 GUILayout.Space(20);
                 GUILayout.Label("Welcome to repetitionless! To get started view the getting started page in the documentation for instructions on how to use the asset, or import the samples for examples.", _boldLabelStyle);
+            }
+
+            if (_showUpdateMessage) {
+                GUILayout.Space(20);
+                EditorGUILayout.HelpBox($"An update is available for Repetitionless (v{RepetitionlessPackageInfo.Info.version} > {_remoteVersion}) click the button below to update", MessageType.Info);
+
+                if (GUILayout.Button("Never open window on update")) {
+                    RepetitionlessPrefs.UpdatePrefs((p) => {
+                        p.OpenWindowOnUpdate = false;
+                    });
+
+                    _showUpdateMessage = false;
+                }
             }
 
             GUILayout.FlexibleSpace();
