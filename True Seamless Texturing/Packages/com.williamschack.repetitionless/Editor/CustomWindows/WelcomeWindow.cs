@@ -66,8 +66,7 @@ namespace Repetitionless.Editor.CustomWindows
             _logoBackgroundDarkColour = new Color(20 / 256f, 20 / 256f, 20 / 256f);
             _logoBackgroundLightColour = new Color(240 / 256f, 240 / 256f, 240 / 256f);
 
-            _updateAvailable = UpdateChecker.UpdateAvailable("test");
-            //_updateAvailable = UpdateChecker.UpdateAvailable($"v{RepetitionlessPackageInfo.Info.version}");
+            _updateAvailable = UpdateChecker.UpdateAvailable($"v{RepetitionlessPackageInfo.Info.version}");
             if (_updateAvailable)
                 _remoteVersion = UpdateChecker.GetLatestVersion();
         }
@@ -130,9 +129,8 @@ namespace Repetitionless.Editor.CustomWindows
             GUIUtilities.EndBackgroundVertical();
 
             if (_updateAvailable) {
-                if (GUILayout.Button($"Update to {_remoteVersion}", _largeButtonStyle)) {
+                if (GUILayout.Button($"Update to {_remoteVersion}", _largeButtonStyle))
                     Updater.UpdatePackage();
-                }
             }
 
             EditorGUILayout.HelpBox("Thank for using Repetitionless! Pease consider leaving a review to support the asset and its development. Any feedback is appreciated!", MessageType.Info);
