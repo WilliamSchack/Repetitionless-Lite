@@ -131,7 +131,7 @@ namespace Repetitionless.Editor.CustomWindows
 
             if (_updateAvailable) {
                 if (GUILayout.Button($"Update to {_remoteVersion}", _largeButtonStyle)) {
-                    
+                    Updater.UpdatePackage();
                 }
             }
 

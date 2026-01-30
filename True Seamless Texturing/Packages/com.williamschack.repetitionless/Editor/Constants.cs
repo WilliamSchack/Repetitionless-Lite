@@ -2,11 +2,11 @@ namespace Repetitionless.Editor
 {
     internal static class Constants
     {
-        public const string ASSET_STORE_URL = "https://assetstore.unity.com/packages/slug/345604";
+        public const string PACKAGE_ID = "345604";
+        public const string ASSET_STORE_URL = "https://assetstore.unity.com/packages/slug/" + PACKAGE_ID;
         public const string ASSET_STORE_REVIEW_URL = ASSET_STORE_URL + "#reviews";
         public const string ASSET_ITCH_URL = "https://wilschack.itch.io/repetitionless";
 
-        public const string PACKAGE_ID = "345604";
         public const string PACKAGE_NAME = "com.williamschack.repetitionless";
         public const string PACKAGE_PATH = "Packages/" + PACKAGE_NAME;
         public const string LIBRARY_PATH = "Library/" + PACKAGE_NAME;
