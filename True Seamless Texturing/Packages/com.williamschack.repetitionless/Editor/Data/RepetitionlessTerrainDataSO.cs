@@ -77,6 +77,9 @@ namespace Repetitionless.Editor.Data
         /// <param name="terrainLayer">
         /// The terrain layer to update
         /// </param>
+        /// <param name="forceUpdate">
+        /// Ignores the AutoSyncLayers setting and updates the data anyway
+        /// </param>
         public void UpdateLayerMaterialData(TerrainLayer terrainLayer, bool forceUpdate = false)
         {
             if (!AutoSyncLayers && !forceUpdate)

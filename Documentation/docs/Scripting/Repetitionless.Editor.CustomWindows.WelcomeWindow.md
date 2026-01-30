@@ -24,12 +24,12 @@ Opens the window
 
 ---
 
-## Open(bool)
+## Open(bool, bool)
 
 ### Declaration
 
 ``` csharp
-public static void Open(bool showWelcomeMessage = false)
+public static void Open(bool showWelcomeMessage = false, bool showUpdateMessage = false)
 ```
 
 ### Parameters
@@ -37,6 +37,7 @@ public static void Open(bool showWelcomeMessage = false)
 | Parameter | Description |
 |-----------|-------------|
 | showWelcomeMessage | If the welcome message is shown |
+| showUpdateMessage | If the update message is shown |
 
 ### Description
 

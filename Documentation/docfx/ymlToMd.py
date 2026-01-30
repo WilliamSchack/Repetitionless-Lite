@@ -93,6 +93,10 @@ def ConvertYmlToMd(ymlData):
     # If only one item, its the namespace category
     if (len(items) <= 1):
         return ""
+    
+    if ("summary" not in items[0].keys()):
+        print("\tCould not find summary in class, skipping...")
+        return ""
 
     # First element is class
     mdText += HandleClass(items[0])

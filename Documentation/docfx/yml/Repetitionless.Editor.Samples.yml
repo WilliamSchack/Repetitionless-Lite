@@ -1,0 +1,22 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Samples
+  commentId: N:Repetitionless.Editor.Samples
+  id: Repetitionless.Editor.Samples
+  children:
+  - Repetitionless.Editor.Samples.TerrainSceneSettingsEditor
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Editor.Samples
+  nameWithType: Repetitionless.Editor.Samples
+  fullName: Repetitionless.Editor.Samples
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.Editor.Samples
+references:
+- uid: Repetitionless.Editor.Samples.TerrainSceneSettingsEditor
+  commentId: T:Repetitionless.Editor.Samples.TerrainSceneSettingsEditor
+  name: TerrainSceneSettingsEditor
+  nameWithType: TerrainSceneSettingsEditor
+  fullName: Repetitionless.Editor.Samples.TerrainSceneSettingsEditor

@@ -19,7 +19,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PostProjectOpen
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/PostProjectOpen.cs
-    startLine: 9
+    startLine: 11
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Processors

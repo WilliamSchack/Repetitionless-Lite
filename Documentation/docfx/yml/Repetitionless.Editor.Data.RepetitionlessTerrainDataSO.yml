@@ -5,11 +5,12 @@ items:
   id: RepetitionlessTerrainDataSO
   parent: Repetitionless.Editor.Data
   children:
+  - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.AutoSyncLayers
   - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.ClearTerrainLayers
   - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures
   - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save
   - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.TerrainLayers
-  - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer)
+  - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer,System.Boolean)
   - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateTerrainLayers(UnityEngine.TerrainLayer[])
   langs:
   - csharp
@@ -69,6 +70,35 @@ items:
       type: System.Collections.Generic.List{UnityEngine.TerrainLayer}
     content.vb: Public ReadOnly Property TerrainLayers As List(Of TerrainLayer)
   overload: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.TerrainLayers*
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.AutoSyncLayers
+  commentId: F:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.AutoSyncLayers
+  id: AutoSyncLayers
+  parent: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  langs:
+  - csharp
+  - vb
+  name: AutoSyncLayers
+  nameWithType: RepetitionlessTerrainDataSO.AutoSyncLayers
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.AutoSyncLayers
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: AutoSyncLayers
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+    startLine: 40
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nToggles if textures and settings are automatically saved and loaded to and from the terrain layers\n"
+  example: []
+  syntax:
+    content: public bool AutoSyncLayers
+    return:
+      type: System.Boolean
+    content.vb: Public AutoSyncLayers As Boolean
 - uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save
   commentId: M:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save
   id: Save
@@ -87,7 +117,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Save
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 40
+    startLine: 45
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -115,7 +145,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTerrainLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 53
+    startLine: 58
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -150,7 +180,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ClearTerrainLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 62
+    startLine: 67
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -160,16 +190,16 @@ items:
     content: public void ClearTerrainLayers()
     content.vb: Public Sub ClearTerrainLayers()
   overload: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.ClearTerrainLayers*
-- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer)
-  commentId: M:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer)
-  id: UpdateLayerMaterialData(UnityEngine.TerrainLayer)
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer,System.Boolean)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer,System.Boolean)
+  id: UpdateLayerMaterialData(UnityEngine.TerrainLayer,System.Boolean)
   parent: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
   langs:
   - csharp
   - vb
-  name: UpdateLayerMaterialData(TerrainLayer)
-  nameWithType: RepetitionlessTerrainDataSO.UpdateLayerMaterialData(TerrainLayer)
-  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer)
+  name: UpdateLayerMaterialData(TerrainLayer, bool)
+  nameWithType: RepetitionlessTerrainDataSO.UpdateLayerMaterialData(TerrainLayer, bool)
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer, bool)
   type: Method
   source:
     remote:
@@ -178,20 +208,26 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateLayerMaterialData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 74
+    startLine: 82
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
   summary: "\nUpdates the layer linked to the inputted terrain layer on the material\n"
   example: []
   syntax:
-    content: public void UpdateLayerMaterialData(TerrainLayer terrainLayer)
+    content: public void UpdateLayerMaterialData(TerrainLayer terrainLayer, bool forceUpdate = false)
     parameters:
     - id: terrainLayer
       type: UnityEngine.TerrainLayer
       description: "\nThe terrain layer to update\n"
-    content.vb: Public Sub UpdateLayerMaterialData(terrainLayer As TerrainLayer)
+    - id: forceUpdate
+      type: System.Boolean
+      description: "\nIgnores the AutoSyncLayers setting and updates the data anyway\n"
+    content.vb: Public Sub UpdateLayerMaterialData(terrainLayer As TerrainLayer, forceUpdate As Boolean = False)
   overload: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData*
+  nameWithType.vb: RepetitionlessTerrainDataSO.UpdateLayerMaterialData(TerrainLayer, Boolean)
+  fullName.vb: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.UpdateLayerMaterialData(UnityEngine.TerrainLayer, Boolean)
+  name.vb: UpdateLayerMaterialData(TerrainLayer, Boolean)
 - uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures
   commentId: M:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures
   id: RemoveUnusedLayerTextures
@@ -210,7 +246,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RemoveUnusedLayerTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 151
+    startLine: 162
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -370,6 +406,16 @@ references:
   - uid: System.Collections.Generic
     name: Generic
     isExternal: true
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save*
   commentId: Overload:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save
   name: Save

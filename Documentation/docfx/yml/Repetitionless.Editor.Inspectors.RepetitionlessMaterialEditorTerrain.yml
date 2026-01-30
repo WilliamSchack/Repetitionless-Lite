@@ -118,7 +118,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnEnable
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 42
+    startLine: 44
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -151,7 +151,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnPropertiesCreated
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 75
+    startLine: 81
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -180,7 +180,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 94
+    startLine: 100
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -219,7 +219,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 182
+    startLine: 214
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -267,7 +267,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawProperty
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 225
+    startLine: 260
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors

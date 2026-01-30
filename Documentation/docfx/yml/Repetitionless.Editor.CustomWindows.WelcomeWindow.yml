@@ -6,7 +6,7 @@ items:
   parent: Repetitionless.Editor.CustomWindows
   children:
   - Repetitionless.Editor.CustomWindows.WelcomeWindow.Open
-  - Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean)
+  - Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean,System.Boolean)
   langs:
   - csharp
   - vb
@@ -21,7 +21,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: WelcomeWindow
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.CustomWindows
@@ -53,7 +53,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Open
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-    startLine: 36
+    startLine: 42
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.CustomWindows
@@ -74,17 +74,17 @@ items:
     ctor: UnityEditor.MenuItem.#ctor(System.String)
     arguments:
     - type: System.String
-      value: Window/Repetitionless/Open Window
-- uid: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean)
-  commentId: M:Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean)
-  id: Open(System.Boolean)
+      value: {}
+- uid: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean,System.Boolean)
+  commentId: M:Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean,System.Boolean)
+  id: Open(System.Boolean,System.Boolean)
   parent: Repetitionless.Editor.CustomWindows.WelcomeWindow
   langs:
   - csharp
   - vb
-  name: Open(bool)
-  nameWithType: WelcomeWindow.Open(bool)
-  fullName: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(bool)
+  name: Open(bool, bool)
+  nameWithType: WelcomeWindow.Open(bool, bool)
+  fullName: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(bool, bool)
   type: Method
   source:
     remote:
@@ -93,23 +93,26 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Open
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-    startLine: 48
+    startLine: 57
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.CustomWindows
   summary: "\nOpens the window\n"
   example: []
   syntax:
-    content: public static void Open(bool showWelcomeMessage = false)
+    content: public static void Open(bool showWelcomeMessage = false, bool showUpdateMessage = false)
     parameters:
     - id: showWelcomeMessage
       type: System.Boolean
       description: "\nIf the welcome message is shown\n"
-    content.vb: Public Shared Sub Open(showWelcomeMessage As Boolean = False)
+    - id: showUpdateMessage
+      type: System.Boolean
+      description: "\nIf the update message is shown\n"
+    content.vb: Public Shared Sub Open(showWelcomeMessage As Boolean = False, showUpdateMessage As Boolean = False)
   overload: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open*
-  nameWithType.vb: WelcomeWindow.Open(Boolean)
-  fullName.vb: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(Boolean)
-  name.vb: Open(Boolean)
+  nameWithType.vb: WelcomeWindow.Open(Boolean, Boolean)
+  fullName.vb: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(Boolean, Boolean)
+  name.vb: Open(Boolean, Boolean)
 references:
 - uid: Repetitionless.Editor.CustomWindows
   commentId: N:Repetitionless.Editor.CustomWindows

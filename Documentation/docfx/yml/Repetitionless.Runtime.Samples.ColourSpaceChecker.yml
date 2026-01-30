@@ -1,0 +1,118 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Runtime.Samples.ColourSpaceChecker
+  commentId: T:Repetitionless.Runtime.Samples.ColourSpaceChecker
+  id: ColourSpaceChecker
+  parent: Repetitionless.Runtime.Samples
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: ColourSpaceChecker
+  nameWithType: ColourSpaceChecker
+  fullName: Repetitionless.Runtime.Samples.ColourSpaceChecker
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Assets/Samples/Repetitionless/1.0.0/Core Sample Assets/Scripts/Runtime/ColourSpaceChecker.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: ColourSpaceChecker
+    path: ../../True Seamless Texturing/Assets/Samples/Repetitionless/1.0.0/Core Sample Assets/Scripts/Runtime/ColourSpaceChecker.cs
+    startLine: 11
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime.Samples
+  namespace: Repetitionless.Runtime.Samples
+  syntax:
+    content: >-
+      [ExecuteInEditMode]
+
+      public class ColourSpaceChecker : MonoBehaviour
+    content.vb: >-
+      <ExecuteInEditMode>
+
+      Public Class ColourSpaceChecker Inherits MonoBehaviour
+  inheritance:
+  - System.Object
+  - UnityEngine.Object
+  - UnityEngine.Component
+  - UnityEngine.Behaviour
+  - UnityEngine.MonoBehaviour
+  attributes:
+  - type: UnityEngine.ExecuteInEditMode
+    ctor: UnityEngine.ExecuteInEditMode.#ctor
+    arguments: []
+references:
+- uid: Repetitionless.Runtime.Samples
+  commentId: N:Repetitionless.Runtime.Samples
+  name: Repetitionless.Runtime.Samples
+  nameWithType: Repetitionless.Runtime.Samples
+  fullName: Repetitionless.Runtime.Samples
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Samples
+    name: Samples
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Samples
+    name: Samples
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: UnityEngine.Object
+  commentId: T:UnityEngine.Object
+  parent: UnityEngine
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: UnityEngine.Object
+- uid: UnityEngine.Component
+  commentId: T:UnityEngine.Component
+  parent: UnityEngine
+  isExternal: true
+  name: Component
+  nameWithType: Component
+  fullName: UnityEngine.Component
+- uid: UnityEngine.Behaviour
+  commentId: T:UnityEngine.Behaviour
+  parent: UnityEngine
+  isExternal: true
+  name: Behaviour
+  nameWithType: Behaviour
+  fullName: UnityEngine.Behaviour
+- uid: UnityEngine.MonoBehaviour
+  commentId: T:UnityEngine.MonoBehaviour
+  parent: UnityEngine
+  isExternal: true
+  name: MonoBehaviour
+  nameWithType: MonoBehaviour
+  fullName: UnityEngine.MonoBehaviour
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine

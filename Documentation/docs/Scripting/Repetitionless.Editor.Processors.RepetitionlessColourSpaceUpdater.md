@@ -9,6 +9,20 @@ Checks for when the colour space is changed then handles update any repetitionle
 
 ---
 
+## Initialize()
+
+### Declaration
+
+``` csharp
+public static void Initialize()
+```
+
+### Description
+
+Called on project open in PostProjectOpen
+
+---
+
 ## RepackMaterialsIfColourSpaceChanged(List<Material>, bool)
 
 ### Declaration

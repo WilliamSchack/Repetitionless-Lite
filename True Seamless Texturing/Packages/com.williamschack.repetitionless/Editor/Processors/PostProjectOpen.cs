@@ -21,7 +21,7 @@ namespace Repetitionless.Editor.Processors
             RepetitionlessColourSpaceUpdater.Initialize();
 
             // Open window if update available
-            if (UpdateChecker.UpdateAvailable($"v{RepetitionlessPackageInfo.Info.version}"))
+            if (UpdateChecker.UpdateAvailable($"v{RepetitionlessPackageInfo.Info.version}") && RepetitionlessPrefs.Data.OpenWindowOnUpdate)
                 WelcomeWindow.Open(showUpdateMessage: true);
 
             // Update prefs days used

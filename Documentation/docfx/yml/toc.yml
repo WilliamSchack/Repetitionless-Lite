@@ -68,6 +68,11 @@
     name: RepetitionlessMaterialProcessor
   - uid: Repetitionless.Editor.Processors.TerrainLayerPostprocessor
     name: TerrainLayerPostprocessor
+- uid: Repetitionless.Editor.Samples
+  name: Repetitionless.Editor.Samples
+  items:
+  - uid: Repetitionless.Editor.Samples.TerrainSceneSettingsEditor
+    name: TerrainSceneSettingsEditor
 - uid: Repetitionless.Editor.TextureUtilities
   name: Repetitionless.Editor.TextureUtilities
   items:
@@ -93,6 +98,13 @@
   items:
   - uid: Repetitionless.Runtime.Compression.BooleanCompression
     name: BooleanCompression
+- uid: Repetitionless.Runtime.Samples
+  name: Repetitionless.Runtime.Samples
+  items:
+  - uid: Repetitionless.Runtime.Samples.ColourSpaceChecker
+    name: ColourSpaceChecker
+  - uid: Repetitionless.Runtime.Samples.TerrainSceneSettings
+    name: TerrainSceneSettings
 - uid: Repetitionless.Runtime.Variables
   name: Repetitionless.Runtime.Variables
   items:

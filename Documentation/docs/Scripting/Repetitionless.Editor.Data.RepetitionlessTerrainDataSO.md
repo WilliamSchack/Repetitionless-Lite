@@ -11,6 +11,7 @@ Stores the terrain data for a Repetitionless material
 | Variable | Description |
 |----------|-------------|
 | TerrainLayers | The terrain layers linked to this material |
+| AutoSyncLayers | Toggles if textures and settings are automatically saved and loaded to and from the terrain layers |
 
 ---
 
@@ -62,12 +63,12 @@ Clears the terrain layers
 
 ---
 
-## UpdateLayerMaterialData(TerrainLayer)
+## UpdateLayerMaterialData(TerrainLayer, bool)
 
 ### Declaration
 
 ``` csharp
-public void UpdateLayerMaterialData(TerrainLayer terrainLayer)
+public void UpdateLayerMaterialData(TerrainLayer terrainLayer, bool forceUpdate = false)
 ```
 
 ### Parameters
@@ -75,6 +76,7 @@ public void UpdateLayerMaterialData(TerrainLayer terrainLayer)
 | Parameter | Description |
 |-----------|-------------|
 | terrainLayer | The terrain layer to update |
+| forceUpdate | Ignores the AutoSyncLayers setting and updates the data anyway |
 
 ### Description
 
