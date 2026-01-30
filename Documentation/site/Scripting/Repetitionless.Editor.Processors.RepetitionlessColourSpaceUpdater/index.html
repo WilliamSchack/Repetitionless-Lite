@@ -3825,6 +3825,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#initialize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initialize()
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#repackmaterialsifcolourspacechangedlist-bool" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3905,6 +3916,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#initialize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initialize()
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#repackmaterialsifcolourspacechangedlist-bool" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3937,8 +3959,15 @@
 <p><code>Unity Editor Only</code></p>
 <p>Checks for when the colour space is changed then handles update any repetitionless materials that require repacking</p>
 <hr />
-<h2 id="repackmaterialsifcolourspacechangedlist-bool">RepackMaterialsIfColourSpaceChanged(List<Material>, bool)</h2>
+<h2 id="initialize">Initialize()</h2>
 <h3 id="declaration">Declaration</h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Initialize</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="description_1">Description</h3>
+<p>Called on project open in PostProjectOpen</p>
+<hr />
+<h2 id="repackmaterialsifcolourspacechangedlist-bool">RepackMaterialsIfColourSpaceChanged(List<Material>, bool)</h2>
+<h3 id="declaration_1">Declaration</h3>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">RepackMaterialsIfColourSpaceChanged</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="n">materials</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">prompt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="parameters">Parameters</h3>
@@ -3960,7 +3989,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="description_1">Description</h3>
+<h3 id="description_2">Description</h3>
 <p>Repacks the textures on a set of repetitionless materials if they require it</p>
 <hr />
 

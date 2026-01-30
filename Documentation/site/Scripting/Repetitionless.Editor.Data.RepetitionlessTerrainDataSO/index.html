@@ -2899,10 +2899,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#updatelayermaterialdataterrainlayer" class="md-nav__link">
+  <a href="#updatelayermaterialdataterrainlayer-bool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        UpdateLayerMaterialData(TerrainLayer)
+        UpdateLayerMaterialData(TerrainLayer, bool)
       
     </span>
   </a>
@@ -4006,10 +4006,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#updatelayermaterialdataterrainlayer" class="md-nav__link">
+  <a href="#updatelayermaterialdataterrainlayer-bool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        UpdateLayerMaterialData(TerrainLayer)
+        UpdateLayerMaterialData(TerrainLayer, bool)
       
     </span>
   </a>
@@ -4061,6 +4061,10 @@
 <td>TerrainLayers</td>
 <td>The terrain layers linked to this material</td>
 </tr>
+<tr>
+<td>AutoSyncLayers</td>
+<td>Toggles if textures and settings are automatically saved and loaded to and from the terrain layers</td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -4100,9 +4104,9 @@
 <h3 id="description_3">Description</h3>
 <p>Clears the terrain layers</p>
 <hr />
-<h2 id="updatelayermaterialdataterrainlayer">UpdateLayerMaterialData(TerrainLayer)</h2>
+<h2 id="updatelayermaterialdataterrainlayer-bool">UpdateLayerMaterialData(TerrainLayer, bool)</h2>
 <h3 id="declaration_3">Declaration</h3>
-<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">UpdateLayerMaterialData</span><span class="p">(</span><span class="n">TerrainLayer</span><span class="w"> </span><span class="n">terrainLayer</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">UpdateLayerMaterialData</span><span class="p">(</span><span class="n">TerrainLayer</span><span class="w"> </span><span class="n">terrainLayer</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">forceUpdate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="parameters_1">Parameters</h3>
 <table>
@@ -4116,6 +4120,10 @@
 <tr>
 <td>terrainLayer</td>
 <td>The terrain layer to update</td>
+</tr>
+<tr>
+<td>forceUpdate</td>
+<td>Ignores the AutoSyncLayers setting and updates the data anyway</td>
 </tr>
 </tbody>
 </table>
