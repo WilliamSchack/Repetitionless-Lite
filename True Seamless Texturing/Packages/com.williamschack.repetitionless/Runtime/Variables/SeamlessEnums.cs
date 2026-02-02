@@ -38,6 +38,28 @@ namespace Repetitionless.Runtime.Variables
     }
 
     /// <summary>
+    /// Available noise qualities
+    /// </summary>
+    public enum ENoiseQuality
+    {
+        /// <summary>
+        /// Dynamically creates the noise on the fly<br />
+        /// Required to adjust the Noise Angle Offset
+        /// </summary>
+        High,
+
+        /// <summary>
+        /// Uses the 4k pre-rendered noise texture
+        /// </summary>
+        Medium,
+
+        /// <summary>
+        /// Uses the 1k pre-rendered noise texture
+        /// </summary>
+        Low
+    }
+
+    /// <summary>
     /// Available mask texture types for Repetitionless Materials
     /// </summary>
     public enum ETextureType

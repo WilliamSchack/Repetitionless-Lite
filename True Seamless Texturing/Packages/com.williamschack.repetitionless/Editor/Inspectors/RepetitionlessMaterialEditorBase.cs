@@ -459,19 +459,28 @@ namespace Repetitionless.Editor.Inspectors
             });
         }
 
-        private void SetTriplanarEnabled(bool enabled)
+        private void SetKeyword(string keyword, bool enabled)
         {
-            _triplanarEnabled = enabled;
-
             // Delay call to prevent recursive warnings, this will take a while if variant not cached
             EditorApplication.delayCall += () => {
                 // Using a keyword variable with SetKeyword sometimes gives errors
-                if (enabled) _material.EnableKeyword(Constants.TRIPLANAR_KEYWORD);
-                else         _material.DisableKeyword(Constants.TRIPLANAR_KEYWORD);
+                if (enabled) _material.EnableKeyword(keyword);
+                else         _material.DisableKeyword(keyword);
 
-                _material.SetInt(Constants.TRIPLANAR_KEYWORD, enabled ? 1 : 0); // Required to save for some reason
+                _material.SetInt(keyword, enabled ? 1 : 0); // Required to save for some reason
                 EditorUtility.SetDirty(_material);
             };
+        }
+
+        private void SetNoiseQuality(ENoiseQuality noiseQuality)
+        {
+            SetKeyword(Constants.NOISE_TEXTURE_KEYWORD, noiseQuality != ENoiseQuality.High);
+        }
+
+        private void SetTriplanarEnabled(bool enabled)
+        {
+            _triplanarEnabled = enabled;
+            SetKeyword(Constants.TRIPLANAR_KEYWORD, enabled);
         }
 
         private void DrawTextureChannelPicker(Rect lineRect, int layerIndex, int sectionIndex, int texturesIndex, int elementIndex, int channelIndex)
@@ -507,7 +516,7 @@ namespace Repetitionless.Editor.Inspectors
             _material = (Material)materialEditor.target;
             _editor = materialEditor;
 
-             MaterialProperty uvSpaceProp = FindProperty("_UVSpace");
+            MaterialProperty uvSpaceProp = FindProperty("_UVSpace");
             _prevUVSpace = (EUVSpace)uvSpaceProp.floatValue;
             
             _triplanarEnabled = _material.IsKeywordEnabled(Constants.TRIPLANAR_KEYWORD);
@@ -548,6 +557,8 @@ namespace Repetitionless.Editor.Inspectors
                 _dataManager.CreateAsset(_materialProperties, Constants.PROPERTIES_FILE_NAME);
                 _materialProperties.Init(_maxLayers);
                 
+                SetNoiseQuality(_materialProperties.NoiseQuality);
+
                 _materialProperties.Save();
                 AssetDatabase.SaveAssetIfDirty(_materialProperties);
 
@@ -712,6 +723,15 @@ namespace Repetitionless.Editor.Inspectors
                 // If setting uv space to local, disable triplanar
                 if (uvSpace == EUVSpace.Local)
                     SetTriplanarEnabled(false);
+
+                _materialProperties.CallOnExternalDataChanged();
+            }
+
+            // Noise Quality
+            EditorGUI.BeginChangeCheck();
+            _materialProperties.NoiseQuality = (ENoiseQuality)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Noise Quality", "High: Dynamically samples noise\n(Required for angle offset setting)\nMedium: Uses the pre-rendered 4k texture\nLow: Uses the pre-rendered 1k texture"), _materialProperties.NoiseQuality);
+            if (EditorGUI.EndChangeCheck()) {
+                SetNoiseQuality(_materialProperties.NoiseQuality);
 
                 _materialProperties.CallOnExternalDataChanged();
             }
@@ -1118,7 +1138,8 @@ namespace Repetitionless.Editor.Inspectors
             RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, sectionIndex);
 
             // Angle Offset
-            DrawProperty(layerIndex, () => currentData.NoiseAngleOffset = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Angle Offset", currentData.NoiseAngleOffset));
+            if (_materialProperties.NoiseQuality == ENoiseQuality.High)
+                DrawProperty(layerIndex, () => currentData.NoiseAngleOffset = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Angle Offset", currentData.NoiseAngleOffset));
 
             // Scale Randomising
             if (currentData.RandomiseNoiseScaling) {

@@ -39,6 +39,12 @@ namespace Repetitionless.Editor.Data
             }
         }
 
+        [HideInInspector][SerializeField] public ENoiseQuality _noiseQuality = ENoiseQuality.High;
+        public ENoiseQuality NoiseQuality {
+            get { return _noiseQuality; }
+            set { SetNoiseQuality(value); }
+        }
+
         [HideInInspector][SerializeField] private Vector4 _globalTilingOffset = new Vector4(1, 1, 0, 0);
 
         /// <summary>
@@ -98,6 +104,12 @@ namespace Repetitionless.Editor.Data
             }
 
             return dataColours;
+        }
+
+        public void SetNoiseQuality(ENoiseQuality noiseQuality)
+        {
+            _noiseQuality = noiseQuality;
+            Save();
         }
 
         /// <summary>

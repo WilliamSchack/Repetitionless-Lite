@@ -37,6 +37,9 @@
     "m_Keywords": [
         {
             "m_Id": "869f2e62841442f5b49b2db2abf7261e"
+        },
+        {
+            "m_Id": "17faff922de041529f4d3cdca86b251f"
         }
     ],
     "m_Dropdowns": [],
@@ -1309,8 +1312,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1908.0,
-            "y": 2893.0,
+            "x": 1907.0001220703125,
+            "y": 2894.0,
             "width": 56.0,
             "height": 24.0
         }
@@ -1506,6 +1509,31 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "17faff922de041529f4d3cdca86b251f",
+    "m_Guid": {
+        "m_GuidSerialized": "c4f4888a-c0d9-4665-8c0a-9da3092191fd"
+    },
+    "m_Name": "REPETITIONLESS_NOISE_TEXTURE",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "REPETITIONLESS_NOISE_TEXTURE",
+    "m_DefaultReferenceName": "_REPETITIONLESS_NOISE_TEXTURE",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 0,
+    "m_IsEditable": true
 }
 
 {
@@ -1993,8 +2021,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1908.9998779296875,
-            "y": 2844.99951171875,
+            "x": 1908.0,
+            "y": 2846.0,
             "width": 56.0,
             "height": 24.0
         }
@@ -2397,6 +2425,9 @@
         },
         {
             "m_Id": "869f2e62841442f5b49b2db2abf7261e"
+        },
+        {
+            "m_Id": "17faff922de041529f4d3cdca86b251f"
         }
     ]
 }
@@ -2897,8 +2928,8 @@
     "m_ObjectId": "6c086a65c4fe4d4f844d36c7b154eea1",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1290.0,
-        "y": 2691.0
+        "x": 1289.9998779296875,
+        "y": 2690.999755859375
     }
 }
 
@@ -4621,8 +4652,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1908.9998779296875,
-            "y": 2868.99951171875,
+            "x": 1908.0,
+            "y": 2870.0,
             "width": 56.0,
             "height": 24.0
         }
@@ -4890,8 +4921,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1908.9998779296875,
-            "y": 2748.99951171875,
+            "x": 1908.0,
+            "y": 2750.0,
             "width": 56.0,
             "height": 24.0
         }
@@ -5099,8 +5130,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1908.9998779296875,
-            "y": 2772.99951171875,
+            "x": 1908.0,
+            "y": 2774.0,
             "width": 56.0,
             "height": 24.0
         }
@@ -5280,8 +5311,8 @@
     "m_ObjectId": "df4e91497634418b8c0a28aae606bda3",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 982.0,
-        "y": 1858.0
+        "x": 981.9998779296875,
+        "y": 1857.999755859375
     }
 }
 
@@ -5431,8 +5462,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1908.9998779296875,
-            "y": 2796.99951171875,
+            "x": 1908.0,
+            "y": 2798.0,
             "width": 56.0,
             "height": 24.0
         }
@@ -5726,8 +5757,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1908.9998779296875,
-            "y": 2820.99951171875,
+            "x": 1908.0,
+            "y": 2822.0,
             "width": 56.0,
             "height": 24.0
         }

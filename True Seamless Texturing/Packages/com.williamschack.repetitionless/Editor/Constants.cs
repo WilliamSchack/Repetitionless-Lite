@@ -38,6 +38,8 @@ namespace Repetitionless.Editor
         public const int COMPRESSED_MATERIAL_VARIABLES_COUNT = 9;
         public const int COMPRESSED_LAYER_VARIABLES_COUNT = COMPRESSED_MATERIAL_VARIABLES_COUNT * MATERIALS_PER_LAYER_COUNT + 4;
 
+
+        public const string NOISE_TEXTURE_KEYWORD = "_REPETITIONLESS_NOISE_TEXTURE";
         public const string TRIPLANAR_KEYWORD = "_REPETITIONLESS_TRIPLANAR";
 
         public const int DAYS_UNTIL_REVIEW_POPUP = 5;
