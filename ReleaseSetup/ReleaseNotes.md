@@ -1,5 +1,5 @@
 **CHANGELOG**
 
-- Added options to toggle and manually sync to and from terrain layers
-- Added channel pickers to textures to edit which channel is used
-- Added update checking
+- Added noise quality setting
+  - High samples noise dynamically (same as before), medium/low samples a pre-rendered texture
+  - Defaults to medium
