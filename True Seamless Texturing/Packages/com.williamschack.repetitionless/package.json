@@ -1,7 +1,7 @@
 {
   "name": "com.williamschack.repetitionless",
   "displayName": "Repetitionless",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "unity": "2021.3",
   "unityRelease": "26f1",
   "description": "Repetitionless is a set of shaders that removes texture repetition using various toggleable techniques with additional support for unity terrains, supporting BIRP, URP, and HDRP",

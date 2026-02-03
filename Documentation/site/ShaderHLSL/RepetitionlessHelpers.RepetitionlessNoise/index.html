@@ -1707,6 +1707,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#getrepetitionlessnoiseuvs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GetRepetitionlessNoiseUVs()
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#addrepetitionlessnoise_float" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3927,6 +3938,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#getrepetitionlessnoiseuvs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GetRepetitionlessNoiseUVs()
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#addrepetitionlessnoise_float" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4046,8 +4068,102 @@
 <h3 id="description_1">Description</h3>
 <p>Gets UVs based on voronoi noise</p>
 <hr />
-<h2 id="addrepetitionlessnoise_float">AddRepetitionlessNoise_float()</h2>
+<h2 id="getrepetitionlessnoiseuvs_1">GetRepetitionlessNoiseUVs()</h2>
 <h3 id="declaration_1">Declaration</h3>
+<div class="highlight"><pre><span></span><code><span class="k">void</span><span class="w"> </span><span class="nf">GetRepetitionlessNoiseUVs</span><span class="p">(</span>
+<span class="w">    </span><span class="n">float2</span><span class="w"> </span><span class="n">UV</span><span class="p">,</span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">NoiseScale</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">RandomiseNoiseScaling</span><span class="p">,</span>
+<span class="w">    </span><span class="n">float2</span><span class="w"> </span><span class="n">NoiseScalingMinMax</span><span class="p">,</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">RandomiseRotation</span><span class="p">,</span>
+<span class="w">    </span><span class="n">float2</span><span class="w"> </span><span class="n">RandomiseRotationMinMax</span><span class="p">,</span>
+
+<span class="w">    </span><span class="n">UnityTexture2D</span><span class="w"> </span><span class="n">NoiseTexture</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">TextureResolution</span><span class="p">,</span>
+
+<span class="w">    </span><span class="k">out</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">VoronoiCells</span><span class="p">,</span>
+<span class="w">    </span><span class="k">out</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">EdgeMask</span><span class="p">,</span>
+<span class="w">    </span><span class="k">out</span><span class="w"> </span><span class="n">float2</span><span class="w"> </span><span class="n">EdgeUV</span><span class="p">,</span>
+<span class="w">    </span><span class="k">out</span><span class="w"> </span><span class="n">float2</span><span class="w"> </span><span class="n">TransformedUV</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="parameters_1">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UV</td>
+<td>UV used for sampling the noise</td>
+</tr>
+<tr>
+<td>NoiseScale</td>
+<td>Voronoi noise scale</td>
+</tr>
+<tr>
+<td>RandomiseNoiseScaling</td>
+<td>If the noise scaling is randomised. NoiseScalingMinMax is ignored if disabled</td>
+</tr>
+<tr>
+<td>NoiseScalingMinMax</td>
+<td>The range to randomly scale the noise</td>
+</tr>
+<tr>
+<td>RandomiseRotation</td>
+<td>If the noise rotation is randomised. RandomiseRotationMinMax is ignored if disabled</td>
+</tr>
+<tr>
+<td>RandomiseRotationMinMax</td>
+<td>The range in degrees to randomly rotate the noise</td>
+</tr>
+<tr>
+<td>NoiseTexture</td>
+<td>The noise texture to load from</td>
+</tr>
+<tr>
+<td>TextureResolution</td>
+<td>The resolution of the texture.<br>Should equal to the width and height</td>
+</tr>
+</tbody>
+</table>
+<h3 id="returns_1">Returns</h3>
+<table>
+<thead>
+<tr>
+<th>Output</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VoronoiCells</td>
+<td>The current voronoi cell noise value</td>
+</tr>
+<tr>
+<td>EdgeMask</td>
+<td>The edge mask of each cell</td>
+</tr>
+<tr>
+<td>EdgeUV</td>
+<td>The UV to sample edges</td>
+</tr>
+<tr>
+<td>TransformedUV</td>
+<td>The UV to sample cells</td>
+</tr>
+</tbody>
+</table>
+<h3 id="description_2">Description</h3>
+<p>Gets UVs based on a voronoi texture</p>
+<hr />
+<h2 id="addrepetitionlessnoise_float">AddRepetitionlessNoise_float()</h2>
+<h3 id="declaration_2">Declaration</h3>
 <div class="highlight"><pre><span></span><code><span class="k">void</span><span class="w"> </span><span class="nf">AddRepetitionlessNoise_float</span><span class="p">(</span>
 <span class="w">    </span><span class="n">UnityTexture2D</span><span class="w"> </span><span class="n">InputTexture</span><span class="p">,</span>
 <span class="w">    </span><span class="n">SamplerState</span><span class="w"> </span><span class="n">SS</span><span class="p">,</span>
@@ -4064,7 +4180,7 @@
 <span class="w">    </span><span class="k">out</span><span class="w"> </span><span class="n">float4</span><span class="w"> </span><span class="n">OutputColor</span>
 <span class="p">)</span>
 </code></pre></div>
-<h3 id="parameters_1">Parameters</h3>
+<h3 id="parameters_2">Parameters</h3>
 <table>
 <thead>
 <tr>
@@ -4111,7 +4227,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="returns_1">Returns</h3>
+<h3 id="returns_2">Returns</h3>
 <table>
 <thead>
 <tr>
@@ -4126,7 +4242,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="description_2">Description</h3>
+<h3 id="description_3">Description</h3>
 <p>Samples the given texture using modified UVs based on voronoi noise.</p>
 <p>Samples the voronoi cells base and edge colour if required and lerps them together</p>
 <p><strong>Used in the Repetitionless Noise sub graph</strong></p>

@@ -4014,7 +4014,8 @@
 
 <h2 id="material-properties">Material Properties</h2>
 <p><img alt="image" src="../Images/MaterialProperties/MaterialProperties.png" /></p>
-<p>Has all the general properties for the material</p>
+<p>Has all the general properties for the material
+w</p>
 <table>
 <thead>
 <tr>
@@ -4030,6 +4031,10 @@
 <tr>
 <td>UV Space</td>
 <td>Sets the UV Space<br>0: Local<br>1: World<br><em>Note that with world space UVs you will require larger Tiling</em></td>
+</tr>
+<tr>
+<td>Noise Quality</td>
+<td>How the noise is sampled<br>High: Dynamically samples noise<br><em>(Required for non-repeating noise and the angle offset setting)</em><br>Medium: Uses the pre-rendered 4k texture<br>Low: Uses the pre-rendered 1k texture</td>
 </tr>
 <tr>
 <td>Triplanar</td>
@@ -4176,7 +4181,7 @@
 <tbody>
 <tr>
 <td>Noise Angle Offset</td>
-<td>The angle offset of the voronoi noise</td>
+<td>The angle offset of the voronoi noise<br><em>Only shown if noise quality is set to high</em></td>
 </tr>
 <tr>
 <td>Noise Scale</td>
