@@ -2,7 +2,9 @@
   <Project Path="SingularityGroup.HotReload.Editor.csproj" />
   <Project Path="asset-store-tools-editor.csproj" />
   <Project Path="com.williamschack.Repetitionless.Editor.csproj" />
+  <Project Path="com.williamschack.Repetitionless.Editor.Samples.csproj" />
   <Project Path="SingularityGroup.HotReload.Runtime.Public.csproj" />
+  <Project Path="com.williamschack.Repetitionless.Runtime.Samples.csproj" />
   <Project Path="SingularityGroup.HotReload.Runtime.csproj" />
   <Project Path="com.williamschack.Repetitionless.Runtime.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
