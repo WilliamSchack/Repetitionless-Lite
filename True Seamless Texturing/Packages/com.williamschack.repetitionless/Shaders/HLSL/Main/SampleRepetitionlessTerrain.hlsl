@@ -26,6 +26,8 @@ void SampleRepetitionlessTerrain_float(
     UnityTexture2DArray EMTextures,
     UnityTexture2DArray BMTextures,
 
+    UnityTexture2D NoiseTexture,
+
     // Outputs
     out float4 AlbedoColorOut,
     out float3 NormalVectorOut,
@@ -135,6 +137,7 @@ void SampleRepetitionlessTerrain_float(
             NSOTextures,
             EMTextures,
             BMTextures,
+            NoiseTexture,
             layerAlbedo, layerNormal, layerMetallic, layerSmoothness, layerOcclussion, layerEmission
         );
 

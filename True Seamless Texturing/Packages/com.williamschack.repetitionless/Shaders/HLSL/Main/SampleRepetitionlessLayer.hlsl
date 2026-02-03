@@ -43,6 +43,8 @@ void SampleRepetitionlessLayer_float(
     UnityTexture2DArray EMTextures,
     UnityTexture2DArray BMTextures,
 
+    UnityTexture2D NoiseTexture,
+
     // Outputs
     out float4 AlbedoColorOut,
     out float3 NormalVectorOut,
@@ -234,6 +236,7 @@ void SampleRepetitionlessLayer_float(
         SampleRepetitionlessMaterial(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
             baseLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
+            NoiseTexture,
             baseMaterialData,
             albedoColor, normalVector, metallic, smoothness, occlussion, emissionColor
         );
@@ -259,6 +262,7 @@ void SampleRepetitionlessLayer_float(
                 SampleRepetitionlessMaterial(
                     SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                     baseLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
+                    NoiseTexture,
                     baseMaterialData,
                     farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
                 );
@@ -268,6 +272,7 @@ void SampleRepetitionlessLayer_float(
                 SampleRepetitionlessMaterial(
                     SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
                     farLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
+                    NoiseTexture,
                     farMaterialData,
                     farAlbedoColor, farNormalVector, farMetallic, farSmoothness, farOcclussion, farEmissionColor
                 );
@@ -295,6 +300,7 @@ void SampleRepetitionlessLayer_float(
         SampleRepetitionlessMaterial(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
             blendLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
+            NoiseTexture,
             blendMaterialData,
             blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
         );
@@ -329,6 +335,7 @@ void SampleRepetitionlessLayer_float(
         SampleRepetitionlessMaterial(
             SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
             blendLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
+            NoiseTexture,
             blendMaterialData,
             blendAlbedoColor, blendNormalVector, blendMetallic, blendSmoothness, blendOcclussion, blendEmissionColor
         );
@@ -390,6 +397,8 @@ void SampleRepetitionlessLayer_float(
     UnityTexture2DArray EMTextures,
     UnityTexture2DArray BMTextures,
 
+    UnityTexture2D NoiseTexture,
+
     // Outputs
     out float4 AlbedoColorOut,
     out float3 NormalVectorOut,
@@ -419,6 +428,7 @@ void SampleRepetitionlessLayer_float(
         NSOTextures,
         EMTextures,
         BMTextures,
+        NoiseTexture,
         AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
     );
 }
