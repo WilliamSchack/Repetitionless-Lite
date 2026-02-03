@@ -31,8 +31,11 @@ namespace Repetitionless.Editor
         public const string PROPERTIES_TEXTURE_ASSET_NAME = "PropertiesTexture.asset";
         public const string ARRAY_ASSIGNED_TEXTURES_ASSET_NAME = "AssignedTextures.asset";
 
-        public const string DEFAULT_VARIATION_TEXTURE_NAME_2K = "repetitionless_VariationTexture_2048";
         public const string DEFAULT_VARIATION_TEXTURE_NAME_4K = "repetitionless_VariationTexture_4096";
+        public const string DEFAULT_VARIATION_TEXTURE_NAME_2K = "repetitionless_VariationTexture_2048";
+
+        public const string NOISE_TEXTURE_NAME_4K = "repetitionless_NoiseTexture_4096";
+        public const string NOISE_TEXTURE_NAME_1K = "repetitionless_NoiseTexture_1024";
 
         public const int MATERIALS_PER_LAYER_COUNT = 3;
         public const int COMPRESSED_MATERIAL_VARIABLES_COUNT = 9;

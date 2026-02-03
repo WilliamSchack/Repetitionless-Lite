@@ -472,9 +472,30 @@ namespace Repetitionless.Editor.Inspectors
             };
         }
 
+        private void UpdateNoiseQualityTexture(ENoiseQuality noiseQuality)
+        {
+            MaterialProperty noiseTextureProp = FindProperty("_NoiseTexture");
+
+            switch (noiseQuality) {
+                case ENoiseQuality.High:
+                    noiseTextureProp.textureValue = null;
+                    break;
+                case ENoiseQuality.Medium: {
+                    Texture2D texture = Resources.Load<Texture2D>(Constants.NOISE_TEXTURE_NAME_4K);
+                    noiseTextureProp.textureValue = texture;
+                    break;
+                } case ENoiseQuality.Low: {
+                    Texture2D texture = Resources.Load<Texture2D>(Constants.NOISE_TEXTURE_NAME_1K);
+                    noiseTextureProp.textureValue = texture;
+                    break;
+                }
+            }
+        }
+
         private void SetNoiseQuality(ENoiseQuality noiseQuality)
         {
             SetKeyword(Constants.NOISE_TEXTURE_KEYWORD, noiseQuality != ENoiseQuality.High);
+            UpdateNoiseQualityTexture(noiseQuality);
         }
 
         private void SetTriplanarEnabled(bool enabled)
@@ -570,6 +591,9 @@ namespace Repetitionless.Editor.Inspectors
 
             if (progressBarUsed)
                 EditorUtility.ClearProgressBar();
+
+            // Load noise texture incase it got removed
+            UpdateNoiseQualityTexture(_materialProperties.NoiseQuality);
         }
 
         /// <summary>

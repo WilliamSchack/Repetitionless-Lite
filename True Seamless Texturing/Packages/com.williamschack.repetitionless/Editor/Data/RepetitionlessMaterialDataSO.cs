@@ -39,7 +39,7 @@ namespace Repetitionless.Editor.Data
             }
         }
 
-        [HideInInspector][SerializeField] public ENoiseQuality _noiseQuality = ENoiseQuality.High;
+        [HideInInspector][SerializeField] private ENoiseQuality _noiseQuality = ENoiseQuality.High;
         public ENoiseQuality NoiseQuality {
             get { return _noiseQuality; }
             set { SetNoiseQuality(value); }

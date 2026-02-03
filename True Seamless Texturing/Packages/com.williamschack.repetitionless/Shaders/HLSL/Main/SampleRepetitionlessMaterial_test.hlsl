@@ -100,8 +100,19 @@ void SampleRepetitionlessMaterial(
     float edgeMask = 0;
     float2 edgeUV = UV;
     float2 transformedUV = UV;
-    if (noiseEnabled)
-        GetRepetitionlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, noiseRandomiseRotationMinMax, NoiseTexture, SS, voronoiCells, edgeMask, edgeUV, transformedUV);
+    if (noiseEnabled) {
+#ifdef _REPETITIONLESS_NOISE_TEXTURE
+        int noiseTextureResolution = _NoiseTexture_TexelSize.z; // width height are the same
+
+        // Make the scale uniform across resolutions and similar to dynamic noise
+        int textureNoiseScale = noiseScale * (noiseTextureResolution / 1000);
+        textureNoiseScale *= 16;
+
+        GetRepetitionlessNoiseUVs(UV, textureNoiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, noiseRandomiseRotationMinMax, NoiseTexture, noiseTextureResolution, voronoiCells, edgeMask, edgeUV, transformedUV);
+#else
+        GetRepetitionlessNoiseUVs(UV, noiseAngleOffset, noiseScale, randomiseNoiseScaling, noiseScalingMinMax, randomiseRotation, noiseRandomiseRotationMinMax, voronoiCells, edgeMask, edgeUV, transformedUV);
+#endif
+    }
     
     bool sampleEdges = edgeMask > 0;
 
