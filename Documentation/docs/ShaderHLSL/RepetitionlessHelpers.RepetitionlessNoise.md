@@ -56,6 +56,59 @@ Gets UVs based on voronoi noise
 
 ---
 
+## GetRepetitionlessNoiseUVs()
+
+### Declaration 
+
+``` csharp
+void GetRepetitionlessNoiseUVs(
+	float2 UV,
+	
+	float NoiseScale,
+	bool RandomiseNoiseScaling,
+	float2 NoiseScalingMinMax,
+	
+	bool RandomiseRotation,
+	float2 RandomiseRotationMinMax,
+	
+	UnityTexture2D NoiseTexture,
+	int TextureResolution,
+	
+	out float VoronoiCells,
+	out float EdgeMask,
+	out float2 EdgeUV,
+	out float2 TransformedUV
+)
+```
+
+### Parameters
+
+| Parameter               | Description                                                                         |
+| ----------------------- | ----------------------------------------------------------------------------------- |
+| UV                      | UV used for sampling the noise                                                      |
+| NoiseScale              | Voronoi noise scale                                                                 |
+| RandomiseNoiseScaling   | If the noise scaling is randomised. NoiseScalingMinMax is ignored if disabled       |
+| NoiseScalingMinMax      | The range to randomly scale the noise                                               |
+| RandomiseRotation       | If the noise rotation is randomised. RandomiseRotationMinMax is ignored if disabled |
+| RandomiseRotationMinMax | The range in degrees to randomly rotate the noise                                   |
+| NoiseTexture            | The noise texture to load from                                                      |
+| TextureResolution       | The resolution of the texture.<br>Should equal to the width and height              |
+
+### Returns
+
+| Output        | Description                          |
+| ------------- | ------------------------------------ |
+| VoronoiCells  | The current voronoi cell noise value |
+| EdgeMask      | The edge mask of each cell           |
+| EdgeUV        | The UV to sample edges               |
+| TransformedUV | The UV to sample cells               |
+
+### Description
+
+Gets UVs based on a voronoi texture
+
+---
+
 ## AddRepetitionlessNoise_float()
 
 ### Declaration 

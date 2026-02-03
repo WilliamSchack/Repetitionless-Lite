@@ -753,7 +753,7 @@ namespace Repetitionless.Editor.Inspectors
 
             // Noise Quality
             EditorGUI.BeginChangeCheck();
-            _materialProperties.NoiseQuality = (ENoiseQuality)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Noise Quality", "High: Dynamically samples noise\n(Required for angle offset setting)\nMedium: Uses the pre-rendered 4k texture\nLow: Uses the pre-rendered 1k texture"), _materialProperties.NoiseQuality);
+            _materialProperties.NoiseQuality = (ENoiseQuality)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Noise Quality", "High: Dynamically samples noise\n(Required for non-repeating noise and the angle offset setting)\nMedium: Uses the pre-rendered 4k texture\nLow: Uses the pre-rendered 1k texture"), _materialProperties.NoiseQuality);
             if (EditorGUI.EndChangeCheck()) {
                 SetNoiseQuality(_materialProperties.NoiseQuality);
 

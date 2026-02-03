@@ -3,11 +3,13 @@
 ![image](Images/MaterialProperties/MaterialProperties.png)
 
 Has all the general properties for the material
+w
 
 | Property                         | Description                                                                                                                                                                                                                                                                         |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Surface Type                     | The surface type of the material<br>0: Opaque<br>1: Cutout<br>2: Transparent                                                                                                                                                                                                        |
 | UV Space                         | Sets the UV Space<br>0: Local<br>1: World<br>*Note that with world space UVs you will require larger Tiling*                                                                                                                                                                        |
+| Noise Quality                    | How the noise is sampled<br>High: Dynamically samples noise<br>*(Required for non-repeating noise and the angle offset setting)*<br>Medium: Uses the pre-rendered 4k texture<br>Low: Uses the pre-rendered 1k texture                                                               |
 | Triplanar                        | Enables triplanar sampling and forces world UVs<br>*Note that the first time this is set for a material it will take some time to finish as it will recompile the shader, it will be instant for subsequent toggles*                                                                |
 | Global Tiling                    | This is multiplied with each materials tiling                                                                                                                                                                                                                                       |
 | Global Offset                    | This is added onto each of the materials offset                                                                                                                                                                                                                                     |
@@ -68,7 +70,7 @@ These are only shown if Noise is enabled in the toolbar
 
 | Property                | Description                                                                                                                                                            |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Noise Angle Offset      | The angle offset of the voronoi noise                                                                                                                                  |
+| Noise Angle Offset      | The angle offset of the voronoi noise<br>*Only shown if noise quality is set to high*                                                                                  |
 | Noise Scale             | The scale of the voronoi noise                                                                                                                                         |
 | Noise Scaling Min Max   | Range that each voronoi cell is randomly scaled by<br>x: Min Scale<br>y: Max Scale<br>*Only shown if Random Scaling is enabled in the toolbar*                         |
 | Random Rotation Min Max | Range that each voronoi cell is randomly rotated by<br>x: Min Rotation Degrees<br>y: Max Rotation Degrees<br>*Only shown if Random Rotation is enabled in the toolbar* |
