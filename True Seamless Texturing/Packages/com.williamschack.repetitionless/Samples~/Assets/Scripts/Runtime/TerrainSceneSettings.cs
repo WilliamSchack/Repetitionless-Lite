@@ -50,7 +50,7 @@ namespace Repetitionless.Runtime.Samples
             // Repetitionless uses world UVs, regular uses local so they differ a bit 
             TerrainLayer[] layers = _terrains[0].terrainData.terrainLayers;
             foreach (TerrainLayer layer in layers) {
-                layer.tileSize = TerrainUsingRepetitionless ? new Vector2(150, 150) : new Vector2(7, 7);
+                layer.tileSize = TerrainUsingRepetitionless ? new Vector2(1, 1) : new Vector2(7, 7);
 #if UNITY_EDITOR
                 EditorUtility.SetDirty(layer);
 #endif
