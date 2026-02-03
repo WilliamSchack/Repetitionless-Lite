@@ -33,6 +33,10 @@ Shader "CustomRenderTexture/Simple"
             float edgeMask = lerp(0.23, -1.5, dfe) * 5;
             edgeMask = clamp(edgeMask, 0, 1);
 
+            // Make the output the same colour as the regular voronoi noise
+            cells = sqrt(cells);
+            edgeMask = sqrt(edgeMask);
+
             float2 Colour = 0;
             Colour.r = cells;
             Colour.g = edgeMask;
