@@ -40,7 +40,7 @@ namespace Repetitionless.Editor.Data
         }
 
         [HideInInspector][SerializeField] private ENoiseQuality _noiseQuality = ENoiseQuality.Medium;
-        public ENoiseQuality NoiseQuality {
+        internal ENoiseQuality NoiseQuality {
             get { return _noiseQuality; }
             set { SetNoiseQuality(value); }
         }
@@ -106,6 +106,12 @@ namespace Repetitionless.Editor.Data
             return dataColours;
         }
 
+        /// <summary>
+        /// Sets the noise quality
+        /// </summary>
+        /// <param name="noiseQuality">
+        /// The new quality to use
+        /// </param>
         public void SetNoiseQuality(ENoiseQuality noiseQuality)
         {
             _noiseQuality = noiseQuality;

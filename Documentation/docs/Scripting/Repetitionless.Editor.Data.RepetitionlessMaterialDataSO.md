@@ -53,6 +53,26 @@ Saves this object
 
 ---
 
+## SetNoiseQuality(ENoiseQuality)
+
+### Declaration
+
+``` csharp
+public void SetNoiseQuality(ENoiseQuality noiseQuality)
+```
+
+### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| noiseQuality | The new quality to use |
+
+### Description
+
+Sets the noise quality
+
+---
+
 ## SetGlobalTilingOffset(Vector4)
 
 ### Declaration
