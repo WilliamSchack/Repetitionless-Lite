@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../Images/Icon_Favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -2721,6 +2721,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#setnoisequalityenoisequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SetNoiseQuality(ENoiseQuality)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setglobaltilingoffsetvector4" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4039,6 +4050,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#setnoisequalityenoisequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SetNoiseQuality(ENoiseQuality)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setglobaltilingoffsetvector4" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4194,11 +4216,33 @@
 <h3 id="description_2">Description</h3>
 <p>Saves this object</p>
 <hr />
-<h2 id="setglobaltilingoffsetvector4">SetGlobalTilingOffset(Vector4)</h2>
+<h2 id="setnoisequalityenoisequality">SetNoiseQuality(ENoiseQuality)</h2>
 <h3 id="declaration_2">Declaration</h3>
-<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">SetGlobalTilingOffset</span><span class="p">(</span><span class="n">Vector4</span><span class="w"> </span><span class="n">tilingOffset</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">SetNoiseQuality</span><span class="p">(</span><span class="n">ENoiseQuality</span><span class="w"> </span><span class="n">noiseQuality</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="parameters_1">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>noiseQuality</td>
+<td>The new quality to use</td>
+</tr>
+</tbody>
+</table>
+<h3 id="description_3">Description</h3>
+<p>Sets the noise quality</p>
+<hr />
+<h2 id="setglobaltilingoffsetvector4">SetGlobalTilingOffset(Vector4)</h2>
+<h3 id="declaration_3">Declaration</h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">SetGlobalTilingOffset</span><span class="p">(</span><span class="n">Vector4</span><span class="w"> </span><span class="n">tilingOffset</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="parameters_2">Parameters</h3>
 <table>
 <thead>
 <tr>
@@ -4213,21 +4257,21 @@
 </tr>
 </tbody>
 </table>
-<h3 id="description_3">Description</h3>
+<h3 id="description_4">Description</h3>
 <p>Sets the global tiling and offset for every layer</p>
 <hr />
 <h2 id="callonexternaldatachanged">CallOnExternalDataChanged()</h2>
-<h3 id="declaration_3">Declaration</h3>
+<h3 id="declaration_4">Declaration</h3>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">CallOnExternalDataChanged</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="description_4">Description</h3>
+<h3 id="description_5">Description</h3>
 <p>Invokes the OnForcedDataChanged callback</p>
 <hr />
 <h2 id="updatematerialtexturematerial-int">UpdateMaterialTexture(Material, int)</h2>
-<h3 id="declaration_4">Declaration</h3>
+<h3 id="declaration_5">Declaration</h3>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">UpdateMaterialTexture</span><span class="p">(</span><span class="n">Material</span><span class="w"> </span><span class="n">material</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">layerIndex</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="parameters_2">Parameters</h3>
+<h3 id="parameters_3">Parameters</h3>
 <table>
 <thead>
 <tr>
@@ -4246,14 +4290,14 @@
 </tr>
 </tbody>
 </table>
-<h3 id="description_5">Description</h3>
+<h3 id="description_6">Description</h3>
 <p>Updates the properties texture with the data saved in this object</p>
 <hr />
 <h2 id="updatematerialtexturematerial-string-int">UpdateMaterialTexture(Material, string, int)</h2>
-<h3 id="declaration_5">Declaration</h3>
+<h3 id="declaration_6">Declaration</h3>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">UpdateMaterialTexture</span><span class="p">(</span><span class="n">Material</span><span class="w"> </span><span class="n">material</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">texturePropertyName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">layerIndex</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="parameters_3">Parameters</h3>
+<h3 id="parameters_4">Parameters</h3>
 <table>
 <thead>
 <tr>
@@ -4276,14 +4320,14 @@
 </tr>
 </tbody>
 </table>
-<h3 id="description_6">Description</h3>
+<h3 id="description_7">Description</h3>
 <p>Updates the properties texture with the data saved in this object</p>
 <hr />
 <h2 id="updatematerialtexturematerialproperty-int">UpdateMaterialTexture(MaterialProperty, int)</h2>
-<h3 id="declaration_6">Declaration</h3>
+<h3 id="declaration_7">Declaration</h3>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">UpdateMaterialTexture</span><span class="p">(</span><span class="n">MaterialProperty</span><span class="w"> </span><span class="n">property</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">layerIndex</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="parameters_4">Parameters</h3>
+<h3 id="parameters_5">Parameters</h3>
 <table>
 <thead>
 <tr>
@@ -4302,14 +4346,14 @@
 </tr>
 </tbody>
 </table>
-<h3 id="description_7">Description</h3>
+<h3 id="description_8">Description</h3>
 <p>Updates the properties texture with the data saved in this object</p>
 <hr />
 <h2 id="getmaterialdataint-int">GetMaterialData(int, int)</h2>
-<h3 id="declaration_7">Declaration</h3>
+<h3 id="declaration_8">Declaration</h3>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">RepetitionlessMaterialData</span><span class="w"> </span><span class="nf">GetMaterialData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">layerIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">materialIndex</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="parameters_5">Parameters</h3>
+<h3 id="parameters_6">Parameters</h3>
 <table>
 <thead>
 <tr>
@@ -4330,14 +4374,14 @@
 </table>
 <h3 id="returns">Returns</h3>
 <p>The properties for a specific material</p>
-<h3 id="description_8">Description</h3>
+<h3 id="description_9">Description</h3>
 <p>Gets the properties for a specific material</p>
 <hr />
 <h2 id="updateassignedtexturesmaterial-repetitionlesstexturedataso-int-int">UpdateAssignedTextures(Material, RepetitionlessTextureDataSO, int, int)</h2>
-<h3 id="declaration_8">Declaration</h3>
+<h3 id="declaration_9">Declaration</h3>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">UpdateAssignedTextures</span><span class="p">(</span><span class="n">Material</span><span class="w"> </span><span class="n">material</span><span class="p">,</span><span class="w"> </span><span class="n">RepetitionlessTextureDataSO</span><span class="w"> </span><span class="n">textureData</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">materialIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">layerIndex</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="parameters_6">Parameters</h3>
+<h3 id="parameters_7">Parameters</h3>
 <table>
 <thead>
 <tr>
@@ -4364,7 +4408,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="description_9">Description</h3>
+<h3 id="description_10">Description</h3>
 <p>Updates the assigned textures and the property texture based on a texture data</p>
 <hr />
 
