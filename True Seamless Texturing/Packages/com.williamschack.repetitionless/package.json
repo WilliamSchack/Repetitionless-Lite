@@ -7,8 +7,8 @@
   "description": "Remove visible texture tiling in seconds with a drop in replacement for materials and terrains. Fully compatible with Built-In, URP, and HDRP",
   "author": {
     "name": "William Schack",
-    "email": "contact@wilschack.dev",
-    "url": "https://wilschack.dev/"
+    "url": "https://wilschack.dev/",
+    "email": "contact@wilschack.dev"
   },
   "keywords": [
     "material",

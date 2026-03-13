@@ -43,7 +43,7 @@ namespace Repetitionless.Editor.CustomWindows
         [MenuItem("Window/Repetitionless/Open Window")]
         public static void Open()
         {
-            Open(false);
+            Open(false, false);
         }
 
         /// <summary>
@@ -134,7 +134,9 @@ namespace Repetitionless.Editor.CustomWindows
                 GUILayout.Space(20);
                 EditorGUILayout.HelpBox($"An update is available for Repetitionless (v{RepetitionlessPackageInfo.Info.version} > {_remoteVersion}) click the button below to update", MessageType.Info);
 
-                if (GUILayout.Button("Never open window on update")) {
+                DrawUpdateButton();
+
+                if (GUILayout.Button("Never open window when an update is available")) {
                     RepetitionlessPrefs.UpdatePrefs((p) => {
                         p.OpenWindowOnUpdate = false;
                     });
@@ -147,10 +149,8 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUIUtilities.EndBackgroundVertical();
 
-            if (_updateAvailable) {
-                if (GUILayout.Button($"Update to {_remoteVersion}", _largeButtonStyle))
-                    Updater.UpdatePackage();
-            }
+            if (_updateAvailable && !_showUpdateMessage)
+                DrawUpdateButton();
 
             EditorGUILayout.HelpBox("Thank for using Repetitionless! Pease consider leaving a review to support the asset and its development. Any feedback is appreciated!", MessageType.Info);
 
@@ -191,6 +191,12 @@ namespace Repetitionless.Editor.CustomWindows
             logoRect.yMax -= LOGO_PADDING;
             
             GUI.DrawTexture(logoRect, texture, ScaleMode.ScaleToFit);
+        }
+
+        private void DrawUpdateButton()
+        {
+            if (GUILayout.Button($"Update to {_remoteVersion}", _largeButtonStyle))
+                    Updater.UpdatePackage();
         }
 
         private string ProjectPath()
