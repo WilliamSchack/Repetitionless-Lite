@@ -14,6 +14,12 @@ namespace Repetitionless.Editor.Processors
     {
         static PostProjectOpen()
         {
+            // Wait a frame for the editor id to initialize
+            EditorApplication.delayCall += OnInitializeOnLoad;
+        }
+
+        private static void OnInitializeOnLoad()
+        {
             if (!IsEditorStartup())
                 return;
 
