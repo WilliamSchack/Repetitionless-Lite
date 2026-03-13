@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf1dab834d4ec34195b920ea7bbf9ec, type: 3}
   m_Name: HDRP_Asset
   m_EditorClassIdentifier: 
-  m_Version: 25
+  m_Version: 26
   m_ObsoleteFrameSettings:
     overrides: 0
     enableShadow: 0
@@ -246,6 +246,7 @@ MonoBehaviour:
     supportTransparentDepthPrepass: 1
     supportTransparentDepthPostpass: 1
     colorBufferFormat: 74
+    depthBufferFormat: 0
     supportCustomPass: 1
     supportVariableRateShading: 1
     customBufferFormat: 8
@@ -364,6 +365,7 @@ MonoBehaviour:
       enabled: 0
       useMipBias: 0
       advancedUpscalersByPriority: 
+      advancedUpscalerNames: []
       DLSSPerfQualitySetting: 0
       DLSSInjectionPoint: 0
       TAAUInjectionPoint: 0
@@ -371,6 +373,11 @@ MonoBehaviour:
       defaultInjectionPoint: 2
       DLSSUseOptimalSettings: 1
       DLSSSharpness: 0.5
+      DLSSRenderPresetForQuality: 0
+      DLSSRenderPresetForBalanced: 0
+      DLSSRenderPresetForPerformance: 0
+      DLSSRenderPresetForUltraPerformance: 0
+      DLSSRenderPresetForDLAA: 0
       FSR2EnableSharpness: 0
       FSR2Sharpness: 0
       FSR2UseOptimalSettings: 0
