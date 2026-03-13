@@ -16,13 +16,9 @@ namespace Repetitionless.Editor.Config
         internal class Prefs
         {
             public bool WelcomeWindowShown = false;
-            public bool ReviewPopupShown = false;
             public bool OpenWindowOnUpdate = true;
 
             public string LastProcessedVersion = "0.0.0";
-            
-            public int LastDateUsed = 0;
-            public int NumDaysActive = 0;
 
             public long LastSessionId = 0;
         }
