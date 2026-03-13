@@ -85,6 +85,7 @@ namespace Repetitionless.Editor.CustomWindows
             _headerStyle.wordWrap = true;
 
             _boldLabelStyle = new GUIStyle("label");
+            _boldLabelStyle.alignment = TextAnchor.MiddleCenter;
             _boldLabelStyle.fontStyle = FontStyle.Bold;
             _boldLabelStyle.wordWrap = true;
 
@@ -126,7 +127,7 @@ namespace Repetitionless.Editor.CustomWindows
 
             if (_showWelcomeMessage) {
                 GUILayout.Space(20);
-                GUILayout.Label("Welcome to repetitionless! To get started view the getting started page in the documentation for instructions on how to use the asset, or import the samples for examples.", _boldLabelStyle);
+                GUILayout.Label("Welcome to repetitionless! To get started view the getting started page in the documentation for instructions on how to use the asset, or import the samples for examples. Please also consider leaving a review to support the asset and its development, any feedback is appreciated!", _boldLabelStyle);
             }
 
             if (_showUpdateMessage) {
