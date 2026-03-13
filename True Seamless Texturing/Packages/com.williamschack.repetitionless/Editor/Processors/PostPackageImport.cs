@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 
 namespace Repetitionless.Editor.Processors
@@ -21,6 +22,7 @@ namespace Repetitionless.Editor.Processors
         private static void PackageImported(string packageName)
         {
             WelcomeWindow.Open(true);
+            ShowReviewLog();
 
             RepetitionlessPrefs.UpdatePrefs((p) => {
                 p.WelcomeWindowShown = true;
@@ -28,6 +30,11 @@ namespace Repetitionless.Editor.Processors
             });
 
             AssetDatabase.importPackageCompleted -= PackageImported;
+        }
+
+        private static void ShowReviewLog()
+        {
+            Debug.Log("<b>Thanks for purchasing Repetitionless!\n<color=#3FFFFF>Please consider leaving a review to support the asset and its development, any feedback is appreciated!</color></b>");
         }
     }
 }
