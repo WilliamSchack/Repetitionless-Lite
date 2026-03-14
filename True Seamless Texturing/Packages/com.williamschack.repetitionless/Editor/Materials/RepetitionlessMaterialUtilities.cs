@@ -4,7 +4,7 @@ using UnityEngine;
 
 using Repetitionless.Runtime.Variables;
 
-namespace Repetitionless.Editor.Processors
+namespace Repetitionless.Editor.Materials
 {
     internal static class RepetitionlessMaterialUtilities
     {

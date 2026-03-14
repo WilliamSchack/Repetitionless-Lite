@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Repetitionless.Editor.Processors
+namespace Repetitionless.Editor.Materials
 {
     using System;
     using Data;

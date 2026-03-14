@@ -8,12 +8,12 @@ using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Inspectors
 {
+    using Materials;
     using GUIUtilities;
     using TextureUtilities;
     using CustomWindows;
     using CustomDialog;
     using Data;
-    using Repetitionless.Editor.Processors;
 
     /// <summary>
     /// Base class for creating the Master/Terrain repetitionless inspector windows<br />
