@@ -460,49 +460,15 @@ namespace Repetitionless.Editor.Inspectors
             });
         }
 
-        private void SetKeyword(string keyword, bool enabled)
-        {
-            // Delay call to prevent recursive warnings, this will take a while if variant not cached
-            EditorApplication.delayCall += () => {
-                // Using a keyword variable with SetKeyword sometimes gives errors
-                if (enabled) _material.EnableKeyword(keyword);
-                else         _material.DisableKeyword(keyword);
-
-                _material.SetInt(keyword, enabled ? 1 : 0); // Required to save for some reason
-                EditorUtility.SetDirty(_material);
-            };
-        }
-
-        private void UpdateNoiseQualityTexture(ENoiseQuality noiseQuality)
-        {
-            MaterialProperty noiseTextureProp = FindProperty("_NoiseTexture");
-
-            switch (noiseQuality) {
-                case ENoiseQuality.High:
-                    noiseTextureProp.textureValue = null;
-                    break;
-                case ENoiseQuality.Medium: {
-                    Texture2D texture = Resources.Load<Texture2D>(Constants.NOISE_TEXTURE_NAME_4K);
-                    noiseTextureProp.textureValue = texture;
-                    break;
-                } case ENoiseQuality.Low: {
-                    Texture2D texture = Resources.Load<Texture2D>(Constants.NOISE_TEXTURE_NAME_1K);
-                    noiseTextureProp.textureValue = texture;
-                    break;
-                }
-            }
-        }
-
         private void SetNoiseQuality(ENoiseQuality noiseQuality)
         {
-            SetKeyword(Constants.NOISE_TEXTURE_KEYWORD, noiseQuality != ENoiseQuality.High);
-            UpdateNoiseQualityTexture(noiseQuality);
+            RepetitionlessMaterialUtilities.SetNoiseQuality(_material, noiseQuality);
         }
 
         private void SetTriplanarEnabled(bool enabled)
         {
             _triplanarEnabled = enabled;
-            SetKeyword(Constants.TRIPLANAR_KEYWORD, enabled);
+            RepetitionlessMaterialUtilities.SetTriplanarEnabled(_material, enabled);
         }
 
         private void DrawTextureChannelPicker(Rect lineRect, int layerIndex, int sectionIndex, int texturesIndex, int elementIndex, int channelIndex)
@@ -557,7 +523,7 @@ namespace Repetitionless.Editor.Inspectors
             _textureData.SetupTextureDrawers();
 
             // Load noise texture incase it got removed
-            UpdateNoiseQualityTexture(_materialProperties.NoiseQuality);
+            RepetitionlessMaterialUtilities.UpdateNoiseQualityTexture(_material, _materialProperties.NoiseQuality);
         }
 
         /// <summary>

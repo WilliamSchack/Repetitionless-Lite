@@ -2,8 +2,6 @@
 using UnityEngine;
 using UnityEditor;
 
-using Repetitionless.Runtime.Variables;
-
 namespace Repetitionless.Editor.Processors
 {
     using System;
@@ -12,7 +10,6 @@ namespace Repetitionless.Editor.Processors
     internal static class RepetitionlessMaterialCreator
     {
         private const string PROGRESS_BAR_TITLE = "Updating Material";
-        private const string NOISE_TEXTURE_PROP_NAME = "_NoiseTexture";
 
         public struct MaterialDataObjects
         {
@@ -53,7 +50,7 @@ namespace Repetitionless.Editor.Processors
                 dataManager.CreateAsset(materialProperties, Constants.PROPERTIES_FILE_NAME);
                 materialProperties.Init(maxLayers);
                 
-                SetNoiseQuality(mat, materialProperties.NoiseQuality);
+                RepetitionlessMaterialUtilities.SetNoiseQuality(mat, materialProperties.NoiseQuality);
 
                 materialProperties.Save();
                 AssetDatabase.SaveAssetIfDirty(materialProperties);
@@ -73,43 +70,6 @@ namespace Repetitionless.Editor.Processors
                 TextureDataSO = textureData,
                 MaterialDataSO = materialProperties
             };
-        }
-
-        private static void SetKeyword(Material mat, string keyword, bool enabled)
-        {
-            // Delay call to prevent recursive warnings, this will take a while if variant not cached
-            EditorApplication.delayCall += () => {
-                // Using a keyword variable with SetKeyword sometimes gives errors
-                if (enabled) mat.EnableKeyword(keyword);
-                else         mat.DisableKeyword(keyword);
-
-                mat.SetInt(keyword, enabled ? 1 : 0); // Required to save for some reason
-                EditorUtility.SetDirty(mat);
-            };
-        }
-
-        private static void UpdateNoiseQualityTexture(Material mat, ENoiseQuality noiseQuality)
-        {
-            switch (noiseQuality) {
-                case ENoiseQuality.High:
-                    mat.SetTexture(NOISE_TEXTURE_PROP_NAME, null);
-                    break;
-                case ENoiseQuality.Medium: {
-                    Texture2D texture = Resources.Load<Texture2D>(Constants.NOISE_TEXTURE_NAME_4K);
-                    mat.SetTexture(NOISE_TEXTURE_PROP_NAME, texture);
-                    break;
-                } case ENoiseQuality.Low: {
-                    Texture2D texture = Resources.Load<Texture2D>(Constants.NOISE_TEXTURE_NAME_1K);
-                    mat.SetTexture(NOISE_TEXTURE_PROP_NAME, texture);
-                    break;
-                }
-            }
-        }
-
-        private static void SetNoiseQuality(Material mat, ENoiseQuality noiseQuality)
-        {
-            SetKeyword(mat, Constants.NOISE_TEXTURE_KEYWORD, noiseQuality != ENoiseQuality.High);
-            UpdateNoiseQualityTexture(mat, noiseQuality);
         }
     }
 }
