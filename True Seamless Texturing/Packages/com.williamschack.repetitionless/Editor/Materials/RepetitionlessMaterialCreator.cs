@@ -60,6 +60,17 @@ namespace Repetitionless.Editor.Materials
             return shaderFolder;
         }
 
+        private static Shader GetShader(string name)
+        {
+            Shader shader = Shader.Find(name);
+            if (shader == null) {
+                Debug.LogError("Could not find shader: " + name);
+                return null;
+            }
+
+            return shader;
+        }
+
         private static void PingAsset(Object asset)
         {
             EditorUtility.FocusProjectWindow();
@@ -73,11 +84,8 @@ namespace Repetitionless.Editor.Materials
             if (shaderName == "") return;
 
             shaderName += Constants.SHADER_MATERIAL_NAME_REGULAR;
-            Shader shader = Shader.Find(shaderName);
-            if (shader == null) {
-                Debug.LogError("Could not find shader: " + shaderName);
-                return;
-            }
+            Shader shader = GetShader(shaderName);
+            if (shader == null) return;
 
             Material material = new Material(shader);
 
@@ -96,11 +104,8 @@ namespace Repetitionless.Editor.Materials
             if (shaderName == "") return;
 
             shaderName += Constants.SHADER_MATERIAL_NAME_TERRAIN;
-            Shader shader = Shader.Find(shaderName);
-            if (shader == null) {
-                Debug.LogError("Could not find shader: " + shaderName);
-                return;
-            }
+            Shader shader = GetShader(shaderName);
+            if (shader == null) return;
 
             Material material = new Material(shader);
 
@@ -116,40 +121,46 @@ namespace Repetitionless.Editor.Materials
         public static MaterialDataObjects SetupMaterial(Material mat, int maxLayers, System.Action<RepetitionlessMaterialDataSO> onPropertiesCreatedCallback = null)
         {
             MaterialDataManager dataManager = new MaterialDataManager(mat);
-            RepetitionlessTextureDataSO textureData;
-            RepetitionlessMaterialDataSO materialProperties;
+            RepetitionlessTextureDataSO textureData = null;
+            RepetitionlessMaterialDataSO materialProperties = null;
 
-            bool progressBarUsed = false;
-            
             try {
                 if (dataManager.AssetExists(Constants.TEXTURE_DATA_FILE_NAME)) {
                     textureData = dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
                 } else {
-                    EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Texture Data", 0.0f);
-                    progressBarUsed = true;
+                    EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Texture Data", 0.2f);
 
-                    textureData = ScriptableObject.CreateInstance<RepetitionlessTextureDataSO>();
-                    dataManager.CreateAsset(textureData, Constants.TEXTURE_DATA_FILE_NAME);
-                    textureData.Init(maxLayers);
+                    AssetDatabase.StartAssetEditing();
+                    try {
+                        textureData = ScriptableObject.CreateInstance<RepetitionlessTextureDataSO>();
+                        dataManager.CreateAsset(textureData, Constants.TEXTURE_DATA_FILE_NAME);
+                        textureData.Init(maxLayers);
 
-                    textureData.Save();
-                    AssetDatabase.SaveAssetIfDirty(textureData);
+                        textureData.Save();
+                        AssetDatabase.SaveAssetIfDirty(textureData);
+                    } finally {
+                        AssetDatabase.StopAssetEditing();
+                    }
                 }
 
                 if (dataManager.AssetExists(Constants.PROPERTIES_FILE_NAME)) {
                     materialProperties = dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
                 } else {
-                    EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Properties", 0.3f);
-                    progressBarUsed = true;
+                    EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Properties", 0.5f);
 
-                    materialProperties = ScriptableObject.CreateInstance<RepetitionlessMaterialDataSO>();
-                    dataManager.CreateAsset(materialProperties, Constants.PROPERTIES_FILE_NAME);
-                    materialProperties.Init(maxLayers);
-                    
-                    RepetitionlessMaterialUtilities.SetNoiseQuality(mat, materialProperties.NoiseQuality);
+                    AssetDatabase.StartAssetEditing();
+                    try {
+                        materialProperties = ScriptableObject.CreateInstance<RepetitionlessMaterialDataSO>();
+                        dataManager.CreateAsset(materialProperties, Constants.PROPERTIES_FILE_NAME);
+                        materialProperties.Init(maxLayers);
+                        
+                        RepetitionlessMaterialUtilities.SetNoiseQuality(mat, materialProperties.NoiseQuality);
 
-                    materialProperties.Save();
-                    AssetDatabase.SaveAssetIfDirty(materialProperties);
+                        materialProperties.Save();
+                        AssetDatabase.SaveAssetIfDirty(materialProperties);
+                    } finally {
+                        AssetDatabase.StopAssetEditing();
+                    }
 
                     EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Writing Properties", 0.8f);
                     materialProperties.UpdateMaterialTexture(mat, 0);
@@ -158,9 +169,8 @@ namespace Repetitionless.Editor.Materials
                         onPropertiesCreatedCallback(materialProperties);
                 }
             } finally {
-                // Clear in finally in case of an error
-                if (progressBarUsed)
-                    EditorUtility.ClearProgressBar();
+                // Clear progress in case of error to prevent infinite progress bar
+                EditorUtility.ClearProgressBar();
             }
 
 

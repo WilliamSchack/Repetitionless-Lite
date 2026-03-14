@@ -122,7 +122,7 @@ namespace Repetitionless.Editor.Data
             string parentPath = DataFolderParentPath();
             if (parentPath == "") return "";
 
-            return $"{parentPath}/{DataFolderName()}" ;
+            return $"{parentPath}/{DataFolderName()}";
         }
 
         private bool DataFolderCreated()
