@@ -50,7 +50,7 @@ namespace Repetitionless.Editor.Updating
             Task<string> getContentTask = response.Content.ReadAsStringAsync();
             getContentTask.Wait();
 
-            // JSONUtility cannot read json arrays, put the array in an object
+            // JSONUtility cannot read root json arrays, put the array in an object
             string wrappedJson = $"{{\"items\":{getContentTask.Result}}}";
             GithubTagResponseArray responseJson = JsonUtility.FromJson<GithubTagResponseArray>(wrappedJson);
 

@@ -79,14 +79,14 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Called when the material properties are first created
         /// </summary>
-        protected override void OnPropertiesCreated()
+        protected override void OnPropertiesCreated(RepetitionlessMaterialDataSO materialProperties)
         {
             // Set uv space to world
             MaterialProperty uvSpaceProp = FindProperty("_UVSpace");
             uvSpaceProp.floatValue = (int)EUVSpace.World;
 
             // Update default global tiling offset
-            _materialProperties.SetGlobalTilingOffset(DEFAULT_GLOBAL_TILING_OFFSET);
+            materialProperties.SetGlobalTilingOffset(DEFAULT_GLOBAL_TILING_OFFSET);
         }
 
         /// <summary>

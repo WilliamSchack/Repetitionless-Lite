@@ -13,6 +13,7 @@ namespace Repetitionless.Editor.Inspectors
     using CustomWindows;
     using CustomDialog;
     using Data;
+    using Repetitionless.Editor.Processors;
 
     /// <summary>
     /// Base class for creating the Master/Terrain repetitionless inspector windows<br />
@@ -548,49 +549,12 @@ namespace Repetitionless.Editor.Inspectors
             _arraySettingsButtonStyle.margin = GUI.skin.button.margin;
 
             // Setup data
-            _dataManager = new MaterialDataManager(_material);
-
-            bool progressBarUsed = false;
-            
-            if (_dataManager.AssetExists(Constants.TEXTURE_DATA_FILE_NAME)) {
-                _textureData = _dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
-            } else {
-                EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Texture Data", 0.0f);
-                progressBarUsed = true;
-
-                _textureData = ScriptableObject.CreateInstance<RepetitionlessTextureDataSO>();
-                _dataManager.CreateAsset(_textureData, Constants.TEXTURE_DATA_FILE_NAME);
-                _textureData.Init(_maxLayers);
-
-                _textureData.Save();
-                AssetDatabase.SaveAssetIfDirty(_textureData);
-            }
+            RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects = RepetitionlessMaterialCreator.SetupMaterial(_material, _maxLayers, OnPropertiesCreated);
+            _dataManager = materialDataObjects.DataManager;
+            _textureData = materialDataObjects.TextureDataSO;
+            _materialProperties = materialDataObjects.MaterialDataSO;
 
             _textureData.SetupTextureDrawers();
-
-            if (_dataManager.AssetExists(Constants.PROPERTIES_FILE_NAME)) {
-                _materialProperties = _dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
-            } else {
-                EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Properties", 0.3f);
-                progressBarUsed = true;
-
-                _materialProperties = ScriptableObject.CreateInstance<RepetitionlessMaterialDataSO>();
-                _dataManager.CreateAsset(_materialProperties, Constants.PROPERTIES_FILE_NAME);
-                _materialProperties.Init(_maxLayers);
-                
-                SetNoiseQuality(_materialProperties.NoiseQuality);
-
-                _materialProperties.Save();
-                AssetDatabase.SaveAssetIfDirty(_materialProperties);
-
-                EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Writing Properties", 0.8f);
-                UpdateMaterialPropertiesTexture(0);
-
-                OnPropertiesCreated();
-            }
-
-            if (progressBarUsed)
-                EditorUtility.ClearProgressBar();
 
             // Load noise texture incase it got removed
             UpdateNoiseQualityTexture(_materialProperties.NoiseQuality);
@@ -600,7 +564,7 @@ namespace Repetitionless.Editor.Inspectors
         /// Called when the material properties are first created<br />
         /// No need to call base, nothing happens
         /// </summary>
-        protected virtual void OnPropertiesCreated() {}
+        protected virtual void OnPropertiesCreated(RepetitionlessMaterialDataSO materialProperties) {}
 
         /// <summary>
         /// Base OnGUI function
