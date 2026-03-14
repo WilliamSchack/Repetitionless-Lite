@@ -181,7 +181,6 @@ namespace Repetitionless.Editor.Data
 
             if (overwrite) AssetDatabase.DeleteAsset(assetPath);
             AssetDatabase.CreateAsset(asset, assetPath);
-            AssetDatabase.Refresh();
         }
 
         /// <summary>

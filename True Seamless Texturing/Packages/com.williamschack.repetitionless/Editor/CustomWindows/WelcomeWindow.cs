@@ -40,7 +40,7 @@ namespace Repetitionless.Editor.CustomWindows
         /// <summary>
         /// Opens the window
         /// </summary>
-        [MenuItem("Window/Repetitionless/Open Window")]
+        [MenuItem("Window/Repetitionless/Open Window", secondaryPriority = 0)]
         public static void Open()
         {
             Open(false, false);

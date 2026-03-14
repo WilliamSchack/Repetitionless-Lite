@@ -8,6 +8,7 @@ using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Inspectors
 {
+    using Materials;
     using GUIUtilities;
     using TextureUtilities;
     using Data;
@@ -22,7 +23,7 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// The max amount of layers for the material
         /// </summary>
-        protected override int _maxLayers => 32;
+        protected override int _maxLayers => Constants.MAX_LAYERS_TERRAIN;
 
         private RepetitionlessTerrainDataSO _materialTerrainData;
 
@@ -81,12 +82,7 @@ namespace Repetitionless.Editor.Inspectors
         /// </summary>
         protected override void OnPropertiesCreated(RepetitionlessMaterialDataSO materialProperties)
         {
-            // Set uv space to world
-            MaterialProperty uvSpaceProp = FindProperty("_UVSpace");
-            uvSpaceProp.floatValue = (int)EUVSpace.World;
-
-            // Update default global tiling offset
-            materialProperties.SetGlobalTilingOffset(DEFAULT_GLOBAL_TILING_OFFSET);
+            RepetitionlessTerrainMaterialUtilities.SetupProperties(_material, materialProperties);
         }
 
         /// <summary>

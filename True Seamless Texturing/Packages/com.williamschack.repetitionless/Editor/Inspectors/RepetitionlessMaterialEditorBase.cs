@@ -101,7 +101,8 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// The max amount of layers for the material
         /// </summary>
-        protected virtual int _maxLayers => 1;
+        /// 
+        protected virtual int _maxLayers => Constants.MAX_LAYERS_REGULAR;
 
         // Data
 

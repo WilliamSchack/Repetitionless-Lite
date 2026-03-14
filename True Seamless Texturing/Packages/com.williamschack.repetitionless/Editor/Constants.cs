@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Repetitionless.Editor
 {
     internal static class Constants
@@ -10,6 +12,16 @@ namespace Repetitionless.Editor
         public const string PACKAGE_NAME = "com.williamschack.repetitionless";
         public const string PACKAGE_PATH = "Packages/" + PACKAGE_NAME;
         public const string LIBRARY_PATH = "Library/" + PACKAGE_NAME;
+
+        public const string SHADER_FOLDER = "Repetitionless/";
+        public const string SHADER_MATERIAL_NAME_REGULAR = "Repetitionless";
+        public const string SHADER_MATERIAL_NAME_TERRAIN = "RepetitionlessTerrain";
+        public const string SHADER_FOLDER_BIRP = "BIRP/";
+        public const string SHADER_FOLDER_URP = "URP/";
+        public const string SHADER_FOLDER_HDRP = "HDRP/";
+
+        public const string DEFAULT_MATERIAL_NAME_REGULAR = "RepetitionlessMaterial.mat";
+        public const string DEFAULT_MATERIAL_NAME_TERRAIN = "RepetitionlessTerrainMaterial.mat";
 
         public const string SAMPLES_PATH = PACKAGE_PATH + "/Samples~";
         public const string SAMPLES_PATH_ASSETS = SAMPLES_PATH + "/Assets";
@@ -37,14 +49,16 @@ namespace Repetitionless.Editor
         public const string NOISE_TEXTURE_NAME_4K = "repetitionless_NoiseTexture_4096";
         public const string NOISE_TEXTURE_NAME_1K = "repetitionless_NoiseTexture_1024";
 
+        public const int MAX_LAYERS_REGULAR = 1;
+        public const int MAX_LAYERS_TERRAIN = 32;
+
+        public static readonly Vector4 DEFAULT_TILING_OFFSET_TERRAIN = new Vector4(100, 100, 0, 0);
+
         public const int MATERIALS_PER_LAYER_COUNT = 3;
         public const int COMPRESSED_MATERIAL_VARIABLES_COUNT = 9;
         public const int COMPRESSED_LAYER_VARIABLES_COUNT = COMPRESSED_MATERIAL_VARIABLES_COUNT * MATERIALS_PER_LAYER_COUNT + 4;
 
-
         public const string NOISE_TEXTURE_KEYWORD = "_REPETITIONLESS_NOISE_TEXTURE";
         public const string TRIPLANAR_KEYWORD = "_REPETITIONLESS_TRIPLANAR";
-
-        public const int DAYS_UNTIL_REVIEW_POPUP = 5;
     }
 }
