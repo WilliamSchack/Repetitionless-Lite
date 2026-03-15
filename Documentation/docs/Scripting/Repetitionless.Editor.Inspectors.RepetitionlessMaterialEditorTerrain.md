@@ -34,13 +34,19 @@ Called when the inspector is first opened
 
 ---
 
-## OnPropertiesCreated()
+## OnPropertiesCreated(RepetitionlessMaterialDataSO)
 
 ### Declaration
 
 ``` csharp
-protected override void OnPropertiesCreated()
+protected override void OnPropertiesCreated(RepetitionlessMaterialDataSO materialProperties)
 ```
+
+### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| materialProperties | The material properties that were just created |
 
 ### Description
 

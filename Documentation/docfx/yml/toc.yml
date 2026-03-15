@@ -55,6 +55,15 @@
     name: RepetitionlessMaterialEditorTerrain
   - uid: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor
     name: RepetitionlessTerrainEditor
+- uid: Repetitionless.Editor.Materials
+  name: Repetitionless.Editor.Materials
+  items:
+  - uid: Repetitionless.Editor.Materials.MaterialDataObjects
+    name: MaterialDataObjects
+  - uid: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter
+    name: RepetitionlessMaterialConverter
+  - uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator
+    name: RepetitionlessMaterialCreator
 - uid: Repetitionless.Editor.Processors
   name: Repetitionless.Editor.Processors
   items:
@@ -68,11 +77,6 @@
     name: RepetitionlessMaterialProcessor
   - uid: Repetitionless.Editor.Processors.TerrainLayerPostprocessor
     name: TerrainLayerPostprocessor
-- uid: Repetitionless.Editor.Samples
-  name: Repetitionless.Editor.Samples
-  items:
-  - uid: Repetitionless.Editor.Samples.TerrainSceneSettingsEditor
-    name: TerrainSceneSettingsEditor
 - uid: Repetitionless.Editor.TextureUtilities
   name: Repetitionless.Editor.TextureUtilities
   items:
@@ -98,18 +102,15 @@
   items:
   - uid: Repetitionless.Runtime.Compression.BooleanCompression
     name: BooleanCompression
-- uid: Repetitionless.Runtime.Samples
-  name: Repetitionless.Runtime.Samples
-  items:
-  - uid: Repetitionless.Runtime.Samples.ColourSpaceChecker
-    name: ColourSpaceChecker
-  - uid: Repetitionless.Runtime.Samples.TerrainSceneSettings
-    name: TerrainSceneSettings
 - uid: Repetitionless.Runtime.Variables
   name: Repetitionless.Runtime.Variables
   items:
   - uid: Repetitionless.Runtime.Variables.EDistanceBlendMode
     name: EDistanceBlendMode
+  - uid: Repetitionless.Runtime.Variables.ENoiseQuality
+    name: ENoiseQuality
+  - uid: Repetitionless.Runtime.Variables.ERenderPipeline
+    name: ERenderPipeline
   - uid: Repetitionless.Runtime.Variables.ESurfaceType
     name: ESurfaceType
   - uid: Repetitionless.Runtime.Variables.ETextureType

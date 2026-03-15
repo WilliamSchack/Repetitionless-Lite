@@ -80,6 +80,9 @@ namespace Repetitionless.Editor.Inspectors
         /// <summary>
         /// Called when the material properties are first created
         /// </summary>
+        /// <param name="materialProperties">
+        /// The material properties that were just created
+        /// </param>
         protected override void OnPropertiesCreated(RepetitionlessMaterialDataSO materialProperties)
         {
             RepetitionlessTerrainMaterialUtilities.SetupProperties(_material, materialProperties);

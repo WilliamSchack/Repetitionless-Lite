@@ -1,0 +1,200 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter
+  commentId: T:Repetitionless.Editor.Materials.RepetitionlessMaterialConverter
+  id: RepetitionlessMaterialConverter
+  parent: Repetitionless.Editor.Materials
+  children:
+  - Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterial(UnityEngine.Material)
+  - Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterials(UnityEngine.Material[],System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: RepetitionlessMaterialConverter
+  nameWithType: RepetitionlessMaterialConverter
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RepetitionlessMaterialConverter
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
+    startLine: 15
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Materials
+  summary: "\nUsed to convert lit materials to repetitionless materials\n"
+  example: []
+  syntax:
+    content: public static class RepetitionlessMaterialConverter
+    content.vb: Public Module RepetitionlessMaterialConverter
+  inheritance:
+  - System.Object
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterial(UnityEngine.Material)
+  commentId: M:Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterial(UnityEngine.Material)
+  id: ConvertMaterial(UnityEngine.Material)
+  parent: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter
+  langs:
+  - csharp
+  - vb
+  name: ConvertMaterial(Material)
+  nameWithType: RepetitionlessMaterialConverter.ConvertMaterial(Material)
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterial(UnityEngine.Material)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: ConvertMaterial
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
+    startLine: 207
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Materials
+  summary: "\nConvert a material to a repetitionless material<br />\nSaves the material next to the original\n"
+  example: []
+  syntax:
+    content: public static Material ConvertMaterial(Material material)
+    parameters:
+    - id: material
+      type: UnityEngine.Material
+      description: "\nThe material to convert\n"
+    return:
+      type: UnityEngine.Material
+      description: "\nThe created material\n"
+    content.vb: Public Shared Function ConvertMaterial(material As Material) As Material
+  overload: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterial*
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterials(UnityEngine.Material[],System.Boolean)
+  commentId: M:Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterials(UnityEngine.Material[],System.Boolean)
+  id: ConvertMaterials(UnityEngine.Material[],System.Boolean)
+  parent: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter
+  langs:
+  - csharp
+  - vb
+  name: ConvertMaterials(Material[], bool)
+  nameWithType: RepetitionlessMaterialConverter.ConvertMaterials(Material[], bool)
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterials(UnityEngine.Material[], bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: ConvertMaterials
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
+    startLine: 264
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Materials
+  summary: "\nConvert multiple materials to repetitionless materials<br />\nSaves the materials next to the originals\n"
+  example: []
+  syntax:
+    content: public static void ConvertMaterials(Material[] materials, bool selectConverted = true)
+    parameters:
+    - id: materials
+      type: UnityEngine.Material[]
+      description: "\nThe materials to convert\n"
+    - id: selectConverted
+      type: System.Boolean
+      description: "\nIf the materials will be selected in the project window after creation\n"
+    content.vb: Public Shared Sub ConvertMaterials(materials As Material(), selectConverted As Boolean = True)
+  overload: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterials*
+  nameWithType.vb: RepetitionlessMaterialConverter.ConvertMaterials(Material(), Boolean)
+  fullName.vb: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterials(UnityEngine.Material(), Boolean)
+  name.vb: ConvertMaterials(Material(), Boolean)
+references:
+- uid: Repetitionless.Editor.Materials
+  commentId: N:Repetitionless.Editor.Materials
+  name: Repetitionless.Editor.Materials
+  nameWithType: Repetitionless.Editor.Materials
+  fullName: Repetitionless.Editor.Materials
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Materials
+    name: Materials
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Materials
+    name: Materials
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterial*
+  commentId: Overload:Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterial
+  name: ConvertMaterial
+  nameWithType: RepetitionlessMaterialConverter.ConvertMaterial
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterial
+- uid: UnityEngine.Material
+  commentId: T:UnityEngine.Material
+  parent: UnityEngine
+  isExternal: true
+  name: Material
+  nameWithType: Material
+  fullName: UnityEngine.Material
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterials*
+  commentId: Overload:Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterials
+  name: ConvertMaterials
+  nameWithType: RepetitionlessMaterialConverter.ConvertMaterials
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.ConvertMaterials
+- uid: UnityEngine.Material[]
+  isExternal: true
+  name: Material[]
+  nameWithType: Material[]
+  fullName: UnityEngine.Material[]
+  nameWithType.vb: Material()
+  fullName.vb: UnityEngine.Material()
+  name.vb: Material()
+  spec.csharp:
+  - uid: UnityEngine.Material
+    name: Material
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: UnityEngine.Material
+    name: Material
+    isExternal: true
+  - name: (
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

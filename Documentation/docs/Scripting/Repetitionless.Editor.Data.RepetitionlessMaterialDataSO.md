@@ -201,7 +201,7 @@ Gets the properties for a specific material
 ### Declaration
 
 ``` csharp
-public void UpdateAssignedTextures(Material material, RepetitionlessTextureDataSO textureData, int materialIndex, int layerIndex)
+public void UpdateAssignedTextures(Material material, RepetitionlessTextureDataSO textureData, int layerIndex, int materialIndex)
 ```
 
 ### Parameters
@@ -210,8 +210,8 @@ public void UpdateAssignedTextures(Material material, RepetitionlessTextureDataS
 |-----------|-------------|
 | material | The material that will have its texture property updated  |
 | textureData | The texture data that assigned textures will be read from |
-| materialIndex | The index of the material:<br />0: Base, 1: Far, 2: Blend |
 | layerIndex | The layer that the material is in |
+| materialIndex | The index of the material:<br />0: Base, 1: Far, 2: Blend |
 
 ### Description
 

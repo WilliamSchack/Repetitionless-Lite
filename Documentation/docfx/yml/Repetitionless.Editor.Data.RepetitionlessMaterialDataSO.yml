@@ -14,6 +14,7 @@ items:
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.PROPERTIES_TEXTURE_PROP_NAME
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset(UnityEngine.Vector4)
+  - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetNoiseQuality(Repetitionless.Runtime.Variables.ENoiseQuality)
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures(UnityEngine.Material,Repetitionless.Editor.Data.RepetitionlessTextureDataSO,System.Int32,System.Int32)
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEditor.MaterialProperty,System.Int32)
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateMaterialTexture(UnityEngine.Material,System.Int32)
@@ -131,7 +132,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GlobalTilingOffset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 46
+    startLine: 52
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -172,7 +173,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnExternalDataChanged
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 55
+    startLine: 61
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -201,7 +202,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Init
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 63
+    startLine: 69
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -236,7 +237,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Save
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 79
+    startLine: 85
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -246,6 +247,38 @@ items:
     content: public void Save()
     content.vb: Public Sub Save()
   overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save*
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetNoiseQuality(Repetitionless.Runtime.Variables.ENoiseQuality)
+  commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetNoiseQuality(Repetitionless.Runtime.Variables.ENoiseQuality)
+  id: SetNoiseQuality(Repetitionless.Runtime.Variables.ENoiseQuality)
+  parent: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  langs:
+  - csharp
+  - vb
+  name: SetNoiseQuality(ENoiseQuality)
+  nameWithType: RepetitionlessMaterialDataSO.SetNoiseQuality(ENoiseQuality)
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetNoiseQuality(Repetitionless.Runtime.Variables.ENoiseQuality)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SetNoiseQuality
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
+    startLine: 114
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nSets the noise quality\n"
+  example: []
+  syntax:
+    content: public void SetNoiseQuality(ENoiseQuality noiseQuality)
+    parameters:
+    - id: noiseQuality
+      type: Repetitionless.Runtime.Variables.ENoiseQuality
+      description: "\nThe new quality to use\n"
+    content.vb: Public Sub SetNoiseQuality(noiseQuality As ENoiseQuality)
+  overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetNoiseQuality*
 - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset(UnityEngine.Vector4)
   commentId: M:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset(UnityEngine.Vector4)
   id: SetGlobalTilingOffset(UnityEngine.Vector4)
@@ -264,7 +297,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetGlobalTilingOffset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 108
+    startLine: 126
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -296,7 +329,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CallOnExternalDataChanged
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 122
+    startLine: 140
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -324,7 +357,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateMaterialTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 136
+    startLine: 154
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -362,7 +395,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateMaterialTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 153
+    startLine: 171
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -403,7 +436,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateMaterialTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 168
+    startLine: 186
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -441,7 +474,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetMaterialData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 240
+    startLine: 258
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -482,14 +515,14 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateAssignedTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessMaterialDataSO.cs
-    startLine: 268
+    startLine: 286
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
   summary: "\nUpdates the assigned textures and the property texture based on a texture data\n"
   example: []
   syntax:
-    content: public void UpdateAssignedTextures(Material material, RepetitionlessTextureDataSO textureData, int materialIndex, int layerIndex)
+    content: public void UpdateAssignedTextures(Material material, RepetitionlessTextureDataSO textureData, int layerIndex, int materialIndex)
     parameters:
     - id: material
       type: UnityEngine.Material
@@ -497,13 +530,13 @@ items:
     - id: textureData
       type: Repetitionless.Editor.Data.RepetitionlessTextureDataSO
       description: "\nThe texture data that assigned textures will be read from\n"
-    - id: materialIndex
-      type: System.Int32
-      description: "\nThe index of the material:<br />\n0: Base, 1: Far, 2: Blend\n"
     - id: layerIndex
       type: System.Int32
       description: "\nThe layer that the material is in\n"
-    content.vb: Public Sub UpdateAssignedTextures(material As Material, textureData As RepetitionlessTextureDataSO, materialIndex As Integer, layerIndex As Integer)
+    - id: materialIndex
+      type: System.Int32
+      description: "\nThe index of the material:<br />\n0: Base, 1: Far, 2: Blend\n"
+    content.vb: Public Sub UpdateAssignedTextures(material As Material, textureData As RepetitionlessTextureDataSO, layerIndex As Integer, materialIndex As Integer)
   overload: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures*
   nameWithType.vb: RepetitionlessMaterialDataSO.UpdateAssignedTextures(Material, RepetitionlessTextureDataSO, Integer, Integer)
   fullName.vb: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures(UnityEngine.Material, Repetitionless.Editor.Data.RepetitionlessTextureDataSO, Integer, Integer)
@@ -635,6 +668,40 @@ references:
   name: Save
   nameWithType: RepetitionlessMaterialDataSO.Save
   fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.Save
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetNoiseQuality*
+  commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetNoiseQuality
+  name: SetNoiseQuality
+  nameWithType: RepetitionlessMaterialDataSO.SetNoiseQuality
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetNoiseQuality
+- uid: Repetitionless.Runtime.Variables.ENoiseQuality
+  commentId: T:Repetitionless.Runtime.Variables.ENoiseQuality
+  parent: Repetitionless.Runtime.Variables
+  name: ENoiseQuality
+  nameWithType: ENoiseQuality
+  fullName: Repetitionless.Runtime.Variables.ENoiseQuality
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables
 - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset*
   commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.SetGlobalTilingOffset
   name: SetGlobalTilingOffset
@@ -681,29 +748,6 @@ references:
   name: RepetitionlessMaterialData
   nameWithType: RepetitionlessMaterialData
   fullName: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
-- uid: Repetitionless.Runtime.Variables
-  commentId: N:Repetitionless.Runtime.Variables
-  name: Repetitionless.Runtime.Variables
-  nameWithType: Repetitionless.Runtime.Variables
-  fullName: Repetitionless.Runtime.Variables
-  spec.csharp:
-  - uid: Repetitionless
-    name: Repetitionless
-  - name: .
-  - uid: Repetitionless.Runtime
-    name: Runtime
-  - name: .
-  - uid: Repetitionless.Runtime.Variables
-    name: Variables
-  spec.vb:
-  - uid: Repetitionless
-    name: Repetitionless
-  - name: .
-  - uid: Repetitionless.Runtime
-    name: Runtime
-  - name: .
-  - uid: Repetitionless.Runtime.Variables
-    name: Variables
 - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures*
   commentId: Overload:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO.UpdateAssignedTextures
   name: UpdateAssignedTextures

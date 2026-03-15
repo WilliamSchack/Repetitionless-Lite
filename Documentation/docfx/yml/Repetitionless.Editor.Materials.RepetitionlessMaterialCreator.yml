@@ -1,0 +1,537 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator
+  commentId: T:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator
+  id: RepetitionlessMaterialCreator
+  parent: Repetitionless.Editor.Materials
+  children:
+  - Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial(Repetitionless.Runtime.Variables.ERenderPipeline,System.String,System.String,System.Boolean)
+  - Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial(System.String,System.String,System.Boolean)
+  - Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder(System.Boolean)
+  - Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(Repetitionless.Runtime.Variables.ERenderPipeline,System.String,System.String,System.Boolean)
+  - Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(System.String,System.String,System.Boolean)
+  - Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder(System.Boolean)
+  - Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.SetupMaterial(UnityEngine.Material,System.Int32,System.Action{Repetitionless.Editor.Data.RepetitionlessMaterialDataSO})
+  langs:
+  - csharp
+  - vb
+  name: RepetitionlessMaterialCreator
+  nameWithType: RepetitionlessMaterialCreator
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RepetitionlessMaterialCreator
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+    startLine: 41
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Materials
+  summary: "\nUsed to create new repetitionless materials\n"
+  example: []
+  syntax:
+    content: public static class RepetitionlessMaterialCreator
+    content.vb: Public Module RepetitionlessMaterialCreator
+  inheritance:
+  - System.Object
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial(Repetitionless.Runtime.Variables.ERenderPipeline,System.String,System.String,System.Boolean)
+  commentId: M:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial(Repetitionless.Runtime.Variables.ERenderPipeline,System.String,System.String,System.Boolean)
+  id: CreateMaterial(Repetitionless.Runtime.Variables.ERenderPipeline,System.String,System.String,System.Boolean)
+  parent: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator
+  langs:
+  - csharp
+  - vb
+  name: CreateMaterial(ERenderPipeline, string, string, bool)
+  nameWithType: RepetitionlessMaterialCreator.CreateMaterial(ERenderPipeline, string, string, bool)
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial(Repetitionless.Runtime.Variables.ERenderPipeline, string, string, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateMaterial
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+    startLine: 129
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Materials
+  summary: "\nCreates a repetitionless material\n"
+  example: []
+  syntax:
+    content: public static MaterialDataObjects CreateMaterial(ERenderPipeline pipeline, string folderPath, string fileName = "RepetitionlessMaterial.mat", bool ping = true)
+    parameters:
+    - id: pipeline
+      type: Repetitionless.Runtime.Variables.ERenderPipeline
+      description: "\nThe materials render pipeline\n"
+    - id: folderPath
+      type: System.String
+      description: "\nThe folder to save the material to\n"
+    - id: fileName
+      type: System.String
+      description: "\nThe file name for the material<br />\nMust include the extension .mat\n"
+    - id: ping
+      type: System.Boolean
+      description: "\nIf the material will be selected and pinged in the project window after creation\n"
+    return:
+      type: Repetitionless.Editor.Materials.MaterialDataObjects
+      description: "\nThe data objects for the created material\n"
+    content.vb: Public Shared Function CreateMaterial(pipeline As ERenderPipeline, folderPath As String, fileName As String = "RepetitionlessMaterial.mat", ping As Boolean = True) As MaterialDataObjects
+  overload: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial*
+  nameWithType.vb: RepetitionlessMaterialCreator.CreateMaterial(ERenderPipeline, String, String, Boolean)
+  fullName.vb: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial(Repetitionless.Runtime.Variables.ERenderPipeline, String, String, Boolean)
+  name.vb: CreateMaterial(ERenderPipeline, String, String, Boolean)
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial(System.String,System.String,System.Boolean)
+  commentId: M:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial(System.String,System.String,System.Boolean)
+  id: CreateMaterial(System.String,System.String,System.Boolean)
+  parent: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator
+  langs:
+  - csharp
+  - vb
+  name: CreateMaterial(string, string, bool)
+  nameWithType: RepetitionlessMaterialCreator.CreateMaterial(string, string, bool)
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial(string, string, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateMaterial
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+    startLine: 171
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Materials
+  summary: "\nCreates a repetitionless material<br />\nUses the currently selected render pipeline\n"
+  example: []
+  syntax:
+    content: public static MaterialDataObjects CreateMaterial(string folderPath, string fileName = "RepetitionlessMaterial.mat", bool ping = true)
+    parameters:
+    - id: folderPath
+      type: System.String
+      description: "\nThe folder to save the material to\n"
+    - id: fileName
+      type: System.String
+      description: "\nThe file name for the material<br />\nMust include the extension .mat\n"
+    - id: ping
+      type: System.Boolean
+      description: "\nIf the material will be selected and pinged in the project window after creation\n"
+    return:
+      type: Repetitionless.Editor.Materials.MaterialDataObjects
+      description: "\nThe data objects for the created material\n"
+    content.vb: Public Shared Function CreateMaterial(folderPath As String, fileName As String = "RepetitionlessMaterial.mat", ping As Boolean = True) As MaterialDataObjects
+  overload: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial*
+  nameWithType.vb: RepetitionlessMaterialCreator.CreateMaterial(String, String, Boolean)
+  fullName.vb: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial(String, String, Boolean)
+  name.vb: CreateMaterial(String, String, Boolean)
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder(System.Boolean)
+  commentId: M:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder(System.Boolean)
+  id: CreateMaterialAtCurrentFolder(System.Boolean)
+  parent: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator
+  langs:
+  - csharp
+  - vb
+  name: CreateMaterialAtCurrentFolder(bool)
+  nameWithType: RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder(bool)
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder(bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateMaterialAtCurrentFolder
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+    startLine: 188
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Materials
+  summary: "\nCreates a repetitionless material<br />\nUses the currently selected render pipeline<br />\nSaves to the currently opened folder in the project window\n"
+  example: []
+  syntax:
+    content: public static MaterialDataObjects CreateMaterialAtCurrentFolder(bool ping = true)
+    parameters:
+    - id: ping
+      type: System.Boolean
+      description: "\nIf the material will be selected and pinged in the project window after creation\n"
+    return:
+      type: Repetitionless.Editor.Materials.MaterialDataObjects
+      description: "\nThe data objects for the created material\n"
+    content.vb: Public Shared Function CreateMaterialAtCurrentFolder(ping As Boolean = True) As MaterialDataObjects
+  overload: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder*
+  nameWithType.vb: RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder(Boolean)
+  fullName.vb: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder(Boolean)
+  name.vb: CreateMaterialAtCurrentFolder(Boolean)
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(Repetitionless.Runtime.Variables.ERenderPipeline,System.String,System.String,System.Boolean)
+  commentId: M:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(Repetitionless.Runtime.Variables.ERenderPipeline,System.String,System.String,System.Boolean)
+  id: CreateTerrainMaterial(Repetitionless.Runtime.Variables.ERenderPipeline,System.String,System.String,System.Boolean)
+  parent: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator
+  langs:
+  - csharp
+  - vb
+  name: CreateTerrainMaterial(ERenderPipeline, string, string, bool)
+  nameWithType: RepetitionlessMaterialCreator.CreateTerrainMaterial(ERenderPipeline, string, string, bool)
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(Repetitionless.Runtime.Variables.ERenderPipeline, string, string, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateTerrainMaterial
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+    startLine: 213
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Materials
+  summary: "\nCreates a repetitionless terrain material\n"
+  example: []
+  syntax:
+    content: public static MaterialDataObjects CreateTerrainMaterial(ERenderPipeline pipeline, string folderPath, string fileName = "RepetitionlessTerrainMaterial.mat", bool ping = true)
+    parameters:
+    - id: pipeline
+      type: Repetitionless.Runtime.Variables.ERenderPipeline
+      description: "\nThe materials render pipeline\n"
+    - id: folderPath
+      type: System.String
+      description: "\nThe folder to save the material to\n"
+    - id: fileName
+      type: System.String
+      description: "\nThe file name for the material<br />\nMust include the extension .mat\n"
+    - id: ping
+      type: System.Boolean
+      description: "\nIf the material will be selected and pinged in the project window after creation\n"
+    return:
+      type: Repetitionless.Editor.Materials.MaterialDataObjects
+      description: "\nThe data objects for the created material\n"
+    content.vb: Public Shared Function CreateTerrainMaterial(pipeline As ERenderPipeline, folderPath As String, fileName As String = "RepetitionlessTerrainMaterial.mat", ping As Boolean = True) As MaterialDataObjects
+  overload: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial*
+  nameWithType.vb: RepetitionlessMaterialCreator.CreateTerrainMaterial(ERenderPipeline, String, String, Boolean)
+  fullName.vb: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(Repetitionless.Runtime.Variables.ERenderPipeline, String, String, Boolean)
+  name.vb: CreateTerrainMaterial(ERenderPipeline, String, String, Boolean)
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(System.String,System.String,System.Boolean)
+  commentId: M:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(System.String,System.String,System.Boolean)
+  id: CreateTerrainMaterial(System.String,System.String,System.Boolean)
+  parent: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator
+  langs:
+  - csharp
+  - vb
+  name: CreateTerrainMaterial(string, string, bool)
+  nameWithType: RepetitionlessMaterialCreator.CreateTerrainMaterial(string, string, bool)
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(string, string, bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateTerrainMaterial
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+    startLine: 255
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Materials
+  summary: "\nCreates a repetitionless terrain material<br />\nUses the currently selected render pipeline\n"
+  example: []
+  syntax:
+    content: public static MaterialDataObjects CreateTerrainMaterial(string folderPath, string fileName = "RepetitionlessTerrainMaterial.mat", bool ping = true)
+    parameters:
+    - id: folderPath
+      type: System.String
+      description: "\nThe folder to save the material to\n"
+    - id: fileName
+      type: System.String
+      description: "\nThe file name for the material<br />\nMust include the extension .mat\n"
+    - id: ping
+      type: System.Boolean
+      description: "\nIf the material will be selected and pinged in the project window after creation\n"
+    return:
+      type: Repetitionless.Editor.Materials.MaterialDataObjects
+      description: "\nThe data objects for the created material\n"
+    content.vb: Public Shared Function CreateTerrainMaterial(folderPath As String, fileName As String = "RepetitionlessTerrainMaterial.mat", ping As Boolean = True) As MaterialDataObjects
+  overload: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial*
+  nameWithType.vb: RepetitionlessMaterialCreator.CreateTerrainMaterial(String, String, Boolean)
+  fullName.vb: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(String, String, Boolean)
+  name.vb: CreateTerrainMaterial(String, String, Boolean)
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder(System.Boolean)
+  commentId: M:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder(System.Boolean)
+  id: CreateTerrainMaterialAtCurrentFolder(System.Boolean)
+  parent: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator
+  langs:
+  - csharp
+  - vb
+  name: CreateTerrainMaterialAtCurrentFolder(bool)
+  nameWithType: RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder(bool)
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder(bool)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: CreateTerrainMaterialAtCurrentFolder
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+    startLine: 272
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Materials
+  summary: "\nCreates a repetitionless terrain material<br />\nUses the currently selected render pipeline<br />\nSaves to the currently opened folder in the project window\n"
+  example: []
+  syntax:
+    content: public static MaterialDataObjects CreateTerrainMaterialAtCurrentFolder(bool ping = true)
+    parameters:
+    - id: ping
+      type: System.Boolean
+      description: "\nIf the material will be selected and pinged in the project window after creation\n"
+    return:
+      type: Repetitionless.Editor.Materials.MaterialDataObjects
+      description: "\nThe data objects for the created material\n"
+    content.vb: Public Shared Function CreateTerrainMaterialAtCurrentFolder(ping As Boolean = True) As MaterialDataObjects
+  overload: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder*
+  nameWithType.vb: RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder(Boolean)
+  fullName.vb: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder(Boolean)
+  name.vb: CreateTerrainMaterialAtCurrentFolder(Boolean)
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.SetupMaterial(UnityEngine.Material,System.Int32,System.Action{Repetitionless.Editor.Data.RepetitionlessMaterialDataSO})
+  commentId: M:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.SetupMaterial(UnityEngine.Material,System.Int32,System.Action{Repetitionless.Editor.Data.RepetitionlessMaterialDataSO})
+  id: SetupMaterial(UnityEngine.Material,System.Int32,System.Action{Repetitionless.Editor.Data.RepetitionlessMaterialDataSO})
+  parent: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator
+  langs:
+  - csharp
+  - vb
+  name: SetupMaterial(Material, int, Action<RepetitionlessMaterialDataSO>)
+  nameWithType: RepetitionlessMaterialCreator.SetupMaterial(Material, int, Action<RepetitionlessMaterialDataSO>)
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.SetupMaterial(UnityEngine.Material, int, System.Action<Repetitionless.Editor.Data.RepetitionlessMaterialDataSO>)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: SetupMaterial
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
+    startLine: 293
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Materials
+  summary: "\nLoads or Creates the data objects for a repetitionless material\n"
+  example: []
+  syntax:
+    content: public static MaterialDataObjects SetupMaterial(Material mat, int maxLayers, Action<RepetitionlessMaterialDataSO> onPropertiesCreatedCallback = null)
+    parameters:
+    - id: mat
+      type: UnityEngine.Material
+      description: "\nThe material to setup\n"
+    - id: maxLayers
+      type: System.Int32
+      description: "\nThe max amount of layers that can be used\n"
+    - id: onPropertiesCreatedCallback
+      type: System.Action{Repetitionless.Editor.Data.RepetitionlessMaterialDataSO}
+      description: "\nCallback for when the material properties are created\n"
+    return:
+      type: Repetitionless.Editor.Materials.MaterialDataObjects
+      description: "\nThe data objects for the material\n"
+    content.vb: Public Shared Function SetupMaterial(mat As Material, maxLayers As Integer, onPropertiesCreatedCallback As Action(Of RepetitionlessMaterialDataSO) = Nothing) As MaterialDataObjects
+  overload: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.SetupMaterial*
+  nameWithType.vb: RepetitionlessMaterialCreator.SetupMaterial(Material, Integer, Action(Of RepetitionlessMaterialDataSO))
+  fullName.vb: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.SetupMaterial(UnityEngine.Material, Integer, System.Action(Of Repetitionless.Editor.Data.RepetitionlessMaterialDataSO))
+  name.vb: SetupMaterial(Material, Integer, Action(Of RepetitionlessMaterialDataSO))
+references:
+- uid: Repetitionless.Editor.Materials
+  commentId: N:Repetitionless.Editor.Materials
+  name: Repetitionless.Editor.Materials
+  nameWithType: Repetitionless.Editor.Materials
+  fullName: Repetitionless.Editor.Materials
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Materials
+    name: Materials
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Materials
+    name: Materials
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial*
+  commentId: Overload:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial
+  name: CreateMaterial
+  nameWithType: RepetitionlessMaterialCreator.CreateMaterial
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterial
+- uid: Repetitionless.Runtime.Variables.ERenderPipeline
+  commentId: T:Repetitionless.Runtime.Variables.ERenderPipeline
+  parent: Repetitionless.Runtime.Variables
+  name: ERenderPipeline
+  nameWithType: ERenderPipeline
+  fullName: Repetitionless.Runtime.Variables.ERenderPipeline
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Repetitionless.Editor.Materials.MaterialDataObjects
+  commentId: T:Repetitionless.Editor.Materials.MaterialDataObjects
+  parent: Repetitionless.Editor.Materials
+  name: MaterialDataObjects
+  nameWithType: MaterialDataObjects
+  fullName: Repetitionless.Editor.Materials.MaterialDataObjects
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder*
+  commentId: Overload:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder
+  name: CreateMaterialAtCurrentFolder
+  nameWithType: RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateMaterialAtCurrentFolder
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial*
+  commentId: Overload:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial
+  name: CreateTerrainMaterial
+  nameWithType: RepetitionlessMaterialCreator.CreateTerrainMaterial
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder*
+  commentId: Overload:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder
+  name: CreateTerrainMaterialAtCurrentFolder
+  nameWithType: RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder
+- uid: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.SetupMaterial*
+  commentId: Overload:Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.SetupMaterial
+  name: SetupMaterial
+  nameWithType: RepetitionlessMaterialCreator.SetupMaterial
+  fullName: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.SetupMaterial
+- uid: UnityEngine.Material
+  commentId: T:UnityEngine.Material
+  parent: UnityEngine
+  isExternal: true
+  name: Material
+  nameWithType: Material
+  fullName: UnityEngine.Material
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Action{Repetitionless.Editor.Data.RepetitionlessMaterialDataSO}
+  commentId: T:System.Action{Repetitionless.Editor.Data.RepetitionlessMaterialDataSO}
+  parent: System
+  definition: System.Action`1
+  name: Action<RepetitionlessMaterialDataSO>
+  nameWithType: Action<RepetitionlessMaterialDataSO>
+  fullName: System.Action<Repetitionless.Editor.Data.RepetitionlessMaterialDataSO>
+  nameWithType.vb: Action(Of RepetitionlessMaterialDataSO)
+  fullName.vb: System.Action(Of Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
+  name.vb: Action(Of RepetitionlessMaterialDataSO)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: <
+  - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+    name: RepetitionlessMaterialDataSO
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+    name: RepetitionlessMaterialDataSO
+  - name: )
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

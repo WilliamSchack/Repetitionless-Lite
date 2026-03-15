@@ -19,7 +19,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PostPackageImport
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/PostPackageImport.cs
-    startLine: 8
+    startLine: 9
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Processors

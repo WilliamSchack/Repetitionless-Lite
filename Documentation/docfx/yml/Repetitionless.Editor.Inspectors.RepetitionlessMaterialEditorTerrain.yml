@@ -10,7 +10,7 @@ items:
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.DrawTexture(System.Int32,System.Int32,System.Int32,UnityEngine.GUIContent)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnEnable(UnityEditor.MaterialEditor)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
-  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
   langs:
   - csharp
   - vb
@@ -25,7 +25,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessMaterialEditorTerrain
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -86,7 +86,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _maxLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 24
+    startLine: 25
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -118,7 +118,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnEnable
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -133,16 +133,16 @@ items:
     content.vb: Public Overrides Sub OnEnable(materialEditor As MaterialEditor)
   overridden: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnEnable(UnityEditor.MaterialEditor)
   overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnEnable*
-- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
-  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
-  id: OnPropertiesCreated
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
+  id: OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
   parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain
   langs:
   - csharp
   - vb
-  name: OnPropertiesCreated()
-  nameWithType: RepetitionlessMaterialEditorTerrain.OnPropertiesCreated()
-  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated()
+  name: OnPropertiesCreated(RepetitionlessMaterialDataSO)
+  nameWithType: RepetitionlessMaterialEditorTerrain.OnPropertiesCreated(RepetitionlessMaterialDataSO)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
   type: Method
   source:
     remote:
@@ -151,16 +151,20 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnPropertiesCreated
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 81
+    startLine: 85
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
   summary: "\nCalled when the material properties are first created\n"
   example: []
   syntax:
-    content: protected override void OnPropertiesCreated()
-    content.vb: Protected Overrides Sub OnPropertiesCreated()
-  overridden: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+    content: protected override void OnPropertiesCreated(RepetitionlessMaterialDataSO materialProperties)
+    parameters:
+    - id: materialProperties
+      type: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+      description: "\nThe material properties that were just created\n"
+    content.vb: Protected Overrides Sub OnPropertiesCreated(materialProperties As RepetitionlessMaterialDataSO)
+  overridden: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
   overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated*
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
   commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
@@ -180,7 +184,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 100
+    startLine: 99
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -219,7 +223,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 214
+    startLine: 213
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -267,7 +271,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawProperty
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 260
+    startLine: 259
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -1243,27 +1247,60 @@ references:
   name: MaterialEditor
   nameWithType: MaterialEditor
   fullName: UnityEditor.MaterialEditor
-- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
-  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
   parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
-  name: OnPropertiesCreated()
-  nameWithType: RepetitionlessMaterialEditorBase.OnPropertiesCreated()
-  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated()
+  name: OnPropertiesCreated(RepetitionlessMaterialDataSO)
+  nameWithType: RepetitionlessMaterialEditorBase.OnPropertiesCreated(RepetitionlessMaterialDataSO)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
   spec.csharp:
-  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
     name: OnPropertiesCreated
   - name: (
+  - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+    name: RepetitionlessMaterialDataSO
   - name: )
   spec.vb:
-  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
     name: OnPropertiesCreated
   - name: (
+  - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+    name: RepetitionlessMaterialDataSO
   - name: )
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated*
   commentId: Overload:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
   name: OnPropertiesCreated
   nameWithType: RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
   fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain.OnPropertiesCreated
+- uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  commentId: T:Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+  parent: Repetitionless.Editor.Data
+  name: RepetitionlessMaterialDataSO
+  nameWithType: RepetitionlessMaterialDataSO
+  fullName: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+- uid: Repetitionless.Editor.Data
+  commentId: N:Repetitionless.Editor.Data
+  name: Repetitionless.Editor.Data
+  nameWithType: Repetitionless.Editor.Data
+  fullName: Repetitionless.Editor.Data
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Data
+    name: Data
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
   commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnGUI(UnityEditor.MaterialEditor,UnityEditor.MaterialProperty[])
   parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase

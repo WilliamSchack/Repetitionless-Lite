@@ -75,6 +75,10 @@ nav:
           - LayerTextureData: Scripting/Repetitionless.Editor.Data.RepetitionlessTextureDataSO.LayerTextureData.md
         - RepetitionlessTerrainDataSO: Scripting/Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.md
         - RepetitionlessDataPacker: Scripting/Repetitionless.Editor.Data.RepetitionlessDataPacker.md
+      - Materials:
+        - RepetitionlessMaterialCreator: Scripting/Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.md
+        - RepetitionlessMaterialConverter: Scripting/Repetitionless.Editor.Materials.RepetitionlessMaterialConverter.md
+        - MaterialDataObjects: Repetitionless.Editor.Materials.MaterialDataObjects.md
       - GUIUtilities:
         - GUIUtilities: Scripting/Repetitionless.Editor.GUIUtilities.GUIUtilities.md
         - TextureArrayCustomChannelsGUIDrawer: Scripting/Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.md

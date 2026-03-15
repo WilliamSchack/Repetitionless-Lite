@@ -530,6 +530,9 @@ namespace Repetitionless.Editor.Inspectors
         /// Called when the material properties are first created<br />
         /// No need to call base, nothing happens
         /// </summary>
+        /// <param name="materialProperties">
+        /// The material properties that were just created
+        /// </param>
         protected virtual void OnPropertiesCreated(RepetitionlessMaterialDataSO materialProperties) {}
 
         /// <summary>

@@ -55,7 +55,7 @@ items:
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.UpdateMaterialPropertiesTexture(System.Int32)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.GetTextureDrawerDetails(System.Int32,System.Boolean)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnEnable(UnityEditor.MaterialEditor)
-  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialPropertiesGUI
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialGUI(System.Int32,System.Int32,System.String)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialSettingsGUI(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
@@ -567,21 +567,25 @@ references:
     name: MaterialEditor
     isExternal: true
   - name: )
-- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
-  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
   parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
-  name: OnPropertiesCreated()
-  nameWithType: RepetitionlessMaterialEditorBase.OnPropertiesCreated()
-  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated()
+  name: OnPropertiesCreated(RepetitionlessMaterialDataSO)
+  nameWithType: RepetitionlessMaterialEditorBase.OnPropertiesCreated(RepetitionlessMaterialDataSO)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
   spec.csharp:
-  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
     name: OnPropertiesCreated
   - name: (
+  - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+    name: RepetitionlessMaterialDataSO
   - name: )
   spec.vb:
-  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated
+  - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.OnPropertiesCreated(Repetitionless.Editor.Data.RepetitionlessMaterialDataSO)
     name: OnPropertiesCreated
   - name: (
+  - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
+    name: RepetitionlessMaterialDataSO
   - name: )
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialPropertiesGUI
   commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.DrawMaterialPropertiesGUI

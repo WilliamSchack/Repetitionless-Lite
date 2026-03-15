@@ -5,6 +5,8 @@ items:
   id: Repetitionless.Runtime.Variables
   children:
   - Repetitionless.Runtime.Variables.EDistanceBlendMode
+  - Repetitionless.Runtime.Variables.ENoiseQuality
+  - Repetitionless.Runtime.Variables.ERenderPipeline
   - Repetitionless.Runtime.Variables.ESurfaceType
   - Repetitionless.Runtime.Variables.ETextureType
   - Repetitionless.Runtime.Variables.EUVSpace
@@ -22,6 +24,12 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Runtime
 references:
+- uid: Repetitionless.Runtime.Variables.ERenderPipeline
+  commentId: T:Repetitionless.Runtime.Variables.ERenderPipeline
+  parent: Repetitionless.Runtime.Variables
+  name: ERenderPipeline
+  nameWithType: ERenderPipeline
+  fullName: Repetitionless.Runtime.Variables.ERenderPipeline
 - uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   commentId: T:Repetitionless.Runtime.Variables.RepetitionlessMaterialData
   parent: Repetitionless.Runtime.Variables
@@ -46,6 +54,12 @@ references:
   name: EUVSpace
   nameWithType: EUVSpace
   fullName: Repetitionless.Runtime.Variables.EUVSpace
+- uid: Repetitionless.Runtime.Variables.ENoiseQuality
+  commentId: T:Repetitionless.Runtime.Variables.ENoiseQuality
+  parent: Repetitionless.Runtime.Variables
+  name: ENoiseQuality
+  nameWithType: ENoiseQuality
+  fullName: Repetitionless.Runtime.Variables.ENoiseQuality
 - uid: Repetitionless.Runtime.Variables.ETextureType
   commentId: T:Repetitionless.Runtime.Variables.ETextureType
   parent: Repetitionless.Runtime.Variables
