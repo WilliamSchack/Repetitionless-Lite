@@ -192,7 +192,7 @@ namespace Repetitionless.Editor.Materials
             newMat.doubleSidedGI = originalMat.doubleSidedGI;
         }
 
-        private static Material ConvertMaterial(Material material)
+        public static Material ConvertMaterial(Material material)
         {
             // Check if the asset exists
             string path = AssetDatabase.GetAssetPath(material);
@@ -239,7 +239,7 @@ namespace Repetitionless.Editor.Materials
             return materialDataObjects.Material;
         }
 
-        private static void ConvertMaterials(Material[] materials, bool selectConverted = true)
+        public static void ConvertMaterials(Material[] materials, bool selectConverted = true)
         {
             List<Material> convertedMats = new List<Material>();
 
