@@ -948,7 +948,7 @@ namespace Repetitionless.Editor.Inspectors
                 DrawProperty(layerIndex, () => currentData.OcclussionStrength = EditorGUI.Slider(occlussionStrengthSliderRect, currentData.OcclussionStrength, 0, 1));
             } else {
                 // Metallic
-                Rect metallicSliderRect = DrawTexture(layerIndex, sectionIndex, 1, new GUIContent("Metallic", "Metallic (R)"));
+                Rect metallicSliderRect = DrawTexture(layerIndex, sectionIndex, 1, new GUIContent("Metallic", "Metallic"));
                 if (!currentData.MetallicAssigned)
                     DrawProperty(layerIndex, () => currentData.Metallic = EditorGUI.Slider(metallicSliderRect, currentData.Metallic, 0, 1));
                 else
@@ -956,14 +956,14 @@ namespace Repetitionless.Editor.Inspectors
 
                 // Smoothness/Roughness
                 string smoothnessText = currentData.SmoothnessEnabled ? "Smoothness" : "Roughness";
-                Rect smoothnessSliderRect = DrawTexture(layerIndex, sectionIndex, 2, new GUIContent(smoothnessText, $"{smoothnessText} (R)"));
+                Rect smoothnessSliderRect = DrawTexture(layerIndex, sectionIndex, 2, new GUIContent(smoothnessText, $"{smoothnessText}"));
                 if (!currentData.SmoothnessAssigned)
                     DrawProperty(layerIndex, () => currentData.SmoothnessRoughness = EditorGUI.Slider(smoothnessSliderRect, currentData.SmoothnessRoughness, 0, 1));
                 else
                     DrawTextureChannelPicker(smoothnessSliderRect, layerIndex, sectionIndex, 1, 1, 0);
 
                 // Occlussion Map
-                Rect occlussionLabelRect = DrawTexture(layerIndex, sectionIndex, 4, new GUIContent("Occlussion", "Occlussion (R)"));
+                Rect occlussionLabelRect = DrawTexture(layerIndex, sectionIndex, 4, new GUIContent("Occlussion", "Occlussion"));
                 if (currentData.OcclussionAssigned) {
                     Rect sliderRect = occlussionLabelRect;
                     sliderRect.width -= CHANNEL_PICKER_WIDTH + 5;
