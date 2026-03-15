@@ -284,7 +284,7 @@ namespace Repetitionless.Editor.Data
         /// The index of the material:<br />
         /// 0: Base, 1: Far, 2: Blend
         /// </param>
-        public void UpdateAssignedTextures(Material material, RepetitionlessTextureDataSO textureData, int materialIndex, int layerIndex)
+        public void UpdateAssignedTextures(Material material, RepetitionlessTextureDataSO textureData, int layerIndex, int materialIndex)
         {
             RepetitionlessTextureDataSO.MaterialTextureData materialTextureData = textureData.GetMaterialTextureData(layerIndex, materialIndex);
 

@@ -403,7 +403,7 @@ namespace Repetitionless.Editor.Inspectors
         /// </returns>
         protected virtual void UpdateAssignedTextures(int layerIndex, int sectionIndex)
         {
-            _materialProperties.UpdateAssignedTextures(_material, _textureData, sectionIndex, layerIndex);
+            _materialProperties.UpdateAssignedTextures(_material, _textureData, layerIndex, sectionIndex);
         }
 
         /// <summary>

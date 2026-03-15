@@ -143,7 +143,7 @@ namespace Repetitionless.Editor.Data
                 EditorUtility.DisplayProgressBar(progressBarTitle, "Updating Properties", 0.8f);
 
                 // Save changed properties
-                materialProperties.UpdateAssignedTextures(mat, textureData, 0, layerIndex);
+                materialProperties.UpdateAssignedTextures(mat, textureData, layerIndex, 0);
 
                 materialProperties.Save();
                 textureData.Save();
