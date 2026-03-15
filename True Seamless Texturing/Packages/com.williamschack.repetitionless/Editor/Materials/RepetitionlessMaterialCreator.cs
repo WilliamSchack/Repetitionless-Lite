@@ -39,15 +39,13 @@ namespace Repetitionless.Editor.Materials
         [MenuItem("Window/Repetitionless/Create Material", secondaryPriority = 1)]
         private static void CreateMaterialToolbar()
         {
-            string path = GetCurrentProjectWindowPath();
-            EditorApplication.delayCall += () => { CreateMaterial(path); };
+            EditorApplication.delayCall += () => { CreateMaterialAtCurrentFolder(); };
         }
 
         [MenuItem("Window/Repetitionless/Create Terrain Material", secondaryPriority = 2)]
         private static void CreateTerrainMaterialToolbar()
         {
-            string path = GetCurrentProjectWindowPath();
-            EditorApplication.delayCall += () => { CreateTerrainMaterial(path); };
+            EditorApplication.delayCall += () => { CreateTerrainMaterialAtCurrentFolder(); };
         }
 
         private static string GetShaderFolder(ERenderPipeline pipeline)
@@ -120,6 +118,12 @@ namespace Repetitionless.Editor.Materials
             return CreateMaterial(currentPipeline, folderPath, fileName, ping);
         }
 
+        public static MaterialDataObjects CreateMaterialAtCurrentFolder(bool ping = true)
+        {
+            string path = GetCurrentProjectWindowPath();
+            return CreateMaterial(path, ping: ping);
+        }
+
         public static MaterialDataObjects CreateTerrainMaterial(ERenderPipeline pipeline, string folderPath, string fileName = DEFAULT_MATERIAL_NAME_TERRAIN, bool ping = true)
         {
             MaterialDataObjects materialDataObjects = new MaterialDataObjects();
@@ -149,6 +153,12 @@ namespace Repetitionless.Editor.Materials
         {
             ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
             return CreateTerrainMaterial(currentPipeline, folderPath, fileName, ping);
+        }
+
+        public static MaterialDataObjects CreateTerrainMaterialAtCurrentFolder(bool ping = true)
+        {
+            string path = GetCurrentProjectWindowPath();
+            return CreateTerrainMaterial(path, ping: ping);
         }
 
         public static MaterialDataObjects SetupMaterial(Material mat, int maxLayers, System.Action<RepetitionlessMaterialDataSO> onPropertiesCreatedCallback = null)
