@@ -85,6 +85,7 @@ namespace Repetitionless.Editor.Materials
                     textureData.EMTexturesDrawer.UpdateTexture(emissionTex, 0, 0, true);
                     textureData.Save();
 
+                    materialData.UpdateAssignedTextures(newMat, textureData, 0, 0);
                     baseMaterialData.AlbedoTint = baseColour;
                     baseMaterialData.EmissionColour = emissionColour;
                     baseMaterialData.Metallic = metal;
