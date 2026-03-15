@@ -1,5 +1,16 @@
 ## Creating A Material
 
+### Automatic
+
+1. Open the windows tab in the toolbar
+2. Navigate to `Repetitionless`
+3. Click `Create Material`
+4. The material will be created in the current folder in the project window
+
+![image](Images/RegularMaterial/AutomaticCreation.png)
+
+### Manual
+
 1. Create a material
 2. Select the shader dropdown
 3. Navigate to `Repetitionless`

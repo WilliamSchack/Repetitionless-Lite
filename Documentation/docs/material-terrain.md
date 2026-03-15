@@ -1,6 +1,17 @@
-Repetitionless includes a custom script to handle and sync materials unity terrains. To setup a terrain for the shader, follow the instructions below:
+`Repetitionless includes a custom script to handle and sync materials to unity terrains. To setup a terrain for the shader, follow the instructions below:
 
 ## Creating A Material
+
+### Automatic
+
+1. Open the windows tab in the toolbar
+2. Navigate to `Repetitionless`
+3. Click `Create Terrain Material`
+4. The material will be created in the current folder in the project window
+
+![image](Images/TerrainMaterial/AutomaticCreation.png)
+
+### Manual
 
 1. Create a material
 2. Select the shader dropdown
@@ -22,7 +33,11 @@ To use a terrain with the repetitionless material you have to add a [`Repetition
 1. Select the terrain you want to use
 2. Select `Add Component`
 3. Select `Repetitionless Terrain`
-4. Assign your material in the Main Material field
+
+To add a material you can either:
+
+- Click the `Create New Material` button
+- Assign a material in the `Main Material` field
 
 ***Note the the material field will only allow Repetitionless Terrain materials***
 
