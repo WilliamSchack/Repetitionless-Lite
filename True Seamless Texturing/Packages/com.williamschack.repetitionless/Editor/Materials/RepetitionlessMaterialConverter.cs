@@ -75,6 +75,7 @@ namespace Repetitionless.Editor.Materials
             baseMaterialData.AlphaClipping = alphaClipping;
             baseMaterialData.TilingOffset = new Vector4(tiling.x, tiling.y, offset.x, offset.y);
             baseMaterialData.EmissionEnabled = emissionEnabled;
+            materialData.UpdateMaterialTexture(newMat, 0);
             materialData.Save();
 
             ESurfaceType surfaceType = alphaClippingEnabled ? ESurfaceType.Cutout : ESurfaceType.Opaque;
@@ -128,6 +129,7 @@ namespace Repetitionless.Editor.Materials
             baseMaterialData.AlphaClipping = alphaClipping;
             baseMaterialData.TilingOffset = new Vector4(tiling.x, tiling.y, offset.x, offset.y);
             baseMaterialData.EmissionEnabled = emissionEnabled;
+            materialData.UpdateMaterialTexture(newMat, 0);
             materialData.Save();
 
             ESurfaceType surfaceType = alphaClippingEnabled ? ESurfaceType.Cutout : ESurfaceType.Opaque;
@@ -186,6 +188,7 @@ namespace Repetitionless.Editor.Materials
             baseMaterialData.AlphaClipping = alphaClipping;
             baseMaterialData.TilingOffset = new Vector4(tiling.x, tiling.y, offset.x, offset.y);
             baseMaterialData.EmissionEnabled = true;
+            materialData.UpdateMaterialTexture(newMat, 0);
             materialData.Save();
 
             ESurfaceType surfaceType = alphaClippingEnabled ? ESurfaceType.Cutout : ESurfaceType.Opaque;
