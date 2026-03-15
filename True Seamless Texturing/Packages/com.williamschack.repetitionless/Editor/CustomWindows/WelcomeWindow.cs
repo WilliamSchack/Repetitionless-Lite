@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEditor;
 
+using Repetitionless.Runtime.Variables;
+
 namespace Repetitionless.Editor.CustomWindows
 {
+    using Materials;
     using GUIUtilities;
     using Config;
     using Updating;
@@ -230,17 +233,23 @@ namespace Repetitionless.Editor.CustomWindows
             string targetCorePathFull = $"{targetBasePath}/Core Sample Assets";
             string targetPipelinePath = $"{targetBasePath}/";
 
-            RenderPipelineAsset currentPipeline = GraphicsSettings.currentRenderPipeline;
-            if (currentPipeline == null) { // Built-In RP
-                samplesPipelinePathFull += Constants.SAMPLES_PATH_BIRP;
-                targetPipelinePath += "BIRP Examples";
-            } else if (currentPipeline.GetType().Name.Contains("UniversalRenderPipeline")) {
-                samplesPipelinePathFull += Constants.SAMPLES_PATH_URP;
-                targetPipelinePath += "URP Examples";
-            } else if (currentPipeline.GetType().Name.Contains("HDRenderPipeline")) {
-                samplesPipelinePathFull += Constants.SAMPLES_PATH_HDRP;
-                targetPipelinePath += "HDRP Examples";
-            } else return;
+            ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
+            switch (currentPipeline) {
+                case ERenderPipeline.Builtin:
+                    samplesPipelinePathFull += Constants.SAMPLES_PATH_BIRP;
+                    targetPipelinePath += "BIRP Examples";
+                    break;
+                case ERenderPipeline.URP:
+                    samplesPipelinePathFull += Constants.SAMPLES_PATH_URP;
+                    targetPipelinePath += "URP Examples";
+                    break;
+                case ERenderPipeline.HDRP:
+                    samplesPipelinePathFull += Constants.SAMPLES_PATH_HDRP;
+                    targetPipelinePath += "HDRP Examples";
+                    break;
+                default:
+                    return;
+            }
 
             string targetPipelinePathFull = $"{projectPath}{targetPipelinePath}";
 
