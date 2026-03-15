@@ -27,6 +27,117 @@ namespace Repetitionless.Editor.Materials
             ConvertMaterials(selectedMaterials);
         }
 
+        private static void ConvertMaterialUrp(Material originalMat, RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects)
+        {
+            // Get material properties
+            Texture2D colourTex       = (Texture2D)originalMat.GetTexture("_BaseMap");
+            Texture2D metalTex        = (Texture2D)originalMat.GetTexture("_MetallicGlossMap");
+            Texture2D normalTex       = (Texture2D)originalMat.GetTexture("_BumpMap");
+            Texture2D occlussionTex   = (Texture2D)originalMat.GetTexture("_OcclusionMap");
+            Texture2D emissionTex     = (Texture2D)originalMat.GetTexture("_EmissionMap");
+            Color baseColour          = originalMat.GetColor("_BaseColor");
+            Color emissionColour      = originalMat.GetColor("_EmissionColor");
+            float metal               = originalMat.GetFloat("_Metallic");
+            float smoothness          = originalMat.GetFloat("_Smoothness");
+            float occlussion          = originalMat.GetFloat("_OcclusionStrength");
+            float normalStrength      = originalMat.GetFloat("_BumpScale");
+            float alphaClipping       = originalMat.GetFloat("_Cutoff");
+            Vector2 tiling            = originalMat.GetTextureScale("_BaseMap");
+            Vector2 offset            = originalMat.GetTextureOffset("_BaseMap");
+            bool emissionEnabled      = originalMat.IsKeywordEnabled("_EMISSION");
+            bool alphaClippingEnabled = originalMat.GetFloat("_AlphaClip") == 1;
+
+            // Assign properties to new material
+            Material newMat                             = materialDataObjects.Material;
+            RepetitionlessTextureDataSO textureData     = materialDataObjects.TextureDataSO;
+            RepetitionlessMaterialDataSO materialData   = materialDataObjects.MaterialDataSO;
+            RepetitionlessMaterialData baseMaterialData = materialData.Data[0].BaseMaterialData;
+
+            textureData.SetupTextureDrawers();
+            textureData.AVTexturesDrawer.UpdateTexture(colourTex, 0, 0, true);
+            textureData.EMTexturesDrawer.UpdateTexture(metalTex, 0, 1, true);
+            textureData.NSOTexturesDrawer.UpdateTexture(normalTex, 0, 0, true);
+            textureData.NSOTexturesDrawer.UpdateTexture(occlussionTex, 0, 2, true);
+            textureData.EMTexturesDrawer.UpdateTexture(emissionTex, 0, 0, true);
+            textureData.Save();
+
+            materialData.UpdateAssignedTextures(newMat, textureData, 0, 0);
+            baseMaterialData.AlbedoTint = baseColour;
+            baseMaterialData.EmissionColour = emissionColour;
+            baseMaterialData.Metallic = metal;
+            baseMaterialData.SmoothnessRoughness = smoothness;
+            baseMaterialData.OcclussionStrength = occlussion;
+            baseMaterialData.NormalScale = normalStrength;
+            baseMaterialData.AlphaClipping = alphaClipping;
+            baseMaterialData.TilingOffset = new Vector4(tiling.x, tiling.y, offset.x, offset.y);
+            baseMaterialData.EmissionEnabled = emissionEnabled;
+            materialData.Save();
+
+            ESurfaceType surfaceType = alphaClippingEnabled ? ESurfaceType.Cutout : ESurfaceType.Opaque;
+            RepetitionlessMaterialUtilities.SetSurface(newMat, surfaceType, ERenderPipeline.URP);
+            
+            newMat.globalIlluminationFlags = originalMat.globalIlluminationFlags;
+            newMat.doubleSidedGI = originalMat.doubleSidedGI;
+        }
+
+        private static void ConvertMaterialHdrp(Material originalMat, RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects)
+        {
+            // Get material properties
+            Texture2D colourTex       = (Texture2D)originalMat.GetTexture("_BaseColorMap");
+            Texture2D maskTex         = (Texture2D)originalMat.GetTexture("_MaskMap");
+            Texture2D normalTex       = (Texture2D)originalMat.GetTexture("_NormalMap");
+            Texture2D emissionTex     = (Texture2D)originalMat.GetTexture("_EmissiveColorMap");
+            Color baseColour          = originalMat.GetColor("_BaseColor");
+            Color emissionColour      = originalMat.GetColor("_EmissiveColor");
+            float metal               = originalMat.GetFloat("_MetallicRemapMax");   // Min max not currently implemented
+            float smoothness          = originalMat.GetFloat("_SmoothnessRemapMax"); // Min max not currently implemented
+            float occlussion          = originalMat.GetFloat("_AORemapMax");         // Min max not currently implemented
+            float normalStrength      = originalMat.GetFloat("_NormalScale");
+            float alphaClipping       = originalMat.GetFloat("_Cutoff");
+            Vector2 tiling            = originalMat.GetTextureScale("_BaseColorMap");
+            Vector2 offset            = originalMat.GetTextureOffset("_BaseColorMap");
+            bool alphaClippingEnabled = originalMat.GetFloat("_AlphaCutoffEnable") == 1;
+
+            // Assign properties to new material
+            Material newMat                             = materialDataObjects.Material;
+            RepetitionlessTextureDataSO textureData     = materialDataObjects.TextureDataSO;
+            RepetitionlessMaterialDataSO materialData   = materialDataObjects.MaterialDataSO;
+            RepetitionlessMaterialData baseMaterialData = materialData.Data[0].BaseMaterialData;
+
+            textureData.SetupTextureDrawers();
+            textureData.AVTexturesDrawer.UpdateTexture(colourTex, 0, 0, true);
+            textureData.NSOTexturesDrawer.UpdateTexture(normalTex, 0, 0, true);
+            textureData.EMTexturesDrawer.UpdateTexture(emissionTex, 0, 0, true);
+            
+            bool usingPackedTexture = maskTex != null;
+            if (usingPackedTexture) {
+                textureData.UpdatePackedTexture(0, 0, true);
+                textureData.NSOTexturesDrawer.UpdateTexture(maskTex, 0, 3, true);
+                textureData.EMTexturesDrawer.UpdateTexture(maskTex, 0, 2, true);
+            }
+
+            textureData.Save();
+
+            materialData.UpdateAssignedTextures(newMat, textureData, 0, 0);
+            baseMaterialData.PackedTexture = usingPackedTexture;
+            baseMaterialData.AlbedoTint = baseColour;
+            baseMaterialData.EmissionColour = emissionColour;
+            baseMaterialData.Metallic = metal;
+            baseMaterialData.SmoothnessRoughness = smoothness;
+            baseMaterialData.OcclussionStrength = occlussion;
+            baseMaterialData.NormalScale = normalStrength;
+            baseMaterialData.AlphaClipping = alphaClipping;
+            baseMaterialData.TilingOffset = new Vector4(tiling.x, tiling.y, offset.x, offset.y);
+            baseMaterialData.EmissionEnabled = true;
+            materialData.Save();
+
+            ESurfaceType surfaceType = alphaClippingEnabled ? ESurfaceType.Cutout : ESurfaceType.Opaque;
+            RepetitionlessMaterialUtilities.SetSurface(newMat, surfaceType, ERenderPipeline.HDRP);
+            
+            newMat.globalIlluminationFlags = originalMat.globalIlluminationFlags;
+            newMat.doubleSidedGI = originalMat.doubleSidedGI;
+        }
+
         private static void ConvertMaterials(Material[] materials)
         {
             foreach (Material material in materials) {
@@ -58,55 +169,18 @@ namespace Repetitionless.Editor.Materials
                     Debug.LogWarning($"Could not convert {material.name}: Failed to create material");
                     return;
                 }
-
-                // Get material properties
-                Texture2D colourTex       = (Texture2D)material.GetTexture("_BaseMap");
-                Texture2D metalTex        = (Texture2D)material.GetTexture("_MetallicGlossMap");
-                Texture2D normalTex       = (Texture2D)material.GetTexture("_BumpMap");
-                Texture2D occlussionTex   = (Texture2D)material.GetTexture("_OcclusionMap");
-                Texture2D emissionTex     = (Texture2D)material.GetTexture("_EmissionMap");
-                Color baseColour          = material.GetColor("_BaseColor");
-                Color emissionColour      = material.GetColor("_EmissionColor");
-                float metal               = material.GetFloat("_Metallic");
-                float smoothness          = material.GetFloat("_Smoothness");
-                float normalStrength      = material.GetFloat("_BumpScale");
-                float occlussion          = material.GetFloat("_OcclusionStrength");
-                float alphaClipping       = material.GetFloat("_Cutoff");
-                Vector2 tiling            = material.GetTextureScale("_BaseMap");
-                Vector2 offset            = material.GetTextureOffset("_BaseMap");
-                bool emissionEnabled      = material.IsKeywordEnabled("_EMISSION");
-                bool alphaClippingEnabled = material.GetFloat("_AlphaClip") == 1;
-
-                // Assign properties to new material
-                Material newMat                             = materialDataObjects.Material;
-                RepetitionlessTextureDataSO textureData     = materialDataObjects.TextureDataSO;
-                RepetitionlessMaterialDataSO materialData   = materialDataObjects.MaterialDataSO;
-                RepetitionlessMaterialData baseMaterialData = materialData.Data[0].BaseMaterialData;
-
-                textureData.SetupTextureDrawers();
-                textureData.AVTexturesDrawer.UpdateTexture(colourTex, 0, 0, true);
-                textureData.EMTexturesDrawer.UpdateTexture(metalTex, 0, 1, true);
-                textureData.NSOTexturesDrawer.UpdateTexture(normalTex, 0, 0, true);
-                textureData.NSOTexturesDrawer.UpdateTexture(occlussionTex, 0, 2, true);
-                textureData.EMTexturesDrawer.UpdateTexture(emissionTex, 0, 0, true);
-                textureData.Save();
-
-                materialData.UpdateAssignedTextures(newMat, textureData, 0, 0);
-                baseMaterialData.AlbedoTint = baseColour;
-                baseMaterialData.EmissionColour = emissionColour;
-                baseMaterialData.Metallic = metal;
-                baseMaterialData.SmoothnessRoughness = smoothness;
-                baseMaterialData.NormalScale = normalStrength;
-                baseMaterialData.OcclussionStrength = occlussion;
-                baseMaterialData.AlphaClipping = alphaClipping;
-                baseMaterialData.TilingOffset = new Vector4(tiling.x, tiling.y, offset.x, offset.y);
-                baseMaterialData.EmissionEnabled = emissionEnabled;
-                materialData.Save();
-
-                ESurfaceType surfaceType = alphaClippingEnabled ? ESurfaceType.Cutout : ESurfaceType.Opaque;
-                RepetitionlessMaterialUtilities.SetSurface(newMat, surfaceType, renderPipeline);
                 
-                newMat.globalIlluminationFlags = material.globalIlluminationFlags;
+                // Move properties
+                switch (renderPipeline) {
+                    case ERenderPipeline.Builtin:
+                        break;
+                    case ERenderPipeline.URP:
+                        ConvertMaterialUrp(material, materialDataObjects);
+                        break;
+                    case ERenderPipeline.HDRP:
+                        ConvertMaterialHdrp(material, materialDataObjects);
+                        break;
+                }
             }
         }
     }
