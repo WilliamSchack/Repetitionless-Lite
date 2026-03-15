@@ -6,6 +6,7 @@ using Repetitionless.Runtime;
 
 namespace Repetitionless.Editor.Inspectors
 {
+    using Materials;
     using Data;
     
     /// <summary>
@@ -170,7 +171,7 @@ namespace Repetitionless.Editor.Inspectors
         /// Base OnGUI function
         /// </summary>
         public override void OnInspectorGUI()
-        {   
+        {
             serializedObject.Update();
 
             // Cannot copy GUI.skin styles outside of ongui, make it here
@@ -210,48 +211,63 @@ namespace Repetitionless.Editor.Inspectors
             serializedObject.ApplyModifiedProperties();
         }
 
+        private void AssignNewMaterial(Material newMat)
+        {
+            if (newMat == null) {
+                _incorrectMaterial = false;
+                _parentTerrainProp.objectReferenceValue = null;
+                _autoSaveProp.boolValue = true;
+
+                if (_materialTerrainData != null)
+                    _materialTerrainData.ClearTerrainLayers();
+                GetMaterialTerrainLayersData(null);
+                return;
+            }
+
+            string newShaderName = newMat.shader.name;
+            
+            if (newShaderName.StartsWith("Repetitionless/") && newShaderName.Contains("Terrain")) {
+                _incorrectMaterial = false;
+                _parentTerrainProp.objectReferenceValue = null;
+                _autoSaveProp.boolValue = true;
+
+                if (_materialTerrainData != null)
+                    _materialTerrainData.ClearTerrainLayers();
+                GetMaterialTerrainLayersData(newMat);
+
+                _main.UpdateTerrainMaterial(newMat, false);
+
+                // Assign textures after a frame so the material is properly assigned
+                EditorApplication.delayCall += () => {
+                    UpdateMaterialTerrainLayerTextures(true);
+                    SyncLayersToMaterial();
+
+                    // Assign after material has been initialized, will cause white light otherwise
+                    EditorApplication.delayCall += _main.AssignMaterialInstance;
+                };
+            } else {
+                _incorrectMaterial = true;
+                _materialProp.objectReferenceValue = _main.MainMaterial;
+            }
+        }
+
         private void DrawMaterialProperty()
         {
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(_materialProp);
             if (EditorGUI.EndChangeCheck()) {
                 Material newMat = (Material)_materialProp.objectReferenceValue;
-                if (newMat != null) {
-                    string newShaderName = newMat.shader.name;
-                    
-                    if (newShaderName.StartsWith("Repetitionless/") && newShaderName.Contains("Terrain")) {
-                        _incorrectMaterial = false;
-                        _parentTerrainProp.objectReferenceValue = null;
-                        _autoSaveProp.boolValue = true;
-
-                        if (_materialTerrainData != null)
-                            _materialTerrainData.ClearTerrainLayers();
-                        GetMaterialTerrainLayersData(newMat);
-
-                        _main.UpdateTerrainMaterial(newMat, false);
-
-                        // Assign textures after a frame so the material is properly assigned
-                        EditorApplication.delayCall += () => {
-                            UpdateMaterialTerrainLayerTextures(true);
-                            SyncLayersToMaterial();
-
-                            // Assign after material has been initialized, will cause white light otherwise
-                            EditorApplication.delayCall += _main.AssignMaterialInstance;
-                        };
-                    } else {
-                        _incorrectMaterial = true;
-                        _materialProp.objectReferenceValue = _main.MainMaterial;
-                    }
-                } else {
-                    _incorrectMaterial = false;
-                    _parentTerrainProp.objectReferenceValue = null;
-                    _autoSaveProp.boolValue = true;
-
-                    if (_materialTerrainData != null)
-                        _materialTerrainData.ClearTerrainLayers();
-                    GetMaterialTerrainLayersData(null);
-                }
+                AssignNewMaterial(newMat);
             }
+        }
+
+        private void DrawCreateMaterialButton()
+        {
+            if (!GUILayout.Button("Create New Material", GUILayout.Height(30)))
+                return;
+
+            RepetitionlessMaterialCreator.MaterialDataObjects terrainMatObjects = RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder(false);
+            AssignNewMaterial(terrainMatObjects.Material);
         }
 
         private void DrawParentProperty()
@@ -305,6 +321,7 @@ namespace Repetitionless.Editor.Inspectors
             GUILayout.Space(10);
 
             DrawMaterialProperty();
+            DrawCreateMaterialButton();
             EditorGUILayout.HelpBox("If you want this terrain to use its own set of textures", MessageType.Info);
 
             GUILayout.Space(10);
@@ -325,6 +342,14 @@ namespace Repetitionless.Editor.Inspectors
             // Edit Material Button
             if (GUILayout.Button("Edit Material", GUILayout.Height(30)))
                 Selection.activeObject = _main.MainMaterial;
+
+            // Check if terrain exists
+            if (_terrainData == null) {
+                GUILayout.Space(10);
+
+                EditorGUILayout.HelpBox("No terrain data is assigned. Please create a new terrain or assign a terrain data to this one.", MessageType.Error);
+                return;
+            }
 
             // Save Texture Layers Button
             GUILayout.Space(10);
