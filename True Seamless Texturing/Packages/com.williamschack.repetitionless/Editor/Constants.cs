@@ -20,9 +20,6 @@ namespace Repetitionless.Editor
         public const string SHADER_FOLDER_URP = "URP/";
         public const string SHADER_FOLDER_HDRP = "HDRP/";
 
-        public const string DEFAULT_MATERIAL_NAME_REGULAR = "RepetitionlessMaterial.mat";
-        public const string DEFAULT_MATERIAL_NAME_TERRAIN = "RepetitionlessTerrainMaterial.mat";
-
         public const string SAMPLES_PATH = PACKAGE_PATH + "/Samples~";
         public const string SAMPLES_PATH_ASSETS = SAMPLES_PATH + "/Assets";
         public const string SAMPLES_PATH_BIRP = SAMPLES_PATH + "/BIRP";

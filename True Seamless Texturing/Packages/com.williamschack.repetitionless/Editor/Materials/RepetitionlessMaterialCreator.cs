@@ -8,13 +8,16 @@ using UnityEngine.Rendering;
 namespace Repetitionless.Editor.Materials
 {
     using Data;
-
+    
     internal static class RepetitionlessMaterialCreator
     {
+        public const string DEFAULT_MATERIAL_NAME_REGULAR = "RepetitionlessMaterial.mat";
+        public const string DEFAULT_MATERIAL_NAME_TERRAIN = "RepetitionlessTerrainMaterial.mat";
         private const string PROGRESS_BAR_TITLE = "Updating Material";
 
         public struct MaterialDataObjects
         {
+            public Material Material;
             public MaterialDataManager DataManager;
             public RepetitionlessTextureDataSO TextureDataSO;
             public RepetitionlessMaterialDataSO MaterialDataSO;
@@ -80,44 +83,54 @@ namespace Repetitionless.Editor.Materials
             EditorGUIUtility.PingObject(asset);
         }
 
-        public static void CreateMaterial(string folderPath)
+        public static MaterialDataObjects CreateMaterial(string folderPath, string fileName = DEFAULT_MATERIAL_NAME_REGULAR, bool ping = true)
         {
+            MaterialDataObjects materialDataObjects = new MaterialDataObjects();
+
             string shaderName = GetShaderFolder();
-            if (shaderName == "") return;
+            if (shaderName == "") return materialDataObjects;
 
             shaderName += Constants.SHADER_MATERIAL_NAME_REGULAR;
             Shader shader = GetShader(shaderName);
-            if (shader == null) return;
+            if (shader == null) return materialDataObjects;
 
             Material material = new Material(shader);
 
-            string assetPath = folderPath + "/" + Constants.DEFAULT_MATERIAL_NAME_REGULAR;
+            string assetPath = folderPath + "/" + fileName;
             assetPath = AssetDatabase.GenerateUniqueAssetPath(assetPath);
 
             AssetDatabase.CreateAsset(material, assetPath);
-            SetupMaterial(material, Constants.MAX_LAYERS_REGULAR);
+            materialDataObjects = SetupMaterial(material, Constants.MAX_LAYERS_REGULAR);
 
-            PingAsset(material);
+            if (ping)
+                PingAsset(material);
+
+            return materialDataObjects;
         }
 
-        public static void CreateTerrainMaterial(string folderPath)
+        public static MaterialDataObjects CreateTerrainMaterial(string folderPath, string fileName = DEFAULT_MATERIAL_NAME_TERRAIN, bool ping = true)
         {
+            MaterialDataObjects materialDataObjects = new MaterialDataObjects();
+
             string shaderName = GetShaderFolder();
-            if (shaderName == "") return;
+            if (shaderName == "") return materialDataObjects;
 
             shaderName += Constants.SHADER_MATERIAL_NAME_TERRAIN;
             Shader shader = GetShader(shaderName);
-            if (shader == null) return;
+            if (shader == null) return materialDataObjects;
 
             Material material = new Material(shader);
 
-            string assetPath = folderPath + "/" + Constants.DEFAULT_MATERIAL_NAME_TERRAIN;
+            string assetPath = folderPath + "/" + fileName;
             assetPath = AssetDatabase.GenerateUniqueAssetPath(assetPath);
 
             AssetDatabase.CreateAsset(material, assetPath);
-            SetupMaterial(material, Constants.MAX_LAYERS_TERRAIN, (RepetitionlessMaterialDataSO data) => { RepetitionlessTerrainMaterialUtilities.SetupProperties(material, data); });
+            materialDataObjects = SetupMaterial(material, Constants.MAX_LAYERS_TERRAIN, (RepetitionlessMaterialDataSO data) => { RepetitionlessTerrainMaterialUtilities.SetupProperties(material, data); });
 
-            PingAsset(material);
+            if (ping)
+                PingAsset(material);
+
+            return materialDataObjects;
         }
 
         public static MaterialDataObjects SetupMaterial(Material mat, int maxLayers, System.Action<RepetitionlessMaterialDataSO> onPropertiesCreatedCallback = null)
@@ -177,6 +190,7 @@ namespace Repetitionless.Editor.Materials
 
 
             return new MaterialDataObjects {
+                Material = mat,
                 DataManager = dataManager,
                 TextureDataSO = textureData,
                 MaterialDataSO = materialProperties
