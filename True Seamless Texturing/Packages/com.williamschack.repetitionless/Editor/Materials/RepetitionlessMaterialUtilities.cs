@@ -87,6 +87,8 @@ namespace Repetitionless.Editor.Materials
                         mat.SetInt("_AlphaDstBlend", (int)BlendMode.Zero);
                         mat.SetInt("_AlphaCutoffEnable", 0);
                         mat.SetInt("_ZWrite", 1);
+
+                        mat.renderQueue = 2475;
                     } else {
                         mat.DisableKeyword("_BUILTIN_SURFACE_TYPE_TRANSPARENT");
 
