@@ -122,8 +122,31 @@ namespace Repetitionless.Editor.CustomWindows
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Github Issues", GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.GITHUB_URL);
-            if (GUILayout.Button("Report Issue",  GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.GITHUB_NEW_ISSUE_URL);
+            if (GUILayout.Button("Join Discord",  GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.DISCORD_INVITE_LINK_ANNOUNCEMENTS);
+            if (GUILayout.Button("Unity Forum",   GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.UNITY_FORUM_URL);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("Contact",      GUILayout.MinWidth(buttonMinWidth))) Application.OpenURL(Constants.SUPPORT_EMAIL_URL);
+            if (GUILayout.Button("Report Issue", GUILayout.MinWidth(buttonMinWidth))) {
+                int issueResponse = EditorUtility.DisplayDialogComplex(
+                    "Report An Issue",
+                    "Where would you like to report the issue? You can either create an issue on the github issues page, or create a support post in the discord. Both require an account.",
+                    "Discord",
+                    "Cancel",
+                    "Github"
+                );
+
+                switch (issueResponse) {
+                    case 0:
+                        Application.OpenURL(Constants.DISCORD_INVITE_LINK_SUPPORT);
+                        break;
+                    case 2:
+                        Application.OpenURL(Constants.GITHUB_NEW_ISSUE_URL);
+                        break;
+                }
+            }
+            
             GUILayout.EndHorizontal();
 
             if (GUILayout.Button("Import Samples")) ImportSamples();

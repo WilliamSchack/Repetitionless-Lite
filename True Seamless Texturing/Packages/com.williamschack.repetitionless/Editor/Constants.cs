@@ -29,9 +29,16 @@ namespace Repetitionless.Editor
         public const string DOCUMENTATION_URL = "https://docs.wilschack.dev/repetitionless/";
         public const string LOCAL_DOCUMENTATION_PATH = PACKAGE_PATH + "/OfflineDocumentation.pdf";
 
+        public const string UNITY_FORUM_URL = "https://discussions.unity.com/t/repetitionless-texture-tiling-remover/1705964";
+
         public const string GITHUB_URL = "https://github.com/WilliamSchack/Repetitionless-Issues";
         public const string GITHUB_NEW_ISSUE_URL = GITHUB_URL + "/issues/new/choose";
         public const string GITHUB_TAGS_URL = "https://api.github.com/repos/WilliamSchack/Repetitionless-Issues/tags";
+
+        public const string SUPPORT_EMAIL_URL = "mailto:support@wilschack.dev";
+
+        public const string DISCORD_INVITE_LINK_ANNOUNCEMENTS = "https://discord.gg/2NTvBDB3xq";
+        public const string DISCORD_INVITE_LINK_SUPPORT = "https://discord.gg/ebtsz3CstU";
 
         public const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
         public const string PROPERTIES_FILE_NAME = "Properties.asset";
