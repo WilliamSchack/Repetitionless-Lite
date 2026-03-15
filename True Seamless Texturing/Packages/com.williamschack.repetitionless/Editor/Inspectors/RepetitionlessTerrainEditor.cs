@@ -266,7 +266,7 @@ namespace Repetitionless.Editor.Inspectors
             if (!GUILayout.Button("Create New Material", GUILayout.Height(30)))
                 return;
 
-            RepetitionlessMaterialCreator.MaterialDataObjects terrainMatObjects = RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder(false);
+            MaterialDataObjects terrainMatObjects = RepetitionlessMaterialCreator.CreateTerrainMaterialAtCurrentFolder(false);
             AssignNewMaterial(terrainMatObjects.Material);
         }
 

@@ -1,7 +1,6 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEditor;
 
 using Repetitionless.Runtime.Variables;
@@ -516,7 +515,7 @@ namespace Repetitionless.Editor.Inspectors
             _arraySettingsButtonStyle.margin = GUI.skin.button.margin;
 
             // Setup data
-            RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects = RepetitionlessMaterialCreator.SetupMaterial(_material, _maxLayers, OnPropertiesCreated);
+            MaterialDataObjects materialDataObjects = RepetitionlessMaterialCreator.SetupMaterial(_material, _maxLayers, OnPropertiesCreated);
             _dataManager = materialDataObjects.DataManager;
             _textureData = materialDataObjects.TextureDataSO;
             _materialProperties = materialDataObjects.MaterialDataSO;

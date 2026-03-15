@@ -10,19 +10,40 @@ namespace Repetitionless.Editor.Materials
 {
     using Data;
 
-    internal static class RepetitionlessMaterialCreator
+    /// <summary>
+    /// Holds all the data related to a repetitionless material
+    /// </summary>
+    public struct MaterialDataObjects
     {
-        public const string DEFAULT_MATERIAL_NAME_REGULAR = "RepetitionlessMaterial.mat";
-        public const string DEFAULT_MATERIAL_NAME_TERRAIN = "RepetitionlessTerrainMaterial.mat";
-        private const string PROGRESS_BAR_TITLE = "Updating Material";
+        /// <summary>
+        /// The material
+        /// </summary>
+        public Material Material;
 
-        public struct MaterialDataObjects
-        {
-            public Material Material;
-            public MaterialDataManager DataManager;
-            public RepetitionlessTextureDataSO TextureDataSO;
-            public RepetitionlessMaterialDataSO MaterialDataSO;
-        }
+        /// <summary>
+        /// The data manager
+        /// </summary>
+        public MaterialDataManager DataManager;
+
+        /// <summary>
+        /// The texture data scriptable object
+        /// </summary>
+        public RepetitionlessTextureDataSO TextureDataSO;
+
+        /// <summary>
+        /// The material data scriptable object
+        /// </summary>
+        public RepetitionlessMaterialDataSO MaterialDataSO;
+    }
+
+    /// <summary>
+    /// Used to create new repetitionless materials
+    /// </summary>
+    public static class RepetitionlessMaterialCreator
+    {
+        private const string DEFAULT_MATERIAL_NAME_REGULAR = "RepetitionlessMaterial.mat";
+        private const string DEFAULT_MATERIAL_NAME_TERRAIN = "RepetitionlessTerrainMaterial.mat";
+        private const string PROGRESS_BAR_TITLE = "Updating Material";
 
         private static string GetCurrentProjectWindowPath()
         {
@@ -87,6 +108,25 @@ namespace Repetitionless.Editor.Materials
             EditorGUIUtility.PingObject(asset);
         }
 
+        /// <summary>
+        /// Creates a repetitionless material
+        /// </summary>
+        /// <param name="pipeline">
+        /// The materials render pipeline
+        /// </param>
+        /// <param name="folderPath">
+        /// The folder to save the material to
+        /// </param>
+        /// <param name="fileName">
+        /// The file name for the material<br />
+        /// Must include the extension .mat
+        /// </param>
+        /// <param name="ping">
+        /// If the material will be selected and pinged in the project window after creation
+        /// </param>
+        /// <returns>
+        /// The data objects for the created material
+        /// </returns>
         public static MaterialDataObjects CreateMaterial(ERenderPipeline pipeline, string folderPath, string fileName = DEFAULT_MATERIAL_NAME_REGULAR, bool ping = true)
         {
             MaterialDataObjects materialDataObjects = new MaterialDataObjects();
@@ -112,18 +152,65 @@ namespace Repetitionless.Editor.Materials
             return materialDataObjects;
         }
 
+        /// <summary>
+        /// Creates a repetitionless material<br />
+        /// Uses the currently selected render pipeline
+        /// </summary>
+        /// <param name="folderPath">
+        /// The folder to save the material to
+        /// </param>
+        /// <param name="fileName">
+        /// The file name for the material<br />
+        /// Must include the extension .mat
+        /// </param>
+        /// <param name="ping">
+        /// If the material will be selected and pinged in the project window after creation
+        /// </param>
+        /// <returns>
+        /// The data objects for the created material
+        /// </returns>
         public static MaterialDataObjects CreateMaterial(string folderPath, string fileName = DEFAULT_MATERIAL_NAME_REGULAR, bool ping = true)
         {
             ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
             return CreateMaterial(currentPipeline, folderPath, fileName, ping);
         }
 
+        /// <summary>
+        /// Creates a repetitionless material<br />
+        /// Uses the currently selected render pipeline<br />
+        /// Saves to the currently opened folder in the project window
+        /// </summary>
+        /// <param name="ping">
+        /// If the material will be selected and pinged in the project window after creation
+        /// </param>
+        /// <returns>
+        /// The data objects for the created material
+        /// </returns>
         public static MaterialDataObjects CreateMaterialAtCurrentFolder(bool ping = true)
         {
             string path = GetCurrentProjectWindowPath();
             return CreateMaterial(path, ping: ping);
         }
 
+        /// <summary>
+        /// Creates a repetitionless terrain material
+        /// </summary>
+        /// <param name="pipeline">
+        /// The materials render pipeline
+        /// </param>
+        /// <param name="folderPath">
+        /// The folder to save the material to
+        /// </param>
+        /// <param name="fileName">
+        /// The file name for the material<br />
+        /// Must include the extension .mat
+        /// </param>
+        /// <param name="ping">
+        /// If the material will be selected and pinged in the project window after creation
+        /// </param>
+        /// <returns>
+        /// The data objects for the created material
+        /// </returns>
         public static MaterialDataObjects CreateTerrainMaterial(ERenderPipeline pipeline, string folderPath, string fileName = DEFAULT_MATERIAL_NAME_TERRAIN, bool ping = true)
         {
             MaterialDataObjects materialDataObjects = new MaterialDataObjects();
@@ -149,18 +236,61 @@ namespace Repetitionless.Editor.Materials
             return materialDataObjects;
         }
 
+        /// <summary>
+        /// Creates a repetitionless terrain material<br />
+        /// Uses the currently selected render pipeline
+        /// </summary>
+        /// <param name="folderPath">
+        /// The folder to save the material to
+        /// </param>
+        /// <param name="fileName">
+        /// The file name for the material<br />
+        /// Must include the extension .mat
+        /// </param>
+        /// <param name="ping">
+        /// If the material will be selected and pinged in the project window after creation
+        /// </param>
+        /// <returns>
+        /// The data objects for the created material
+        /// </returns>
         public static MaterialDataObjects CreateTerrainMaterial(string folderPath, string fileName = DEFAULT_MATERIAL_NAME_TERRAIN, bool ping = true)
         {
             ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
             return CreateTerrainMaterial(currentPipeline, folderPath, fileName, ping);
         }
 
+        /// <summary>
+        /// Creates a repetitionless terrain material<br />
+        /// Uses the currently selected render pipeline<br />
+        /// Saves to the currently opened folder in the project window
+        /// </summary>
+        /// <param name="ping">
+        /// If the material will be selected and pinged in the project window after creation
+        /// </param>
+        /// <returns>
+        /// The data objects for the created material
+        /// </returns>
         public static MaterialDataObjects CreateTerrainMaterialAtCurrentFolder(bool ping = true)
         {
             string path = GetCurrentProjectWindowPath();
             return CreateTerrainMaterial(path, ping: ping);
         }
 
+        /// <summary>
+        /// Loads or Creates the data objects for a repetitionless material
+        /// </summary>
+        /// <param name="mat">
+        /// The material to setup
+        /// </param>
+        /// <param name="maxLayers">
+        /// The max amount of layers that can be used
+        /// </param>
+        /// <param name="onPropertiesCreatedCallback">
+        /// Callback for when the material properties are created
+        /// </param>
+        /// <returns>
+        /// The data objects for the material
+        /// </returns>
         public static MaterialDataObjects SetupMaterial(Material mat, int maxLayers, System.Action<RepetitionlessMaterialDataSO> onPropertiesCreatedCallback = null)
         {
             MaterialDataManager dataManager = new MaterialDataManager(mat);

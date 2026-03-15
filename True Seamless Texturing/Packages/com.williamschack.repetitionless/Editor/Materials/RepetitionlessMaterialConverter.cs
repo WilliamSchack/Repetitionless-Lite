@@ -10,6 +10,9 @@ namespace Repetitionless.Editor.Materials
 {
     using Data;
 
+    /// <summary>
+    /// Used to convert lit materials to repetitionless materials
+    /// </summary>
     public static class RepetitionlessMaterialConverter
     {
         private const string LIT_SHADER_NAME_BIRP = "Standard";
@@ -28,7 +31,7 @@ namespace Repetitionless.Editor.Materials
             ConvertMaterials(selectedMaterials);
         }
 
-        private static void ConvertMaterialBirp(Material originalMat, RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects)
+        private static void ConvertMaterialBirp(Material originalMat, MaterialDataObjects materialDataObjects)
         {
             // Get material properties
             Texture2D colourTex       = (Texture2D)originalMat.GetTexture("_MainTex");
@@ -81,7 +84,7 @@ namespace Repetitionless.Editor.Materials
             newMat.doubleSidedGI = originalMat.doubleSidedGI;
         }
 
-        private static void ConvertMaterialUrp(Material originalMat, RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects)
+        private static void ConvertMaterialUrp(Material originalMat, MaterialDataObjects materialDataObjects)
         {
             // Get material properties
             Texture2D colourTex       = (Texture2D)originalMat.GetTexture("_BaseMap");
@@ -134,7 +137,7 @@ namespace Repetitionless.Editor.Materials
             newMat.doubleSidedGI = originalMat.doubleSidedGI;
         }
 
-        private static void ConvertMaterialHdrp(Material originalMat, RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects)
+        private static void ConvertMaterialHdrp(Material originalMat, MaterialDataObjects materialDataObjects)
         {
             // Get material properties
             Texture2D colourTex       = (Texture2D)originalMat.GetTexture("_BaseColorMap");
@@ -192,6 +195,16 @@ namespace Repetitionless.Editor.Materials
             newMat.doubleSidedGI = originalMat.doubleSidedGI;
         }
 
+        /// <summary>
+        /// Convert a material to a repetitionless material<br />
+        /// Saves the material next to the original
+        /// </summary>
+        /// <param name="material">
+        /// The material to convert
+        /// </param>
+        /// <returns>
+        /// The created material
+        /// </returns>
         public static Material ConvertMaterial(Material material)
         {
             // Check if the asset exists
@@ -217,7 +230,7 @@ namespace Repetitionless.Editor.Materials
             }
 
             // Create repetitionless material
-            RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects = RepetitionlessMaterialCreator.CreateMaterial(renderPipeline, directory, fileName, false);
+            MaterialDataObjects materialDataObjects = RepetitionlessMaterialCreator.CreateMaterial(renderPipeline, directory, fileName, false);
             if (materialDataObjects.Material == null) {
                 Debug.LogWarning($"Could not convert {material.name}: Failed to create material");
                 return null;
@@ -239,6 +252,16 @@ namespace Repetitionless.Editor.Materials
             return materialDataObjects.Material;
         }
 
+        /// <summary>
+        /// Convert multiple materials to repetitionless materials<br />
+        /// Saves the materials next to the originals
+        /// </summary>
+        /// <param name="materials">
+        /// The materials to convert
+        /// </param>
+        /// <param name="selectConverted">
+        /// If the materials will be selected in the project window after creation
+        /// </param>
         public static void ConvertMaterials(Material[] materials, bool selectConverted = true)
         {
             List<Material> convertedMats = new List<Material>();
