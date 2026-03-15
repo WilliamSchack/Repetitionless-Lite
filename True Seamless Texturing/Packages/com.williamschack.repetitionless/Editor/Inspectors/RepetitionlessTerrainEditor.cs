@@ -369,6 +369,9 @@ namespace Repetitionless.Editor.Inspectors
             if (_parentTerrainProp.objectReferenceValue != null) {
                 EditorGUILayout.HelpBox("This terrain is taking the material and terrain layers from the parent terrain assigned above. Change the terrain layers, material, or remove the parent to use this terrains textures", MessageType.Info);
             } else {
+                if (_materialTerrainData == null)
+                    return;
+
                 GUILayout.Space(10);
 
                 if (!_materialTerrainData.AutoSyncLayers) {
