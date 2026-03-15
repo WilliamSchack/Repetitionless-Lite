@@ -35,13 +35,15 @@ namespace Repetitionless.Editor.Materials
         [MenuItem("Window/Repetitionless/Create Material", secondaryPriority = 1)]
         private static void CreateMaterialToolbar()
         {
-            CreateMaterial(GetCurrentProjectWindowPath());
+            string path = GetCurrentProjectWindowPath();
+            EditorApplication.delayCall += () => { CreateMaterial(path); };
         }
 
         [MenuItem("Window/Repetitionless/Create Terrain Material", secondaryPriority = 2)]
         private static void CreateTerrainMaterialToolbar()
         {
-            CreateTerrainMaterial(GetCurrentProjectWindowPath());
+            string path = GetCurrentProjectWindowPath();
+            EditorApplication.delayCall += () => { CreateTerrainMaterial(path); };
         }
 
         private static string GetShaderFolder()
