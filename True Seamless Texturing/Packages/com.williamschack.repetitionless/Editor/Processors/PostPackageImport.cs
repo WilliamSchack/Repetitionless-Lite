@@ -12,11 +12,45 @@ namespace Repetitionless.Editor.Processors
     {
         static PostPackageImport()
         {
+            if (NewVersionImported()) {
+                if (LastVersionHadOldLog())
+                    ShowReviewLog();
+                
+                RepetitionlessPrefs.UpdatePrefs((p) => {
+                    p.LastProcessedVersion = RepetitionlessPackageInfo.Info.version;
+                });
+            }
+
             if (RepetitionlessPrefs.Data.WelcomeWindowShown)
                 return;
 
             // Open the window after importing
             AssetDatabase.importPackageCompleted += PackageImported;
+        }
+
+        private static int[] SplitVersion(string version)
+        {
+            string[] partStrings = version.Split(".");
+
+            int[] numbers = new int[3];
+            for (int i = 0; i < numbers.Length; i++) {
+                numbers[i] = int.Parse(partStrings[i]);
+            }
+
+            return numbers;
+        }
+
+        private static bool LastVersionHadOldLog()
+        {
+            int[] splitLastVersion = SplitVersion(RepetitionlessPrefs.Data.LastProcessedVersion);
+            if (splitLastVersion[0] == 0) return false;
+            
+            return splitLastVersion[0] == 1 && splitLastVersion[1] == 0 && splitLastVersion[2] <= 3;
+        }
+
+        private static bool NewVersionImported()
+        {
+            return RepetitionlessPrefs.Data.LastProcessedVersion != RepetitionlessPackageInfo.Info.version;
         }
 
         private static void PackageImported(string packageName)
