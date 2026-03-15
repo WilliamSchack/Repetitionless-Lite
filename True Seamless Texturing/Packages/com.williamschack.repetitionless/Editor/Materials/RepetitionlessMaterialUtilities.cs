@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 using Repetitionless.Runtime.Variables;
 
@@ -9,6 +10,7 @@ namespace Repetitionless.Editor.Materials
     internal static class RepetitionlessMaterialUtilities
     {
         private const string NOISE_TEXTURE_PROP_NAME = "_NoiseTexture";
+        private const string SURFACE_TYPE_PROP_NAME = "_SurfaceTypeSetting";
 
         public static void SetKeyword(Material mat, string keyword, bool enabled)
         {
@@ -50,6 +52,84 @@ namespace Repetitionless.Editor.Materials
         public static void SetTriplanarEnabled(Material mat, bool enabled)
         {
             SetKeyword(mat, Constants.TRIPLANAR_KEYWORD, enabled);
+        }
+
+        public static void SetSurface(Material mat, ESurfaceType surfaceType)
+        {
+            mat.SetFloat(SURFACE_TYPE_PROP_NAME, (int)surfaceType);
+            
+            bool usingHDRP = false;
+            RenderPipelineAsset currentRpAsset = GraphicsSettings.currentRenderPipeline;
+            if (currentRpAsset != null) usingHDRP = currentRpAsset.GetType().ToString().Contains("HDRenderPipelineAsset");
+
+            switch (surfaceType) {
+                    case ESurfaceType.Opaque:
+                        mat.renderQueue = (int)RenderQueue.Geometry;
+                        mat.SetOverrideTag("RenderType", "Opaque");
+
+                        if (usingHDRP) {
+                            mat.DisableKeyword("_SURFACE_TYPE_TRANSPARENT");
+                            mat.DisableKeyword("_ENABLE_FOG_ON_TRANSPARENT");
+
+                            mat.SetInt("_SurfaceType", 0);
+                            mat.SetInt("_AlphaSrcBlend", (int)BlendMode.One);
+                            mat.SetInt("_AlphaDstBlend", (int)BlendMode.Zero);
+                            mat.SetInt("_AlphaCutoffEnable", 0);
+                            mat.SetInt("_ZWrite", 1);
+                        } else {
+                            mat.DisableKeyword("_BUILTIN_SURFACE_TYPE_TRANSPARENT");
+
+                            mat.SetInt("_BUILTIN_Surface", 0);
+                            mat.SetInt("_BUILTIN_SrcBlend", (int)BlendMode.One);
+                            mat.SetInt("_BUILTIN_DstBlend", (int)BlendMode.Zero);
+                            mat.SetInt("_BUILTIN_ZWrite", 1);
+                        }
+                        break;
+                    case ESurfaceType.Cutout:
+                        mat.renderQueue = (int)RenderQueue.AlphaTest;
+                        mat.SetOverrideTag("RenderType", "TransparentCutout");
+
+                        if (usingHDRP) {
+                            mat.DisableKeyword("_SURFACE_TYPE_TRANSPARENT");
+
+                            mat.SetInt("_SurfaceType", 0);
+                            mat.SetInt("_AlphaSrcBlend", (int)BlendMode.One);
+                            mat.SetInt("_AlphaDstBlend", (int)BlendMode.Zero);
+                            mat.SetInt("_AlphaCutoffEnable", 1);
+                            mat.SetInt("_ZWrite", 1);
+                        } else {
+                            mat.DisableKeyword("_BUILTIN_SURFACE_TYPE_TRANSPARENT");
+                            mat.DisableKeyword("_ENABLE_FOG_ON_TRANSPARENT");
+
+                            mat.SetInt("_BUILTIN_Surface", 0);
+                            mat.SetInt("_BUILTIN_SrcBlend", (int)BlendMode.One);
+                            mat.SetInt("_BUILTIN_DstBlend", (int)BlendMode.Zero);
+                            mat.SetInt("_BUILTIN_ZWrite", 1); 
+                        }
+                        break;
+                    case ESurfaceType.Transparent:
+                        mat.renderQueue = (int)RenderQueue.Transparent;
+                        mat.SetOverrideTag("RenderType", "Transparent");
+
+                        if (usingHDRP) {
+                            mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+                            mat.EnableKeyword("_ENABLE_FOG_ON_TRANSPARENT");
+
+                            mat.SetInt("_SurfaceType", 1);
+                            mat.SetInt("_AlphaSrcBlend", (int)BlendMode.One);
+                            mat.SetInt("_AlphaDstBlend", (int)BlendMode.OneMinusSrcAlpha);
+                            mat.SetInt("_AlphaCutoffEnable", 0);
+                            mat.SetInt("_ZWrite", 0);
+                        } else {
+                            mat.EnableKeyword("_BUILTIN_SURFACE_TYPE_TRANSPARENT");
+
+                            mat.SetInt("_BUILTIN_Surface", 1);
+                            mat.SetInt("_BUILTIN_SrcBlend", (int)BlendMode.SrcAlpha);
+                            mat.SetInt("_BUILTIN_DstBlend", (int)BlendMode.OneMinusSrcAlpha);
+                            mat.SetInt("_BUILTIN_ZWrite", 0);
+                        }
+                        break;
+                }
         }
 
         // Should move more utility functions here from the inspector but they arent globally needed so for now this is it
