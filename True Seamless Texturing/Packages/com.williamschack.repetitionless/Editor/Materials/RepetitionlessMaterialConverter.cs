@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -191,50 +192,67 @@ namespace Repetitionless.Editor.Materials
             newMat.doubleSidedGI = originalMat.doubleSidedGI;
         }
 
-        private static void ConvertMaterials(Material[] materials)
+        private static Material ConvertMaterial(Material material)
         {
+            // Check if the asset exists
+            string path = AssetDatabase.GetAssetPath(material);
+            if (path == "" ||! File.Exists(path)) {
+                Debug.LogWarning($"Could not convert {material.name}: Asset not found");
+                return null;
+            }
+
+            string directory = Path.GetDirectoryName(path);
+            string fileName = Path.GetFileNameWithoutExtension(path);
+            fileName += "_repetitionless.mat";
+
+            string shaderName = material.shader.name;
+
+            ERenderPipeline renderPipeline = ERenderPipeline.Unknown;
+            if (shaderName == LIT_SHADER_NAME_BIRP) renderPipeline = ERenderPipeline.Builtin;
+            if (shaderName == LIT_SHADER_NAME_URP)  renderPipeline = ERenderPipeline.URP;
+            if (shaderName == LIT_SHADER_NAME_HDRP) renderPipeline = ERenderPipeline.HDRP;
+            if (renderPipeline == ERenderPipeline.Unknown) {
+                Debug.LogWarning($"Could not convert {material.name}: Material must have a lit shader");
+                return null;
+            }
+
+            // Create repetitionless material
+            RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects = RepetitionlessMaterialCreator.CreateMaterial(renderPipeline, directory, fileName, false);
+            if (materialDataObjects.Material == null) {
+                Debug.LogWarning($"Could not convert {material.name}: Failed to create material");
+                return null;
+            }
+            
+            // Move properties
+            switch (renderPipeline) {
+                case ERenderPipeline.Builtin:
+                    ConvertMaterialBirp(material, materialDataObjects);
+                    break;
+                case ERenderPipeline.URP:
+                    ConvertMaterialUrp(material, materialDataObjects);
+                    break;
+                case ERenderPipeline.HDRP:
+                    ConvertMaterialHdrp(material, materialDataObjects);
+                    break;
+            }
+
+            return materialDataObjects.Material;
+        }
+
+        private static void ConvertMaterials(Material[] materials, bool selectConverted = true)
+        {
+            List<Material> convertedMats = new List<Material>();
+
             foreach (Material material in materials) {
-                // Check if the asset exists
-                string path = AssetDatabase.GetAssetPath(material);
-                if (path == "" ||! File.Exists(path)) {
-                    Debug.LogWarning($"Could not convert {material.name}: Asset not found");
-                    continue;
-                }
+                Material newMat = ConvertMaterial(material);
+                Debug.Log(newMat);
+                if (newMat == null) continue;
 
-                string directory = Path.GetDirectoryName(path);
-                string fileName = Path.GetFileNameWithoutExtension(path);
-                fileName += "_repetitionless.mat";
+                convertedMats.Add(newMat);
+            }
 
-                string shaderName = material.shader.name;
-
-                ERenderPipeline renderPipeline = ERenderPipeline.Unknown;
-                if (shaderName == LIT_SHADER_NAME_BIRP) renderPipeline = ERenderPipeline.Builtin;
-                if (shaderName == LIT_SHADER_NAME_URP)  renderPipeline = ERenderPipeline.URP;
-                if (shaderName == LIT_SHADER_NAME_HDRP) renderPipeline = ERenderPipeline.HDRP;
-                if (renderPipeline == ERenderPipeline.Unknown) {
-                    Debug.LogWarning($"Could not convert {material.name}: Material must have a lit shader");
-                    return;
-                }
-
-                // Create repetitionless material
-                RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects = RepetitionlessMaterialCreator.CreateMaterial(renderPipeline, directory, fileName, false);
-                if (materialDataObjects.Material == null) {
-                    Debug.LogWarning($"Could not convert {material.name}: Failed to create material");
-                    return;
-                }
-                
-                // Move properties
-                switch (renderPipeline) {
-                    case ERenderPipeline.Builtin:
-                        ConvertMaterialBirp(material, materialDataObjects);
-                        break;
-                    case ERenderPipeline.URP:
-                        ConvertMaterialUrp(material, materialDataObjects);
-                        break;
-                    case ERenderPipeline.HDRP:
-                        ConvertMaterialHdrp(material, materialDataObjects);
-                        break;
-                }
+            if (selectConverted && convertedMats.Count > 0) {
+                Selection.objects = convertedMats.ToArray();
             }
         }
     }
