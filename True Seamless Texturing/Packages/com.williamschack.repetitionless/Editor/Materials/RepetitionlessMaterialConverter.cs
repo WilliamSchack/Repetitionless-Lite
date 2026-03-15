@@ -245,7 +245,6 @@ namespace Repetitionless.Editor.Materials
 
             foreach (Material material in materials) {
                 Material newMat = ConvertMaterial(material);
-                Debug.Log(newMat);
                 if (newMat == null) continue;
 
                 convertedMats.Add(newMat);
