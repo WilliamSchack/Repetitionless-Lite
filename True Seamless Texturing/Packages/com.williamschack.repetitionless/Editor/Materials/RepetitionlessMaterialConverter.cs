@@ -27,6 +27,59 @@ namespace Repetitionless.Editor.Materials
             ConvertMaterials(selectedMaterials);
         }
 
+        private static void ConvertMaterialBirp(Material originalMat, RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects)
+        {
+            // Get material properties
+            Texture2D colourTex       = (Texture2D)originalMat.GetTexture("_MainTex");
+            Texture2D metalTex        = (Texture2D)originalMat.GetTexture("_MetallicGlossMap");
+            Texture2D normalTex       = (Texture2D)originalMat.GetTexture("_BumpMap");
+            Texture2D occlussionTex   = (Texture2D)originalMat.GetTexture("_OcclusionMap");
+            Texture2D emissionTex     = (Texture2D)originalMat.GetTexture("_EmissionMap");
+            Color baseColour          = originalMat.GetColor("_Color");
+            Color emissionColour      = originalMat.GetColor("_EmissionColor");
+            float metal               = originalMat.GetFloat("_Metallic");
+            float smoothness          = originalMat.GetFloat("_GlossMapScale");
+            float occlussion          = originalMat.GetFloat("_OcclusionStrength");
+            float normalStrength      = originalMat.GetFloat("_BumpScale");
+            float alphaClipping       = originalMat.GetFloat("_Cutoff");
+            Vector2 tiling            = originalMat.GetTextureScale("_MainTex");
+            Vector2 offset            = originalMat.GetTextureOffset("_MainTex");
+            bool emissionEnabled      = originalMat.IsKeywordEnabled("_EMISSION");
+            bool alphaClippingEnabled = originalMat.GetFloat("_Mode") == 1;
+
+            // Assign properties to new material
+            Material newMat                             = materialDataObjects.Material;
+            RepetitionlessTextureDataSO textureData     = materialDataObjects.TextureDataSO;
+            RepetitionlessMaterialDataSO materialData   = materialDataObjects.MaterialDataSO;
+            RepetitionlessMaterialData baseMaterialData = materialData.Data[0].BaseMaterialData;
+
+            textureData.SetupTextureDrawers();
+            textureData.AVTexturesDrawer.UpdateTexture(colourTex, 0, 0, true);
+            textureData.EMTexturesDrawer.UpdateTexture(metalTex, 0, 1, true);
+            textureData.NSOTexturesDrawer.UpdateTexture(normalTex, 0, 0, true);
+            textureData.NSOTexturesDrawer.UpdateTexture(occlussionTex, 0, 2, true);
+            textureData.EMTexturesDrawer.UpdateTexture(emissionTex, 0, 0, true);
+            textureData.Save();
+
+            materialData.UpdateAssignedTextures(newMat, textureData, 0, 0);
+            baseMaterialData.AlbedoTint = baseColour;
+            baseMaterialData.EmissionColour = emissionColour;
+            baseMaterialData.Metallic = metal;
+            baseMaterialData.SmoothnessRoughness = smoothness;
+            baseMaterialData.OcclussionStrength = occlussion;
+            baseMaterialData.NormalScale = normalStrength;
+            baseMaterialData.AlphaClipping = alphaClipping;
+            baseMaterialData.TilingOffset = new Vector4(tiling.x, tiling.y, offset.x, offset.y);
+            baseMaterialData.EmissionEnabled = emissionEnabled;
+            materialData.Save();
+
+            ESurfaceType surfaceType = alphaClippingEnabled ? ESurfaceType.Cutout : ESurfaceType.Opaque;
+            RepetitionlessMaterialUtilities.SetSurface(newMat, surfaceType, ERenderPipeline.URP);
+            
+            newMat.globalIlluminationFlags = originalMat.globalIlluminationFlags;
+            newMat.doubleSidedGI = originalMat.doubleSidedGI;
+        }
+
         private static void ConvertMaterialUrp(Material originalMat, RepetitionlessMaterialCreator.MaterialDataObjects materialDataObjects)
         {
             // Get material properties
@@ -173,6 +226,7 @@ namespace Repetitionless.Editor.Materials
                 // Move properties
                 switch (renderPipeline) {
                     case ERenderPipeline.Builtin:
+                        ConvertMaterialBirp(material, materialDataObjects);
                         break;
                     case ERenderPipeline.URP:
                         ConvertMaterialUrp(material, materialDataObjects);
