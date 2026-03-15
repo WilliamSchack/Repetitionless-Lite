@@ -1,4 +1,4 @@
-`Repetitionless includes a custom script to handle and sync materials to unity terrains. To setup a terrain for the shader, follow the instructions below:
+Repetitionless includes a custom script to handle and sync materials to unity terrains. To setup a terrain for the shader, follow the instructions below:
 
 ## Creating A Material
 

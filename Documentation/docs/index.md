@@ -21,6 +21,7 @@ Repetitionless is a set of shaders that removes texture tiling using multiple di
 - [Getting Started](getting-started.md)
 - [Samples](samples.md)
 - [Material Details](material-details.md)
+- [Converting Materials](material-conversion.md)
 - [Using Regular Materials](material-regular.md)
 - [Using Terrain Materials](material-terrain.md)
 - [Material Properties](material-properties.md)

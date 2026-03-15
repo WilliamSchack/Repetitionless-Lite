@@ -34,6 +34,10 @@ For instructions on accessing the samples:
 
 **View the [Material Details Page](material-details.md)**
 
+For instructions on converting regular lit materials to repetitionless materials:
+
+**View the [Converting Materials Page](material-conversion.md)**
+
 For instructions on how to use the regular repetitionless shader:
 
 **View the [Using Regular Materials Page](material-regular.md)**
