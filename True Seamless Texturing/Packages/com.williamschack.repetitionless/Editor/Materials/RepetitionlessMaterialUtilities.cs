@@ -12,6 +12,21 @@ namespace Repetitionless.Editor.Materials
         private const string NOISE_TEXTURE_PROP_NAME = "_NoiseTexture";
         private const string SURFACE_TYPE_PROP_NAME = "_SurfaceTypeSetting";
 
+        public static ERenderPipeline GetActiveRenderPipeline()
+        {
+            RenderPipelineAsset currentPipeline = GraphicsSettings.currentRenderPipeline;
+            if (currentPipeline == null)
+                return ERenderPipeline.Builtin;
+            
+            if (currentPipeline.GetType().Name.Contains("UniversalRenderPipeline"))
+                return ERenderPipeline.URP;
+            
+            if (currentPipeline.GetType().Name.Contains("HDRenderPipeline"))
+                return ERenderPipeline.HDRP;
+
+            return ERenderPipeline.Unknown;
+        }
+
         public static void SetKeyword(Material mat, string keyword, bool enabled)
         {
             // Delay call to prevent recursive warnings, this will take a while if variant not cached

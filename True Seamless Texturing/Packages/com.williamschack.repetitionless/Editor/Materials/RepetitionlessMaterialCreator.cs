@@ -3,12 +3,13 @@ using System.Reflection;
 
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering;
+
+using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Materials
 {
     using Data;
-    
+
     internal static class RepetitionlessMaterialCreator
     {
         public const string DEFAULT_MATERIAL_NAME_REGULAR = "RepetitionlessMaterial.mat";
@@ -49,18 +50,23 @@ namespace Repetitionless.Editor.Materials
             EditorApplication.delayCall += () => { CreateTerrainMaterial(path); };
         }
 
-        private static string GetShaderFolder()
+        private static string GetShaderFolder(ERenderPipeline pipeline)
         {
-            string shaderFolder = Constants.SHADER_FOLDER;
+            if (pipeline == ERenderPipeline.Unknown)
+                return "";
 
-            RenderPipelineAsset currentPipeline = GraphicsSettings.currentRenderPipeline;
-            if (currentPipeline == null) { // Built-In RP
-                shaderFolder += Constants.SHADER_FOLDER_BIRP;
-            } else if (currentPipeline.GetType().Name.Contains("UniversalRenderPipeline")) {
-                shaderFolder += Constants.SHADER_FOLDER_URP;
-            } else if (currentPipeline.GetType().Name.Contains("HDRenderPipeline")) {
-                shaderFolder += Constants.SHADER_FOLDER_HDRP;
-            } else return "";
+            string shaderFolder = Constants.SHADER_FOLDER;
+            switch (pipeline) {
+                case ERenderPipeline.Builtin:
+                    shaderFolder += Constants.SHADER_FOLDER_BIRP;
+                    break;
+                case ERenderPipeline.URP:
+                    shaderFolder += Constants.SHADER_FOLDER_URP;
+                    break;
+                case ERenderPipeline.HDRP:
+                    shaderFolder += Constants.SHADER_FOLDER_HDRP;
+                    break;
+            }
 
             return shaderFolder;
         }
@@ -83,11 +89,11 @@ namespace Repetitionless.Editor.Materials
             EditorGUIUtility.PingObject(asset);
         }
 
-        public static MaterialDataObjects CreateMaterial(string folderPath, string fileName = DEFAULT_MATERIAL_NAME_REGULAR, bool ping = true)
+        public static MaterialDataObjects CreateMaterial(ERenderPipeline pipeline, string folderPath, string fileName = DEFAULT_MATERIAL_NAME_REGULAR, bool ping = true)
         {
             MaterialDataObjects materialDataObjects = new MaterialDataObjects();
 
-            string shaderName = GetShaderFolder();
+            string shaderName = GetShaderFolder(pipeline);
             if (shaderName == "") return materialDataObjects;
 
             shaderName += Constants.SHADER_MATERIAL_NAME_REGULAR;
@@ -108,11 +114,17 @@ namespace Repetitionless.Editor.Materials
             return materialDataObjects;
         }
 
-        public static MaterialDataObjects CreateTerrainMaterial(string folderPath, string fileName = DEFAULT_MATERIAL_NAME_TERRAIN, bool ping = true)
+        public static MaterialDataObjects CreateMaterial(string folderPath, string fileName = DEFAULT_MATERIAL_NAME_REGULAR, bool ping = true)
+        {
+            ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
+            return CreateMaterial(currentPipeline, folderPath, fileName, ping);
+        }
+
+        public static MaterialDataObjects CreateTerrainMaterial(ERenderPipeline pipeline, string folderPath, string fileName = DEFAULT_MATERIAL_NAME_TERRAIN, bool ping = true)
         {
             MaterialDataObjects materialDataObjects = new MaterialDataObjects();
 
-            string shaderName = GetShaderFolder();
+            string shaderName = GetShaderFolder(pipeline);
             if (shaderName == "") return materialDataObjects;
 
             shaderName += Constants.SHADER_MATERIAL_NAME_TERRAIN;
@@ -131,6 +143,12 @@ namespace Repetitionless.Editor.Materials
                 PingAsset(material);
 
             return materialDataObjects;
+        }
+
+        public static MaterialDataObjects CreateTerrainMaterial(string folderPath, string fileName = DEFAULT_MATERIAL_NAME_TERRAIN, bool ping = true)
+        {
+            ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
+            return CreateTerrainMaterial(currentPipeline, folderPath, fileName, ping);
         }
 
         public static MaterialDataObjects SetupMaterial(Material mat, int maxLayers, System.Action<RepetitionlessMaterialDataSO> onPropertiesCreatedCallback = null)
