@@ -78,7 +78,7 @@ namespace Repetitionless.Editor.Inspectors
 
         private void SyncLayersToMaterial()
         {
-            if (_terrainData == null)
+            if (_materialTerrainData == null || _terrainData == null)
                 return;
 
             // Update global data for terrain layer saving
@@ -92,7 +92,7 @@ namespace Repetitionless.Editor.Inspectors
         private void UpdateMaterialTerrainLayerTextures(bool forceUpdate = false)
         {
             EditorApplication.delayCall += () => {
-                if (_main.MainMaterial == null || _terrainData == null)
+                if (_main.MainMaterial == null || _materialTerrainData == null || _terrainData == null)
                     return;
 
                 // Will only update changed layers

@@ -59,15 +59,7 @@ namespace Repetitionless.Editor.Inspectors
             base.OnEnable(materialEditor);
 
             // Get terrain layer data SO
-            if (_dataManager.AssetExists(Constants.TERRAIN_DATA_FILE_NAME))
-                _materialTerrainData = _dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
-            else {
-                _materialTerrainData = ScriptableObject.CreateInstance<RepetitionlessTerrainDataSO>();
-                _dataManager.CreateAsset(_materialTerrainData, Constants.TERRAIN_DATA_FILE_NAME);
-
-                _materialTerrainData.Save();
-                AssetDatabase.SaveAssetIfDirty(_materialTerrainData);
-            }
+            _materialTerrainData = RepetitionlessTerrainMaterialUtilities.SetupData(_dataManager);
 
             // Set terrain compatible tag
             _material.SetOverrideTag("TerrainCompatible", "True");
