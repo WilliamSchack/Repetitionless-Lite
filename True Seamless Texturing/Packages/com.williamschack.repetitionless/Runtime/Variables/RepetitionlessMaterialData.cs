@@ -121,7 +121,7 @@ namespace Repetitionless.Runtime.Variables
         /// <summary>
         /// The scale of the noise
         /// </summary>
-        public float NoiseScale = 5.0f;
+        public float NoiseScale = 2.0f;
         /// <summary>
         /// The random noise scaling min max
         /// </summary>
