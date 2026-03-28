@@ -64,5 +64,7 @@ namespace Repetitionless.Editor
 
         public const string NOISE_TEXTURE_KEYWORD = "_REPETITIONLESS_NOISE_TEXTURE";
         public const string TRIPLANAR_KEYWORD = "_REPETITIONLESS_TRIPLANAR";
+        public const string SPECULAR_HIGHLIGHTS_OFF_KEYWORD = "_SPECULARHIGHLIGHTS_OFF";
+        public const string ENVIRONMENT_REFLECTIONS_OFF_KEYWORD = "_ENVIRONMENTREFLECTIONS_OFF";
     }
 }

@@ -159,6 +159,8 @@ namespace Repetitionless.Editor.Inspectors
         private EUVSpace _prevUVSpace;
 
         private bool _triplanarEnabled = false;
+        private bool _specularHighlightsEnabled = true;
+        private bool _environmentReflectionsEnabled = true;
         #endregion
 
         #region Helpers
@@ -469,6 +471,24 @@ namespace Repetitionless.Editor.Inspectors
         {
             _triplanarEnabled = enabled;
             RepetitionlessMaterialUtilities.SetTriplanarEnabled(_material, enabled);
+
+            _materialProperties.CallOnExternalDataChanged();
+        }
+
+        private void SetSpecularHighlightsEnabled(bool enabled)
+        {
+            _specularHighlightsEnabled = enabled;
+            RepetitionlessMaterialUtilities.SetSpecularHighlightsEnabled(_material, enabled);
+
+            _materialProperties.CallOnExternalDataChanged();
+        }
+
+        private void SetEnvironmentReflectionsEnabled(bool enabled)
+        {
+            _environmentReflectionsEnabled = enabled;
+            RepetitionlessMaterialUtilities.SetEnvironmentReflectionsEnabled(_material, enabled);
+
+            _materialProperties.CallOnExternalDataChanged();
         }
 
         private void DrawTextureChannelPicker(Rect lineRect, int layerIndex, int sectionIndex, int texturesIndex, int elementIndex, int channelIndex)
@@ -508,6 +528,8 @@ namespace Repetitionless.Editor.Inspectors
             _prevUVSpace = (EUVSpace)uvSpaceProp.floatValue;
             
             _triplanarEnabled = _material.IsKeywordEnabled(Constants.TRIPLANAR_KEYWORD);
+            _specularHighlightsEnabled = !_material.IsKeywordEnabled(Constants.SPECULAR_HIGHLIGHTS_OFF_KEYWORD);
+            _environmentReflectionsEnabled = !_material.IsKeywordEnabled(Constants.ENVIRONMENT_REFLECTIONS_OFF_KEYWORD);
 
             // Initialize array settings style and menu
             _arraySettingsButtonStyle = new GUIStyle("DropdownButton");
@@ -622,8 +644,6 @@ namespace Repetitionless.Editor.Inspectors
             EditorGUI.BeginChangeCheck();
             _triplanarEnabled = EditorGUILayout.Toggle(new GUIContent("Triplanar", "Uses world space UVs and samples the material in each direction"), _triplanarEnabled);
             if (EditorGUI.EndChangeCheck()) {
-                SetTriplanarEnabled(_triplanarEnabled);
-
                 // If enabled set uv space to world
                 if (_triplanarEnabled && uvSpace == (int)EUVSpace.Local)
                     uvSpaceProp.floatValue = (int)EUVSpace.World;
@@ -632,7 +652,7 @@ namespace Repetitionless.Editor.Inspectors
                 if (!_triplanarEnabled)
                     uvSpaceProp.floatValue = (int)_prevUVSpace;
 
-                _materialProperties.CallOnExternalDataChanged();
+                SetTriplanarEnabled(_triplanarEnabled);
             }
 
             // Global Tiling & Offset
@@ -648,9 +668,21 @@ namespace Repetitionless.Editor.Inspectors
             if (_editor != null) {
                 GUILayout.Space(10);
 
-                _editor.LightmapEmissionProperty();
                 _editor.RenderQueueField();
+                _editor.LightmapEmissionProperty();
                 _editor.DoubleSidedGIField();
+
+                // Specular Highlights
+                EditorGUI.BeginChangeCheck();
+                _specularHighlightsEnabled = EditorGUILayout.Toggle(new GUIContent("Specular Highlights", "When enabled, the Material reflects the shine from direct lighting."), _specularHighlightsEnabled);
+                if (EditorGUI.EndChangeCheck())
+                    SetSpecularHighlightsEnabled(_specularHighlightsEnabled);
+
+                // Environment Reflections
+                EditorGUI.BeginChangeCheck();
+                _environmentReflectionsEnabled = EditorGUILayout.Toggle(new GUIContent("Environment Reflections", "When enabled, the Material samples reflections from the nearest Reflection Probes or Lighting Probe."), _environmentReflectionsEnabled);
+                if (EditorGUI.EndChangeCheck())
+                    SetEnvironmentReflectionsEnabled(_environmentReflectionsEnabled);
             }
 
             // Texture Array Settings

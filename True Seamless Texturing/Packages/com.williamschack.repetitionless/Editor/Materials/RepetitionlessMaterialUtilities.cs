@@ -69,6 +69,16 @@ namespace Repetitionless.Editor.Materials
             SetKeyword(mat, Constants.TRIPLANAR_KEYWORD, enabled);
         }
 
+        public static void SetSpecularHighlightsEnabled(Material mat, bool enabled)
+        {
+            SetKeyword(mat, Constants.SPECULAR_HIGHLIGHTS_OFF_KEYWORD, !enabled);
+        }
+
+        public static void SetEnvironmentReflectionsEnabled(Material mat, bool enabled)
+        {
+            SetKeyword(mat, Constants.ENVIRONMENT_REFLECTIONS_OFF_KEYWORD, !enabled);
+        }
+
         public static void SetSurface(Material mat, ESurfaceType surfaceType, ERenderPipeline pipeline)
         {
             mat.SetFloat(SURFACE_TYPE_PROP_NAME, (int)surfaceType);
