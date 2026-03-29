@@ -154,8 +154,8 @@ void SampleRepetitionlessLayer_float(
                 materialMask = bmTextureSample.r;
                 break;
             case 3: // Vertex Colour
-                float similarity = distance(VertexColour.rgb, materialBlendMaskTO.rgb);
-                materialMask = 1.0 - smoothstep(MaterialBlendMaskExtraSettings.x, MaterialBlendMaskExtraSettings.y, similarity);
+                float colourSimilarity = distance(VertexColour.rgb, materialBlendMaskTO.rgb);
+                materialMask = 1.0 - smoothstep(MaterialBlendMaskExtraSettings.x, MaterialBlendMaskExtraSettings.y, colourSimilarity);
 
                 break;
         }
