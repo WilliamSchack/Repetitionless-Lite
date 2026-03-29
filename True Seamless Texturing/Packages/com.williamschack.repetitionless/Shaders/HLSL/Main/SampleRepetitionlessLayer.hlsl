@@ -21,7 +21,7 @@ void SampleRepetitionlessLayer_float(
     // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
-    int SurfaceType, int UVSpace, int DebuggingIndex,
+    int SurfaceType, int UVSpace, int VertexColourBlendModeIndex, int DebuggingIndex,
     float4 VertexColour,
 
     // Properties
@@ -367,6 +367,14 @@ void SampleRepetitionlessLayer_float(
 
     // ----------------------- Output ------------------------- //
 
+    // Vertex Colour
+    switch (VertexColourBlendModeIndex) {
+        case 1: albedoColor *= VertexColour;                        break; // Multiply
+        case 2: albedoColor = saturate(albedoColor + VertexColour); break; // Additive
+        case 3: albedoColor = saturate(albedoColor - VertexColour); break; // Subtractive
+        case 4: albedoColor = VertexColour;                         break; // Overwrite
+    }
+
     // Debugging
     switch (DebuggingIndex) {
         case 2: albedoColor = farDistance; break;
@@ -384,9 +392,6 @@ void SampleRepetitionlessLayer_float(
     SmoothnessOut = smoothness;
     OcclussionOut = occlussion;
     EmissionColorOut = emissionColor;
-
-    //AlbedoColorOut = materialMask;
-    //AlbedoColorOut = VertexColour;
 }
 
 // Uses assigned array properties texture
@@ -394,7 +399,7 @@ void SampleRepetitionlessLayer_float(
     // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
-    int SurfaceType, int UVSpace, int DebuggingIndex,
+    int SurfaceType, int UVSpace, int VertexColourBlendModeIndex, int DebuggingIndex,
     float4 VertexColour,
 
     // Properties
@@ -428,7 +433,7 @@ void SampleRepetitionlessLayer_float(
     SampleRepetitionlessLayer_float(
         SS, UV, TangentNormalVector, WorldNormalVector,
         WorldPosition, CameraPosition,
-        SurfaceType, UVSpace, DebuggingIndex,
+        SurfaceType, UVSpace, VertexColourBlendModeIndex, DebuggingIndex,
         VertexColour,
         LayerIndex,
         PropertiesTexture,

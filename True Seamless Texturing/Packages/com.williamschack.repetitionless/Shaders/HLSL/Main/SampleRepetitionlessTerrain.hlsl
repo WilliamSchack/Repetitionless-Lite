@@ -13,7 +13,7 @@ void SampleRepetitionlessTerrain_float(
     // General Settings
     SamplerState SS, float2 UV, float3 TangentNormalVector, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
-    int SurfaceType, int UVSpace, int DebuggingIndex,
+    int SurfaceType, int UVSpace, int VertexColourBlendModeIndex, int DebuggingIndex,
     float4 VertexColour,
 
     // Properties
@@ -127,7 +127,7 @@ void SampleRepetitionlessTerrain_float(
         SampleRepetitionlessLayer_float(
             SS, UV, TangentNormalVector, WorldNormalVector,
             WorldPosition, CameraPosition,
-            SurfaceType, UVSpace, DebuggingIndex,
+            SurfaceType, UVSpace, VertexColourBlendModeIndex, DebuggingIndex,
             VertexColour,
             i,
             PropertiesTexture,

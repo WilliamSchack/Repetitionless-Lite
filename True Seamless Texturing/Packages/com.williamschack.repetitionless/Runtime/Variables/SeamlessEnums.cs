@@ -121,4 +121,35 @@ namespace Repetitionless.Runtime.Variables
         /// </summary>
         Material
     }
+
+    /// <summary>
+    /// Available blend modes for the vertex colour
+    /// </summary>
+    public enum EVertexColourBlendMode
+    {
+        /// <summary>
+        /// Doesnt use the vertex colour
+        /// </summary>
+        Off,
+
+        /// <summary>
+        /// Multiplies the vertex colour with the output
+        /// </summary>
+        Multiply,
+
+        /// <summary>
+        /// Adds the vertex colour to the output
+        /// </summary>
+        Additive,
+
+        /// <summary>
+        /// Subtracts the vertex colour to the output
+        /// </summary>
+        Subtractive,
+
+        /// <summary>
+        /// Overwrites the output colour
+        /// </summary>
+        Overwrite
+    }
 }
