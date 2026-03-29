@@ -77,7 +77,12 @@ namespace Repetitionless.Runtime.Variables
         /// <summary>
         /// Uses a custom input texture
         /// </summary>
-        CustomTexture
+        CustomTexture,
+        
+        /// <summary>
+        /// Uses a defined colour from the vertex data
+        /// </summary>
+        VertexColour
     }
 
     /// <summary>

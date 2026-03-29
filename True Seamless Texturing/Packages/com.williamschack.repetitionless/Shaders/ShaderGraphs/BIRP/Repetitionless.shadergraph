@@ -2314,6 +2314,31 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "42cf1cf6d8b24d79bb67cecca2d82187",
+    "m_Id": 161,
+    "m_DisplayName": "VertexColour",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "VertexColour",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.SamplerStateMaterialSlot",
     "m_ObjectId": "441dce8e790a427582e2b76c151a7a5d",
     "m_Id": 1,
@@ -2518,7 +2543,7 @@
     "m_Title": "Textures",
     "m_Position": {
         "x": 1185.0,
-        "y": 2688.999755859375
+        "y": 2689.0
     }
 }
 
@@ -3213,8 +3238,8 @@
     "m_ObjectId": "78fba43ca02a4f59b78481b0b304f8c3",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 876.9999389648438,
-        "y": 1855.9998779296875
+        "x": 877.0,
+        "y": 1856.0
     }
 }
 
@@ -3803,6 +3828,9 @@
         },
         {
             "m_Id": "2f0ef82a278443bc81efce6675be18a0"
+        },
+        {
+            "m_Id": "42cf1cf6d8b24d79bb67cecca2d82187"
         },
         {
             "m_Id": "8a6d773083f34ffe94801ecf8f713cc6"

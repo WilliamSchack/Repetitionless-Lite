@@ -22,6 +22,7 @@ void SampleRepetitionlessLayer_float(
     SamplerState SS, float2 UV, float3 TangentNormalVector, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
     int SurfaceType, int UVSpace, int DebuggingIndex,
+    float4 VertexColour,
 
     // Properties
     int LayerIndex,
@@ -150,6 +151,15 @@ void SampleRepetitionlessLayer_float(
             case 2: // Custom Texture
                 float4 bmTextureSample = SampleArrayAtConstantIndex(BMTextures, assignedBMTexturesArray, LayerIndex, UV * materialBlendMaskTO.xy + materialBlendMaskTO.zw, 0, SS);
                 materialMask = bmTextureSample.r;
+                break;
+            case 3: // Vertex Colour
+                // Temp values for testing
+                float3 col = VertexColour.rgb;
+                float3 targetCol = float3(1, 0, 0);
+                float3 diff = col - targetCol;
+                float dist = dot(diff, diff);
+                materialMask = 1 - smoothstep(0.01, 0.08, dist);
+
                 break;
         }
         
@@ -385,6 +395,7 @@ void SampleRepetitionlessLayer_float(
     SamplerState SS, float2 UV, float3 TangentNormalVector, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
     int SurfaceType, int UVSpace, int DebuggingIndex,
+    float4 VertexColour,
 
     // Properties
     int LayerIndex,
@@ -418,6 +429,7 @@ void SampleRepetitionlessLayer_float(
         SS, UV, TangentNormalVector, WorldNormalVector,
         WorldPosition, CameraPosition,
         SurfaceType, UVSpace, DebuggingIndex,
+        VertexColour,
         LayerIndex,
         PropertiesTexture,
         assignedAVTextures[0], assignedAVTextures[1], assignedAVTextures[2],

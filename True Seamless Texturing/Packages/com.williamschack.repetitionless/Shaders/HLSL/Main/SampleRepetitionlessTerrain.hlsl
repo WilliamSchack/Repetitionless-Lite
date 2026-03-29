@@ -127,6 +127,7 @@ void SampleRepetitionlessTerrain_float(
             SS, UV, TangentNormalVector, WorldNormalVector,
             WorldPosition, CameraPosition,
             SurfaceType, UVSpace, DebuggingIndex,
+            0,
             i,
             PropertiesTexture,
             assignedAVTextures[0], assignedAVTextures[1], assignedAVTextures[2],
