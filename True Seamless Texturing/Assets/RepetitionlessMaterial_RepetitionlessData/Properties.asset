@@ -142,8 +142,8 @@ MonoBehaviour:
     BlendMaskNoiseScale: 10
     BlendMaskNoiseOffset: {x: 0, y: 0}
     BlendMaskTextureTO: {x: 1, y: 1, z: 0, w: 0}
-    BlendMaskVertexColour: {r: 0.9150943, g: 0.25467247, b: 0.25467247, a: 1}
-    BlendMaskVertexColourThreshold: {x: 0.01, y: 0.08}
+    BlendMaskVertexColour: {r: 0, g: 0, b: 0, a: 1}
+    BlendMaskVertexColourThreshold: {x: 0.01, y: 0.2}
   _dataCompressed:
   - BaseMaterialData:
       Settings1: {x: 15, y: 65, z: 0, w: 0.5}
@@ -178,6 +178,7 @@ MonoBehaviour:
     DistanceBlendSettings: {x: 0, y: 1, z: 10, w: 20}
     BlendMaskDistanceTO: {x: 1, y: 1, z: 0, w: 0}
     MaterialBlendSettings: {x: 13, y: 3, z: 1, w: 1}
-    MaterialBlendMaskTO: {x: 10, y: 0, z: 0, w: 0}
+    MaterialBlendMaskTO: {x: 0, y: 0, z: 0, w: 1}
+    MaterialBlendMaskExtraSettings: {x: 0.01, y: 0.2, z: 0, w: 0}
   _noiseQuality: 1
   _globalTilingOffset: {x: 1, y: 1, z: 0, w: 0}

@@ -100,7 +100,7 @@ namespace Repetitionless.Runtime.Variables
         /// <summary>
         /// The smoothstep min max for the colour
         /// </summary>
-        public Vector2 BlendMaskVertexColourThreshold = new Vector2(0.01f, 0.08f);
+        public Vector2 BlendMaskVertexColourThreshold = new Vector2(0.01f, 0.2f);
     }
 
     /// <summary>

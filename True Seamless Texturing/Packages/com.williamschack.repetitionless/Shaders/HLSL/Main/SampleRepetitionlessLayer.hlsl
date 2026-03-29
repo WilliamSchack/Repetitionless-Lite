@@ -101,10 +101,11 @@ void SampleRepetitionlessLayer_float(
     // Layer Settings
     indexOffset += REPETITIONLESS_MATERIAL_VARIABLE_COUNT;
 
-    half4 distanceBlendSettings = PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0));
-    half4 blendMaskDistanceTO   = PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0));
-    half4 materialBlendSettings = PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0));
-    half4 materialBlendMaskTO   = PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0));
+    half4 distanceBlendSettings          = PropertiesTexture.Load(int3(0 + indexOffset, LayerIndex, 0));
+    half4 blendMaskDistanceTO            = PropertiesTexture.Load(int3(1 + indexOffset, LayerIndex, 0));
+    half4 materialBlendSettings          = PropertiesTexture.Load(int3(2 + indexOffset, LayerIndex, 0));
+    half4 materialBlendMaskTO            = PropertiesTexture.Load(int3(3 + indexOffset, LayerIndex, 0));
+    half4 MaterialBlendMaskExtraSettings = PropertiesTexture.Load(int3(4 + indexOffset, LayerIndex, 0));
 
     bool  distanceBlendEnabled = distanceBlendSettings.x > 0.99 ? true : false;
     int   distanceBlendMode    = distanceBlendSettings.y;
@@ -153,12 +154,8 @@ void SampleRepetitionlessLayer_float(
                 materialMask = bmTextureSample.r;
                 break;
             case 3: // Vertex Colour
-                // Temp values for testing
-                float3 col = VertexColour.rgb;
-                float3 targetCol = float3(1, 0, 0);
-                float3 diff = col - targetCol;
-                float dist = dot(diff, diff);
-                materialMask = 1 - smoothstep(0.01, 0.08, dist);
+                float similarity = distance(VertexColour.rgb, materialBlendMaskTO.rgb);
+                materialMask = 1.0 - smoothstep(MaterialBlendMaskExtraSettings.x, MaterialBlendMaskExtraSettings.y, similarity);
 
                 break;
         }
@@ -387,6 +384,9 @@ void SampleRepetitionlessLayer_float(
     SmoothnessOut = smoothness;
     OcclussionOut = occlussion;
     EmissionColorOut = emissionColor;
+
+    //AlbedoColorOut = materialMask;
+    //AlbedoColorOut = VertexColour;
 }
 
 // Uses assigned array properties texture

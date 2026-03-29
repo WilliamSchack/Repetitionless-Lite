@@ -60,6 +60,16 @@ namespace Repetitionless.Editor.Data
         }
 
         // Returns if the value was changed
+        private static bool UpdateColourIfChanged(ref Vector4 target, Color value)
+        {
+            if (target.x == value.r && target.y == value.g && target.y == value.b && target.w == value.a)
+                return false;
+
+            target = new Vector4(value.r, value.g, value.b, value.a);
+            return true;
+        }
+
+        // Returns if the value was changed
         private static bool UpdateBoolsIfChanged(ref float target, params bool[] values)
         {
             bool valueChanged = false;
@@ -247,6 +257,9 @@ namespace Repetitionless.Editor.Data
                     break;
                 }
                 case EMaskType.VertexColour: {
+                    if (UpdateColourIfChanged(ref compressedData.MaterialBlendMaskTO, newData.BlendMaskVertexColour))
+                        return startingChangedIndex + 3;
+
                     if (UpdateGenericIfChanged<Vector4>(ref compressedData.MaterialBlendMaskExtraSettings, new Vector4(newData.BlendMaskVertexColourThreshold.x, newData.BlendMaskVertexColourThreshold.y, 0, 0)))
                         return startingChangedIndex + 4;
 
