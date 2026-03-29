@@ -152,8 +152,16 @@ namespace Repetitionless.Runtime.Variables
         /// x: BlendMaskNoiseScale<br />
         /// zw: BlendMaskNoiseOffset<br />
         /// <b>IF USING TEXTURE MASK:</b><br />
-        /// xyzw: BlendMaskTextureTO
+        /// xyzw: BlendMaskTextureTO<br />
+        /// <b>IF USING VERTEX COLOUR MASK:</b><br />
+        /// xyzw: BlendMaskVertexColour
         /// </summary>
         public Vector4 MaterialBlendMaskTO;
+
+        /// <summary>
+        /// <b>IF USING VERTEX COLOUR:</b><br />
+        /// xy: BlendMaskVertexColourThreshold
+        /// </summary>
+        public Vector4 MaterialBlendMaskExtraSettings;
     }
 }

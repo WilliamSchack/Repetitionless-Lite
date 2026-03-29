@@ -201,6 +201,14 @@ namespace Repetitionless.Editor.Data
                 // Load and modify the texture
                 texture = _dataManager.LoadAsset<Texture2D>(Constants.PROPERTIES_TEXTURE_ASSET_NAME);
                 
+                // Check if the width is the same, it may have less variables from a previous version
+                if (texture.width != Constants.COMPRESSED_LAYER_VARIABLES_COUNT) {
+                    // Recreate texture with new width
+                    _dataManager.DeleteAsset(Constants.PROPERTIES_TEXTURE_ASSET_NAME);
+                    UpdateMaterialTexture(property, layerIndex);
+                    return;
+                }
+
                 for (int i = 0; i < Constants.COMPRESSED_LAYER_VARIABLES_COUNT; i++) {
                     int fieldChangedIndex = RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed[layerIndex], Data[layerIndex]);
 

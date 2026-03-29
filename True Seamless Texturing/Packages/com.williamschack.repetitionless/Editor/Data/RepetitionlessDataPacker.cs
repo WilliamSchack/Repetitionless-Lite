@@ -224,19 +224,34 @@ namespace Repetitionless.Editor.Data
             if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendSettings.z, newData.BlendMaskOpacity) && !updateAll)   return startingChangedIndex + 2;
             if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendSettings.w, newData.BlendMaskStrength) && !updateAll)  return startingChangedIndex + 2;
 
-            if (newData.BlendMaskType == EMaskType.CustomTexture) {
-                if (UpdateGenericIfChanged<Vector4>(ref compressedData.MaterialBlendMaskTO, newData.BlendMaskTextureTO) && !updateAll) return startingChangedIndex + 3;
-            } else {
-                // All of these should be updated, return if changed afterwards
-                bool updatedAny = false;
+            switch (newData.BlendMaskType) {
+                case EMaskType.PerlinNoise:
+                case EMaskType.SimplexNoise: {
+                    // All of these should be updated, return if changed afterwards
+                    bool updatedAny = false;
 
-                if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendMaskTO.x, newData.BlendMaskNoiseScale)) updatedAny = true;
-                compressedData.MaterialBlendMaskTO.y = 0;
-                if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendMaskTO.z, newData.BlendMaskNoiseOffset.x)) updatedAny = true;
-                if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendMaskTO.w, newData.BlendMaskNoiseOffset.y)) updatedAny = true;
+                    if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendMaskTO.x, newData.BlendMaskNoiseScale)) updatedAny = true;
+                    compressedData.MaterialBlendMaskTO.y = 0;
+                    if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendMaskTO.z, newData.BlendMaskNoiseOffset.x)) updatedAny = true;
+                    if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendMaskTO.w, newData.BlendMaskNoiseOffset.y)) updatedAny = true;
 
-                if (updatedAny && !updateAll)
-                    return startingChangedIndex + 3;
+                    if (updatedAny && !updateAll)
+                        return startingChangedIndex + 3;
+
+                    break;
+                }
+                case EMaskType.CustomTexture: {
+                    if (UpdateGenericIfChanged<Vector4>(ref compressedData.MaterialBlendMaskTO, newData.BlendMaskTextureTO) && !updateAll)
+                        return startingChangedIndex + 3;
+
+                    break;
+                }
+                case EMaskType.VertexColour: {
+                    if (UpdateGenericIfChanged<Vector4>(ref compressedData.MaterialBlendMaskExtraSettings, new Vector4(newData.BlendMaskVertexColourThreshold.x, newData.BlendMaskVertexColourThreshold.y, 0, 0)))
+                        return startingChangedIndex + 4;
+
+                    break;
+                }
             }
 
             return -1;
@@ -317,6 +332,7 @@ namespace Repetitionless.Editor.Data
                 case 1: return Vector4ToColour(compressedData.BlendMaskDistanceTO);
                 case 2: return Vector4ToColour(compressedData.MaterialBlendSettings);
                 case 3: return Vector4ToColour(compressedData.MaterialBlendMaskTO);
+                case 4: return Vector4ToColour(compressedData.MaterialBlendMaskExtraSettings);
             }
 
             return null;
