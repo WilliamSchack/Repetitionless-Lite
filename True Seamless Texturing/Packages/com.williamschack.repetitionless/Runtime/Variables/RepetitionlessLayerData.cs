@@ -93,6 +93,14 @@ namespace Repetitionless.Runtime.Variables
         /// xy: Tiling, zw: Offset
         /// </summary>
         public Vector4 BlendMaskTextureTO = new Vector4(1, 1, 0, 0);
+        /// <summary>
+        /// The colour used as a mask in the vertex colour
+        /// </summary>
+        public Color BlendMaskVertexColour = Color.black;
+        /// <summary>
+        /// The smoothstep min max for the colour
+        /// </summary>
+        public Vector2 BlendMaskVertexColourThreshold = new Vector2(0.01f, 0.08f);
     }
 
     /// <summary>

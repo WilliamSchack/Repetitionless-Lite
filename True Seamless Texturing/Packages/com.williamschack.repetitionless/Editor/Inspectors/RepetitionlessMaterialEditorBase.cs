@@ -1235,20 +1235,44 @@ namespace Repetitionless.Editor.Inspectors
                 DrawProperty(layerIndex, () => layerData.BlendMaskOpacity = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Mask Opacity", "Opacity of the mask and in response the blend material"), layerData.BlendMaskOpacity, 0, 1));
                 DrawProperty(layerIndex, () => layerData.BlendMaskStrength = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Mask Strength", "The higher the value, the sharper the edges and vice versa"), layerData.BlendMaskStrength));
 
-                if (layerData.BlendMaskType != EMaskType.CustomTexture) { // Noise
-                    // Scale & Offset
-                    DrawProperty(layerIndex, () => layerData.BlendMaskNoiseScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Scale", layerData.BlendMaskNoiseScale));
-                    DrawProperty(layerIndex, () => layerData.BlendMaskNoiseOffset = GUIUtilities.DrawVector2Field(layerData.BlendMaskNoiseOffset, new GUIContent("Noise Offset")));
-                } else { // Custom Texture
-                    // Texture
-                    EditorGUI.BeginChangeCheck();
-                    _textureData.BMTexturesDrawer.DrawTexture(0, 0, new GUIContent("Blend Mask", "Blend Mask (R), other channels are ignored\n\nTexture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)"));
-                    if (EditorGUI.EndChangeCheck()) {
-                        UpdateAssignedTextures(layerIndex, 2);
-                    }
+                switch (layerData.BlendMaskType) {
+                    case EMaskType.PerlinNoise:
+                    case EMaskType.SimplexNoise: {
+                        // Scale & Offset
+                        DrawProperty(layerIndex, () => layerData.BlendMaskNoiseScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Scale", layerData.BlendMaskNoiseScale));
+                        DrawProperty(layerIndex, () => layerData.BlendMaskNoiseOffset = GUIUtilities.DrawVector2Field(layerData.BlendMaskNoiseOffset, new GUIContent("Noise Offset")));
 
-                    // Scale & Offset
-                    DrawProperty(layerIndex, () => layerData.BlendMaskTextureTO = GUIUtilities.DrawTilingOffset(layerData.BlendMaskTextureTO));
+                        break;
+                    }
+                    case EMaskType.CustomTexture: {
+                        // Texture
+                        EditorGUI.BeginChangeCheck();
+                        _textureData.BMTexturesDrawer.DrawTexture(0, 0, new GUIContent("Blend Mask", "Blend Mask (R), other channels are ignored\n\nTexture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)"));
+                        if (EditorGUI.EndChangeCheck()) {
+                            UpdateAssignedTextures(layerIndex, 2);
+                        }
+
+                        // Scale & Offset
+                        DrawProperty(layerIndex, () => layerData.BlendMaskTextureTO = GUIUtilities.DrawTilingOffset(layerData.BlendMaskTextureTO));
+
+                        break;
+                    }
+                    case EMaskType.VertexColour: {
+                        DrawProperty(layerIndex, () => layerData.BlendMaskVertexColour = EditorGUI.ColorField(GUIUtilities.GetLineRect(), new GUIContent("Mask Colour", "The colour used as a mask in the vertex colour"), layerData.BlendMaskVertexColour));
+                        DrawProperty(layerIndex, () => {
+                            Vector2 newThreshold = GUIUtilities.DrawVector2Field(layerData.BlendMaskVertexColourThreshold, new GUIContent("Colour Threshold", "The smoothstep min max for the colour"));
+                            
+                            // Lock x/y between 0-1
+                            if (newThreshold.x < 0) newThreshold.x = 0;
+                            if (newThreshold.x > 1) newThreshold.x = 1;
+                            if (newThreshold.y < 0) newThreshold.y = 0;
+                            if (newThreshold.y > 1) newThreshold.y = 1;
+
+                            layerData.BlendMaskVertexColourThreshold = newThreshold;
+                        });
+
+                        break;
+                    }
                 }
 
                 GUILayout.Space(10);

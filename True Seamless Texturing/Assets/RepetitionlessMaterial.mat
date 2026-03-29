@@ -26,11 +26,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 02eee8729baadae25b22b57051d0c96c, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AssignedTexturesTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 717f2bdd09f309a34b6c53e0781d21eb, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BMTextures:
@@ -38,11 +38,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EMTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 214a597db9f845e4888c19074b8084bb, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NSOTextures:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: 1ec9b3f31a1f0ec38a3eb2aebfcb18fd, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
@@ -75,7 +75,7 @@ Material:
     - _REPETITIONLESS_TRIPLANAR: 0
     - _SPECULARHIGHLIGHTS_OFF: 0
     - _SurfaceTypeSetting: 0
-    - _UVSpace: 0
+    - _UVSpace: 1
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

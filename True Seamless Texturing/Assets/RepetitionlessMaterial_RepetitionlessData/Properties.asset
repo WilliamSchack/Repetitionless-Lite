@@ -21,17 +21,17 @@ MonoBehaviour:
       VariationEnabled: 0
       PackedTexture: 0
       EmissionEnabled: 0
-      AlbedoAssigned: 0
+      AlbedoAssigned: 1
       MetallicAssigned: 0
       SmoothnessAssigned: 0
       NormalAssigned: 0
       OcclussionAssigned: 0
       EmissionAssigned: 0
-      VariationAssigned: 0
+      VariationAssigned: 1
       PackedTextureAssigned: 0
       AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
-      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
+      TilingOffset: {x: 100, y: 100, z: 0, w: 0}
       Metallic: 0
       SmoothnessRoughness: 0.5
       NormalScale: 1
@@ -41,7 +41,7 @@ MonoBehaviour:
       NoiseScale: 2
       NoiseScalingMinMax: {x: 0.8, y: 1.2}
       NoiseRandomiseRotationMinMax: {x: 0, y: 360}
-      VariationMode: 2
+      VariationMode: 0
       VariationOpacity: 0.5
       VariationBrightness: 0.3
       VariationSmallScale: 2
@@ -97,7 +97,7 @@ MonoBehaviour:
       VariationEnabled: 0
       PackedTexture: 0
       EmissionEnabled: 0
-      AlbedoAssigned: 0
+      AlbedoAssigned: 1
       MetallicAssigned: 0
       SmoothnessAssigned: 0
       NormalAssigned: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
       PackedTextureAssigned: 0
       AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
-      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
+      TilingOffset: {x: 100, y: 100, z: 0, w: 0}
       Metallic: 0
       SmoothnessRoughness: 0.5
       NormalScale: 1
@@ -129,30 +129,32 @@ MonoBehaviour:
       VariationTextureTO: {x: 5, y: 5, z: 0, w: 0}
     GlobalTilingOffset: {x: 1, y: 1, z: 0, w: 0}
     DistanceBlendEnabled: 0
-    DistanceBlendMode: 0
-    DistanceBlendMinMax: {x: 100, y: 150}
-    MaterialBlendEnabled: 0
+    DistanceBlendMode: 1
+    DistanceBlendMinMax: {x: 10, y: 20}
+    MaterialBlendEnabled: 1
     BlendMaskAssigned: 0
     OverrideDistanceBlend: 1
     OverrideDistanceBlendTO: 1
-    BlendMaskType: 0
+    BlendMaskType: 3
     BlendMaskDistanceTO: {x: 1, y: 1, z: 0, w: 0}
     BlendMaskOpacity: 1
     BlendMaskStrength: 1
     BlendMaskNoiseScale: 10
     BlendMaskNoiseOffset: {x: 0, y: 0}
     BlendMaskTextureTO: {x: 1, y: 1, z: 0, w: 0}
+    BlendMaskVertexColour: {r: 0.9150943, g: 0.25467247, b: 0.25467247, a: 1}
+    BlendMaskVertexColourThreshold: {x: 0.01, y: 0.08}
   _dataCompressed:
   - BaseMaterialData:
-      Settings1: {x: 15, y: 0, z: 0, w: 0.5}
+      Settings1: {x: 15, y: 65, z: 0, w: 0.5}
       Settings2: {x: 1, y: 1, z: 0.5, w: 2}
-      Settings3: {x: 2, y: 2, z: 0.5, w: 0.3}
+      Settings3: {x: 2, y: 0, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
       AlbedoTint: {x: 1, y: 1, z: 1}
       EmissionColour: {x: 0, y: 0, z: 0}
-      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
-      VariationTO: {x: 5, y: 5, z: 0, w: 0}
+      TilingOffset: {x: 100, y: 100, z: 0, w: 0}
+      VariationTO: {x: 100, y: 0, z: 0, w: 0}
     FarMaterialData:
       Settings1: {x: 15, y: 0, z: 0, w: 0.5}
       Settings2: {x: 1, y: 1, z: 0.5, w: 2}
@@ -164,18 +166,18 @@ MonoBehaviour:
       TilingOffset: {x: 1, y: 1, z: 0, w: 0}
       VariationTO: {x: 5, y: 5, z: 0, w: 0}
     BlendMaterialData:
-      Settings1: {x: 15, y: 0, z: 0, w: 0.5}
+      Settings1: {x: 15, y: 1, z: 0, w: 0.5}
       Settings2: {x: 1, y: 1, z: 0.5, w: 2}
       Settings3: {x: 2, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
       AlbedoTint: {x: 1, y: 1, z: 1}
       EmissionColour: {x: 0, y: 0, z: 0}
-      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
+      TilingOffset: {x: 100, y: 100, z: 0, w: 0}
       VariationTO: {x: 5, y: 5, z: 0, w: 0}
-    DistanceBlendSettings: {x: 0, y: 0, z: 100, w: 150}
+    DistanceBlendSettings: {x: 0, y: 1, z: 10, w: 20}
     BlendMaskDistanceTO: {x: 1, y: 1, z: 0, w: 0}
-    MaterialBlendSettings: {x: 12, y: 0, z: 1, w: 1}
+    MaterialBlendSettings: {x: 13, y: 3, z: 1, w: 1}
     MaterialBlendMaskTO: {x: 10, y: 0, z: 0, w: 0}
   _noiseQuality: 1
   _globalTilingOffset: {x: 1, y: 1, z: 0, w: 0}
