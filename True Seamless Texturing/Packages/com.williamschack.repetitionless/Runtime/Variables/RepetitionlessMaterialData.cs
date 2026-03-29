@@ -136,7 +136,7 @@ namespace Repetitionless.Runtime.Variables
         /// <summary>
         /// The variation mode used
         /// </summary>
-        public ETextureType VariationMode = ETextureType.CustomTexture;
+        public EVariationType VariationMode = EVariationType.CustomTexture;
         /// <summary>
         /// The variation opacity
         /// </summary>

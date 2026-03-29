@@ -60,9 +60,30 @@ namespace Repetitionless.Runtime.Variables
     }
 
     /// <summary>
+    /// Available variation texture types for Repetitionless Materials
+    /// </summary>
+    public enum EVariationType
+    {
+        /// <summary>
+        /// Procedurally generated with perlin noise
+        /// </summary>
+        PerlinNoise,
+
+        /// <summary>
+        /// Procedurally generated with simplex noise
+        /// </summary>
+        SimplexNoise,
+
+        /// <summary>
+        /// Uses a custom input texture
+        /// </summary>
+        CustomTexture
+    }
+
+    /// <summary>
     /// Available mask texture types for Repetitionless Materials
     /// </summary>
-    public enum ETextureType
+    public enum EMaskType
     {
         /// <summary>
         /// Procedurally generated with perlin noise

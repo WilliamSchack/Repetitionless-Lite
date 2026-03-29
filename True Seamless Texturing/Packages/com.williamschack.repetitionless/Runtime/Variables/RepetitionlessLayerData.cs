@@ -66,7 +66,7 @@ namespace Repetitionless.Runtime.Variables
         /// <summary>
         /// The blend mask type used
         /// </summary>
-        public ETextureType BlendMaskType = ETextureType.PerlinNoise;
+        public EMaskType BlendMaskType = EMaskType.PerlinNoise;
         /// <summary>
         /// The blend mask distance tiling offset:<br />
         /// xy: Tiling, zw: Offset

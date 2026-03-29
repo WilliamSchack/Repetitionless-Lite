@@ -158,7 +158,7 @@ namespace Repetitionless.Editor.Data
 
             if (UpdateGenericIfChanged<Vector4>(ref compressedData.TilingOffset, compressedTilingOffset) && !updateAll) return 7;
 
-            if (newData.VariationMode == ETextureType.CustomTexture) {
+            if (newData.VariationMode == EVariationType.CustomTexture) {
                 if (UpdateGenericIfChanged<Vector4>(ref compressedData.VariationTO, newData.VariationTextureTO) && !updateAll) return 8;
             } else {
                 // All of these should be updated, return if changed afterwards
@@ -224,7 +224,7 @@ namespace Repetitionless.Editor.Data
             if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendSettings.z, newData.BlendMaskOpacity) && !updateAll)   return startingChangedIndex + 2;
             if (UpdateGenericIfChanged<float>(ref compressedData.MaterialBlendSettings.w, newData.BlendMaskStrength) && !updateAll)  return startingChangedIndex + 2;
 
-            if (newData.BlendMaskType == ETextureType.CustomTexture) {
+            if (newData.BlendMaskType == EMaskType.CustomTexture) {
                 if (UpdateGenericIfChanged<Vector4>(ref compressedData.MaterialBlendMaskTO, newData.BlendMaskTextureTO) && !updateAll) return startingChangedIndex + 3;
             } else {
                 // All of these should be updated, return if changed afterwards

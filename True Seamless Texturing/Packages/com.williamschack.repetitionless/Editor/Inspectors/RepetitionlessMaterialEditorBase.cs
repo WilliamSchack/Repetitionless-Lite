@@ -329,13 +329,13 @@ namespace Repetitionless.Editor.Inspectors
             }
         }
 
-        private void UpdateVariationTexture(int layerIndex, int sectionIndex, ETextureType prevVariationMode, bool forceRemove = false)
+        private void UpdateVariationTexture(int layerIndex, int sectionIndex, EVariationType prevVariationMode, bool forceRemove = false)
         {
             RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, sectionIndex);
             ref RepetitionlessTextureDataSO.MaterialTextureData textureData = ref _textureData.GetMaterialTextureData(0, sectionIndex);
 
             // If enabling texture, add it to the array
-            if (currentData.VariationMode == ETextureType.CustomTexture && !forceRemove) {
+            if (currentData.VariationMode == EVariationType.CustomTexture && !forceRemove) {
                 textureData.AVTextures[1].Disabled = false;
 
                 // Set the texture to the default variation if none assigned
@@ -353,7 +353,7 @@ namespace Repetitionless.Editor.Inspectors
             }
 
             // If was texture, remove it from the array
-            else if (prevVariationMode == ETextureType.CustomTexture || forceRemove) {
+            else if (prevVariationMode == EVariationType.CustomTexture || forceRemove) {
                 textureData.AVTextures[1].Disabled = true;
                 _textureData.Save();
 
@@ -362,13 +362,13 @@ namespace Repetitionless.Editor.Inspectors
             }
         }
 
-        private void UpdateBlendMaskTexture(int layerIndex, ETextureType prevMaskType, bool forceRemove = false)
+        private void UpdateBlendMaskTexture(int layerIndex, EMaskType prevMaskType, bool forceRemove = false)
         {
             RepetitionlessLayerData layerData = _materialProperties.Data[layerIndex];
             ref TexturePacker.TextureData textureData = ref _textureData.LayersTextureData[layerIndex].BlendMaskTexture[0];
 
             // If enabling texture, add it to the array
-            if (layerData.BlendMaskType == ETextureType.CustomTexture && !forceRemove) {
+            if (layerData.BlendMaskType == EMaskType.CustomTexture && !forceRemove) {
                 textureData.Disabled = false;
 
                 bool textureAdded = _textureData.BMTexturesDrawer.UpdateTexture(textureData.Texture, layerIndex, 0, true).Item2;
@@ -380,7 +380,7 @@ namespace Repetitionless.Editor.Inspectors
             }
 
             // If was texture, remove it from the array
-            else if (prevMaskType == ETextureType.CustomTexture || forceRemove) {
+            else if (prevMaskType == EMaskType.CustomTexture || forceRemove) {
                 textureData.Disabled = true;
                 _textureData.Save();
 
@@ -886,8 +886,8 @@ namespace Repetitionless.Editor.Inspectors
             if (showVariation) {
                 EditorGUI.BeginChangeCheck();
                 DrawProperty(layerIndex, () => currentData.VariationEnabled = GUILayout.Toggle(currentData.VariationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color\n\nUsing a custom texture can cause visible tiling"), "Button"));
-                if (EditorGUI.EndChangeCheck() && currentData.VariationMode == ETextureType.CustomTexture)
-                    UpdateVariationTexture(layerIndex, sectionIndex, ETextureType.PerlinNoise, !currentData.VariationEnabled);
+                if (EditorGUI.EndChangeCheck() && currentData.VariationMode == EVariationType.CustomTexture)
+                    UpdateVariationTexture(layerIndex, sectionIndex, EVariationType.PerlinNoise, !currentData.VariationEnabled);
             }
         }
 
@@ -1089,9 +1089,9 @@ namespace Repetitionless.Editor.Inspectors
             RepetitionlessMaterialData currentData = GetMaterialData(layerIndex, sectionIndex);
 
             // Variation Mode
-            ETextureType prevVariationMode = currentData.VariationMode;
+            EVariationType prevVariationMode = currentData.VariationMode;
             EditorGUI.BeginChangeCheck();
-            DrawProperty(layerIndex, () => currentData.VariationMode = (ETextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Variation Mode", "Using a custom texture can cause visible tiling"), currentData.VariationMode));
+            DrawProperty(layerIndex, () => currentData.VariationMode = (EVariationType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), new GUIContent("Variation Mode", "Using a custom texture can cause visible tiling"), currentData.VariationMode));
             if (EditorGUI.EndChangeCheck() && currentData.VariationMode != prevVariationMode)
                 UpdateVariationTexture(layerIndex, sectionIndex, prevVariationMode);
 
@@ -1106,7 +1106,7 @@ namespace Repetitionless.Editor.Inspectors
             DrawProperty(layerIndex, () => currentData.VariationMediumScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Medium Scale", "Scale of the medium variation sample"), currentData.VariationMediumScale));
             DrawProperty(layerIndex, () => currentData.VariationLargeScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Large Scale", "Scale of the large variation sample"), currentData.VariationLargeScale));
 
-            if (currentData.VariationMode != ETextureType.CustomTexture) { // Noise
+            if (currentData.VariationMode != EVariationType.CustomTexture) { // Noise
                 // Strength
                 DrawProperty(layerIndex, () => currentData.VariationNoiseStrength = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Strength", currentData.VariationNoiseStrength));
 
@@ -1219,23 +1219,23 @@ namespace Repetitionless.Editor.Inspectors
             // Material Blend Enabled Toggle
             EditorGUI.BeginChangeCheck();
             DrawProperty(layerIndex, () => layerData.MaterialBlendEnabled = GUIUtilities.DrawMajorToggleButton(layerData.MaterialBlendEnabled, "Material Blending"));
-            if (EditorGUI.EndChangeCheck() && layerData.BlendMaskType == ETextureType.CustomTexture)
-                UpdateBlendMaskTexture(layerIndex, ETextureType.PerlinNoise, !layerData.MaterialBlendEnabled);
+            if (EditorGUI.EndChangeCheck() && layerData.BlendMaskType == EMaskType.CustomTexture)
+                UpdateBlendMaskTexture(layerIndex, EMaskType.PerlinNoise, !layerData.MaterialBlendEnabled);
 
             if (layerData.MaterialBlendEnabled) {
                 // Mask
                 GUIUtilities.DrawHeaderLabelLarge("Mask");
 
-                ETextureType prevMaskType = layerData.BlendMaskType;
+                EMaskType prevMaskType = layerData.BlendMaskType;
                 EditorGUI.BeginChangeCheck();
-                DrawProperty(layerIndex, () => layerData.BlendMaskType = (ETextureType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), "Mask Type", layerData.BlendMaskType));
+                DrawProperty(layerIndex, () => layerData.BlendMaskType = (EMaskType)EditorGUI.EnumPopup(GUIUtilities.GetLineRect(), "Mask Type", layerData.BlendMaskType));
                 if (EditorGUI.EndChangeCheck() && layerData.BlendMaskType != prevMaskType)
                     UpdateBlendMaskTexture(layerIndex, prevMaskType);
 
                 DrawProperty(layerIndex, () => layerData.BlendMaskOpacity = EditorGUI.Slider(GUIUtilities.GetLineRect(), new GUIContent("Mask Opacity", "Opacity of the mask and in response the blend material"), layerData.BlendMaskOpacity, 0, 1));
                 DrawProperty(layerIndex, () => layerData.BlendMaskStrength = EditorGUI.FloatField(GUIUtilities.GetLineRect(), new GUIContent("Mask Strength", "The higher the value, the sharper the edges and vice versa"), layerData.BlendMaskStrength));
 
-                if (layerData.BlendMaskType != ETextureType.CustomTexture) { // Noise
+                if (layerData.BlendMaskType != EMaskType.CustomTexture) { // Noise
                     // Scale & Offset
                     DrawProperty(layerIndex, () => layerData.BlendMaskNoiseScale = EditorGUI.FloatField(GUIUtilities.GetLineRect(), "Noise Scale", layerData.BlendMaskNoiseScale));
                     DrawProperty(layerIndex, () => layerData.BlendMaskNoiseOffset = GUIUtilities.DrawVector2Field(layerData.BlendMaskNoiseOffset, new GUIContent("Noise Offset")));
