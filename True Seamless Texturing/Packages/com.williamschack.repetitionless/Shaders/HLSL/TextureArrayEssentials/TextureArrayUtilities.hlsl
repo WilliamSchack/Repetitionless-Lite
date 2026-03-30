@@ -10,15 +10,18 @@
 
 int GetIndexInArray(int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNKS], int Index)
 {
-    // If the index is not assigned return -1
+    // Dont loop with no iterations, will cause unrolling warnings
+    if (Index < 0)
+        return -1;
+
     if (!GetCompressedValue(TexturesAssignedCompressed, Index))
         return -1;
 
     // Get the index of the texture in the array
     int arrayIndex = 0;
     for (int i = 0; i < Index; i++) {
-        if (GetCompressedValue(TexturesAssignedCompressed, i));
-            arrayIndex ++;
+        if (GetCompressedValue(TexturesAssignedCompressed, i))
+            arrayIndex++;
     }
 
     return arrayIndex;
