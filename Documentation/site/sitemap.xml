@@ -2,318 +2,330 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/getting-started/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/installation/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/issues/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/material-conversion/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/material-details/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/material-properties/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/material-regular/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/material-terrain/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/samples/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/scripting/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/shader-creation/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.CustomDialog.ShaderGUIDialog/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.CustomWindows.ConfigureArrayWindowLimited/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.CustomWindows.Texture2DArrayWindowBase/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.CustomWindows.WelcomeWindow/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Data.MaterialDataManager/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Data.RepetitionlessDataPacker/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Data.RepetitionlessMaterialDataSO/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Data.RepetitionlessTerrainDataSO/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Data.RepetitionlessTextureDataSO.LayerTextureData/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Data.RepetitionlessTextureDataSO/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.GUIUtilities.GUIUtilities/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.MaterialFoldoutState/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Materials.MaterialDataObjects/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Materials.RepetitionlessMaterialConverter/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Materials.RepetitionlessMaterialCreator/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.TextureUtilities.Texture2DArrayUtilities/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.TextureUtilities.TexturePacker/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Editor.TextureUtilities.TextureUtilities/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.RepetitionlessTerrain/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Compression.BooleanCompression/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.RepetitionlessTerrain/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.EDistanceBlendMode/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.EMaskType/</loc>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.ENoiseQuality/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.ERenderPipeline/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.ESurfaceType/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.ETextureType/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.EUVSpace/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.EVariationType/</loc>
+         <lastmod>2026-03-30</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.EVertexColourBlendMode/</loc>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.RepetitionlessLayerData/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.RepetitionlessMaterialData/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/Scripting/Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/Main.SampleRepetitionlessLayer/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/Main.SampleRepetitionlessMaterial/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/Main.SampleRepetitionlessTerrain/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/Noise.Keijiro.ClassicNoise2D/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/Noise.Keijiro.SimplexNoise2D/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/Noise.VoronoiNoise2D/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/RepetitionlessHelpers.DistanceBlend/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/RepetitionlessHelpers.GetArrayAssignedTextures/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/RepetitionlessHelpers.MacroMicroVariation/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/RepetitionlessHelpers.RepetitionlessNoise/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/RepetitionlessHelpers.RepetitionlessTextureUtilities/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/Structs.RepetitionlessMaterialData/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/TextureArrayEssentials.TextureArrayUtilities/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/Utilities.BooleanCompression/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/ShaderHLSL/Utilities.TextureUtilities/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/SubGraphs/BooleanCompression.AddCompressedBool/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/SubGraphs/BooleanCompression.GetCompressedBool/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/SubGraphs/DistanceBlend.DistanceBlendColour/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/SubGraphs/DistanceBlend.DistanceBlendTexture/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/SubGraphs/DistanceBlend.DistanceBlendTilingOffset/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/SubGraphs/MacroMicroVariation.MMVPerlinNoise/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/SubGraphs/MacroMicroVariation.MMVSimplexNoise/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/SubGraphs/MacroMicroVariation.MMVTexture/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/SubGraphs/Noise.RepetitionlessNoise/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
     <url>
          <loc>https://docs.wilschack.dev/repetitionless/SubGraphs/Terrain.AddTerrainLayerMaskSettings/</loc>
-         <lastmod>2026-03-24</lastmod>
+         <lastmod>2026-03-30</lastmod>
     </url>
 </urlset>

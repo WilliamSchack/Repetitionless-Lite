@@ -2408,34 +2408,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../Scripting/Repetitionless.Runtime.Variables.EDistanceBlendMode/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    EDistanceBlendMode
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../Scripting/Repetitionless.Runtime.Variables.ESurfaceType/" class="md-nav__link">
         
   
@@ -2464,14 +2436,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../Scripting/Repetitionless.Runtime.Variables.ETextureType/" class="md-nav__link">
+      <a href="../Scripting/Repetitionless.Runtime.Variables.EUVSpace/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ETextureType
+    EUVSpace
   
 
     
@@ -2492,14 +2464,126 @@
   
   
     <li class="md-nav__item">
-      <a href="../Scripting/Repetitionless.Runtime.Variables.EUVSpace/" class="md-nav__link">
+      <a href="../Scripting/Repetitionless.Runtime.Variables.ENoiseQuality/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    EUVSpace
+    ENoiseQuality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Scripting/Repetitionless.Runtime.Variables.EVariationType/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EVariationType
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Scripting/Repetitionless.Runtime.Variables.EMaskType/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMaskType
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Scripting/Repetitionless.Runtime.Variables.EDistanceBlendMode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EDistanceBlendMode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Scripting/Repetitionless.Runtime.Variables.EVertexColourBlendMode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EVertexColourBlendMode
   
 
     
@@ -4225,6 +4309,10 @@
 <td>How the noise is sampled<br>High: Dynamically samples noise<br><em>(Required for non-repeating noise and the angle offset setting)</em><br>Medium: Uses the pre-rendered 4k texture<br>Low: Uses the pre-rendered 1k texture</td>
 </tr>
 <tr>
+<td>Vertex Colour</td>
+<td>How the vertex colour is blended with the output colour<br>0: Off<br>1: Multiply<br>2: Additive<br>3: Subtractive<br>4: Overwrite</td>
+</tr>
+<tr>
 <td>Triplanar</td>
 <td>Enables triplanar sampling and forces world UVs<br><em>Note that the first time this is set for a material it will take some time to finish as it will recompile the shader, it will be instant for subsequent toggles</em></td>
 </tr>
@@ -4237,16 +4325,24 @@
 <td>This is added onto each of the materials offset</td>
 </tr>
 <tr>
-<td>Global Illuminattion</td>
-<td>Controls if the global illumination is baked or realtime<br>0: Realtime<br>1: Baked<br>2: None</td>
-</tr>
-<tr>
 <td>Render Queue</td>
 <td>Changes when the material is drawn</td>
 </tr>
 <tr>
+<td>Global Illuminattion</td>
+<td>Controls if the global illumination is baked or realtime<br>0: Realtime<br>1: Baked<br>2: None</td>
+</tr>
+<tr>
 <td>Double Sided Global Illumination</td>
 <td>If the lightmapper accounts for both sides of the geometry when calculating Global Illumination</td>
+</tr>
+<tr>
+<td>Specular Highlights</td>
+<td>When enabled, the Material reflects the shine from direct lighting</td>
+</tr>
+<tr>
+<td>Environment Reflections</td>
+<td>When enabled, the Material samples reflections from the nearest Reflection Probes or Lighting Probe</td>
 </tr>
 <tr>
 <td>Array Settings</td>
@@ -4489,7 +4585,7 @@
 <tbody>
 <tr>
 <td>Mask Type</td>
-<td>The mask type used<br>0: Perlin noise<br>1: Simplex noise<br>2: Custom texture</td>
+<td>The mask type used<br>0: Perlin noise<br>1: Simplex noise<br>2: Custom texture<br>3: Vertex Colour</td>
 </tr>
 <tr>
 <td>Mask Opacity</td>
@@ -4518,6 +4614,67 @@
 <tr>
 <td>Offset</td>
 <td>The blend mask offset<br><em>Only shown if Mask Type is set to Custom Texture</em></td>
+</tr>
+</tbody>
+</table>
+<p><em>If mask type is set to any noise</em></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Noise Scale</td>
+<td>The noise tiling</td>
+</tr>
+<tr>
+<td>Noise Offset</td>
+<td>The noise offset</td>
+</tr>
+</tbody>
+</table>
+<p><em>If mask type is set to Custom Texture</em></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blend Mask</td>
+<td>Texture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)<br>Blend Mask (R), other channels are ignored</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>The blend mask tiling</td>
+</tr>
+<tr>
+<td>Offset</td>
+<td>The blend mask offset</td>
+</tr>
+</tbody>
+</table>
+<p><em>If mask type is set to Vertex Colour</em></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mask Colour</td>
+<td>The colour used as a mask in the vertex colour</td>
+</tr>
+<tr>
+<td>Colour Threshold</td>
+<td>The smoothstep min max for the colour</td>
 </tr>
 </tbody>
 </table>
