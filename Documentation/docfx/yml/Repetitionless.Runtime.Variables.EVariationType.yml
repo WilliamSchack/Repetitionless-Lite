@@ -1,46 +1,46 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Repetitionless.Runtime.Variables.ETextureType
-  commentId: T:Repetitionless.Runtime.Variables.ETextureType
-  id: ETextureType
+- uid: Repetitionless.Runtime.Variables.EVariationType
+  commentId: T:Repetitionless.Runtime.Variables.EVariationType
+  id: EVariationType
   parent: Repetitionless.Runtime.Variables
   children:
-  - Repetitionless.Runtime.Variables.ETextureType.CustomTexture
-  - Repetitionless.Runtime.Variables.ETextureType.PerlinNoise
-  - Repetitionless.Runtime.Variables.ETextureType.SimplexNoise
+  - Repetitionless.Runtime.Variables.EVariationType.CustomTexture
+  - Repetitionless.Runtime.Variables.EVariationType.PerlinNoise
+  - Repetitionless.Runtime.Variables.EVariationType.SimplexNoise
   langs:
   - csharp
   - vb
-  name: ETextureType
-  nameWithType: ETextureType
-  fullName: Repetitionless.Runtime.Variables.ETextureType
+  name: EVariationType
+  nameWithType: EVariationType
+  fullName: Repetitionless.Runtime.Variables.EVariationType
   type: Enum
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
       branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
-    id: ETextureType
+    id: EVariationType
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
     startLine: 64
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
-  summary: "\nAvailable mask texture types for Repetitionless Materials\n"
+  summary: "\nAvailable variation texture types for Repetitionless Materials\n"
   example: []
   syntax:
-    content: public enum ETextureType
-    content.vb: Public Enum ETextureType
-- uid: Repetitionless.Runtime.Variables.ETextureType.PerlinNoise
-  commentId: F:Repetitionless.Runtime.Variables.ETextureType.PerlinNoise
+    content: public enum EVariationType
+    content.vb: Public Enum EVariationType
+- uid: Repetitionless.Runtime.Variables.EVariationType.PerlinNoise
+  commentId: F:Repetitionless.Runtime.Variables.EVariationType.PerlinNoise
   id: PerlinNoise
-  parent: Repetitionless.Runtime.Variables.ETextureType
+  parent: Repetitionless.Runtime.Variables.EVariationType
   langs:
   - csharp
   - vb
   name: PerlinNoise
-  nameWithType: ETextureType.PerlinNoise
-  fullName: Repetitionless.Runtime.Variables.ETextureType.PerlinNoise
+  nameWithType: EVariationType.PerlinNoise
+  fullName: Repetitionless.Runtime.Variables.EVariationType.PerlinNoise
   type: Field
   source:
     remote:
@@ -58,17 +58,17 @@ items:
   syntax:
     content: PerlinNoise = 0
     return:
-      type: Repetitionless.Runtime.Variables.ETextureType
-- uid: Repetitionless.Runtime.Variables.ETextureType.SimplexNoise
-  commentId: F:Repetitionless.Runtime.Variables.ETextureType.SimplexNoise
+      type: Repetitionless.Runtime.Variables.EVariationType
+- uid: Repetitionless.Runtime.Variables.EVariationType.SimplexNoise
+  commentId: F:Repetitionless.Runtime.Variables.EVariationType.SimplexNoise
   id: SimplexNoise
-  parent: Repetitionless.Runtime.Variables.ETextureType
+  parent: Repetitionless.Runtime.Variables.EVariationType
   langs:
   - csharp
   - vb
   name: SimplexNoise
-  nameWithType: ETextureType.SimplexNoise
-  fullName: Repetitionless.Runtime.Variables.ETextureType.SimplexNoise
+  nameWithType: EVariationType.SimplexNoise
+  fullName: Repetitionless.Runtime.Variables.EVariationType.SimplexNoise
   type: Field
   source:
     remote:
@@ -86,17 +86,17 @@ items:
   syntax:
     content: SimplexNoise = 1
     return:
-      type: Repetitionless.Runtime.Variables.ETextureType
-- uid: Repetitionless.Runtime.Variables.ETextureType.CustomTexture
-  commentId: F:Repetitionless.Runtime.Variables.ETextureType.CustomTexture
+      type: Repetitionless.Runtime.Variables.EVariationType
+- uid: Repetitionless.Runtime.Variables.EVariationType.CustomTexture
+  commentId: F:Repetitionless.Runtime.Variables.EVariationType.CustomTexture
   id: CustomTexture
-  parent: Repetitionless.Runtime.Variables.ETextureType
+  parent: Repetitionless.Runtime.Variables.EVariationType
   langs:
   - csharp
   - vb
   name: CustomTexture
-  nameWithType: ETextureType.CustomTexture
-  fullName: Repetitionless.Runtime.Variables.ETextureType.CustomTexture
+  nameWithType: EVariationType.CustomTexture
+  fullName: Repetitionless.Runtime.Variables.EVariationType.CustomTexture
   type: Field
   source:
     remote:
@@ -114,7 +114,7 @@ items:
   syntax:
     content: CustomTexture = 2
     return:
-      type: Repetitionless.Runtime.Variables.ETextureType
+      type: Repetitionless.Runtime.Variables.EVariationType
 references:
 - uid: Repetitionless.Runtime.Variables
   commentId: N:Repetitionless.Runtime.Variables
@@ -139,9 +139,9 @@ references:
   - name: .
   - uid: Repetitionless.Runtime.Variables
     name: Variables
-- uid: Repetitionless.Runtime.Variables.ETextureType
-  commentId: T:Repetitionless.Runtime.Variables.ETextureType
+- uid: Repetitionless.Runtime.Variables.EVariationType
+  commentId: T:Repetitionless.Runtime.Variables.EVariationType
   parent: Repetitionless.Runtime.Variables
-  name: ETextureType
-  nameWithType: ETextureType
-  fullName: Repetitionless.Runtime.Variables.ETextureType
+  name: EVariationType
+  nameWithType: EVariationType
+  fullName: Repetitionless.Runtime.Variables.EVariationType

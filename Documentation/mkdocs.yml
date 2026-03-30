@@ -59,10 +59,13 @@ nav:
       - Compression:
         - BooleanCompression: Scripting/Repetitionless.Runtime.Compression.BooleanCompression.md
       - Variables:
-        - EDistanceBlendMode: Scripting/Repetitionless.Runtime.Variables.EDistanceBlendMode.md
         - ESurfaceType: Scripting/Repetitionless.Runtime.Variables.ESurfaceType.md
-        - ETextureType: Scripting/Repetitionless.Runtime.Variables.ETextureType.md
         - EUVSpace: Scripting/Repetitionless.Runtime.Variables.EUVSpace.md
+        - ENoiseQuality: Scripting/Repetitionless.Runtime.Variables.ENoiseQuality.md
+        - EVariationType: Scripting/Repetitionless.Runtime.Variables.EVariationType.md
+        - EMaskType: Scripting/Repetitionless.Runtime.Variables.EMaskType.md
+        - EDistanceBlendMode: Scripting/Repetitionless.Runtime.Variables.EDistanceBlendMode.md
+        - EVertexColourBlendMode: Scripting/Repetitionless.Runtime.Variables.EVertexColourBlendMode.md
         - RepetitionlessMaterialData: Scripting/Repetitionless.Runtime.Variables.RepetitionlessMaterialData.md
         - RepetitionlessMaterialDataCompressed: Scripting/Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.md
         - RepetitionlessLayerData: Scripting/Repetitionless.Runtime.Variables.RepetitionlessLayerData.md

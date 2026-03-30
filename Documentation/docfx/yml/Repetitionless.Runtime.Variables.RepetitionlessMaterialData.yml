@@ -885,10 +885,10 @@ items:
   summary: "\nThe variation mode used\n"
   example: []
   syntax:
-    content: public ETextureType VariationMode
+    content: public EVariationType VariationMode
     return:
-      type: Repetitionless.Runtime.Variables.ETextureType
-    content.vb: Public VariationMode As ETextureType
+      type: Repetitionless.Runtime.Variables.EVariationType
+    content.vb: Public VariationMode As EVariationType
 - uid: Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationOpacity
   commentId: F:Repetitionless.Runtime.Variables.RepetitionlessMaterialData.VariationOpacity
   id: VariationOpacity
@@ -1237,9 +1237,9 @@ references:
   name: Vector2
   nameWithType: Vector2
   fullName: UnityEngine.Vector2
-- uid: Repetitionless.Runtime.Variables.ETextureType
-  commentId: T:Repetitionless.Runtime.Variables.ETextureType
+- uid: Repetitionless.Runtime.Variables.EVariationType
+  commentId: T:Repetitionless.Runtime.Variables.EVariationType
   parent: Repetitionless.Runtime.Variables
-  name: ETextureType
-  nameWithType: ETextureType
-  fullName: Repetitionless.Runtime.Variables.ETextureType
+  name: EVariationType
+  nameWithType: EVariationType
+  fullName: Repetitionless.Runtime.Variables.EVariationType

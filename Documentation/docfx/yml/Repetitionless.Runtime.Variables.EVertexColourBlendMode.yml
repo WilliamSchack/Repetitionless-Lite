@@ -1,0 +1,205 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  commentId: T:Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  id: EVertexColourBlendMode
+  parent: Repetitionless.Runtime.Variables
+  children:
+  - Repetitionless.Runtime.Variables.EVertexColourBlendMode.Additive
+  - Repetitionless.Runtime.Variables.EVertexColourBlendMode.Multiply
+  - Repetitionless.Runtime.Variables.EVertexColourBlendMode.Off
+  - Repetitionless.Runtime.Variables.EVertexColourBlendMode.Overwrite
+  - Repetitionless.Runtime.Variables.EVertexColourBlendMode.Subtractive
+  langs:
+  - csharp
+  - vb
+  name: EVertexColourBlendMode
+  nameWithType: EVertexColourBlendMode
+  fullName: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  type: Enum
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: EVertexColourBlendMode
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 127
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  summary: "\nAvailable blend modes for the vertex colour\n"
+  example: []
+  syntax:
+    content: public enum EVertexColourBlendMode
+    content.vb: Public Enum EVertexColourBlendMode
+- uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Off
+  commentId: F:Repetitionless.Runtime.Variables.EVertexColourBlendMode.Off
+  id: Off
+  parent: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  langs:
+  - csharp
+  - vb
+  name: Off
+  nameWithType: EVertexColourBlendMode.Off
+  fullName: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Off
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Off
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 132
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  summary: "\nDoesnt use the vertex colour\n"
+  example: []
+  syntax:
+    content: Off = 0
+    return:
+      type: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+- uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Multiply
+  commentId: F:Repetitionless.Runtime.Variables.EVertexColourBlendMode.Multiply
+  id: Multiply
+  parent: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  langs:
+  - csharp
+  - vb
+  name: Multiply
+  nameWithType: EVertexColourBlendMode.Multiply
+  fullName: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Multiply
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Multiply
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 137
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  summary: "\nMultiplies the vertex colour with the output\n"
+  example: []
+  syntax:
+    content: Multiply = 1
+    return:
+      type: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+- uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Additive
+  commentId: F:Repetitionless.Runtime.Variables.EVertexColourBlendMode.Additive
+  id: Additive
+  parent: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  langs:
+  - csharp
+  - vb
+  name: Additive
+  nameWithType: EVertexColourBlendMode.Additive
+  fullName: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Additive
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Additive
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 142
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  summary: "\nAdds the vertex colour to the output\n"
+  example: []
+  syntax:
+    content: Additive = 2
+    return:
+      type: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+- uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Subtractive
+  commentId: F:Repetitionless.Runtime.Variables.EVertexColourBlendMode.Subtractive
+  id: Subtractive
+  parent: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  langs:
+  - csharp
+  - vb
+  name: Subtractive
+  nameWithType: EVertexColourBlendMode.Subtractive
+  fullName: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Subtractive
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Subtractive
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 147
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  summary: "\nSubtracts the vertex colour to the output\n"
+  example: []
+  syntax:
+    content: Subtractive = 3
+    return:
+      type: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+- uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Overwrite
+  commentId: F:Repetitionless.Runtime.Variables.EVertexColourBlendMode.Overwrite
+  id: Overwrite
+  parent: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  langs:
+  - csharp
+  - vb
+  name: Overwrite
+  nameWithType: EVertexColourBlendMode.Overwrite
+  fullName: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Overwrite
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Overwrite
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 152
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  summary: "\nOverwrites the output colour\n"
+  example: []
+  syntax:
+    content: Overwrite = 4
+    return:
+      type: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+references:
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables
+- uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  commentId: T:Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  parent: Repetitionless.Runtime.Variables
+  name: EVertexColourBlendMode
+  nameWithType: EVertexColourBlendMode
+  fullName: Repetitionless.Runtime.Variables.EVertexColourBlendMode

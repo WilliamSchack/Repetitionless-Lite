@@ -107,16 +107,20 @@
   items:
   - uid: Repetitionless.Runtime.Variables.EDistanceBlendMode
     name: EDistanceBlendMode
+  - uid: Repetitionless.Runtime.Variables.EMaskType
+    name: EMaskType
   - uid: Repetitionless.Runtime.Variables.ENoiseQuality
     name: ENoiseQuality
   - uid: Repetitionless.Runtime.Variables.ERenderPipeline
     name: ERenderPipeline
   - uid: Repetitionless.Runtime.Variables.ESurfaceType
     name: ESurfaceType
-  - uid: Repetitionless.Runtime.Variables.ETextureType
-    name: ETextureType
   - uid: Repetitionless.Runtime.Variables.EUVSpace
     name: EUVSpace
+  - uid: Repetitionless.Runtime.Variables.EVariationType
+    name: EVariationType
+  - uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+    name: EVertexColourBlendMode
   - uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData
     name: RepetitionlessLayerData
   - uid: Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed

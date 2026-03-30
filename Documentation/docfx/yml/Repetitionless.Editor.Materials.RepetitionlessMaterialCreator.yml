@@ -231,7 +231,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateTerrainMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-    startLine: 255
+    startLine: 256
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Materials
@@ -275,7 +275,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateTerrainMaterialAtCurrentFolder
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-    startLine: 272
+    startLine: 273
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Materials
@@ -313,7 +313,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-    startLine: 293
+    startLine: 294
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Materials

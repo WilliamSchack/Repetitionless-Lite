@@ -21,7 +21,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: EDistanceBlendMode
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 85
+    startLine: 111
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
@@ -48,7 +48,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TilingOffset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 90
+    startLine: 116
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
@@ -76,7 +76,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Material
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 95
+    startLine: 121
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables

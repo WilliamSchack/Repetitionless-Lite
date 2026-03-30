@@ -5,11 +5,13 @@ items:
   id: Repetitionless.Runtime.Variables
   children:
   - Repetitionless.Runtime.Variables.EDistanceBlendMode
+  - Repetitionless.Runtime.Variables.EMaskType
   - Repetitionless.Runtime.Variables.ENoiseQuality
   - Repetitionless.Runtime.Variables.ERenderPipeline
   - Repetitionless.Runtime.Variables.ESurfaceType
-  - Repetitionless.Runtime.Variables.ETextureType
   - Repetitionless.Runtime.Variables.EUVSpace
+  - Repetitionless.Runtime.Variables.EVariationType
+  - Repetitionless.Runtime.Variables.EVertexColourBlendMode
   - Repetitionless.Runtime.Variables.RepetitionlessLayerData
   - Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
   - Repetitionless.Runtime.Variables.RepetitionlessMaterialData
@@ -60,18 +62,30 @@ references:
   name: ENoiseQuality
   nameWithType: ENoiseQuality
   fullName: Repetitionless.Runtime.Variables.ENoiseQuality
-- uid: Repetitionless.Runtime.Variables.ETextureType
-  commentId: T:Repetitionless.Runtime.Variables.ETextureType
+- uid: Repetitionless.Runtime.Variables.EVariationType
+  commentId: T:Repetitionless.Runtime.Variables.EVariationType
   parent: Repetitionless.Runtime.Variables
-  name: ETextureType
-  nameWithType: ETextureType
-  fullName: Repetitionless.Runtime.Variables.ETextureType
+  name: EVariationType
+  nameWithType: EVariationType
+  fullName: Repetitionless.Runtime.Variables.EVariationType
+- uid: Repetitionless.Runtime.Variables.EMaskType
+  commentId: T:Repetitionless.Runtime.Variables.EMaskType
+  parent: Repetitionless.Runtime.Variables
+  name: EMaskType
+  nameWithType: EMaskType
+  fullName: Repetitionless.Runtime.Variables.EMaskType
 - uid: Repetitionless.Runtime.Variables.EDistanceBlendMode
   commentId: T:Repetitionless.Runtime.Variables.EDistanceBlendMode
   parent: Repetitionless.Runtime.Variables
   name: EDistanceBlendMode
   nameWithType: EDistanceBlendMode
   fullName: Repetitionless.Runtime.Variables.EDistanceBlendMode
+- uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  commentId: T:Repetitionless.Runtime.Variables.EVertexColourBlendMode
+  parent: Repetitionless.Runtime.Variables
+  name: EVertexColourBlendMode
+  nameWithType: EVertexColourBlendMode
+  fullName: Repetitionless.Runtime.Variables.EVertexColourBlendMode
 - uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData
   commentId: T:Repetitionless.Runtime.Variables.RepetitionlessLayerData
   parent: Repetitionless.Runtime.Variables

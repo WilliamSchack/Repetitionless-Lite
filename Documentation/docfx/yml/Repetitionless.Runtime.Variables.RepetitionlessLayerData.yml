@@ -14,6 +14,8 @@ items:
   - Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskStrength
   - Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskTextureTO
   - Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskType
+  - Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskVertexColour
+  - Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskVertexColourThreshold
   - Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaterialData
   - Repetitionless.Runtime.Variables.RepetitionlessLayerData.DistanceBlendEnabled
   - Repetitionless.Runtime.Variables.RepetitionlessLayerData.DistanceBlendMinMax
@@ -432,10 +434,10 @@ items:
   summary: "\nThe blend mask type used\n"
   example: []
   syntax:
-    content: public ETextureType BlendMaskType
+    content: public EMaskType BlendMaskType
     return:
-      type: Repetitionless.Runtime.Variables.ETextureType
-    content.vb: Public BlendMaskType As ETextureType
+      type: Repetitionless.Runtime.Variables.EMaskType
+    content.vb: Public BlendMaskType As EMaskType
 - uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskDistanceTO
   commentId: F:Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskDistanceTO
   id: BlendMaskDistanceTO
@@ -610,6 +612,64 @@ items:
     return:
       type: UnityEngine.Vector4
     content.vb: Public BlendMaskTextureTO As Vector4
+- uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskVertexColour
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskVertexColour
+  id: BlendMaskVertexColour
+  parent: Repetitionless.Runtime.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BlendMaskVertexColour
+  nameWithType: RepetitionlessLayerData.BlendMaskVertexColour
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskVertexColour
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BlendMaskVertexColour
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 98
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  summary: "\nThe colour used as a mask in the vertex colour\n"
+  example: []
+  syntax:
+    content: public Color BlendMaskVertexColour
+    return:
+      type: UnityEngine.Color
+    content.vb: Public BlendMaskVertexColour As Color
+- uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskVertexColourThreshold
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskVertexColourThreshold
+  id: BlendMaskVertexColourThreshold
+  parent: Repetitionless.Runtime.Variables.RepetitionlessLayerData
+  langs:
+  - csharp
+  - vb
+  name: BlendMaskVertexColourThreshold
+  nameWithType: RepetitionlessLayerData.BlendMaskVertexColourThreshold
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessLayerData.BlendMaskVertexColourThreshold
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: BlendMaskVertexColourThreshold
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 102
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  summary: "\nThe smoothstep min max for the colour\n"
+  example: []
+  syntax:
+    content: public Vector2 BlendMaskVertexColourThreshold
+    return:
+      type: UnityEngine.Vector2
+    content.vb: Public BlendMaskVertexColourThreshold As Vector2
 references:
 - uid: Repetitionless.Runtime.Variables
   commentId: N:Repetitionless.Runtime.Variables
@@ -692,12 +752,12 @@ references:
   name: Vector2
   nameWithType: Vector2
   fullName: UnityEngine.Vector2
-- uid: Repetitionless.Runtime.Variables.ETextureType
-  commentId: T:Repetitionless.Runtime.Variables.ETextureType
+- uid: Repetitionless.Runtime.Variables.EMaskType
+  commentId: T:Repetitionless.Runtime.Variables.EMaskType
   parent: Repetitionless.Runtime.Variables
-  name: ETextureType
-  nameWithType: ETextureType
-  fullName: Repetitionless.Runtime.Variables.ETextureType
+  name: EMaskType
+  nameWithType: EMaskType
+  fullName: Repetitionless.Runtime.Variables.EMaskType
 - uid: System.Single
   commentId: T:System.Single
   parent: System
@@ -708,3 +768,10 @@ references:
   nameWithType.vb: Single
   fullName.vb: Single
   name.vb: Single
+- uid: UnityEngine.Color
+  commentId: T:UnityEngine.Color
+  parent: UnityEngine
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: UnityEngine.Color

@@ -50,7 +50,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ConvertMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
-    startLine: 207
+    startLine: 210
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Materials
@@ -85,7 +85,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ConvertMaterials
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
-    startLine: 264
+    startLine: 267
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Materials

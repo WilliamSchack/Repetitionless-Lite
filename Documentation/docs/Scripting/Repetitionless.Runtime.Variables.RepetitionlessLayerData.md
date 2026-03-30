@@ -26,6 +26,8 @@ The layer data for a repetitionless material
 | BlendMaskNoiseScale | The blend mask noise scale |
 | BlendMaskNoiseOffset | The blend mask noise offset |
 | BlendMaskTextureTO | The blend mask texture tiling offset:<br />xy: Tiling, zw: Offset |
+| BlendMaskVertexColour | The colour used as a mask in the vertex colour |
+| BlendMaskVertexColourThreshold | The smoothstep min max for the colour |
 
 ---
 

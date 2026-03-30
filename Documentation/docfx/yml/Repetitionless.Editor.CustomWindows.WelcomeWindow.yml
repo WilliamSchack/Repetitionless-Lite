@@ -74,11 +74,11 @@ items:
     ctor: UnityEditor.MenuItem.#ctor(System.String)
     arguments:
     - type: System.String
-      value: {}
+      value: Window/Repetitionless/Open Window
     namedArguments:
     - name: secondaryPriority
       type: System.Single
-      value: {}
+      value: 0
 - uid: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean,System.Boolean)
   commentId: M:Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean,System.Boolean)
   id: Open(System.Boolean,System.Boolean)

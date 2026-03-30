@@ -10,6 +10,7 @@ items:
   - Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed.BlendMaterialData
   - Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed.DistanceBlendSettings
   - Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed.FarMaterialData
+  - Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed.MaterialBlendMaskExtraSettings
   - Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed.MaterialBlendMaskTO
   - Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed.MaterialBlendSettings
   langs:
@@ -26,7 +27,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessLayerDataCompressed
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
-    startLine: 100
+    startLine: 108
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
@@ -63,7 +64,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BaseMaterialData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
-    startLine: 106
+    startLine: 114
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
@@ -92,7 +93,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: FarMaterialData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
-    startLine: 110
+    startLine: 118
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
@@ -121,7 +122,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BlendMaterialData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
-    startLine: 114
+    startLine: 122
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
@@ -150,7 +151,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DistanceBlendSettings
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
-    startLine: 121
+    startLine: 129
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
@@ -179,7 +180,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: BlendMaskDistanceTO
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
-    startLine: 127
+    startLine: 135
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
@@ -208,7 +209,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: MaterialBlendSettings
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
-    startLine: 139
+    startLine: 147
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
@@ -237,17 +238,46 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: MaterialBlendMaskTO
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
-    startLine: 148
+    startLine: 158
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
-  summary: "\n<strong>IF USING NOISE MASK:</strong><br />\nx: BlendMaskNoiseScale<br />\nzw: BlendMaskNoiseOffset<br />\n<strong>IF USING TEXTURE MASK:</strong><br />\nxyzw: BlendMaskTextureTO\n"
+  summary: "\n<strong>IF USING NOISE MASK:</strong><br />\nx: BlendMaskNoiseScale<br />\nzw: BlendMaskNoiseOffset<br />\n<strong>IF USING TEXTURE MASK:</strong><br />\nxyzw: BlendMaskTextureTO<br />\n<strong>IF USING VERTEX COLOUR MASK:</strong><br />\nxyzw: BlendMaskVertexColour\n"
   example: []
   syntax:
     content: public Vector4 MaterialBlendMaskTO
     return:
       type: UnityEngine.Vector4
     content.vb: Public MaterialBlendMaskTO As Vector4
+- uid: Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed.MaterialBlendMaskExtraSettings
+  commentId: F:Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed.MaterialBlendMaskExtraSettings
+  id: MaterialBlendMaskExtraSettings
+  parent: Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed
+  langs:
+  - csharp
+  - vb
+  name: MaterialBlendMaskExtraSettings
+  nameWithType: RepetitionlessLayerDataCompressed.MaterialBlendMaskExtraSettings
+  fullName: Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed.MaterialBlendMaskExtraSettings
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: MaterialBlendMaskExtraSettings
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/RepetitionlessLayerData.cs
+    startLine: 164
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  summary: "\n<strong>IF USING VERTEX COLOUR:</strong><br />\nxy: BlendMaskVertexColourThreshold\n"
+  example: []
+  syntax:
+    content: public Vector4 MaterialBlendMaskExtraSettings
+    return:
+      type: UnityEngine.Vector4
+    content.vb: Public MaterialBlendMaskExtraSettings As Vector4
 references:
 - uid: Repetitionless.Runtime.Variables
   commentId: N:Repetitionless.Runtime.Variables
