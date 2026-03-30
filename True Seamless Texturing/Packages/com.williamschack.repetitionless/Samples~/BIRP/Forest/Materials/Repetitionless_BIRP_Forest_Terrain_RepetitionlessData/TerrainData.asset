@@ -16,3 +16,4 @@ MonoBehaviour:
   - {fileID: 8574412962073106934, guid: 55137e210829884c3969a2daa86bb484, type: 2}
   - {fileID: 8574412962073106934, guid: f26ec0e15c666cadcb2a9754caaeb069, type: 2}
   - {fileID: 8574412962073106934, guid: 2755994fe9ab76cf6a68e2cb7abd4c30, type: 2}
+  AutoSyncLayers: 1

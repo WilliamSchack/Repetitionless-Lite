@@ -38,7 +38,7 @@ MonoBehaviour:
       OcclussionStrength: 1
       AlphaClipping: 0.5
       NoiseAngleOffset: 2
-      NoiseScale: 5
+      NoiseScale: 2
       NoiseScalingMinMax: {x: 0.8, y: 1.2}
       NoiseRandomiseRotationMinMax: {x: 0, y: 360}
       VariationMode: 2
@@ -142,11 +142,13 @@ MonoBehaviour:
     BlendMaskNoiseScale: 10
     BlendMaskNoiseOffset: {x: 0, y: 0}
     BlendMaskTextureTO: {x: 1, y: 1, z: 0, w: 0}
+    BlendMaskVertexColour: {r: 0, g: 0, b: 0, a: 1}
+    BlendMaskVertexColourThreshold: {x: 0.01, y: 0.2}
   _dataCompressed:
   - BaseMaterialData:
       Settings1: {x: 15, y: 25, z: 0, w: 0}
       Settings2: {x: 1, y: 1, z: 0.5, w: 2}
-      Settings3: {x: 5, y: 2, z: 0.5, w: 0.3}
+      Settings3: {x: 2, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
       AlbedoTint: {x: 1, y: 1, z: 1}
@@ -177,4 +179,6 @@ MonoBehaviour:
     BlendMaskDistanceTO: {x: 1, y: 1, z: 0, w: 0}
     MaterialBlendSettings: {x: 12, y: 0, z: 1, w: 1}
     MaterialBlendMaskTO: {x: 10, y: 0, z: 0, w: 0}
+    MaterialBlendMaskExtraSettings: {x: 0, y: 0, z: 0, w: 0}
+  _noiseQuality: 1
   _globalTilingOffset: {x: 3, y: 3, z: 0, w: 0}

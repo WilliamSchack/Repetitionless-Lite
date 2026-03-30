@@ -40,6 +40,7 @@ Material:
   m_ValidKeywords:
   - _ALPHATEST_ON
   - _DISABLE_SSR_TRANSPARENT
+  - _REPETITIONLESS_NOISE_TEXTURE
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -206,6 +207,10 @@ Material:
         m_Texture: {fileID: 18700000, guid: bbe99aa58e152355490bfb6a30ae7b2f, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseTexture:
+        m_Texture: {fileID: 2800000, guid: 6626bfb33ac4485509ad85b4e195cc7c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -268,6 +273,7 @@ Material:
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
     - _DstBlend2: 0
+    - _ENVIRONMENTREFLECTIONS_OFF: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
     - _ExcludeFromTUAndAA: 0
@@ -287,6 +293,7 @@ Material:
     - _PerPixelSorting: 0
     - _QueueControl: -1
     - _QueueOffset: 0
+    - _REPETITIONLESS_NOISE_TEXTURE: 1
     - _REPETITIONLESS_TRIPLANAR: 0
     - _RayTracing: 0
     - _ReceivesSSR: 1
@@ -294,6 +301,7 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
+    - _SPECULARHIGHLIGHTS_OFF: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -321,6 +329,7 @@ Material:
     - _UVSec: 0
     - _UVSpace: 0
     - _UseShadowThreshold: 0
+    - _VertexColourBlendMode: 0
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 3
     - _ZTestTransparent: 4
