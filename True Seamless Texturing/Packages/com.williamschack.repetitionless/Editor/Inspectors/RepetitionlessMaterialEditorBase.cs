@@ -684,13 +684,13 @@ namespace Repetitionless.Editor.Inspectors
 
                 // Specular Highlights
                 EditorGUI.BeginChangeCheck();
-                _specularHighlightsEnabled = EditorGUILayout.Toggle(new GUIContent("Specular Highlights", "When enabled, the Material reflects the shine from direct lighting."), _specularHighlightsEnabled);
+                _specularHighlightsEnabled = EditorGUILayout.Toggle(new GUIContent("Specular Highlights", "When enabled, the Material reflects the shine from direct lighting"), _specularHighlightsEnabled);
                 if (EditorGUI.EndChangeCheck())
                     SetSpecularHighlightsEnabled(_specularHighlightsEnabled);
 
                 // Environment Reflections
                 EditorGUI.BeginChangeCheck();
-                _environmentReflectionsEnabled = EditorGUILayout.Toggle(new GUIContent("Environment Reflections", "When enabled, the Material samples reflections from the nearest Reflection Probes or Lighting Probe."), _environmentReflectionsEnabled);
+                _environmentReflectionsEnabled = EditorGUILayout.Toggle(new GUIContent("Environment Reflections", "When enabled, the Material samples reflections from the nearest Reflection Probes or Lighting Probe"), _environmentReflectionsEnabled);
                 if (EditorGUI.EndChangeCheck())
                     SetEnvironmentReflectionsEnabled(_environmentReflectionsEnabled);
             }

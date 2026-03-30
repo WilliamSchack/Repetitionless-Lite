@@ -9,12 +9,15 @@ Has all the general properties for the material
 | Surface Type                     | The surface type of the material<br>0: Opaque<br>1: Cutout<br>2: Transparent                                                                                                                                                                                                        |
 | UV Space                         | Sets the UV Space<br>0: Local<br>1: World<br>*Note that with world space UVs you will require larger Tiling*                                                                                                                                                                        |
 | Noise Quality                    | How the noise is sampled<br>High: Dynamically samples noise<br>*(Required for non-repeating noise and the angle offset setting)*<br>Medium: Uses the pre-rendered 4k texture<br>Low: Uses the pre-rendered 1k texture                                                               |
+| Vertex Colour                    | How the vertex colour is blended with the output colour<br>0: Off<br>1: Multiply<br>2: Additive<br>3: Subtractive<br>4: Overwrite                                                                                                                                                   |
 | Triplanar                        | Enables triplanar sampling and forces world UVs<br>*Note that the first time this is set for a material it will take some time to finish as it will recompile the shader, it will be instant for subsequent toggles*                                                                |
 | Global Tiling                    | This is multiplied with each materials tiling                                                                                                                                                                                                                                       |
 | Global Offset                    | This is added onto each of the materials offset                                                                                                                                                                                                                                     |
-| Global Illuminattion             | Controls if the global illumination is baked or realtime<br>0: Realtime<br>1: Baked<br>2: None                                                                                                                                                                                      |
 | Render Queue                     | Changes when the material is drawn                                                                                                                                                                                                                                                  |
+| Global Illuminattion             | Controls if the global illumination is baked or realtime<br>0: Realtime<br>1: Baked<br>2: None                                                                                                                                                                                      |
 | Double Sided Global Illumination | If the lightmapper accounts for both sides of the geometry when calculating Global Illumination                                                                                                                                                                                     |
+| Specular Highlights              | When enabled, the Material reflects the shine from direct lighting                                                                                                                                                                                                                  |
+| Environment Reflections          | When enabled, the Material samples reflections from the nearest Reflection Probes or Lighting Probe                                                                                                                                                                                 |
 | Array Settings                   | Shows a dropdown with buttons to modify each of the texture arrays that the textures are stored in<br>AVTextures: Albedo (rgb), Variation (a)<br>NSOTextures: Normal (rg), Smoothness (b), Occlussion (a)<br>EMTextures: Emission (rgb), Metallic (a)<br>BMTextures: Blend Mask (r) |
 | Ping Data Folder                 | Pings the data folder                                                                                                                                                                                                                                                               |
 
@@ -118,7 +121,7 @@ This is a separate material that will overlay the base and far material if set b
 
 | Property      | Description                                                                                                                                                                                                     |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Mask Type     | The mask type used<br>0: Perlin noise<br>1: Simplex noise<br>2: Custom texture                                                                                                                                  |
+| Mask Type     | The mask type used<br>0: Perlin noise<br>1: Simplex noise<br>2: Custom texture<br>3: Vertex Colour                                                                                                              |
 | Mask Opacity  | Opacity of the mask and in response the blend material                                                                                                                                                          |
 | Mask Strength | The higher the value, the sharper the edges and vice versa                                                                                                                                                      |
 | Noise Scale   | The noise tiling<br>*Only shown if Mask Type is set to any noise*                                                                                                                                               |
@@ -126,6 +129,28 @@ This is a separate material that will overlay the base and far material if set b
 | Blend Mask    | Texture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)<br>Blend Mask (R), other channels are ignored<br>*Only shown if Mask Type is set to Custom Texture* |
 | Scale         | The blend mask tiling<br>*Only shown if Mask Type is set to Custom Texture*                                                                                                                                     |
 | Offset        | The blend mask offset<br>*Only shown if Mask Type is set to Custom Texture*                                                                                                                                     |
+
+*If mask type is set to any noise*
+
+| Property     | Description      |
+| ------------ | ---------------- |
+| Noise Scale  | The noise tiling |
+| Noise Offset | The noise offset |
+
+*If mask type is set to Custom Texture*
+
+| Property   | Description                                                                                                                                               |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Blend Mask | Texture that is sampled as the mask for the blend material. Color from black-white represents opacity (0-1)<br>Blend Mask (R), other channels are ignored |
+| Scale      | The blend mask tiling                                                                                                                                     |
+| Offset     | The blend mask offset                                                                                                                                     |
+
+*If mask type is set to Vertex Colour*
+
+| Property         | Description                                    |
+| ---------------- | ---------------------------------------------- |
+| Mask Colour      | The colour used as a mask in the vertex colour |
+| Colour Threshold | The smoothstep min max for the colour          |
 
 ### Distance Blending Settings
 
