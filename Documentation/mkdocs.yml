@@ -28,8 +28,6 @@ nav:
       - MMV Texture: SubGraphs/MacroMicroVariation.MMVTexture.md
     - Noise:
       - Repetitionless Noise: SubGraphs/Noise.RepetitionlessNoise.md
-    - Internal:
-      - Add Terrain Layer Mask Settings: SubGraphs/Terrain.AddTerrainLayerMaskSettings.md
   - Shader API:
     - Main:
       - SampleRepetitionlessMaterial: ShaderHLSL/Main.SampleRepetitionlessMaterial.md
