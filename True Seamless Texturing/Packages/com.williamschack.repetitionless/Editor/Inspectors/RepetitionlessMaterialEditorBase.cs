@@ -709,7 +709,7 @@ namespace Repetitionless.Editor.Inspectors
                 if (_textureData.BMTexturesDrawer.Array != null)  { arrayMenu.AddItem(new GUIContent("BM Textures"),  false, () => { ShowArrayConfigureWindow(_textureData.BMTexturesDrawer); });  addedItem = true; }
 
                 if (addedItem) arrayMenu.ShowAsContext();
-                else           ShaderGUIDialog.DisplayDialog("Cant Configure Arrays", "No textures are assigned so no arrays have been created. Textures need to be assigned before the arrays can be configured.", "OK", "");
+                else           ShaderGUIDialog.DisplayDialog("Cant Configure Arrays", "No textures are assigned so no arrays have been created. Textures need to be assigned before the arrays can be configured.", "OK");
             }
 
             // Data Folder

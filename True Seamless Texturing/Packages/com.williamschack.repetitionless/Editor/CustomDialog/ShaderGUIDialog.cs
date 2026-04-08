@@ -30,6 +30,36 @@ namespace Repetitionless.Editor.CustomDialog
         /// <param name="ok">
         /// Left button underneath the message
         /// </param>
+        /// <returns>
+        /// If the ok button was pressed
+        /// </returns>
+        public static bool DisplayDialog(string title, string message, string ok)
+        {
+            // Disable unity logger for warning "PropertiesGUI() is being called recursively", only happens in ShaderGUI OnGUI for some reason
+            bool wasLogging = Debug.unityLogger.logEnabled;
+            Debug.unityLogger.logEnabled = false;
+
+            // Display Dialog
+            bool input = EditorUtility.DisplayDialog(title, message, ok);
+
+            // Re-enable logger
+            Debug.unityLogger.logEnabled = wasLogging;
+
+            return input;
+        }
+
+        /// <summary>
+        /// Displays a modal dialog removing the ShaderGUI specific warning
+        /// </summary>
+        /// <param name="title">
+        /// Title of the window
+        /// </param>
+        /// <param name="message">
+        /// Message displayed in the dialog
+        /// </param>
+        /// <param name="ok">
+        /// Left button underneath the message
+        /// </param>
         /// <param name="cancel">
         /// Right button underneath the message
         /// </param>
