@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
 
 using Repetitionless.Runtime.Variables;
 
@@ -22,14 +23,13 @@ namespace Repetitionless.Editor.Inspectors
         /// </summary>
         protected override int _maxLayers => Constants.MAX_LAYERS_TERRAIN;
 
-        private bool _usingTerrainLayers = false;
-
-        // Control Textures
-
+        private RepetitionlessLayeredDataSO _layeredData;
+        private bool _usingTerrainLayers => _layeredData.ControlMode == EControlMode.Terrain;
 
         // Terrain
         private RepetitionlessTerrainDataSO _materialTerrainData;
-        private List<TerrainLayer> _terrainLayers => _materialTerrainData.TerrainLayers;
+        private List<TerrainLayer> _terrainLayers => _materialTerrainData?.TerrainLayers;
+
 
         private int _currentLayerIndex = 0;
         private bool _showingTerrainLayers = false;
@@ -60,11 +60,10 @@ namespace Repetitionless.Editor.Inspectors
 
             base.OnEnable(materialEditor);
 
-            // Get terrain layer data SO
-            _materialTerrainData = RepetitionlessTerrainMaterialUtilities.SetupData(_dataManager);
+            _layeredData = RepetitionlessTerrainMaterialUtilities.SetupLayeredData(_dataManager);
 
-            // Set terrain compatible tag
-            _material.SetOverrideTag("TerrainCompatible", "True");
+            if (_layeredData.ControlMode == EControlMode.Terrain)
+                UpdateTerrainDetails();
 
             // GUIStyles
             _toggleSyncStyle = new GUIStyle(GUIUtilities.MajorToggleButtonStyle);
@@ -132,17 +131,22 @@ namespace Repetitionless.Editor.Inspectors
 
             GUIUtilities.DrawHeaderLabelLarge("Layers");
 
+            GUILayout.Space(10);
+            
             Rect buttonRect = GUIUtilities.GetLineRect();
 
             buttonRect.width /= 2;
             EditorGUI.BeginChangeCheck();
             GUI.Toggle(buttonRect, !_usingTerrainLayers, new GUIContent("Control Textures", ""), "ButtonLeft");
-            if (EditorGUI.EndChangeCheck() && _usingTerrainLayers) _usingTerrainLayers = false;
+            if (EditorGUI.EndChangeCheck() && _usingTerrainLayers) _layeredData.ControlMode = EControlMode.ControlTextures;
 
             buttonRect.x += buttonRect.width;
             EditorGUI.BeginChangeCheck();
             GUI.Toggle(buttonRect, _usingTerrainLayers, new GUIContent("Terrain", ""), "ButtonRight");
-            if (EditorGUI.EndChangeCheck() && !_usingTerrainLayers) _usingTerrainLayers = true;
+            if (EditorGUI.EndChangeCheck() && !_usingTerrainLayers) {
+                UpdateTerrainDetails();
+                _layeredData.ControlMode = EControlMode.Terrain;
+            }
 
             if (!_usingTerrainLayers) DrawControlTextureSettings();
             else                      DrawTerrainSettings();
@@ -321,6 +325,15 @@ namespace Repetitionless.Editor.Inspectors
                 terrainLayer.tileSize   = new Vector2(baseData.TilingOffset.x, baseData.TilingOffset.y);
                 terrainLayer.tileOffset = new Vector2(baseData.TilingOffset.z, baseData.TilingOffset.w);
             }
+        }
+
+        private void UpdateTerrainDetails()
+        {
+            if (_materialTerrainData == null)
+                return;
+
+            _materialTerrainData = RepetitionlessTerrainMaterialUtilities.SetupTerrainData(_dataManager);
+            _material.SetOverrideTag("TerrainCompatible", "True");
         }
 
         private void SaveMaterialToLayer(int layerIndex)

@@ -24,7 +24,29 @@ namespace Repetitionless.Editor.Materials
             mat.SetOverrideTag("TerrainCompatible", "True");
         }
 
-        public static RepetitionlessTerrainDataSO SetupData(MaterialDataManager dataManager)
+        public static RepetitionlessLayeredDataSO SetupLayeredData(MaterialDataManager dataManager)
+        {
+            if (dataManager.AssetExists(Constants.LAYERED_DATA_FILE_NAME))
+                return dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
+
+            RepetitionlessLayeredDataSO data = ScriptableObject.CreateInstance<RepetitionlessLayeredDataSO>();
+            dataManager.CreateAsset(data, Constants.LAYERED_DATA_FILE_NAME);
+
+            // If terrain data exists, set to terrain mode (for previous versions)
+            if (dataManager.AssetExists(Constants.TERRAIN_DATA_FILE_NAME))
+                data.ControlMode = EControlMode.Terrain;
+
+            // Otherwise set to control textures
+            else
+                data.ControlMode = EControlMode.ControlTextures;
+
+            data.Save();
+            AssetDatabase.SaveAssetIfDirty(data);
+
+            return data;
+        }
+
+        public static RepetitionlessTerrainDataSO SetupTerrainData(MaterialDataManager dataManager)
         {
             if (dataManager.AssetExists(Constants.TERRAIN_DATA_FILE_NAME))
                 return dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);

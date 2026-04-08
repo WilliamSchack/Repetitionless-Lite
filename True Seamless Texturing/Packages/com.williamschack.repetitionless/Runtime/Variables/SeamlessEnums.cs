@@ -152,4 +152,10 @@ namespace Repetitionless.Runtime.Variables
         /// </summary>
         Overwrite
     }
+
+    public enum EControlMode
+    {
+        ControlTextures,
+        Terrain
+    }
 }

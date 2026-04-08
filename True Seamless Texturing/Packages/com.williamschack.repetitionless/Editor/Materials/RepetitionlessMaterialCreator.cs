@@ -229,7 +229,8 @@ namespace Repetitionless.Editor.Materials
 
             AssetDatabase.CreateAsset(material, assetPath);
             materialDataObjects = SetupMaterial(material, Constants.MAX_LAYERS_TERRAIN, (RepetitionlessMaterialDataSO data) => { RepetitionlessTerrainMaterialUtilities.SetupProperties(material, data); });
-            RepetitionlessTerrainMaterialUtilities.SetupData(materialDataObjects.DataManager);
+            RepetitionlessTerrainMaterialUtilities.SetupLayeredData(materialDataObjects.DataManager);
+            RepetitionlessTerrainMaterialUtilities.SetupTerrainData(materialDataObjects.DataManager);
 
             if (ping)
                 PingAsset(material);
