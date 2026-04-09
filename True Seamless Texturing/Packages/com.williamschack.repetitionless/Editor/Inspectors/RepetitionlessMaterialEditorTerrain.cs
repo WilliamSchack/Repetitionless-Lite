@@ -297,7 +297,7 @@ namespace Repetitionless.Editor.Inspectors
             if (!EditorGUI.EndChangeCheck() || sectionIndex != 0) return rect;
     
             // Update terrain layer
-            if (!_materialTerrainData.AutoSyncLayers)
+            if (_layeredData.LayerMode != ELayerMode.TerrainLayers || !_materialTerrainData.AutoSyncLayers)
                 return rect;
 
             TerrainLayer terrainLayer = _terrainLayers[layerIndex];
@@ -361,7 +361,7 @@ namespace Repetitionless.Editor.Inspectors
             }
 
             // If any terrain layer properties changed, update them
-            if (!_materialTerrainData.AutoSyncLayers)
+            if (_layeredData.LayerMode != ELayerMode.TerrainLayers || !_materialTerrainData.AutoSyncLayers)
                 return;
 
             TerrainLayer terrainLayer = _terrainLayers[layerIndex];
