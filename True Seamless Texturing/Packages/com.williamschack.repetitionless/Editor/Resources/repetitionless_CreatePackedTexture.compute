@@ -84,7 +84,7 @@ inline half4 SampleTexture(int channelIndex = 0, float2 uv = 0)
 }
 
 [numthreads(8, 8, 1)]
-void CSMain (uint3 id : SV_DispatchThreadID)
+void CSMain(uint3 id : SV_DispatchThreadID)
 {
     // Assumes all textures have the same dimensions, but exit here if not
     if (id.x >= Width || id.y >= Height)

@@ -127,7 +127,7 @@ namespace Repetitionless.Editor.TextureUtilities
         private const int THREADS_X = 8;
         private const int THREADS_Y = 8;
 
-        /// <summary>
+        /// <summary>   
         /// Packs a set of textures
         /// </summary>
         /// <param name="textureData">
@@ -141,8 +141,8 @@ namespace Repetitionless.Editor.TextureUtilities
         /// </returns>
         public static Texture2D PackTextures(TextureData[] textureData, Vector4 defaultColours)
         {
-            if (textureData.Length == 0 || textureData.Length > 4) {
-                Debug.LogError("Texture packing can only take 1-4 input textures");
+            if (textureData.Length > 4) {
+                Debug.LogError("Texture packing can only take 0-4 input textures");
                 return null;
             }
 
@@ -153,7 +153,7 @@ namespace Repetitionless.Editor.TextureUtilities
             }
 
             // Get resolution
-            Vector2Int resolution = new Vector2Int(0, 0);
+            Vector2Int resolution = new Vector2Int(1, 1);
             for (int i = 0; i < textureData.Length; i++) {
                 Texture2D currentTexture = textureData[i].Texture;
                 if (currentTexture == null || textureData[i].Disabled)
@@ -211,17 +211,16 @@ namespace Repetitionless.Editor.TextureUtilities
                 textureDataGPU.Add(gpuData);
             }
 
-            // No textures are assigned in the data
-            if (inputTextures.Count == 0) {
-                //Debug.LogError("Input textures must be assigned...");
-                return null;
-            }
+            // If no textures assigned, add a dummy texture data
+            if (textureDataGPU.Count == 0)
+                textureDataGPU.Add(new TextureDataGPU());
 
             // Create render texture
+            bool generateMipMaps = inputTextures.Count > 0;
             RenderTextureDescriptor desc =  new RenderTextureDescriptor(resolution.x, resolution.y) {
                 enableRandomWrite = true,
                 useMipMap = true,
-                autoGenerateMips = true,
+                autoGenerateMips = generateMipMaps,
                 sRGB = anyHasSrgb
             };
 
@@ -237,7 +236,7 @@ namespace Repetitionless.Editor.TextureUtilities
             shader.SetFloat("Height", resolution.y);
 
             Texture2D dummyTexture = new Texture2D(1, 1);
-            shader.SetTexture(kernel, "Tex0", inputTextures[0]);
+            shader.SetTexture(kernel, "Tex0", inputTextures.Count > 0 ? inputTextures[0] : dummyTexture);
             shader.SetTexture(kernel, "Tex1", inputTextures.Count > 1 ? inputTextures[1] : dummyTexture);
             shader.SetTexture(kernel, "Tex2", inputTextures.Count > 2 ? inputTextures[2] : dummyTexture);
             shader.SetTexture(kernel, "Tex3", inputTextures.Count > 3 ? inputTextures[3] : dummyTexture);
