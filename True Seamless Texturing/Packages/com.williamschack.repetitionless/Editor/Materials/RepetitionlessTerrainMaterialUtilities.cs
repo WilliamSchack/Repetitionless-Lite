@@ -41,7 +41,7 @@ namespace Repetitionless.Editor.Materials
                 data.LayerMode = ELayerMode.ControlTextures;
 
             // Setup the textures
-            data.SetupTextures();
+            data.Init();
 
             data.Save();
             AssetDatabase.SaveAssetIfDirty(data);

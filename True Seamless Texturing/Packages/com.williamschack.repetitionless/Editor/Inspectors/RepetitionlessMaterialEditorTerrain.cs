@@ -159,8 +159,8 @@ namespace Repetitionless.Editor.Inspectors
 
         private void DrawControlTextureSettings()
         {
-            DrawControlTexture(_currentLayerIndex, $"Control Texture");
             DrawHolesTexture();
+            DrawControlTexture(_currentLayerIndex, $"Control Texture");
 
             GUILayout.Space(10);
 
@@ -191,7 +191,10 @@ namespace Repetitionless.Editor.Inspectors
             EditorGUI.BeginChangeCheck();
             textureData.Texture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent(label, "The control texture that will be used for this layer. It will read from the selected channel"), textureData.Texture, typeof(Texture2D), false);
             textureData.FromToChannels[0] = new TexturePacker.FromToChannel(DrawChannelPicker(lineRect, textureData.FromToChannels[0].From), textureData.FromToChannels[0].To);
-            if (EditorGUI.EndChangeCheck()) _layeredData.Save();
+            if (EditorGUI.EndChangeCheck()) {
+                _layeredData.PackControlTextureByLayer(layerIndex);
+                _layeredData.Save();
+            }
         }
 
         private void DrawHolesTexture()

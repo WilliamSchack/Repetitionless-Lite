@@ -20,12 +20,30 @@ namespace Repetitionless.Editor.Data
             public TexturePacker.TextureData[] ChannelTextures;
         }
 
+        private static readonly Vector4 DEFAULT_LAYER_COLOURS_FIRST = new Vector4(1.0f, 0.0f, 0.0f, 0.0f);
+        private static readonly Vector4 DEFAULT_LAYER_COLOURS = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+
         [SerializeField] public ELayerMode LayerMode = ELayerMode.ControlTextures;
 
         // 8 Control textures, 4 channels/textures per
         [SerializeField] public ControlTexture[] ControlTextures = new ControlTexture[Constants.MAX_LAYERS_TERRAIN / 4];
+        [SerializeField] private Texture2D[] _packedControlTextures = new Texture2D[Constants.MAX_LAYERS_TERRAIN / 4];
+
+        public Texture2D[] PackedControlTextures => _packedControlTextures;
 
         [SerializeField] public TexturePacker.TextureData HolesTexture = new TexturePacker.TextureData();
+
+        // Non-Serializable
+        private MaterialDataManager _dataManagerCache;
+        private MaterialDataManager _dataManager {
+            get {
+                if (_dataManagerCache?.Material != null)
+                    return _dataManagerCache;
+
+                _dataManagerCache = new MaterialDataManager(this);
+                return _dataManagerCache;
+            }
+        }
 
         /// <summary>
         /// Saves this object
@@ -38,12 +56,14 @@ namespace Repetitionless.Editor.Data
         }
 
         /// <summary>
-        /// Resets the texture data fields
+        /// Resets the texture data fields and packs the initial textures
         /// </summary>
-        public void SetupTextures()
+        public void Init()
         {
             SetupControlTextures();
             SetupHolesTexture();
+
+            PackControlTextures();
         }
 
         /// <summary>
@@ -123,6 +143,55 @@ namespace Repetitionless.Editor.Data
                     )
                 }
             };
+        }
+
+        public void PackControlTextures()
+        {
+            for (int i = 0; i < ControlTextures.Length; i++) {
+                PackControlTexture(i);
+            }
+        }
+
+        public void PackControlTextureByLayer(int layerIndex)
+        {
+            int controlTextureIndex = (int)Mathf.Floor(layerIndex / 4.0f);
+            PackControlTexture(controlTextureIndex);
+        }
+
+        public void PackControlTexture(int controlIndex)
+        {
+            ref TexturePacker.TextureData[] textures = ref ControlTextures[controlIndex].ChannelTextures;
+
+            // Get the highest resolution
+            Vector2Int highestResolution = new Vector2Int(1, 1);
+            for (int i = 0; i < textures.Length; i++) {
+                Texture2D texture = textures[i].Texture;
+                if (texture == null) continue;
+
+                if (texture.width > highestResolution.x && texture.height > highestResolution.y)
+                    highestResolution = new Vector2Int(texture.width, texture.height);
+            }
+
+            // Make sure all textures are the highest resolution
+            TexturePacker.TextureData[] resizedTextures = (TexturePacker.TextureData[])textures.Clone();
+            for (int i = 0; i < resizedTextures.Length; i++) {
+                ref TexturePacker.TextureData textureData = ref resizedTextures[i];
+                Texture2D texture = textureData.Texture;
+                if (texture == null) continue;
+
+                // Resize the texture if its a different resolution
+                if (texture.width != highestResolution.x || texture.height != highestResolution.y)
+                    textureData.Texture = TextureUtilities.ResizeTexture(texture, highestResolution.x, highestResolution.y);
+            }
+
+            // Pack textures
+            Vector4 defaultColours = controlIndex == 0 ? DEFAULT_LAYER_COLOURS_FIRST : DEFAULT_LAYER_COLOURS;
+            Texture2D packedTexture = TexturePacker.PackTextures(resizedTextures, defaultColours);
+            if (packedTexture == null) return;
+
+            string fileName = Constants.CONTROL_TEXTURE_FILE_NAME_PREFIX + controlIndex + ".asset";
+            _dataManager.CreateAsset(packedTexture, fileName, true);
+            _packedControlTextures[controlIndex] = packedTexture;
         }
     }
 }

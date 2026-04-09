@@ -153,7 +153,7 @@ namespace Repetitionless.Editor.TextureUtilities
             }
 
             // Get resolution
-            Vector2Int resolution = new Vector2Int(1, 1);
+            Vector2Int resolution = new Vector2Int(0, 0);
             for (int i = 0; i < textureData.Length; i++) {
                 Texture2D currentTexture = textureData[i].Texture;
                 if (currentTexture == null || textureData[i].Disabled)
@@ -173,6 +173,10 @@ namespace Repetitionless.Editor.TextureUtilities
                     return null;
                 }
             }
+
+            // If resolution is still 0x0, set it to 1x1
+            if (resolution == Vector2Int.zero)
+                    resolution = new Vector2Int(1, 1);
 
             // Convert texture data to gpu friendly
             bool anyHasSrgb = false;
