@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6720dbbcea5f57418d1d05916957934, type: 3}
   m_Name: LayeredData
   m_EditorClassIdentifier: com.williamschack.Repetitionless.Editor::Repetitionless.Editor.Data.RepetitionlessLayeredDataSO
-  ControlMode: 2
+  ControlMode: 0
   ControlTextures:
   - {fileID: 0}
   - {fileID: 0}

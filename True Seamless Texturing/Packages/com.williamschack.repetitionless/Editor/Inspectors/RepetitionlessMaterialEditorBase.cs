@@ -91,9 +91,10 @@ namespace Repetitionless.Editor.Inspectors
         /// </summary>
         protected const int SCALED_TEXT_PADDING = 10;
 
-        private const int CHANNEL_PICKER_WIDTH = 50;
-
-        private const string PROGRESS_BAR_TITLE = "Updating Material";
+        /// <summary>
+        /// The width of a channel picker
+        /// </summary>
+        protected const int CHANNEL_PICKER_WIDTH = 50;
 
         // Overridable
 
@@ -495,18 +496,23 @@ namespace Repetitionless.Editor.Inspectors
         {
             ref TexturePacker.TextureData textureData = ref _textureData.GetTextureData(layerIndex, sectionIndex, texturesIndex)[elementIndex];
 
-            Rect rect = lineRect;
-            rect.x += lineRect.width - CHANNEL_PICKER_WIDTH;
-            rect.width = CHANNEL_PICKER_WIDTH;
-
             EditorGUI.BeginChangeCheck();
-            TexturePacker.TextureChannel textureChannel = (TexturePacker.TextureChannel)EditorGUI.EnumPopup(rect, new GUIContent("", "The texture channel to read from"), textureData.FromToChannels[channelIndex].From);
+            TexturePacker.TextureChannel textureChannel = DrawChannelPicker(lineRect, textureData.FromToChannels[channelIndex].From);
             textureData.FromToChannels[channelIndex] = new TexturePacker.FromToChannel(textureChannel, textureData.FromToChannels[channelIndex].To);
 
             if (EditorGUI.EndChangeCheck()) {
                 _textureData.Save();
                 AssetDatabase.SaveAssetIfDirty(_textureData);
             }
+        }
+
+        private protected TexturePacker.TextureChannel DrawChannelPicker(Rect lineRect, TexturePacker.TextureChannel channel)
+        {
+            Rect rect = lineRect;
+            rect.x += lineRect.width - CHANNEL_PICKER_WIDTH;
+            rect.width = CHANNEL_PICKER_WIDTH;
+
+            return (TexturePacker.TextureChannel)EditorGUI.EnumPopup(rect, channel);
         }
 
         #endregion

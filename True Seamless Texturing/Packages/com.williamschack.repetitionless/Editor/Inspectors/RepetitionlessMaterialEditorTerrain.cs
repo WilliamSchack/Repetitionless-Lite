@@ -30,9 +30,9 @@ namespace Repetitionless.Editor.Inspectors
         private RepetitionlessTerrainDataSO _materialTerrainData;
         private List<TerrainLayer> _terrainLayers => _materialTerrainData?.TerrainLayers;
 
+        private bool _showingLayersDropdown = false;
 
         private int _currentLayerIndex = 0;
-        private bool _showingTerrainLayers = false;
 
         private GUIStyle _instanceHeaderStyle;
         private bool _isInstance = false;
@@ -158,7 +158,30 @@ namespace Repetitionless.Editor.Inspectors
         {
             _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _maxLayers) - 1;
 
+            DrawControlTexture(_currentLayerIndex, "Control Texture");
 
+            GUILayout.Space(10);
+
+            GUIUtilities.BeginBackgroundVertical();
+            _showingLayersDropdown = GUIUtilities.DrawFoldout(_showingLayersDropdown, "Control Textures");
+            if (_showingLayersDropdown) {
+                for (int i = 0; i < _maxLayers; i++) {
+                    DrawControlTexture(i, $"Control Texture {i + 1}");
+                }
+            }
+            GUIUtilities.EndBackgroundVertical();
+        }
+
+        private void DrawControlTexture(int layerIndex, string label)
+        {
+            // Have to use line height for ObjectField to draw texture properly
+            GUILayout.Space(GUIUtilities.LINE_SPACING);
+            Rect lineRect = GUIUtilities.GetLineRect(GUIUtilities.LINE_HEIGHT);
+            Rect textureRect = lineRect;
+            textureRect.width -= CHANNEL_PICKER_WIDTH + 5;
+
+            _layeredData.ControlTextures[layerIndex] = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent(label, "The control texture that will be used for this layer. It will read from the selected channel"), _layeredData.ControlTextures[layerIndex], typeof(Texture2D), false);
+            _layeredData.ControlTextureChannels[layerIndex] = DrawChannelPicker(lineRect, _layeredData.ControlTextureChannels[layerIndex]);
         }
 
         private void DrawTerrainSettings()
@@ -205,13 +228,13 @@ namespace Repetitionless.Editor.Inspectors
             GUILayout.Space(10);
 
             GUIUtilities.BeginBackgroundVertical();
-            _showingTerrainLayers = GUIUtilities.DrawFoldout(_showingTerrainLayers, "Terrain Layers");
-            if (_showingTerrainLayers) {
+            _showingLayersDropdown = GUIUtilities.DrawFoldout(_showingLayersDropdown, "Terrain Layers");
+            if (_showingLayersDropdown) {
                 GUILayout.Label("These can be changed in the terrain");
 
                 GUI.enabled = false;
                 for (int i = 0; i < _terrainLayers.Count; i++) {
-                    EditorGUILayout.ObjectField($"Terrain Layer {i}", _terrainLayers[i], typeof(TerrainLayer), false);
+                    EditorGUILayout.ObjectField($"Terrain Layer {i + 1}", _terrainLayers[i], typeof(TerrainLayer), false);
                 }
                 GUI.enabled = true;
             }
@@ -329,7 +352,7 @@ namespace Repetitionless.Editor.Inspectors
 
         private void UpdateTerrainDetails()
         {
-            if (_materialTerrainData == null)
+            if (_materialTerrainData != null)
                 return;
 
             _materialTerrainData = RepetitionlessTerrainMaterialUtilities.SetupTerrainData(_dataManager);
