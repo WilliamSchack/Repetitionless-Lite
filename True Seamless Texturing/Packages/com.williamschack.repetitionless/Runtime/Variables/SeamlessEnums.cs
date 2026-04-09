@@ -156,7 +156,7 @@ namespace Repetitionless.Runtime.Variables
     /// <summary>
     /// Available options for how layers are used
     /// </summary>
-    public enum EControlMode
+    public enum ELayerMode
     {
         /// <summary>
         /// Uses manually set textures to specify where each layer is

@@ -29,9 +29,8 @@ namespace Repetitionless.Editor.Inspectors
         private RepetitionlessTerrainDataSO _materialTerrainData;
         private List<TerrainLayer> _terrainLayers => _materialTerrainData?.TerrainLayers;
 
-        private bool _showingLayersDropdown = false;
-
         private int _currentLayerIndex = 0;
+        private bool _showingLayersDropdown = false;
 
         private GUIStyle _instanceHeaderStyle;
         private bool _isInstance = false;
@@ -61,7 +60,7 @@ namespace Repetitionless.Editor.Inspectors
 
             _layeredData = RepetitionlessTerrainMaterialUtilities.SetupLayeredData(_dataManager);
 
-            if (_layeredData.LayerMode == EControlMode.TerrainLayers)
+            if (_layeredData.LayerMode == ELayerMode.TerrainLayers)
                 UpdateTerrainDetails();
 
             // GUIStyles
@@ -132,10 +131,21 @@ namespace Repetitionless.Editor.Inspectors
 
             GUILayout.Space(10);
 
-            _layeredData.LayerMode = (EControlMode)EditorGUILayout.EnumPopup(new GUIContent("Layer Mode", "Control Textures: Uses manually set textures to specify where each layer is\nTerrain Layers: Uses automatically synced terrain textures and its terrain layers to assign textures and settings to each layer"), _layeredData.LayerMode);
+            EditorGUI.BeginChangeCheck();
+            _layeredData.LayerMode = (ELayerMode)EditorGUILayout.EnumPopup(new GUIContent("Mode", "Control Textures: Uses manually set textures to specify where each layer is\nTerrain Layers: Uses automatically synced terrain textures and its terrain layers to assign textures and settings to each layer"), _layeredData.LayerMode);
+            bool layerModeChanged = EditorGUI.EndChangeCheck();
 
-            if (_layeredData.LayerMode == EControlMode.ControlTextures) DrawControlTextureSettings();
-            else                                                        DrawTerrainSettings();
+            switch (_layeredData.LayerMode) {
+                case ELayerMode.ControlTextures:
+                    DrawControlTextureSettings();
+                    break;
+                case ELayerMode.TerrainLayers:
+                    if (layerModeChanged && (_terrainLayers == null || _terrainLayers.Count == 0))
+                        _currentLayerIndex = 0;
+
+                    DrawTerrainSettings();
+                    break;
+            }
 
             GUIUtilities.EndBackgroundVertical();
         }
@@ -166,8 +176,15 @@ namespace Repetitionless.Editor.Inspectors
             Rect textureRect = lineRect;
             textureRect.width -= CHANNEL_PICKER_WIDTH + 5;
 
-            _layeredData.ControlTextures[layerIndex] = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent(label, "The control texture that will be used for this layer. It will read from the selected channel"), _layeredData.ControlTextures[layerIndex], typeof(Texture2D), false);
-            _layeredData.ControlTextureChannels[layerIndex] = DrawChannelPicker(lineRect, _layeredData.ControlTextureChannels[layerIndex]);
+            ref TexturePacker.TextureData textureData = ref _layeredData.ControlTextures[layerIndex];
+            if (textureData.FromToChannels.Count == 0) {
+                // In the case of an error, will reset the from channel
+                _layeredData.SetupControlTexture(layerIndex);
+                textureData = ref _layeredData.ControlTextures[layerIndex];
+            }
+
+            textureData.Texture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent(label, "The control texture that will be used for this layer. It will read from the selected channel"), textureData.Texture, typeof(Texture2D), false);
+            textureData.FromToChannels[0] = new TexturePacker.FromToChannel(DrawChannelPicker(lineRect, textureData.FromToChannels[0].From), textureData.FromToChannels[0].To);
         }
 
         private void DrawTerrainSettings()
