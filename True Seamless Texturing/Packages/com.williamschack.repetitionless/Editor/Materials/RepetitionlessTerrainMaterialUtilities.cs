@@ -32,16 +32,17 @@ namespace Repetitionless.Editor.Materials
             RepetitionlessLayeredDataSO data = ScriptableObject.CreateInstance<RepetitionlessLayeredDataSO>();
             dataManager.CreateAsset(data, Constants.LAYERED_DATA_FILE_NAME);
 
-            // If terrain data exists, set to terrain mode (for previous versions)
-            if (dataManager.AssetExists(Constants.TERRAIN_DATA_FILE_NAME))
-                data.LayerMode = ELayerMode.TerrainLayers;
-
-            // Otherwise set to control textures
-            else
-                data.LayerMode = ELayerMode.ControlTextures;
-
             // Setup the textures
             data.Init();
+
+            if (dataManager.AssetExists(Constants.TERRAIN_DATA_FILE_NAME)) {
+                // If terrain data exists, set to terrain mode (for previous versions)
+                data.LayerMode = ELayerMode.TerrainLayers;
+            } else {
+                // Otherwise set to control textures
+                data.LayerMode = ELayerMode.ControlTextures;
+                data.AssignControlTextures();
+            }
 
             data.Save();
             AssetDatabase.SaveAssetIfDirty(data);

@@ -112,7 +112,7 @@ namespace Repetitionless.Editor.Data
 
         public void SetupControlTexture(int layerIndex)
         {
-            int controlTextureIndex = (int)Mathf.Floor(layerIndex / 4.0f);
+            int controlTextureIndex = GetControlIndexFromLayerIndex(layerIndex);
             int channelIndex = layerIndex % 4;
 
             SetupControlChannelTexture(controlTextureIndex, channelIndex);
@@ -120,7 +120,7 @@ namespace Repetitionless.Editor.Data
 
         public ref TexturePacker.TextureData GetControlTextureData(int layerIndex)
         {
-            int controlTextureIndex = (int)Mathf.Floor(layerIndex / 4.0f);
+            int controlTextureIndex = GetControlIndexFromLayerIndex(layerIndex);
             int channelIndex = layerIndex % 4;
 
             return ref ControlTextures[controlTextureIndex].ChannelTextures[channelIndex];
@@ -152,10 +152,9 @@ namespace Repetitionless.Editor.Data
             }
         }
 
-        public void PackControlTextureByLayer(int layerIndex)
+        public int GetControlIndexFromLayerIndex(int layerIndex)
         {
-            int controlTextureIndex = (int)Mathf.Floor(layerIndex / 4.0f);
-            PackControlTexture(controlTextureIndex);
+            return (int)Mathf.Floor(layerIndex / 4.0f);
         }
 
         public void PackControlTexture(int controlIndex)
@@ -192,6 +191,18 @@ namespace Repetitionless.Editor.Data
             string fileName = Constants.CONTROL_TEXTURE_FILE_NAME_PREFIX + controlIndex + ".asset";
             _dataManager.CreateAsset(packedTexture, fileName, true);
             _packedControlTextures[controlIndex] = packedTexture;
+        }
+
+        public void AssignControlTextures()
+        {
+            for (int i = 0; i < ControlTextures.Length; i++) {
+                AssignControlTexture(i);
+            }
+        }
+
+        public void AssignControlTexture(int index)
+        {
+            _dataManager.Material.SetTexture($"_Control{index}", PackedControlTextures[index]);
         }
     }
 }

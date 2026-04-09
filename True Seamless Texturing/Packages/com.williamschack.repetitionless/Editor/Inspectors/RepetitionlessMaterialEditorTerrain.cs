@@ -192,7 +192,9 @@ namespace Repetitionless.Editor.Inspectors
             textureData.Texture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent(label, "The control texture that will be used for this layer. It will read from the selected channel"), textureData.Texture, typeof(Texture2D), false);
             textureData.FromToChannels[0] = new TexturePacker.FromToChannel(DrawChannelPicker(lineRect, textureData.FromToChannels[0].From), textureData.FromToChannels[0].To);
             if (EditorGUI.EndChangeCheck()) {
-                _layeredData.PackControlTextureByLayer(layerIndex);
+                int controlIndex = _layeredData.GetControlIndexFromLayerIndex(layerIndex);
+                _layeredData.PackControlTexture(controlIndex);
+                _layeredData.AssignControlTexture(controlIndex);
                 _layeredData.Save();
             }
         }
@@ -350,7 +352,7 @@ namespace Repetitionless.Editor.Inspectors
             base.DrawProperty(layerIndex, drawPropertyAction);
             if (!EditorGUI.EndChangeCheck()) return;
 
-            if (layerIndex >= _terrainLayers.Count)
+            if (_layeredData.LayerMode == ELayerMode.TerrainLayers && layerIndex >= _terrainLayers.Count)
                 return;
 
             if (prevGlobalTilingOffset != _materialProperties.GlobalTilingOffset) {
