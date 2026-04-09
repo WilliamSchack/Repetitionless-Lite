@@ -9,6 +9,7 @@ using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Data
 {
+    using System.Linq;
     using TextureUtilities;
 
     public class RepetitionlessLayeredDataSO : ScriptableObject
@@ -203,6 +204,23 @@ namespace Repetitionless.Editor.Data
         public void AssignControlTexture(int index)
         {
             _dataManager.Material.SetTexture($"_Control{index}", PackedControlTextures[index]);
+        }
+
+        public void SetLayersCount()
+        {
+            // Get amount of control textures assigned
+            int texturesAssigned = 0;
+            for (int i = 0; i < ControlTextures.Length; i++) {
+                for (int j = 0; j < ControlTextures[i].ChannelTextures.Length; j++) {
+                    if (ControlTextures[i].ChannelTextures[j].Texture != null)
+                        texturesAssigned++;
+                }
+            }
+
+            texturesAssigned = Mathf.Max(1, texturesAssigned);
+
+            // Set layers count
+            _dataManager.Material.SetFloat("_LayersCount", texturesAssigned);
         }
     }
 }

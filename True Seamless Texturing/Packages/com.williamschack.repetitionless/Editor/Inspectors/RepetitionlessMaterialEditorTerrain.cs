@@ -195,6 +195,7 @@ namespace Repetitionless.Editor.Inspectors
                 int controlIndex = _layeredData.GetControlIndexFromLayerIndex(layerIndex);
                 _layeredData.PackControlTexture(controlIndex);
                 _layeredData.AssignControlTexture(controlIndex);
+                _layeredData.SetLayersCount();
                 _layeredData.Save();
             }
         }

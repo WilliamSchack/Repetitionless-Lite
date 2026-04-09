@@ -42,6 +42,7 @@ namespace Repetitionless.Editor.Materials
                 // Otherwise set to control textures
                 data.LayerMode = ELayerMode.ControlTextures;
                 data.AssignControlTextures();
+                data.SetLayersCount();
             }
 
             data.Save();
