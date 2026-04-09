@@ -60,11 +60,11 @@ namespace Repetitionless.Editor.Data
                 TexturePacker.TextureChannel.A
             };
 
-            int channelIndex = i % textureChannels.Length;
+            int channelIndex = layerIndex % textureChannels.Length;
             TexturePacker.TextureChannel textureChannel = textureChannels[channelIndex];
 
-            ControlTextures[i] = new TexturePacker.TextureData() {
-                Texture = ControlTextures[i].Texture,
+            ControlTextures[layerIndex] = new TexturePacker.TextureData() {
+                Texture = ControlTextures[layerIndex].Texture,
                 Disabled = false,
                 DataTexture = true,
                 NormalMap = false,

@@ -155,7 +155,7 @@ namespace Repetitionless.Editor.Inspectors
             _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _maxLayers) - 1;
 
             DrawControlTexture(_currentLayerIndex, "Control Texture");
-
+            DrawHolesTexture();
 
             GUILayout.Space(10);
 
@@ -184,6 +184,24 @@ namespace Repetitionless.Editor.Inspectors
             }
 
             textureData.Texture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent(label, "The control texture that will be used for this layer. It will read from the selected channel"), textureData.Texture, typeof(Texture2D), false);
+            textureData.FromToChannels[0] = new TexturePacker.FromToChannel(DrawChannelPicker(lineRect, textureData.FromToChannels[0].From), textureData.FromToChannels[0].To);
+        }
+
+        private void DrawHolesTexture()
+        {
+            // Have to use only line height for ObjectField to draw texture properly
+            Rect lineRect = GUIUtilities.GetLineRect(GUIUtilities.LINE_HEIGHT);
+            Rect textureRect = lineRect;
+            textureRect.width -= CHANNEL_PICKER_WIDTH + 5;
+
+            ref TexturePacker.TextureData textureData = ref _layeredData.HolesTexture;
+            if (textureData.FromToChannels.Count == 0) {
+                // In the case of an error, will reset the from channel
+                _layeredData.SetupHolesTexture();
+                textureData = ref _layeredData.HolesTexture;
+            }
+
+            textureData.Texture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent("Holes Texture", "The holes texture that will be used for the material. It will read from the selected channel"), textureData.Texture, typeof(Texture2D), false);
             textureData.FromToChannels[0] = new TexturePacker.FromToChannel(DrawChannelPicker(lineRect, textureData.FromToChannels[0].From), textureData.FromToChannels[0].To);
         }
 
