@@ -159,12 +159,12 @@ namespace Repetitionless.Runtime.Variables
     public enum EControlMode
     {
         /// <summary>
-        /// Uses manually set textures to specify where each layer is on a mesh
+        /// Uses manually set textures to specify where each layer is
         /// </summary>
         ControlTextures,
 
         /// <summary>
-        /// Uses terrain control and holes textures and uses the terrain layers to 
+        /// Uses automatically synced terrain textures and its terrain layers to assign textures and settings to each layer
         /// </summary>
         TerrainLayers
     }

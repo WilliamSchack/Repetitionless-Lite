@@ -132,7 +132,7 @@ namespace Repetitionless.Editor.Inspectors
 
             GUILayout.Space(10);
 
-            _layeredData.LayerMode = (EControlMode)EditorGUILayout.EnumPopup(new GUIContent("Layer Mode"), _layeredData.LayerMode);
+            _layeredData.LayerMode = (EControlMode)EditorGUILayout.EnumPopup(new GUIContent("Layer Mode", "Control Textures: Uses manually set textures to specify where each layer is\nTerrain Layers: Uses automatically synced terrain textures and its terrain layers to assign textures and settings to each layer"), _layeredData.LayerMode);
 
             if (_layeredData.LayerMode == EControlMode.ControlTextures) DrawControlTextureSettings();
             else                                                        DrawTerrainSettings();
@@ -145,6 +145,7 @@ namespace Repetitionless.Editor.Inspectors
             _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _maxLayers) - 1;
 
             DrawControlTexture(_currentLayerIndex, "Control Texture");
+
 
             GUILayout.Space(10);
 

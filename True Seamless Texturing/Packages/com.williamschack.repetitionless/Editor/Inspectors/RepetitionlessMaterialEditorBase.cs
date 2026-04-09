@@ -845,7 +845,7 @@ namespace Repetitionless.Editor.Inspectors
                 minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Random Scaling")).x;
                 minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("Random Rotation")).x;
             }
-            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("-----------")).x; // Filler space
+            minScaledTextWidth += (int)GUI.skin.button.CalcSize(new GUIContent("------------------------------------------")).x; // Filler space (I need to calculate this properly)
             minScaledTextWidth += extraWidth;
 
             EditorGUILayout.BeginHorizontal();
