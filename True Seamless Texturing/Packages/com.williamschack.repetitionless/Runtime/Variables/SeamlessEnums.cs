@@ -153,9 +153,19 @@ namespace Repetitionless.Runtime.Variables
         Overwrite
     }
 
+    /// <summary>
+    /// Available options for how layers are used
+    /// </summary>
     public enum EControlMode
     {
+        /// <summary>
+        /// Uses manually set textures to specify where each layer is on a mesh
+        /// </summary>
         ControlTextures,
-        Terrain
+
+        /// <summary>
+        /// Uses terrain control and holes textures and uses the terrain layers to 
+        /// </summary>
+        TerrainLayers
     }
 }

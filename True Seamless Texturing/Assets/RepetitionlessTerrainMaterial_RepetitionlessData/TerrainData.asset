@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TerrainData
   m_EditorClassIdentifier: com.williamschack.Repetitionless.Editor::Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
   _terrainLayers:
-  - {fileID: 8574412962073106934, guid: 5a618326b9c9afc4488835d41958e0ad, type: 2}
+  - {fileID: 0}
   AutoSyncLayers: 1

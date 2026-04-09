@@ -8,7 +8,7 @@ namespace Repetitionless.Editor.Data
 
     public class RepetitionlessLayeredDataSO : ScriptableObject
     {
-        [SerializeField] public EControlMode ControlMode = EControlMode.ControlTextures;
+        [SerializeField] public EControlMode LayerMode = EControlMode.ControlTextures;
 
         [SerializeField] public Texture2D[] ControlTextures = new Texture2D[Constants.MAX_LAYERS_TERRAIN];
         [SerializeField] public TexturePacker.TextureChannel[] ControlTextureChannels = new TexturePacker.TextureChannel[Constants.MAX_LAYERS_TERRAIN];

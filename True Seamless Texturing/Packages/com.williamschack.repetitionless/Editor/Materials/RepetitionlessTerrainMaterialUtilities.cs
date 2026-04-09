@@ -34,11 +34,11 @@ namespace Repetitionless.Editor.Materials
 
             // If terrain data exists, set to terrain mode (for previous versions)
             if (dataManager.AssetExists(Constants.TERRAIN_DATA_FILE_NAME))
-                data.ControlMode = EControlMode.Terrain;
+                data.LayerMode = EControlMode.TerrainLayers;
 
             // Otherwise set to control textures
             else
-                data.ControlMode = EControlMode.ControlTextures;
+                data.LayerMode = EControlMode.ControlTextures;
 
             data.Save();
             AssetDatabase.SaveAssetIfDirty(data);

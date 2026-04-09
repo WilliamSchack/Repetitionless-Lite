@@ -24,7 +24,6 @@ namespace Repetitionless.Editor.Inspectors
         protected override int _maxLayers => Constants.MAX_LAYERS_TERRAIN;
 
         private RepetitionlessLayeredDataSO _layeredData;
-        private bool _usingTerrainLayers => _layeredData.ControlMode == EControlMode.Terrain;
 
         // Terrain
         private RepetitionlessTerrainDataSO _materialTerrainData;
@@ -62,7 +61,7 @@ namespace Repetitionless.Editor.Inspectors
 
             _layeredData = RepetitionlessTerrainMaterialUtilities.SetupLayeredData(_dataManager);
 
-            if (_layeredData.ControlMode == EControlMode.Terrain)
+            if (_layeredData.LayerMode == EControlMode.TerrainLayers)
                 UpdateTerrainDetails();
 
             // GUIStyles
@@ -132,24 +131,11 @@ namespace Repetitionless.Editor.Inspectors
             GUIUtilities.DrawHeaderLabelLarge("Layers");
 
             GUILayout.Space(10);
-            
-            Rect buttonRect = GUIUtilities.GetLineRect();
 
-            buttonRect.width /= 2;
-            EditorGUI.BeginChangeCheck();
-            GUI.Toggle(buttonRect, !_usingTerrainLayers, new GUIContent("Control Textures", ""), "ButtonLeft");
-            if (EditorGUI.EndChangeCheck() && _usingTerrainLayers) _layeredData.ControlMode = EControlMode.ControlTextures;
+            _layeredData.LayerMode = (EControlMode)EditorGUILayout.EnumPopup(new GUIContent("Layer Mode"), _layeredData.LayerMode);
 
-            buttonRect.x += buttonRect.width;
-            EditorGUI.BeginChangeCheck();
-            GUI.Toggle(buttonRect, _usingTerrainLayers, new GUIContent("Terrain", ""), "ButtonRight");
-            if (EditorGUI.EndChangeCheck() && !_usingTerrainLayers) {
-                UpdateTerrainDetails();
-                _layeredData.ControlMode = EControlMode.Terrain;
-            }
-
-            if (!_usingTerrainLayers) DrawControlTextureSettings();
-            else                      DrawTerrainSettings();
+            if (_layeredData.LayerMode == EControlMode.ControlTextures) DrawControlTextureSettings();
+            else                                                        DrawTerrainSettings();
 
             GUIUtilities.EndBackgroundVertical();
         }
@@ -174,8 +160,7 @@ namespace Repetitionless.Editor.Inspectors
 
         private void DrawControlTexture(int layerIndex, string label)
         {
-            // Have to use line height for ObjectField to draw texture properly
-            GUILayout.Space(GUIUtilities.LINE_SPACING);
+            // Have to use only line height for ObjectField to draw texture properly
             Rect lineRect = GUIUtilities.GetLineRect(GUIUtilities.LINE_HEIGHT);
             Rect textureRect = lineRect;
             textureRect.width -= CHANNEL_PICKER_WIDTH + 5;
@@ -187,9 +172,13 @@ namespace Repetitionless.Editor.Inspectors
         private void DrawTerrainSettings()
         {
             if (_terrainLayers == null || _terrainLayers.Count == 0) {
-                EditorGUILayout.HelpBox("No terrain layers found\nAdd a RepetitionlessTerrain component to a terrain to setup this material", MessageType.Warning);
+                GUI.enabled = false;
+                EditorGUILayout.IntSlider("Editing Layer", 1, 1, 1);
+                GUI.enabled = true;
+
                 GUILayout.Space(10);
-                GUILayout.Label("Editing layer 1");
+
+                EditorGUILayout.HelpBox("No terrain layers found\nAdd a RepetitionlessTerrain component to a terrain to setup this material", MessageType.Warning);
                 return;
             }
 
