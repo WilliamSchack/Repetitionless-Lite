@@ -12,6 +12,7 @@ namespace Repetitionless.Editor.Inspectors
     using GUIUtilities;
     using Materials;
     using TextureUtilities;
+    using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 
     /// <summary>
     /// The editor for the terrain repetitionless material
@@ -131,9 +132,15 @@ namespace Repetitionless.Editor.Inspectors
 
             GUILayout.Space(10);
 
+            bool terrainNotAvailable = _layeredData.LayerMode == ELayerMode.TerrainLayers && (_terrainLayers == null || _terrainLayers.Count == 0);
+            if (terrainNotAvailable) GUI.enabled = false;
+            _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _maxLayers) - 1;
+            if (terrainNotAvailable) GUI.enabled = true;
+
             EditorGUI.BeginChangeCheck();
             _layeredData.LayerMode = (ELayerMode)EditorGUILayout.EnumPopup(new GUIContent("Mode", "Control Textures: Uses manually set textures to specify where each layer is\nTerrain Layers: Uses automatically synced terrain textures and its terrain layers to assign textures and settings to each layer"), _layeredData.LayerMode);
             bool layerModeChanged = EditorGUI.EndChangeCheck();
+            if (layerModeChanged) _layeredData.Save();
 
             switch (_layeredData.LayerMode) {
                 case ELayerMode.ControlTextures:
@@ -152,9 +159,7 @@ namespace Repetitionless.Editor.Inspectors
 
         private void DrawControlTextureSettings()
         {
-            _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _maxLayers) - 1;
-
-            DrawControlTexture(_currentLayerIndex, "Control Texture");
+            DrawControlTexture(_currentLayerIndex, $"Control Texture");
             DrawHolesTexture();
 
             GUILayout.Space(10);
@@ -176,15 +181,17 @@ namespace Repetitionless.Editor.Inspectors
             Rect textureRect = lineRect;
             textureRect.width -= CHANNEL_PICKER_WIDTH + 5;
 
-            ref TexturePacker.TextureData textureData = ref _layeredData.ControlTextures[layerIndex];
+            ref TexturePacker.TextureData textureData = ref _layeredData.GetControlTextureData(layerIndex);
             if (textureData.FromToChannels.Count == 0) {
                 // In the case of an error, will reset the from channel
                 _layeredData.SetupControlTexture(layerIndex);
-                textureData = ref _layeredData.ControlTextures[layerIndex];
+                textureData = ref _layeredData.GetControlTextureData(layerIndex);
             }
 
+            EditorGUI.BeginChangeCheck();
             textureData.Texture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent(label, "The control texture that will be used for this layer. It will read from the selected channel"), textureData.Texture, typeof(Texture2D), false);
             textureData.FromToChannels[0] = new TexturePacker.FromToChannel(DrawChannelPicker(lineRect, textureData.FromToChannels[0].From), textureData.FromToChannels[0].To);
+            if (EditorGUI.EndChangeCheck()) _layeredData.Save();
         }
 
         private void DrawHolesTexture()
@@ -201,24 +208,20 @@ namespace Repetitionless.Editor.Inspectors
                 textureData = ref _layeredData.HolesTexture;
             }
 
+            EditorGUI.BeginChangeCheck();
             textureData.Texture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent("Holes Texture", "The holes texture that will be used for the material. It will read from the selected channel"), textureData.Texture, typeof(Texture2D), false);
             textureData.FromToChannels[0] = new TexturePacker.FromToChannel(DrawChannelPicker(lineRect, textureData.FromToChannels[0].From), textureData.FromToChannels[0].To);
+            if (EditorGUI.EndChangeCheck()) _layeredData.Save();
         }
 
         private void DrawTerrainSettings()
         {
             if (_terrainLayers == null || _terrainLayers.Count == 0) {
-                GUI.enabled = false;
-                EditorGUILayout.IntSlider("Editing Layer", 1, 1, 1);
-                GUI.enabled = true;
-
                 GUILayout.Space(10);
 
                 EditorGUILayout.HelpBox("No terrain layers found\nAdd a RepetitionlessTerrain component to a terrain to setup this material", MessageType.Warning);
                 return;
             }
-
-            _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _terrainLayers.Count) - 1;
 
             GUI.enabled = false;
             EditorGUILayout.ObjectField(new GUIContent("Terrain Layer", "The terrain layer that is being used for these fields. Modifying these fields that are in the layer will also update that layers fields."), _terrainLayers[_currentLayerIndex], typeof(TerrainLayer), false);

@@ -1,17 +1,30 @@
-using Repetitionless.Runtime.Variables;
-using UnityEditor;
+using System.Collections.Generic;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Data
 {
-    using System.Collections.Generic;
     using TextureUtilities;
 
     public class RepetitionlessLayeredDataSO : ScriptableObject
     {
+        // Using class for serialization
+        [System.Serializable]
+        public class ControlTexture
+        {
+            public TexturePacker.TextureData[] ChannelTextures;
+        }
+
         [SerializeField] public ELayerMode LayerMode = ELayerMode.ControlTextures;
 
-        [SerializeField] public TexturePacker.TextureData[] ControlTextures = new TexturePacker.TextureData[Constants.MAX_LAYERS_TERRAIN];
+        // 8 Control textures, 4 channels/textures per
+        [SerializeField] public ControlTexture[] ControlTextures = new ControlTexture[Constants.MAX_LAYERS_TERRAIN / 4];
+
         [SerializeField] public TexturePacker.TextureData HolesTexture = new TexturePacker.TextureData();
 
         /// <summary>
@@ -38,20 +51,23 @@ namespace Repetitionless.Editor.Data
         /// </summary>
         public void SetupControlTextures()
         {
-            ControlTextures = new TexturePacker.TextureData[Constants.MAX_LAYERS_TERRAIN];
+            ControlTextures = new ControlTexture[Constants.MAX_LAYERS_TERRAIN / 4];
 
             for (int i = 0; i < ControlTextures.Length; i++) {
-                SetupControlTexture(i);
+                SetupControlTextures(i);
             }
         }
 
-        /// <summary>
-        /// Resets a control textures data
-        /// </summary>
-        /// <param name="layerIndex">
-        /// The layer index to reset
-        /// </param>
-        public void SetupControlTexture(int layerIndex)
+        public void SetupControlTextures(int controlIndex)
+        {
+            ControlTextures[controlIndex] = new ControlTexture { ChannelTextures = new TexturePacker.TextureData[4] };
+
+            for (int i = 0; i < ControlTextures[controlIndex].ChannelTextures.Length; i++) {
+                SetupControlChannelTexture(controlIndex, i);
+            }
+        }
+
+        public void SetupControlChannelTexture(int controlIndex, int channelIndex)
         {
             TexturePacker.TextureChannel[] textureChannels = {
                 TexturePacker.TextureChannel.R,
@@ -60,21 +76,34 @@ namespace Repetitionless.Editor.Data
                 TexturePacker.TextureChannel.A
             };
 
-            int channelIndex = layerIndex % textureChannels.Length;
-            TexturePacker.TextureChannel textureChannel = textureChannels[channelIndex];
-
-            ControlTextures[layerIndex] = new TexturePacker.TextureData() {
-                Texture = ControlTextures[layerIndex].Texture,
+            ControlTextures[controlIndex].ChannelTextures[channelIndex] = new TexturePacker.TextureData() {
+                Texture = ControlTextures[controlIndex].ChannelTextures[channelIndex].Texture,
                 Disabled = false,
                 DataTexture = true,
                 NormalMap = false,
                 FromToChannels = new List<TexturePacker.FromToChannel>() {
                     new TexturePacker.FromToChannel(
                         TexturePacker.TextureChannel.R,
-                        textureChannel
+                        textureChannels[channelIndex]
                     )
                 }
             };
+        }
+
+        public void SetupControlTexture(int layerIndex)
+        {
+            int controlTextureIndex = (int)Mathf.Floor(layerIndex / 4.0f);
+            int channelIndex = layerIndex % 4;
+
+            SetupControlChannelTexture(controlTextureIndex, channelIndex);
+        }
+
+        public ref TexturePacker.TextureData GetControlTextureData(int layerIndex)
+        {
+            int controlTextureIndex = (int)Mathf.Floor(layerIndex / 4.0f);
+            int channelIndex = layerIndex % 4;
+
+            return ref ControlTextures[controlTextureIndex].ChannelTextures[channelIndex];
         }
 
         /// <summary>
