@@ -174,9 +174,9 @@ namespace Repetitionless.Editor.TextureUtilities
                 }
             }
 
-            // If resolution is still 0x0, set it to 1x1
+            // If resolution is still 0x0, set it to 4x4
             if (resolution == Vector2Int.zero)
-                    resolution = new Vector2Int(1, 1);
+                    resolution = new Vector2Int(4, 4);
 
             // Convert texture data to gpu friendly
             bool anyHasSrgb = false;
@@ -239,7 +239,7 @@ namespace Repetitionless.Editor.TextureUtilities
             shader.SetFloat("Width", resolution.x);
             shader.SetFloat("Height", resolution.y);
 
-            Texture2D dummyTexture = new Texture2D(1, 1);
+            Texture2D dummyTexture = new Texture2D(4, 4);
             shader.SetTexture(kernel, "Tex0", inputTextures.Count > 0 ? inputTextures[0] : dummyTexture);
             shader.SetTexture(kernel, "Tex1", inputTextures.Count > 1 ? inputTextures[1] : dummyTexture);
             shader.SetTexture(kernel, "Tex2", inputTextures.Count > 2 ? inputTextures[2] : dummyTexture);

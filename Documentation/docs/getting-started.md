@@ -44,7 +44,7 @@ For instructions on how to use the regular repetitionless shader:
 
 For instructions on how to use the terrain repetitionless shader:
 
-**View the [Using Terrain Materials Page](material-terrain.md)**
+**View the [Using Terrain Materials Page](material-layered.md)**
 
 To view what each material property does:
 
