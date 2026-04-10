@@ -19,19 +19,19 @@ MonoBehaviour:
       RandomiseNoiseRotation: 1
       SmoothnessEnabled: 1
       VariationEnabled: 0
-      PackedTexture: 1
+      PackedTexture: 0
       EmissionEnabled: 0
-      AlbedoAssigned: 1
+      AlbedoAssigned: 0
       MetallicAssigned: 0
-      SmoothnessAssigned: 1
+      SmoothnessAssigned: 0
       NormalAssigned: 0
-      OcclussionAssigned: 1
+      OcclussionAssigned: 0
       EmissionAssigned: 0
-      VariationAssigned: 1
+      VariationAssigned: 0
       PackedTextureAssigned: 0
-      AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
+      AlbedoTint: {r: 1, g: 0, b: 0, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
-      TilingOffset: {x: 2, y: 2, z: 0, w: 0}
+      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
       Metallic: 0
       SmoothnessRoughness: 0.5
       NormalScale: 1
@@ -128,7 +128,7 @@ MonoBehaviour:
       VariationNoiseOffset: {x: 0, y: 0}
       VariationTextureTO: {x: 5, y: 5, z: 0, w: 0}
     GlobalTilingOffset: {x: 100, y: 100, z: 0, w: 0}
-    DistanceBlendEnabled: 1
+    DistanceBlendEnabled: 0
     DistanceBlendMode: 0
     DistanceBlendMinMax: {x: 100, y: 150}
     MaterialBlendEnabled: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
       EmissionAssigned: 0
       VariationAssigned: 0
       PackedTextureAssigned: 0
-      AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
+      AlbedoTint: {r: 0.093042135, g: 1, b: 0, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
       TilingOffset: {x: 1, y: 1, z: 0, w: 0}
       Metallic: 0
@@ -4207,14 +4207,14 @@ MonoBehaviour:
     BlendMaskVertexColourThreshold: {x: 0.01, y: 0.2}
   _dataCompressed:
   - BaseMaterialData:
-      Settings1: {x: 47, y: 85, z: 0, w: 0.5}
+      Settings1: {x: 15, y: 0, z: 0, w: 0.5}
       Settings2: {x: 1, y: 1, z: 0.5, w: 2}
       Settings3: {x: 2, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
-      AlbedoTint: {x: 1, y: 1, z: 1}
+      AlbedoTint: {x: 1, y: 0, z: 0}
       EmissionColour: {x: 0, y: 0, z: 0}
-      TilingOffset: {x: 200, y: 200, z: 0, w: 0}
+      TilingOffset: {x: 100, y: 100, z: 0, w: 0}
       VariationTO: {x: 5, y: 5, z: 0, w: 0}
     FarMaterialData:
       Settings1: {x: 15, y: 0, z: 0, w: 0.5}
@@ -4236,7 +4236,7 @@ MonoBehaviour:
       EmissionColour: {x: 0, y: 0, z: 0}
       TilingOffset: {x: 100, y: 100, z: 0, w: 0}
       VariationTO: {x: 5, y: 5, z: 0, w: 0}
-    DistanceBlendSettings: {x: 1, y: 0, z: 100, w: 150}
+    DistanceBlendSettings: {x: 0, y: 0, z: 100, w: 150}
     BlendMaskDistanceTO: {x: 1, y: 1, z: 0, w: 0}
     MaterialBlendSettings: {x: 12, y: 0, z: 1, w: 1}
     MaterialBlendMaskTO: {x: 10, y: 0, z: 0, w: 0}
@@ -4247,9 +4247,9 @@ MonoBehaviour:
       Settings3: {x: 2, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
-      AlbedoTint: {x: 1, y: 1, z: 1}
+      AlbedoTint: {x: 0.093042135, y: 1, z: 0}
       EmissionColour: {x: 0, y: 0, z: 0}
-      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
+      TilingOffset: {x: 100, y: 100, z: 0, w: 0}
       VariationTO: {x: 5, y: 5, z: 0, w: 0}
     FarMaterialData:
       Settings1: {x: 15, y: 0, z: 0, w: 0.5}
@@ -4259,7 +4259,7 @@ MonoBehaviour:
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
       AlbedoTint: {x: 1, y: 1, z: 1}
       EmissionColour: {x: 0, y: 0, z: 0}
-      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
+      TilingOffset: {x: 100, y: 100, z: 0, w: 0}
       VariationTO: {x: 5, y: 5, z: 0, w: 0}
     BlendMaterialData:
       Settings1: {x: 15, y: 0, z: 0, w: 0.5}
@@ -4269,7 +4269,7 @@ MonoBehaviour:
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
       AlbedoTint: {x: 1, y: 1, z: 1}
       EmissionColour: {x: 0, y: 0, z: 0}
-      TilingOffset: {x: 1, y: 1, z: 0, w: 0}
+      TilingOffset: {x: 100, y: 100, z: 0, w: 0}
       VariationTO: {x: 5, y: 5, z: 0, w: 0}
     DistanceBlendSettings: {x: 0, y: 0, z: 100, w: 150}
     BlendMaskDistanceTO: {x: 1, y: 1, z: 0, w: 0}

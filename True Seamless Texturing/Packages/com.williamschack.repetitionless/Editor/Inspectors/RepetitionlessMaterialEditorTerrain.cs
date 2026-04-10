@@ -134,7 +134,7 @@ namespace Repetitionless.Editor.Inspectors
 
             bool terrainNotAvailable = _layeredData.LayerMode == ELayerMode.TerrainLayers && (_terrainLayers == null || _terrainLayers.Count == 0);
             if (terrainNotAvailable) GUI.enabled = false;
-            _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _maxLayers) - 1;
+            _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _layeredData.LayerMode == ELayerMode.TerrainLayers && !terrainNotAvailable ? _terrainLayers.Count : _maxLayers) - 1;
             if (terrainNotAvailable) GUI.enabled = true;
 
             EditorGUI.BeginChangeCheck();
@@ -195,7 +195,7 @@ namespace Repetitionless.Editor.Inspectors
                 int controlIndex = _layeredData.GetControlIndexFromLayerIndex(layerIndex);
                 _layeredData.PackControlTexture(controlIndex);
                 _layeredData.AssignControlTexture(controlIndex);
-                _layeredData.SetLayersCount();
+                _layeredData.UpdateLayersCount();
                 _layeredData.Save();
             }
         }

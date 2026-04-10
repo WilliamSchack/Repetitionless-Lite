@@ -206,7 +206,7 @@ namespace Repetitionless.Editor.Data
             _dataManager.Material.SetTexture($"_Control{index}", PackedControlTextures[index]);
         }
 
-        public void SetLayersCount()
+        public void UpdateLayersCount()
         {
             // Get amount of control textures assigned
             int texturesAssigned = 0;

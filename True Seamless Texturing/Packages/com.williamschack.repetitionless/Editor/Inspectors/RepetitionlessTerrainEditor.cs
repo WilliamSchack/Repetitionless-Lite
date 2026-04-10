@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEditor;
 
 using Repetitionless.Runtime;
+using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Inspectors
 {
@@ -26,6 +27,7 @@ namespace Repetitionless.Editor.Inspectors
         private TerrainLayer[] _terrainLayers;
         private Terrain[] _terrainNeighbours = new Terrain[4];
 
+        private RepetitionlessLayeredDataSO _materialLayeredData;
         private RepetitionlessTerrainDataSO _materialTerrainData;
         private RepetitionlessTextureDataSO _materialTextureData;
         private RepetitionlessMaterialDataSO _materialProperties;
@@ -121,6 +123,7 @@ namespace Repetitionless.Editor.Inspectors
             }
 
             MaterialDataManager dataManager = new MaterialDataManager(mat);
+            _materialLayeredData = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
             _materialTerrainData = dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
             _materialTextureData = dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
             _materialProperties  = dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
@@ -234,6 +237,9 @@ namespace Repetitionless.Editor.Inspectors
                 if (_materialTerrainData != null)
                     _materialTerrainData.ClearTerrainLayers();
                 GetMaterialTerrainLayersData(newMat);
+
+                _materialLayeredData.LayerMode = ELayerMode.TerrainLayers;
+                _materialLayeredData.Save();
 
                 _main.UpdateTerrainMaterial(newMat, false);
 
@@ -391,6 +397,10 @@ namespace Repetitionless.Editor.Inspectors
                     // Incase the material was changed to something different
                     if (_main.Terrain.materialTemplate != _main.MaterialInstance)
                         _main.UpdateTerrainMaterial(_main.MainMaterial);
+
+                    // Make sure the material is set to terrain mode
+                    _materialLayeredData.LayerMode = ELayerMode.TerrainLayers;
+                    _materialLayeredData.Save();
 
                     SyncLayersToMaterial();
                     UpdateMaterialTerrainLayerTextures(true);

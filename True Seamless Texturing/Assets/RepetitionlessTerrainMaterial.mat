@@ -39,35 +39,35 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control0:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b076ba96e3a9d85438b1b61163bc3cac, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 61ad8a72e5a8ed0488e6bbdd826f8856, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control2:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d67961f52c89a6642965479802c514f8, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control3:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ab1f3e389abe67344b114b1a57a54bc3, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control4:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f3fa2f3694d644147ace3e8ac0cb0ec7, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control5:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d87a44d3b6b1c47448dfd9d79a7bdef8, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control6:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 938f6c20125c80b48b4d73839e6218ed, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control7:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5d63fb06b55e5f1498ce5e5ad5384a29, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EMTextures:
@@ -106,7 +106,7 @@ Material:
     m_Floats:
     - _DebuggingIndex: -1
     - _ENVIRONMENTREFLECTIONS_OFF: 0
-    - _LayersCount: 1
+    - _LayersCount: 2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _REPETITIONLESS_NOISE_TEXTURE: 1
