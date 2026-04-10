@@ -27,11 +27,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 18700000, guid: cc1679f302029674c8e450039be5f234, type: 2}
+        m_Texture: {fileID: 18700000, guid: f08db5457a3b15746a65335f87d7057e, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AssignedTexturesTexture:
-        m_Texture: {fileID: 2800000, guid: 5af824b443c5ace4c83e524df6939636, type: 2}
+        m_Texture: {fileID: 2800000, guid: 4af4d834dbd96a04190195ce75468e1f, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BMTextures:

@@ -229,7 +229,7 @@ namespace Repetitionless.Editor.Inspectors
 
             string newShaderName = newMat.shader.name;
             
-            if (newShaderName.StartsWith("Repetitionless/") && newShaderName.Contains("Terrain")) {
+            if (newShaderName.StartsWith("Repetitionless/") && newShaderName.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED)) {
                 _incorrectMaterial = false;
                 _parentTerrainProp.objectReferenceValue = null;
                 _autoSaveProp.boolValue = true;

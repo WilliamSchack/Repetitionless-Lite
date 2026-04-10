@@ -15,7 +15,7 @@ namespace Repetitionless.Editor
 
         public const string SHADER_FOLDER = "Repetitionless/";
         public const string SHADER_MATERIAL_NAME_REGULAR = "Repetitionless";
-        public const string SHADER_MATERIAL_NAME_TERRAIN = "RepetitionlessLayered";
+        public const string SHADER_MATERIAL_NAME_LAYERED = "RepetitionlessLayered";
         public const string SHADER_FOLDER_BIRP = "BIRP/";
         public const string SHADER_FOLDER_URP = "URP/";
         public const string SHADER_FOLDER_HDRP = "HDRP/";
