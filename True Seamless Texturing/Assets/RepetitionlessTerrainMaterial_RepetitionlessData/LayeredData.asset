@@ -15,7 +15,7 @@ MonoBehaviour:
   LayerMode: 0
   ControlTextures:
   - ChannelTextures:
-    - Texture: {fileID: 2800000, guid: 903360ef543b50449ae74931c4fddc2c, type: 3}
+    - Texture: {fileID: 0}
       Disabled: 0
       DataTexture: 1
       NormalMap: 0

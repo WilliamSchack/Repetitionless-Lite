@@ -106,7 +106,7 @@ Material:
     m_Floats:
     - _DebuggingIndex: -1
     - _ENVIRONMENTREFLECTIONS_OFF: 0
-    - _LayersCount: 2
+    - _LayersCount: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _REPETITIONLESS_NOISE_TEXTURE: 1

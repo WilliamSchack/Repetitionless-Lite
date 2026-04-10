@@ -140,7 +140,10 @@ namespace Repetitionless.Editor.Inspectors
             EditorGUI.BeginChangeCheck();
             _layeredData.LayerMode = (ELayerMode)EditorGUILayout.EnumPopup(new GUIContent("Mode", "Control Textures: Uses manually set textures to specify where each layer is\nTerrain Layers: Uses automatically synced terrain textures and its terrain layers to assign textures and settings to each layer"), _layeredData.LayerMode);
             bool layerModeChanged = EditorGUI.EndChangeCheck();
-            if (layerModeChanged) _layeredData.Save();
+            if (layerModeChanged) {
+                _layeredData.Save();
+                _materialProperties.CallOnExternalDataChanged();
+            }
 
             switch (_layeredData.LayerMode) {
                 case ELayerMode.ControlTextures:
@@ -161,6 +164,10 @@ namespace Repetitionless.Editor.Inspectors
         {
             DrawHolesTexture();
             DrawControlTexture(_currentLayerIndex, $"Control Texture");
+
+            if (_currentLayerIndex == 0 && _layeredData.GetControlTextureData(0).Texture == null) {
+                EditorGUILayout.HelpBox("With no texture assigned, the first layer will always be visible/have a full white control texture", MessageType.Info);
+            }
 
             GUILayout.Space(10);
 
