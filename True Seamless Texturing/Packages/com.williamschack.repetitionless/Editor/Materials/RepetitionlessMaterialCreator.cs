@@ -42,7 +42,7 @@ namespace Repetitionless.Editor.Materials
     public static class RepetitionlessMaterialCreator
     {
         private const string DEFAULT_MATERIAL_NAME_REGULAR = "RepetitionlessMaterial.mat";
-        private const string DEFAULT_MATERIAL_NAME_TERRAIN = "RepetitionlessTerrainMaterial.mat";
+        private const string DEFAULT_MATERIAL_NAME_TERRAIN = "RepetitionlessLayeredMaterial.mat";
         private const string PROGRESS_BAR_TITLE = "Updating Material";
 
         private static string GetCurrentProjectWindowPath()
@@ -63,7 +63,7 @@ namespace Repetitionless.Editor.Materials
             EditorApplication.delayCall += () => { CreateMaterialAtCurrentFolder(); };
         }
 
-        [MenuItem("Window/Repetitionless/Create Terrain Material", secondaryPriority = 2)]
+        [MenuItem("Window/Repetitionless/Create Layered Material", secondaryPriority = 2)]
         private static void CreateTerrainMaterialToolbar()
         {
             EditorApplication.delayCall += () => { CreateTerrainMaterialAtCurrentFolder(); };
