@@ -27,7 +27,6 @@ For instructions on accessing the samples:
 
 **View the [Samples page](samples.md)**
 
-
 ## Using A Repetitionless Material
 
 **There are details you need to know when using the materials:**
@@ -42,9 +41,9 @@ For instructions on how to use the regular repetitionless shader:
 
 **View the [Using Regular Materials Page](material-regular.md)**
 
-For instructions on how to use the terrain repetitionless shader:
+For instructions on how to use the layered repetitionless shader or a terrain:
 
-**View the [Using Terrain Materials Page](material-layered.md)**
+**View the [Using Layered Materials Page](material-layered.md)**
 
 To view what each material property does:
 
