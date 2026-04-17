@@ -131,6 +131,7 @@ namespace AssetStoreTools.Uploader
         {
             _packageUploadingService.StopAllUploadinng();
             _packageDownloadingService.StopDownloading();
+
             await _packageListView.LoadPackages(false);
         }
 

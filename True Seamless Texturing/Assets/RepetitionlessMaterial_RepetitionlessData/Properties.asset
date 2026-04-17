@@ -33,7 +33,7 @@ MonoBehaviour:
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
       TilingOffset: {x: 1, y: 1, z: 0, w: 0}
       Metallic: 0
-      SmoothnessRoughness: 0.5
+      SmoothnessRoughness: 0
       NormalScale: 1
       OcclussionStrength: 1
       AlphaClipping: 0.5
@@ -146,7 +146,7 @@ MonoBehaviour:
     BlendMaskVertexColourThreshold: {x: 0.01, y: 0.2}
   _dataCompressed:
   - BaseMaterialData:
-      Settings1: {x: 15, y: 65, z: 0, w: 0.5}
+      Settings1: {x: 15, y: 65, z: 0, w: 0}
       Settings2: {x: 1, y: 1, z: 0.5, w: 2}
       Settings3: {x: 2, y: 0, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
