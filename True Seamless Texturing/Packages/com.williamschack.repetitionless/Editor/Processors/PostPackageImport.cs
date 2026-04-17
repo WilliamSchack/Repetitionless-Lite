@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 namespace Repetitionless.Editor.Processors
 {
@@ -13,8 +14,7 @@ namespace Repetitionless.Editor.Processors
         static PostPackageImport()
         {
             if (NewVersionImported()) {
-                if (LastVersionHadOldLog())
-                    ShowReviewLog();
+                HandleVersionUpdate();
                 
                 RepetitionlessPrefs.UpdatePrefs((p) => {
                     p.LastProcessedVersion = RepetitionlessPackageInfo.Info.version;
@@ -40,17 +40,25 @@ namespace Repetitionless.Editor.Processors
             return numbers;
         }
 
-        private static bool LastVersionHadOldLog()
-        {
-            int[] splitLastVersion = SplitVersion(RepetitionlessPrefs.Data.LastProcessedVersion);
-            if (splitLastVersion[0] == 0) return false;
-            
-            return splitLastVersion[0] == 1 && splitLastVersion[1] == 0 && splitLastVersion[2] <= 3;
-        }
-
         private static bool NewVersionImported()
         {
             return RepetitionlessPrefs.Data.LastProcessedVersion != RepetitionlessPackageInfo.Info.version;
+        }
+
+        private static int[] GetLastVersion()
+        {
+            return SplitVersion(RepetitionlessPrefs.Data.LastProcessedVersion);
+        }
+
+
+        private static void HandleVersionUpdate()
+        {
+            int[] splitLastVersion = GetLastVersion();
+            if (splitLastVersion[0] == 0) return;
+
+            if (splitLastVersion[0] == 1 && splitLastVersion[1] == 0 && splitLastVersion[2] <= 3) {
+                ShowReviewLog();
+            }
         }
 
         private static void PackageImported(string packageName)
