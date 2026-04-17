@@ -191,7 +191,7 @@ items:
   summary: "\nCreates a repetitionless terrain material\n"
   example: []
   syntax:
-    content: public static MaterialDataObjects CreateTerrainMaterial(ERenderPipeline pipeline, string folderPath, string fileName = "RepetitionlessTerrainMaterial.mat", bool ping = true)
+    content: public static MaterialDataObjects CreateTerrainMaterial(ERenderPipeline pipeline, string folderPath, string fileName = "RepetitionlessLayeredMaterial.mat", bool ping = true)
     parameters:
     - id: pipeline
       type: Repetitionless.Runtime.Variables.ERenderPipeline
@@ -208,7 +208,7 @@ items:
     return:
       type: Repetitionless.Editor.Materials.MaterialDataObjects
       description: "\nThe data objects for the created material\n"
-    content.vb: Public Shared Function CreateTerrainMaterial(pipeline As ERenderPipeline, folderPath As String, fileName As String = "RepetitionlessTerrainMaterial.mat", ping As Boolean = True) As MaterialDataObjects
+    content.vb: Public Shared Function CreateTerrainMaterial(pipeline As ERenderPipeline, folderPath As String, fileName As String = "RepetitionlessLayeredMaterial.mat", ping As Boolean = True) As MaterialDataObjects
   overload: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial*
   nameWithType.vb: RepetitionlessMaterialCreator.CreateTerrainMaterial(ERenderPipeline, String, String, Boolean)
   fullName.vb: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(Repetitionless.Runtime.Variables.ERenderPipeline, String, String, Boolean)
@@ -231,14 +231,14 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateTerrainMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-    startLine: 256
+    startLine: 257
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Materials
   summary: "\nCreates a repetitionless terrain material<br />\nUses the currently selected render pipeline\n"
   example: []
   syntax:
-    content: public static MaterialDataObjects CreateTerrainMaterial(string folderPath, string fileName = "RepetitionlessTerrainMaterial.mat", bool ping = true)
+    content: public static MaterialDataObjects CreateTerrainMaterial(string folderPath, string fileName = "RepetitionlessLayeredMaterial.mat", bool ping = true)
     parameters:
     - id: folderPath
       type: System.String
@@ -252,7 +252,7 @@ items:
     return:
       type: Repetitionless.Editor.Materials.MaterialDataObjects
       description: "\nThe data objects for the created material\n"
-    content.vb: Public Shared Function CreateTerrainMaterial(folderPath As String, fileName As String = "RepetitionlessTerrainMaterial.mat", ping As Boolean = True) As MaterialDataObjects
+    content.vb: Public Shared Function CreateTerrainMaterial(folderPath As String, fileName As String = "RepetitionlessLayeredMaterial.mat", ping As Boolean = True) As MaterialDataObjects
   overload: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial*
   nameWithType.vb: RepetitionlessMaterialCreator.CreateTerrainMaterial(String, String, Boolean)
   fullName.vb: Repetitionless.Editor.Materials.RepetitionlessMaterialCreator.CreateTerrainMaterial(String, String, Boolean)
@@ -275,7 +275,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateTerrainMaterialAtCurrentFolder
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-    startLine: 273
+    startLine: 274
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Materials
@@ -313,7 +313,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-    startLine: 294
+    startLine: 295
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Materials

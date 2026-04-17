@@ -26,23 +26,6 @@ The layered material is used to display up to 32 different material layers on on
 - Render pipelines can be switched without losing data. ex. Changing a Repetitionless material from BIRP to its URP version will keep all the settings
 - Material data is stored in a folder along side the material named "{MaterialName}\_RepetitionlessData". This is automatically moved and deleted with the material but it will need to be manually copied when copying the material
 
-## Using Control Textures
-
-To use control textures, first make sure the layer mode is set to `Control Textures`
-
-![image](Images/TerrainMaterial/ControlLayerMode.png)
-
-| Setting         | Description                                                                                  |
-| --------------- | -------------------------------------------------------------------------------------------- |
-| Holes Texture   | The holes texture that will be used for the material. It will read from the selected channel |
-| Control Texture | The control texture that will be used for this layer. It will read from the selected channel |
-
-The control textures for a specific pixel must add up to 1. For example, if you want a spot to be the second layer, the second control texture will have a value of 1 in that spot where other layers will have a value of 0.
-
-*Example of two control textures where the left is layer 1, and the right layer 2*
-
-![image](Images/TerrainMaterial/ControlTextureExample.png)
-
 ## Using Terrain Layers
 
 To use a terrain with the repetitionless material you have to add a [`RepetitionlessTerrain`](Scripting/Repetitionless.Runtime.RepetitionlessTerrain.md) component to the terrain which can be done as follows:
@@ -60,7 +43,7 @@ To add a material you can either:
 
 ![image](Images/TerrainMaterial/SettingTerrainComponent.png)
 
-## Using The Script
+### Using The Terrain Script
 
 ![image](Images/TerrainMaterial/UsingTerrainComponent.png)
 
@@ -70,7 +53,7 @@ With Auto Save Textures enabled, the terrain will sync whenever you update the t
 
 **If you ever have any errors with the terrain, first see if clicking the Save Textures button fixes your issue. If it doesnt feel free to [submit a bug report](https://github.com/WilliamSchack/Repetitionless-Issues/issues/new/choose)**
 
-## Using Multiple Terrains
+### Using Multiple Terrains
 
 ![image](Images/TerrainMaterial/UsingTerrainParent.png)
 
@@ -88,7 +71,7 @@ If a terrain has a parent, it will automatically update when the parent terrain 
 
 On terrains with the RepetitionlessTerrain, when using the Create Neighbour Terrains tool and creating a directly adjacent terrain, it will automatically add a RepetitionlessTerrain component to that terrain with the selected one as the parent. This will not work for non-adjacent terrains though as shown in the image above
 
-## Editing The Terrain Layers
+### Editing The Terrain Layers
 
 ![image](Images/TerrainMaterial/LayersAutoSync.png)
 
@@ -105,7 +88,7 @@ The properties effected and what they link to include:
 - Tiling > Base Tiling
 - Offset > Base Offset
 
-## Editing The Material
+### Editing The Material
 
 ![image](Images/TerrainMaterial/TerrainMaterialEditing.png)
 
@@ -118,5 +101,22 @@ If a terrain has been assigned, when editing the material it will show the terra
 Layers in the repetitionless material correspond to the order of the assigned terrain layers as shown in the image above
 
 **The shader supports up to 32 terrain layers. Any more wont work and will appear white**
+
+## Using Control Textures
+
+To use control textures, first make sure the layer mode is set to `Control Textures`
+
+![image](Images/TerrainMaterial/ControlLayerMode.png)
+
+| Setting         | Description                                                                                  |
+| --------------- | -------------------------------------------------------------------------------------------- |
+| Holes Texture   | The holes texture that will be used for the material. It will read from the selected channel |
+| Control Texture | The control texture that will be used for this layer. It will read from the selected channel |
+
+The control textures for a specific pixel must add up to 1. For example, if you want a spot to be the second layer, the second control texture will have a value of 1 in that spot where other layers will have a value of 0.
+
+*Example of two control textures where the left is layer 1, and the right layer 2*
+
+![image](Images/TerrainMaterial/ControlTextureExample.png)
 
 ***Everything else is the same as the regular repetitionless material. To view what each property does, visit the [Material Properties](material-properties.md) page***

@@ -37,6 +37,7 @@ items:
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.HEADER_PADDING
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SETTING_PADDING
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SCALED_TEXT_PADDING
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.CHANNEL_PICKER_WIDTH
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._maxLayers
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._dataManager
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._textureData
@@ -172,6 +173,12 @@ references:
   name: SCALED_TEXT_PADDING
   nameWithType: RepetitionlessMaterialEditorBase.SCALED_TEXT_PADDING
   fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SCALED_TEXT_PADDING
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.CHANNEL_PICKER_WIDTH
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.CHANNEL_PICKER_WIDTH
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: CHANNEL_PICKER_WIDTH
+  nameWithType: RepetitionlessMaterialEditorBase.CHANNEL_PICKER_WIDTH
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.CHANNEL_PICKER_WIDTH
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._maxLayers
   commentId: P:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._maxLayers
   parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase

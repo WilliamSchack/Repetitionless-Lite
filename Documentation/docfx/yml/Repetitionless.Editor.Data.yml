@@ -6,6 +6,8 @@ items:
   children:
   - Repetitionless.Editor.Data.MaterialDataManager
   - Repetitionless.Editor.Data.RepetitionlessDataPacker
+  - Repetitionless.Editor.Data.RepetitionlessLayeredDataSO
+  - Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.ControlTexture
   - Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
   - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
   - Repetitionless.Editor.Data.RepetitionlessTextureDataSO
@@ -21,6 +23,28 @@ items:
   assemblies:
   - com.williamschack.Repetitionless.Editor
 references:
+- uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO
+  commentId: T:Repetitionless.Editor.Data.RepetitionlessLayeredDataSO
+  name: RepetitionlessLayeredDataSO
+  nameWithType: RepetitionlessLayeredDataSO
+  fullName: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO
+- uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.ControlTexture
+  commentId: T:Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.ControlTexture
+  name: RepetitionlessLayeredDataSO.ControlTexture
+  nameWithType: RepetitionlessLayeredDataSO.ControlTexture
+  fullName: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.ControlTexture
+  spec.csharp:
+  - uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO
+    name: RepetitionlessLayeredDataSO
+  - name: .
+  - uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.ControlTexture
+    name: ControlTexture
+  spec.vb:
+  - uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO
+    name: RepetitionlessLayeredDataSO
+  - name: .
+  - uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.ControlTexture
+    name: ControlTexture
 - uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
   commentId: T:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
   name: RepetitionlessTerrainDataSO

@@ -25,7 +25,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessMaterialEditorTerrain
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 18
+    startLine: 19
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -42,6 +42,7 @@ items:
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.HEADER_PADDING
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SETTING_PADDING
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SCALED_TEXT_PADDING
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.CHANNEL_PICKER_WIDTH
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._dataManager
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._textureData
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._materialProperties
@@ -86,7 +87,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: _maxLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 25
+    startLine: 24
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -118,7 +119,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnEnable
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 45
+    startLine: 46
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -223,7 +224,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 205
+    startLine: 302
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -271,7 +272,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawProperty
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorTerrain.cs
-    startLine: 251
+    startLine: 348
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -357,6 +358,12 @@ references:
   name: SCALED_TEXT_PADDING
   nameWithType: RepetitionlessMaterialEditorBase.SCALED_TEXT_PADDING
   fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.SCALED_TEXT_PADDING
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.CHANNEL_PICKER_WIDTH
+  commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.CHANNEL_PICKER_WIDTH
+  parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase
+  name: CHANNEL_PICKER_WIDTH
+  nameWithType: RepetitionlessMaterialEditorBase.CHANNEL_PICKER_WIDTH
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.CHANNEL_PICKER_WIDTH
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._dataManager
   commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase._dataManager
   parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase

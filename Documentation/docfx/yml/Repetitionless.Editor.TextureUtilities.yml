@@ -62,6 +62,7 @@ references:
     name: FromToChannel
 - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
   commentId: T:Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  parent: Repetitionless.Editor.TextureUtilities
   name: TexturePacker.TextureData
   nameWithType: TexturePacker.TextureData
   fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData

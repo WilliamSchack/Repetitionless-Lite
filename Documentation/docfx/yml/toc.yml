@@ -20,6 +20,10 @@
     name: MaterialDataManager
   - uid: Repetitionless.Editor.Data.RepetitionlessDataPacker
     name: RepetitionlessDataPacker
+  - uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO
+    name: RepetitionlessLayeredDataSO
+  - uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.ControlTexture
+    name: RepetitionlessLayeredDataSO.ControlTexture
   - uid: Repetitionless.Editor.Data.RepetitionlessMaterialDataSO
     name: RepetitionlessMaterialDataSO
   - uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
@@ -107,6 +111,8 @@
   items:
   - uid: Repetitionless.Runtime.Variables.EDistanceBlendMode
     name: EDistanceBlendMode
+  - uid: Repetitionless.Runtime.Variables.ELayerMode
+    name: ELayerMode
   - uid: Repetitionless.Runtime.Variables.EMaskType
     name: EMaskType
   - uid: Repetitionless.Runtime.Variables.ENoiseQuality

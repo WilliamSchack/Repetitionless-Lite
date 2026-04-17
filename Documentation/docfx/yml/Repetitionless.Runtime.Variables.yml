@@ -5,6 +5,7 @@ items:
   id: Repetitionless.Runtime.Variables
   children:
   - Repetitionless.Runtime.Variables.EDistanceBlendMode
+  - Repetitionless.Runtime.Variables.ELayerMode
   - Repetitionless.Runtime.Variables.EMaskType
   - Repetitionless.Runtime.Variables.ENoiseQuality
   - Repetitionless.Runtime.Variables.ERenderPipeline
@@ -86,6 +87,12 @@ references:
   name: EVertexColourBlendMode
   nameWithType: EVertexColourBlendMode
   fullName: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+- uid: Repetitionless.Runtime.Variables.ELayerMode
+  commentId: T:Repetitionless.Runtime.Variables.ELayerMode
+  parent: Repetitionless.Runtime.Variables
+  name: ELayerMode
+  nameWithType: ELayerMode
+  fullName: Repetitionless.Runtime.Variables.ELayerMode
 - uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData
   commentId: T:Repetitionless.Runtime.Variables.RepetitionlessLayerData
   parent: Repetitionless.Runtime.Variables

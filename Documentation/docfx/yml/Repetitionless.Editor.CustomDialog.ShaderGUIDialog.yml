@@ -6,6 +6,7 @@ items:
   parent: Repetitionless.Editor.CustomDialog
   children:
   - Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String,System.String)
+  - Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String)
   - Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialogComplex(System.String,System.String,System.String,System.String,System.String)
   langs:
   - csharp
@@ -32,6 +33,50 @@ items:
     content.vb: Public Module ShaderGUIDialog
   inheritance:
   - System.Object
+- uid: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String)
+  commentId: M:Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String)
+  id: DisplayDialog(System.String,System.String,System.String)
+  parent: Repetitionless.Editor.CustomDialog.ShaderGUIDialog
+  langs:
+  - csharp
+  - vb
+  name: DisplayDialog(string, string, string)
+  nameWithType: ShaderGUIDialog.DisplayDialog(string, string, string)
+  fullName: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(string, string, string)
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomDialog/ShaderGUIDialog.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: DisplayDialog
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomDialog/ShaderGUIDialog.cs
+    startLine: 35
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.CustomDialog
+  summary: "\nDisplays a modal dialog removing the ShaderGUI specific warning\n"
+  example: []
+  syntax:
+    content: public static bool DisplayDialog(string title, string message, string ok)
+    parameters:
+    - id: title
+      type: System.String
+      description: "\nTitle of the window\n"
+    - id: message
+      type: System.String
+      description: "\nMessage displayed in the dialog\n"
+    - id: ok
+      type: System.String
+      description: "\nLeft button underneath the message\n"
+    return:
+      type: System.Boolean
+      description: "\nIf the ok button was pressed\n"
+    content.vb: Public Shared Function DisplayDialog(title As String, message As String, ok As String) As Boolean
+  overload: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog*
+  nameWithType.vb: ShaderGUIDialog.DisplayDialog(String, String, String)
+  fullName.vb: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(String, String, String)
+  name.vb: DisplayDialog(String, String, String)
 - uid: Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String,System.String)
   commentId: M:Repetitionless.Editor.CustomDialog.ShaderGUIDialog.DisplayDialog(System.String,System.String,System.String,System.String)
   id: DisplayDialog(System.String,System.String,System.String,System.String)
@@ -50,7 +95,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DisplayDialog
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomDialog/ShaderGUIDialog.cs
-    startLine: 38
+    startLine: 68
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.CustomDialog
@@ -97,7 +142,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DisplayDialogComplex
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomDialog/ShaderGUIDialog.cs
-    startLine: 74
+    startLine: 104
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.CustomDialog

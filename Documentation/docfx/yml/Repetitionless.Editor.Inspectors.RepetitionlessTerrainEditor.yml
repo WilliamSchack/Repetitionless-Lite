@@ -20,7 +20,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessTerrainEditor
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessTerrainEditor.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors
@@ -64,7 +64,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnInspectorGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessTerrainEditor.cs
-    startLine: 172
+    startLine: 177
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Inspectors

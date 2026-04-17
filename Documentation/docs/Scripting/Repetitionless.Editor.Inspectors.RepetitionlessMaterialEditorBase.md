@@ -17,6 +17,7 @@ To use the current packed texture arrays, use RepetitionlessPackedArrayGUIBase
 | HEADER_PADDING | Amount of padding at the top of the inspector |
 | SETTING_PADDING | Amount of padding between sections |
 | SCALED_TEXT_PADDING | Buffer ontop of minWidth for GetScaledText |
+| CHANNEL_PICKER_WIDTH | The width of a channel picker |
 | _maxLayers | The max amount of layers for the material |
 | _dataManager | The data manager used for this material |
 | _textureData | The texture data for this material |

@@ -9,6 +9,32 @@ Wrapper to remove the &quot;PropertiesGUI() is being called recursively&quot; wa
 
 ---
 
+## DisplayDialog(string, string, string)
+
+### Declaration
+
+``` csharp
+public static bool DisplayDialog(string title, string message, string ok)
+```
+
+### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| title | Title of the window |
+| message | Message displayed in the dialog |
+| ok | Left button underneath the message |
+
+### Returns
+
+If the ok button was pressed
+
+### Description
+
+Displays a modal dialog removing the ShaderGUI specific warning
+
+---
+
 ## DisplayDialog(string, string, string, string)
 
 ### Declaration

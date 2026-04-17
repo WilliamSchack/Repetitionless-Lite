@@ -97,7 +97,7 @@ Saves to the currently opened folder in the project window
 ### Declaration
 
 ``` csharp
-public static MaterialDataObjects CreateTerrainMaterial(ERenderPipeline pipeline, string folderPath, string fileName = "RepetitionlessTerrainMaterial.mat", bool ping = true)
+public static MaterialDataObjects CreateTerrainMaterial(ERenderPipeline pipeline, string folderPath, string fileName = "RepetitionlessLayeredMaterial.mat", bool ping = true)
 ```
 
 ### Parameters
@@ -124,7 +124,7 @@ Creates a repetitionless terrain material
 ### Declaration
 
 ``` csharp
-public static MaterialDataObjects CreateTerrainMaterial(string folderPath, string fileName = "RepetitionlessTerrainMaterial.mat", bool ping = true)
+public static MaterialDataObjects CreateTerrainMaterial(string folderPath, string fileName = "RepetitionlessLayeredMaterial.mat", bool ping = true)
 ```
 
 ### Parameters

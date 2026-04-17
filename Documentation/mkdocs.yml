@@ -64,6 +64,8 @@ nav:
         - EMaskType: Scripting/Repetitionless.Runtime.Variables.EMaskType.md
         - EDistanceBlendMode: Scripting/Repetitionless.Runtime.Variables.EDistanceBlendMode.md
         - EVertexColourBlendMode: Scripting/Repetitionless.Runtime.Variables.EVertexColourBlendMode.md
+        - ELayerMode: Scripting/Repetitionless.Runtime.Variables.ELayerMode.md
+        - ERenderPipeline: Scripting/Repetitionless.Runtime.Variables.ERenderPipeline.md
         - RepetitionlessMaterialData: Scripting/Repetitionless.Runtime.Variables.RepetitionlessMaterialData.md
         - RepetitionlessMaterialDataCompressed: Scripting/Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.md
         - RepetitionlessLayerData: Scripting/Repetitionless.Runtime.Variables.RepetitionlessLayerData.md
@@ -133,7 +135,7 @@ theme:
             name: Switch to light mode
 markdown_extensions:
   - toc:
-      toc_depth: 2
+      toc_depth: 3
   - meta
   - pymdownx.superfences
 plugins:
