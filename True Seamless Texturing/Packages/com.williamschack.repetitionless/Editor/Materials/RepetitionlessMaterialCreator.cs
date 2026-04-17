@@ -302,6 +302,11 @@ namespace Repetitionless.Editor.Materials
             try {
                 if (dataManager.AssetExists(Constants.TEXTURE_DATA_FILE_NAME)) {
                     textureData = dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
+
+                    if (textureData.LayersTextureData.Length == 0) {
+                        textureData.Init(maxLayers);
+                        textureData.Save();
+                    }
                 } else {
                     EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Texture Data", 0.2f);
 
@@ -320,6 +325,11 @@ namespace Repetitionless.Editor.Materials
 
                 if (dataManager.AssetExists(Constants.PROPERTIES_FILE_NAME)) {
                     materialProperties = dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
+
+                    if (materialProperties.Data.Length == 0) {
+                        materialProperties.Init(maxLayers);
+                        materialProperties.Save();
+                    }
                 } else {
                     EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "Creating Properties", 0.5f);
 

@@ -20,7 +20,7 @@ namespace Repetitionless.Editor.Processors
                 if (mat == null) continue;
 
                 string shaderName = mat.shader.name;
-                if (!shaderName.StartsWith("Repetitionless/"))
+                if (!shaderName.StartsWith(Constants.SHADER_FOLDER))
                     continue;
 
                 repetitionlessMaterials.Add(mat);

@@ -184,7 +184,7 @@ namespace Repetitionless.Runtime
             if (_mainMaterial == null || _terrainData == null || this == null)
                 return;
 
-            if (_materialInstance == null || Terrain.materialTemplate == null)
+            if (_materialInstance == null || _materialInstance.shader.name == "Hidden/InternalErrorShader" || Terrain.materialTemplate == null)
                 UpdateTerrainMaterial(_mainMaterial);
 
             // Copy any changed properties from the main material
