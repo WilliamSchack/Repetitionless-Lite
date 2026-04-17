@@ -9,7 +9,6 @@ using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Data
 {
-    using System.Linq;
     using TextureUtilities;
 
     public class RepetitionlessLayeredDataSO : ScriptableObject
@@ -24,7 +23,7 @@ namespace Repetitionless.Editor.Data
         private static readonly Vector4 DEFAULT_LAYER_COLOURS_FIRST = new Vector4(1.0f, 0.0f, 0.0f, 0.0f);
         private static readonly Vector4 DEFAULT_LAYER_COLOURS = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
 
-        [SerializeField] public ELayerMode LayerMode = ELayerMode.ControlTextures;
+        [SerializeField] public ELayerMode LayerMode = ELayerMode.TerrainLayers;
 
         // 8 Control textures, 4 channels/textures per
         [SerializeField] public ControlTexture[] ControlTextures = new ControlTexture[Constants.MAX_LAYERS_TERRAIN / 4];

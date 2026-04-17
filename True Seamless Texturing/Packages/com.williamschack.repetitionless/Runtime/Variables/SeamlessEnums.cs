@@ -159,13 +159,13 @@ namespace Repetitionless.Runtime.Variables
     public enum ELayerMode
     {
         /// <summary>
-        /// Uses manually set textures to specify where each layer is
-        /// </summary>
-        ControlTextures,
-
-        /// <summary>
         /// Uses automatically synced terrain textures and its terrain layers to assign textures and settings to each layer
         /// </summary>
-        TerrainLayers
+        TerrainLayers,
+
+        /// <summary>
+        /// Uses manually set textures to specify where each layer is
+        /// </summary>
+        ControlTextures
     }
 }
