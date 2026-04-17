@@ -136,7 +136,7 @@ namespace Repetitionless.Editor.Processors
             AssetDatabase.Refresh();
 
             if (convertedTerrains)
-                EditorUtility.DisplayDialog("Repetitionless Update", "Some terrains using Repetitionless may have pink materials.\nTo fix this, click the Save Textures button on the RepetitionlessTerrain component.", "Ok");
+                EditorUtility.DisplayDialog("Repetitionless Update", "Some terrains using Repetitionless may have pink materials.\nTo fix this, click the Save Textures button on the RepetitionlessTerrain component and make sure those materials are set to the RepetitionlessLayered shader", "Ok");
         }
     }
 }
