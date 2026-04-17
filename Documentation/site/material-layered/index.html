@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://docs.wilschack.dev/repetitionless/material-terrain/">
+        <link rel="canonical" href="https://docs.wilschack.dev/repetitionless/material-layered/">
       
       
         <link rel="prev" href="../material-regular/">
@@ -27,7 +27,7 @@
     
     
       
-        <title>Using Terrain Materials - Repetitionless</title>
+        <title>Using Layered Materials - Repetitionless</title>
       
     
     
@@ -63,16 +63,16 @@
   
     
   
-  <meta name="twitter:title" content="Repetitionless - Using Terrain Materials" />
+  <meta name="twitter:title" content="Repetitionless - Using Layered Materials" />
   <meta name="twitter:description" content="Remove visible texture tiling in seconds with a drop in replacement for materials and terrains. Fully compatible with Built-In, URP, and HDRP" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://docs.wilschack.dev/repetitionless/Images/CardImage.png" />
   <meta name="twitter:image:width" content="420" />
   <meta name="twitter:image:height" content="280" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Repetitionless - Using Terrain Materials" />
+  <meta property="og:title" content="Repetitionless - Using Layered Materials" />
   <meta property="og:description" content="Remove visible texture tiling in seconds with a drop in replacement for materials and terrains. Fully compatible with Built-In, URP, and HDRP" />
-  <meta property="og:url" content="https://docs.wilschack.dev/repetitionless/material-terrain/" />
+  <meta property="og:url" content="https://docs.wilschack.dev/repetitionless/material-layered/" />
   <meta property="og:image" content="https://docs.wilschack.dev/repetitionless/Images/CardImage.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="420" />
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#creating-a-material" class="md-skip">
+        <a href="#creating-a-layered-material" class="md-skip">
           Skip to content
         </a>
       
@@ -132,7 +132,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Using Terrain Materials
+              Using Layered Materials
             
           </span>
         </div>
@@ -458,7 +458,7 @@
   <span class="md-ellipsis">
     
   
-    Using Terrain Materials
+    Using Layered Materials
   
 
     
@@ -476,7 +476,7 @@
   <span class="md-ellipsis">
     
   
-    Using Terrain Materials
+    Using Layered Materials
   
 
     
@@ -500,39 +500,68 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-a-material" class="md-nav__link">
+  <a href="#creating-a-layered-material" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating A Material
+        Creating A Layered Material
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating A Layered Material">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#setting-up-a-terrain" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#manual" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setting Up A Terrain
+        Manual
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#using-the-script" class="md-nav__link">
+  <a href="#using-terrain-layers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using The Script
+        Using Terrain Layers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Terrain Layers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-terrain-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using The Terrain Script
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#using-multiple-terrains" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -542,8 +571,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#editing-the-terrain-layers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -553,12 +582,28 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#editing-the-material" class="md-nav__link">
     <span class="md-ellipsis">
       
         Editing The Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-control-textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Control Textures
       
     </span>
   </a>
@@ -1179,89 +1224,6 @@
     
   
     Repetitionless Noise
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_13_5" id="__nav_13_5_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Internal
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_13_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Internal
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../SubGraphs/Terrain.AddTerrainLayerMaskSettings/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add Terrain Layer Mask Settings
   
 
     
@@ -2584,6 +2546,62 @@
     
   
     EVertexColourBlendMode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Scripting/Repetitionless.Runtime.Variables.ELayerMode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ELayerMode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Scripting/Repetitionless.Runtime.Variables.ERenderPipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERenderPipeline
   
 
     
@@ -4201,39 +4219,68 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-a-material" class="md-nav__link">
+  <a href="#creating-a-layered-material" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating A Material
+        Creating A Layered Material
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating A Layered Material">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#setting-up-a-terrain" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#manual" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setting Up A Terrain
+        Manual
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#using-the-script" class="md-nav__link">
+  <a href="#using-terrain-layers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using The Script
+        Using Terrain Layers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Terrain Layers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-terrain-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using The Terrain Script
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#using-multiple-terrains" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4243,8 +4290,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#editing-the-terrain-layers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4254,12 +4301,28 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#editing-the-material" class="md-nav__link">
     <span class="md-ellipsis">
       
         Editing The Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-control-textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Control Textures
       
     </span>
   </a>
@@ -4283,15 +4346,15 @@
 
 
 
-  <h1>Using Terrain Materials</h1>
+  <h1>Using Layered Materials</h1>
 
-<p>Repetitionless includes a custom script to handle and sync materials to unity terrains. To setup a terrain for the shader, follow the instructions below:</p>
-<h2 id="creating-a-material">Creating A Material</h2>
+<p>The layered material is used to display up to 32 different material layers on one material. Layer positions can either be updated with control textures or synced with a terrain. Instructions are below for both</p>
+<h2 id="creating-a-layered-material">Creating A Layered Material</h2>
 <h3 id="automatic">Automatic</h3>
 <ol>
 <li>Open the windows tab in the toolbar</li>
 <li>Navigate to <code>Repetitionless</code></li>
-<li>Click <code>Create Terrain Material</code></li>
+<li>Click <code>Create Layered Material</code></li>
 <li>The material will be created in the current folder in the project window</li>
 </ol>
 <p><img alt="image" src="../Images/TerrainMaterial/AutomaticCreation.png" /></p>
@@ -4301,15 +4364,15 @@
 <li>Select the shader dropdown</li>
 <li>Navigate to <code>Repetitionless</code></li>
 <li>Select your render pipeline</li>
-<li>Select <code>RepetitionlessTerrain</code></li>
+<li>Select <code>RepetitionlessLayered</code></li>
 </ol>
 <p><img alt="image" src="../Images/TerrainMaterial/TerrainMaterialSelection.png" /></p>
 <p><strong>Important Details:</strong></p>
 <ul>
 <li>Render pipelines can be switched without losing data. ex. Changing a Repetitionless material from BIRP to its URP version will keep all the settings</li>
-<li>Material data is stored in a folder along side the material named "{MaterialName}_Data". This is automatically moved and deleted with the material but it will need to be manually copied when copying the material</li>
+<li>Material data is stored in a folder along side the material named "{MaterialName}_RepetitionlessData". This is automatically moved and deleted with the material but it will need to be manually copied when copying the material</li>
 </ul>
-<h2 id="setting-up-a-terrain">Setting Up A Terrain</h2>
+<h2 id="using-terrain-layers">Using Terrain Layers</h2>
 <p>To use a terrain with the repetitionless material you have to add a <a href="../Scripting/Repetitionless.Runtime.RepetitionlessTerrain/"><code>RepetitionlessTerrain</code></a> component to the terrain which can be done as follows:</p>
 <ol>
 <li>Select the terrain you want to use</li>
@@ -4321,14 +4384,14 @@
 <li>Click the <code>Create New Material</code> button</li>
 <li>Assign a material in the <code>Main Material</code> field</li>
 </ul>
-<p><strong><em>Note the the material field will only allow Repetitionless Terrain materials</em></strong></p>
+<p><strong><em>Note the the material field will only allow Repetitionless Layered materials. Assigning a material will also automatically set its layer mode to Terrain Layers</em></strong></p>
 <p><img alt="image" src="../Images/TerrainMaterial/SettingTerrainComponent.png" /></p>
-<h2 id="using-the-script">Using The Script</h2>
+<h3 id="using-the-terrain-script">Using The Terrain Script</h3>
 <p><img alt="image" src="../Images/TerrainMaterial/UsingTerrainComponent.png" /></p>
 <p>That is basically all you need to do! The script will handle the material assigning and texture syncing for you</p>
 <p>With Auto Save Textures enabled, the terrain will sync whenever you update the terrain layers, updating the materials textures. With it disabled, it will not sync the textures until you click the Save Textures button.</p>
 <p><strong>If you ever have any errors with the terrain, first see if clicking the Save Textures button fixes your issue. If it doesnt feel free to <a href="https://github.com/WilliamSchack/Repetitionless-Issues/issues/new/choose">submit a bug report</a></strong></p>
-<h2 id="using-multiple-terrains">Using Multiple Terrains</h2>
+<h3 id="using-multiple-terrains">Using Multiple Terrains</h3>
 <p><img alt="image" src="../Images/TerrainMaterial/UsingTerrainParent.png" /></p>
 <p>The script also has a Parent Terrain field that when set will update that terrain to use the same material and layers from the parent. Keep in mind that when setting a parent terrain it will overwrite the current terrain layers you have set.</p>
 <p>If a terrain has a parent, it will automatically update when the parent terrain updates, so using the save textures button on the main terrain will update all the children aswell.</p>
@@ -4340,7 +4403,7 @@
 </ul>
 <p><img alt="image" src="../Images/TerrainMaterial/TerrainNeighbours.png" /></p>
 <p>On terrains with the RepetitionlessTerrain, when using the Create Neighbour Terrains tool and creating a directly adjacent terrain, it will automatically add a RepetitionlessTerrain component to that terrain with the selected one as the parent. This will not work for non-adjacent terrains though as shown in the image above</p>
-<h2 id="editing-the-terrain-layers">Editing The Terrain Layers</h2>
+<h3 id="editing-the-terrain-layers">Editing The Terrain Layers</h3>
 <p><img alt="image" src="../Images/TerrainMaterial/LayersAutoSync.png" /></p>
 <p>After modifying any field in the terrain layer and saving, it will automatically update those properties in any material that is linked to that layer if the auto sync is enabled. You can manually load or save to and from the layer with the buttons</p>
 <p>The properties effected and what they link to include:</p>
@@ -4354,13 +4417,37 @@
 <li>Tiling &gt; Base Tiling</li>
 <li>Offset &gt; Base Offset</li>
 </ul>
-<h2 id="editing-the-material">Editing The Material</h2>
+<h3 id="editing-the-material">Editing The Material</h3>
 <p><img alt="image" src="../Images/TerrainMaterial/TerrainMaterialEditing.png" /></p>
 <p>If a terrain has been assigned, when editing the material it will show the terrain layers that it is linked to and each layer can be edited individually.</p>
 <p><strong>Updating the Main Properties in the Base Material that have an equivalent in the terrain layer (listed above) will also automatically update the terrain layer</strong></p>
 <p><img alt="image" src="../Images/TerrainMaterial/LayerIndexes.png" /></p>
 <p>Layers in the repetitionless material correspond to the order of the assigned terrain layers as shown in the image above</p>
 <p><strong>The shader supports up to 32 terrain layers. Any more wont work and will appear white</strong></p>
+<h2 id="using-control-textures">Using Control Textures</h2>
+<p>To use control textures, first make sure the layer mode is set to <code>Control Textures</code></p>
+<p><img alt="image" src="../Images/TerrainMaterial/ControlLayerMode.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Holes Texture</td>
+<td>The holes texture that will be used for the material. It will read from the selected channel</td>
+</tr>
+<tr>
+<td>Control Texture</td>
+<td>The control texture that will be used for this layer. It will read from the selected channel</td>
+</tr>
+</tbody>
+</table>
+<p>The control textures for a specific pixel must add up to 1. For example, if you want a spot to be the second layer, the second control texture will have a value of 1 in that spot where other layers will have a value of 0.</p>
+<p><em>Example of two control textures where the left is layer 1, and the right layer 2</em></p>
+<p><img alt="image" src="../Images/TerrainMaterial/ControlTextureExample.png" /></p>
 <p><strong><em>Everything else is the same as the regular repetitionless material. To view what each property does, visit the <a href="../material-properties/">Material Properties</a> page</em></strong></p>
 
 
