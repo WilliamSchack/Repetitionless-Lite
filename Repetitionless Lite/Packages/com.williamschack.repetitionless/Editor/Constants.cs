@@ -42,8 +42,6 @@ namespace Repetitionless.Editor
 
         public const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
         public const string PROPERTIES_FILE_NAME = "Properties.asset";
-        public const string LAYERED_DATA_FILE_NAME = "LayeredData.asset";
-        public const string TERRAIN_DATA_FILE_NAME = "TerrainData.asset";
         public const string CONTROL_TEXTURE_FILE_NAME_PREFIX = "Control";
 
         public const string PROPERTIES_TEXTURE_ASSET_NAME = "PropertiesTexture.asset";
@@ -56,9 +54,6 @@ namespace Repetitionless.Editor
         public const string NOISE_TEXTURE_NAME_1K = "repetitionless_NoiseTexture_1024";
 
         public const int MAX_LAYERS_REGULAR = 1;
-        public const int MAX_LAYERS_TERRAIN = 32;
-
-        public static readonly Vector4 DEFAULT_TILING_OFFSET_TERRAIN = new Vector4(100, 100, 0, 0);
 
         public const int MATERIALS_PER_LAYER_COUNT = 3;
         public const int COMPRESSED_MATERIAL_VARIABLES_COUNT = 9;
