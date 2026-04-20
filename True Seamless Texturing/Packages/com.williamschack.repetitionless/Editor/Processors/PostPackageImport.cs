@@ -15,6 +15,10 @@ namespace Repetitionless.Editor.Processors
     {
         static PostPackageImport()
         {
+            if (RepetitionlessPrefs.Data.LiteMode) {
+                ProUpgrade();
+            }
+
             if (NewVersionImported()) {
                 HandleVersionUpdate();
                 
@@ -28,6 +32,16 @@ namespace Repetitionless.Editor.Processors
 
             // Open the window after importing
             AssetDatabase.importPackageCompleted += PackageImported;
+        }
+
+        private static void ProUpgrade()
+        {
+            WelcomeWindow.Open();
+            ShowReviewLog();
+
+            RepetitionlessPrefs.UpdatePrefs((p) => {
+                p.LiteMode = false;
+            });
         }
 
         private static int[] SplitVersion(string version)
