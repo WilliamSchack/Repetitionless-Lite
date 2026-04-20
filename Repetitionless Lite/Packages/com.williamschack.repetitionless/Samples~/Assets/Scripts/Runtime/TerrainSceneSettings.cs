@@ -9,25 +9,12 @@ namespace Repetitionless.Runtime.Samples
     public class TerrainSceneSettings : MonoBehaviour
     {
         [SerializeField] private Terrain[] _terrains;
-        [SerializeField] private RepetitionlessTerrain _repetitionlessTerrain;
 
         [Space(10)]
         [SerializeField] private Material _repetitionlessMaterial;
         [SerializeField] private Material _litMaterial;
 
         [HideInInspector] public bool TerrainUsingRepetitionless = true;
-
-        public void UpdateRepetitionlessTerrainMaterial()
-        {
-            if (TerrainUsingRepetitionless) {
-                _repetitionlessTerrain.enabled = true;
-                _repetitionlessTerrain.UpdateTerrainMaterial(_repetitionlessMaterial);
-                _repetitionlessTerrain.UpdateMaterialTerrainTextures();
-            } else {
-                _repetitionlessTerrain.enabled = false;
-                UpdateTerrainMaterials();
-            }
-        }
 
         private void UpdateTerrainMaterials()
         {
@@ -40,11 +27,7 @@ namespace Repetitionless.Runtime.Samples
         public void ToggleTerrainRepetitionless()
         {
             TerrainUsingRepetitionless = !TerrainUsingRepetitionless;
-
-            if (_repetitionlessTerrain != null)
-                UpdateRepetitionlessTerrainMaterial();
-            else
-                UpdateTerrainMaterials();
+            UpdateTerrainMaterials();
 
             // Update terrain layers to make them all equal in tiling
             // Repetitionless uses world UVs, regular uses local so they differ a bit 
