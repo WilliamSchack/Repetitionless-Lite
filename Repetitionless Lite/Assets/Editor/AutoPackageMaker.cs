@@ -11,7 +11,7 @@ using System.IO;
 
 public static class AutoPackageMaker
 {
-    private const string REPETITIONLESS_PACKAGE_DISPLAY_NAME = "Repetitionless";
+    private const string REPETITIONLESS_PACKAGE_DISPLAY_NAME = "Repetitionless Lite";
     private const string REPETITIONLESS_PACKAGE_NAME = "com.williamschack.repetitionless";
     private const string REPETITIONLESS_PACKAGE_DIR = "/Packages/" + REPETITIONLESS_PACKAGE_NAME + "/";
 
