@@ -1,7 +1,0 @@
-apiRules:
-- include:
-    uidRegex: ^Repetitionless(?!\.Samples)
-    type: Namespace
-- exclude:
-    uidRegex: .*
-    type: Namespace
