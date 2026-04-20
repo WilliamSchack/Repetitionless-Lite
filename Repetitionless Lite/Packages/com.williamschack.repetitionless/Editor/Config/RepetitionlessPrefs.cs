@@ -19,7 +19,7 @@ namespace Repetitionless.Editor.Config
             public bool OpenWindowOnUpdate = true;
 
             public string LastProcessedVersion = "0.0.0";
-            public bool LiteMode = false;
+            public bool LiteMode = true;
 
             public long LastSessionId = 0;
         }
