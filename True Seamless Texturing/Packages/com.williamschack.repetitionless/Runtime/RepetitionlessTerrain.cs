@@ -181,7 +181,7 @@ namespace Repetitionless.Runtime
         public void UpdateMaterialTerrainTextures()
         {
             // this == null to prevent error on end of build
-            if (_mainMaterial == null || _terrainData == null || this == null)
+            if (_mainMaterial == null || _terrain == null || _terrainData == null || this == null)
                 return;
 
             if (_materialInstance == null || _materialInstance.shader.name == "Hidden/InternalErrorShader" || Terrain.materialTemplate == null)
