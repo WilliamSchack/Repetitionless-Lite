@@ -18,33 +18,59 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
 
         private MapMagicObject _main;
 
-        void OnEnable()
+        private void OnEnable()
         {
             // Sync material terrain layers in editor
             // Do this function on enable for all pinned tiles
 
             _main = GetComponent<MapMagicObject>();
 
-            TerrainTile.OnTileFinalized += (TerrainTile tile, TileData data, StopToken stop) => { EditorApplication.delayCall += () => {
-                if (tile == null)
+            TerrainTile.OnTileApplied -= OnTileApplied;
+            TerrainTile.OnTileApplied += OnTileApplied;
+
+            foreach (TerrainTile tile in _main.tiles.pinned.Values) {
+                SetupTile(tile);
+            }
+        }
+
+        private void OnDisable()
+        {
+            TerrainTile.OnTileApplied -= OnTileApplied;
+        }
+
+        // If terrain layers are not the same, sync up if in the editor
+
+        private void OnTileApplied(TerrainTile tile, TileData data, StopToken stopToken)
+        {
+            SetupTile(tile);
+        }
+
+        private void SetupTile(TerrainTile tile)
+        {
+            if (tile == null || !tile.transform.IsChildOf(transform))
                     return;
 
-                Terrain mainTerrain = tile.main.terrain;
-                mainTerrain.drawInstanced = false;
+            Terrain[] terrains = {
+                tile.main.terrain,
+                tile.draft.terrain
+            };
 
-                RepetitionlessTerrain terrain;
-                mainTerrain.TryGetComponent(out terrain);
+            foreach (Terrain terrain in terrains) {
+                terrain.drawInstanced = false;
+
+                RepetitionlessTerrain repetitionlessTerrain;
+                terrain.TryGetComponent(out repetitionlessTerrain);
                 
-                if (terrain == null) {
-                    terrain = mainTerrain.gameObject.AddComponent<RepetitionlessTerrain>();
+                if (repetitionlessTerrain == null) {
+                    repetitionlessTerrain = terrain.gameObject.AddComponent<RepetitionlessTerrain>();
 
-                    terrain.UpdateTerrainMaterial(_mat);
-                    terrain.UpdateMaterialTerrainTextures();
+                    repetitionlessTerrain.UpdateTerrainMaterial(_mat);
+                    repetitionlessTerrain.UpdateMaterialTerrainTextures();
                     return;
                 }
 
-                terrain.UpdateMaterialTerrainTextures();
-            }; };
+                repetitionlessTerrain.UpdateMaterialTerrainTextures();
+            }
         }
     }
 }
