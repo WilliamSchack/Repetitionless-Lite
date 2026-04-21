@@ -683,7 +683,7 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Standalone: UNITY_ASTOOLS_EXPERIMENTAL
+    Standalone: UNITY_ASTOOLS_EXPERIMENTAL;MAPMAGIC2
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
