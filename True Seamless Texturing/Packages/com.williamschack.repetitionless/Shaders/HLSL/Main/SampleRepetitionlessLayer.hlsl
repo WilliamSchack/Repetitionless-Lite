@@ -205,9 +205,9 @@ void SampleRepetitionlessLayer_float(
 
     // Use world space UVs if enabled
     if (UVSpace == 1) {
-        // pos / 1000 to allow space for tiling
-        // Terrains are default 1000m^2 so this pretty much expands it to 1x1 on a terrain
-        UV = WorldPosition.xz / 1000;
+        // This makes the tiling the same as the standard terrain tiling
+        // Dont ask me why
+        UV = WorldPosition.xz / 400;
     }
 
 #ifdef _REPETITIONLESS_TRIPLANAR

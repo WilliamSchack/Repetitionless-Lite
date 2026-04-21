@@ -242,12 +242,12 @@ namespace Repetitionless.Runtime
         public void UpdateParentCallback(RepetitionlessTerrain newParent)
         {
             ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
-            ParentTerrain.OnMaterialAssigned         -= ParentMaterialChanged;
+            ParentTerrain.OnMaterialAssigned        -= ParentMaterialChanged;
             ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
 
             if (newParent != null) {
                 newParent.OnTerrainLayersChanged    += ParentTerrainLayersChanged;
-                newParent.OnMaterialAssigned         += ParentMaterialChanged;
+                newParent.OnMaterialAssigned        += ParentMaterialChanged;
                 newParent.OnMaterialTexturesUpdated += ParentMaterialTexturesUpdated;
             }
         }
