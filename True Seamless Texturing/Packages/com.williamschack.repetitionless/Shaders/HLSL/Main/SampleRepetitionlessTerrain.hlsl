@@ -7,7 +7,7 @@
 // _TerrainHoles
 // _Control{Index}
 
-#define R_SAMPLE_CONTROL(i, uv) LayersCount > i ? SAMPLE_TEXTURE2D(_Control##i, sampler_Control##i, uv) : 0
+#define R_SAMPLE_CONTROL(i, uv) (i * 4) < LayersCount ? SAMPLE_TEXTURE2D(_Control##i, sampler_Control##i, uv) : 0
 
 void SampleRepetitionlessTerrain_float(
     // General Settings
@@ -58,7 +58,7 @@ void SampleRepetitionlessTerrain_float(
         return;
     }
 
-    // Sample control
+    // Sample control textures
     half4 controlColours[8] = {
         R_SAMPLE_CONTROL(0, UV),
         R_SAMPLE_CONTROL(1, UV),
@@ -69,7 +69,7 @@ void SampleRepetitionlessTerrain_float(
         R_SAMPLE_CONTROL(6, UV),
         R_SAMPLE_CONTROL(7, UV)
     };
-
+    
     // Get individual weights and sum
     half controlWeights[32];
     half controlSum = 0;
