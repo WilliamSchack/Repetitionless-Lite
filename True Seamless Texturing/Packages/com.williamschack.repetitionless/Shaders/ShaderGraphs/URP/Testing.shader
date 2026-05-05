@@ -1,3 +1,5 @@
+// THIS WILL BE REWRITTEN
+
 Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
 {  
     Properties
