@@ -19,7 +19,7 @@
 // Uses assigned array properties variables
 void SampleRepetitionlessLayer_float(
     // General Settings
-    SamplerState SS, float2 UV, float3 TangentNormalVector, float3 WorldNormalVector,
+    SamplerState SS, float2 UV, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
     int SurfaceType, int UVSpace, int VertexColourBlendModeIndex, int DebuggingIndex,
     float4 VertexColour,
@@ -241,7 +241,7 @@ void SampleRepetitionlessLayer_float(
     // ----------------------- Base Material ------------------------- //
     if (samplingBase) {
         SampleRepetitionlessMaterial(
-            SS, UV, TangentNormalVector, WorldNormalVector, SurfaceType, DebuggingIndex,
+            SS, UV, WorldNormalVector, SurfaceType, DebuggingIndex,
             baseLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
             NoiseTexture,
             baseMaterialData,
@@ -267,7 +267,7 @@ void SampleRepetitionlessLayer_float(
                 baseMaterialData.TilingOffset = farMaterialData.TilingOffset;
                 
                 SampleRepetitionlessMaterial(
-                    SS, UV, TangentNormalVector, WorldNormalVector, SurfaceType, DebuggingIndex,
+                    SS, UV, WorldNormalVector, SurfaceType, DebuggingIndex,
                     baseLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
                     NoiseTexture,
                     baseMaterialData,
@@ -277,7 +277,7 @@ void SampleRepetitionlessLayer_float(
             case 1: // Material
                 // Sample Far Material
                 SampleRepetitionlessMaterial(
-                    SS, UV, TangentNormalVector, WorldNormalVector, SurfaceType, DebuggingIndex,
+                    SS, UV, WorldNormalVector, SurfaceType, DebuggingIndex,
                     farLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
                     NoiseTexture,
                     farMaterialData,
@@ -305,7 +305,7 @@ void SampleRepetitionlessLayer_float(
         float3 blendEmissionColor = 0;
 
         SampleRepetitionlessMaterial(
-            SS, UV, TangentNormalVector, WorldNormalVector, SurfaceType, DebuggingIndex,
+            SS, UV, WorldNormalVector, SurfaceType, DebuggingIndex,
             blendLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
             NoiseTexture,
             blendMaterialData,
@@ -340,7 +340,7 @@ void SampleRepetitionlessLayer_float(
         blendMaterialData.TilingOffset = tilingOffset;
         
         SampleRepetitionlessMaterial(
-            SS, UV, TangentNormalVector, WorldNormalVector, SurfaceType, DebuggingIndex,
+            SS, UV, WorldNormalVector, SurfaceType, DebuggingIndex,
             blendLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
             NoiseTexture,
             blendMaterialData,
@@ -397,7 +397,7 @@ void SampleRepetitionlessLayer_float(
 // Uses assigned array properties texture
 void SampleRepetitionlessLayer_float(
     // General Settings
-    SamplerState SS, float2 UV, float3 TangentNormalVector, float3 WorldNormalVector,
+    SamplerState SS, float2 UV, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
     int SurfaceType, int UVSpace, int VertexColourBlendModeIndex, int DebuggingIndex,
     float4 VertexColour,
@@ -431,7 +431,7 @@ void SampleRepetitionlessLayer_float(
     GetArrayAssignedTextures(AssignedTexturesTexture, assignedAVTextures, assignedNSOTextures, assignedEVTextures, assignedBMTextures);
 
     SampleRepetitionlessLayer_float(
-        SS, UV, TangentNormalVector, WorldNormalVector,
+        SS, UV, WorldNormalVector,
         WorldPosition, CameraPosition,
         SurfaceType, UVSpace, VertexColourBlendModeIndex, DebuggingIndex,
         VertexColour,

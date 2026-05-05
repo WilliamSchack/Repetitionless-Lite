@@ -128,7 +128,6 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
     SampleRepetitionlessTerrain(
         sampler_TrilinearRepeat,
         uv,
-        float3(0, 0, 1),
         normalize(IN.normalWS),
         IN.positionWS,
         _WorldSpaceCameraPos,
@@ -156,7 +155,7 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
     InputData inputData = (InputData)0;
     inputData.positionWS        = IN.positionWS;
     inputData.positionCS        = IN.clipPos;
-    inputData.normalWS          = normalize(normalVec);//NormalizeNormalPerPixel(IN.normalWS);
+    inputData.normalWS          = normalize(normalVec);
     inputData.viewDirectionWS   = GetWorldSpaceNormalizeViewDir(IN.positionWS);
     inputData.shadowCoord       = 
         #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
@@ -178,7 +177,6 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
     surfaceData.occlusion   = occlusion;
     surfaceData.emission    = emission;
     surfaceData.alpha       = 1;
-    //surfaceData.normalTS    = normalVec;
 
     half4 color = UniversalFragmentPBR(inputData, surfaceData);
     color.rgb = MixFog(color.rgb, inputData.fogCoord);
