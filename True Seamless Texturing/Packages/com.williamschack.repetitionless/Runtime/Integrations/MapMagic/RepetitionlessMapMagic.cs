@@ -56,7 +56,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             };
 
             foreach (Terrain terrain in terrains) {
-                terrain.drawInstanced = false;
+                //terrain.drawInstanced = false;
 
                 RepetitionlessTerrain repetitionlessTerrain;
                 terrain.TryGetComponent(out repetitionlessTerrain);

@@ -259,9 +259,9 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
         UsePass "Hidden/Nature/Terrain/Utilities/PICKING"
     }
 
-    Dependency "AddPassShader" = "Hidden/Universal Render Pipeline/Terrain/Lit (Add Pass)"
-    Dependency "BaseMapShader" = "Hidden/Universal Render Pipeline/Terrain/Lit (Base Pass)"
-    Dependency "BaseMapGenShader" = "Hidden/Universal Render Pipeline/Terrain/Lit (Basemap Gen)"
+    //Dependency "AddPassShader" = "Hidden/Universal Render Pipeline/Terrain/Lit (Add Pass)"
+    //Dependency "BaseMapShader" = "Hidden/Repetitionless/TerrainBasemapGen"
+    Dependency "BaseMapGenShader" = "Hidden/Repetitionless/TerrainBasemapGen"
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain"
     
