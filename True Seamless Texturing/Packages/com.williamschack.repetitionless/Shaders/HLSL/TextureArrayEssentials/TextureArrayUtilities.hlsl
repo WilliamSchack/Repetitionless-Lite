@@ -34,7 +34,7 @@ void GetIndexInArray_float(int TexturesAssignedCompressed, int Index, out int Ou
 }
 
 float4 SampleArrayAtConstantIndex(
-    UnityTexture2DArray TextureArray,
+    Texture2DArray TextureArray,
     int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNKS],
     int Index,
     float2 UV,
@@ -52,7 +52,7 @@ float4 SampleArrayAtConstantIndex(
 }
 
 void SampleArrayAtConstantIndex_float(
-    UnityTexture2DArray TextureArray,
+    Texture2DArray TextureArray,
     int TexturesAssignedCompressed,
     int Index,
     float2 UV,

@@ -63,7 +63,7 @@ void GetRepetitionlessNoiseUVs(
     bool RandomiseRotation,
     float2 RandomiseRotationMinMax,
 
-    UnityTexture2D NoiseTexture,
+    Texture2D NoiseTexture,
     int TextureResolution,
 
     out float VoronoiCells,
@@ -101,7 +101,7 @@ void GetRepetitionlessNoiseUVs(
 // Samples the given texture using modified UVs based on voronoi noise
 // Samples the voronoi cells base and edge colour if required and lerps them together
 void AddRepetitionlessNoise_float(
-    UnityTexture2D InputTexture,
+    Texture2D InputTexture,
     SamplerState SS,
     float2 UV,
 

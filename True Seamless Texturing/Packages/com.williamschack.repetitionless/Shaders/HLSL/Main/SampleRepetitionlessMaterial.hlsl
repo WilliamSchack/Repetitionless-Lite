@@ -21,14 +21,14 @@ void SampleRepetitionlessMaterial(
 
     // Textures
     int ArrayLayerIndex,
-    UnityTexture2DArray AVTextures,
-    UnityTexture2DArray NSOTextures,
-    UnityTexture2DArray EMTextures,
+    Texture2DArray AVTextures,
+    Texture2DArray NSOTextures,
+    Texture2DArray EMTextures,
     int AssignedAVTextures[3],
     int AssignedNSOTextures[3],
     int AssignedEMTextures[3],
 
-    UnityTexture2D NoiseTexture,
+    Texture2D NoiseTexture,
 
     // Material Data
     in RepetitionlessMaterialData MaterialData,

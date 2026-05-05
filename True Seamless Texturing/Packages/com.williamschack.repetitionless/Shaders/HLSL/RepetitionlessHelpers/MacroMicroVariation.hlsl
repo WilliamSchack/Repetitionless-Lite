@@ -17,7 +17,7 @@ float MacroMicroVariationTexture(
     float LargeScale,
 
     float VariationBrightness,
-    UnityTexture2D Texture,
+    Texture2D Texture,
     SamplerState SS,
 
     float2 UV,
@@ -48,7 +48,7 @@ float MacroMicroVariationTextureArray(
     float LargeScale,
 
     float VariationBrightness,
-    UnityTexture2DArray TextureArray,
+    Texture2DArray TextureArray,
     int AssignedTextures[3],
     int ConstantIndex,
     int ChannelIndex,
@@ -168,7 +168,7 @@ void MacroMicroVariationTexture_float(
 
     float VariationBrightness,
     float VariationOpacity,
-    UnityTexture2D VariationTexture,
+    Texture2D VariationTexture,
 
     SamplerState SS,
     float2 UV,

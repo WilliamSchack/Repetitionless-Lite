@@ -7,7 +7,7 @@
 // Samples the base and edge colour if required and lerps them together
 // Uses a regular texture
 float4 SampleRepetitionlessTexture(
-    UnityTexture2D Texture,
+    Texture2D Texture,
     SamplerState SS,
     
     float EdgeMask,
@@ -38,7 +38,7 @@ float4 SampleRepetitionlessTexture(
 // Samples the base and edge colour if required and lerps them together
 // Uses a texture array
 float4 SampleRepetitionlessArrayTexture(
-    UnityTexture2DArray TextureArray,
+    Texture2DArray TextureArray,
     int AssignedTextures[3],
     int ConstantIndex,
     SamplerState SS,

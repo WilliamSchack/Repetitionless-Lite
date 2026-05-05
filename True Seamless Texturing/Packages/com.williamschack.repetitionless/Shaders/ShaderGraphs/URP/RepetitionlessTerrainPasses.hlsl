@@ -52,6 +52,7 @@ struct Attributes
 {
     float4 positionOS : POSITION;
     float3 normalOS   : NORMAL;
+    float4 tangentOS  : TANGENT;
     float2 texcoord   : TEXCOORD0;
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
@@ -73,6 +74,7 @@ struct Varyings
     #ifdef USE_APV_PROBE_OCCLUSION
         float4 probeOcclusion : TEXCOORD8;
     #endif
+    float4 tangentWS : TEXCOORD9;
     float4 clipPos : SV_POSITION;
     UNITY_VERTEX_OUTPUT_STEREO
 };
@@ -95,7 +97,9 @@ Varyings RepetitionlessTerrainVert(Attributes v)
         o.dynamicLightmapUV = v.texcoord * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
     #endif
 
-    o.normalWS = TransformObjectToWorldNormal(v.normalOS);
+    VertexNormalInputs normalInputs = GetVertexNormalInputs(v.normalOS, v.tangentOS);
+    o.tangentWS = float4(normalInputs.tangentWS, v.tangentOS.w);
+    o.normalWS = normalInputs.normalWS;
     OUTPUT_SH4(posInputs.positionWS, o.normalWS, GetWorldSpaceNormalizeViewDir(posInputs.positionWS), o.vertexSH, o.probeOcclusion);
 
     #if !defined(_FOG_FRAGMENT)
@@ -125,8 +129,8 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
     float  occlusion;
     float3 emission;
 
-    SampleRepetitionlessTerrain_float(
-        sampler_NoiseTexture,
+    SampleRepetitionlessTerrain(
+        sampler_TrilinearRepeat,
         uv,
         float3(0, 0, 1),
         normalize(IN.normalWS),
@@ -166,8 +170,8 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
         #else
             float4(0,0,0,0);
         #endif
-    //inputData.fogCoord          = InitializeInputDataFog(float4(IN.positionWS, 1.0), IN.fogFactor);
-    //inputData.bakedGI           = SAMPLE_GI(IN.uvMainAndLM.zw, IN.dynamicLightmapUV, IN.vertexSH, inputData.normalWS);
+    inputData.fogCoord          = InitializeInputDataFog(float4(IN.positionWS, 1.0), IN.fogFactor);
+    inputData.bakedGI           = SAMPLE_GI(IN.uvMainAndLM.zw, IN.vertexSH, inputData.normalWS);
     inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(IN.clipPos);
     inputData.shadowMask        = SAMPLE_SHADOWMASK(IN.uvMainAndLM.zw);
 
@@ -178,7 +182,8 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
     surfaceData.occlusion   = occlusion;
     surfaceData.emission    = emission;
     surfaceData.alpha       = 1;
-    surfaceData.normalTS    = float3(0, 0, 1);
+    surfaceData.normalTS    = normalVec;
+    inputData.normalWS = TransformTangentToWorld(normalVec, half3x3(IN.tangentWS.xyz, cross(IN.normalWS, IN.tangentWS.xyz) * IN.tangentWS.w, IN.normalWS));
 
     half4 color = UniversalFragmentPBR(inputData, surfaceData);
     color.rgb = MixFog(color.rgb, inputData.fogCoord);

@@ -26,7 +26,7 @@ void SampleRepetitionlessLayer_float(
 
     // Properties
     int LayerIndex,
-    UnityTexture2D PropertiesTexture,
+    Texture2D PropertiesTexture,
     int AssignedAVTextures0,
     int AssignedAVTextures1,
     int AssignedAVTextures2,
@@ -39,12 +39,12 @@ void SampleRepetitionlessLayer_float(
     int AssignedBMTextures0,
 
     // Textures
-    UnityTexture2DArray AVTextures,
-    UnityTexture2DArray NSOTextures,
-    UnityTexture2DArray EMTextures,
-    UnityTexture2DArray BMTextures,
+    Texture2DArray AVTextures,
+    Texture2DArray NSOTextures,
+    Texture2DArray EMTextures,
+    Texture2DArray BMTextures,
 
-    UnityTexture2D NoiseTexture,
+    Texture2D NoiseTexture,
 
     // Outputs
     out float4 AlbedoColorOut,
@@ -404,16 +404,16 @@ void SampleRepetitionlessLayer_float(
 
     // Properties
     int LayerIndex,
-    UnityTexture2D PropertiesTexture,
-    UnityTexture2D AssignedTexturesTexture,
+    Texture2D PropertiesTexture,
+    Texture2D AssignedTexturesTexture,
 
     // Textures
-    UnityTexture2DArray AVTextures,
-    UnityTexture2DArray NSOTextures,
-    UnityTexture2DArray EMTextures,
-    UnityTexture2DArray BMTextures,
+    Texture2DArray AVTextures,
+    Texture2DArray NSOTextures,
+    Texture2DArray EMTextures,
+    Texture2DArray BMTextures,
 
-    UnityTexture2D NoiseTexture,
+    Texture2D NoiseTexture,
 
     // Outputs
     out float4 AlbedoColorOut,
