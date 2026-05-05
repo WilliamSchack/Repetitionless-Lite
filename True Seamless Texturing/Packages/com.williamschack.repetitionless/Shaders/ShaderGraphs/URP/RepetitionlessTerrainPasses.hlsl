@@ -3,9 +3,6 @@
 #ifndef REPETITIONLESS_TERRAIN_PASSES_INCLUDED
 #define REPETITIONLESS_TERRAIN_PASSES_INCLUDED
 
-#define UnityTexture2D TEXTURE2D
-#define UnityTexture2DArray TEXTURE2D_ARRAY
-
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutput.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DBuffer.hlsl"

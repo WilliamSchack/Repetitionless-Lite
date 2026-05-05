@@ -32,6 +32,10 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
         [NoScaleOffset] _EMTextures("EMTextures", 2DArray) = "" {}
         [NoScaleOffset] _BMTextures("BMTextures", 2DArray) = "" {}
         [NoScaleOffset] _NoiseTexture("NoiseTexture", 2D) = "white" {}
+        
+        // For dependencies
+        [HideInInspector] _MainTex("BaseMap (RGB) Smoothness (A)", 2D) = "grey" {}
+        [HideInInspector] _MetallicTex("Metallic (R)", 2D) = "black" {}
     }
 
     HLSLINCLUDE
