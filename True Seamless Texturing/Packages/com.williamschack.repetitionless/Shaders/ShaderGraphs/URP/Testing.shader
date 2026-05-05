@@ -257,6 +257,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
         }
 
         UsePass "Hidden/Nature/Terrain/Utilities/PICKING"
+        UsePass "Hidden/Nature/Terrain/Utilities/SELECTION"
     }
 
     //Dependency "AddPassShader" = "Hidden/Universal Render Pipeline/Terrain/Lit (Add Pass)"
