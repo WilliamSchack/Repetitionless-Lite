@@ -131,7 +131,7 @@ void SampleRepetitionlessLayer_float(
 
     // Variables
     float4 albedoColor   = 1;
-    float3 normalVector  = TangentNormalVector;
+    float3 normalVector  = WorldNormalVector;
     float  metallic      = 0;
     float  smoothness    = 0;
     float  occlussion    = 0;
@@ -241,7 +241,7 @@ void SampleRepetitionlessLayer_float(
     // ----------------------- Base Material ------------------------- //
     if (samplingBase) {
         SampleRepetitionlessMaterial(
-            SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+            SS, UV, TangentNormalVector, WorldNormalVector, SurfaceType, DebuggingIndex,
             baseLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
             NoiseTexture,
             baseMaterialData,
@@ -252,7 +252,7 @@ void SampleRepetitionlessLayer_float(
     // ----------------------- Distance Material ------------------------- //
     if (samplingDistance) {
         float4 farAlbedoColor = 1;
-        float3 farNormalVector = TangentNormalVector;
+        float3 farNormalVector = WorldNormalVector;
         float farMetallic = 0;
         float farSmoothness = 0;
         float farOcclussion = 0;
@@ -267,7 +267,7 @@ void SampleRepetitionlessLayer_float(
                 baseMaterialData.TilingOffset = farMaterialData.TilingOffset;
                 
                 SampleRepetitionlessMaterial(
-                    SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+                    SS, UV, TangentNormalVector, WorldNormalVector, SurfaceType, DebuggingIndex,
                     baseLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
                     NoiseTexture,
                     baseMaterialData,
@@ -277,7 +277,7 @@ void SampleRepetitionlessLayer_float(
             case 1: // Material
                 // Sample Far Material
                 SampleRepetitionlessMaterial(
-                    SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+                    SS, UV, TangentNormalVector, WorldNormalVector, SurfaceType, DebuggingIndex,
                     farLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
                     NoiseTexture,
                     farMaterialData,
@@ -298,14 +298,14 @@ void SampleRepetitionlessLayer_float(
     // ----------------------- Blend Material ------------------------- //
     if (samplingBlend) {
         float4 blendAlbedoColor = 1;
-        float3 blendNormalVector = TangentNormalVector;
+        float3 blendNormalVector = WorldNormalVector;
         float blendMetallic = 0;
         float blendSmoothness = 0;
         float blendOcclussion = 0;
         float3 blendEmissionColor = 0;
 
         SampleRepetitionlessMaterial(
-            SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+            SS, UV, TangentNormalVector, WorldNormalVector, SurfaceType, DebuggingIndex,
             blendLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
             NoiseTexture,
             blendMaterialData,
@@ -326,7 +326,7 @@ void SampleRepetitionlessLayer_float(
 
     if (samplingDistanceBlend) {
         float4 blendAlbedoColor = 1;
-        float3 blendNormalVector = TangentNormalVector;
+        float3 blendNormalVector = WorldNormalVector;
         float blendMetallic = 0;
         float blendSmoothness = 0;
         float blendOcclussion = 0;
@@ -340,7 +340,7 @@ void SampleRepetitionlessLayer_float(
         blendMaterialData.TilingOffset = tilingOffset;
         
         SampleRepetitionlessMaterial(
-            SS, UV, TangentNormalVector, SurfaceType, DebuggingIndex,
+            SS, UV, TangentNormalVector, WorldNormalVector, SurfaceType, DebuggingIndex,
             blendLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
             NoiseTexture,
             blendMaterialData,

@@ -16,7 +16,7 @@
 
 void SampleRepetitionlessMaterial(
     // General Settings
-    SamplerState SS, float2 UV, float3 TangentNormalVector,
+    SamplerState SS, float2 UV, float3 TangentNormalVector, float3 WorldNormalVector,
     int SurfaceType, int DebuggingIndex,
 
     // Textures
@@ -178,7 +178,10 @@ void SampleRepetitionlessMaterial(
         AlbedoColorOut = lerp(AlbedoColorOut, variationColor * AlbedoColorOut, variationOpacity);
     
     // Normal Map
-    NormalVectorOut = normalAssigned ? UnpackNormalMap(float4(nsoTexture.rg, 1, 1), normalScale) : TangentNormalVector;
+    float3 normalTS = normalAssigned ? UnpackNormalMap(float4(nsoTexture.rg, 1, 1), normalScale) : float3(0, 0, 1); // Fallback to default tangent space normal
+    //float3 normalWS = TransformTangentToWorld(normalTS, WorldNormalVector);
+    float3 normalWS = normalize(WorldNormalVector + float3(normalTS.x, normalTS.y, 0));
+    NormalVectorOut = normalWS;
     
     if (packedTexture) {
         float4 packedTextureColor = packedTextureAssigned ? float4(emTexture.a, nsoTexture.a, 0, nsoTexture.b) : float4(0, 1, 0, 0);

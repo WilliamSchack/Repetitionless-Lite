@@ -38,7 +38,7 @@ void SampleRepetitionlessTerrain(
     out float3 EmissionColorOut
 ) {
     float4 albedoColor  = 1;
-    float3 normalVector = TangentNormalVector;
+    float3 normalVector = WorldNormalVector;
     float  metallic     = 0;
     float  smoothness   = 0;
     float  occlussion   = 0;
@@ -104,7 +104,7 @@ void SampleRepetitionlessTerrain(
 
     // Variables
     albedoColor  = backgroundControl;
-    normalVector = TangentNormalVector * backgroundControl;
+    normalVector = WorldNormalVector * backgroundControl;
     metallic     = 0;
     smoothness   = 0;
     occlussion   = backgroundControl;
