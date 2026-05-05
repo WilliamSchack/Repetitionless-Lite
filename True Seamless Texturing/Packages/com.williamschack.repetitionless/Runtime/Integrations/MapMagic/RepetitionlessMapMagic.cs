@@ -66,7 +66,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
 
                     repetitionlessTerrain.UpdateTerrainMaterial(_mat);
                     repetitionlessTerrain.UpdateMaterialTerrainTextures();
-                    return;
+                    continue;
                 }
 
                 repetitionlessTerrain.UpdateMaterialTerrainTextures();

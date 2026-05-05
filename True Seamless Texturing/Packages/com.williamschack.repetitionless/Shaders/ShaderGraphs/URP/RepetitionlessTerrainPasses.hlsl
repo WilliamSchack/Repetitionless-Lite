@@ -1,0 +1,189 @@
+#ifndef REPETITIONLESS_TERRAIN_PASSES_INCLUDED
+#define REPETITIONLESS_TERRAIN_PASSES_INCLUDED
+
+#define UnityTexture2D TEXTURE2D
+#define UnityTexture2DArray TEXTURE2D_ARRAY
+
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutput.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DBuffer.hlsl"
+
+// Your properties
+CBUFFER_START(UnityPerMaterial)
+    float _SurfaceTypeSetting;
+    float _UVSpace;
+    float _VertexColourBlendMode;
+    half  _DebuggingIndex;
+    float _LayersCount;
+    float4 _NoiseTexture_TexelSize;
+    float4 _Control0_TexelSize;
+    float4 _Control1_TexelSize;
+    float4 _Control2_TexelSize;
+    float4 _Control3_TexelSize;
+    float4 _Control4_TexelSize;
+    float4 _Control5_TexelSize;
+    float4 _Control6_TexelSize;
+    float4 _Control7_TexelSize;
+    float4 _PropertiesTexture_TexelSize;
+    float4 _AssignedTexturesTexture_TexelSize;
+    float4 _TerrainHoles_TexelSize;
+CBUFFER_END
+
+TEXTURE2D(_TerrainHoles); SAMPLER(sampler_TerrainHoles);
+TEXTURE2D(_Control0); SAMPLER(sampler_Control0);
+TEXTURE2D(_Control1); SAMPLER(sampler_Control1);
+TEXTURE2D(_Control2); SAMPLER(sampler_Control2);
+TEXTURE2D(_Control3); SAMPLER(sampler_Control3);
+TEXTURE2D(_Control4); SAMPLER(sampler_Control4);
+TEXTURE2D(_Control5); SAMPLER(sampler_Control5);
+TEXTURE2D(_Control6); SAMPLER(sampler_Control6);
+TEXTURE2D(_Control7); SAMPLER(sampler_Control7);
+TEXTURE2D(_NoiseTexture);           SAMPLER(sampler_NoiseTexture);
+TEXTURE2D(_PropertiesTexture);      SAMPLER(sampler_PropertiesTexture);
+TEXTURE2D(_AssignedTexturesTexture); SAMPLER(sampler_AssignedTexturesTexture);
+TEXTURE2D_ARRAY(_AVTextures);       SAMPLER(sampler_AVTextures);
+TEXTURE2D_ARRAY(_NSOTextures);      SAMPLER(sampler_NSOTextures);
+TEXTURE2D_ARRAY(_EMTextures);       SAMPLER(sampler_EMTextures);
+TEXTURE2D_ARRAY(_BMTextures);       SAMPLER(sampler_BMTextures);
+
+#include "../../HLSL/Main/SampleRepetitionlessTerrain.hlsl"
+
+// Reuse URP terrain structs
+struct Attributes
+{
+    float4 positionOS : POSITION;
+    float3 normalOS   : NORMAL;
+    float2 texcoord   : TEXCOORD0;
+    UNITY_VERTEX_INPUT_INSTANCE_ID
+};
+
+struct Varyings
+{
+    float4 uvMainAndLM  : TEXCOORD0;
+    float3 normalWS     : TEXCOORD1;
+    float3 positionWS   : TEXCOORD2;
+    half3  vertexSH     : TEXCOORD3;
+    half   fogFactor    : TEXCOORD4;
+    float4 color        : TEXCOORD5;
+    #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
+        float4 shadowCoord : TEXCOORD6;
+    #endif
+    #if defined(DYNAMICLIGHTMAP_ON)
+        float2 dynamicLightmapUV : TEXCOORD7;
+    #endif
+    #ifdef USE_APV_PROBE_OCCLUSION
+        float4 probeOcclusion : TEXCOORD8;
+    #endif
+    float4 clipPos : SV_POSITION;
+    UNITY_VERTEX_OUTPUT_STEREO
+};
+
+Varyings RepetitionlessTerrainVert(Attributes v)
+{
+    Varyings o = (Varyings)0;
+    UNITY_SETUP_INSTANCE_ID(v);
+    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
+    // This is the key call that makes Draw Instanced work
+    TerrainInstancing(v.positionOS, v.normalOS, v.texcoord);
+
+    VertexPositionInputs posInputs = GetVertexPositionInputs(v.positionOS.xyz);
+    o.positionWS    = posInputs.positionWS;
+    o.clipPos       = posInputs.positionCS;
+    o.uvMainAndLM.xy = v.texcoord;
+    o.uvMainAndLM.zw = v.texcoord * unity_LightmapST.xy + unity_LightmapST.zw;
+    #if defined(DYNAMICLIGHTMAP_ON)
+        o.dynamicLightmapUV = v.texcoord * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
+    #endif
+
+    o.normalWS = TransformObjectToWorldNormal(v.normalOS);
+    OUTPUT_SH4(posInputs.positionWS, o.normalWS, GetWorldSpaceNormalizeViewDir(posInputs.positionWS), o.vertexSH, o.probeOcclusion);
+
+    #if !defined(_FOG_FRAGMENT)
+        o.fogFactor = ComputeFogFactor(posInputs.positionCS.z);
+    #endif
+
+    #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
+        o.shadowCoord = TransformWorldToShadowCoord(posInputs.positionWS);
+    #endif
+
+    // Pass vertex color as white since terrain has none
+    o.color = float4(1, 1, 1, 1);
+
+    return o;
+}
+
+half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
+{
+    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
+
+    float2 uv = IN.uvMainAndLM.xy;
+
+    float4 albedo;
+    float3 normalVec;
+    float  metallic;
+    float  smoothness;
+    float  occlusion;
+    float3 emission;
+
+    SampleRepetitionlessTerrain_float(
+        sampler_NoiseTexture,
+        uv,
+        float3(0, 0, 1),
+        normalize(IN.normalWS),
+        IN.positionWS,
+        _WorldSpaceCameraPos,
+        (int)_SurfaceTypeSetting,
+        (int)_UVSpace,
+        (int)_VertexColourBlendMode,
+        (int)_DebuggingIndex,
+        IN.color,
+        (int)_LayersCount,
+
+        _PropertiesTexture,
+        _AssignedTexturesTexture,
+
+        _AVTextures,
+        _NSOTextures,
+        _EMTextures,
+        _BMTextures,
+
+        _NoiseTexture,
+
+        albedo, normalVec, metallic, smoothness, occlusion, emission
+    );
+
+    // Build InputData for URP lighting
+    InputData inputData = (InputData)0;
+    inputData.positionWS        = IN.positionWS;
+    inputData.positionCS        = IN.clipPos;
+    inputData.normalWS          = NormalizeNormalPerPixel(IN.normalWS);
+    inputData.viewDirectionWS   = GetWorldSpaceNormalizeViewDir(IN.positionWS);
+    inputData.shadowCoord       = 
+        #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
+            IN.shadowCoord;
+        #elif defined(MAIN_LIGHT_CALCULATE_SHADOWS)
+            TransformWorldToShadowCoord(IN.positionWS);
+        #else
+            float4(0,0,0,0);
+        #endif
+    //inputData.fogCoord          = InitializeInputDataFog(float4(IN.positionWS, 1.0), IN.fogFactor);
+    //inputData.bakedGI           = SAMPLE_GI(IN.uvMainAndLM.zw, IN.dynamicLightmapUV, IN.vertexSH, inputData.normalWS);
+    inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(IN.clipPos);
+    inputData.shadowMask        = SAMPLE_SHADOWMASK(IN.uvMainAndLM.zw);
+
+    SurfaceData surfaceData = (SurfaceData)0;
+    surfaceData.albedo      = albedo.rgb;
+    surfaceData.metallic    = metallic;
+    surfaceData.smoothness  = smoothness;
+    surfaceData.occlusion   = occlusion;
+    surfaceData.emission    = emission;
+    surfaceData.alpha       = 1;
+    surfaceData.normalTS    = float3(0, 0, 1);
+
+    half4 color = UniversalFragmentPBR(inputData, surfaceData);
+    color.rgb = MixFog(color.rgb, inputData.fogCoord);
+    return color;
+}
+
+#endif

@@ -109,7 +109,7 @@ Material:
     - _REPETITIONLESS_TRIPLANAR: 0
     - _SPECULARHIGHLIGHTS_OFF: 0
     - _SurfaceTypeSetting: 0
-    - _UVSpace: 0
+    - _UVSpace: 1
     - _VertexColourBlendMode: 0
     m_Colors: []
   m_BuildTextureStacks: []
