@@ -10,11 +10,6 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
         _DebuggingIndex("DebuggingIndex", Int) = -1
         _LayersCount("LayersCount", Float) = 1
 
-        [Toggle(_REPETITIONLESS_TRIPLANAR)] _REPETITIONLESS_TRIPLANAR("REPETITIONLESS_TRIPLANAR", Float) = 0
-        [Toggle(_REPETITIONLESS_NOISE_TEXTURE)] _REPETITIONLESS_NOISE_TEXTURE("REPETITIONLESS_NOISE_TEXTURE", Float) = 1
-        [Toggle(_SPECULARHIGHLIGHTS_OFF)] _SPECULARHIGHLIGHTS_OFF("SPECULARHIGHLIGHTS_OFF", Float) = 0
-        [Toggle(_ENVIRONMENTREFLECTIONS_OFF)] _ENVIRONMENTREFLECTIONS_OFF("ENVIRONMENTREFLECTIONS_OFF", Float) = 0
-
         [HideInInspector] _TerrainHoles("TerrainHoles", 2D) = "white" {}
         [HideInInspector] _Control0("Control0", 2D) = "white" {}
         [HideInInspector] _Control1("Control1", 2D) = "black" {}
@@ -33,9 +28,12 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
         [NoScaleOffset] _BMTextures("BMTextures", 2DArray) = "" {}
         [NoScaleOffset] _NoiseTexture("NoiseTexture", 2D) = "white" {}
 
-        // For dependencies
-        [HideInInspector] _MainTex("BaseMap (RGB) Smoothness (A)", 2D) = "grey" {}
-        [HideInInspector] _MetallicTex("Metallic (R)", 2D) = "black" {}
+        // Keywords
+        // Added as properties to trigger properties changed
+        [Toggle(_REPETITIONLESS_TRIPLANAR)] _REPETITIONLESS_TRIPLANAR("REPETITIONLESS_TRIPLANAR", Float) = 0
+        [Toggle(_REPETITIONLESS_NOISE_TEXTURE)] _REPETITIONLESS_NOISE_TEXTURE("REPETITIONLESS_NOISE_TEXTURE", Float) = 1
+        [Toggle(_SPECULARHIGHLIGHTS_OFF)] _SPECULARHIGHLIGHTS_OFF("SPECULARHIGHLIGHTS_OFF", Float) = 0
+        [Toggle(_ENVIRONMENTREFLECTIONS_OFF)] _ENVIRONMENTREFLECTIONS_OFF("ENVIRONMENTREFLECTIONS_OFF", Float) = 0 
     }
 
     HLSLINCLUDE
@@ -93,6 +91,11 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
             #pragma shader_feature_local _MASKMAP            
             // Sample normal in pixel shader when doing instancing
             #pragma shader_feature_local _TERRAIN_INSTANCED_PERPIXEL_NORMAL
+
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
 
             #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl"
             #include "RepetitionlessTerrainPasses.hlsl"
