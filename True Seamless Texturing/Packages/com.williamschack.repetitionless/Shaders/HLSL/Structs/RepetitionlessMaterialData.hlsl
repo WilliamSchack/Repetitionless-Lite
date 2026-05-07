@@ -39,7 +39,6 @@ struct RepetitionlessMaterialData
     bool packedTextureAssigned;
 
     half Metallic;
-
     half SmoothnessRoughness;
 
     // Settings2
