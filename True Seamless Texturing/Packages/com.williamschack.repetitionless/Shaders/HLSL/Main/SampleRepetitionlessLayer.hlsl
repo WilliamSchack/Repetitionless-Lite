@@ -81,6 +81,7 @@ void SampleRepetitionlessLayer_float(
     float materialMask = 0;
     float farDistance  = 0;
 
+#ifdef _REPETITIONLESS_MATERIAL_BLEND
     if (layerData.MaterialBlendEnabled) {
         // Get mask of blended material
         switch (layerData.BlendMaskType) {
@@ -105,6 +106,7 @@ void SampleRepetitionlessLayer_float(
         materialMask = clamp(materialMask, 0, 1);
         materialMask *= layerData.BlendMaskOpacity;
     }
+#endif
 
     // ----------------------- Get Materials To Sample ------------------------- //
 
@@ -119,6 +121,7 @@ void SampleRepetitionlessLayer_float(
     bool samplingDistance = false;
     bool samplingDistanceBlend = false;
 
+#ifdef _REPETITIONLESS_DISTANCE_BLEND
     // Check distance blend
     if (layerData.DistanceBlendEnabled) {
         // Distance Mask
@@ -128,8 +131,10 @@ void SampleRepetitionlessLayer_float(
 
         samplingDistance = farDistance > 0 && (materialMask != 1 || (layerData.MaterialBlendEnabled && !layerData.OverrideDistanceBlend));
     }
+#endif
 
     // Check material blend
+#ifdef _REPETITIONLESS_MATERIAL_BLEND
     if (layerData.MaterialBlendEnabled) {
         samplingBlend = materialMask > 0;
         if (layerData.DistanceBlendEnabled && layerData.OverrideDistanceBlend && layerData.OverrideDistanceBlendTO && farDistance > 0)
@@ -138,6 +143,7 @@ void SampleRepetitionlessLayer_float(
         if (samplingDistanceBlend != 0 && farDistance >= 1)
             samplingBlend = false;
     }
+#endif
 
     // Check base material
     samplingBase = farDistance != 1 && materialMask != 1;
@@ -191,6 +197,7 @@ void SampleRepetitionlessLayer_float(
         );
     }
 
+#ifdef _REPETITIONLESS_DISTANCE_BLEND
     // ----------------------- Distance Material ------------------------- //
     [branch]
     if (samplingDistance) {
@@ -237,7 +244,9 @@ void SampleRepetitionlessLayer_float(
         occlussion = lerp(occlussion, farOcclussion, farDistance);
         emissionColor = lerp(emissionColor, farEmissionColor, farDistance);
     }
+#endif
 
+#ifdef _REPETITIONLESS_MATERIAL_BLEND
     // ----------------------- Blend Material ------------------------- //
     [branch]
     if (samplingBlend) {
@@ -301,6 +310,7 @@ void SampleRepetitionlessLayer_float(
         occlussion = lerp(occlussion, blendOcclussion, lerpFactor);
         emissionColor = lerp(emissionColor, blendEmissionColor, lerpFactor);
     }
+#endif
 
 #ifdef _REPETITIONLESS_TRIPLANAR
         triplanarAlbedo += albedoColor * triplanarWeightsArray[i];

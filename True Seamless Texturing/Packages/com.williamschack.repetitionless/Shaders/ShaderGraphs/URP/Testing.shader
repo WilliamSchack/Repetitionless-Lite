@@ -27,13 +27,6 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
         [NoScaleOffset] _EMTextures("EMTextures", 2DArray) = "" {}
         [NoScaleOffset] _BMTextures("BMTextures", 2DArray) = "" {}
         [NoScaleOffset] _NoiseTexture("NoiseTexture", 2D) = "white" {}
-
-        // Keywords
-        // Added as properties to trigger properties changed
-        [Toggle(_REPETITIONLESS_TRIPLANAR)] _REPETITIONLESS_TRIPLANAR("REPETITIONLESS_TRIPLANAR", Float) = 0
-        [Toggle(_REPETITIONLESS_NOISE_TEXTURE)] _REPETITIONLESS_NOISE_TEXTURE("REPETITIONLESS_NOISE_TEXTURE", Float) = 1
-        [Toggle(_SPECULARHIGHLIGHTS_OFF)] _SPECULARHIGHLIGHTS_OFF("SPECULARHIGHLIGHTS_OFF", Float) = 0
-        [Toggle(_ENVIRONMENTREFLECTIONS_OFF)] _ENVIRONMENTREFLECTIONS_OFF("ENVIRONMENTREFLECTIONS_OFF", Float) = 0 
     }
 
     HLSLINCLUDE
@@ -94,6 +87,8 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
 
             #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
             #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
             #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
 
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
@@ -161,6 +156,8 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
             #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
             #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
             #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
@@ -265,10 +262,6 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
         UsePass "Hidden/Nature/Terrain/Utilities/PICKING"
         UsePass "Hidden/Nature/Terrain/Utilities/SELECTION"
     }
-
-    //Dependency "AddPassShader" = "Hidden/Universal Render Pipeline/Terrain/Lit (Add Pass)"
-    //Dependency "BaseMapShader" = "Hidden/Repetitionless/TerrainBasemapGen"
-    Dependency "BaseMapGenShader" = "Hidden/Repetitionless/TerrainBasemapGen"
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain"
     
