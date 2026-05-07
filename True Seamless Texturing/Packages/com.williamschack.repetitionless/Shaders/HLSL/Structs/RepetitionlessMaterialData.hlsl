@@ -19,7 +19,7 @@ struct RepetitionlessMaterialData
     bool OcclussionAssigned;
     bool EmissionAssigned;
     bool VariationAssigned;
-    bool packedTextureAssigned;
+    bool PackedTextureAssigned;
 
     half Metallic;
     half SmoothnessRoughness;
