@@ -14,15 +14,15 @@ RepetitionlessMaterialData UnpackMaterialData(Texture2D propertiesTexture, int l
     RepetitionlessMaterialData materialData;
 
     // Load from texture
-    half4 settings1            = PropertiesTexture.Load(int3(0 + indexOffset, layerIndex, 0)).rgba;
-    half4 settings2            = PropertiesTexture.Load(int3(1 + indexOffset, layerIndex, 0)).rgba;
-    half4 settings3            = PropertiesTexture.Load(int3(2 + indexOffset, layerIndex, 0)).rgba;
-    half4 settings4            = PropertiesTexture.Load(int3(3 + indexOffset, layerIndex, 0)).rgba;
-    half4 settings5            = PropertiesTexture.Load(int3(4 + indexOffset, layerIndex, 0)).rgba;
-    materialData.AlbedoTint    = PropertiesTexture.Load(int3(5 + indexOffset, layerIndex, 0)).rgba;
-    materialData.EmissionColor = PropertiesTexture.Load(int3(6 + indexOffset, layerIndex, 0)).rgba;
-    materialData.TilingOffset  = PropertiesTexture.Load(int3(7 + indexOffset, layerIndex, 0)).rgba;
-    materialData.VariationTO   = PropertiesTexture.Load(int3(8 + indexOffset, layerIndex, 0)).rgba;
+    half4 settings1            = propertiesTexture.Load(int3(0 + indexOffset, layerIndex, 0)).rgba;
+    half4 settings2            = propertiesTexture.Load(int3(1 + indexOffset, layerIndex, 0)).rgba;
+    half4 settings3            = propertiesTexture.Load(int3(2 + indexOffset, layerIndex, 0)).rgba;
+    half4 settings4            = propertiesTexture.Load(int3(3 + indexOffset, layerIndex, 0)).rgba;
+    half4 settings5            = propertiesTexture.Load(int3(4 + indexOffset, layerIndex, 0)).rgba;
+    materialData.AlbedoTint    = propertiesTexture.Load(int3(5 + indexOffset, layerIndex, 0)).rgba;
+    materialData.EmissionColor = propertiesTexture.Load(int3(6 + indexOffset, layerIndex, 0)).rgba;
+    materialData.TilingOffset  = propertiesTexture.Load(int3(7 + indexOffset, layerIndex, 0)).rgba;
+    materialData.VariationTO   = propertiesTexture.Load(int3(8 + indexOffset, layerIndex, 0)).rgba;
 
     // Unpack
     int  settingToggles                = (int)settings1.x;
@@ -71,11 +71,11 @@ RepetitionlessLayerData UnpackLayerData(Texture2D propertiesTexture, int layerIn
     RepetitionlessLayerData layerData;
 
     // Load from texture
-    half4 distanceBlendSettings          = PropertiesTexture.Load(int3(0 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
-    layerData.blendMaskDistanceTO        = PropertiesTexture.Load(int3(1 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
-    half4 materialBlendSettings          = PropertiesTexture.Load(int3(2 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
-    layerData.materialBlendMaskTO        = PropertiesTexture.Load(int3(3 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
-    half4 materialBlendMaskExtraSettings = PropertiesTexture.Load(int3(4 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+    half4 distanceBlendSettings          = propertiesTexture.Load(int3(0 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+    layerData.blendMaskDistanceTO        = propertiesTexture.Load(int3(1 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+    half4 materialBlendSettings          = propertiesTexture.Load(int3(2 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+    layerData.materialBlendMaskTO        = propertiesTexture.Load(int3(3 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+    half4 materialBlendMaskExtraSettings = propertiesTexture.Load(int3(4 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
 
     // Unpack
     layerData.DistanceBlendEnabled = distanceBlendSettings.x > 0.99 ? true : false;
