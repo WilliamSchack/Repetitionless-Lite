@@ -7,7 +7,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Repetitionless.Editor.TextureUtilities
+namespace Repetitionless.Editor.Utilities.Texture
 {
     /// <summary>
     /// Contains various helper functions for modifying textures

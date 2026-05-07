@@ -8,8 +8,8 @@ using Repetitionless.Runtime.Variables;
 namespace Repetitionless.Editor.Inspectors
 {
     using Materials;
-    using GUIUtilities;
-    using TextureUtilities;
+    using Utilities.GUI;
+    using Utilities.Texture;
     using CustomWindows;
     using CustomDialog;
     using Data;

@@ -9,8 +9,8 @@ using Repetitionless.Runtime.Compression;
 
 namespace Repetitionless.Editor.Data
 {
-    using TextureUtilities;
-    using GUIUtilities;
+    using Utilities.GUI;
+    using Utilities.Texture;
 
     /// <summary>
     /// Stores the textures for a RepetitionlessMaterial<br />

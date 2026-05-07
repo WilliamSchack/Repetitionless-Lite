@@ -11,9 +11,9 @@ using UnityEditor;
 
 using Repetitionless.Runtime.Compression;
 
-namespace Repetitionless.Editor.GUIUtilities
+namespace Repetitionless.Editor.Utilities.GUI
 {
-    using TextureUtilities;
+    using Utilities.Texture;
     using Data;
     using CustomDialog;
 

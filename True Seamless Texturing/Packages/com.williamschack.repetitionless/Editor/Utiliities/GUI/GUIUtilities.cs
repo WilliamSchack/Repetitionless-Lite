@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEditor;
 
-namespace Repetitionless.Editor.GUIUtilities
+namespace Repetitionless.Editor.Utilities.GUI
 {
     /// <summary>
     /// Many GUI functions to make inspector creation easier without MaterialProperties
@@ -107,7 +107,7 @@ namespace Repetitionless.Editor.GUIUtilities
             GUIContent textGUIContent = new GUIContent(text);
             float height = BoldHeaderLargeStyle.CalcHeight(textGUIContent, Screen.width);
             Rect rect = GetLineRect(height);
-            GUI.Label(rect, textGUIContent, BoldHeaderLargeStyle);
+            UnityEngine.GUI.Label(rect, textGUIContent, BoldHeaderLargeStyle);
         }
 
         /// <summary>
@@ -128,14 +128,14 @@ namespace Repetitionless.Editor.GUIUtilities
             EditorGUI.BeginChangeCheck();
             bool enabled = property.floatValue == 1 ? true : false;
 
-            Color prevBackgroundColor = GUI.backgroundColor;
-            GUI.backgroundColor = enabled ? Color.green : Color.red;
+            Color prevBackgroundColor = UnityEngine.GUI.backgroundColor;
+            UnityEngine.GUI.backgroundColor = enabled ? Color.green : Color.red;
 
             enabled = GUILayout.Toggle(enabled, label, MajorToggleButtonStyle);
             if (EditorGUI.EndChangeCheck())
                 property.floatValue = enabled ? 1.0f : 0.0f;
 
-            GUI.backgroundColor = prevBackgroundColor;
+            UnityEngine.GUI.backgroundColor = prevBackgroundColor;
 
             return enabled;
         }
@@ -155,10 +155,10 @@ namespace Repetitionless.Editor.GUIUtilities
         /// </returns>
         public static bool DrawMajorToggleButton(bool enabled, string label)
         {
-            Color prevBackgroundColor = GUI.backgroundColor;
-            GUI.backgroundColor = enabled ? Color.green : Color.red;
+            Color prevBackgroundColor = UnityEngine.GUI.backgroundColor;
+            UnityEngine.GUI.backgroundColor = enabled ? Color.green : Color.red;
             enabled = GUILayout.Toggle(enabled, label, MajorToggleButtonStyle);
-            GUI.backgroundColor = prevBackgroundColor;
+            UnityEngine.GUI.backgroundColor = prevBackgroundColor;
 
             return enabled;
         }
@@ -666,7 +666,7 @@ namespace Repetitionless.Editor.GUIUtilities
             rightRect.width = halfWidth - vector2FieldPadding;
             rightRect.x += halfWidth + vector2FieldPadding;
 
-            GUI.Label(rect, content);
+            UnityEngine.GUI.Label(rect, content);
 
             // Set Label Width (Shortens regular label padding)
             float labelWidth = EditorGUIUtility.labelWidth;
@@ -734,7 +734,7 @@ namespace Repetitionless.Editor.GUIUtilities
             rightRect.width = halfWidth - vector2FieldPadding;
             rightRect.x += halfWidth + vector2FieldPadding;
 
-            GUI.Label(rect, content);
+            UnityEngine.GUI.Label(rect, content);
 
             // Set Label Width (Shortens regular label padding)
             float labelWidth = EditorGUIUtility.labelWidth;

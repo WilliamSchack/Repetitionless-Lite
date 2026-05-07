@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Repetitionless.Editor.TextureUtilities
+namespace Repetitionless.Editor.Utilities.Texture
 {
     /// <summary>
     /// Used to pack multiple textures into a single texture

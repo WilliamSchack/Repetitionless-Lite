@@ -9,9 +9,9 @@ using Repetitionless.Runtime.Variables;
 namespace Repetitionless.Editor.CustomWindows
 {
     using Materials;
-    using GUIUtilities;
     using Config;
     using Updating;
+    using Utilities.GUI;
 
     /// <summary>
     /// The welcome window that is shown when first installing the package

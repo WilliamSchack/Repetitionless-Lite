@@ -2,10 +2,10 @@
   <Project Path="SingularityGroup.HotReload.Editor.csproj" />
   <Project Path="asset-store-tools-editor.csproj" />
   <Project Path="MapMagic.Editor.csproj" />
+  <Project Path="com.williamschack.Repetitionless.Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Den.Tools.csproj" />
   <Project Path="MapMagic.csproj" />
-  <Project Path="com.williamschack.Repetitionless.Editor.csproj" />
   <Project Path="MapMagic.Settings.csproj" />
   <Project Path="Den.Tools.Editor.csproj" />
   <Project Path="NewAssembly.csproj" />
