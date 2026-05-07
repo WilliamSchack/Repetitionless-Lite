@@ -36,7 +36,7 @@ Shader "Hidden/Repetitionless/TerrainBasemapGen"
         {
             HLSLPROGRAM
             #pragma vertex BasemapVert
-            #pragma fragment RepetitionlessTerrainFrag
+            #pragma fragment BasemapFrag
             #pragma target 3.0
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -56,6 +56,11 @@ Shader "Hidden/Repetitionless/TerrainBasemapGen"
                 o.color         = float4(1, 1, 1, 1);
 
                 return o;
+            }
+
+            half4 BasemapFrag(Varyings IN) : SV_Target
+            {
+                return 1;
             }
             ENDHLSL
         }
