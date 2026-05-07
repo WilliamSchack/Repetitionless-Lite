@@ -7,6 +7,24 @@
 // _TerrainHoles
 // _Control{Index}
 
+#if defined(_LAYERS_4)
+#define MAX_LAYERS 4
+#elif defined(_LAYERS_8)
+#define MAX_LAYERS 8
+#elif defined(_LAYERS_12)
+#define MAX_LAYERS 12
+#elif defined(_LAYERS_16)
+#define MAX_LAYERS 16
+#elif defined(_LAYERS_20)
+#define MAX_LAYERS 20
+#elif defined(_LAYERS_24)
+#define MAX_LAYERS 24
+#elif defined(_LAYERS_28)
+#define MAX_LAYERS 28
+#elif defined(_LAYERS_32)
+#define MAX_LAYERS 32
+#endif
+
 #define R_SAMPLE_CONTROL(i, uv) (i * 4) < LayersCount ? SAMPLE_TEXTURE2D(_Control##i, sampler_Control##i, uv) : 0
 
 void SampleRepetitionlessTerrain(
@@ -61,14 +79,36 @@ void SampleRepetitionlessTerrain(
     // Sample control textures
     half4 controlColours[8] = {
         R_SAMPLE_CONTROL(0, UV),
-        R_SAMPLE_CONTROL(1, UV),
-        R_SAMPLE_CONTROL(2, UV),
-        R_SAMPLE_CONTROL(3, UV),
-        R_SAMPLE_CONTROL(4, UV),
-        R_SAMPLE_CONTROL(5, UV),
-        R_SAMPLE_CONTROL(6, UV),
-        R_SAMPLE_CONTROL(7, UV)
+        half4(0, 0, 0, 0),
+        half4(0, 0, 0, 0),
+        half4(0, 0, 0, 0),
+        half4(0, 0, 0, 0),
+        half4(0, 0, 0, 0),
+        half4(0, 0, 0, 0),
+        half4(0, 0, 0, 0)
     };
+
+#if MAX_LAYERS > 4
+    controlColours[1] = R_SAMPLE_CONTROL(1, UV)
+#endif
+#if MAX_LAYERS > 8
+    controlColours[2] = R_SAMPLE_CONTROL(2, UV)
+#endif
+#if MAX_LAYERS > 12
+    controlColours[3] = R_SAMPLE_CONTROL(3, UV)
+#endif
+#if MAX_LAYERS > 16
+    controlColours[4] = R_SAMPLE_CONTROL(4, UV)
+#endif
+#if MAX_LAYERS > 20
+    controlColours[5] = R_SAMPLE_CONTROL(5, UV)
+#endif
+#if MAX_LAYERS > 24
+    controlColours[6] = R_SAMPLE_CONTROL(6, UV)
+#endif
+#if MAX_LAYERS > 28
+    controlColours[7] = R_SAMPLE_CONTROL(7, UV)
+#endif
     
     // Get individual weights and sum
     half controlWeights[32];
@@ -112,8 +152,10 @@ void SampleRepetitionlessTerrain(
 
     // Sample Layers
     [loop]
-    for (int i = 0; i < LayersCount; i++) {
+    for (int i = 0; i < MAX_LAYERS; i++) {
         half layerControl = controlWeights[i];
+
+        [branch]
         if (layerControl == 0)
             continue;
 
