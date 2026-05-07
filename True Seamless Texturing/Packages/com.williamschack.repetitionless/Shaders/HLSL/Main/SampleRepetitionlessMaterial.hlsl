@@ -78,16 +78,16 @@ void SampleRepetitionlessMaterial(
 
     // Get Macro/Micro Variation Multiplier
     float variationColor = 0;
-    if (MaterialData.VariationEnabled && variationOpacity > 0) {
+    if (MaterialData.VariationEnabled && MaterialData.VariationOpacity > 0) {
         switch (MaterialData.VariationMode) {
             case 0: // Perlin Noise
-                variationColor = MacroMicroVariationPerlinNoise(MaterialData.VariationSmallScale, MaterialData.VariationMediumScale, MaterialData.VariationLargeScale, MaterialData.variationBrightness, MaterialData.VariationNoiseStrength, oriUV, MaterialData.VariationTO.x, MaterialData.VariationTO.zw);
+                variationColor = MacroMicroVariationPerlinNoise(MaterialData.VariationSmallScale, MaterialData.VariationMediumScale, MaterialData.VariationLargeScale, MaterialData.VariationBrightness, MaterialData.VariationNoiseStrength, oriUV, MaterialData.VariationTO.x, MaterialData.VariationTO.zw);
                 break;
             case 1: // Simplex Noise
-                variationColor = MacroMicroVariationSimplexNoise(MaterialData.VariationSmallScale, MaterialData.VariationMediumScale, MaterialData.VariationLargeScale, MaterialData.variationBrightness, MaterialData.VariationNoiseStrength, oriUV, MaterialData.VariationTO.x, MaterialData.VariationTO.zw);
+                variationColor = MacroMicroVariationSimplexNoise(MaterialData.VariationSmallScale, MaterialData.VariationMediumScale, MaterialData.VariationLargeScale, MaterialData.VariationBrightness, MaterialData.VariationNoiseStrength, oriUV, MaterialData.VariationTO.x, MaterialData.VariationTO.zw);
                 break;
             case 2: // Custom Texture
-                variationColor = MacroMicroVariationTextureArray(MaterialData.VariationSmallScale, MaterialData.VariationMediumScale, MaterialData.VariationLargeScale, MaterialData.variationBrightness, AVTextures, AssignedAVTextures, ArrayLayerIndex, 3, SS, oriUV, MaterialData.VariationTO.xy, MaterialData.VariationTO.zw);
+                variationColor = MacroMicroVariationTextureArray(MaterialData.VariationSmallScale, MaterialData.VariationMediumScale, MaterialData.VariationLargeScale, MaterialData.VariationBrightness, AVTextures, AssignedAVTextures, ArrayLayerIndex, 3, SS, oriUV, MaterialData.VariationTO.xy, MaterialData.VariationTO.zw);
                 break;
         }
     }

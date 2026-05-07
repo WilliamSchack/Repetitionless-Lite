@@ -60,7 +60,7 @@ void SampleRepetitionlessLayer_float(
     RepetitionlessMaterialData farMaterialData;
     RepetitionlessMaterialData blendMaterialData;
     RepetitionlessLayerData    layerData;
-    UnpackPropertiesTexture(PropertiesTexture, LayerIndex, out baseMaterialData, out farMaterialData, out blendMaterialData, out layerData);
+    UnpackPropertiesTexture(PropertiesTexture, LayerIndex, baseMaterialData, farMaterialData, blendMaterialData, layerData);
 
     // Construct array assigned textures
     int assignedAVTexturesArray[]  = { AssignedAVTextures0,  AssignedAVTextures1,  AssignedAVTextures2  };
