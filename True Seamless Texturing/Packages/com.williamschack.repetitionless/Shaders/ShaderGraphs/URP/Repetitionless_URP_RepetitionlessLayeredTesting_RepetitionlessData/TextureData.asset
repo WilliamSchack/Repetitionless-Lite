@@ -995,7 +995,7 @@ MonoBehaviour:
         To: 0
   - BaseMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 2800000, guid: daee198857f519c458551e729a92adc7, type: 3}
+      - Texture: {fileID: 2800000, guid: eb04da16cbc16c9488332336fb11b965, type: 3}
         Disabled: 0
         DataTexture: 0
         NormalMap: 0
@@ -1014,7 +1014,7 @@ MonoBehaviour:
         - From: 0
           To: 3
       NSOTextures:
-      - Texture: {fileID: 2800000, guid: 978e11152c6b6844f81a7510de6195e0, type: 3}
+      - Texture: {fileID: 0}
         Disabled: 0
         DataTexture: 1
         NormalMap: 1
@@ -2710,7 +2710,7 @@ MonoBehaviour:
         To: 0
   - BaseMaterialTextures:
       AVTextures:
-      - Texture: {fileID: 0}
+      - Texture: {fileID: 2800000, guid: eb04da16cbc16c9488332336fb11b965, type: 3}
         Disabled: 0
         DataTexture: 0
         NormalMap: 0
@@ -2739,21 +2739,21 @@ MonoBehaviour:
         - From: 1
           To: 1
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 2
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
-        Disabled: 1
+        Disabled: 0
         DataTexture: 1
         NormalMap: 0
         FromToChannels:
@@ -2774,14 +2774,14 @@ MonoBehaviour:
         - From: 2
           To: 2
       - Texture: {fileID: 0}
-        Disabled: 0
+        Disabled: 1
         DataTexture: 1
         NormalMap: 0
         FromToChannels:
         - From: 0
           To: 3
       - Texture: {fileID: 0}
-        Disabled: 1
+        Disabled: 0
         DataTexture: 1
         NormalMap: 0
         FromToChannels:
@@ -7853,8 +7853,8 @@ MonoBehaviour:
       FromToChannels:
       - From: 0
         To: 0
-  _assignedAVTextures: 499224400000000000000000
-  _assignedNSOTextures: 499224400000000000000000
+  _assignedAVTextures: 499224400200000000000000
+  _assignedNSOTextures: 498224400000000000000000
   _assignedEMTextures: 000000000000000000000000
   _assignedBMTextures: 0
   PackedColourSpace: 1

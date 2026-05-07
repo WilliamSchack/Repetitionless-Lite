@@ -9,7 +9,7 @@ using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Data
 {
-    using TextureUtilities;
+    using Utilities.Texture;
 
     public class RepetitionlessLayeredDataSO : ScriptableObject
     {
@@ -26,7 +26,6 @@ namespace Repetitionless.Editor.Data
         [SerializeField] public ELayerMode LayerMode = ELayerMode.TerrainLayers;
 
         [SerializeField] public EMaxLayers MaxLayers = EMaxLayers.Four;
-        [SerializeField] public bool AutoUpdateMaxLayers = true;
 
         // 8 Control textures, 4 channels/textures per
         [SerializeField] public ControlTexture[] ControlTextures = new ControlTexture[Constants.MAX_LAYERS_TERRAIN / 4];

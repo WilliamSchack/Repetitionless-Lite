@@ -10,7 +10,8 @@ using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Data
 {
-    using GUIUtilities;
+    using Utilities.GUI;
+    using Utilities.Types;
 
     /// <summary>
     /// Stores the terrain data for a Repetitionless material
@@ -35,6 +36,22 @@ namespace Repetitionless.Editor.Data
             }
         }
 
+        private RepetitionlessLayeredDataSO _layeredDataCache;
+        private RepetitionlessLayeredDataSO _layeredData {
+            get {
+                if (_layeredDataCache != null)
+                    return _layeredDataCache;
+
+                _layeredDataCache = _dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
+                return _layeredDataCache;
+            }
+        }
+
+        /// <summary>
+        /// If the max layers is updated automatically with terrain layers
+        /// </summary>
+        public bool AutoUpdateMaxLayers = true;
+
         /// <summary>
         /// Toggles if textures and settings are automatically saved and loaded to and from the terrain layers
         /// </summary>
@@ -58,7 +75,19 @@ namespace Repetitionless.Editor.Data
         /// </param>
         public void UpdateTerrainLayers(TerrainLayer[] layers)
         {
+            // Update Layers
             _terrainLayers = layers.ToList();
+
+            // Update max layers if auto is set
+            if (AutoUpdateMaxLayers) {
+                // If not within the set 4, update
+                int maxLayers = (int)_layeredData.MaxLayers;
+                if (_terrainLayers.Count <= maxLayers - 4)
+                    _layeredData.MaxLayers = _layeredData.MaxLayers.Previous();
+                else if (_terrainLayers.Count > maxLayers)
+                    _layeredData.MaxLayers = _layeredData.MaxLayers.Next();
+            }
+
             Save();
         }
 

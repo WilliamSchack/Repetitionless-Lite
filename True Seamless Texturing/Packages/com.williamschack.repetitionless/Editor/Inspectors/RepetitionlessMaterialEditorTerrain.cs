@@ -9,9 +9,9 @@ using Repetitionless.Runtime.Variables;
 namespace Repetitionless.Editor.Inspectors
 {
     using Data;
-    using GUIUtilities;
     using Materials;
-    using TextureUtilities;
+    using Utilities.GUI;
+    using Utilities.Texture;
 
     /// <summary>
     /// The editor for the terrain repetitionless material
@@ -246,7 +246,7 @@ namespace Repetitionless.Editor.Inspectors
                 return;
             }
 
-            _layeredData.AutoUpdateMaxLayers = EditorGUILayout.Toggle(new GUIContent("Auto Update Max Layers"), _layeredData.AutoUpdateMaxLayers);
+            _materialTerrainData.AutoUpdateMaxLayers = EditorGUILayout.Toggle(new GUIContent("Auto Update Max Layers"), _materialTerrainData.AutoUpdateMaxLayers);
 
             if (_terrainLayers.Count > (int)_layeredData.MaxLayers) {
                 EditorGUILayout.HelpBox($"You have {_terrainLayers.Count} terrain layers synced with a max of {(int)_layeredData.MaxLayers} layers.\nAll layers past {(int)_layeredData.MaxLayers} will not be shown, change Max Layers above to allow more layers.", MessageType.Warning);

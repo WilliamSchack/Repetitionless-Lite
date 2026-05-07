@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: TerrainData
   m_EditorClassIdentifier: com.williamschack.Repetitionless.Editor::Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
   _terrainLayers: []
+  AutoUpdateMaxLayers: 1
   AutoSyncLayers: 1

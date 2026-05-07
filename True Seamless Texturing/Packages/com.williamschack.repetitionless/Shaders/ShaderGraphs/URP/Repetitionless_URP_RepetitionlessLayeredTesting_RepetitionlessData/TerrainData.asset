@@ -17,11 +17,5 @@ MonoBehaviour:
   - {fileID: 8574412962073106934, guid: dbd5cac43e2888e42b956cba46f3d44f, type: 2}
   - {fileID: 8574412962073106934, guid: cf3df7d7519ee014ebecbfe99c6cab3a, type: 2}
   - {fileID: 8574412962073106934, guid: 240ea90774073d84cb4ef9b3c461e28c, type: 2}
-  - {fileID: 8574412962073106934, guid: 7732cc8dee1912c49a1360eadcaff136, type: 2}
-  - {fileID: 8574412962073106934, guid: e39b942f8ed869c40ad7372f683af5c0, type: 2}
-  - {fileID: 8574412962073106934, guid: 3185de1f46d009e48b933908c89757e5, type: 2}
-  - {fileID: 8574412962073106934, guid: 7c17b19db75f2d444a47cc02d70b12b5, type: 2}
-  - {fileID: 8574412962073106934, guid: cf3df7d7519ee014ebecbfe99c6cab3a, type: 2}
-  - {fileID: 8574412962073106934, guid: 240ea90774073d84cb4ef9b3c461e28c, type: 2}
-  - {fileID: 8574412962073106934, guid: 659a6b9d07c116a4599fe24a08162ff2, type: 2}
+  AutoUpdateMaxLayers: 1
   AutoSyncLayers: 1
