@@ -415,7 +415,6 @@ namespace Repetitionless.Editor.Inspectors
                 return;
 
             _materialTerrainData = RepetitionlessTerrainMaterialUtilities.SetupTerrainData(_dataManager);
-            _material.SetOverrideTag("TerrainCompatible", "True");
         }
 
         private void SaveMaterialToLayer(int layerIndex)

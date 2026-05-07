@@ -465,6 +465,7 @@ namespace Repetitionless.Editor.Inspectors
 
         private void UpdateDistanceBlendKeyword()
         {
+            // If its enabled at all, enable the keyword, otherwise disable
             bool enabled = false;
             foreach (RepetitionlessLayerData currentLayerData in _materialProperties.Data) {
                 if (currentLayerData.DistanceBlendEnabled) {
@@ -478,6 +479,7 @@ namespace Repetitionless.Editor.Inspectors
 
         private void UpdateMaterialBlendKeyword()
         {
+            // If its enabled at all, enable the keyword, otherwise disable
             bool enabled = false;
             foreach (RepetitionlessLayerData currentLayerData in _materialProperties.Data) {
                 if (currentLayerData.MaterialBlendEnabled) {
@@ -487,6 +489,26 @@ namespace Repetitionless.Editor.Inspectors
             }
 
             RepetitionlessMaterialUtilities.SetBoolKeyword(_material, Constants.MATERIAL_BLEND_KEYWORD, enabled);
+        }
+
+        private void UpdateVariationKeyword()
+        {
+            // If its enabled at all, enable the keyword, otherwise disable
+            bool enabled = false;
+            for (int layer = 0; layer < _maxLayers; layer++) {
+                for (int section = 0; section < 3; section++) {
+                    RepetitionlessMaterialData materialData = GetMaterialData(layer, section);
+                    if (materialData.VariationEnabled) {
+                        enabled = true;
+                        break;
+                    }
+                }
+
+                if (enabled)
+                    break;
+            }
+
+            RepetitionlessMaterialUtilities.SetBoolKeyword(_material, Constants.VARIATION_KEYWORD, enabled);
         }
 
         private void SetNoiseQuality(ENoiseQuality noiseQuality)
@@ -928,8 +950,12 @@ namespace Repetitionless.Editor.Inspectors
             if (showVariation) {
                 EditorGUI.BeginChangeCheck();
                 DrawProperty(layerIndex, () => currentData.VariationEnabled = GUILayout.Toggle(currentData.VariationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color\n\nUsing a custom texture can cause visible tiling"), "Button"));
-                if (EditorGUI.EndChangeCheck() && currentData.VariationMode == EVariationType.CustomTexture)
-                    UpdateVariationTexture(layerIndex, sectionIndex, EVariationType.PerlinNoise, !currentData.VariationEnabled);
+                if (EditorGUI.EndChangeCheck()) {
+                    UpdateVariationKeyword();
+
+                    if (currentData.VariationMode == EVariationType.CustomTexture)
+                        UpdateVariationTexture(layerIndex, sectionIndex, EVariationType.PerlinNoise, !currentData.VariationEnabled);
+                }
             }
         }
 

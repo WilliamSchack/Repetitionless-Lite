@@ -19,9 +19,6 @@ namespace Repetitionless.Editor.Materials
 
             // Update default global tiling offset
             materialProperties.SetGlobalTilingOffset(Constants.DEFAULT_TILING_OFFSET_TERRAIN);
-
-            // Set terrain compatible tag
-            mat.SetOverrideTag("TerrainCompatible", "True");
         }
 
         public static RepetitionlessLayeredDataSO SetupLayeredData(MaterialDataManager dataManager)
