@@ -78,6 +78,7 @@ void SampleRepetitionlessMaterial(
 
     // Get Macro/Micro Variation Multiplier
     float variationColor = 0;
+    [branch]
     if (MaterialData.VariationEnabled && MaterialData.VariationOpacity > 0) {
         switch (MaterialData.VariationMode) {
             case 0: // Perlin Noise
@@ -120,9 +121,17 @@ void SampleRepetitionlessMaterial(
     float4 avTexture = 0;
     float4 nsoTexture = 0;
     float4 emTexture = 0;
-    if (samplingAV)  avTexture  = SampleRepetitionlessArrayTexture(AVTextures,  AssignedAVTextures,  ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
-    if (samplingNSO) nsoTexture = SampleRepetitionlessArrayTexture(NSOTextures, AssignedNSOTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
-    if (samplingEM)  emTexture  = SampleRepetitionlessArrayTexture(EMTextures,  AssignedEMTextures,  ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+    [branch]
+    if (samplingAV) 
+        avTexture  = SampleRepetitionlessArrayTexture(AVTextures,  AssignedAVTextures,  ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+
+    [branch]
+    if (samplingNSO)
+        nsoTexture = SampleRepetitionlessArrayTexture(NSOTextures, AssignedNSOTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+
+    [branch]
+    if (samplingEM)
+        emTexture  = SampleRepetitionlessArrayTexture(EMTextures,  AssignedEMTextures,  ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
 
     // Albedo
     AlbedoColorOut = samplingAV ? float4(avTexture.rgb, 1) : 1;

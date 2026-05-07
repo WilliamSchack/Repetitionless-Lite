@@ -180,6 +180,7 @@ void SampleRepetitionlessLayer_float(
 #endif
 
     // ----------------------- Base Material ------------------------- //
+    [branch]
     if (samplingBase) {
         SampleRepetitionlessMaterial(
             SS, UV, WorldNormalVector, SurfaceType, DebuggingIndex,
@@ -191,6 +192,7 @@ void SampleRepetitionlessLayer_float(
     }
 
     // ----------------------- Distance Material ------------------------- //
+    [branch]
     if (samplingDistance) {
         float4 farAlbedoColor = 1;
         float3 farNormalVector = WorldNormalVector;
@@ -237,6 +239,7 @@ void SampleRepetitionlessLayer_float(
     }
 
     // ----------------------- Blend Material ------------------------- //
+    [branch]
     if (samplingBlend) {
         float4 blendAlbedoColor = 1;
         float3 blendNormalVector = WorldNormalVector;
@@ -265,6 +268,7 @@ void SampleRepetitionlessLayer_float(
     // ----------------------- Distance Blend Material ------------------------- //
     // Only used when the blend tiling offset is changed at a distance
 
+    [branch]
     if (samplingDistanceBlend) {
         float4 blendAlbedoColor = 1;
         float3 blendNormalVector = WorldNormalVector;
