@@ -12,13 +12,14 @@ namespace Repetitionless.Editor.Inspectors
     using GUIUtilities;
     using Materials;
     using TextureUtilities;
-    using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 
     /// <summary>
     /// The editor for the terrain repetitionless material
     /// </summary>
     public class RepetitionlessMaterialEditorTerrain : RepetitionlessMaterialEditorBase
     {
+        private const int MAX_LAYER_OFFSET_WARNING = 8; 
+
         /// <summary>
         /// The max amount of layers for the material
         /// </summary>
@@ -134,7 +135,7 @@ namespace Repetitionless.Editor.Inspectors
 
             bool terrainNotAvailable = _layeredData.LayerMode == ELayerMode.TerrainLayers && (_terrainLayers == null || _terrainLayers.Count == 0);
             if (terrainNotAvailable) GUI.enabled = false;
-            _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _layeredData.LayerMode == ELayerMode.TerrainLayers && !terrainNotAvailable ? _terrainLayers.Count : _maxLayers) - 1;
+            _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _layeredData.LayerMode == ELayerMode.TerrainLayers && !terrainNotAvailable ? Mathf.Min(_terrainLayers.Count, (int)_layeredData.MaxLayers) : (int)_layeredData.MaxLayers) - 1;
             if (terrainNotAvailable) GUI.enabled = true;
 
             EditorGUI.BeginChangeCheck();
@@ -148,6 +149,8 @@ namespace Repetitionless.Editor.Inspectors
             EditorGUI.BeginChangeCheck();
             _layeredData.MaxLayers = (EMaxLayers)EditorGUILayout.EnumPopup(new GUIContent("Max Layers"), _layeredData.MaxLayers);
             if (EditorGUI.EndChangeCheck()) {
+                _currentLayerIndex = Mathf.Min(_currentLayerIndex, (int)_layeredData.MaxLayers - 1);
+
                 RepetitionlessMaterialUtilities.SetEnumKeyword(_material, $"_LAYERS_", _layeredData.MaxLayers);
                 _materialProperties.CallOnExternalDataChanged();
             }
@@ -243,11 +246,13 @@ namespace Repetitionless.Editor.Inspectors
                 return;
             }
 
-            bool test = EditorGUILayout.Toggle(new GUIContent("Auto Update Max Layers"), true);
+            _layeredData.AutoUpdateMaxLayers = EditorGUILayout.Toggle(new GUIContent("Auto Update Max Layers"), _layeredData.AutoUpdateMaxLayers);
 
-            EditorGUILayout.HelpBox("You have 13 terrain layers synced with a max of 4 layers.\nAll layers past 4 will not be shown, change Max Layers above to allow more layers.", MessageType.Warning);
-
-            EditorGUILayout.HelpBox("You have a max of 20 terrain layers with only 4 assigned.\nChange Max Layers to a lower amount, you are wasting performance.", MessageType.Error);
+            if (_terrainLayers.Count > (int)_layeredData.MaxLayers) {
+                EditorGUILayout.HelpBox($"You have {_terrainLayers.Count} terrain layers synced with a max of {(int)_layeredData.MaxLayers} layers.\nAll layers past {(int)_layeredData.MaxLayers} will not be shown, change Max Layers above to allow more layers.", MessageType.Warning);
+            } else if (_terrainLayers.Count < (int)_layeredData.MaxLayers - MAX_LAYER_OFFSET_WARNING) {
+                EditorGUILayout.HelpBox($"You have a max of {(int)_layeredData.MaxLayers} terrain layers with only {_terrainLayers.Count} assigned.\nChange Max Layers to a lower amount, you are wasting performance.", MessageType.Error);
+            }
 
             GUILayout.Space(10);
 
