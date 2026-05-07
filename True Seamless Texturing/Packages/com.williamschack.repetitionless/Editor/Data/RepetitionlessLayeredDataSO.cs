@@ -25,6 +25,8 @@ namespace Repetitionless.Editor.Data
 
         [SerializeField] public ELayerMode LayerMode = ELayerMode.TerrainLayers;
 
+        [SerializeField] public EMaxLayers MaxLayers = EMaxLayers.Four;
+
         // 8 Control textures, 4 channels/textures per
         [SerializeField] public ControlTexture[] ControlTextures = new ControlTexture[Constants.MAX_LAYERS_TERRAIN / 4];
         [SerializeField] private Texture2D[] _packedControlTextures = new Texture2D[Constants.MAX_LAYERS_TERRAIN / 4];

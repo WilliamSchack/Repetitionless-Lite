@@ -171,13 +171,13 @@ namespace Repetitionless.Runtime.Variables
 
     public enum EMaxLayers
     {
-        Four,
-        Eight,
-        Twelve,
-        Sixteen,
-        Twenty,
-        TwentyFour,
-        TwentyEight,
-        ThirtyTwo
+        Four = 4,
+        Eight = 8,
+        Twelve = 12,
+        Sixteen = 16,
+        Twenty = 20,
+        TwentyFour = 24,
+        TwentyEight = 28,
+        ThirtyTwo = 32
     }
 }

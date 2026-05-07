@@ -145,7 +145,12 @@ namespace Repetitionless.Editor.Inspectors
                 _materialProperties.CallOnExternalDataChanged();
             }
 
-            EMaxLayers test = (EMaxLayers)EditorGUILayout.EnumPopup(new GUIContent("Max Layers"), EMaxLayers.Four);
+            EditorGUI.BeginChangeCheck();
+            _layeredData.MaxLayers = (EMaxLayers)EditorGUILayout.EnumPopup(new GUIContent("Max Layers"), _layeredData.MaxLayers);
+            if (EditorGUI.EndChangeCheck()) {
+                RepetitionlessMaterialUtilities.SetEnumKeyword(_material, $"_LAYERS_", _layeredData.MaxLayers);
+                _materialProperties.CallOnExternalDataChanged();
+            }
 
             switch (_layeredData.LayerMode) {
                 case ELayerMode.ControlTextures:
