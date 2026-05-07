@@ -145,6 +145,8 @@ namespace Repetitionless.Editor.Inspectors
                 _materialProperties.CallOnExternalDataChanged();
             }
 
+            EMaxLayers test = (EMaxLayers)EditorGUILayout.EnumPopup(new GUIContent("Max Layers"), EMaxLayers.Four);
+
             switch (_layeredData.LayerMode) {
                 case ELayerMode.ControlTextures:
                     DrawControlTextureSettings();
@@ -236,11 +238,17 @@ namespace Repetitionless.Editor.Inspectors
                 return;
             }
 
+            bool test = EditorGUILayout.Toggle(new GUIContent("Auto Update Max Layers"), true);
+
+            EditorGUILayout.HelpBox("You have 13 terrain layers synced with a max of 4 layers.\nAll layers past 4 will not be shown, change Max Layers above to allow more layers.", MessageType.Warning);
+
+            EditorGUILayout.HelpBox("You have a max of 20 terrain layers with only 4 assigned.\nChange Max Layers to a lower amount, you are wasting performance.", MessageType.Error);
+
+            GUILayout.Space(10);
+
             GUI.enabled = false;
             EditorGUILayout.ObjectField(new GUIContent("Terrain Layer", "The terrain layer that is being used for these fields. Modifying these fields that are in the layer will also update that layers fields."), _terrainLayers[_currentLayerIndex], typeof(TerrainLayer), false);
             GUI.enabled = true;
-
-            GUILayout.Space(10);
 
             GUILayout.BeginHorizontal();
             
