@@ -77,6 +77,7 @@ void SampleRepetitionlessMaterial(
     bool sampleEdges = edgeMask > 0;
 
     // Get Macro/Micro Variation Multiplier
+#ifdef _REPETITIONLESS_VARIATION
     float variationColor = 0;
     [branch]
     if (MaterialData.VariationEnabled && MaterialData.VariationOpacity > 0) {
@@ -92,6 +93,7 @@ void SampleRepetitionlessMaterial(
                 break;
         }
     }
+#endif
 
     // Debugging
     if (DebuggingIndex != -1) {
@@ -102,9 +104,11 @@ void SampleRepetitionlessMaterial(
             case 1: // Edge Mask
                 AlbedoColorOut = edgeMask;
                 break;
+#ifdef _REPETITIONLESS_VARIATION
             case 4: // Variation Colour
                 AlbedoColorOut = variationColor;
                 break;
+#endif
             default:
                 AlbedoColorOut = 0;
                 break;
@@ -142,10 +146,12 @@ void SampleRepetitionlessMaterial(
     if (SurfaceType == 1)
         clip(AlbedoColorOut.a - MaterialData.AlphaClipping);
     
+#ifdef _REPETITIONLESS_VARIATION
     // Macro/Micro Variation
     if (MaterialData.VariationEnabled && MaterialData.VariationOpacity > 0)
         AlbedoColorOut = lerp(AlbedoColorOut, variationColor * AlbedoColorOut, MaterialData.VariationOpacity);
-    
+#endif
+
     // Normal Map
     float3 normalTS = MaterialData.NormalAssigned ? UnpackNormalMap(float4(nsoTexture.rg, 1, 1), MaterialData.NormalScale) : float3(0, 0, 1); // Fallback to default tangent space normal
     NormalVectorOut = normalize(WorldNormalVector + float3(normalTS.x, normalTS.y, 0));

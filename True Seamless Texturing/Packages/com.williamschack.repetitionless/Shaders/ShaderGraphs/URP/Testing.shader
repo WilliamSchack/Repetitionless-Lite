@@ -85,10 +85,11 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
             // Sample normal in pixel shader when doing instancing
             #pragma shader_feature_local _TERRAIN_INSTANCED_PERPIXEL_NORMAL
 
-            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
-            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
             #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
             #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
             #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
 
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
@@ -154,10 +155,10 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
             #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
-            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
-            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
             #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
             #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
             #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
