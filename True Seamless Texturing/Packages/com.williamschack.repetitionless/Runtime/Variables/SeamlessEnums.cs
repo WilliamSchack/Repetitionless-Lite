@@ -168,4 +168,16 @@ namespace Repetitionless.Runtime.Variables
         /// </summary>
         ControlTextures
     }
+
+    public enum EMaxLayers
+    {
+        Four,
+        Eight,
+        Twelve,
+        Sixteen,
+        Twenty,
+        TwentyFour,
+        TwentyEight,
+        ThirtyTwo
+    }
 }
