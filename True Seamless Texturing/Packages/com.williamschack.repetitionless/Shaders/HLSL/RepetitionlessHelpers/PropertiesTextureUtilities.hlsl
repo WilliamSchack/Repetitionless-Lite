@@ -68,7 +68,33 @@ RepetitionlessMaterialData UnpackMaterialData(Texture2D propertiesTexture, int i
 
 RepetitionlessLayerData UnpackLayerData(Texture2D propertiesTexture, int layerIndex)
 {
+    RepetitionlessLayerData layerData;
 
+    // Load from texture
+    half4 distanceBlendSettings          = PropertiesTexture.Load(int3(0 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+    layerData.blendMaskDistanceTO        = PropertiesTexture.Load(int3(1 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+    half4 materialBlendSettings          = PropertiesTexture.Load(int3(2 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+    layerData.materialBlendMaskTO        = PropertiesTexture.Load(int3(3 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+    half4 materialBlendMaskExtraSettings = PropertiesTexture.Load(int3(4 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+
+    // Unpack
+    layerData.DistanceBlendEnabled = distanceBlendSettings.x > 0.99 ? true : false;
+    layerData.DistanceBlendMode    = distanceBlendSettings.y;
+    layerData.DistanceBlendMinMax  = distanceBlendSettings.zw;
+
+    int materialBlendSettingsUnpacked = (int)materialBlendSettings;
+    layerData.MaterialBlendEnabled    = GetCompressedValue(materialBlendSettingsUnpacked, 0);
+    layerData.BlendMaskAssigned       = GetCompressedValue(materialBlendSettingsUnpacked, 1);
+    layerData.OverrideDistanceBlend   = GetCompressedValue(materialBlendSettingsUnpacked, 2);
+    layerData.OverrideDistanceBlendTO = GetCompressedValue(materialBlendSettingsUnpacked, 3);
+    
+    layerData.BlendMaskType     = materialBlendSettings.y;
+    layerData.BlendMaskOpacity  = materialBlendSettings.z;
+    layerData.BlendMaskStrength = materialBlendSettings.w;
+
+    layerData.BlendMaskVertexColourThreshold = materialBlendMaskExtraSettings.xy;
+
+    return layerData;
 }
 
 void UnpackPropertiesTexture()

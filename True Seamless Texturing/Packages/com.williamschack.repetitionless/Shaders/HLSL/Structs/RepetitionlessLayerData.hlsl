@@ -4,8 +4,8 @@
 struct RepetitionlessLayerData
 {
     // DistanceBlendSettings
-    bool DistanceBlendEnabled;
-    int DistanceBlendMode;
+    bool  DistanceBlendEnabled;
+    int   DistanceBlendMode;
     half2 DistanceBlendMinMax;
 
     // MaterialBlendSettings
@@ -14,7 +14,7 @@ struct RepetitionlessLayerData
     bool OverrideDistanceBlend;
     bool OverrideDistanceBlendTO;
 
-    int BlendMaskType;
+    int  BlendMaskType;
     half BlendMaskOpacity;
     half BlendMaskStrength;
 
