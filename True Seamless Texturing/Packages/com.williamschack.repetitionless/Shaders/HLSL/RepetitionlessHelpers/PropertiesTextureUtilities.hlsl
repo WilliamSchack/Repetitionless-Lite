@@ -9,7 +9,7 @@
 #define REPETITIONLESS_MATERIAL_PACKED_VARIABLE_COUNT 9
 #define REPETITIONLESS_LAYER_DATA_OFFSET REPETITIONLESS_MATERIAL_PACKED_VARIABLE_COUNT * 3
 
-RepetitionlessMaterialData UnpackMaterialData(Texture2D propertiesTexture, int indexOffset, int layerIndex)
+RepetitionlessMaterialData UnpackMaterialData(Texture2D propertiesTexture, int layerIndex, int indexOffset)
 {
     RepetitionlessMaterialData materialData;
 
@@ -97,9 +97,17 @@ RepetitionlessLayerData UnpackLayerData(Texture2D propertiesTexture, int layerIn
     return layerData;
 }
 
-void UnpackPropertiesTexture()
-{
-
+void UnpackPropertiesTexture(
+    Texture2D propertiesTexture, int layerIndex,
+    out RepetitionlessMaterialData baseMaterialData,
+    out RepetitionlessMaterialData farMaterialData,
+    out RepetitionlessMaterialData blendMaterialData,
+    out RepetitionlessLayerData layerData
+){
+    baseMaterialData  = UnpackMaterialData(propertiesTexture, layerIndex, 0);
+    farMaterialData   = UnpackMaterialData(propertiesTexture, layerIndex, REPETITIONLESS_MATERIAL_PACKED_VARIABLE_COUNT);
+    blendMaterialData = UnpackMaterialData(propertiesTexture, layerIndex, REPETITIONLESS_MATERIAL_PACKED_VARIABLE_COUNT*2);
+    layerData         = UnpackLayerData(propertiesTexture, layerIndex);
 }
 
 #endif
