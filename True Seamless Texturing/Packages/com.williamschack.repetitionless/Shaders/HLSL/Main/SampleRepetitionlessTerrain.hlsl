@@ -7,21 +7,21 @@
 // _TerrainHoles
 // _Control{Index}
 
-#ifdef _LAYERS_4
+#ifdef _MAX_LAYERS_4
 #define MAX_LAYERS 4
-#elif _LAYERS_8
+#elif _MAX_LAYERS_8
 #define MAX_LAYERS 8
-#elif _LAYERS_12
+#elif _MAX_LAYERS_12
 #define MAX_LAYERS 12
-#elif _LAYERS_16
+#elif _MAX_LAYERS_16
 #define MAX_LAYERS 16
-#elif _LAYERS_20
+#elif _MAX_LAYERS_20
 #define MAX_LAYERS 20
-#elif _LAYERS_24
+#elif _MAX_LAYERS_24
 #define MAX_LAYERS 24
-#elif _LAYERS_28
+#elif _MAX_LAYERS_28
 #define MAX_LAYERS 28
-#elif _LAYERS_32
+#elif _MAX_LAYERS_32
 #define MAX_LAYERS 32
 #endif
 

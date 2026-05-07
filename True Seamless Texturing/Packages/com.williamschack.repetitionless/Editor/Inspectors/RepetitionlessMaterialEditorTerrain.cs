@@ -151,7 +151,7 @@ namespace Repetitionless.Editor.Inspectors
             if (EditorGUI.EndChangeCheck()) {
                 _currentLayerIndex = Mathf.Min(_currentLayerIndex, (int)_layeredData.MaxLayers - 1);
 
-                RepetitionlessMaterialUtilities.SetEnumKeyword(_material, $"_LAYERS_", _layeredData.MaxLayers);
+                RepetitionlessMaterialUtilities.SetEnumKeyword(_material, Constants.MAX_LAYERS_KEYWORD_PREFIX, _layeredData.MaxLayers);
                 _materialProperties.CallOnExternalDataChanged();
             }
 

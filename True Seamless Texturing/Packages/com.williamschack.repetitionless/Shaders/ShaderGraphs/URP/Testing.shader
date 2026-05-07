@@ -94,7 +94,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
 
             #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
             #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
-            #pragma shader_feature_local _LAYERS_4 _LAYERS_8 _LAYERS_12 _LAYERS_16 _LAYERS_20 _LAYERS_24 _LAYERS_28 _LAYERS_32
+            #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
 
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
@@ -161,7 +161,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
             #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
             #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
-            #pragma shader_feature_local _LAYERS_4 _LAYERS_8 _LAYERS_12 _LAYERS_16 _LAYERS_20 _LAYERS_24 _LAYERS_28 _LAYERS_32
+            #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
             #pragma shader_feature_local _TERRAIN_INSTANCED_PERPIXEL_NORMAL
