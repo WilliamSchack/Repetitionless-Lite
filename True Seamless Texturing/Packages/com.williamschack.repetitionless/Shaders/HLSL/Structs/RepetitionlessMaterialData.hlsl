@@ -1,8 +1,6 @@
 #ifndef REPETITIONLESSMATERIALDATA_INCLUDED
 #define REPETITIONLESSMATERIALDATA_INCLUDED
 
-#define REPETITIONLESS_MATERIAL_VARIABLE_COUNT 9
-
 struct RepetitionlessMaterialDataPacked
 {
     half4 Settings1;
@@ -63,6 +61,7 @@ struct RepetitionlessMaterialData
     half2 NoiseScalingMinMax;
     half2 NoiseRandomiseRotationMinMax;
 
+    // Other
     half3 AlbedoTint;
     half3 EmissionColor;
 
