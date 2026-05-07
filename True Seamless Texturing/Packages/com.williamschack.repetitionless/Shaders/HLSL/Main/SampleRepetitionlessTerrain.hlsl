@@ -89,25 +89,25 @@ void SampleRepetitionlessTerrain(
     };
 
 #if MAX_LAYERS > 4
-    controlColours[1] = R_SAMPLE_CONTROL(1, UV)
+    controlColours[1] = R_SAMPLE_CONTROL(1, UV);
 #endif
 #if MAX_LAYERS > 8
-    controlColours[2] = R_SAMPLE_CONTROL(2, UV)
+    controlColours[2] = R_SAMPLE_CONTROL(2, UV);
 #endif
 #if MAX_LAYERS > 12
-    controlColours[3] = R_SAMPLE_CONTROL(3, UV)
+    controlColours[3] = R_SAMPLE_CONTROL(3, UV);
 #endif
 #if MAX_LAYERS > 16
-    controlColours[4] = R_SAMPLE_CONTROL(4, UV)
+    controlColours[4] = R_SAMPLE_CONTROL(4, UV);
 #endif
 #if MAX_LAYERS > 20
-    controlColours[5] = R_SAMPLE_CONTROL(5, UV)
+    controlColours[5] = R_SAMPLE_CONTROL(5, UV);
 #endif
 #if MAX_LAYERS > 24
-    controlColours[6] = R_SAMPLE_CONTROL(6, UV)
+    controlColours[6] = R_SAMPLE_CONTROL(6, UV);
 #endif
 #if MAX_LAYERS > 28
-    controlColours[7] = R_SAMPLE_CONTROL(7, UV)
+    controlColours[7] = R_SAMPLE_CONTROL(7, UV);
 #endif
     
     // Get individual weights and sum
