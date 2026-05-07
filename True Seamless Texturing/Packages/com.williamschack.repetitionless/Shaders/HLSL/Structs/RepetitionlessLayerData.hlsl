@@ -24,6 +24,6 @@ struct RepetitionlessLayerData
     // Others
     half4 BlendMaskDistanceTO;
     half4 MaterialBlendMaskTO;
-}
+};
 
 #endif

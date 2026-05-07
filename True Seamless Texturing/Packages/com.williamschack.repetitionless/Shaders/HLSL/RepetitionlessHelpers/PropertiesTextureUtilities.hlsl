@@ -32,7 +32,7 @@ RepetitionlessMaterialData UnpackMaterialData(Texture2D propertiesTexture, int l
     materialData.SmoothnessEnabled     = GetCompressedValue(settingToggles, 3);
     materialData.VariationEnabled      = GetCompressedValue(settingToggles, 4);
     materialData.PackedTexture         = GetCompressedValue(settingToggles, 5);
-    materialData.emissionEnabled       = GetCompressedValue(settingToggles, 6);
+    materialData.EmissionEnabled       = GetCompressedValue(settingToggles, 6);
 
     int  assignedTextures              = (int)settings1.y;
     materialData.AlbedoAssigned        = GetCompressedValue(assignedTextures, 0);
@@ -72,9 +72,9 @@ RepetitionlessLayerData UnpackLayerData(Texture2D propertiesTexture, int layerIn
 
     // Load from texture
     half4 distanceBlendSettings          = propertiesTexture.Load(int3(0 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
-    layerData.blendMaskDistanceTO        = propertiesTexture.Load(int3(1 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+    layerData.BlendMaskDistanceTO        = propertiesTexture.Load(int3(1 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
     half4 materialBlendSettings          = propertiesTexture.Load(int3(2 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
-    layerData.materialBlendMaskTO        = propertiesTexture.Load(int3(3 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
+    layerData.MaterialBlendMaskTO        = propertiesTexture.Load(int3(3 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
     half4 materialBlendMaskExtraSettings = propertiesTexture.Load(int3(4 + REPETITIONLESS_LAYER_DATA_OFFSET, layerIndex, 0));
 
     // Unpack
@@ -82,7 +82,7 @@ RepetitionlessLayerData UnpackLayerData(Texture2D propertiesTexture, int layerIn
     layerData.DistanceBlendMode    = distanceBlendSettings.y;
     layerData.DistanceBlendMinMax  = distanceBlendSettings.zw;
 
-    int materialBlendSettingsUnpacked = (int)materialBlendSettings;
+    int materialBlendSettingsUnpacked = (int)materialBlendSettings.x;
     layerData.MaterialBlendEnabled    = GetCompressedValue(materialBlendSettingsUnpacked, 0);
     layerData.BlendMaskAssigned       = GetCompressedValue(materialBlendSettingsUnpacked, 1);
     layerData.OverrideDistanceBlend   = GetCompressedValue(materialBlendSettingsUnpacked, 2);
