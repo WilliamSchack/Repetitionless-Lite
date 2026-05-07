@@ -463,6 +463,32 @@ namespace Repetitionless.Editor.Inspectors
             });
         }
 
+        private void UpdateDistanceBlendKeyword()
+        {
+            bool enabled = false;
+            foreach (RepetitionlessLayerData currentLayerData in _materialProperties.Data) {
+                if (currentLayerData.DistanceBlendEnabled) {
+                    enabled = true;
+                    break;                    
+                }
+            }
+
+            RepetitionlessMaterialUtilities.SetBoolKeyword(_material, Constants.DISTANCE_BLEND_KEYWORD, enabled);
+        }
+
+        private void UpdateMaterialBlendKeyword()
+        {
+            bool enabled = false;
+            foreach (RepetitionlessLayerData currentLayerData in _materialProperties.Data) {
+                if (currentLayerData.MaterialBlendEnabled) {
+                    enabled = true;
+                    break;                    
+                }
+            }
+
+            RepetitionlessMaterialUtilities.SetBoolKeyword(_material, Constants.MATERIAL_BLEND_KEYWORD, enabled);
+        }
+
         private void SetNoiseQuality(ENoiseQuality noiseQuality)
         {
             RepetitionlessMaterialUtilities.SetNoiseQuality(_material, noiseQuality);
@@ -1179,7 +1205,10 @@ namespace Repetitionless.Editor.Inspectors
             GUIUtilities.BeginBackgroundVertical();
 
             // Distance Blend Enabled Toggle
+            EditorGUI.BeginChangeCheck();
             DrawProperty(layerIndex, () => layerData.DistanceBlendEnabled = GUIUtilities.DrawMajorToggleButton(layerData.DistanceBlendEnabled, "Distance Blending"));
+            if (EditorGUI.EndChangeCheck())
+                UpdateDistanceBlendKeyword();
 
             // Draw distance blending settings
             if (layerData.DistanceBlendEnabled) {
@@ -1235,8 +1264,12 @@ namespace Repetitionless.Editor.Inspectors
             // Material Blend Enabled Toggle
             EditorGUI.BeginChangeCheck();
             DrawProperty(layerIndex, () => layerData.MaterialBlendEnabled = GUIUtilities.DrawMajorToggleButton(layerData.MaterialBlendEnabled, "Material Blending"));
-            if (EditorGUI.EndChangeCheck() && layerData.BlendMaskType == EMaskType.CustomTexture)
-                UpdateBlendMaskTexture(layerIndex, EMaskType.PerlinNoise, !layerData.MaterialBlendEnabled);
+            if (EditorGUI.EndChangeCheck()) {
+                UpdateMaterialBlendKeyword();
+
+                if (layerData.BlendMaskType == EMaskType.CustomTexture)
+                    UpdateBlendMaskTexture(layerIndex, EMaskType.PerlinNoise, !layerData.MaterialBlendEnabled);
+            }
 
             if (layerData.MaterialBlendEnabled) {
                 // Mask
