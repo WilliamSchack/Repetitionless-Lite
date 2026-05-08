@@ -25,6 +25,11 @@
 #define MAX_LAYERS 32
 #endif
 
+// Shouldnt happen, but as a fallback incase
+#ifndef MAX_LAYERS
+#define MAX_LAYERS 4
+#endif
+
 #define R_SAMPLE_CONTROL(i, uv) (i * 4) < LayersCount ? SAMPLE_TEXTURE2D(_Control##i, sampler_Control##i, uv) : 0
 
 void SampleRepetitionlessTerrain(

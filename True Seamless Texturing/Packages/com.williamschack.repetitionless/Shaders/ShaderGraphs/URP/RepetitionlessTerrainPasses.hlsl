@@ -201,4 +201,93 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
     return color;
 }
 
+// Shadow Pass
+
+float3 _LightDirection;
+float3 _LightPosition;
+
+struct AttributesLean
+{
+    float4 position     : POSITION;
+    float3 normalOS       : NORMAL;
+    float2 texcoord     : TEXCOORD0;
+    UNITY_VERTEX_INPUT_INSTANCE_ID
+};
+
+struct VaryingsLean
+{
+    float4 clipPos      : SV_POSITION;
+    float2 texcoord     : TEXCOORD0;
+    UNITY_VERTEX_OUTPUT_STEREO
+};
+
+void ClipHoles(float2 uv)
+{
+    float hole = SAMPLE_TEXTURE2D(_TerrainHoles, sampler_TerrainHoles, uv).r;
+    clip(hole < 0.0005f ? -1 : 1);
+}
+
+VaryingsLean ShadowPassVertex(AttributesLean v)
+{
+    VaryingsLean o = (VaryingsLean)0;
+    UNITY_SETUP_INSTANCE_ID(v);
+    TerrainInstancing(v.position, v.normalOS, v.texcoord);
+
+    float3 positionWS = TransformObjectToWorld(v.position.xyz);
+    float3 normalWS = TransformObjectToWorldNormal(v.normalOS);
+
+#if _CASTING_PUNCTUAL_LIGHT_SHADOW
+    float3 lightDirectionWS = normalize(_LightPosition - positionWS);
+#else
+    float3 lightDirectionWS = _LightDirection;
+#endif
+
+    float4 clipPos = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, lightDirectionWS));
+
+#if UNITY_REVERSED_Z
+    clipPos.z = min(clipPos.z, UNITY_NEAR_CLIP_VALUE);
+#else
+    clipPos.z = max(clipPos.z, UNITY_NEAR_CLIP_VALUE);
+#endif
+
+    o.clipPos = clipPos;
+
+    o.texcoord = v.texcoord;
+
+    return o;
+}
+
+half4 ShadowPassFragment(VaryingsLean IN) : SV_TARGET
+{
+#ifdef _ALPHATEST_ON
+    ClipHoles(IN.texcoord);
+#endif
+    return 0;
+}
+
+// Depth pass
+
+VaryingsLean DepthOnlyVertex(AttributesLean v)
+{
+    VaryingsLean o = (VaryingsLean)0;
+    UNITY_SETUP_INSTANCE_ID(v);
+    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+    TerrainInstancing(v.position, v.normalOS);
+    o.clipPos = TransformObjectToHClip(v.position.xyz);
+    o.texcoord = v.texcoord;
+    return o;
+}
+
+half4 DepthOnlyFragment(VaryingsLean IN) : SV_TARGET
+{
+#ifdef _ALPHATEST_ON
+    ClipHoles(IN.texcoord);
+#endif
+#ifdef SCENESELECTIONPASS
+    // We use depth prepass for scene selection in the editor, this code allow to output the outline correctly
+    return half4(_ObjectId, _PassValue, 1.0, 1.0);
+#endif
+    return IN.clipPos.z;
+}
+
 #endif

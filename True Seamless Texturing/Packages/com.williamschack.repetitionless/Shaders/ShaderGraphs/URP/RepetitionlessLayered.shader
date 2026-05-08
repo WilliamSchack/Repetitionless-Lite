@@ -95,6 +95,30 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             ENDHLSL
         }
 
+        Pass
+        {
+            Name "ShadowCaster"
+            Tags { "LightMode" = "ShadowCaster" }
+
+            ZWrite On
+            ColorMask 0
+
+            HLSLPROGRAM
+            #pragma target 2.0
+
+            #pragma vertex ShadowPassVertex
+            #pragma fragment ShadowPassFragment
+            
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+
+            #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
+
+            #include "RepetitionlessTerrainPasses.hlsl"
+
+            ENDHLSL
+        }
+
         UsePass "Hidden/Nature/Terrain/Utilities/PICKING"
         UsePass "Hidden/Nature/Terrain/Utilities/SELECTION"
     }
