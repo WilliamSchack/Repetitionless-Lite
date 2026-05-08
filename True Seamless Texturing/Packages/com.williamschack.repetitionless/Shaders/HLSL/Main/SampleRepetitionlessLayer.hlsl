@@ -154,7 +154,7 @@ void SampleRepetitionlessLayer_float(
     if (UVSpace == 1) {
         // This makes the tiling the same as the standard terrain tiling
         // Dont ask me why
-        UV = WorldPosition.xz / 400;
+        UV = WorldPosition.xz / 1000;
     }
 
 #ifdef _REPETITIONLESS_TRIPLANAR
@@ -342,7 +342,7 @@ void SampleRepetitionlessLayer_float(
 
     // Output
     AlbedoColorOut = albedoColor;
-    NormalVectorOut = normalVector;
+    NormalVectorOut = normalize(normalVector);
     MetallicOut = metallic;
     SmoothnessOut = smoothness;
     OcclussionOut = occlussion;

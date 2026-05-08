@@ -1,4 +1,5 @@
 // THIS WILL BE REWRITTEN
+// https://github.com/Unity-Technologies/Graphics/blob/master/Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitPasses.hlsl
 
 #ifndef REPETITIONLESS_TERRAIN_PASSES_INCLUDED
 #define REPETITIONLESS_TERRAIN_PASSES_INCLUDED
@@ -59,19 +60,21 @@ struct Attributes
 struct Varyings
 {
     float4 uvMainAndLM  : TEXCOORD0;
-    float3 normalWS     : TEXCOORD1;
-    float3 positionWS   : TEXCOORD2;
-    half3  vertexSH     : TEXCOORD3;
-    half   fogFactor    : TEXCOORD4;
-    float4 color        : TEXCOORD5;
+    half4  normal       : TEXCOORD1;
+    half4  tangent      : TEXCOORD2;
+    half4  bitangent    : TEXCOORD3;
+    float3 positionWS   : TEXCOORD4;
+    half3  vertexSH     : TEXCOORD5;
+    half   fogFactor    : TEXCOORD6;
+    float4 color        : TEXCOORD7;
     #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-        float4 shadowCoord : TEXCOORD6;
+        float4 shadowCoord : TEXCOORD8;
     #endif
     #if defined(DYNAMICLIGHTMAP_ON)
-        float2 dynamicLightmapUV : TEXCOORD7;
+        float2 dynamicLightmapUV : TEXCOORD9;
     #endif
     #ifdef USE_APV_PROBE_OCCLUSION
-        float4 probeOcclusion : TEXCOORD8;
+        float4 probeOcclusion : TEXCOORD10;
     #endif
     float4 clipPos : SV_POSITION;
     UNITY_VERTEX_OUTPUT_STEREO
@@ -95,8 +98,15 @@ Varyings RepetitionlessTerrainVert(Attributes v)
         o.dynamicLightmapUV = v.texcoord * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
     #endif
 
-    o.normalWS = TransformObjectToWorldNormal(v.normalOS);
-    OUTPUT_SH4(posInputs.positionWS, o.normalWS, GetWorldSpaceNormalizeViewDir(posInputs.positionWS), o.vertexSH, o.probeOcclusion);
+    // Normal
+    half3 viewDirWS = GetWorldSpaceNormalizeViewDir(posInputs.positionWS);
+    float4 vertexTangent = float4(cross(float3(0, 0, 1), v.normalOS), 1.0);
+    VertexNormalInputs normalInput = GetVertexNormalInputs(v.normalOS, vertexTangent);
+    o.normal = half4(normalInput.normalWS, viewDirWS.x);
+    o.tangent = half4(normalInput.tangentWS, viewDirWS.y);
+    o.bitangent = half4(normalInput.bitangentWS, viewDirWS.z);
+
+    OUTPUT_SH4(posInputs.positionWS, o.normal.xyz, GetWorldSpaceNormalizeViewDir(posInputs.positionWS), o.vertexSH, o.probeOcclusion);
 
     #if !defined(_FOG_FRAGMENT)
         o.fogFactor = ComputeFogFactor(posInputs.positionCS.z);
@@ -119,7 +129,7 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
     float2 uv = IN.uvMainAndLM.xy;
     
     float4 albedo;
-    float3 normalVec;
+    float3 normalTS;
     float  metallic;
     float  smoothness;
     float  occlusion;
@@ -128,7 +138,8 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
     SampleRepetitionlessTerrain(
         sampler_TrilinearRepeat,
         uv,
-        normalize(IN.normalWS),
+        //normalize(IN.normal),
+        IN.normal,
         IN.positionWS,
         _WorldSpaceCameraPos,
         (int)_SurfaceTypeSetting,
@@ -148,16 +159,22 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
 
         _NoiseTexture,
 
-        albedo, normalVec, metallic, smoothness, occlusion, emission
+        albedo, normalTS, metallic, smoothness, occlusion, emission
     );
 
     // Build InputData for URP lighting
     InputData inputData = (InputData)0;
     inputData.positionWS        = IN.positionWS;
     inputData.positionCS        = IN.clipPos;
-    inputData.normalWS          = normalize(normalVec);
-    inputData.viewDirectionWS   = GetWorldSpaceNormalizeViewDir(IN.positionWS);
-    inputData.shadowCoord       = 
+
+    inputData.viewDirectionWS = half3(IN.normal.w, IN.tangent.w, IN.bitangent.w); 
+    //inputData.viewDirectionWS   = GetWorldSpaceNormalizeViewDir(IN.positionWS);
+
+    // Convert normal to world space
+    inputData.tangentToWorld = half3x3(-IN.tangent.xyz, IN.bitangent.xyz, IN.normal.xyz);
+    inputData.normalWS = TransformTangentToWorld(normalTS, inputData.tangentToWorld);
+
+    inputData.shadowCoord = 
         #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
             IN.shadowCoord;
         #elif defined(MAIN_LIGHT_CALCULATE_SHADOWS)

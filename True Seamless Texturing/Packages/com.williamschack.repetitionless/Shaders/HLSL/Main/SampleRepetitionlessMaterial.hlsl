@@ -152,9 +152,8 @@ void SampleRepetitionlessMaterial(
         AlbedoColorOut = lerp(AlbedoColorOut, variationColor * AlbedoColorOut, MaterialData.VariationOpacity);
 #endif
 
-    // Normal Map
-    float3 normalTS = MaterialData.NormalAssigned ? UnpackNormalMap(float4(nsoTexture.rg, 1, 1), MaterialData.NormalScale) : float3(0, 0, 1); // Fallback to default tangent space normal
-    NormalVectorOut = normalize(WorldNormalVector + float3(normalTS.x, normalTS.y, 0));
+    // Normal Map (Tangent Space)
+    NormalVectorOut = MaterialData.NormalAssigned ? UnpackNormalMap(float4(nsoTexture.rg, 1, 1), MaterialData.NormalScale) : float3(0, 0, 1);
     
     if (MaterialData.PackedTexture) {
         float4 packedTextureColor = MaterialData.PackedTextureAssigned ? float4(emTexture.a, nsoTexture.a, 0, nsoTexture.b) : float4(0, 1, 0, 0);

@@ -194,7 +194,7 @@ void SampleRepetitionlessTerrain(
     }
 
     AlbedoColorOut   = albedoColor;
-    NormalVectorOut  = normalVector;
+    NormalVectorOut  = normalize(normalVector);
     MetallicOut      = metallic;
     SmoothnessOut    = smoothness;
     OcclussionOut    = occlussion;
