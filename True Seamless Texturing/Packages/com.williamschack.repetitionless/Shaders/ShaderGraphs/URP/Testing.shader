@@ -95,7 +95,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
 
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl"
+            //#include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl"
             #include "RepetitionlessTerrainPasses.hlsl"
             ENDHLSL
         }
@@ -165,7 +165,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTesting"
             #pragma shader_feature_local _TERRAIN_INSTANCED_PERPIXEL_NORMAL
             #define TERRAIN_GBUFFER 1
 
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl"
+            //#include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl"
             #include "RepetitionlessTerrainPasses.hlsl"
             ENDHLSL
         }

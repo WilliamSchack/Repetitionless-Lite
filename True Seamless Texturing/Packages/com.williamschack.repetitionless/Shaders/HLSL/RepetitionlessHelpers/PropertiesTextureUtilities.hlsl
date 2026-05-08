@@ -14,15 +14,15 @@ RepetitionlessMaterialData UnpackMaterialData(Texture2D propertiesTexture, int l
     RepetitionlessMaterialData materialData;
 
     // Load from texture
-    half4 settings1            = propertiesTexture.Load(int3(0 + indexOffset, layerIndex, 0)).rgba;
-    half4 settings2            = propertiesTexture.Load(int3(1 + indexOffset, layerIndex, 0)).rgba;
-    half4 settings3            = propertiesTexture.Load(int3(2 + indexOffset, layerIndex, 0)).rgba;
-    half4 settings4            = propertiesTexture.Load(int3(3 + indexOffset, layerIndex, 0)).rgba;
-    half4 settings5            = propertiesTexture.Load(int3(4 + indexOffset, layerIndex, 0)).rgba;
-    materialData.AlbedoTint    = propertiesTexture.Load(int3(5 + indexOffset, layerIndex, 0)).rgba;
-    materialData.EmissionColor = propertiesTexture.Load(int3(6 + indexOffset, layerIndex, 0)).rgba;
-    materialData.TilingOffset  = propertiesTexture.Load(int3(7 + indexOffset, layerIndex, 0)).rgba;
-    materialData.VariationTO   = propertiesTexture.Load(int3(8 + indexOffset, layerIndex, 0)).rgba;
+    half4 settings1            = propertiesTexture.Load(int3(0 + indexOffset, layerIndex, 0));
+    half4 settings2            = propertiesTexture.Load(int3(1 + indexOffset, layerIndex, 0));
+    half4 settings3            = propertiesTexture.Load(int3(2 + indexOffset, layerIndex, 0));
+    half4 settings4            = propertiesTexture.Load(int3(3 + indexOffset, layerIndex, 0));
+    half4 settings5            = propertiesTexture.Load(int3(4 + indexOffset, layerIndex, 0));
+    materialData.AlbedoTint    = propertiesTexture.Load(int3(5 + indexOffset, layerIndex, 0)).rgb;
+    materialData.EmissionColor = propertiesTexture.Load(int3(6 + indexOffset, layerIndex, 0)).rgb;
+    materialData.TilingOffset  = propertiesTexture.Load(int3(7 + indexOffset, layerIndex, 0));
+    materialData.VariationTO   = propertiesTexture.Load(int3(8 + indexOffset, layerIndex, 0));
 
     // Unpack
     int  settingToggles                = (int)settings1.x;
