@@ -58,7 +58,7 @@ namespace Repetitionless.Editor
         public const int MAX_LAYERS_REGULAR = 1;
         public const int MAX_LAYERS_TERRAIN = 32;
 
-        public static readonly Vector4 DEFAULT_TILING_OFFSET_TERRAIN = new Vector4(100, 100, 0, 0);
+        public static readonly Vector4 DEFAULT_TILING_OFFSET_TERRAIN = new Vector4(1, 1, 0, 0);
 
         public const int MATERIALS_PER_LAYER_COUNT = 3;
         public const int COMPRESSED_MATERIAL_VARIABLES_COUNT = 9;
