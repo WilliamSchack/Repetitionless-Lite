@@ -62,9 +62,14 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #pragma multi_compile _ _CLUSTER_LIGHT_LOOP
             #pragma multi_compile _ EVALUATE_SH_MIXED EVALUATE_SH_VERTEX
             #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_ATLAS
+            #pragma multi_compile_fragment _ _SCREEN_SPACE_REFLECTION
             #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
             #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
+            #pragma multi_compile_fragment _ _SCREEN_SPACE_IRRADIANCE
             #pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
+            #pragma multi_compile_fragment _ _LIGHT_COOKIES
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
 
@@ -73,6 +78,7 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fragment _ LIGHTMAP_BICUBIC_SAMPLING
+            #pragma multi_compile_fragment _ REFLECTION_PROBE_ROTATION
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 
             #pragma multi_compile_instancing
@@ -89,7 +95,10 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
 
-            //#include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl"
+            #if USE_DYNAMIC_BRANCH_FOG_KEYWORD && SHADER_API_VULKAN && SHADER_API_MOBILE
+            #define SKIP_SHADOWS_LIGHT_INDEX_CHECK 1
+            #endif
+
             #include "RepetitionlessTerrainPasses.hlsl"
 
             ENDHLSL
@@ -115,6 +124,107 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
 
             #include "RepetitionlessTerrainPasses.hlsl"
+
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "GBuffer"
+            Tags { "LightMode" = "UniversalGBuffer" }
+
+            HLSLPROGRAM
+            #pragma target 4.5
+
+            #pragma exclude_renderers gles3 glcore
+
+            #pragma vertex RepetitionlessTerrainVert
+            #pragma fragment RepetitionlessTerrainFrag
+
+            // URP Keywords
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
+            #pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
+            #pragma multi_compile _ SHADOWS_SHADOWMASK
+            #pragma multi_compile _ _CLUSTER_LIGHT_LOOP
+            #pragma multi_compile _ EVALUATE_SH_MIXED EVALUATE_SH_VERTEX
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
+            #pragma multi_compile_fragment _ _SCREEN_SPACE_REFLECTION
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
+            #pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
+            #pragma multi_compile_fragment _ _RENDER_PASS_ENABLED
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
+
+            // Unity defined
+            #pragma multi_compile _ DIRLIGHTMAP_COMBINED
+            #pragma multi_compile _ LIGHTMAP_ON
+            #pragma multi_compile _ DYNAMICLIGHTMAP_ON
+            #pragma multi_compile_fragment _ LIGHTMAP_BICUBIC_SAMPLING
+            #pragma multi_compile_fragment _ REFLECTION_PROBE_ROTATION
+            #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
+
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+
+            // Custom Keywords
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
+            #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
+
+            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
+
+            #if USE_DYNAMIC_BRANCH_FOG_KEYWORD && SHADER_API_VULKAN && SHADER_API_MOBILE
+            #define SKIP_SHADOWS_LIGHT_INDEX_CHECK 1
+            #endif
+
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
+            #include "RepetitionlessTerrainPasses.hlsl"
+
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "DepthOnly"
+            Tags { "LightMode" = "DepthOnly" }
+
+            ZWrite On
+            ColorMask R
+
+            HLSLPROGRAM
+            #pragma target 2.0
+
+            #pragma vertex DepthOnlyVertex
+            #pragma fragment DepthOnlyFragment
+
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+
+            #include "RepetitionlessTerrainPasses.hlsl"
+
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "Meta"
+            Tags { "LightMode" = "Meta" }
+
+            HLSLPROGRAM
+            #pragma vertex TerrainVertexMeta
+            #pragma fragment TerrainFragmentMeta
+
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+
+            #pragma shader_feature EDITOR_VISUALIZATION
+
+            #include "RepetitionlessTerrainPasses.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitMetaPass.hlsl"
 
             ENDHLSL
         }

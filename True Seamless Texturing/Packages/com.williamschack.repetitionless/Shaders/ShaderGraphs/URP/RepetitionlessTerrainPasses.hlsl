@@ -123,7 +123,32 @@ Varyings RepetitionlessTerrainVert(Attributes v)
     return o;
 }
 
+void InitializeBakedGIData(Varyings IN, inout InputData inputData)
+{
+    half3 SH = 0;
+
+#if defined(DYNAMICLIGHTMAP_ON)
+    inputData.bakedGI = SAMPLE_GI(IN.uvMainAndLM.zw, IN.dynamicLightmapUV, SH, inputData.normalWS);
+    inputData.shadowMask = SAMPLE_SHADOWMASK(IN.uvMainAndLM.zw);
+#elif !defined(LIGHTMAP_ON) && (defined(PROBE_VOLUMES_L1) || defined(PROBE_VOLUMES_L2))
+    inputData.bakedGI = SAMPLE_GI(SH,
+        GetAbsolutePositionWS(inputData.positionWS),
+        inputData.normalWS,
+        inputData.viewDirectionWS,
+        inputData.positionCS.xy,
+        IN.probeOcclusion,
+        inputData.shadowMask);
+#else
+    inputData.bakedGI = SAMPLE_GI(IN.uvMainAndLM.zw, SH, inputData.normalWS);
+    inputData.shadowMask = SAMPLE_SHADOWMASK(IN.uvMainAndLM.zw);
+#endif
+}
+
+#ifdef TERRAIN_GBUFFER
+GBufferFragOutput RepetitionlessTerrainFrag(Varyings IN)
+#else
 half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
+#endif
 {
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
@@ -188,6 +213,39 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
     inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(IN.clipPos);
     inputData.shadowMask        = SAMPLE_SHADOWMASK(IN.uvMainAndLM.zw);
 
+#ifdef _DBUFFER
+    half3 specular = half3(0.0h, 0.0h, 0.0h);
+    ApplyDecal(IN.clipPos,
+        albedo,
+        specular,
+        inputData.normalWS,
+        metallic,
+        occlusion,
+        smoothness);
+#endif
+
+    InitializeBakedGIData(IN, inputData);
+
+#ifdef TERRAIN_GBUFFER
+    BRDFData brdfData;
+    InitializeBRDFData(albedo, metallic, half3(0.0h, 0.0h, 0.0h), smoothness, albedo.a, brdfData);
+
+    half4 color;
+    Light mainLight = GetMainLight(inputData.shadowCoord, inputData.positionWS, inputData.shadowMask);
+    MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, inputData.shadowMask);
+    color.rgb = GlobalIllumination(brdfData, (BRDFData)0, 0, inputData.bakedGI, occlusion, inputData.positionWS,
+                                   inputData.normalWS, inputData.viewDirectionWS, inputData.normalizedScreenSpaceUV);
+    color.a = albedo.a;
+    color.rgb *= color.a;
+    brdfData.albedo.rgb *= albedo.a;
+    brdfData.diffuse.rgb *= albedo.a;
+    brdfData.specular.rgb *= albedo.a;
+    brdfData.reflectivity *= albedo.a;
+    inputData.normalWS = inputData.normalWS * albedo.a;
+    smoothness *= albedo.a;
+
+    return PackGBuffersBRDFData(brdfData, inputData, smoothness, color.rgb, occlusion);
+#else
     SurfaceData surfaceData = (SurfaceData)0;
     surfaceData.albedo      = albedo.rgb;
     surfaceData.metallic    = metallic;
@@ -198,6 +256,8 @@ half4 RepetitionlessTerrainFrag(Varyings IN) : SV_Target
 
     half4 color = UniversalFragmentPBR(inputData, surfaceData);
     color.rgb = MixFog(color.rgb, inputData.fogCoord);
+#endif
+
     return color;
 }
 
