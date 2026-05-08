@@ -14,6 +14,7 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
         [NoScaleOffset] _NSOTextures("NSO Textures", 2DArray) = "white" {} // Normal, Smoothness/Roughness, Occlussion
         [NoScaleOffset] _EMTextures("EM Textures", 2DArray) = "white" {} // Emission, Metallic
         [NoScaleOffset] _BMTextures("BM Textures", 2DArray) = "white" {} // Blend Mask
+        [NoScaleOffset] _NoiseTexture("Noise Texture", 2D) = "white" {}
 
         _TerrainHoles("Terran Holes", 2D) = "white" {}
         _Control0("Control 0", 2D) = "white" {}
