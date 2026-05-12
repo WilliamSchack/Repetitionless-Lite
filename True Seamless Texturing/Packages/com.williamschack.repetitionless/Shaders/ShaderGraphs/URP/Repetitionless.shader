@@ -16,6 +16,17 @@ Shader "Repetitionless/URP/Repetitionless"
         [NoScaleOffset] _BMTextures("BM Textures", 2DArray) = "white" {}   // Blend Mask
         [NoScaleOffset] _NoiseTexture("Noise Texture", 2D) = "white" {}
 
+        // Blending
+        _Surface("__surface", Float) = 0.0
+        _Blend("__blend", Float) = 0.0
+        _Cull("__cull", Float) = 2.0
+        [HideInInspector] _SrcBlend("__src", Float) = 1.0
+        [HideInInspector] _DstBlend("__dst", Float) = 0.0
+        [HideInInspector] _SrcBlendAlpha("__srcA", Float) = 1.0
+        [HideInInspector] _DstBlendAlpha("__dstA", Float) = 0.0
+        [HideInInspector] _ZWrite("__zw", Float) = 1.0
+        [HideInInspector] _XRMotionVectorsPass("_XRMotionVectorsPass", Float) = 1.0
+
         // For meta pass
         _BaseMap("Dummy Base Map (Do not use)", 2D) = "white" {}
     }
