@@ -220,7 +220,7 @@ half4 Frag(Varyings IN) : SV_TARGET
         (int)_DebuggingIndex,
         IN.colour,
 
-        (int)_LayersCount,
+        0,
         _PropertiesTexture,
         _AssignedTexturesTexture,
 

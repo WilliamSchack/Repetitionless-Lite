@@ -284,6 +284,6 @@ Shader "Repetitionless/URP/Repetitionless"
         }
     }
 
-    CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain"
+    CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster"
     Fallback "Hidden/Universal Render Pipeline/FallbackError"
 }
