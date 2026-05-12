@@ -10,10 +10,10 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
 
         [NoScaleOffset] _PropertiesTexture("Properties Texture", 2D) = "white" {}
         [NoScaleOffset] _AssignedTexturesTexture("Assigned Textures Texture", 2D) = "white" {}
-        [NoScaleOffset] _AVTextures("AV Textures", 2DArray) = "white" {} // Albedo, Variation
+        [NoScaleOffset] _AVTextures("AV Textures", 2DArray) = "white" {}   // Albedo, Variation
         [NoScaleOffset] _NSOTextures("NSO Textures", 2DArray) = "white" {} // Normal, Smoothness/Roughness, Occlussion
-        [NoScaleOffset] _EMTextures("EM Textures", 2DArray) = "white" {} // Emission, Metallic
-        [NoScaleOffset] _BMTextures("BM Textures", 2DArray) = "white" {} // Blend Mask
+        [NoScaleOffset] _EMTextures("EM Textures", 2DArray) = "white" {}   // Emission, Metallic
+        [NoScaleOffset] _BMTextures("BM Textures", 2DArray) = "white" {}   // Blend Mask
         [NoScaleOffset] _NoiseTexture("Noise Texture", 2D) = "white" {}
 
         _TerrainHoles("Terran Holes", 2D) = "white" {}
