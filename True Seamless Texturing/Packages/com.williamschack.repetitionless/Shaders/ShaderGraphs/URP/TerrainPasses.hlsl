@@ -11,7 +11,7 @@ struct Attributes
 {
     float4 positionOS : POSITION;
     float3 normalOS   : NORMAL;
-    half4 colour     : COLOR;
+    half4 colour      : COLOR;
     float2 texcoord   : TEXCOORD0;
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
@@ -81,6 +81,20 @@ void InitializeInputData(Varyings IN, half3 normalTS, out InputData inputData)
 #endif
 
     inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(IN.clipPos);
+
+#if defined(DEBUG_DISPLAY)
+    #if defined(DYNAMICLIGHTMAP_ON)
+        inputData.dynamicLightmapUV = IN.dynamicLightmapUV;
+    #endif
+    #if defined(LIGHTMAP_ON)
+        inputData.staticLightmapUV = IN.uvMainAndLM.zw;
+    #else
+        inputData.vertexSH = 0;
+    #endif
+    #if defined(USE_APV_PROBE_OCCLUSION)
+        inputData.probeOcclusion = IN.probeOcclusion;
+    #endif
+#endif
 }
 
 void InitializeBakedGIData(Varyings IN, inout InputData inputData)
@@ -112,7 +126,7 @@ Varyings Vert(Attributes v)
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
     TerrainInstancing(v.positionOS, v.normalOS, v.texcoord);
 
-    VertexPositionInputs attributes = GetVertexPositionInputs(v.positionOS.xyz);
+    VertexPositionInputs vertexInput = GetVertexPositionInputs(v.positionOS.xyz);
 
     o.uvMainAndLM.xy = v.texcoord;
     o.uvMainAndLM.zw = v.texcoord * unity_LightmapST.xy + unity_LightmapST.zw;
@@ -121,7 +135,7 @@ Varyings Vert(Attributes v)
     o.dynamicLightmapUV = v.texcoord * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
 #endif
 
-    half3 viewDirWS = GetWorldSpaceNormalizeViewDir(attributes.positionWS);
+    half3 viewDirWS = GetWorldSpaceNormalizeViewDir(vertexInput.positionWS);
     float4 vertexTangent = float4(cross(float3(0, 0, 1), v.normalOS), 1.0);
     VertexNormalInputs normalInput = GetVertexNormalInputs(v.normalOS, vertexTangent);
 
@@ -131,22 +145,22 @@ Varyings Vert(Attributes v)
 
     half fogFactor = 0;
 #if !defined(_FOG_FRAGMENT)
-    fogFactor = ComputeFogFactor(attributes.positionCS.z);
+    fogFactor = ComputeFogFactor(vertexInput.positionCS.z);
 #endif
 
 #ifdef _ADDITIONAL_LIGHTS_VERTEX
     o.fogFactorAndVertexLight.x = fogFactor;
-    o.fogFactorAndVertexLight.yzw = VertexLighting(attributes.positionWS, o.normal.xyz);
+    o.fogFactorAndVertexLight.yzw = VertexLighting(vertexInput.positionWS, o.normal.xyz);
 #else
     o.fogFactor = fogFactor;
 #endif
 
-    o.positionWS = attributes.positionWS;
-    o.clipPos = attributes.positionCS;
+    o.positionWS = vertexInput.positionWS;
+    o.clipPos = vertexInput.positionCS;
     o.colour = v.colour;
 
 #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-    o.shadowCoord = GetShadowCoord(attributes);
+    o.shadowCoord = GetShadowCoord(vertexInput);
 #endif
 
     return o;

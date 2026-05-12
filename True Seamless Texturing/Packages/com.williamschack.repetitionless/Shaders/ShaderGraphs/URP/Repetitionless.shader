@@ -35,12 +35,10 @@ Shader "Repetitionless/URP/Repetitionless"
     {
         Tags
         {
-            "Queue" = "Geometry-100"
             "RenderType" = "Opaque"
             "RenderPipeline" = "UniversalPipeline"
             "UniversalMaterialType" = "Lit"
-            "IgnoreProjector" = "False"
-            "TerrainCompatible" = "True"
+            "IgnoreProjector" = "True"
         }
         LOD 300
 
@@ -111,6 +109,7 @@ Shader "Repetitionless/URP/Repetitionless"
             ENDHLSL
         }
 
+        /*
         Pass
         {
             Name "ShadowCaster"
@@ -238,13 +237,6 @@ Shader "Repetitionless/URP/Repetitionless"
 
             #pragma shader_feature EDITOR_VISUALIZATION
 
-            /*#include "Input.hlsl"
-
-            // Dummy variable
-            TEXTURE2D(_BaseMap);
-            SAMPLER(sampler_BaseMap);
-            float4 _BaseMap_ST;*/
-
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitMetaPass.hlsl"
 
@@ -292,7 +284,7 @@ Shader "Repetitionless/URP/Repetitionless"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ObjectMotionVectors.hlsl"
             ENDHLSL
-        }
+        }*/
     }
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster"
