@@ -4,11 +4,7 @@
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutput.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DBuffer.hlsl"
-#ifdef REPETITIONLESS_LAYERED
 #include "../../HLSL/Main/SampleRepetitionlessTerrain.hlsl"
-#else
-#include "../../HLSL/Main/SampleRepetitionlessLayer.hlsl"
-#endif
 
 // Structs
 struct Attributes
@@ -113,13 +109,8 @@ Varyings Vert(Attributes v)
 {
     Varyings o = (Varyings)0;
     UNITY_SETUP_INSTANCE_ID(v);
-#ifndef REPETITIONLESS_LAYERED
-    UNITY_TRANSFER_INSTANCE_ID(input, o);
-#endif
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-#ifdef REPETITIONLESS_LAYERED
     TerrainInstancing(v.positionOS, v.normalOS, v.texcoord);
-#endif
 
     VertexPositionInputs attributes = GetVertexPositionInputs(v.positionOS.xyz);
 
@@ -167,9 +158,6 @@ GBufferFragOutput Frag(Varyings IN)
 half4 Frag(Varyings IN) : SV_TARGET
 #endif
 {
-#ifndef REPETITIONLESS_LAYERED
-    UNITY_SETUP_INSTANCE_ID(input);
-#endif
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
     float2 uv = IN.uvMainAndLM.xy;
@@ -181,7 +169,6 @@ half4 Frag(Varyings IN) : SV_TARGET
     float  smoothness;
     float  occlusion;
     float3 emission;
-#ifdef REPETITIONLESS_LAYERED
     SampleRepetitionlessTerrain(
         sampler_TrilinearRepeat,
         uv,
@@ -207,33 +194,6 @@ half4 Frag(Varyings IN) : SV_TARGET
 
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
-#else
-    SampleRepetitionlessLayer(
-        sampler_TrilinearRepeat,
-        uv,
-        IN.normal,
-        IN.positionWS,
-        _WorldSpaceCameraPos,
-        (int)_SurfaceTypeSetting,
-        (int)_UVSpace,
-        (int)_VertexColourBlendMode,
-        (int)_DebuggingIndex,
-        IN.colour,
-
-        0,
-        _PropertiesTexture,
-        _AssignedTexturesTexture,
-
-        _AVTextures,
-        _NSOTextures,
-        _EMTextures,
-        _BMTextures,
-
-        _NoiseTexture,
-
-        albedo, normalTS, metallic, smoothness, occlusion, emission
-    );
-#endif
 
     InputData inputData;
     InitializeInputData(IN, normalTS, inputData);
@@ -294,11 +254,7 @@ VaryingsLean ShadowPassVert(Attributes v)
 {
     VaryingsLean o = (VaryingsLean)0;
     UNITY_SETUP_INSTANCE_ID(v);
-#ifdef REPETITIONLESS_LAYERED
     TerrainInstancing(v.positionOS, v.normalOS, v.texcoord);
-#else
-    UNITY_TRANSFER_INSTANCE_ID(input, o);
-#endif
 
     float3 positionWS = TransformObjectToWorld(v.positionOS.xyz);
     float3 normalWS = TransformObjectToWorldNormal(v.normalOS);
@@ -326,10 +282,6 @@ VaryingsLean ShadowPassVert(Attributes v)
 
 half4 ShadowPassFrag(VaryingsLean IN) : SV_TARGET
 {
-#ifndef REPETITIONLESS_LAYERED
-    UNITY_SETUP_INSTANCE_ID(v);
-#endif
-
 #ifdef _ALPHATEST_ON
     ClipHoles(IN.texcoord);
 #endif
@@ -341,13 +293,8 @@ VaryingsLean DepthOnlyVert(Attributes v)
 {
     VaryingsLean o = (VaryingsLean)0;
     UNITY_SETUP_INSTANCE_ID(v);
-#ifndef REPETITIONLESS_LAYERED
-    UNITY_TRANSFER_INSTANCE_ID(input, o);
-#endif
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-#ifdef REPETITIONLESS_LAYERED
     TerrainInstancing(v.positionOS, v.normalOS, v.texcoord);
-#endif
 
     o.clipPos = TransformObjectToHClip(v.positionOS.xyz);
     o.texcoord = v.texcoord;
@@ -356,11 +303,6 @@ VaryingsLean DepthOnlyVert(Attributes v)
 
 half4 DepthOnlyFrag(VaryingsLean IN) : SV_TARGET
 {
-#ifndef REPETITIONLESS_LAYERED
-    UNITY_SETUP_INSTANCE_ID(input);
-    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
-#endif
-
 #ifdef _ALPHATEST_ON
     ClipHoles(IN.texcoord);
 #endif
