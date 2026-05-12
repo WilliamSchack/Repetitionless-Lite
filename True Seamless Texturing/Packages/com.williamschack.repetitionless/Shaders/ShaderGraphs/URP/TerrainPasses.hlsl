@@ -1,5 +1,5 @@
-#ifndef REPETITIONLESSPASSES_INCLUDED
-#define REPETITIONLESSPASSES_INCLUDED
+#ifndef REPETITIONLESSTERRAINPASSES_INCLUDED
+#define REPETITIONLESSTERRAINPASSES_INCLUDED
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutput.hlsl"

@@ -105,7 +105,7 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #endif
 
             #include "Input.hlsl"
-            #include "Passes.hlsl"
+            #include "TerrainPasses.hlsl"
 
             ENDHLSL
         }
@@ -130,7 +130,7 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
 
             #include "Input.hlsl"
-            #include "Passes.hlsl"
+            #include "TerrainPasses.hlsl"
 
             ENDHLSL
         }
@@ -190,7 +190,7 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
 
             //#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
             #include "Input.hlsl"
-            #include "Passes.hlsl"
+            #include "TerrainPasses.hlsl"
 
             ENDHLSL
         }
@@ -213,7 +213,7 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
 
             #include "Input.hlsl"
-            #include "Passes.hlsl"
+            #include "TerrainPasses.hlsl"
 
             ENDHLSL
         }
