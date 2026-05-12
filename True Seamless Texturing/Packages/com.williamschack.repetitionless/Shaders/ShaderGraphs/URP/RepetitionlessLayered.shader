@@ -51,8 +51,8 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             HLSLPROGRAM
             #pragma target 3.0
 
-            #pragma vertex RepetitionlessTerrainVert
-            #pragma fragment RepetitionlessTerrainFrag
+            #pragma vertex Vert
+            #pragma fragment Frag
 
             // URP Keywords
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
@@ -100,7 +100,8 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #define SKIP_SHADOWS_LIGHT_INDEX_CHECK 1
             #endif
 
-            #include "RepetitionlessTerrainPasses.hlsl"
+            #include "Input.hlsl"
+            #include "Passes.hlsl"
 
             ENDHLSL
         }
@@ -116,15 +117,16 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             HLSLPROGRAM
             #pragma target 2.0
 
-            #pragma vertex ShadowPassVertex
-            #pragma fragment ShadowPassFragment
+            #pragma vertex ShadowPassVert
+            #pragma fragment ShadowPassFrag
             
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
 
             #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
 
-            #include "RepetitionlessTerrainPasses.hlsl"
+            #include "Input.hlsl"
+            #include "Passes.hlsl"
 
             ENDHLSL
         }
@@ -139,8 +141,8 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
 
             #pragma exclude_renderers gles3 glcore
 
-            #pragma vertex RepetitionlessTerrainVert
-            #pragma fragment RepetitionlessTerrainFrag
+            #pragma vertex Vert
+            #pragma fragment Frag
 
             // URP Keywords
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
@@ -183,7 +185,8 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #endif
 
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
-            #include "RepetitionlessTerrainPasses.hlsl"
+            #include "Input.hlsl"
+            #include "Passes.hlsl"
 
             ENDHLSL
         }
@@ -199,13 +202,14 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             HLSLPROGRAM
             #pragma target 2.0
 
-            #pragma vertex DepthOnlyVertex
-            #pragma fragment DepthOnlyFragment
+            #pragma vertex DepthOnlyVert
+            #pragma fragment DepthOnlyFrag
 
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
 
-            #include "RepetitionlessTerrainPasses.hlsl"
+            #include "Input.hlsl"
+            #include "Passes.hlsl"
 
             ENDHLSL
         }
@@ -224,7 +228,7 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
 
             #pragma shader_feature EDITOR_VISUALIZATION
 
-            #include "RepetitionlessTerrainPasses.hlsl"
+            #include "Input.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitMetaPass.hlsl"
 
             ENDHLSL

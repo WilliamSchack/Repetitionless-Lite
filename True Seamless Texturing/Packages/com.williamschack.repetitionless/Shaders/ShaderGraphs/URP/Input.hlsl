@@ -10,9 +10,17 @@ CBUFFER_START(UnityPerMaterial)
     float _VertexColourBlendMode;
     half  _DebuggingIndex;
     float _LayersCount;
+    float4 _NoiseTexture_TexelSize;
 CBUFFER_END
 
 // Textures
+TEXTURE2D(_NoiseTexture);            SAMPLER(sampler_NoiseTexture);
+TEXTURE2D(_PropertiesTexture);       SAMPLER(sampler_PropertiesTexture);
+TEXTURE2D(_AssignedTexturesTexture); SAMPLER(sampler_AssignedTexturesTexture);
+TEXTURE2D_ARRAY(_AVTextures);        SAMPLER(sampler_AVTextures);
+TEXTURE2D_ARRAY(_NSOTextures);       SAMPLER(sampler_NSOTextures);
+TEXTURE2D_ARRAY(_EMTextures);        SAMPLER(sampler_EMTextures);
+TEXTURE2D_ARRAY(_BMTextures);        SAMPLER(sampler_BMTextures);
 TEXTURE2D(_TerrainHoles);            SAMPLER(sampler_TerrainHoles);
 TEXTURE2D(_Control0);                SAMPLER(sampler_Control0);
 TEXTURE2D(_Control1);                SAMPLER(sampler_Control1);
@@ -22,18 +30,12 @@ TEXTURE2D(_Control4);                SAMPLER(sampler_Control4);
 TEXTURE2D(_Control5);                SAMPLER(sampler_Control5);
 TEXTURE2D(_Control6);                SAMPLER(sampler_Control6);
 TEXTURE2D(_Control7);                SAMPLER(sampler_Control7);
-TEXTURE2D(_NoiseTexture);            SAMPLER(sampler_NoiseTexture);
-TEXTURE2D(_PropertiesTexture);       SAMPLER(sampler_PropertiesTexture);
-TEXTURE2D(_AssignedTexturesTexture); SAMPLER(sampler_AssignedTexturesTexture);
-TEXTURE2D_ARRAY(_AVTextures);        SAMPLER(sampler_AVTextures);
-TEXTURE2D_ARRAY(_NSOTextures);       SAMPLER(sampler_NSOTextures);
-TEXTURE2D_ARRAY(_EMTextures);        SAMPLER(sampler_EMTextures);
-TEXTURE2D_ARRAY(_BMTextures);        SAMPLER(sampler_BMTextures);
 
 // Terrain
 // https://github.com/Unity-Technologies/Graphics/blob/master/Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitInput.hlsl
+
 CBUFFER_START(_Terrain)
-    float4 _TerrainHeightmapScale
+    float4 _TerrainHeightmapScale;
 #ifdef UNITY_INSTANCING_ENABLED
     float4 _TerrainHeightmapRecipSize;
 #endif
