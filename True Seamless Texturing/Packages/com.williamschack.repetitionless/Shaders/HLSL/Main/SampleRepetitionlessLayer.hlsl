@@ -17,7 +17,7 @@
 #include "SampleRepetitionlessMaterial.hlsl"
 
 // Uses assigned array properties variables
-void SampleRepetitionlessLayer_float(
+void SampleRepetitionlessLayer(
     // General Settings
     SamplerState SS, float2 UV, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
@@ -350,7 +350,7 @@ void SampleRepetitionlessLayer_float(
 }
 
 // Uses assigned array properties texture
-void SampleRepetitionlessLayer_float(
+void SampleRepetitionlessLayer(
     // General Settings
     SamplerState SS, float2 UV, float3 WorldNormalVector,
     float3 WorldPosition, float3 CameraPosition,
@@ -385,7 +385,7 @@ void SampleRepetitionlessLayer_float(
 
     GetArrayAssignedTextures(AssignedTexturesTexture, assignedAVTextures, assignedNSOTextures, assignedEVTextures, assignedBMTextures);
 
-    SampleRepetitionlessLayer_float(
+    SampleRepetitionlessLayer(
         SS, UV, WorldNormalVector,
         WorldPosition, CameraPosition,
         SurfaceType, UVSpace, VertexColourBlendModeIndex, DebuggingIndex,

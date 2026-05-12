@@ -171,7 +171,7 @@ void SampleRepetitionlessTerrain(
         float layerOcclussion = occlussion;
         float3 layerEmission  = emission;
 
-        SampleRepetitionlessLayer_float(
+        SampleRepetitionlessLayer(
             SS, UV, WorldNormalVector,
             WorldPosition, CameraPosition,
             SurfaceType, UVSpace, VertexColourBlendModeIndex, DebuggingIndex,

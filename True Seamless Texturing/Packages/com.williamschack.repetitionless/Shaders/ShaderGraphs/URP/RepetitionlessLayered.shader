@@ -29,11 +29,11 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
 
     HLSLINCLUDE
     #pragma multi_compile_fragment __ _ALPHATEST_ON
-    ENDHLSL
 
     #ifndef REPETITIONLESS_LAYERED
     #define REPETITIONLESS_LAYERED
     #endif
+    ENDHLSL
 
     SubShader
     {
@@ -188,7 +188,7 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #define SKIP_SHADOWS_LIGHT_INDEX_CHECK 1
             #endif
 
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
+            //#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
             #include "Input.hlsl"
             #include "Passes.hlsl"
 

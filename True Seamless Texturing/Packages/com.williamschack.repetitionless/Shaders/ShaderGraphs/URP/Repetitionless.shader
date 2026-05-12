@@ -15,11 +15,10 @@ Shader "Repetitionless/URP/Repetitionless"
         [NoScaleOffset] _EMTextures("EM Textures", 2DArray) = "white" {}   // Emission, Metallic
         [NoScaleOffset] _BMTextures("BM Textures", 2DArray) = "white" {}   // Blend Mask
         [NoScaleOffset] _NoiseTexture("Noise Texture", 2D) = "white" {}
-    }
 
-    HLSLINCLUDE
-    #pragma multi_compile_fragment __ _ALPHATEST_ON
-    ENDHLSL
+        // For meta pass
+        _BaseMap("Dummy Base Map (Do not use)", 2D) = "white" {}
+    }
 
     SubShader
     {
@@ -181,7 +180,7 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
 
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
+            //#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
             #include "Input.hlsl"
             #include "Passes.hlsl"
 
@@ -223,12 +222,19 @@ Shader "Repetitionless/URP/Repetitionless"
             HLSLPROGRAM
             #pragma target 2.0
 
-            #pragma vertex TerrainVertexMeta
-            #pragma fragment TerrainFragmentMeta
+            #pragma vertex UniversalVertexMeta
+            #pragma fragment UniversalFragmentMetaLit
 
             #pragma shader_feature EDITOR_VISUALIZATION
 
-            #include "Input.hlsl"
+            /*#include "Input.hlsl"
+
+            // Dummy variable
+            TEXTURE2D(_BaseMap);
+            SAMPLER(sampler_BaseMap);
+            float4 _BaseMap_ST;*/
+
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitMetaPass.hlsl"
 
             ENDHLSL
