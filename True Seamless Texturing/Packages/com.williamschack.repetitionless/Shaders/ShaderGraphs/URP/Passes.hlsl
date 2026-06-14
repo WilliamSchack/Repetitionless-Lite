@@ -3,11 +3,12 @@
 
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-#include "../../HLSL/Main/SampleRepetitionlessLayer.hlsl"
 
 #if defined(LOD_FADE_CROSSFADE)
-    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
 #endif
+
+#include "../../HLSL/Main/SampleRepetitionlessLayer.hlsl"
 
 // Structs
 struct Attributes
@@ -27,13 +28,12 @@ struct Varyings
     float2 uv : TEXCOORD0;
 
 #if defined(REQUIRES_WORLD_SPACE_POS_INTERPOLATOR)
-    float3 positionWS : TEXCOORD1;
+    float3 positionWS               : TEXCOORD1;
 #endif
 
     float3 normalWS : TEXCOORD2;
-#if defined(REQUIRES_WORLD_SPACE_TANGENT_INTERPOLATOR)
+    
     half4 tangentWS : TEXCOORD3;    // xyz: tangent, w: sign
-#endif
 
 #ifdef _ADDITIONAL_LIGHTS_VERTEX
     half4 fogFactorAndVertexLight : TEXCOORD5; // x: fogFactor, yzw: vertex light
@@ -166,5 +166,112 @@ Varyings Vert(Attributes input)
     VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);
     VertexNormalInputs normalInput = GetVertexNormalInputs(input.normalOS, input.tangentOS);
 
-    
+    half3 vertexLight = VertexLighting(vertexInput.positionWS, normalInput.normalWS);
+
+    half fogFactor = 0;
+#ifndef _FOG_FRAGMENT
+    fogFactor = ComputeFogFactor(vertexInput.positionCS.z);
+#endif
+
+    output.uv = input.texcoord;
+
+    output.normalWS = normalInput.normalWS;
+
+    real sign = input.tangentOS.w * GetOddNegativeScale();
+    output.tangentWS = half4(normalInput.tangentWS.xyz, sign);
+
+    OUTPUT_LIGHTMAP_UV(input.staticLightmapUV, unity_LightmapST, output.staticLightmapUV);
+#ifdef DYNAMICLIGHTMAP_ON
+    output.dynamicLightmapUV = input.dynamicLightmapUV.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
+#endif
+    OUTPUT_SH4(vertexInput.positionWS, output.normalWS.xyz, GetWorldSpaceNormalizeViewDir(vertexInput.positionWS), output.vertexSH, output.probeOcclusion);
+
+#ifdef _ADDITIONAL_LIGHTS_VERTEX
+    output.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
+#else
+    output.fogFactor = fogFactor;
+#endif
+
+#ifdef REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
+    output.positionWS = vertexInput.positionWS;
+#endif
+
+#ifdef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
+    output.shadowCoord = GetShadowCoord(vertexInput);
+#endif
+
+    output.positionCS = vertexInput.positionCS;
+
+    return output;
 }
+
+half4 Frag(Varyings input) : SV_TARGET
+{
+    UNITY_SETUP_INSTANCE_ID(input);
+    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+    //InitializeStandardLitSurfaceData(input.uv, surfaceData);
+
+    // Main Function
+    float4 albedo;
+    float3 normalTS;
+    float  metallic;
+    float  smoothness;
+    float  occlusion;
+    float3 emission;
+    SampleRepetitionlessLayer(
+        sampler_TrilinearRepeat,
+        input.uv,
+        input.normalWS,
+        input.positionWS,
+        _WorldSpaceCameraPos,
+        (int)_SurfaceTypeSetting,
+        (int)_UVSpace,
+        (int)_VertexColourBlendMode,
+        (int)_DebuggingIndex,
+        input.colour,
+
+        0,
+        _PropertiesTexture,
+        _AssignedTexturesTexture,
+
+        _AVTextures,
+        _NSOTextures,
+        _EMTextures,
+        _BMTextures,
+
+        _NoiseTexture,
+
+        albedo, normalTS, metallic, smoothness, occlusion, emission
+    );
+
+    SurfaceData surfaceData = (SurfaceData)0;
+    surfaceData.albedo      = albedo.rgb;
+    surfaceData.metallic    = metallic;
+    surfaceData.smoothness  = smoothness;
+    surfaceData.occlusion   = occlusion;
+    surfaceData.emission    = emission;
+    surfaceData.alpha       = 1;
+
+    // Input Data
+#ifdef LOD_FADE_CROSSFADE
+    LODFadeCrossFade(input.positionCS);
+#endif
+
+    InputData inputData;
+    InitializeInputData(input, normalTS, inputData);
+
+#if defined(_DBUFFER)
+    ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
+#endif
+
+    InitializeBakedGIData(input, inputData);
+
+    // Output
+    half4 colour = UniversalFragmentPBR(inputData, surfaceData);
+    colour.rgb = MixFog(colour.rgb, inputData.fogCoord);
+    colour.a = 1;
+
+    return colour;
+}
+
+#endif

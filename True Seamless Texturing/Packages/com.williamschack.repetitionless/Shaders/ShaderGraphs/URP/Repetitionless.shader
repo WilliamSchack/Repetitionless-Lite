@@ -73,7 +73,7 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
             #pragma multi_compile_fragment _ _LIGHT_COOKIES
             #pragma multi_compile _ _LIGHT_LAYERS
-            #pragma multi_compile _ _CLUSTER_LIGHT_LOOP
+            #pragma multi_compile _ _CLUSTER_LIGHT_LOOP // Might not be supported pre 6.1: _FORWARD_PLUS
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
 
             // Unity defined
@@ -92,6 +92,7 @@ Shader "Repetitionless/URP/Repetitionless"
 
             #pragma multi_compile_instancing
             #pragma instancing_options renderinglayer
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
 
             // Custom Keywords
             #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
