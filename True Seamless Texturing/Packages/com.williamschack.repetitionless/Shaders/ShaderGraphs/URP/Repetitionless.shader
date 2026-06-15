@@ -283,7 +283,6 @@ Shader "Repetitionless/URP/Repetitionless"
             ENDHLSL
         }
 
-        /*
         Pass
         {
             Name "MotionVectors"
@@ -295,8 +294,8 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma shader_feature_local_vertex _ADD_PRECOMPUTED_VELOCITY
 
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ObjectMotionVectors.hlsl"
+            #include "Input.hlsl"
+            #include_with_pragmas "ObjectMotionVectors.hlsl"
             ENDHLSL
         }
 
@@ -306,7 +305,6 @@ Shader "Repetitionless/URP/Repetitionless"
             Tags { "LightMode" = "XRMotionVectors" }
             ColorMask RGBA
 
-            // Stencil write for obj motion pixels
             Stencil
             {
                 WriteMask 1
@@ -322,10 +320,10 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma shader_feature_local_vertex _ADD_PRECOMPUTED_VELOCITY
             #define APPLICATION_SPACE_WARP_MOTION 1
 
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ObjectMotionVectors.hlsl"
+            #include "Input.hlsl"
+            #include_with_pragmas "ObjectMotionVectors.hlsl"
             ENDHLSL
-        }*/
+        }
     }
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster"
