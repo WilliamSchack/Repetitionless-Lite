@@ -262,7 +262,6 @@ Shader "Repetitionless/URP/Repetitionless"
             ENDHLSL
         }
 
-        /*
         Pass
         {
             Name "Meta"
@@ -278,12 +277,13 @@ Shader "Repetitionless/URP/Repetitionless"
 
             #pragma shader_feature EDITOR_VISUALIZATION
 
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitMetaPass.hlsl"
+            #include "Input.hlsl"
+            #include "MetaPass.hlsl"
 
             ENDHLSL
         }
 
+        /*
         Pass
         {
             Name "MotionVectors"
