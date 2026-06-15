@@ -6,7 +6,6 @@ Shader "Repetitionless/URP/Repetitionless"
         _UVSpace("UV Space", Int) = 0
         _VertexColourBlendMode("Vertex Colour Blend Mode", Int) = 0
         _DebuggingIndex("Debugging Index", Int) = -1
-        _LayersCount("Layers Count", Int) = 1
 
         [NoScaleOffset] _PropertiesTexture("Properties Texture", 2D) = "white" {}
         [NoScaleOffset] _AssignedTexturesTexture("Assigned Textures Texture", 2D) = "white" {}
@@ -26,9 +25,6 @@ Shader "Repetitionless/URP/Repetitionless"
         [HideInInspector] _DstBlendAlpha("__dstA", Float) = 0.0
         [HideInInspector] _ZWrite("__zw", Float) = 1.0
         [HideInInspector] _XRMotionVectorsPass("_XRMotionVectorsPass", Float) = 1.0
-
-        // For meta pass
-        _BaseMap("Dummy Base Map (Do not use)", 2D) = "white" {}
     }
 
     SubShader

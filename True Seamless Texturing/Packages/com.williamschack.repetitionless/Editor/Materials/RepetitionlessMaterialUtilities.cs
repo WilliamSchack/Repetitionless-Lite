@@ -30,7 +30,7 @@ namespace Repetitionless.Editor.Materials
 
         // Enables "prefix{(int)value}"
         // Disables all other enum values
-        public static void SetEnumKeyword<T>(Material mat, string keywordPrefix, T value) where T : Enum
+        public static void SetEnumKeywordInt<T>(Material mat, string keywordPrefix, T value) where T : Enum
         {
             int intValue = Convert.ToInt32(value);
 
@@ -42,6 +42,31 @@ namespace Repetitionless.Editor.Materials
 
                     // Disable others
                     if (currentEnumIntValue != intValue) {
+                        mat.DisableKeyword(keyword);
+                        continue;
+                    }
+
+                    mat.EnableKeyword(keyword);
+                }
+
+                EditorUtility.SetDirty(mat);
+            };
+        }
+
+        // Enables "prefix{(string)value}"
+        // Disables all other enum values
+        public static void SetEnumKeywordString<T>(Material mat, string keywordPrefix, T value) where T : Enum
+        {
+            string stringValue = value.ToString().ToUpper();
+
+            EditorApplication.delayCall += () => {
+                foreach (T currentEnumValue in Enum.GetValues(typeof(T))) {
+                    string currentEnumStringValue = currentEnumValue.ToString().ToUpper();
+
+                    string keyword = $"{keywordPrefix}{currentEnumStringValue}";
+
+                    // Disable others
+                    if (currentEnumStringValue != stringValue) {
                         mat.DisableKeyword(keyword);
                         continue;
                     }

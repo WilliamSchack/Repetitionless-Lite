@@ -142,6 +142,8 @@ namespace Repetitionless.Editor.Inspectors
             _layeredData.LayerMode = (ELayerMode)EditorGUILayout.EnumPopup(new GUIContent("Mode", "Control Textures: Uses manually set textures to specify where each layer is\nTerrain Layers: Uses automatically synced terrain textures and its terrain layers to assign textures and settings to each layer"), _layeredData.LayerMode);
             bool layerModeChanged = EditorGUI.EndChangeCheck();
             if (layerModeChanged) {
+                RepetitionlessMaterialUtilities.SetEnumKeywordString(_material, Constants.LAYER_MODE_KEYWORD_PREFIX, _layeredData.LayerMode);
+
                 _layeredData.Save();
                 _materialProperties.CallOnExternalDataChanged();
             }
@@ -151,7 +153,9 @@ namespace Repetitionless.Editor.Inspectors
             if (EditorGUI.EndChangeCheck()) {
                 _currentLayerIndex = Mathf.Min(_currentLayerIndex, (int)_layeredData.MaxLayers - 1);
 
-                RepetitionlessMaterialUtilities.SetEnumKeyword(_material, Constants.MAX_LAYERS_KEYWORD_PREFIX, _layeredData.MaxLayers);
+                RepetitionlessMaterialUtilities.SetEnumKeywordInt(_material, Constants.MAX_LAYERS_KEYWORD_PREFIX, _layeredData.MaxLayers);
+
+                _layeredData.Save();
                 _materialProperties.CallOnExternalDataChanged();
             }
 
