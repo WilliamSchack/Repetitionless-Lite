@@ -112,7 +112,6 @@ Shader "Repetitionless/URP/Repetitionless"
             // GPU Instancing
             #pragma multi_compile_instancing
             #pragma instancing_options renderinglayer
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
 
             #include "Input.hlsl"
             #include "Passes.hlsl"
@@ -201,7 +200,6 @@ Shader "Repetitionless/URP/Repetitionless"
             // GPU Instancing
             #pragma multi_compile_instancing
             #pragma instancing_options renderinglayer
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
 
             #define REPETITIONLESS_GBUFFER
             #include "Input.hlsl"
@@ -235,6 +233,35 @@ Shader "Repetitionless/URP/Repetitionless"
 
             ENDHLSL
         }
+
+        Pass
+        {
+            Name "DepthNormals"
+            Tags { "LightMode" = "DepthNormals" }
+
+            ZWrite On
+            Cull[_Cull]
+
+            HLSLPROGRAM
+            #pragma target 2.0
+
+            #pragma vertex DepthNormalsVertex
+            #pragma fragment DepthNormalsFragment
+
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
+            #pragma multi_compile _ _WRITE_SMOOTHNESS
+            #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
+
+            #pragma multi_compile_instancing
+
+            #include "Input.hlsl"
+            #include "DepthNormalsPass.hlsl"
+
+            ENDHLSL
+        }
+
         /*
         Pass
         {
