@@ -210,7 +210,7 @@ Shader "Repetitionless/URP/Repetitionless"
 
             ENDHLSL
         }
-        /*
+        
         Pass
         {
             Name "DepthOnly"
@@ -223,19 +223,19 @@ Shader "Repetitionless/URP/Repetitionless"
             HLSLPROGRAM
             #pragma target 2.0
 
-            #pragma vertex DepthOnlyVert
-            #pragma fragment DepthOnlyFrag
+            #pragma vertex DepthOnlyVertex
+            #pragma fragment DepthOnlyFragment
 
             #pragma multi_compile _ LOD_FADE_CROSSFADE
 
             #pragma multi_compile_instancing
 
             #include "Input.hlsl"
-            #include "Passes.hlsl"
+            #include "DepthOnlyPass.hlsl"
 
             ENDHLSL
         }
-
+        /*
         Pass
         {
             Name "Meta"
