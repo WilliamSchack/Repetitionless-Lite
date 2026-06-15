@@ -59,6 +59,9 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma fragment Frag
 
             // URP Keywords
+#if defined(UNITY_PLATFORM_META_QUEST)
+            #pragma multi_compile _ META_QUEST_LIGHTUNROLL
+#endif
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
             #pragma multi_compile _ EVALUATE_SH_MIXED EVALUATE_SH_VERTEX
@@ -74,6 +77,12 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile_fragment _ _LIGHT_COOKIES
             #pragma multi_compile _ _LIGHT_LAYERS
             #pragma multi_compile _ _CLUSTER_LIGHT_LOOP // Might not be supported pre 6.1: _FORWARD_PLUS
+#if defined(UNITY_PLATFORM_META_QUEST)
+            #pragma multi_compile _ META_QUEST_ORTHO_PROJ
+            #pragma multi_compile _ META_QUEST_NO_SPOTLIGHTS_LIGHT_LOOP
+#endif
+
+            #include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
 
             // Unity defined
@@ -90,6 +99,7 @@ Shader "Repetitionless/URP/Repetitionless"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 
+            // GPU Instancing
             #pragma multi_compile_instancing
             #pragma instancing_options renderinglayer
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
@@ -110,7 +120,6 @@ Shader "Repetitionless/URP/Repetitionless"
             ENDHLSL
         }
 
-        /*
         Pass
         {
             Name "ShadowCaster"
@@ -124,8 +133,8 @@ Shader "Repetitionless/URP/Repetitionless"
             HLSLPROGRAM
             #pragma target 2.0
 
-            #pragma vertex ShadowPassVert
-            #pragma fragment ShadowPassFrag
+            #pragma vertex ShadowPassVertex
+            #pragma fragment ShadowPassFragment
             
             #pragma multi_compile_instancing
 
@@ -134,11 +143,11 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
 
             #include "Input.hlsl"
-            #include "Passes.hlsl"
+            #include "ShadowCasterPass.hlsl"
 
             ENDHLSL
         }
-
+        /*
         Pass
         {
             Name "GBuffer"
@@ -178,8 +187,10 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile_fragment _ _SCREEN_SPACE_IRRADIANCE
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 
+            // GPU Instancing
             #pragma multi_compile_instancing
             #pragma instancing_options renderinglayer
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
 
             // Custom Keywords
             #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
