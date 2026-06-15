@@ -58,6 +58,16 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma vertex Vert
             #pragma fragment Frag
 
+            // Custom Keywords
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
+
+            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
+
             // URP Keywords
 #if defined(UNITY_PLATFORM_META_QUEST)
             #pragma multi_compile _ META_QUEST_LIGHTUNROLL
@@ -104,16 +114,6 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma instancing_options renderinglayer
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
 
-            // Custom Keywords
-            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
-            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
-            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
-            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
-            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
-
-            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
-            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
-
             #include "Input.hlsl"
             #include "Passes.hlsl"
 
@@ -147,7 +147,7 @@ Shader "Repetitionless/URP/Repetitionless"
 
             ENDHLSL
         }
-        /*
+
         Pass
         {
             Name "GBuffer"
@@ -161,6 +161,16 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma vertex Vert
             #pragma fragment Frag
 
+            // Custom Keywords
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
+
+            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
+
             // URP Keywords
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
@@ -171,6 +181,7 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile_fragment _ _RENDER_PASS_ENABLED
             #pragma multi_compile _ _CLUSTER_LIGHT_LOOP
             #pragma multi_compile _ EVALUATE_SH_MIXED EVALUATE_SH_VERTEX
+            #include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
 
             // Unity defined
@@ -192,23 +203,14 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma instancing_options renderinglayer
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
 
-            // Custom Keywords
-            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
-            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
-            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
-            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
-            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
-
-            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
-            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
-
-            //#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
+            #define REPETITIONLESS_GBUFFER
             #include "Input.hlsl"
             #include "Passes.hlsl"
+            //#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
 
             ENDHLSL
         }
-
+        /*
         Pass
         {
             Name "DepthOnly"

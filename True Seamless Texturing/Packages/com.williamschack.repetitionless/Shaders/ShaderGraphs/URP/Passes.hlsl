@@ -4,8 +4,12 @@
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
-#if defined(LOD_FADE_CROSSFADE)
+#ifdef LOD_FADE_CROSSFADE
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
+#endif
+
+#ifdef REPETITIONLESS_GBUFFER
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutput.hlsl"
 #endif
 
 #include "../../HLSL/Main/SampleRepetitionlessLayer.hlsl"
@@ -27,7 +31,7 @@ struct Varyings
 {
     float2 uv : TEXCOORD0;
 
-#if defined(REQUIRES_WORLD_SPACE_POS_INTERPOLATOR)
+#ifdef REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
     float3 positionWS               : TEXCOORD1;
 #endif
 
@@ -41,11 +45,11 @@ struct Varyings
     half  fogFactor               : TEXCOORD5;
 #endif
 
-#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
+#ifdef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
     float4 shadowCoord : TEXCOORD6;
 #endif
 
-#if defined(REQUIRES_TANGENT_SPACE_VIEW_DIR_INTERPOLATOR)
+#ifdef REQUIRES_TANGENT_SPACE_VIEW_DIR_INTERPOLATOR
     half3 viewDirTS : TEXCOORD7;
 #endif
 
@@ -70,11 +74,11 @@ void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData
 {
     inputData = (InputData)0;
 
-#if defined(REQUIRES_WORLD_SPACE_POS_INTERPOLATOR)
+#ifdef REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
     inputData.positionWS = input.positionWS;
 #endif
 
-#if defined(DEBUG_DISPLAY)
+#ifdef DEBUG_DISPLAY
     inputData.positionCS = input.positionCS;
 #endif
 
@@ -90,7 +94,7 @@ void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData
     inputData.normalWS = NormalizeNormalPerPixel(inputData.normalWS);
     inputData.viewDirectionWS = viewDirWS;
 
-#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
+#ifdef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
     inputData.shadowCoord = input.shadowCoord;
 #elif defined(MAIN_LIGHT_CALCULATE_SHADOWS)
     inputData.shadowCoord = TransformWorldToShadowCoord(inputData.positionWS);
@@ -104,7 +108,7 @@ void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData
     inputData.fogCoord = InitializeInputDataFog(float4(input.positionWS, 1.0), input.fogFactor);
 #endif
 
-#if defined(UNITY_PRETRANSFORM_TO_DISPLAY_ORIENTATION)
+#ifdef UNITY_PRETRANSFORM_TO_DISPLAY_ORIENTATION
     float2 preRotatedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
     switch (UNITY_DISPLAY_ORIENTATION_PRETRANSFORM)
     {
@@ -118,16 +122,16 @@ void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData
     inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
 #endif
 
-#if defined(DEBUG_DISPLAY)
-    #if defined(DYNAMICLIGHTMAP_ON)
+#ifdef DEBUG_DISPLAY
+    #ifdef DYNAMICLIGHTMAP_ON
         inputData.dynamicLightmapUV = input.dynamicLightmapUV;
     #endif
-    #if defined(LIGHTMAP_ON)
+    #ifdef LIGHTMAP_ON
         inputData.staticLightmapUV = input.staticLightmapUV;
     #else
         inputData.vertexSH = input.vertexSH;
     #endif
-    #if defined(USE_APV_PROBE_OCCLUSION)
+    #ifdef USE_APV_PROBE_OCCLUSION
         inputData.probeOcclusion = input.probeOcclusion;
     #endif
 #endif
@@ -135,7 +139,7 @@ void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData
 
 void InitializeBakedGIData(Varyings input, inout InputData inputData)
 {
-#if defined(_SCREEN_SPACE_IRRADIANCE)
+#ifdef _SCREEN_SPACE_IRRADIANCE
     inputData.bakedGI = SAMPLE_GI(_ScreenSpaceIrradiance, input.positionCS.xy, inputData.normalWS);
 #elif defined(DYNAMICLIGHTMAP_ON)
     inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV, input.vertexSH, inputData.normalWS);
@@ -205,7 +209,11 @@ Varyings Vert(Attributes input)
     return output;
 }
 
+#ifdef REPETITIONLESS_GBUFFER
+GBufferFragOutput Frag(Varyings input)
+#else
 half4 Frag(Varyings input) : SV_TARGET
+#endif
 {
     UNITY_SETUP_INSTANCE_ID(input);
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
@@ -260,18 +268,32 @@ half4 Frag(Varyings input) : SV_TARGET
     InputData inputData;
     InitializeInputData(input, normalTS, inputData);
 
-#if defined(_DBUFFER)
+#ifdef _DBUFFER
     ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
 #endif
 
     InitializeBakedGIData(input, inputData);
 
+#ifdef REPETITIONLESS_GBUFFER
+    BRDFData brdfData;
+    InitializeBRDFData(surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.alpha, brdfData);
+
+    Light mainLight = GetMainLight(inputData.shadowCoord, inputData.positionWS, inputData.shadowMask);
+    MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, inputData.shadowMask);
+
+    half3 color = GlobalIllumination(brdfData, (BRDFData)0, 0,
+                                              inputData.bakedGI, surfaceData.occlusion, inputData.positionWS,
+                                              inputData.normalWS, inputData.viewDirectionWS, inputData.normalizedScreenSpaceUV);
+
+    return PackGBuffersBRDFData(brdfData, inputData, surfaceData.smoothness, surfaceData.emission + color, surfaceData.occlusion);
+#else
     // Output
     half4 colour = UniversalFragmentPBR(inputData, surfaceData);
     colour.rgb = MixFog(colour.rgb, inputData.fogCoord);
     colour.a = 1;
 
     return colour;
+#endif
 }
 
 #endif
