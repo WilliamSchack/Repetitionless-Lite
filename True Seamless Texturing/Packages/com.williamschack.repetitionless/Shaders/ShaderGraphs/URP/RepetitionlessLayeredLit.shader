@@ -345,9 +345,9 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
             ENDHLSL
         }
 
-#if UNITY_VERSION >= 202220
+        // UNITY_VERSION >= 202220
         Pass
-        {
+        { 
             Name "MotionVectors"
             Tags { "LightMode" = "MotionVectors" }
             ColorMask RG
@@ -362,9 +362,8 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
             #include_with_pragmas "ObjectMotionVectors.hlsl"
             ENDHLSL
         }
-#endif
 
-#if UNITY_VERSION >= 600000
+        // UNITY_VERSION >= 600000
         Pass
         {
             Name "XRMotionVectors"
@@ -391,7 +390,6 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
             #include_with_pragmas "ObjectMotionVectors.hlsl"
             ENDHLSL
         }
-#endif
     }
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain"
