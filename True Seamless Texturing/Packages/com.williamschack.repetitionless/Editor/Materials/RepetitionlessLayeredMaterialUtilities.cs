@@ -21,7 +21,7 @@ namespace Repetitionless.Editor.Materials
             materialProperties.SetGlobalTilingOffset(Constants.DEFAULT_TILING_OFFSET_TERRAIN);
         }
 
-        public static void UpdateLayerMode(Material mat, ELayerMode layerMode)
+        public static void UpdateLayerMode(MaterialDataManager dataManager, ELayerMode layerMode)
         {
             string newShader = "";
             switch (layerMode) {
@@ -35,11 +35,15 @@ namespace Repetitionless.Editor.Materials
                     return;
             }
 
-            string shaderName = mat.shader.name;
+            string shaderName = dataManager.Material.shader.name;
             string rp = shaderName.Split("/")[1];
             string newShaderName = $"{Constants.SHADER_FOLDER}{rp}/{newShader}";
             
-            mat.shader = Shader.Find(newShaderName);
+            dataManager.Material.shader = Shader.Find(newShaderName);
+
+            // Create terrain data if required
+            if (layerMode == ELayerMode.TerrainLayers)
+                SetupTerrainData(dataManager);
         }
 
         public static RepetitionlessLayeredDataSO SetupLayeredData(MaterialDataManager dataManager)
@@ -59,6 +63,7 @@ namespace Repetitionless.Editor.Materials
                 data.LayerMode = ELayerMode.ControlTextures;
             } else {
                 data.LayerMode = ELayerMode.TerrainLayers;
+                SetupTerrainData(dataManager);
             }
 
             data.Save();
