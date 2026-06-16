@@ -53,7 +53,7 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             Tags { "LightMode" = "UniversalForward" }
 
             HLSLPROGRAM
-            #pragma target 2.0
+            #pragma target 3.0
 
             #pragma vertex Vert
             #pragma fragment Frag
@@ -77,6 +77,9 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #pragma multi_compile_fragment _ DEBUG_DISPLAY
             
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
+
+            //#pragma multi_compile_instancing
+            //#pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
 
             #include "Input.hlsl"
             #include "TerrainPasses.hlsl"
