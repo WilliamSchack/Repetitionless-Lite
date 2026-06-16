@@ -1,7 +1,7 @@
 #ifndef REPETITIONLESSTERRAINDEPTHONLYPASS_INCLUDED
 #define REPETITIONLESSTERRAINDEPTHONLYPASS_INCLUDED
 
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
 struct Attributes
 {
