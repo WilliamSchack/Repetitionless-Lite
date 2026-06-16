@@ -27,6 +27,9 @@ namespace Repetitionless.Editor.Materials
             switch (layerMode) {
                 case ELayerMode.TerrainLayers:
                     newShader = Constants.SHADER_MATERIAL_NAME_LAYERED_TERRAIN;
+
+                    // Create terrain data if required
+                    SetupTerrainData(dataManager);
                     break;
                 case ELayerMode.ControlTextures:
                     newShader = Constants.SHADER_MATERIAL_NAME_LAYERED_LIT;
@@ -40,10 +43,6 @@ namespace Repetitionless.Editor.Materials
             string newShaderName = $"{Constants.SHADER_FOLDER}{rp}/{newShader}";
             
             dataManager.Material.shader = Shader.Find(newShaderName);
-
-            // Create terrain data if required
-            if (layerMode == ELayerMode.TerrainLayers)
-                SetupTerrainData(dataManager);
         }
 
         public static RepetitionlessLayeredDataSO SetupLayeredData(MaterialDataManager dataManager)
@@ -61,10 +60,15 @@ namespace Repetitionless.Editor.Materials
             string shaderName = dataManager.Material.shader.name;
             if (shaderName.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED_LIT)) {
                 data.LayerMode = ELayerMode.ControlTextures;
+
+                // Create white control texture
+                data.PackControlTexture(0);
+                data.AssignControlTexture(0);
             } else {
                 data.LayerMode = ELayerMode.TerrainLayers;
-                SetupTerrainData(dataManager);
             }
+
+            UpdateLayerMode(dataManager, data.LayerMode);
 
             data.Save();
             AssetDatabase.SaveAssetIfDirty(data);
