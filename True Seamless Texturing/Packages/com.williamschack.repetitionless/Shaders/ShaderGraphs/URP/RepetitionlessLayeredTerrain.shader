@@ -111,9 +111,6 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
                 #define SKIP_SHADOWS_LIGHT_INDEX_CHECK 1
             #endif
 
-            //#pragma multi_compile_instancing
-            //#pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
-
             #include "Input.hlsl"
             #include "TerrainPasses.hlsl"
 

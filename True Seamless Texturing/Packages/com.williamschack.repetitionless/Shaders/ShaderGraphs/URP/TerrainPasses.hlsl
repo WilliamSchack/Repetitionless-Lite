@@ -3,7 +3,7 @@
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutput.hlsl"
-//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DBuffer.hlsl"
+
 #include "../../HLSL/Main/SampleRepetitionlessTerrain.hlsl"
 
 // Structs
@@ -51,22 +51,22 @@ struct VaryingsLean
 };
 
 // Helpers
-void InitializeInputData(Varyings IN, half3 normalTS, out InputData inputData)
+void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData)
 {
     inputData = (InputData)0;
 
-    inputData.positionWS = IN.positionWS;
-    inputData.positionCS = IN.clipPos;
+    inputData.positionWS = input.positionWS;
+    inputData.positionCS = input.clipPos;
 
     // Convert normals from tangent to world space
-    inputData.tangentToWorld = half3x3(-IN.tangent.xyz, IN.bitangent.xyz, IN.normal.xyz);
+    inputData.tangentToWorld = half3x3(-input.tangent.xyz, input.bitangent.xyz, input.normal.xyz);
     inputData.normalWS = TransformTangentToWorld(normalTS, inputData.tangentToWorld);
     inputData.normalWS = normalize(inputData.normalWS);
         
-    inputData.viewDirectionWS = half3(IN.normal.w, IN.tangent.w, IN.bitangent.w);
+    inputData.viewDirectionWS = half3(input.normal.w, input.tangent.w, input.bitangent.w);
 
 #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-    inputData.shadowCoord = IN.shadowCoord;
+    inputData.shadowCoord = input.shadowCoord;
 #elif defined(MAIN_LIGHT_CALCULATE_SHADOWS)
     inputData.shadowCoord = TransformWorldToShadowCoord(inputData.positionWS);
 #else
@@ -74,70 +74,70 @@ void InitializeInputData(Varyings IN, half3 normalTS, out InputData inputData)
 #endif
     
 #ifdef _ADDITIONAL_LIGHTS_VERTEX
-    inputData.fogCoord = InitializeInputDataFog(float4(IN.positionWS, 1.0), IN.fogFactorAndVertexLight.x);
-    inputData.vertexLighting = IN.fogFactorAndVertexLight.yzw;
+    inputData.fogCoord = InitializeInputDataFog(float4(input.positionWS, 1.0), input.fogFactorAndVertexLight.x);
+    inputData.vertexLighting = input.fogFactorAndVertexLight.yzw;
 #else
-    inputData.fogCoord = InitializeInputDataFog(float4(IN.positionWS, 1.0), IN.fogFactor);
+    inputData.fogCoord = InitializeInputDataFog(float4(input.positionWS, 1.0), input.fogFactor);
 #endif
 
-    inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(IN.clipPos);
+    inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.clipPos);
 
 #if defined(DEBUG_DISPLAY)
     #if defined(DYNAMICLIGHTMAP_ON)
-        inputData.dynamicLightmapUV = IN.dynamicLightmapUV;
+        inputData.dynamicLightmapUV = input.dynamicLightmapUV;
     #endif
     #if defined(LIGHTMAP_ON)
-        inputData.staticLightmapUV = IN.uvMainAndLM.zw;
+        inputData.staticLightmapUV = input.uvMainAndLM.zw;
     #else
         inputData.vertexSH = 0;
     #endif
     #if defined(USE_APV_PROBE_OCCLUSION)
-        inputData.probeOcclusion = IN.probeOcclusion;
+        inputData.probeOcclusion = input.probeOcclusion;
     #endif
 #endif
 }
 
-void InitializeBakedGIData(Varyings IN, inout InputData inputData)
+void InitializeBakedGIData(Varyings input, inout InputData inputData)
 {
     half3 SH = 0;
 
 #if defined(DYNAMICLIGHTMAP_ON)
-    inputData.bakedGI = SAMPLE_GI(IN.uvMainAndLM.zw, IN.dynamicLightmapUV, SH, inputData.normalWS);
-    inputData.shadowMask = SAMPLE_SHADOWMASK(IN.uvMainAndLM.zw);
+    inputData.bakedGI = SAMPLE_GI(input.uvMainAndLM.zw, input.dynamicLightmapUV, SH, inputData.normalWS);
+    inputData.shadowMask = SAMPLE_SHADOWMASK(input.uvMainAndLM.zw);
 #elif !defined(LIGHTMAP_ON) && (defined(PROBE_VOLUMES_L1) || defined(PROBE_VOLUMES_L2))
     inputData.bakedGI = SAMPLE_GI(SH,
         GetAbsolutePositionWS(inputData.positionWS),
         inputData.normalWS,
         inputData.viewDirectionWS,
         inputData.positionCS.xy,
-        IN.probeOcclusion,
+        input.probeOcclusion,
         inputData.shadowMask);
 #else
-    inputData.bakedGI = SAMPLE_GI(IN.uvMainAndLM.zw, SH, inputData.normalWS);
-    inputData.shadowMask = SAMPLE_SHADOWMASK(IN.uvMainAndLM.zw);
+    inputData.bakedGI = SAMPLE_GI(input.uvMainAndLM.zw, SH, inputData.normalWS);
+    inputData.shadowMask = SAMPLE_SHADOWMASK(input.uvMainAndLM.zw);
 #endif
 }
 
 // Lit
-Varyings Vert(Attributes v)
+Varyings Vert(Attributes input)
 {
     Varyings o = (Varyings)0;
-    UNITY_SETUP_INSTANCE_ID(v);
+    UNITY_SETUP_INSTANCE_ID(input);
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-    TerrainInstancing(v.positionOS, v.normalOS, v.texcoord);
+    TerrainInstancing(input.positionOS, input.normalOS, input.texcoord);
 
-    VertexPositionInputs vertexInput = GetVertexPositionInputs(v.positionOS.xyz);
+    VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);
 
-    o.uvMainAndLM.xy = v.texcoord;
-    o.uvMainAndLM.zw = v.texcoord * unity_LightmapST.xy + unity_LightmapST.zw;
+    o.uvMainAndLM.xy = input.texcoord;
+    o.uvMainAndLM.zw = input.texcoord * unity_LightmapST.xy + unity_LightmapST.zw;
 
 #if defined(DYNAMICLIGHTMAP_ON)
-    o.dynamicLightmapUV = v.texcoord * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
+    o.dynamicLightmapUV = input.texcoord * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
 #endif
 
     half3 viewDirWS = GetWorldSpaceNormalizeViewDir(vertexInput.positionWS);
-    float4 vertexTangent = float4(cross(float3(0, 0, 1), v.normalOS), 1.0);
-    VertexNormalInputs normalInput = GetVertexNormalInputs(v.normalOS, vertexTangent);
+    float4 vertexTangent = float4(cross(float3(0, 0, 1), input.normalOS), 1.0);
+    VertexNormalInputs normalInput = GetVertexNormalInputs(input.normalOS, vertexTangent);
 
     o.normal = half4(normalInput.normalWS, viewDirWS.x);
     o.tangent = half4(normalInput.tangentWS, viewDirWS.y);
@@ -157,7 +157,7 @@ Varyings Vert(Attributes v)
 
     o.positionWS = vertexInput.positionWS;
     o.clipPos = vertexInput.positionCS;
-    o.colour = v.colour;
+    o.colour = input.colour;
 
 #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
     o.shadowCoord = GetShadowCoord(vertexInput);
@@ -167,14 +167,14 @@ Varyings Vert(Attributes v)
 }
 
 #ifdef TERRAIN_GBUFFER
-GBufferFragOutput Frag(Varyings IN)
+GBufferFragOutput Frag(Varyings input)
 #else
-half4 Frag(Varyings IN) : SV_TARGET
+half4 Frag(Varyings input) : SV_TARGET
 #endif
 {
-    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
+    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
-    float2 uv = IN.uvMainAndLM.xy;
+    float2 uv = input.uvMainAndLM.xy;
 
     // Main function
     float4 albedo;
@@ -186,14 +186,14 @@ half4 Frag(Varyings IN) : SV_TARGET
     SampleRepetitionlessTerrain(
         sampler_TrilinearRepeat,
         uv,
-        IN.normal,
-        IN.positionWS,
+        input.normal,
+        input.positionWS,
         _WorldSpaceCameraPos,
         (int)_SurfaceTypeSetting,
         (int)_UVSpace,
         (int)_VertexColourBlendMode,
         (int)_DebuggingIndex,
-        IN.colour,
+        input.colour,
 
         (int)_LayersCount,
         _PropertiesTexture,
@@ -210,11 +210,11 @@ half4 Frag(Varyings IN) : SV_TARGET
     );
 
     InputData inputData;
-    InitializeInputData(IN, normalTS, inputData);
+    InitializeInputData(input, normalTS, inputData);
 
 #if defined(_DBUFFER)
     half3 specular = half3(0.0h, 0.0h, 0.0h);
-    ApplyDecal(IN.clipPos,
+    ApplyDecal(input.clipPos,
         albedo,
         specular,
         inputData.normalWS,
@@ -223,7 +223,7 @@ half4 Frag(Varyings IN) : SV_TARGET
         smoothness);
 #endif
 
-    InitializeBakedGIData(IN, inputData);
+    InitializeBakedGIData(input, inputData);
 
 #ifdef TERRAIN_GBUFFER
     BRDFData brdfData;
@@ -264,14 +264,14 @@ half4 Frag(Varyings IN) : SV_TARGET
 float3 _LightDirection;
 float3 _LightPosition;
 
-VaryingsLean ShadowPassVert(Attributes v)
+VaryingsLean ShadowPassVert(Attributes input)
 {
     VaryingsLean o = (VaryingsLean)0;
-    UNITY_SETUP_INSTANCE_ID(v);
-    TerrainInstancing(v.positionOS, v.normalOS, v.texcoord);
+    UNITY_SETUP_INSTANCE_ID(input);
+    TerrainInstancing(input.positionOS, input.normalOS, input.texcoord);
 
-    float3 positionWS = TransformObjectToWorld(v.positionOS.xyz);
-    float3 normalWS = TransformObjectToWorldNormal(v.normalOS);
+    float3 positionWS = TransformObjectToWorld(input.positionOS.xyz);
+    float3 normalWS = TransformObjectToWorldNormal(input.normalOS);
 
 #if _CASTING_PUNCTUAL_LIGHT_SHADOW
     float3 lightDirectionWS = normalize(_LightPosition - positionWS);
@@ -289,42 +289,42 @@ VaryingsLean ShadowPassVert(Attributes v)
 
     o.clipPos = clipPos;
 
-    o.texcoord = v.texcoord;
+    o.texcoord = input.texcoord;
 
     return o;
 }
 
-half4 ShadowPassFrag(VaryingsLean IN) : SV_TARGET
+half4 ShadowPassFrag(VaryingsLean input) : SV_TARGET
 {
 #ifdef _ALPHATEST_ON
-    ClipHoles(IN.texcoord);
+    ClipHoles(input.texcoord);
 #endif
     return 0;
 }
 
 // DepthOnly
-VaryingsLean DepthOnlyVert(Attributes v)
+VaryingsLean DepthOnlyVert(Attributes input)
 {
     VaryingsLean o = (VaryingsLean)0;
-    UNITY_SETUP_INSTANCE_ID(v);
+    UNITY_SETUP_INSTANCE_ID(input);
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-    TerrainInstancing(v.positionOS, v.normalOS, v.texcoord);
+    TerrainInstancing(input.positionOS, input.normalOS, input.texcoord);
 
-    o.clipPos = TransformObjectToHClip(v.positionOS.xyz);
-    o.texcoord = v.texcoord;
+    o.clipPos = TransformObjectToHClip(input.positionOS.xyz);
+    o.texcoord = input.texcoord;
     return o;
 }
 
-half4 DepthOnlyFrag(VaryingsLean IN) : SV_TARGET
+half4 DepthOnlyFrag(VaryingsLean input) : SV_TARGET
 {
 #ifdef _ALPHATEST_ON
-    ClipHoles(IN.texcoord);
+    ClipHoles(input.texcoord);
 #endif
 #ifdef SCENESELECTIONPASS
     // We use depth prepass for scene selection in the editor, this code allow to output the outline correctly
     return half4(_ObjectId, _PassValue, 1.0, 1.0);
 #endif
-    return IN.clipPos.z;
+    return input.clipPos.z;
 }
 
 #endif
