@@ -144,6 +144,9 @@ namespace Repetitionless.Editor.Inspectors
             if (layerModeChanged) {
                 RepetitionlessLayeredMaterialUtilities.UpdateLayerMode(_material, _layeredData.LayerMode);
 
+                if (_layeredData.LayerMode == ELayerMode.TerrainLayers)
+                    UpdateTerrainDetails();
+
                 _layeredData.Save();
                 _materialProperties.CallOnExternalDataChanged();
             }
