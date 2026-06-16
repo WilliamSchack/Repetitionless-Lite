@@ -23,4 +23,12 @@
 #pragma multi_compile_fragment _ REFLECTION_PROBE_ROTATION
 #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 
+// GPU Instancing
+#pragma multi_compile_instancing
+#pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+
+#if USE_DYNAMIC_BRANCH_FOG_KEYWORD && SHADER_API_VULKAN && SHADER_API_MOBILE
+    #define SKIP_SHADOWS_LIGHT_INDEX_CHECK 1
+#endif
+
 #endif

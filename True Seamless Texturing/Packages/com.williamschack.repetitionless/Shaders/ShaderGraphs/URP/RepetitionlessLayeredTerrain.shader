@@ -78,11 +78,103 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
 
+            #include "Input.hlsl"
+            #include "TerrainPasses.hlsl"
+
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "ShadowCaster"
+            Tags { "LightMode" = "ShadowCaster" }
+
+            ZWrite On
+            ColorMask 0
+
+            HLSLPROGRAM
+            #pragma target 2.0
+
+            #pragma vertex ShadowPassVert
+            #pragma fragment ShadowPassFrag
+            
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+
+            #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
+
+            #include "Input.hlsl"
+            #include "TerrainPasses.hlsl"
+
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "GBuffer"
+            Tags { "LightMode" = "UniversalGBuffer" }
+
+            HLSLPROGRAM
+            #pragma target 4.5
+
+            #pragma exclude_renderers gles3 glcore
+
+            #pragma vertex Vert
+            #pragma fragment Frag
+
+            // Common
+            #include_with_pragmas "Pragmas/TerrainKeywords.hlsl"
+            #include_with_pragmas "Pragmas/TerrainCommon.hlsl"
+
+            #pragma multi_compile_fragment _ _RENDER_PASS_ENABLED
+            #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
+
+            //#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
+            #include "Input.hlsl"
+            #include "TerrainPasses.hlsl"
+
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "DepthOnly"
+            Tags { "LightMode" = "DepthOnly" }
+
+            ZWrite On
+            ColorMask R
+
+            HLSLPROGRAM
+            #pragma target 2.0
+
+            #pragma vertex DepthOnlyVert
+            #pragma fragment DepthOnlyFrag
+
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
 
             #include "Input.hlsl"
             #include "TerrainPasses.hlsl"
+
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "Meta"
+            Tags { "LightMode" = "Meta" }
+
+            HLSLPROGRAM
+            #pragma vertex TerrainVertexMeta
+            #pragma fragment TerrainFragmentMeta
+
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+
+            #pragma shader_feature EDITOR_VISUALIZATION
+
+            #include "Input.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitMetaPass.hlsl"
 
             ENDHLSL
         }
