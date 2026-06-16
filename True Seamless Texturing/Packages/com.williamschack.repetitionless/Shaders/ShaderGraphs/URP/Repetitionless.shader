@@ -75,9 +75,6 @@ Shader "Repetitionless/URP/Repetitionless"
 
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
 
-            #pragma multi_compile_instancing
-            #pragma instancing_options renderinglayer
-
             #include "Input.hlsl"
             #include "Passes.hlsl"
 
@@ -132,9 +129,6 @@ Shader "Repetitionless/URP/Repetitionless"
             // Keywords
             #pragma multi_compile_fragment _ _RENDER_PASS_ENABLED
             #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
-
-            #pragma multi_compile_instancing
-            #pragma instancing_options renderinglayer
 
             #define REPETITIONLESS_GBUFFER
             #include "Input.hlsl"
