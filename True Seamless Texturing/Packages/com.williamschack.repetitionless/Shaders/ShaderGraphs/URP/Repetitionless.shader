@@ -69,7 +69,6 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
             #pragma multi_compile _ EVALUATE_SH_MIXED EVALUATE_SH_VERTEX
             #pragma multi_compile _ _LIGHT_LAYERS
-            #pragma multi_compile _ _CLUSTER_LIGHT_LOOP // Might not be supported pre 6.1: _FORWARD_PLUS
             #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
@@ -80,8 +79,22 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
             #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
             #pragma multi_compile_fragment _ _LIGHT_COOKIES
-            #include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
+
+#if UNITY_VERSION >= 202220
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
+#endif
+
+#if UNITY_VERSION >= 202230
+            #include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
+#endif
+
+#if UNITY_VERSION >= 600010
+            #pragma multi_compile _ _CLUSTER_LIGHT_LOOP
+#elif UNITY_VERSION >= 202220
+            #pragma multi_compile _ _FORWARD_PLUS
+#else
+            #pragma multi_compile _ _CLUSTERED_RENDERING
+#endif
 
 #ifdef UNITY_PLATFORM_META_QUEST
             #pragma multi_compile _ META_QUEST_LIGHTUNROLL
@@ -96,15 +109,26 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ DYNAMICLIGHTMAP_ON
             #pragma multi_compile _ USE_LEGACY_LIGHTMAPS
-            #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma multi_compile_fragment _ LIGHTMAP_BICUBIC_SAMPLING
             #pragma multi_compile_fragment _ REFLECTION_PROBE_ROTATION
             #pragma multi_compile_fragment _ DEBUG_DISPLAY
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
-
+      
             #pragma multi_compile_instancing
             #pragma instancing_options renderinglayer
+
+#if UNITY_VERSION >= 202220
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+#endif
+
+#if UNITY_VERSION >= 202300
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
+#endif
+
+#if UNITY_VERSION >= 202320
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
+#else
+            #pragma multi_compile_fog
+#endif
 
             #include "Input.hlsl"
             #include "Passes.hlsl"
@@ -130,9 +154,11 @@ Shader "Repetitionless/URP/Repetitionless"
             
             #pragma multi_compile_instancing
 
-            #pragma multi_compile _ LOD_FADE_CROSSFADE
-
             #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
+
+#if UNITY_VERSION >= 202220
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+#endif
 
             #include "Input.hlsl"
             #include "ShadowCasterPass.hlsl"
@@ -166,7 +192,6 @@ Shader "Repetitionless/URP/Repetitionless"
             // URP Keywords
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile _ EVALUATE_SH_MIXED EVALUATE_SH_VERTEX
-            #pragma multi_compile _ _CLUSTER_LIGHT_LOOP // Might not be supported pre 6.1: _FORWARD_PLUS
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
             #pragma multi_compile_fragment _ _SCREEN_SPACE_REFLECTION
@@ -174,8 +199,22 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
             #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
             #pragma multi_compile_fragment _ _RENDER_PASS_ENABLED
-            #include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
+
+#if UNITY_VERSION >= 202220
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
+#endif
+
+#if UNITY_VERSION >= 202220
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
+#endif
+
+#if UNITY_VERSION >= 600010
+            #pragma multi_compile _ _CLUSTER_LIGHT_LOOP
+#elif UNITY_VERSION >= 202220
+            #pragma multi_compile _ _FORWARD_PLUS
+#else
+            #pragma multi_compile _ _CLUSTERED_RENDERING
+#endif
 
             // Unity defined
             #pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
@@ -184,19 +223,24 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ DYNAMICLIGHTMAP_ON
             #pragma multi_compile _ USE_LEGACY_LIGHTMAPS
-            #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma multi_compile_fragment _ LIGHTMAP_BICUBIC_SAMPLING
             #pragma multi_compile_fragment _ REFLECTION_PROBE_ROTATION
             #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 
             #pragma multi_compile_instancing
             #pragma instancing_options renderinglayer
 
+#if UNITY_VERSION >= 202220
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+#endif
+
+#if UNITY_VERSION >= 202300
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
+#endif
+
             #define REPETITIONLESS_GBUFFER
             #include "Input.hlsl"
             #include "Passes.hlsl"
-            //#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
 
             ENDHLSL
         }
@@ -216,7 +260,9 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma vertex DepthOnlyVertex
             #pragma fragment DepthOnlyFragment
 
+#if UNITY_VERSION >= 202220
             #pragma multi_compile _ LOD_FADE_CROSSFADE
+#endif
 
             #pragma multi_compile_instancing
 
@@ -240,11 +286,13 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma vertex DepthNormalsVertex
             #pragma fragment DepthNormalsFragment
 
+#if UNITY_VERSION >= 202220
             #pragma multi_compile _ LOD_FADE_CROSSFADE
+#endif
 
+#if UNITY_VERSION >= 202220
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
-            #pragma multi_compile _ _WRITE_SMOOTHNESS
-            #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
+#endif
 
             #pragma multi_compile_instancing
 
@@ -261,8 +309,13 @@ Shader "Repetitionless/URP/Repetitionless"
 
             Cull Off
 
-            HLSLPROGRAM
+            HLSLPROGRAM 
+#if UNITY_VERSION >= 202220
             #pragma target 2.0
+#else
+            #pragma exclude_renderers gles gles3 glcore
+            #pragma target 4.5
+#endif
 
             #pragma vertex VertexMeta
             #pragma fragment FragmentMetaLit
@@ -275,6 +328,7 @@ Shader "Repetitionless/URP/Repetitionless"
             ENDHLSL
         }
 
+#if UNITY_VERSION >= 202220
         Pass
         {
             Name "MotionVectors"
@@ -283,14 +337,17 @@ Shader "Repetitionless/URP/Repetitionless"
 
             HLSLPROGRAM
             #pragma shader_feature_local _ALPHATEST_ON
-            #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma shader_feature_local_vertex _ADD_PRECOMPUTED_VELOCITY
+
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
 
             #include "Input.hlsl"
             #include_with_pragmas "ObjectMotionVectors.hlsl"
             ENDHLSL
         }
+#endif
 
+#if UNITY_VERSION >= 600000
         Pass
         {
             Name "XRMotionVectors"
@@ -307,15 +364,17 @@ Shader "Repetitionless/URP/Repetitionless"
 
             HLSLPROGRAM
             #pragma shader_feature_local _ALPHATEST_ON
-            #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma multi_compile _ APPLICATION_SPACE_WARP_MOTION_TRANSPARENT
             #pragma shader_feature_local_vertex _ADD_PRECOMPUTED_VELOCITY
             #define APPLICATION_SPACE_WARP_MOTION 1
+
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
 
             #include "Input.hlsl"
             #include_with_pragmas "ObjectMotionVectors.hlsl"
             ENDHLSL
         }
+#endif
     }
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster"

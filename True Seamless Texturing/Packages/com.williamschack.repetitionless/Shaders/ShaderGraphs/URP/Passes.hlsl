@@ -229,6 +229,10 @@ half4 Frag(Varyings input) : SV_TARGET
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
 
+#ifdef TESTING
+    albedo = 0;
+#endif
+
     SurfaceData surfaceData = (SurfaceData)0;
     surfaceData.albedo      = albedo.rgb;
     surfaceData.metallic    = metallic;

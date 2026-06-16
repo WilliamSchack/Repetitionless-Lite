@@ -55,6 +55,8 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
         }
         LOD 300
 
+//        UsePass "Repetitionless/URP/Repetitionless/ForwardLit"
+
         Pass
         {
             Name "ForwardLit"
