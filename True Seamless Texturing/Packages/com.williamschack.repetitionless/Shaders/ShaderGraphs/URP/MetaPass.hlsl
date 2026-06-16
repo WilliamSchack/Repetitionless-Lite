@@ -3,7 +3,7 @@
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/MetaInput.hlsl"
 
-#include "../../HLSL/Main/SampleRepetitionlessLayer.hlsl"
+#include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
 
 struct Attributes
 {
@@ -63,32 +63,11 @@ half4 FragmentMetaLit(Varyings input) : SV_Target
     float  smoothness;
     float  occlusion;
     float3 emission;
-    SampleRepetitionlessLayer(
-        sampler_TrilinearRepeat,
-        input.uv,
-        input.normalWS,
-        input.positionWS,
-        _WorldSpaceCameraPos,
-        (int)_SurfaceTypeSetting,
-        (int)_UVSpace,
-        (int)_VertexColourBlendMode,
-        (int)_DebuggingIndex,
-        0,//input.colour,
-
-        0,
-        _PropertiesTexture,
-        _AssignedTexturesTexture,
-
-        _AVTextures,
-        _NSOTextures,
-        _EMTextures,
-        _BMTextures,
-
-        _NoiseTexture,
-
+    SampleRepetitionless(
+        input.uv, input.normalWS, input.positionWS, 0,
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
-
+    
     SurfaceData surfaceData = (SurfaceData)0;
     surfaceData.albedo      = albedo.rgb;
     surfaceData.metallic    = metallic;

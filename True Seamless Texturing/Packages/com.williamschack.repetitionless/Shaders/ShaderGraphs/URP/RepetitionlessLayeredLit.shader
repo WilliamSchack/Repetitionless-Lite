@@ -1,4 +1,4 @@
-Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
+Shader "Repetitionless/URP/RepetitionlessLayeredLit"
 {
     Properties
     {
@@ -25,11 +25,20 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
         _Control5("Control 5", 2D) = "black" {}
         _Control6("Control 6", 2D) = "black" {}
         _Control7("Control 7", 2D) = "black" {}
+
+        // Blending
+        _Surface("__surface", Float) = 0.0
+        _Blend("__blend", Float) = 0.0
+        _Cull("__cull", Float) = 2.0
+        [HideInInspector] _SrcBlend("__src", Float) = 1.0
+        [HideInInspector] _DstBlend("__dst", Float) = 0.0
+        [HideInInspector] _SrcBlendAlpha("__srcA", Float) = 1.0
+        [HideInInspector] _DstBlendAlpha("__dstA", Float) = 0.0
+        [HideInInspector] _ZWrite("__zw", Float) = 1.0
+        [HideInInspector] _XRMotionVectorsPass("_XRMotionVectorsPass", Float) = 1.0
     }
 
     HLSLINCLUDE
-    #pragma multi_compile_fragment __ _ALPHATEST_ON
-
     #ifndef REPETITIONLESS_LAYERED
     #define REPETITIONLESS_LAYERED
     #endif
@@ -42,18 +51,22 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             "RenderType" = "Opaque"
             "RenderPipeline" = "UniversalPipeline"
             "UniversalMaterialType" = "Lit"
-            "IgnoreProjector" = "False"
-            "Queue" = "Geometry-100"
-            "TerrainCompatible" = "True"
+            "IgnoreProjector" = "True"
         }
+        LOD 300
 
         Pass
         {
             Name "ForwardLit"
             Tags { "LightMode" = "UniversalForward" }
 
+            Blend[_SrcBlend][_DstBlend], [_SrcBlendAlpha][_DstBlendAlpha]
+            ZWrite[_ZWrite]
+            Cull[_Cull]
+            AlphaToMask[_AlphaToMask]
+
             HLSLPROGRAM
-            #pragma target 3.0
+            #pragma target 2.0
 
             #pragma vertex Vert
             #pragma fragment Frag
@@ -67,9 +80,8 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
 
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
-            #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
 
-            // URP Keywords
+            // URP Keywords 
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
             #pragma multi_compile _ EVALUATE_SH_MIXED EVALUATE_SH_VERTEX
@@ -77,6 +89,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             #pragma multi_compile _ _CLUSTER_LIGHT_LOOP // Might not be supported pre 6.1: _FORWARD_PLUS
             #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_ATLAS
             #pragma multi_compile_fragment _ _SCREEN_SPACE_REFLECTION
             #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
@@ -88,6 +101,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
 
 #ifdef UNITY_PLATFORM_META_QUEST
+            #pragma multi_compile _ META_QUEST_LIGHTUNROLL
             #pragma multi_compile _ META_QUEST_ORTHO_PROJ
             #pragma multi_compile _ META_QUEST_NO_SPOTLIGHTS_LIGHT_LOOP
 #endif
@@ -98,6 +112,8 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             #pragma multi_compile _ DIRLIGHTMAP_COMBINED
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ DYNAMICLIGHTMAP_ON
+            #pragma multi_compile _ USE_LEGACY_LIGHTMAPS
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma multi_compile_fragment _ LIGHTMAP_BICUBIC_SAMPLING
             #pragma multi_compile_fragment _ REFLECTION_PROBE_ROTATION
             #pragma multi_compile_fragment _ DEBUG_DISPLAY
@@ -105,14 +121,10 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
 
             #pragma multi_compile_instancing
-            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
-
-            #if USE_DYNAMIC_BRANCH_FOG_KEYWORD && SHADER_API_VULKAN && SHADER_API_MOBILE
-                #define SKIP_SHADOWS_LIGHT_INDEX_CHECK 1
-            #endif
+            #pragma instancing_options renderinglayer
 
             #include "Input.hlsl"
-            #include "TerrainPasses.hlsl"
+            #include "Passes.hlsl"
 
             ENDHLSL
         }
@@ -123,7 +135,9 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             Tags { "LightMode" = "ShadowCaster" }
 
             ZWrite On
+            ZTest LEqual
             ColorMask 0
+            Cull[_Cull]
 
             HLSLPROGRAM
             #pragma target 2.0
@@ -132,12 +146,13 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             #pragma fragment ShadowPassFragment
             
             #pragma multi_compile_instancing
-            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
 
             #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
 
             #include "Input.hlsl"
-            #include "TerrainShadowCasterPass.hlsl"
+            #include "ShadowCasterPass.hlsl"
 
             ENDHLSL
         }
@@ -164,13 +179,13 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
 
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
-            #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
 
-            // URP Keywords 
+            // URP Keywords
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile _ EVALUATE_SH_MIXED EVALUATE_SH_VERTEX
             #pragma multi_compile _ _CLUSTER_LIGHT_LOOP // Might not be supported pre 6.1: _FORWARD_PLUS
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
             #pragma multi_compile_fragment _ _SCREEN_SPACE_REFLECTION
             #pragma multi_compile_fragment _ _SCREEN_SPACE_IRRADIANCE
             #pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
@@ -185,25 +200,24 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             #pragma multi_compile _ DIRLIGHTMAP_COMBINED
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ DYNAMICLIGHTMAP_ON
+            #pragma multi_compile _ USE_LEGACY_LIGHTMAPS
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma multi_compile_fragment _ LIGHTMAP_BICUBIC_SAMPLING
             #pragma multi_compile_fragment _ REFLECTION_PROBE_ROTATION
             #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 
             #pragma multi_compile_instancing
-            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+            #pragma instancing_options renderinglayer
 
-            #if USE_DYNAMIC_BRANCH_FOG_KEYWORD && SHADER_API_VULKAN && SHADER_API_MOBILE
-                #define SKIP_SHADOWS_LIGHT_INDEX_CHECK 1
-            #endif
-
-            //#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
+            #define REPETITIONLESS_GBUFFER
             #include "Input.hlsl"
-            #include "TerrainPasses.hlsl"
+            #include "Passes.hlsl"
+            //#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutputFormat.hlsl"
 
             ENDHLSL
         }
-
+        
         Pass
         {
             Name "DepthOnly"
@@ -211,6 +225,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
 
             ZWrite On
             ColorMask R
+            Cull[_Cull]
 
             HLSLPROGRAM
             #pragma target 2.0
@@ -218,11 +233,40 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             #pragma vertex DepthOnlyVertex
             #pragma fragment DepthOnlyFragment
 
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+
             #pragma multi_compile_instancing
-            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
 
             #include "Input.hlsl"
-            #include "TerrainDepthOnlyPass.hlsl"
+            #include "DepthOnlyPass.hlsl"
+
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "DepthNormals"
+            Tags { "LightMode" = "DepthNormals" }
+
+            ZWrite On
+            Cull[_Cull]
+
+            HLSLPROGRAM
+            #pragma target 2.0
+
+            #pragma vertex DepthNormalsVertex
+            #pragma fragment DepthNormalsFragment
+
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
+            #pragma multi_compile _ _WRITE_SMOOTHNESS
+            #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
+
+            #pragma multi_compile_instancing
+
+            #include "Input.hlsl"
+            #include "DepthNormalsPass.hlsl"
 
             ENDHLSL
         }
@@ -232,23 +276,63 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             Name "Meta"
             Tags { "LightMode" = "Meta" }
 
-            HLSLPROGRAM
-            #pragma vertex TerrainVertexMeta
-            #pragma fragment TerrainFragmentMeta
+            Cull Off
 
-            #pragma multi_compile_instancing
-            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+            HLSLPROGRAM
+            #pragma target 2.0
+
+            #pragma vertex VertexMeta
+            #pragma fragment FragmentMetaLit
 
             #pragma shader_feature EDITOR_VISUALIZATION
 
             #include "Input.hlsl"
-            #include "TerrainMetaPass.hlsl"
+            #include "MetaPass.hlsl"
 
             ENDHLSL
         }
 
-        UsePass "Hidden/Nature/Terrain/Utilities/PICKING"
-        UsePass "Hidden/Nature/Terrain/Utilities/SELECTION"
+        Pass
+        {
+            Name "MotionVectors"
+            Tags { "LightMode" = "MotionVectors" }
+            ColorMask RG
+
+            HLSLPROGRAM
+            #pragma shader_feature_local _ALPHATEST_ON
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+            #pragma shader_feature_local_vertex _ADD_PRECOMPUTED_VELOCITY
+
+            #include "Input.hlsl"
+            #include_with_pragmas "ObjectMotionVectors.hlsl"
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "XRMotionVectors"
+            Tags { "LightMode" = "XRMotionVectors" }
+            ColorMask RGBA
+
+            Stencil
+            {
+                WriteMask 1
+                Ref 1
+                Comp Always
+                Pass Replace
+            }
+
+            HLSLPROGRAM
+            #pragma shader_feature_local _ALPHATEST_ON
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+            #pragma multi_compile _ APPLICATION_SPACE_WARP_MOTION_TRANSPARENT
+            #pragma shader_feature_local_vertex _ADD_PRECOMPUTED_VELOCITY
+            #define APPLICATION_SPACE_WARP_MOTION 1
+
+            #include "Input.hlsl"
+            #include_with_pragmas "ObjectMotionVectors.hlsl"
+            ENDHLSL
+        }
     }
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain"

@@ -4,7 +4,7 @@
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutput.hlsl"
 
-#include "../../HLSL/Main/SampleRepetitionlessTerrain.hlsl"
+#include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
 
 // Structs
 struct Attributes
@@ -177,29 +177,8 @@ half4 Frag(Varyings input) : SV_TARGET
     float  smoothness;
     float  occlusion;
     float3 emission;
-    SampleRepetitionlessTerrain(
-        sampler_TrilinearRepeat,
-        uv,
-        input.normal,
-        input.positionWS,
-        _WorldSpaceCameraPos,
-        (int)_SurfaceTypeSetting,
-        (int)_UVSpace,
-        (int)_VertexColourBlendMode,
-        (int)_DebuggingIndex,
-        input.colour,
-
-        (int)_LayersCount,
-        _PropertiesTexture,
-        _AssignedTexturesTexture,
-
-        _AVTextures,
-        _NSOTextures,
-        _EMTextures,
-        _BMTextures,
-
-        _NoiseTexture,
-
+    SampleRepetitionless(
+        uv, input.normal, input.positionWS, input.colour,
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
 

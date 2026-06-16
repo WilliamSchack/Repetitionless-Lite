@@ -6,7 +6,7 @@
     #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
 #endif
 
-#include "../../HLSL/Main/SampleRepetitionlessLayer.hlsl"
+#include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
 
 struct Attributes
 {
@@ -82,29 +82,8 @@ half4 DepthNormalsFragment(Varyings input) : SV_Target0
         float  smoothness;
         float  occlusion;
         float3 emission;
-        SampleRepetitionlessLayer(
-            sampler_TrilinearRepeat,
-            input.uv,
-            input.normalWS,
-            input.positionWS,
-            _WorldSpaceCameraPos,
-            (int)_SurfaceTypeSetting,
-            (int)_UVSpace,
-            (int)_VertexColourBlendMode,
-            (int)_DebuggingIndex,
-            0,
-
-            0,
-            _PropertiesTexture,
-            _AssignedTexturesTexture,
-
-            _AVTextures,
-            _NSOTextures,
-            _EMTextures,
-            _BMTextures,
-
-            _NoiseTexture,
-
+        SampleRepetitionless(
+            input.uv, input.normalWS, input.positionWS, 0,
             albedo, normalTS, metallic, smoothness, occlusion, emission
         );
 

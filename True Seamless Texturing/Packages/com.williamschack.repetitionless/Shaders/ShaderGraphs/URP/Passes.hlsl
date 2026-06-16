@@ -12,7 +12,7 @@
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutput.hlsl"
 #endif
 
-#include "../../HLSL/Main/SampleRepetitionlessLayer.hlsl"
+#include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
 
 // Structs
 struct Attributes
@@ -216,7 +216,6 @@ half4 Frag(Varyings input) : SV_TARGET
 {
     UNITY_SETUP_INSTANCE_ID(input);
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
-    //InitializeStandardLitSurfaceData(input.uv, surfaceData);
 
     // Main Function
     float4 albedo;
@@ -225,29 +224,8 @@ half4 Frag(Varyings input) : SV_TARGET
     float  smoothness;
     float  occlusion;
     float3 emission;
-    SampleRepetitionlessLayer(
-        sampler_TrilinearRepeat,
-        input.uv,
-        input.normalWS,
-        input.positionWS,
-        _WorldSpaceCameraPos,
-        (int)_SurfaceTypeSetting,
-        (int)_UVSpace,
-        (int)_VertexColourBlendMode,
-        (int)_DebuggingIndex,
-        input.colour,
-
-        0,
-        _PropertiesTexture,
-        _AssignedTexturesTexture,
-
-        _AVTextures,
-        _NSOTextures,
-        _EMTextures,
-        _BMTextures,
-
-        _NoiseTexture,
-
+    SampleRepetitionless(
+        input.uv, input.normalWS, input.positionWS, input.colour,
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
 
