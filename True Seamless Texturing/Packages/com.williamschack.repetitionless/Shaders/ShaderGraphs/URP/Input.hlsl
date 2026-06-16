@@ -22,8 +22,6 @@ TEXTURE2D_ARRAY(_NSOTextures);       SAMPLER(sampler_NSOTextures);
 TEXTURE2D_ARRAY(_EMTextures);        SAMPLER(sampler_EMTextures);
 TEXTURE2D_ARRAY(_BMTextures);        SAMPLER(sampler_BMTextures);
 
-/*
-
 #ifdef REPETITIONLESS_LAYERED
 TEXTURE2D(_TerrainHoles);            SAMPLER(sampler_TerrainHoles);
 TEXTURE2D(_Control0);                SAMPLER(sampler_Control0);
@@ -90,6 +88,4 @@ void TerrainInstancing(inout float4 positionOS)
 }
 
 #endif
-
-*/
 #endif

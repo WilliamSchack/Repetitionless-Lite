@@ -1,4 +1,4 @@
-Shader "Repetitionless/URP/RepetitionlessLayered"
+Shader "Repetitionless/URP/RepetitionlessLayered_OLD"
 {
     Properties
     {
@@ -58,11 +58,12 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #pragma vertex Vert
             #pragma fragment Frag
 
+            #include_with_pragmas "Pragmas/TerrainKeywords.hlsl"
+            #include_with_pragmas "Pragmas/TerrainCommon.hlsl"
+
+
             // URP Keywords
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
-            #pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
-            #pragma multi_compile _ SHADOWS_SHADOWMASK
             #pragma multi_compile _ _LIGHT_LAYERS
             #pragma multi_compile _ _CLUSTER_LIGHT_LOOP
             #pragma multi_compile _ EVALUATE_SH_MIXED EVALUATE_SH_VERTEX
@@ -88,17 +89,6 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
 
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
-
-            // Custom Keywords
-            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
-            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
-            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
-            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
-            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
-            #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
-
-            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
-            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
 
             #if USE_DYNAMIC_BRANCH_FOG_KEYWORD && SHADER_API_VULKAN && SHADER_API_MOBILE
             #define SKIP_SHADOWS_LIGHT_INDEX_CHECK 1

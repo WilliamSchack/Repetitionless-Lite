@@ -25,40 +25,67 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
         _Control5("Control 5", 2D) = "black" {}
         _Control6("Control 6", 2D) = "black" {}
         _Control7("Control 7", 2D) = "black" {}
-
-        // Blending (Non-Terrain)
-        _Surface("__surface", Float) = 0.0
-        _Blend("__blend", Float) = 0.0
-        _Cull("__cull", Float) = 2.0
-        [HideInInspector] _SrcBlend("__src", Float) = 1.0
-        [HideInInspector] _DstBlend("__dst", Float) = 0.0
-        [HideInInspector] _SrcBlendAlpha("__srcA", Float) = 1.0
-        [HideInInspector] _DstBlendAlpha("__dstA", Float) = 0.0
-        [HideInInspector] _ZWrite("__zw", Float) = 1.0
-        [HideInInspector] _XRMotionVectorsPass("_XRMotionVectorsPass", Float) = 1.0
     }
 
     HLSLINCLUDE
+    #pragma multi_compile_fragment __ _ALPHATEST_ON
+
     #ifndef REPETITIONLESS_LAYERED
     #define REPETITIONLESS_LAYERED
     #endif
-    
-    #pragma shader_feature_local _LAYER_MODE_TERRAINLAYERS _LAYER_MODE_CONTROLTEXTURES
     ENDHLSL
 
     SubShader
     {
         Tags
         {
-            "Queue" = "Geometry-100"
             "RenderType" = "Opaque"
             "RenderPipeline" = "UniversalPipeline"
             "UniversalMaterialType" = "Lit"
             "IgnoreProjector" = "False"
+            "Queue" = "Geometry-100"
             "TerrainCompatible" = "True"
         }
 
-        
+        Pass
+        {
+            Name "ForwardLit"
+            Tags { "LightMode" = "UniversalForward" }
+
+            HLSLPROGRAM
+            #pragma target 2.0
+
+            #pragma vertex Vert
+            #pragma fragment Frag
+
+            // Common
+            #include_with_pragmas "Pragmas/TerrainKeywords.hlsl"
+            #include_with_pragmas "Pragmas/TerrainCommon.hlsl"
+
+            // Keywords
+#ifdef UNITY_PLATFORM_META_QUEST
+            #pragma multi_compile _ META_QUEST_ORTHO_PROJ
+            #pragma multi_compile _ META_QUEST_NO_SPOTLIGHTS_LIGHT_LOOP
+#endif
+
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_ATLAS
+            #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
+            #pragma multi_compile_fragment _ _LIGHT_COOKIES
+            #pragma multi_compile _ _LIGHT_LAYERS
+            #pragma multi_compile_fragment _ DEBUG_DISPLAY
+            
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
+
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+
+            #include "Input.hlsl"
+            #include "TerrainPasses.hlsl"
+
+            ENDHLSL
+        }
 
         UsePass "Hidden/Nature/Terrain/Utilities/PICKING"
         UsePass "Hidden/Nature/Terrain/Utilities/SELECTION"
