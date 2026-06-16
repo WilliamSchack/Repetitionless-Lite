@@ -192,8 +192,10 @@ Varyings Vert(Attributes input)
     output.dynamicLightmapUV = input.dynamicLightmapUV.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
 #endif
 
-#if UNITY_VERSION >= 202310
+#if UNITY_VERSION >= 600000
     OUTPUT_SH4(vertexInput.positionWS, output.normalWS.xyz, GetWorldSpaceNormalizeViewDir(vertexInput.positionWS), output.vertexSH, output.probeOcclusion);
+#elif UNITY_VERSION >= 202310
+    OUTPUT_SH4(vertexInput.positionWS, output.normalWS.xyz, GetWorldSpaceNormalizeViewDir(vertexInput.positionWS), output.vertexSH);
 #else
     OUTPUT_SH(output.normalWS.xyz, output.vertexSH);
 #endif
@@ -241,10 +243,6 @@ half4 Frag(Varyings input) : SV_TARGET
         input.uv, input.normalWS, input.positionWS, input.colour,
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
-
-#ifdef TESTING
-    albedo = 0;
-#endif
 
     SurfaceData surfaceData = (SurfaceData)0;
     surfaceData.albedo      = albedo.rgb;

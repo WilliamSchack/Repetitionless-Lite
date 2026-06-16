@@ -101,11 +101,15 @@ float4 frag(Varyings input) : SV_Target
         LODFadeCrossFade(input.positionCS);
     #endif
 
+#if UNITY_VERSION >= 600000
     #if defined(APPLICATION_SPACE_WARP_MOTION)
         return float4(CalcAswNdcMotionVectorFromCsPositions(input.positionCSNoJitter, input.previousPositionCSNoJitter), 1);
     #else
         return float4(CalcNdcMotionVectorFromCsPositions(input.positionCSNoJitter, input.previousPositionCSNoJitter), 0, 0);
     #endif
+#else
+    return float4(CalcNdcMotionVectorFromCsPositions(input.positionCSNoJitter, input.previousPositionCSNoJitter), 0, 0);
+#endif
 }
 
 #endif

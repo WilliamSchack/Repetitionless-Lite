@@ -141,7 +141,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 #endif
 
-#if UNITY_VERSION >= 202320
+#if UNITY_VERSION >= 600010
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
 #else
             #pragma multi_compile_fog
@@ -345,7 +345,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
             ENDHLSL
         }
 
-        // UNITY_VERSION >= 202220
+        // UNITY_VERSION >= 202320
         Pass
         { 
             Name "MotionVectors"
