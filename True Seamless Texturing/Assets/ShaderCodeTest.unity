@@ -686,7 +686,7 @@ Material:
   - _REPETITIONLESS_NOISE_TEXTURE
   - _REPETITIONLESS_TRIPLANAR
   m_InvalidKeywords:
-  - _LAYER_MODE_CONTROLTEXTURES
+  - _LAYER_MODE_TERRAINLAYERS
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
