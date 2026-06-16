@@ -54,7 +54,7 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma vertex Vert
             #pragma fragment Frag
 
-            // Common
+            // Material Keywords
             #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
             #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
             #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
@@ -101,11 +101,10 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma multi_compile_fragment _ REFLECTION_PROBE_ROTATION
             #pragma multi_compile_fragment _ DEBUG_DISPLAY
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
 
             #pragma multi_compile_instancing
             #pragma instancing_options renderinglayer
-
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
 
             #include "Input.hlsl"
             #include "Passes.hlsl"
