@@ -54,6 +54,12 @@ namespace Repetitionless.Editor.Materials
             data.Init();
 
             // Update layer mode based on shader name
+            string shaderName = dataManager.Material.shader.name;
+            if (shaderName.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED_LIT)) {
+                data.LayerMode = ELayerMode.ControlTextures;
+            } else {
+                data.LayerMode = ELayerMode.TerrainLayers;
+            }
 
             data.Save();
             AssetDatabase.SaveAssetIfDirty(data);
