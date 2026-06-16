@@ -84,7 +84,7 @@ Shader "Repetitionless/URP/Repetitionless"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
 #endif
 
-#if UNITY_VERSION >= 202230
+#if UNITY_VERSION >= 202320
             #include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
 #endif
 
@@ -204,7 +204,7 @@ Shader "Repetitionless/URP/Repetitionless"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
 #endif
 
-#if UNITY_VERSION >= 202230
+#if UNITY_VERSION >= 202320
             #include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
 #endif
 
