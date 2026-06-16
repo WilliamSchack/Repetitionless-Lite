@@ -44,12 +44,6 @@ struct Varyings
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
-struct VaryingsLean
-{
-    float4 clipPos  : SV_POSITION;
-    float2 texcoord : TEXCOORD0;
-};
-
 // Helpers
 void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData)
 {
@@ -258,73 +252,6 @@ half4 Frag(Varyings input) : SV_TARGET
 #endif
 
     return colour;
-}
-
-// Shadow
-float3 _LightDirection;
-float3 _LightPosition;
-
-VaryingsLean ShadowPassVert(Attributes input)
-{
-    VaryingsLean o = (VaryingsLean)0;
-    UNITY_SETUP_INSTANCE_ID(input);
-    TerrainInstancing(input.positionOS, input.normalOS, input.texcoord);
-
-    float3 positionWS = TransformObjectToWorld(input.positionOS.xyz);
-    float3 normalWS = TransformObjectToWorldNormal(input.normalOS);
-
-#if _CASTING_PUNCTUAL_LIGHT_SHADOW
-    float3 lightDirectionWS = normalize(_LightPosition - positionWS);
-#else
-    float3 lightDirectionWS = _LightDirection;
-#endif
-
-    float4 clipPos = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, lightDirectionWS));
-
-#if UNITY_REVERSED_Z
-    clipPos.z = min(clipPos.z, UNITY_NEAR_CLIP_VALUE);
-#else
-    clipPos.z = max(clipPos.z, UNITY_NEAR_CLIP_VALUE);
-#endif
-
-    o.clipPos = clipPos;
-
-    o.texcoord = input.texcoord;
-
-    return o;
-}
-
-half4 ShadowPassFrag(VaryingsLean input) : SV_TARGET
-{
-#ifdef _ALPHATEST_ON
-    ClipHoles(input.texcoord);
-#endif
-    return 0;
-}
-
-// DepthOnly
-VaryingsLean DepthOnlyVert(Attributes input)
-{
-    VaryingsLean o = (VaryingsLean)0;
-    UNITY_SETUP_INSTANCE_ID(input);
-    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-    TerrainInstancing(input.positionOS, input.normalOS, input.texcoord);
-
-    o.clipPos = TransformObjectToHClip(input.positionOS.xyz);
-    o.texcoord = input.texcoord;
-    return o;
-}
-
-half4 DepthOnlyFrag(VaryingsLean input) : SV_TARGET
-{
-#ifdef _ALPHATEST_ON
-    ClipHoles(input.texcoord);
-#endif
-#ifdef SCENESELECTIONPASS
-    // We use depth prepass for scene selection in the editor, this code allow to output the outline correctly
-    return half4(_ObjectId, _PassValue, 1.0, 1.0);
-#endif
-    return input.clipPos.z;
 }
 
 #endif

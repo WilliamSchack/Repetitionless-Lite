@@ -128,8 +128,8 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             HLSLPROGRAM
             #pragma target 2.0
 
-            #pragma vertex ShadowPassVert
-            #pragma fragment ShadowPassFrag
+            #pragma vertex ShadowPassVertex
+            #pragma fragment ShadowPassFragment
             
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
@@ -137,7 +137,7 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
 
             #include "Input.hlsl"
-            #include "TerrainPasses.hlsl"
+            #include "TerrainShadowCasterPass.hlsl"
 
             ENDHLSL
         }
@@ -215,14 +215,14 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             HLSLPROGRAM
             #pragma target 2.0
 
-            #pragma vertex DepthOnlyVert
-            #pragma fragment DepthOnlyFrag
+            #pragma vertex DepthOnlyVertex
+            #pragma fragment DepthOnlyFragment
 
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
 
             #include "Input.hlsl"
-            #include "TerrainPasses.hlsl"
+            #include "TerrainDepthOnlyPass.hlsl"
 
             ENDHLSL
         }
