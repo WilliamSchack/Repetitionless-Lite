@@ -7,6 +7,10 @@
 #include "SampleRepetitionlessLayer.hlsl"
 #endif
 
+#if UNITY_VERSION < 600000
+SamplerState sampler_TrilinearRepeat;
+#endif
+
 // Assumed its being used in a shader with the proper variable names
 // Either samples the first layer or multiple depending on if REPETITIONLESS_LAYERED is set
 void SampleRepetitionless(

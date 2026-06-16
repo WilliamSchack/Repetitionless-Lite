@@ -1,5 +1,6 @@
 #ifndef REPETITIONLESSOBJECTMOTIONVECTORS_INCLUDED
 #define REPETITIONLESSOBJECTMOTIONVECTORS_INCLUDED
+#if UNITY_VERSION >= 202220
 
 #pragma target 3.5
 
@@ -107,5 +108,5 @@ float4 frag(Varyings input) : SV_Target
     #endif
 }
 
-
+#endif
 #endif

@@ -2,7 +2,14 @@
 #define REPETITIONLESSTERRAINPASSES_INCLUDED
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+
+#ifdef REPETITIONLESS_GBUFFER
+#if UNITY_VERSION >= 600010
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutput.hlsl"
+#else
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityGBuffer.hlsl"
+#endif
+#endif
 
 #include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
 
@@ -161,7 +168,11 @@ Varyings Vert(Attributes input)
 }
 
 #ifdef REPETITIONLESS_GBUFFER
+#if UNITY_VERSION >= 600010
 GBufferFragOutput Frag(Varyings input)
+#else
+FragmentOutput Frag(Varyings input)
+#endif
 #else
 half4 Frag(Varyings input) : SV_TARGET
 #endif
@@ -216,7 +227,12 @@ half4 Frag(Varyings input) : SV_TARGET
     inputData.normalWS = inputData.normalWS * albedo.a;
     smoothness *= albedo.a;
 
-    return PackGBuffersBRDFData(brdfData, inputData, smoothness, colour.rgb, occlusion);
+#if UNITY_VERSION >= 600010
+    return PackGBuffersBRDFData(
+#else
+    return BRDFDataToGbuffer(
+#endif
+        brdfData, inputData, smoothness, colour.rgb, occlusion);
 #else
     SurfaceData surfaceData = (SurfaceData)0;
     surfaceData.albedo      = albedo.rgb;

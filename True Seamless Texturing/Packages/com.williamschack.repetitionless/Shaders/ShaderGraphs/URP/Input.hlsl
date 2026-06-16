@@ -44,7 +44,7 @@ CBUFFER_START(_Terrain)
 CBUFFER_END
 
 #ifdef UNITY_INSTANCING_ENABLED
-TYPED_TEXTURE2D(float4, _TerrainHeightmapTexture);
+TEXTURE2D(_TerrainHeightmapTexture);
 TEXTURE2D(_TerrainNormalmapTexture); SAMPLER(sampler_TerrainNormalmapTexture);
 #endif
 

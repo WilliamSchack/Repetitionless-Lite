@@ -2,6 +2,7 @@
 #define REPETITIONLESSSHADOWCASTERPASS_INCLUDED
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl" // Fixes a LerpWhiteTo bug in older unity versions
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
 #if defined(LOD_FADE_CROSSFADE)
     #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
@@ -39,7 +40,17 @@ float4 GetShadowPositionHClip(Attributes input)
 #endif
 
     float4 positionCS = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, lightDirectionWS));
+
+#if UNITY_VERSION >= 600000
     positionCS = ApplyShadowClamping(positionCS);
+#else
+    #if UNITY_REVERSED_Z
+        positionCS.z = min(positionCS.z, UNITY_NEAR_CLIP_VALUE);
+    #else
+        positionCS.z = max(positionCS.z, UNITY_NEAR_CLIP_VALUE);
+    #endif
+#endif
+
     return positionCS;
 }
 

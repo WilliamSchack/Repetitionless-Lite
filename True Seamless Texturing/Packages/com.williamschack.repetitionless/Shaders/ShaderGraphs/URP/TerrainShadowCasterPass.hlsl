@@ -2,6 +2,7 @@
 #define REPETITIONLESSTERRAINSHADOWCASTERPASS_INCLUDED
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl" // Fixes a LerpWhiteTo bug in older unity versions
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
 
 // Shadow Casting Light geometric parameters. These variables are used when applying the shadow Normal Bias and are set by UnityEngine.Rendering.Universal.ShadowUtils.SetupShadowCasterConstantBuffer in com.unity.render-pipelines.universal/Runtime/ShadowUtils.cs
@@ -42,10 +43,14 @@ Varyings ShadowPassVertex(Attributes input)
 
     float4 clipPos = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, lightDirectionWS));
 
-#if UNITY_REVERSED_Z
-    clipPos.z = min(clipPos.z, UNITY_NEAR_CLIP_VALUE);
+#if UNITY_VERSION >= 600000
+    clipPos = ApplyShadowClamping(clipPos);
 #else
-    clipPos.z = max(clipPos.z, UNITY_NEAR_CLIP_VALUE);
+    #if UNITY_REVERSED_Z
+        clipPos.z = min(clipPos.z, UNITY_NEAR_CLIP_VALUE);
+    #else
+        clipPos.z = max(clipPos.z, UNITY_NEAR_CLIP_VALUE);
+    #endif
 #endif
 
     output.clipPos = clipPos;
