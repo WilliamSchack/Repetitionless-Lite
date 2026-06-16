@@ -328,7 +328,7 @@ Shader "Repetitionless/URP/Repetitionless"
             ENDHLSL
         }
 
-        // UNITY_VERSION >= 202220
+        // UNITY_VERSION >= 202320
         Pass
         { 
             Name "MotionVectors"
