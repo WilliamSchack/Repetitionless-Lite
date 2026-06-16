@@ -229,6 +229,26 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
 
         Pass
         {
+            Name "SceneSelectionPass"
+            Tags { "LightMode" = "SceneSelectionPass" }
+
+            HLSLPROGRAM
+            #pragma target 2.0
+
+            #pragma vertex DepthOnlyVertex
+            #pragma fragment DepthOnlyFragment
+
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+
+            #define SCENESELECTIONPASS
+            #include "Input.hlsl"
+            #include "TerrainDepthOnlyPass.hlsl"
+            ENDHLSL
+        }
+
+        Pass
+        {
             Name "Meta"
             Tags { "LightMode" = "Meta" }
 
@@ -248,7 +268,6 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
         }
 
         UsePass "Hidden/Nature/Terrain/Utilities/PICKING"
-        UsePass "Hidden/Nature/Terrain/Utilities/SELECTION"
     }
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain"
