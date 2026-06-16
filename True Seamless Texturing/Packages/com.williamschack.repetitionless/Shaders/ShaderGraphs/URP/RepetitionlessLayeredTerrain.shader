@@ -229,6 +229,28 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
 
         Pass
         {
+            Name "DepthNormals"
+            Tags{"LightMode" = "DepthNormals"}
+
+            ZWrite On
+
+            HLSLPROGRAM
+            #pragma target 2.0
+            #pragma vertex DepthNormalOnlyVertex
+            #pragma fragment DepthNormalOnlyFragment
+
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
+
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
+
+            #include "Input.hlsl"
+            #include "TerrainDepthNormalsPass.hlsl"
+            ENDHLSL
+        }
+
+        Pass
+        {
             Name "SceneSelectionPass"
             Tags { "LightMode" = "SceneSelectionPass" }
 
