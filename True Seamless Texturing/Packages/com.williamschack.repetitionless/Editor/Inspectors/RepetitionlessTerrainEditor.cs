@@ -126,7 +126,7 @@ namespace Repetitionless.Editor.Inspectors
 
             MaterialDataManager dataManager = new MaterialDataManager(mat);
             _materialLayeredData = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
-            if (_materialLayeredData == null) _materialLayeredData = RepetitionlessTerrainMaterialUtilities.SetupLayeredData(dataManager);
+            if (_materialLayeredData == null) _materialLayeredData = RepetitionlessLayeredMaterialUtilities.SetupLayeredData(dataManager);
 
             _materialTerrainData = dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
             _materialTextureData = dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);

@@ -8,7 +8,7 @@ namespace Repetitionless.Editor.Materials
 {
     using Data;
 
-    internal class RepetitionlessTerrainMaterialUtilities
+    internal class RepetitionlessLayeredMaterialUtilities
     {
         private const string UV_SPACE_PROP_NAME = "_UVSpace";
 
