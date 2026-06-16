@@ -28,7 +28,7 @@ struct Varyings
 #endif
 };
 
-Varyings UniversalVertexMeta(Attributes input)
+Varyings VertexMeta(Attributes input)
 {
     Varyings output = (Varyings)0;
     output.positionCS = UnityMetaVertexPosition(input.positionOS.xyz, input.uv1, input.uv2);
@@ -45,7 +45,7 @@ Varyings UniversalVertexMeta(Attributes input)
     return output;
 }
 
-half4 UniversalFragmentMeta(Varyings fragIn, MetaInput metaInput)
+half4 FragmentMeta(Varyings fragIn, MetaInput metaInput)
 {
 #ifdef EDITOR_VISUALIZATION
     metaInput.VizUV = fragIn.VizUV;
@@ -55,7 +55,7 @@ half4 UniversalFragmentMeta(Varyings fragIn, MetaInput metaInput)
     return UnityMetaFragment(metaInput);
 }
 
-half4 UniversalFragmentMetaLit(Varyings input) : SV_Target
+half4 FragmentMetaLit(Varyings input) : SV_Target
 {
     float4 albedo;
     float3 normalTS;
@@ -103,6 +103,6 @@ half4 UniversalFragmentMetaLit(Varyings input) : SV_Target
     MetaInput metaInput;
     metaInput.Albedo = brdfData.diffuse + brdfData.specular * brdfData.roughness * 0.5;
     metaInput.Emission = surfaceData.emission;
-    return UniversalFragmentMeta(input, metaInput);
+    return FragmentMeta(input, metaInput);
 }
 #endif

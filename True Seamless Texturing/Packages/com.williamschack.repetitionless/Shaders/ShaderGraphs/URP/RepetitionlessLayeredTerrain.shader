@@ -242,7 +242,7 @@ Shader "Repetitionless/URP/RepetitionlessLayered"
             #pragma shader_feature EDITOR_VISUALIZATION
 
             #include "Input.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitMetaPass.hlsl"
+            #include "TerrainMetaPass.hlsl"
 
             ENDHLSL
         }

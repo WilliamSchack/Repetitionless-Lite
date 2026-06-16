@@ -264,8 +264,8 @@ Shader "Repetitionless/URP/Repetitionless"
             HLSLPROGRAM
             #pragma target 2.0
 
-            #pragma vertex UniversalVertexMeta
-            #pragma fragment UniversalFragmentMetaLit
+            #pragma vertex VertexMeta
+            #pragma fragment FragmentMetaLit
 
             #pragma shader_feature EDITOR_VISUALIZATION
 
