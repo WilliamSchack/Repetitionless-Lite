@@ -651,6 +651,9 @@ namespace Repetitionless.Editor.Inspectors
         /// </summary>
         protected virtual void DrawMaterialPropertiesGUI()
         {
+            if (_materialProperties == null)
+                return;
+
             // Header
             GUIUtilities.DrawHeaderLabelLarge($"Material Properties");
 

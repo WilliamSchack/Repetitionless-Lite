@@ -116,7 +116,7 @@ namespace Repetitionless.Editor.Processors
                     continue;
 
                 string rp = shaderName.Split("/")[1];
-                string newShaderName = $"{Constants.SHADER_FOLDER}{rp}/{Constants.SHADER_MATERIAL_NAME_LAYERED}";
+                string newShaderName = $"{Constants.SHADER_FOLDER}{rp}/{Constants.SHADER_MATERIAL_NAME_LAYERED_TERRAIN}";
 
                 mat.shader = Shader.Find(newShaderName);
 

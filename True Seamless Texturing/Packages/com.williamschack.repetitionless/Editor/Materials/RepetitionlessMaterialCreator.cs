@@ -218,7 +218,7 @@ namespace Repetitionless.Editor.Materials
             string shaderName = GetShaderFolder(pipeline);
             if (shaderName == "") return materialDataObjects;
 
-            shaderName += Constants.SHADER_MATERIAL_NAME_LAYERED;
+            shaderName += Constants.SHADER_MATERIAL_NAME_LAYERED_TERRAIN;
             Shader shader = GetShader(shaderName);
             if (shader == null) return materialDataObjects;
 
