@@ -21,6 +21,27 @@ namespace Repetitionless.Editor.Materials
             materialProperties.SetGlobalTilingOffset(Constants.DEFAULT_TILING_OFFSET_TERRAIN);
         }
 
+        public static void UpdateLayerMode(Material mat, ELayerMode layerMode)
+        {
+            string newShader = "";
+            switch (layerMode) {
+                case ELayerMode.TerrainLayers:
+                    newShader = Constants.SHADER_MATERIAL_NAME_LAYERED_TERRAIN;
+                    break;
+                case ELayerMode.ControlTextures:
+                    newShader = Constants.SHADER_MATERIAL_NAME_LAYERED_LIT;
+                    break;
+                default:
+                    return;
+            }
+
+            string shaderName = mat.shader.name;
+            string rp = shaderName.Split("/")[1];
+            string newShaderName = $"{Constants.SHADER_FOLDER}{rp}/{newShader}";
+            
+            mat.shader = Shader.Find(newShaderName);
+        }
+
         public static RepetitionlessLayeredDataSO SetupLayeredData(MaterialDataManager dataManager)
         {
             if (dataManager.AssetExists(Constants.LAYERED_DATA_FILE_NAME))
@@ -31,6 +52,8 @@ namespace Repetitionless.Editor.Materials
 
             // Setup the textures
             data.Init();
+
+            // Update layer mode based on shader name
 
             data.Save();
             AssetDatabase.SaveAssetIfDirty(data);

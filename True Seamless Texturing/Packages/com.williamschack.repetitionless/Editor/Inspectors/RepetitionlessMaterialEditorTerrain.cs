@@ -142,7 +142,7 @@ namespace Repetitionless.Editor.Inspectors
             _layeredData.LayerMode = (ELayerMode)EditorGUILayout.EnumPopup(new GUIContent("Mode", "Control Textures: Uses manually set textures to specify where each layer is\nTerrain Layers: Uses automatically synced terrain textures and its terrain layers to assign textures and settings to each layer"), _layeredData.LayerMode);
             bool layerModeChanged = EditorGUI.EndChangeCheck();
             if (layerModeChanged) {
-
+                RepetitionlessLayeredMaterialUtilities.UpdateLayerMode(_material, _layeredData.LayerMode);
 
                 _layeredData.Save();
                 _materialProperties.CallOnExternalDataChanged();
@@ -381,7 +381,7 @@ namespace Repetitionless.Editor.Inspectors
             EditorGUI.BeginChangeCheck();
             base.DrawProperty(layerIndex, drawPropertyAction);
             if (!EditorGUI.EndChangeCheck()) return;
-
+            
             if (_layeredData.LayerMode == ELayerMode.TerrainLayers && layerIndex >= _terrainLayers.Count)
                 return;
 
