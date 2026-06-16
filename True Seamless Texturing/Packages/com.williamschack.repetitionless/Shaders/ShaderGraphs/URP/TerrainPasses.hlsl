@@ -160,7 +160,7 @@ Varyings Vert(Attributes input)
     return o;
 }
 
-#ifdef TERRAIN_GBUFFER
+#ifdef REPETITIONLESS_GBUFFER
 GBufferFragOutput Frag(Varyings input)
 #else
 half4 Frag(Varyings input) : SV_TARGET
@@ -198,7 +198,7 @@ half4 Frag(Varyings input) : SV_TARGET
 
     InitializeBakedGIData(input, inputData);
 
-#ifdef TERRAIN_GBUFFER
+#ifdef REPETITIONLESS_GBUFFER
     BRDFData brdfData;
     InitializeBRDFData(albedo, metallic, half3(0.0h, 0.0h, 0.0h), smoothness, albedo.a, brdfData);
 

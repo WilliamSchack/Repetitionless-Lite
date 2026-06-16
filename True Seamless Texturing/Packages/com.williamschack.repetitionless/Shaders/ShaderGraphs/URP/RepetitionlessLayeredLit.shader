@@ -221,8 +221,8 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
 #endif
 
-#if UNITY_VERSION >= 202220
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
+#if UNITY_VERSION >= 202230
+            #include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
 #endif
 
 #if UNITY_VERSION >= 600010

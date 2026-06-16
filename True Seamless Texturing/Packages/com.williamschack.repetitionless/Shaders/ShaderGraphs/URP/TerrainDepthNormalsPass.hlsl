@@ -1,7 +1,9 @@
 #ifndef REPETITIONLESSTERRAINDEPTHNORMALSPASS_INCLUDED
 #define REPETITIONLESSTERRAINDEPTHNORMALSPASS_INCLUDED
 
-#include "TerrainPasses.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+
+#include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
 
 // DepthNormal pass
 struct AttributesDepthNormal
