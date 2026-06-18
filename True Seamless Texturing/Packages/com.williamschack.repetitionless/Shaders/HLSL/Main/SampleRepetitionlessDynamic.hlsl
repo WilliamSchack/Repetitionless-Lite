@@ -7,7 +7,7 @@
 #include "SampleRepetitionlessLayer.hlsl"
 #endif
 
-#if UNITY_VERSION < 600000
+#if defined(REPETITIONLESS_BIRP) || UNITY_VERSION < 600000
 SamplerState sampler_TrilinearRepeat;
 #endif
 

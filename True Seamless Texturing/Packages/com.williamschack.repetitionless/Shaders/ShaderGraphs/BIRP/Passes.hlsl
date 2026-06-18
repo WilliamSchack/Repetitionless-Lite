@@ -1,21 +1,103 @@
-#ifndef REPETITIONLESSTERRAINPASSES_INCLUDED
-#define REPETITIONLESSTERRAINPASSES_INCLUDED
+#ifndef REPETITIONLESSPASSES_INCLUDED
+#define REPETITIONLESSPASSES_INCLUDED
+
+#ifndef UNITY_SETUP_BRDF_INPUT
+#define UNITY_SETUP_BRDF_INPUT MetallicSetup
+#endif
+
+#include "UnityStandardCore.cginc"
 
 #include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
 
-struct Input
+struct Attributes
 {
-    float2 uv_PropertiesTexture; // uv
-    float3 worldPos;
-    float3 worldNormal;
-    float4 colour : COLOR;
+    float4 positionOS : POSITION;
+    float3 normalOS   : NORMAL;
+    float4 tangentOS  : TANGENT;
+    half4 colour      : COLOR;
 
+    float2 texcoord   : TEXCOORD0;
+
+    UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
-void surf (Input input, inout SurfaceOutputStandard o)
+struct v2f
 {
-    float2 uv = input.uv_PropertiesTexture;
+    float2 uv                 : TEXCOORD0;
+    float4 eyeVec             : TEXCOORD1;
+    float3 positionWS         : TEXCOORD2;
+    float3 normalWS           : TEXCOORD3;
+    half4 ambientOrLightmapUV : TEXCOORD4;
+    UNITY_LIGHTING_COORDS(5,6)
 
+    float4 pos        : SV_POSITION; // positionCS, named for UNITY_TRANSFER_LIGHTING
+    half4 colour      : COLOR;
+
+    UNITY_VERTEX_INPUT_INSTANCE_ID
+    UNITY_VERTEX_OUTPUT_STEREO
+};
+
+inline half4 VertexGIForwardCustom(Attributes v, float3 posWorld, half3 normalWorld)
+{
+    half4 ambientOrLightmapUV = 0;
+    // Static lightmaps
+    #ifdef LIGHTMAP_ON
+        ambientOrLightmapUV.xy = v.uv1.xy * unity_LightmapST.xy + unity_LightmapST.zw;
+        ambientOrLightmapUV.zw = 0;
+    // Sample light probe for Dynamic objects only (no static or dynamic lightmaps)
+    #elif UNITY_SHOULD_SAMPLE_SH
+        #ifdef VERTEXLIGHT_ON
+            // Approximated illumination from non-important point lights
+            ambientOrLightmapUV.rgb = Shade4PointLights (
+                unity_4LightPosX0, unity_4LightPosY0, unity_4LightPosZ0,
+                unity_LightColor[0].rgb, unity_LightColor[1].rgb, unity_LightColor[2].rgb, unity_LightColor[3].rgb,
+                unity_4LightAtten0, posWorld, normalWorld);
+        #endif
+
+        ambientOrLightmapUV.rgb = ShadeSHPerVertex (normalWorld, ambientOrLightmapUV.rgb);
+    #endif
+
+    #ifdef DYNAMICLIGHTMAP_ON
+        ambientOrLightmapUV.zw = v.uv2.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
+    #endif
+
+    return ambientOrLightmapUV;
+}
+
+v2f Vert(Attributes input)
+{
+    v2f output = (v2f)0;
+
+    UNITY_SETUP_INSTANCE_ID(input);
+    UNITY_TRANSFER_INSTANCE_ID(input, output);
+    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
+
+    float4 posWorld = mul(unity_ObjectToWorld, input.positionOS);
+    output.positionWS = posWorld.xyz;
+    output.pos = UnityObjectToClipPos(input.positionOS);
+
+    output.uv = input.texcoord;
+
+    float3 normalWorld = UnityObjectToWorldNormal(input.normalOS);
+    output.normalWS = normalWorld;
+
+    output.eyeVec.xyz = NormalizePerVertexNormal(posWorld.xyz - _WorldSpaceCameraPos);
+
+    UNITY_TRANSFER_LIGHTING(output, input.texcoord);
+
+    output.ambientOrLightmapUV = VertexGIForwardCustom(input, posWorld, normalWorld);
+
+    UNITY_TRANSFER_FOG_COMBINED_WITH_EYE_VEC(output, output.pos);
+    return output;
+}
+
+half4 Frag(v2f input) : SV_TARGET
+{
+    UNITY_SETUP_INSTANCE_ID(i);
+    UNITY_APPLY_DITHER_CROSSFADE(i.pos.xy);
+    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
+    // Main Function
     float4 albedo;
     float3 normalTS;
     float  metallic;
@@ -23,17 +105,26 @@ void surf (Input input, inout SurfaceOutputStandard o)
     float  occlusion;
     float3 emission;
     SampleRepetitionless(
-        uv, input.worldNormal, input.worldPos, input.colour,
+        input.uv, input.normalWS, input.positionWS, input.colour,
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
 
-    o.Albedo = albedo.rgb;
-    o.Normal = normalTS;
-    o.Metallic = metallic;
-    o.Smoothness = smoothness;
-    o.Occlussion = occlussion;
-    o.Emission = emission;
-    o.Alpha = albedo.a;
+    //UnityLight mainLight = MainLight();
+    //UNITY_LIGHT_ATTENUATION(atten, input, input.positionWS);
+//
+    //// Create FragmentCommonData
+    //half3 specColour;
+    //half oneMinusReflectivity;
+    //half3 diffColour = DiffuseAndSpecularFromMetallic(albedo.rgb, metallic, specColour, oneMinusReflectivity);
+//
+    //FragmentCommonData data = (FragmentCommonData)0;
+    //data.diffColor = diffColour;
+    //data.specColor = specColour;
+    //data.oneMinusReflectivity = oneMinusReflectivity;
+    //data.smoothness = smoothness;
+    
+
+    return albedo;
 }
 
 #endif

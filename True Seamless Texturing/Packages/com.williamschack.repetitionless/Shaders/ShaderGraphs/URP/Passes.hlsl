@@ -28,6 +28,7 @@ struct Attributes
     float2 texcoord   : TEXCOORD0;
     float2 staticLightmapUV   : TEXCOORD1;
     float2 dynamicLightmapUV  : TEXCOORD2;
+    
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 

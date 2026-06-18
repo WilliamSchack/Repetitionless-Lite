@@ -1,4 +1,4 @@
-Shader "Custom/NewSurfaceShader"
+Shader "Custom/NewSurfaceShaderTest"
 {
     Properties
     {
@@ -15,7 +15,7 @@ Shader "Custom/NewSurfaceShader"
         [NoScaleOffset] _BMTextures("BM Textures", 2DArray) = "white" {}   // Blend Mask
         [NoScaleOffset] _NoiseTexture("Noise Texture", 2D) = "white" {}
     }
-    
+
     SubShader
     {
         Tags { "RenderType"="Opaque" }
@@ -26,8 +26,8 @@ Shader "Custom/NewSurfaceShader"
         
         #pragma surface surf Standard fullforwardshadows
 
-        #include "Input.hlsl"
-        #include "Passes.hlsl"
+        #include "SurfaceTestInput.hlsl"
+        #include "SurfaceTestPasses.hlsl"
         ENDCG
     }
 
