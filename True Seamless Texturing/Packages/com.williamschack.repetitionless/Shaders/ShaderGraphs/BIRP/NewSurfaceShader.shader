@@ -1,0 +1,36 @@
+Shader "Custom/NewSurfaceShader"
+{
+    Properties
+    {
+        _SurfaceTypeSetting("Surface Type", Int) = 0
+        _UVSpace("UV Space", Int) = 0
+        _VertexColourBlendMode("Vertex Colour Blend Mode", Int) = 0
+        _DebuggingIndex("Debugging Index", Int) = -1
+
+        [NoScaleOffset] _PropertiesTexture("Properties Texture", 2D) = "white" {}
+        [NoScaleOffset] _AssignedTexturesTexture("Assigned Textures Texture", 2D) = "white" {}
+        [NoScaleOffset] _AVTextures("AV Textures", 2DArray) = "white" {}   // Albedo, Variation
+        [NoScaleOffset] _NSOTextures("NSO Textures", 2DArray) = "white" {} // Normal, Smoothness/Roughness, Occlussion
+        [NoScaleOffset] _EMTextures("EM Textures", 2DArray) = "white" {}   // Emission, Metallic
+        [NoScaleOffset] _BMTextures("BM Textures", 2DArray) = "white" {}   // Blend Mask
+        [NoScaleOffset] _NoiseTexture("Noise Texture", 2D) = "white" {}
+    }
+    
+    SubShader
+    {
+        Tags { "RenderType"="Opaque" }
+        LOD 200
+
+        CGPROGRAM
+        #pragma target 3.0
+        
+        #pragma surface surf Standard fullforwardshadows
+
+        #include "Input.hlsl"
+        #include "Passes.hlsl"
+        ENDCG
+    }
+
+    CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster"
+    FallBack "Diffuse"
+}
