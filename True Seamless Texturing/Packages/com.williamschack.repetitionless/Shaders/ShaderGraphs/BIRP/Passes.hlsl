@@ -11,7 +11,7 @@
 
 struct Attributes
 {
-    float4 positionOS : POSITION;
+    float4 vertex     : POSITION; // positionOS, named for UNITY_TRANSFER_LIGHTING
     float3 normalOS   : NORMAL;
     float4 tangentOS  : TANGENT;
     half4 colour      : COLOR;
@@ -32,7 +32,11 @@ struct v2f
     float3 positionWS         : TEXCOORD2;
     float3 normalWS           : TEXCOORD3;
     half4 tangentWS           : TEXCOORD4;
+#ifdef ADD_PASS
+    half3 lightDir            : TEXCOORD5;
+#else
     half4 ambientOrLightmapUV : TEXCOORD5;
+#endif
     UNITY_LIGHTING_COORDS(6,7)
 
     float4 pos        : SV_POSITION; // positionCS, named for UNITY_TRANSFER_LIGHTING
@@ -72,7 +76,7 @@ inline half4 VertexGIForwardCustom(Attributes v, float3 posWorld, half3 normalWo
 
 FragmentCommonData ConstructFragData(v2f input, float4 albedo, float3 normalTS, float metallic, float smoothness)
 {
-    // Convert tangent space normal to world space
+    // Convert normal from tangent space to world space
     half sign = input.tangentWS.w;
     float3 bitangent = sign * cross(input.normalWS.xyz, input.tangentWS.xyz);
     half3x3 tangentToWorld = half3x3(input.tangentWS.xyz, bitangent.xyz, input.normalWS.xyz);
@@ -96,41 +100,54 @@ FragmentCommonData ConstructFragData(v2f input, float4 albedo, float3 normalTS, 
     return data;
 }
 
-v2f Vert(Attributes input)
+v2f Vert(Attributes v)
 {
     v2f output = (v2f)0;
 
-    UNITY_SETUP_INSTANCE_ID(input);
-    UNITY_TRANSFER_INSTANCE_ID(input, output);
+    UNITY_SETUP_INSTANCE_ID(v);
+    UNITY_TRANSFER_INSTANCE_ID(v, output);
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 
-    float4 posWorld = mul(unity_ObjectToWorld, input.positionOS);
+    float4 posWorld = mul(unity_ObjectToWorld, v.vertex);
     output.positionWS = posWorld.xyz;
-    output.pos = UnityObjectToClipPos(input.positionOS);
+    output.pos = UnityObjectToClipPos(v.vertex);
 
-    output.uv = input.texcoord;
+    output.uv = v.texcoord;
 
-    float3 normalWorld = UnityObjectToWorldNormal(input.normalOS);
+    float3 normalWorld = UnityObjectToWorldNormal(v.normalOS);
     output.normalWS = normalWorld;
 
-    half sign = half(input.tangentOS.w) * unity_WorldTransformParams.w;
-    half3 tangentWS = UnityObjectToWorldDir(input.tangentOS.xyz);
+    half sign = half(v.tangentOS.w) * unity_WorldTransformParams.w;
+    half3 tangentWS = UnityObjectToWorldDir(v.tangentOS.xyz);
     output.tangentWS = half4(tangentWS.xyz, sign);
 
     output.eyeVec.xyz = NormalizePerVertexNormal(posWorld.xyz - _WorldSpaceCameraPos);
 
-    UNITY_TRANSFER_LIGHTING(output, input.texcoord);
+    UNITY_TRANSFER_LIGHTING(output, v.texcoord);
 
-    output.ambientOrLightmapUV = VertexGIForwardCustom(input, posWorld, normalWorld);
+#ifdef ADD_PASS
+    float3 lightDir = _WorldSpaceLightPos0.xyz - posWorld.xyz * _WorldSpaceLightPos0.w;
+    #ifndef USING_DIRECTIONAL_LIGHT
+        lightDir = NormalizePerVertexNormal(lightDir);
+    #endif
+
+    output.lightDir = lightDir;
+#else
+    output.ambientOrLightmapUV = VertexGIForwardCustom(v, posWorld, normalWorld);
+#endif
 
     UNITY_TRANSFER_FOG_COMBINED_WITH_EYE_VEC(output, output.pos);
     return output;
 }
 
-half4 Frag(v2f input) : SV_TARGET
+half4 Frag(v2f i) : SV_TARGET
 {
+#ifdef ADD_PASS
+    UNITY_APPLY_DITHER_CROSSFADE(i.pos.xy);
+#else
     UNITY_SETUP_INSTANCE_ID(i);
     UNITY_APPLY_DITHER_CROSSFADE(i.pos.xy);
+#endif
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
     // Main Function
@@ -141,22 +158,29 @@ half4 Frag(v2f input) : SV_TARGET
     float  occlusion;
     float3 emission;
     SampleRepetitionless(
-        input.uv, input.normalWS, input.positionWS, input.colour,
+        i.uv, i.normalWS, i.positionWS, i.colour,
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
 
-    FragmentCommonData data = ConstructFragData(input, albedo, normalTS, metallic, smoothness);
+    FragmentCommonData data = ConstructFragData(i, albedo, normalTS, metallic, smoothness);
 
-    UnityLight mainLight = MainLight();
-    UNITY_LIGHT_ATTENUATION(atten, input, input.positionWS);
+    UNITY_LIGHT_ATTENUATION(atten, i, i.positionWS);
     
-    UnityGI gi = FragmentGI(data, occlusion, input.ambientOrLightmapUV, atten, mainLight);
+#ifdef ADD_PASS
+    UnityLight light = AdditiveLight(i.lightDir, atten);
+    UnityIndirect indirect = ZeroIndirect();
+#else
+    UnityLight mainLight = MainLight();
+    UnityGI gi = FragmentGI(data, occlusion, i.ambientOrLightmapUV, atten, mainLight);
+    UnityLight light = gi.light;
+    UnityIndirect indirect = gi.indirect;
+#endif
 
-    half4 colour = UNITY_BRDF_PBS (data.diffColor, data.specColor, data.oneMinusReflectivity, data.smoothness, data.normalWorld, -data.eyeVec, gi.light, gi.indirect);
+    half4 colour = UNITY_BRDF_PBS (data.diffColor, data.specColor, data.oneMinusReflectivity, data.smoothness, data.normalWorld, -data.eyeVec, light, indirect);
     colour.rgb += emission;
     colour.a = albedo.a;
 
-    UNITY_EXTRACT_FOG_FROM_EYE_VEC(input);
+    UNITY_EXTRACT_FOG_FROM_EYE_VEC(i);
     UNITY_APPLY_FOG(_unity_fogCoord, colour.rgb);
 
     return colour;

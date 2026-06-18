@@ -64,6 +64,38 @@ Shader "Repetitionless/BIRP/Repetitionless"
 
             ENDHLSL
         }
+
+        Pass
+        {
+            Name "FORWARD_DELTA"
+            Tags { "LightMode" = "ForwardAdd" }
+            Blend [_SrcBlend] One
+            Fog { Color (0,0,0,0) }
+            ZWrite Off
+            ZTest LEqual
+
+            HLSLPROGRAM
+            #include "HLSLSupport.cginc"
+            #include "UnityShaderVariables.cginc"
+
+            #pragma target 3.0
+
+            #pragma vertex Vert
+            #pragma fragment Frag
+
+            #pragma multi_compile_fwdadd_fullshadows
+            #pragma multi_compile_fog
+
+#if UNITY_VERSION >= 202220
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+#endif
+
+            #define ADD_PASS
+            #include "Input.hlsl"
+            #include "Passes.hlsl"
+
+            ENDHLSL
+        }
     }
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster"
