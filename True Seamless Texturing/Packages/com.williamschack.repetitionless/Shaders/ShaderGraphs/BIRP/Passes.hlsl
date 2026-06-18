@@ -17,6 +17,10 @@ struct Attributes
     half4 colour      : COLOR;
 
     float2 texcoord   : TEXCOORD0;
+    float2 uv1        : TEXCOORD1;
+#if defined(DYNAMICLIGHTMAP_ON) || defined(UNITY_PASS_META)
+    float2 uv2      : TEXCOORD2;
+#endif
 
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
@@ -27,8 +31,9 @@ struct v2f
     float4 eyeVec             : TEXCOORD1;
     float3 positionWS         : TEXCOORD2;
     float3 normalWS           : TEXCOORD3;
-    half4 ambientOrLightmapUV : TEXCOORD4;
-    UNITY_LIGHTING_COORDS(5,6)
+    half4 tangentWS           : TEXCOORD4;
+    half4 ambientOrLightmapUV : TEXCOORD5;
+    UNITY_LIGHTING_COORDS(6,7)
 
     float4 pos        : SV_POSITION; // positionCS, named for UNITY_TRANSFER_LIGHTING
     half4 colour      : COLOR;
@@ -81,6 +86,10 @@ v2f Vert(Attributes input)
     float3 normalWorld = UnityObjectToWorldNormal(input.normalOS);
     output.normalWS = normalWorld;
 
+    half sign = half(input.tangentOS.w) * unity_WorldTransformParams.w;
+    half3 tangentWS = UnityObjectToWorldDir(input.tangentOS.xyz);
+    output.tangentWS = half4(tangentWS.xyz, sign);
+
     output.eyeVec.xyz = NormalizePerVertexNormal(posWorld.xyz - _WorldSpaceCameraPos);
 
     UNITY_TRANSFER_LIGHTING(output, input.texcoord);
@@ -109,22 +118,38 @@ half4 Frag(v2f input) : SV_TARGET
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
 
-    //UnityLight mainLight = MainLight();
-    //UNITY_LIGHT_ATTENUATION(atten, input, input.positionWS);
-//
-    //// Create FragmentCommonData
-    //half3 specColour;
-    //half oneMinusReflectivity;
-    //half3 diffColour = DiffuseAndSpecularFromMetallic(albedo.rgb, metallic, specColour, oneMinusReflectivity);
-//
-    //FragmentCommonData data = (FragmentCommonData)0;
-    //data.diffColor = diffColour;
-    //data.specColor = specColour;
-    //data.oneMinusReflectivity = oneMinusReflectivity;
-    //data.smoothness = smoothness;
-    
+    // Create FragmentCommonData
+    half sign = input.tangentWS.w;
+    float3 bitangent = sign * cross(input.normalWS.xyz, input.tangentWS.xyz);
+    half3x3 tangentToWorld = half3x3(input.tangentWS.xyz, bitangent.xyz, input.normalWS.xyz);
+    half3 normalWS = mul(normalTS, tangentToWorld);
 
-    return albedo;
+    half oneMinusReflectivity;
+    half3 specColour;
+    half3 diffColour = DiffuseAndSpecularFromMetallic(albedo.rgb, metallic, specColour, oneMinusReflectivity);
+
+    FragmentCommonData data = (FragmentCommonData)0;
+    data.diffColor = diffColour;
+    data.specColor = specColour;
+    data.oneMinusReflectivity = oneMinusReflectivity;
+    data.smoothness = smoothness;
+    data.normalWorld = normalWS;
+    data.eyeVec = NormalizePerPixelNormal(input.eyeVec.xyz);
+    data.posWorld = input.positionWS;
+
+    UnityLight mainLight = MainLight();
+    UNITY_LIGHT_ATTENUATION(atten, input, input.positionWS);
+    
+    UnityGI gi = FragmentGI(data, occlusion, input.ambientOrLightmapUV, atten, mainLight);
+
+    half4 colour = UNITY_BRDF_PBS (data.diffColor, data.specColor, data.oneMinusReflectivity, data.smoothness, data.normalWorld, -data.eyeVec, gi.light, gi.indirect);
+    colour.rgb += emission;
+    colour.a = albedo.a;
+
+    UNITY_EXTRACT_FOG_FROM_EYE_VEC(input);
+    UNITY_APPLY_FOG(_unity_fogCoord, colour.rgb);
+
+    return colour;
 }
 
 #endif
