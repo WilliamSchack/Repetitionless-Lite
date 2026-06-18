@@ -1,4 +1,4 @@
-Shader "Custom/NewSurfaceShader"
+Shader "Repetitionless/BIRP/Repetitionless"
 {
     Properties
     {
