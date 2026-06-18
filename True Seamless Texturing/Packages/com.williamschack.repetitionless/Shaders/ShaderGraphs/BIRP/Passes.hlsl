@@ -42,6 +42,7 @@ struct v2f
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
+// Same as UnityStandardCore but using my Attributes
 inline half4 VertexGIForwardCustom(Attributes v, float3 posWorld, half3 normalWorld)
 {
     half4 ambientOrLightmapUV = 0;
@@ -67,6 +68,32 @@ inline half4 VertexGIForwardCustom(Attributes v, float3 posWorld, half3 normalWo
     #endif
 
     return ambientOrLightmapUV;
+}
+
+FragmentCommonData ConstructFragData(v2f input, float4 albedo, float3 normalTS, float metallic, float smoothness)
+{
+    // Convert tangent space normal to world space
+    half sign = input.tangentWS.w;
+    float3 bitangent = sign * cross(input.normalWS.xyz, input.tangentWS.xyz);
+    half3x3 tangentToWorld = half3x3(input.tangentWS.xyz, bitangent.xyz, input.normalWS.xyz);
+    half3 normalWS = mul(normalTS, tangentToWorld);
+
+    // Get colour
+    half oneMinusReflectivity;
+    half3 specColour;
+    half3 diffColour = DiffuseAndSpecularFromMetallic(albedo.rgb, metallic, specColour, oneMinusReflectivity);
+
+    // Construct data
+    FragmentCommonData data = (FragmentCommonData)0;
+    data.diffColor = diffColour;
+    data.specColor = specColour;
+    data.oneMinusReflectivity = oneMinusReflectivity;
+    data.smoothness = smoothness;
+    data.normalWorld = normalWS;
+    data.eyeVec = NormalizePerPixelNormal(input.eyeVec.xyz);
+    data.posWorld = input.positionWS;
+
+    return data;
 }
 
 v2f Vert(Attributes input)
@@ -118,24 +145,7 @@ half4 Frag(v2f input) : SV_TARGET
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
 
-    // Create FragmentCommonData
-    half sign = input.tangentWS.w;
-    float3 bitangent = sign * cross(input.normalWS.xyz, input.tangentWS.xyz);
-    half3x3 tangentToWorld = half3x3(input.tangentWS.xyz, bitangent.xyz, input.normalWS.xyz);
-    half3 normalWS = mul(normalTS, tangentToWorld);
-
-    half oneMinusReflectivity;
-    half3 specColour;
-    half3 diffColour = DiffuseAndSpecularFromMetallic(albedo.rgb, metallic, specColour, oneMinusReflectivity);
-
-    FragmentCommonData data = (FragmentCommonData)0;
-    data.diffColor = diffColour;
-    data.specColor = specColour;
-    data.oneMinusReflectivity = oneMinusReflectivity;
-    data.smoothness = smoothness;
-    data.normalWorld = normalWS;
-    data.eyeVec = NormalizePerPixelNormal(input.eyeVec.xyz);
-    data.posWorld = input.positionWS;
+    FragmentCommonData data = ConstructFragData(input, albedo, normalTS, metallic, smoothness);
 
     UnityLight mainLight = MainLight();
     UNITY_LIGHT_ATTENUATION(atten, input, input.positionWS);
