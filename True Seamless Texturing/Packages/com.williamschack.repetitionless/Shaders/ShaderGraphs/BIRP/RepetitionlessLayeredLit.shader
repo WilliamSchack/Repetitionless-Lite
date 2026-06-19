@@ -16,7 +16,7 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredLit"
         [NoScaleOffset] _BMTextures("BM Textures", 2DArray) = "white" {}   // Blend Mask
         [NoScaleOffset] _NoiseTexture("Noise Texture", 2D) = "white" {}
 
-        _TerrainHoles("Terran Holes", 2D) = "white" {}
+        _TerrainHolesTexture("Terran Holes", 2D) = "white" {}
         _Control0("Control 0", 2D) = "white" {}
         _Control1("Control 1", 2D) = "black" {}
         _Control2("Control 2", 2D) = "black" {}

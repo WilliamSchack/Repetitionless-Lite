@@ -3,12 +3,15 @@
 
 #include "UnityCG.cginc"
 
-// Compatibility with URP/HDRP defines
+// Compatibility with URP/HDRP conventions
 #define TEXTURE2D(tex) Texture2D tex
 #define SAMPLER(tex) SamplerState tex
 #define TEXTURE2D_ARRAY(tex) Texture2DArray tex
 #define SAMPLE_TEXTURE2D(tex, ss, uv) tex.Sample(ss, uv)
 #define SAMPLE_TEXTURE2D_ARRAY(tex, ss, uv, i) tex.Sample(ss, float3(uv, i))
+
+#define _TerrainHoles _TerrainHolesTexture
+#define sampler_TerrainHoles sampler_TerrainHolesTexture
 
 // Material Properties
 float _SurfaceTypeSetting;
