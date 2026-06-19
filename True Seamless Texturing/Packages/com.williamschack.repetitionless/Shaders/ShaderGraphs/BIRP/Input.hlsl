@@ -64,6 +64,12 @@ UNITY_INSTANCING_BUFFER_START(Terrain)
     UNITY_DEFINE_INSTANCED_PROP(float4, _TerrainPatchInstanceData) // float4(xBase, yBase, skipScale, ~)
 UNITY_INSTANCING_BUFFER_END(Terrain)
 
+void ClipHoles(float2 uv)
+{
+    float hole = SAMPLE_TEXTURE2D(_TerrainHoles, sampler_TerrainHoles, uv).r;
+    clip(hole < 0.0005f ? -1 : 1);
+}
+
 void TerrainInstancing(inout float4 positionOS, inout float3 normal, inout float2 uv)
 {
 #ifdef UNITY_INSTANCING_ENABLED

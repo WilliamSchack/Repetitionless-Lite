@@ -76,10 +76,6 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap forwardadd
 
-#if UNITY_VERSION >= 202220
-            #pragma multi_compile _ LOD_FADE_CROSSFADE
-#endif
-
             #include "Input.hlsl"
             #include "TerrainPasses.hlsl"
 
@@ -110,10 +106,6 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap forwardadd
 
-#if UNITY_VERSION >= 202220
-            #pragma multi_compile _ LOD_FADE_CROSSFADE
-#endif
-
             #define ADD_PASS
             #include "Input.hlsl"
             #include "TerrainPasses.hlsl"
@@ -143,10 +135,6 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap forwardadd
 
-#if UNITY_VERSION >= 202220
-            #pragma multi_compile _ LOD_FADE_CROSSFADE
-#endif
-
             #include "Input.hlsl"
             #include "ShadowCasterPass.hlsl"
 
@@ -172,10 +160,6 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
 
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap forwardadd
-
-#if UNITY_VERSION >= 202220
-            #pragma multi_compile _ LOD_FADE_CROSSFADE
-#endif
 
             #define DEFERRED_PASS
             #include "Input.hlsl"
