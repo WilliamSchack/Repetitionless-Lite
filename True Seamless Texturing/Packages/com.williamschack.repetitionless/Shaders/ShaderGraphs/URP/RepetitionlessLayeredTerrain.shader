@@ -25,6 +25,13 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
         _Control5("Control 5", 2D) = "black" {}
         _Control6("Control 6", 2D) = "black" {}
         _Control7("Control 7", 2D) = "black" {}
+
+        // Blending
+        [HideInInspector] _SrcBlend("__src", Float) = 1.0
+        [HideInInspector] _DstBlend("__dst", Float) = 0.0
+        [HideInInspector] _SrcBlendAlpha("__srcA", Float) = 1.0
+        [HideInInspector] _DstBlendAlpha("__dstA", Float) = 0.0
+        [HideInInspector] _ZWrite("__zw", Float) = 1.0
     }
 
     HLSLINCLUDE
@@ -51,6 +58,10 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
         {
             Name "ForwardLit"
             Tags { "LightMode" = "UniversalForward" }
+
+            Blend[_SrcBlend][_DstBlend], [_SrcBlendAlpha][_DstBlendAlpha]
+            ZWrite[_ZWrite]
+            Cull[_Cull]
 
             HLSLPROGRAM
             #pragma target 3.0

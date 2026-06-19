@@ -63,7 +63,6 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
             Blend[_SrcBlend][_DstBlend], [_SrcBlendAlpha][_DstBlendAlpha]
             ZWrite[_ZWrite]
             Cull[_Cull]
-            AlphaToMask[_AlphaToMask]
 
             HLSLPROGRAM
             #pragma target 2.0
