@@ -37,7 +37,9 @@ half4 ShadowPassFragment(v2f input) : SV_TARGET
 {
     UNITY_SETUP_INSTANCE_ID(input);
 
+#ifdef _ALPHATEST_ON
     ClipHoles(input.texcoord);
+#endif
 
     SHADOW_CASTER_FRAGMENT(input);
 }

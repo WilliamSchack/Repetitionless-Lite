@@ -35,6 +35,8 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
     }
 
     HLSLINCLUDE
+    #pragma multi_compile_fragment __ _ALPHATEST_ON
+
     #ifndef REPETITIONLESS_BIRP
     #define REPETITIONLESS_BIRP
     #endif

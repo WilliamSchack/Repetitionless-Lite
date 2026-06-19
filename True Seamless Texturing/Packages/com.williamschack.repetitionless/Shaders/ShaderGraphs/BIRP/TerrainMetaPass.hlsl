@@ -15,7 +15,10 @@ v2f TerrainVertexMeta(VertexInput input)
 
 half4 TerrainFragmentMeta(Varyings input) : SV_Target
 {
+#ifdef _ALPHATEST_ON
     ClipHoles(input.uv);
+#endif
+
     return FragmentMeta(input);
 }
 
