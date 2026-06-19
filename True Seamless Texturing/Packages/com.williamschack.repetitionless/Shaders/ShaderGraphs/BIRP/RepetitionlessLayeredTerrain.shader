@@ -168,7 +168,7 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             ENDHLSL
         }
 
-        /*Pass
+        Pass
         {
             Name "META"
             Tags { "LightMode" = "Meta" }
@@ -179,8 +179,8 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             #include "HLSLSupport.cginc"
             #include "UnityShaderVariables.cginc"
 
-            #pragma vertex VertexMeta
-            #pragma fragment FragmentMeta
+            #pragma vertex TerrainVertexMeta
+            #pragma fragment TerrainFragmentMeta
 
             #pragma shader_feature EDITOR_VISUALIZATION
 
@@ -188,10 +188,10 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap forwardadd
 
             #include "Input.hlsl"
-            #include "MetaPass.hlsl"
+            #include "TerrainMetaPass.hlsl"
 
             ENDHLSL
-        }*/
+        }
 
         UsePass "Hidden/Nature/Terrain/Utilities/PICKING"
         UsePass "Hidden/Nature/Terrain/Utilities/SELECTION"
