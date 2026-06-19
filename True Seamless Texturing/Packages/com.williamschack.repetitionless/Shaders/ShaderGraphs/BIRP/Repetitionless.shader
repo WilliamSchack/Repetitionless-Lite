@@ -96,6 +96,36 @@ Shader "Repetitionless/BIRP/Repetitionless"
 
             ENDHLSL
         }
+
+        Pass
+        {
+            Name "ShadowCaster"
+            Tags { "LightMode" = "ShadowCaster" }
+
+            ZWrite On
+            ZTest LEqual
+
+            HLSLPROGRAM
+            #include "HLSLSupport.cginc"
+            #include "UnityShaderVariables.cginc"
+
+            #pragma target 3.0
+
+            #pragma vertex ShadowPassVertex
+            #pragma fragment ShadowPassFragment
+
+            #pragma multi_compile_shadowcaster
+            #pragma multi_compile_instancing
+
+#if UNITY_VERSION >= 202220
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+#endif
+
+            #include "Input.hlsl"
+            #include "ShadowCasterPass.hlsl"
+
+            ENDHLSL
+        }
     }
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster"
