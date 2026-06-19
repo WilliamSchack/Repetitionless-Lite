@@ -113,7 +113,7 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             ENDHLSL
         }
 
-        /*Pass
+        Pass
         {
             Name "ShadowCaster"
             Tags { "LightMode" = "ShadowCaster" }
@@ -136,10 +136,10 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap forwardadd
 
             #include "Input.hlsl"
-            #include "ShadowCasterPass.hlsl"
+            #include "TerrainShadowCasterPass.hlsl"
 
             ENDHLSL
-        }*/
+        }
 
         Pass
         {
