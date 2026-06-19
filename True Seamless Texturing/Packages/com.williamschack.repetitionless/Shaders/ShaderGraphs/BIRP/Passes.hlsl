@@ -55,7 +55,7 @@ inline half4 VertexGIForwardCustom(Attributes v, float3 posWorld, half3 normalWo
         ambientOrLightmapUV.xy = v.uv1.xy * unity_LightmapST.xy + unity_LightmapST.zw;
         ambientOrLightmapUV.zw = 0;
     // Sample light probe for Dynamic objects only (no static or dynamic lightmaps)
-    #elif UNITY_SHOULD_SAMPLE_SH
+    #elif defined(UNITY_SHOULD_SAMPLE_SH)
         #ifdef VERTEXLIGHT_ON
             // Approximated illumination from non-important point lights
             ambientOrLightmapUV.rgb = Shade4PointLights (
@@ -100,6 +100,8 @@ FragmentCommonData ConstructFragData(v2f input, float4 albedo, float3 normalTS, 
     return data;
 }
 
+
+
 v2f Vert(Attributes v)
 {
     v2f output = (v2f)0;
@@ -123,7 +125,7 @@ v2f Vert(Attributes v)
 
     output.eyeVec.xyz = NormalizePerVertexNormal(posWorld.xyz - _WorldSpaceCameraPos);
 
-    UNITY_TRANSFER_LIGHTING(output, v.texcoord);
+    UNITY_TRANSFER_LIGHTING(output, v.uv1);
 
 #ifdef ADD_PASS
     float3 lightDir = _WorldSpaceLightPos0.xyz - posWorld.xyz * _WorldSpaceLightPos0.w;
@@ -132,11 +134,24 @@ v2f Vert(Attributes v)
     #endif
 
     output.lightDir = lightDir;
+#elif defined(DEFERRED_PASS)
+    output.ambientOrLightmapUV = 0;
+    #ifdef LIGHTMAP_ON
+        output.ambientOrLightmapUV.xy = v.uv1.xy * unity_LightmapST.xy + unity_LightmapST.zw;
+    #elif defined(UNITY_SHOULD_SAMPLE_SH)
+        output.ambientOrLightmapUV.rgb = ShadeSHPerVertex (normalWorld, output.ambientOrLightmapUV.rgb);
+    #endif
+    #ifdef DYNAMICLIGHTMAP_ON
+        output.ambientOrLightmapUV.zw = v.uv2.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
+    #endif
 #else
     output.ambientOrLightmapUV = VertexGIForwardCustom(v, posWorld, normalWorld);
 #endif
 
+#ifndef DEFERRED_PASS
     UNITY_TRANSFER_FOG_COMBINED_WITH_EYE_VEC(output, output.pos);
+#endif
+
     return output;
 }
 
@@ -165,7 +180,7 @@ half4 Frag(v2f i) : SV_TARGET
     FragmentCommonData data = ConstructFragData(i, albedo, normalTS, metallic, smoothness);
 
     UNITY_LIGHT_ATTENUATION(atten, i, i.positionWS);
-    
+
 #ifdef ADD_PASS
     UnityLight light = AdditiveLight(i.lightDir, atten);
     UnityIndirect indirect = ZeroIndirect();
@@ -185,5 +200,84 @@ half4 Frag(v2f i) : SV_TARGET
 
     return colour;
 }
+
+#ifdef DEFERRED_PASS
+void FragDeferred (
+    v2f i,
+    out half4 outGBuffer0 : SV_Target0,
+    out half4 outGBuffer1 : SV_Target1,
+    out half4 outGBuffer2 : SV_Target2,
+    out half4 outEmission : SV_Target3          // RT3: emission (rgb), --unused-- (a)
+#if defined(SHADOWS_SHADOWMASK) && (UNITY_ALLOWED_MRT_COUNT > 4)
+    ,out half4 outShadowMask : SV_Target4       // RT4: shadowmask (rgba)
+#endif
+)
+{
+    #if (SHADER_TARGET < 30)
+        outGBuffer0 = 1;
+        outGBuffer1 = 1;
+        outGBuffer2 = 0;
+        outEmission = 0;
+        #if defined(SHADOWS_SHADOWMASK) && (UNITY_ALLOWED_MRT_COUNT > 4)
+            outShadowMask = 1;
+        #endif
+        return;
+    #endif
+
+    // Main Function
+    float4 albedo;
+    float3 normalTS;
+    float  metallic;
+    float  smoothness;
+    float  occlusion;
+    float3 emission;
+    SampleRepetitionless(
+        i.uv, i.normalWS, i.positionWS, i.colour,
+        albedo, normalTS, metallic, smoothness, occlusion, emission
+    );
+
+    FragmentCommonData s = ConstructFragData(i, albedo, normalTS, metallic, smoothness);
+
+    UNITY_SETUP_INSTANCE_ID(i);
+    UNITY_APPLY_DITHER_CROSSFADE(i.pos.xy);
+
+    // no analytic lights in this pass
+    UnityLight dummyLight = DummyLight ();
+    half atten = 1;
+
+    // only GI
+#if UNITY_ENABLE_REFLECTION_BUFFERS
+    bool sampleReflectionsInDeferred = false;
+#else
+    bool sampleReflectionsInDeferred = true;
+#endif
+
+    UnityGI gi = FragmentGI(s, occlusion, i.ambientOrLightmapUV, atten, dummyLight, sampleReflectionsInDeferred);
+
+    half3 emissiveColor = UNITY_BRDF_PBS (s.diffColor, s.specColor, s.oneMinusReflectivity, s.smoothness, s.normalWorld, -s.eyeVec, gi.light, gi.indirect).rgb;
+    emissiveColor.rgb += emission;
+
+    #ifndef UNITY_HDR_ON
+        emissiveColor.rgb = exp2(-emissiveColor.rgb);
+    #endif
+
+    UnityStandardData data;
+    data.diffuseColor   = s.diffColor;
+    data.occlusion      = occlusion;
+    data.specularColor  = s.specColor;
+    data.smoothness     = s.smoothness;
+    data.normalWorld    = s.normalWorld;
+
+    UnityStandardDataToGbuffer(data, outGBuffer0, outGBuffer1, outGBuffer2);
+
+    // Emissive lighting buffer
+    outEmission = half4(emissiveColor, 1);
+
+    // Baked direct lighting occlusion if any
+    #if defined(SHADOWS_SHADOWMASK) && (UNITY_ALLOWED_MRT_COUNT > 4)
+        outShadowMask = UnityGetRawBakedOcclusions(i.ambientOrLightmapUV.xy, IN_WORLDPOS(i));
+    #endif
+}
+#endif
 
 #endif

@@ -126,6 +126,35 @@ Shader "Repetitionless/BIRP/Repetitionless"
 
             ENDHLSL
         }
+
+        Pass
+        {
+            Name "DEFERRED"
+            Tags { "LightMode" = "Deferred" }
+
+            HLSLPROGRAM
+            #include "HLSLSupport.cginc"
+            #include "UnityShaderVariables.cginc"
+
+            #pragma target 3.0
+            #pragma exclude_renderers nomrt
+
+            #pragma vertex Vert
+            #pragma fragment FragDeferred
+
+            #pragma multi_compile_prepassfinal
+            #pragma multi_compile_instancing
+
+#if UNITY_VERSION >= 202220
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+#endif
+
+            #define DEFERRED_PASS
+            #include "Input.hlsl"
+            #include "Passes.hlsl"
+
+            ENDHLSL
+        }
     }
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster"
