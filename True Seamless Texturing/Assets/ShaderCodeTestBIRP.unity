@@ -578,29 +578,13 @@ GameObject:
   - component: {fileID: 330717268}
   - component: {fileID: 330717267}
   - component: {fileID: 330717266}
-  - component: {fileID: 330717265}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 127
   m_IsActive: 1
---- !u!114 &330717265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330717264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8208f575f3af1555c94def75675e22a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: com.williamschack.Repetitionless.Runtime::Repetitionless.Runtime.RepetitionlessTerrain
-  _mainMaterial: {fileID: 2100000, guid: e87b2b528775e4c4da16839ab2eb87d8, type: 2}
-  AutoSaveTextures: 1
-  ParentTerrain: {fileID: 0}
 --- !u!154 &330717266
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -643,7 +627,7 @@ Terrain:
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
-  m_DrawInstanced: 0
+  m_DrawInstanced: 1
   m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0

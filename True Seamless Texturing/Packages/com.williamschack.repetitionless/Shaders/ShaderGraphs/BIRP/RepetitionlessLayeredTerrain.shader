@@ -72,14 +72,16 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
 
             #pragma multi_compile_fwdbase
             #pragma multi_compile_fog
+
             #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap forwardadd
 
 #if UNITY_VERSION >= 202220
             #pragma multi_compile _ LOD_FADE_CROSSFADE
 #endif
 
             #include "Input.hlsl"
-            #include "Passes.hlsl"
+            #include "TerrainPasses.hlsl"
 
             ENDHLSL
         }
@@ -105,18 +107,21 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
 
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap forwardadd
+
 #if UNITY_VERSION >= 202220
             #pragma multi_compile _ LOD_FADE_CROSSFADE
 #endif
 
             #define ADD_PASS
             #include "Input.hlsl"
-            #include "Passes.hlsl"
+            #include "TerrainPasses.hlsl"
 
             ENDHLSL
         }
 
-        Pass
+        /*Pass
         {
             Name "ShadowCaster"
             Tags { "LightMode" = "ShadowCaster" }
@@ -134,7 +139,9 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             #pragma fragment ShadowPassFragment
 
             #pragma multi_compile_shadowcaster
+
             #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap forwardadd
 
 #if UNITY_VERSION >= 202220
             #pragma multi_compile _ LOD_FADE_CROSSFADE
@@ -144,7 +151,7 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             #include "ShadowCasterPass.hlsl"
 
             ENDHLSL
-        }
+        }*/
 
         Pass
         {
@@ -162,7 +169,9 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
             #pragma fragment FragDeferred
 
             #pragma multi_compile_prepassfinal
+
             #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap forwardadd
 
 #if UNITY_VERSION >= 202220
             #pragma multi_compile _ LOD_FADE_CROSSFADE
@@ -170,12 +179,12 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
 
             #define DEFERRED_PASS
             #include "Input.hlsl"
-            #include "Passes.hlsl"
+            #include "TerrainPasses.hlsl"
 
             ENDHLSL
         }
 
-        Pass
+        /*Pass
         {
             Name "META"
             Tags { "LightMode" = "Meta" }
@@ -191,16 +200,19 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
 
             #pragma shader_feature EDITOR_VISUALIZATION
 
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap forwardadd
+
             #include "Input.hlsl"
             #include "MetaPass.hlsl"
 
             ENDHLSL
-        }
+        }*/
 
         UsePass "Hidden/Nature/Terrain/Utilities/PICKING"
         UsePass "Hidden/Nature/Terrain/Utilities/SELECTION"
     }
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain"
-    FallBack "Diffuse"
+    FallBack "Nature/Terrain/Standard"
 }
