@@ -46,7 +46,7 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredLit"
 
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType" = "Opaque" }
         LOD 200
 
         Pass

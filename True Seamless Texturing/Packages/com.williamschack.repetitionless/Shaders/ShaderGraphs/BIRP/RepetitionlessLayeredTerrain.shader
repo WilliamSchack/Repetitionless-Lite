@@ -1,4 +1,4 @@
-Shader "Repetitionless/BIRP/Repetitionless"
+Shader "Repetitionless/BIRP/RepetitionlessLayeredTerrain"
 {
     Properties
     {
@@ -6,6 +6,7 @@ Shader "Repetitionless/BIRP/Repetitionless"
         _UVSpace("UV Space", Int) = 0
         _VertexColourBlendMode("Vertex Colour Blend Mode", Int) = 0
         _DebuggingIndex("Debugging Index", Int) = -1
+        _LayersCount("Layers Count", Int) = 1
 
         [NoScaleOffset] _PropertiesTexture("Properties Texture", 2D) = "white" {}
         [NoScaleOffset] _AssignedTexturesTexture("Assigned Textures Texture", 2D) = "white" {}
@@ -14,6 +15,16 @@ Shader "Repetitionless/BIRP/Repetitionless"
         [NoScaleOffset] _EMTextures("EM Textures", 2DArray) = "white" {}   // Emission, Metallic
         [NoScaleOffset] _BMTextures("BM Textures", 2DArray) = "white" {}   // Blend Mask
         [NoScaleOffset] _NoiseTexture("Noise Texture", 2D) = "white" {}
+
+        _TerrainHoles("Terran Holes", 2D) = "white" {}
+        _Control0("Control 0", 2D) = "white" {}
+        _Control1("Control 1", 2D) = "black" {}
+        _Control2("Control 2", 2D) = "black" {}
+        _Control3("Control 3", 2D) = "black" {}
+        _Control4("Control 4", 2D) = "black" {}
+        _Control5("Control 5", 2D) = "black" {}
+        _Control6("Control 6", 2D) = "black" {}
+        _Control7("Control 7", 2D) = "black" {}
 
         // Blending
         [HideInInspector] _SrcBlend("__src", Float) = 1.0
@@ -27,11 +38,19 @@ Shader "Repetitionless/BIRP/Repetitionless"
     #ifndef REPETITIONLESS_BIRP
     #define REPETITIONLESS_BIRP
     #endif
+
+    #ifndef REPETITIONLESS_LAYERED
+    #define REPETITIONLESS_LAYERED
+    #endif
     ENDHLSL
 
     SubShader
     {
-        Tags { "RenderType" = "Opaque" }
+        Tags {
+            "RenderType" = "Opaque"
+            "Queue" = "Geometry-100"
+            "TerrainCompatible" = "True"
+        }
         LOD 200
 
         Pass
@@ -177,8 +196,11 @@ Shader "Repetitionless/BIRP/Repetitionless"
 
             ENDHLSL
         }
+
+        UsePass "Hidden/Nature/Terrain/Utilities/PICKING"
+        UsePass "Hidden/Nature/Terrain/Utilities/SELECTION"
     }
 
-    CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster"
+    CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorTerrain"
     FallBack "Diffuse"
 }
