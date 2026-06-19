@@ -155,6 +155,28 @@ Shader "Repetitionless/BIRP/Repetitionless"
 
             ENDHLSL
         }
+
+        Pass
+        {
+            Name "META"
+            Tags { "LightMode" = "Meta" }
+
+            Cull Off
+
+            HLSLPROGRAM
+            #include "HLSLSupport.cginc"
+            #include "UnityShaderVariables.cginc"
+
+            #pragma vertex VertexMeta
+            #pragma fragment FragmentMeta
+
+            #pragma shader_feature EDITOR_VISUALIZATION
+
+            #include "Input.hlsl"
+            #include "MetaPass.hlsl"
+
+            ENDHLSL
+        }
     }
 
     CustomEditor "Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorMaster"

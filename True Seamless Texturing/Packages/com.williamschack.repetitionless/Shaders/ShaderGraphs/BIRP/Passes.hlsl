@@ -100,8 +100,6 @@ FragmentCommonData ConstructFragData(v2f input, float4 albedo, float3 normalTS, 
     return data;
 }
 
-
-
 v2f Vert(Attributes v)
 {
     v2f output = (v2f)0;
