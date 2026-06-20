@@ -1,6 +1,4 @@
 #if UNITY_EDITOR
-using System;
-using UnityEngine;
 using UnityEditor;
 
 namespace Repetitionless.Editor.Processors
@@ -26,6 +24,9 @@ namespace Repetitionless.Editor.Processors
             // Setup colour space checker
             RepetitionlessColourSpaceUpdater.Initialize();
 
+            // Update hdrp terrain shader if required
+            CheckAndUpdateHDRPTerrainShader();
+
             // Open window if update available
             if (UpdateChecker.UpdateAvailable($"v{RepetitionlessPackageInfo.Info.version}") && RepetitionlessPrefs.Data.OpenWindowOnUpdate)
                 WelcomeWindow.Open(showUpdateMessage: true);
@@ -45,6 +46,18 @@ namespace Repetitionless.Editor.Processors
             });
 
             return true;
+        }
+
+        private static void CheckAndUpdateHDRPTerrainShader()
+        {
+            bool newTerrainActive = RepetitionlessPrefs.Data.HadNewHDRPSupport;
+#if UNITY_6000_3_OR_NEWER
+            if (!newTerrainActive) return;
+#else
+            if (newTerrainActive) return;
+#endif
+
+            
         }
     }
 }
