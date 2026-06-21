@@ -30,7 +30,7 @@ Varyings DepthOnlyVertex(Attributes input)
     return output;
 }
 
-half DepthOnlyFragment(Varyings input) : SV_TARGET
+half4 DepthOnlyFragment(Varyings input) : SV_TARGET
 {
 #ifdef _ALPHATEST_ON
     ClipHoles(input.texcoord);
