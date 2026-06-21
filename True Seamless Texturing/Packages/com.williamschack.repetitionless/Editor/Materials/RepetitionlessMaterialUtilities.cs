@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 using Repetitionless.Runtime.Variables;
+using Repetitionless.Editor.Data;
 
 namespace Repetitionless.Editor.Materials
 {
@@ -107,6 +108,87 @@ namespace Repetitionless.Editor.Materials
                     break;
                 }
             }
+        }
+
+        private static RepetitionlessMaterialDataSO GetMaterialProperties(Material mat)
+        {
+            MaterialDataManager dataManager = new MaterialDataManager(mat);
+            if (!dataManager.AssetExists(Constants.PROPERTIES_FILE_NAME))
+                return null;
+
+            return dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
+        }
+
+        public static void UpdateDistanceBlendKeyword(Material mat, RepetitionlessMaterialDataSO data)
+        {
+            // If its enabled at all, enable the keyword, otherwise disable
+            bool enabled = false;
+            foreach (RepetitionlessLayerData currentLayerData in data.Data) {
+                if (currentLayerData.DistanceBlendEnabled) {
+                    enabled = true;
+                    break;                    
+                }
+            }
+
+            SetBoolKeyword(mat, Constants.DISTANCE_BLEND_KEYWORD, enabled);
+        }
+
+        public static void UpdateDistanceBlendKeyword(Material mat)
+        {
+            RepetitionlessMaterialDataSO data = GetMaterialProperties(mat);
+            if (data == null) return;
+            
+            UpdateDistanceBlendKeyword(mat, data);
+        }
+
+        public static void UpdateMaterialBlendKeyword(Material mat, RepetitionlessMaterialDataSO data)
+        {
+            // If its enabled at all, enable the keyword, otherwise disable
+            bool enabled = false;
+            foreach (RepetitionlessLayerData currentLayerData in data.Data) {
+                if (currentLayerData.MaterialBlendEnabled) {
+                    enabled = true;
+                    break;                    
+                }
+            }
+
+            SetBoolKeyword(mat, Constants.MATERIAL_BLEND_KEYWORD, enabled);
+        }
+
+        public static void UpdateMaterialBlendKeyword(Material mat)
+        {
+            RepetitionlessMaterialDataSO data = GetMaterialProperties(mat);
+            if (data == null) return;
+            
+            UpdateMaterialBlendKeyword(mat, data);
+        }
+
+        public static void UpdateVariationKeyword(Material mat, int maxLayers, RepetitionlessMaterialDataSO data)
+        {
+            // If its enabled at all, enable the keyword, otherwise disable
+            bool enabled = false;
+            for (int layer = 0; layer < maxLayers; layer++) {
+                for (int section = 0; section < 3; section++) {
+                    RepetitionlessMaterialData materialData = data.GetMaterialData(layer, section);
+                    if (materialData.VariationEnabled) {
+                        enabled = true;
+                        break;
+                    }
+                }
+
+                if (enabled)
+                    break;
+            }
+
+            SetBoolKeyword(mat, Constants.VARIATION_KEYWORD, enabled);
+        }
+        
+        public static void UpdateVariationKeyword(Material mat, int maxLayers)
+        {
+            RepetitionlessMaterialDataSO data = GetMaterialProperties(mat);
+            if (data == null) return;
+
+            UpdateVariationKeyword(mat, maxLayers, data);
         }
 
         public static void SetNoiseQuality(Material mat, ENoiseQuality noiseQuality)

@@ -248,14 +248,7 @@ namespace Repetitionless.Editor.Inspectors
         /// <returns></returns>
         protected RepetitionlessMaterialData GetMaterialData(int layerIndex, int sectionIndex)
         {
-            RepetitionlessMaterialData currentData = _materialProperties.Data[layerIndex].BaseMaterialData;
-            switch (sectionIndex) {
-              //case 0: currentData = _materialProperties.Data[layerIndex].BaseMaterialData;  break;
-                case 1: currentData = _materialProperties.Data[layerIndex].FarMaterialData;   break;
-                case 2: currentData = _materialProperties.Data[layerIndex].BlendMaterialData; break; 
-            }
-
-            return currentData;
+            return _materialProperties.GetMaterialData(layerIndex, sectionIndex);
         }
 
         /// <summary>
@@ -465,55 +458,19 @@ namespace Repetitionless.Editor.Inspectors
 
         private void UpdateDistanceBlendKeyword()
         {
-            // If its enabled at all, enable the keyword, otherwise disable
-            bool enabled = false;
-            foreach (RepetitionlessLayerData currentLayerData in _materialProperties.Data) {
-                if (currentLayerData.DistanceBlendEnabled) {
-                    enabled = true;
-                    break;                    
-                }
-            }
-
-            RepetitionlessMaterialUtilities.SetBoolKeyword(_material, Constants.DISTANCE_BLEND_KEYWORD, enabled);
-
+            RepetitionlessMaterialUtilities.UpdateDistanceBlendKeyword(_material, _materialProperties);
             _materialProperties.CallOnExternalDataChanged();
         }
 
         private void UpdateMaterialBlendKeyword()
         {
-            // If its enabled at all, enable the keyword, otherwise disable
-            bool enabled = false;
-            foreach (RepetitionlessLayerData currentLayerData in _materialProperties.Data) {
-                if (currentLayerData.MaterialBlendEnabled) {
-                    enabled = true;
-                    break;                    
-                }
-            }
-
-            RepetitionlessMaterialUtilities.SetBoolKeyword(_material, Constants.MATERIAL_BLEND_KEYWORD, enabled);
-
+            RepetitionlessMaterialUtilities.UpdateMaterialBlendKeyword(_material, _materialProperties);
             _materialProperties.CallOnExternalDataChanged();
         }
 
         private void UpdateVariationKeyword()
         {
-            // If its enabled at all, enable the keyword, otherwise disable
-            bool enabled = false;
-            for (int layer = 0; layer < _maxLayers; layer++) {
-                for (int section = 0; section < 3; section++) {
-                    RepetitionlessMaterialData materialData = GetMaterialData(layer, section);
-                    if (materialData.VariationEnabled) {
-                        enabled = true;
-                        break;
-                    }
-                }
-
-                if (enabled)
-                    break;
-            }
-
-            RepetitionlessMaterialUtilities.SetBoolKeyword(_material, Constants.VARIATION_KEYWORD, enabled);
-
+            RepetitionlessMaterialUtilities.UpdateVariationKeyword(_material, _maxLayers, _materialProperties);
             _materialProperties.CallOnExternalDataChanged();
         }
 
