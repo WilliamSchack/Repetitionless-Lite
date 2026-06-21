@@ -21,12 +21,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Repetitionless_BIRP_Flat_Repetitionless
-  m_Shader: {fileID: -6465566751694194690, guid: 2e442388a9557679a8eaf0a9230f4c74, type: 3}
+  m_Shader: {fileID: 4800000, guid: 57255103b0886f909b3a1c1a453806d7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _REPETITIONLESS_NOISE_TEXTURE
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -79,13 +79,18 @@ Material:
     - _BUILTIN_ZWrite: 1
     - _BUILTIN_ZWriteControl: 0
     - _DebuggingIndex: -1
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _ENVIRONMENTREFLECTIONS_OFF: 0
     - _REPETITIONLESS_NOISE_TEXTURE: 1
     - _REPETITIONLESS_TRIPLANAR: 0
     - _SPECULARHIGHLIGHTS_OFF: 0
+    - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
     - _SurfaceTypeSetting: 0
     - _UVSpace: 0
     - _VertexColourBlendMode: 0
+    - _ZWrite: 1
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

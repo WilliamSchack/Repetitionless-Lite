@@ -79,6 +79,15 @@
         },
         {
             "m_Id": "dfbf9dcb34784d7a946b467c01d89972"
+        },
+        {
+            "m_Id": "44e9a7fd7c7748b1905efcdf92d723f3"
+        },
+        {
+            "m_Id": "b869c1227c484a5bace89613d8818197"
+        },
+        {
+            "m_Id": "4f3c3ec718f9475bbbdfa4f2531b68eb"
         }
     ],
     "m_Dropdowns": [],
@@ -2749,6 +2758,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "44e9a7fd7c7748b1905efcdf92d723f3",
+    "m_Guid": {
+        "m_GuidSerialized": "0e42e95d-e219-4d2e-82f6-a0a50eca265a"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "REPETITIONLESS_DISTANCE_BLEND",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "REPETITIONLESS_DISTANCE_BLEND",
+    "m_DefaultReferenceName": "_REPETITIONLESS_DISTANCE_BLEND",
+    "m_OverrideReferenceName": "_REPETITIONLESS_DISTANCE_BLEND",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 0,
+    "m_IsEditable": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "4651b98d45a044e08521b41b80db96a5",
@@ -2996,6 +3033,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "4f3c3ec718f9475bbbdfa4f2531b68eb",
+    "m_Guid": {
+        "m_GuidSerialized": "b15956b1-bb5a-4f83-af25-24c515a37ed2"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "REPETITIONLESS_VARIATION",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "REPETITIONLESS_VARIATION",
+    "m_DefaultReferenceName": "_REPETITIONLESS_VARIATION",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.Rendering.HighDefinition.EmissionNode",
     "m_ObjectId": "502c54fa26b24731be1d1dc327e70989",
@@ -3190,10 +3255,19 @@
             "m_Id": "e96c4c78d7284312b43b7513dee15205"
         },
         {
+            "m_Id": "44e9a7fd7c7748b1905efcdf92d723f3"
+        },
+        {
+            "m_Id": "b869c1227c484a5bace89613d8818197"
+        },
+        {
             "m_Id": "defc5ab09a3747239a5b7239576485d5"
         },
         {
             "m_Id": "29cbfd04fc7941f799fad82478d831ab"
+        },
+        {
+            "m_Id": "4f3c3ec718f9475bbbdfa4f2531b68eb"
         },
         {
             "m_Id": "cca35ff20c234b1797a2258bccb0f060"
@@ -5648,6 +5722,34 @@
     "isHDR": false,
     "m_Modifiable": true,
     "m_DefaultType": 1
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "b869c1227c484a5bace89613d8818197",
+    "m_Guid": {
+        "m_GuidSerialized": "757e897c-2c6e-43f4-8688-645a2c402b39"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "REPETITIONLESS_MATERIAL_BLEND",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "REPETITIONLESS_MATERIAL_BLEND",
+    "m_DefaultReferenceName": "_REPETITIONLESS_MATERIAL_BLEND",
+    "m_OverrideReferenceName": "_REPETITIONLESS_MATERIAL_BLEND",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 0,
+    "m_IsEditable": true
 }
 
 {

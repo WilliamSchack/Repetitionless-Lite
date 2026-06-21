@@ -49,6 +49,15 @@
         },
         {
             "m_Id": "de77d7be5b0d44a4a7fe9b7096fb363b"
+        },
+        {
+            "m_Id": "0a59cf911fd4415aa307ffb3cc654d7c"
+        },
+        {
+            "m_Id": "b9eadd638d1f43eeaacc41cd22e82a70"
+        },
+        {
+            "m_Id": "f1c0bd28a515478ab88c414e55179fbd"
         }
     ],
     "m_Dropdowns": [],
@@ -1117,7 +1126,7 @@
     "m_Title": "Material Setup",
     "m_Position": {
         "x": 607.0,
-        "y": 1930.0
+        "y": 1929.9998779296875
     }
 }
 
@@ -1356,6 +1365,34 @@
     "m_DefaultValue": 0.0,
     "m_Labels": [],
     "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "0a59cf911fd4415aa307ffb3cc654d7c",
+    "m_Guid": {
+        "m_GuidSerialized": "a6bccb09-a3df-475a-ac46-747999f64938"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "REPETITIONLESS_DISTANCE_BLEND",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "REPETITIONLESS_DISTANCE_BLEND",
+    "m_DefaultReferenceName": "_REPETITIONLESS_DISTANCE_BLEND",
+    "m_OverrideReferenceName": "_REPETITIONLESS_DISTANCE_BLEND",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 0,
+    "m_IsEditable": true
 }
 
 {
@@ -2704,10 +2741,19 @@
             "m_Id": "a53c21286b3b4d8aaecc5989768a620e"
         },
         {
+            "m_Id": "0a59cf911fd4415aa307ffb3cc654d7c"
+        },
+        {
+            "m_Id": "b9eadd638d1f43eeaacc41cd22e82a70"
+        },
+        {
             "m_Id": "b51d0ab7d514412093a6ad72cef9ce17"
         },
         {
             "m_Id": "55b5dd85fe9c47a8817bdb11bf734c86"
+        },
+        {
+            "m_Id": "f1c0bd28a515478ab88c414e55179fbd"
         },
         {
             "m_Id": "de7c3ba034164bb4b9eb8112da48fc27"
@@ -3477,8 +3523,8 @@
     "m_ObjectId": "715ef89249d342a58e41095702ab016f",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1125.0,
-        "y": 2657.0
+        "x": 1124.9998779296875,
+        "y": 2656.999755859375
     }
 }
 
@@ -4996,6 +5042,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "b9eadd638d1f43eeaacc41cd22e82a70",
+    "m_Guid": {
+        "m_GuidSerialized": "47f7bfc5-b597-4e3e-9a18-189ca0ad6a4b"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "REPETITIONLESS_MATERIAL_BLEND",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "REPETITIONLESS_MATERIAL_BLEND",
+    "m_DefaultReferenceName": "_REPETITIONLESS_MATERIAL_BLEND",
+    "m_OverrideReferenceName": "_REPETITIONLESS_MATERIAL_BLEND",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 0,
+    "m_IsEditable": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "baa54a1a53f040d6b73ffbef3fca730b",
@@ -6288,6 +6362,34 @@
         "w": 0.0
     },
     "m_LiteralMode": true
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "f1c0bd28a515478ab88c414e55179fbd",
+    "m_Guid": {
+        "m_GuidSerialized": "564461db-e03b-4d9c-819f-4097c381644a"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "REPETITIONLESS_VARIATION",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "REPETITIONLESS_VARIATION",
+    "m_DefaultReferenceName": "_REPETITIONLESS_VARIATION",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
 }
 
 {

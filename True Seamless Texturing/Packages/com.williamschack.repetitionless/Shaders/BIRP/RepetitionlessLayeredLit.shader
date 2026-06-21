@@ -66,6 +66,17 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredLit"
             #pragma vertex Vert
             #pragma fragment Frag
 
+            // Material Keywords
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
+
+            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
+
+            // Unity defined
             #pragma multi_compile_fwdbase
             #pragma multi_compile_fog
             #pragma multi_compile_instancing
@@ -98,6 +109,17 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredLit"
             #pragma vertex Vert
             #pragma fragment Frag
 
+            // Material Keywords
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
+
+            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
+
+            // Unity defined
             #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
 
@@ -157,6 +179,17 @@ Shader "Repetitionless/BIRP/RepetitionlessLayeredLit"
             #pragma vertex Vert
             #pragma fragment FragDeferred
 
+            // Material Keywords
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
+
+            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
+
+            // Unity defined
             #pragma multi_compile_prepassfinal
             #pragma multi_compile_instancing
 
