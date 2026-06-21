@@ -66,7 +66,7 @@ UNITY_INSTANCING_BUFFER_END(Terrain)
 
 void ClipHoles(float2 uv)
 {
-    float hole = SAMPLE_TEXTURE2D(_TerrainHoles, sampler_TerrainHoles, uv).r;
+    float hole = SAMPLE_TEXTURE2D(_TerrainHolesTexture, sampler_TerrainHolesTexture, uv).r;
     clip(hole < 0.0005f ? -1 : 1);
 }
 

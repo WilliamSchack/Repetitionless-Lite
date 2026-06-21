@@ -30,14 +30,14 @@ void DistanceBlendTilingOffset_float(
     float farDistance = CalculateFarDistance(WorldPosition, CameraPosition, DistanceBlendMinMax);
     
     // Default
-    ColourOut = SAMPLE_TEXTURE2D(Texture, SS, UV * BaseTilingOffset.xy + BaseTilingOffset.zw);
+    ColourOut = SAMPLE_TEXTURE2D(Texture.tex, SS, UV * BaseTilingOffset.xy + BaseTilingOffset.zw);
     
     // Only calculate if required
     if (farDistance == 0)
         return;
     
     // Resample base texture with far tiling & offset
-    float4 farColour = SAMPLE_TEXTURE2D(Texture, SS, UV * FarTilingOffset.xy + FarTilingOffset.zw);
+    float4 farColour = SAMPLE_TEXTURE2D(Texture.tex, SS, UV * FarTilingOffset.xy + FarTilingOffset.zw);
     
     // Combine far with base
     ColourOut = lerp(ColourOut, farColour, farDistance);
