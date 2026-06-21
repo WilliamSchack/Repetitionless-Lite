@@ -64,11 +64,23 @@ namespace Repetitionless.Editor.Processors
             return RepetitionlessPrefs.Data.LastProcessedVersion != RepetitionlessPackageInfo.Info.version;
         }
 
+        private static void PackageImported(string packageName)
+        {
+            WelcomeWindow.Open(true);
+            ShowReviewLog();
+
+            RepetitionlessPrefs.UpdatePrefs((p) => {
+                p.WelcomeWindowShown = true;
+                p.LastProcessedVersion = RepetitionlessPackageInfo.Info.version;
+            });
+
+            AssetDatabase.importPackageCompleted -= PackageImported;
+        }
+
         private static int[] GetLastVersion()
         {
             return SplitVersion(RepetitionlessPrefs.Data.LastProcessedVersion);
         }
-
 
         private static void HandleVersionUpdate()
         {
@@ -91,24 +103,14 @@ namespace Repetitionless.Editor.Processors
             }
         }
 
-        private static void PackageImported(string packageName)
-        {
-            WelcomeWindow.Open(true);
-            ShowReviewLog();
-
-            RepetitionlessPrefs.UpdatePrefs((p) => {
-                p.WelcomeWindowShown = true;
-                p.LastProcessedVersion = RepetitionlessPackageInfo.Info.version;
-            });
-
-            AssetDatabase.importPackageCompleted -= PackageImported;
-        }
-
+#region Updating to 1.0.3
         private static void ShowReviewLog()
         {
             Debug.Log("<b>Thanks for purchasing Repetitionless! <color=#3FFFFF>Please consider leaving a review to support the asset and its development, any feedback is appreciated!</color></b>");
         }
+#endregion
 
+#region Updating to 1.2.0
         private static void ConvertTerrainMaterials(string packageName = "")
         {
             AssetDatabase.importPackageCompleted -= ConvertTerrainMaterials;
@@ -161,7 +163,9 @@ namespace Repetitionless.Editor.Processors
             if (convertedTerrains)
                 EditorUtility.DisplayDialog("Repetitionless Update", "Some terrains using Repetitionless may have pink materials.\nTo fix this, click the Save Textures button on the RepetitionlessTerrain component and make sure those materials are set to the RepetitionlessLayered shader", "Ok");
         }
+#endregion
 
+#region Updating to 1.4.0
         private static void UpdateTo140(string packageName = "")
         {
             AssetDatabase.importPackageCompleted -= UpdateTo140;
@@ -231,6 +235,7 @@ namespace Repetitionless.Editor.Processors
         {
             // Get all materials in project
             string[] materialGuids = AssetDatabase.FindAssets("t:Material", new string[] { "Assets" });
+            List<Material> repetitionlessMaterials = new List<Material>();
 
             foreach (string guid in materialGuids) {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
@@ -252,8 +257,17 @@ namespace Repetitionless.Editor.Processors
                 if (newShader == "") continue;
 
                 mat.shader = Shader.Find(newShader);
+
+                repetitionlessMaterials.Add(mat);
+            }
+
+            // Add new keywords if applicable
+            foreach (Material mat in repetitionlessMaterials) {
+                
             }
         }
+
+#endregion
     }
 }
 #endif
