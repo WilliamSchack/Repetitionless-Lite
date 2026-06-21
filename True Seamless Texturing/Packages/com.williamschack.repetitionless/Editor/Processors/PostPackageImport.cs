@@ -1,8 +1,11 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
 using System.IO;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
+using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Processors
 {
@@ -84,7 +87,7 @@ namespace Repetitionless.Editor.Processors
 
             // Upgrading to 1.4.0
             if (splitLastVersion[0] == 1 && splitLastVersion[1] < 4) {
-                AssetDatabase.importPackageCompleted += RemoveOldShaderFiles;
+                AssetDatabase.importPackageCompleted += UpdateTo140;
             }
         }
 
@@ -159,10 +162,16 @@ namespace Repetitionless.Editor.Processors
                 EditorUtility.DisplayDialog("Repetitionless Update", "Some terrains using Repetitionless may have pink materials.\nTo fix this, click the Save Textures button on the RepetitionlessTerrain component and make sure those materials are set to the RepetitionlessLayered shader", "Ok");
         }
 
-        private static void RemoveOldShaderFiles(string packageName = "")
+        private static void UpdateTo140(string packageName = "")
         {
-            AssetDatabase.importPackageCompleted -= RemoveOldShaderFiles;
+            AssetDatabase.importPackageCompleted -= UpdateTo140;
 
+            RemoveOldShaderFiles();
+            UpdateOldMaterials();
+        }
+
+        private static void RemoveOldShaderFiles()
+        {
             string projectFolder = Path.GetFullPath(Path.Combine(Application.dataPath, "../"));
             string shadersFolder = projectFolder + Constants.PACKAGE_PATH + "/Shaders/";
             string hlslFolder = shadersFolder + "HLSL";
@@ -175,10 +184,75 @@ namespace Repetitionless.Editor.Processors
             AssetDatabase.Refresh();
         }
 
-        // Upgrade all materials pre 1.4.0 to the new shaders
-        private static void UpdateOldMaterials(string packageName = "")
+        private static bool MaterialIsTerrain(Material mat)
         {
-            AssetDatabase.importPackageCompleted -= UpdateOldMaterials;
+            MaterialDataManager dataManager = new MaterialDataManager(mat);
+            if (!dataManager.AssetExists(Constants.LAYERED_DATA_FILE_NAME))
+                return true; // Shouldnt happen but here just incase
+
+            RepetitionlessLayeredDataSO layeredData = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
+            return layeredData.LayerMode == ELayerMode.TerrainLayers;
+        }
+
+        private static string GetNewRepetitionlessShaderName(Material mat, string oldGuid)
+        {
+            switch(oldGuid) {
+                // BIRP - Base
+                case "2e442388a9557679a8eaf0a9230f4c74":
+                    return Constants.SHADER_FOLDER + Constants.SHADER_FOLDER_BIRP + Constants.SHADER_MATERIAL_NAME_REGULAR;
+                // BIRP - Layered
+                case "d9f3c26619b9fff3fba543d61ffaa00f":
+                    return MaterialIsTerrain(mat) ?
+                            Constants.SHADER_FOLDER + Constants.SHADER_FOLDER_BIRP + Constants.SHADER_MATERIAL_NAME_LAYERED_TERRAIN :
+                            Constants.SHADER_FOLDER + Constants.SHADER_FOLDER_BIRP + Constants.SHADER_MATERIAL_NAME_LAYERED_LIT;
+                // URP - Base
+                case "2668dc74239987d2abd177adfc8716b8":
+                    return Constants.SHADER_FOLDER + Constants.SHADER_FOLDER_URP + Constants.SHADER_MATERIAL_NAME_REGULAR;
+                // URP - Layered
+                case "cb3ba3cb005025b548d1daf1d3c2b48f":
+                    return MaterialIsTerrain(mat) ?
+                            Constants.SHADER_FOLDER + Constants.SHADER_FOLDER_URP + Constants.SHADER_MATERIAL_NAME_LAYERED_TERRAIN :
+                            Constants.SHADER_FOLDER + Constants.SHADER_FOLDER_URP + Constants.SHADER_MATERIAL_NAME_LAYERED_LIT;
+                // HDRP - Base
+                case "76352105cf8ad4a27979f0a922d49682":
+                    return Constants.SHADER_FOLDER + Constants.SHADER_FOLDER_HDRP + Constants.SHADER_MATERIAL_NAME_REGULAR;
+                // HDRP - Layered
+                case "e182ab88072826c43bb34ab1197f5041":
+                    return MaterialIsTerrain(mat) ?
+                            Constants.SHADER_FOLDER + Constants.SHADER_FOLDER_HDRP + Constants.SHADER_MATERIAL_NAME_LAYERED_TERRAIN :
+                            Constants.SHADER_FOLDER + Constants.SHADER_FOLDER_HDRP + Constants.SHADER_MATERIAL_NAME_LAYERED_LIT;
+            }
+
+            return "";
+        }
+
+        // Upgrade all materials pre 1.4.0 to the new shaders
+        private static void UpdateOldMaterials()
+        {
+            // Get all materials in project
+            string[] materialGuids = AssetDatabase.FindAssets("t:Material", new string[] { "Assets" });
+
+            foreach (string guid in materialGuids) {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                if (path == "") continue;
+
+                // Read the material folder to find the shader guid
+                string projectFolder = Path.GetFullPath(Path.Combine(Application.dataPath, "../"));
+                string fileText = File.ReadAllText(projectFolder + path);
+                if (fileText == "") continue;
+
+                string oldShaderGuid = Regex.Match(fileText, @"m_Shader.+guid:\s([0-9,a-f]{32})").Groups[1].Value;
+                if (oldShaderGuid == "") continue;
+
+                // If its an old repetitionless shader, convert it
+                Material mat = AssetDatabase.LoadAssetAtPath<Material>(path);
+                if (mat == null) continue;
+
+                string newShader = GetNewRepetitionlessShaderName(mat, oldShaderGuid);
+                if (newShader == "") continue;
+
+                mat.shader = Shader.Find(newShader);
+            }
         }
     }
 }
