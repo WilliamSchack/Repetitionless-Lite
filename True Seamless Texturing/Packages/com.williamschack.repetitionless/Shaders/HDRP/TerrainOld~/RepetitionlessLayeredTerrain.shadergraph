@@ -55,9 +55,6 @@
             "m_Id": "635bdbcb31aa498aab8a97a223e1bcc7"
         },
         {
-            "m_Id": "addb053ad1584e059225a20e28103eb1"
-        },
-        {
             "m_Id": "28b9fb3b06c445db99abfa438805bc87"
         },
         {
@@ -1304,9 +1301,6 @@
     "m_Name": "Terrain Textures",
     "m_ChildObjectList": [
         {
-            "m_Id": "addb053ad1584e059225a20e28103eb1"
-        },
-        {
             "m_Id": "635bdbcb31aa498aab8a97a223e1bcc7"
         },
         {
@@ -1716,8 +1710,8 @@
     "m_ObjectId": "19d4874b048847f382a74bf505188aca",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 621.0001220703125,
-        "y": 1920.0001220703125
+        "x": 621.0,
+        "y": 1920.0
     }
 }
 
@@ -3600,7 +3594,7 @@
     },
     "m_SourceType": 0,
     "m_FunctionName": "SampleRepetitionlessTerrain",
-    "m_FunctionSource": "627d9e7ddc87014479b2bc2b27293a76",
+    "m_FunctionSource": "467fa291ebe1bce22a0f59077d306e50",
     "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."
 }
@@ -5671,43 +5665,6 @@
         "z": 0.0
     },
     "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
-    "m_ObjectId": "addb053ad1584e059225a20e28103eb1",
-    "m_Guid": {
-        "m_GuidSerialized": "9b3f017e-d0cb-4fff-bb58-0e5c94750a8f"
-    },
-    "promotedFromAssetID": "",
-    "promotedFromCategoryName": "",
-    "promotedOrdering": -1,
-    "m_Name": "TerrainHoles",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "TerrainHoles",
-    "m_DefaultReferenceName": "_TerrainHoles",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_PerRendererData": false,
-    "m_customAttributes": [],
-    "m_Value": {
-        "m_SerializedTexture": "",
-        "m_Guid": ""
-    },
-    "isMainTexture": false,
-    "useTilingAndOffset": false,
-    "useTexelSize": true,
-    "isHDR": false,
-    "m_Modifiable": true,
-    "m_DefaultType": 0
 }
 
 {

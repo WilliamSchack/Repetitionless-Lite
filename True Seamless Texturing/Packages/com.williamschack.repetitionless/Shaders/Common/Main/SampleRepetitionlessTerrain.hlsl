@@ -68,7 +68,11 @@ void SampleRepetitionlessTerrain(
     float3 emission     = 0;
 
     // Terrain Holes
+#ifdef _ALPHATEST_ON
     float holeColour = SAMPLE_TEXTURE2D(_TerrainHolesTexture, sampler_TerrainHolesTexture, UV).r;
+#else
+    float holeColour = 1;
+#endif
     clip(albedoColor.a - (1 - (holeColour - 0.01)));
 
     if (holeColour == 0) {
