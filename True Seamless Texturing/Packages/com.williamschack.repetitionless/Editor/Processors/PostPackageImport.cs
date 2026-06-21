@@ -12,6 +12,7 @@ namespace Repetitionless.Editor.Processors
     using Data;
     using CustomWindows;
     using Config;
+    using Repetitionless.Editor.Materials;
 
     [InitializeOnLoad]
     public static class PostPackageImport
@@ -263,7 +264,17 @@ namespace Repetitionless.Editor.Processors
 
             // Add new keywords if applicable
             foreach (Material mat in repetitionlessMaterials) {
-                
+                MaterialDataManager dataManager = new MaterialDataManager(mat);
+                if (!dataManager.AssetExists(Constants.PROPERTIES_FILE_NAME))
+                    continue;
+
+                RepetitionlessMaterialDataSO data = dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
+
+                bool isLayered = mat.shader.name.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED);
+
+                RepetitionlessMaterialUtilities.UpdateDistanceBlendKeyword(mat, data);
+                RepetitionlessMaterialUtilities.UpdateMaterialBlendKeyword(mat, data);
+                RepetitionlessMaterialUtilities.UpdateVariationKeyword(mat, isLayered ? Constants.MAX_LAYERS_TERRAIN : Constants.MAX_LAYERS_REGULAR, data);
             }
         }
 

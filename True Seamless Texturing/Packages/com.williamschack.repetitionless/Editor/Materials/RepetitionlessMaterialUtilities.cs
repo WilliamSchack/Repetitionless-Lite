@@ -109,16 +109,6 @@ namespace Repetitionless.Editor.Materials
                 }
             }
         }
-
-        private static RepetitionlessMaterialDataSO GetMaterialProperties(Material mat)
-        {
-            MaterialDataManager dataManager = new MaterialDataManager(mat);
-            if (!dataManager.AssetExists(Constants.PROPERTIES_FILE_NAME))
-                return null;
-
-            return dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
-        }
-
         public static void UpdateDistanceBlendKeyword(Material mat, RepetitionlessMaterialDataSO data)
         {
             // If its enabled at all, enable the keyword, otherwise disable
@@ -132,15 +122,6 @@ namespace Repetitionless.Editor.Materials
 
             SetBoolKeyword(mat, Constants.DISTANCE_BLEND_KEYWORD, enabled);
         }
-
-        public static void UpdateDistanceBlendKeyword(Material mat)
-        {
-            RepetitionlessMaterialDataSO data = GetMaterialProperties(mat);
-            if (data == null) return;
-            
-            UpdateDistanceBlendKeyword(mat, data);
-        }
-
         public static void UpdateMaterialBlendKeyword(Material mat, RepetitionlessMaterialDataSO data)
         {
             // If its enabled at all, enable the keyword, otherwise disable
@@ -153,14 +134,6 @@ namespace Repetitionless.Editor.Materials
             }
 
             SetBoolKeyword(mat, Constants.MATERIAL_BLEND_KEYWORD, enabled);
-        }
-
-        public static void UpdateMaterialBlendKeyword(Material mat)
-        {
-            RepetitionlessMaterialDataSO data = GetMaterialProperties(mat);
-            if (data == null) return;
-            
-            UpdateMaterialBlendKeyword(mat, data);
         }
 
         public static void UpdateVariationKeyword(Material mat, int maxLayers, RepetitionlessMaterialDataSO data)
@@ -181,14 +154,6 @@ namespace Repetitionless.Editor.Materials
             }
 
             SetBoolKeyword(mat, Constants.VARIATION_KEYWORD, enabled);
-        }
-        
-        public static void UpdateVariationKeyword(Material mat, int maxLayers)
-        {
-            RepetitionlessMaterialDataSO data = GetMaterialProperties(mat);
-            if (data == null) return;
-
-            UpdateVariationKeyword(mat, maxLayers, data);
         }
 
         public static void SetNoiseQuality(Material mat, ENoiseQuality noiseQuality)
