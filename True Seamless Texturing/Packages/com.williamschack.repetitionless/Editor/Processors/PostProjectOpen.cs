@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Repetitionless.Editor.Processors
@@ -68,6 +69,30 @@ namespace Repetitionless.Editor.Processors
             bool hasNewHDRPSupport = false;
 #endif
 
+            // Get materials that need to be updated
+            string[] materialGuids = AssetDatabase.FindAssets("t:Material", new string[] { "Assets" });
+            List<Material> updatingMaterials = new List<Material>();
+
+            foreach (string guid in materialGuids) {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                if (path == "") continue;
+
+                Material mat = AssetDatabase.LoadAssetAtPath<Material>(path);
+                if (mat == null) continue;
+
+                string shaderName = mat.shader.name;
+                Debug.Log(shaderName);
+
+                if (!shaderName.StartsWith(Constants.SHADER_FOLDER) ||                    // Must be repetitionless shader
+                    !shaderName.Contains(Constants.SHADER_FOLDER_HDRP) ||                 // Must be hdrp
+                    !shaderName.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED_TERRAIN)) // Must use terrain shader
+                    continue;
+
+                Debug.Log("UPDATING: " + mat.name);
+
+                updatingMaterials.Add(mat);
+            }
+
             // Change paths to absolute paths
             string projectPath = Path.GetFullPath(Path.Combine(Application.dataPath, "../"));
             oldFolderPath = projectPath + "/" + oldFolderPath;
@@ -78,6 +103,11 @@ namespace Repetitionless.Editor.Processors
             Directory.Move(newFolderPath + "~", newFolderPath);
             File.Delete(oldFolderPath + ".meta");
             AssetDatabase.Refresh();
+
+            // Update materials to the new shader
+            foreach (Material mat in updatingMaterials) {
+                mat.shader = Shader.Find(Constants.SHADER_FOLDER + Constants.SHADER_FOLDER_HDRP + Constants.SHADER_MATERIAL_NAME_LAYERED_TERRAIN);
+            }
 
             // Update pref
             RepetitionlessPrefs.UpdatePrefs((p) => {

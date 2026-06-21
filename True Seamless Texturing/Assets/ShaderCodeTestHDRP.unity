@@ -424,7 +424,7 @@ Terrain:
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 704348318}
+  m_MaterialTemplate: {fileID: 641670148}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -452,7 +452,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &704348318
+--- !u!21 &641670148
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -466,6 +466,7 @@ Material:
   m_ValidKeywords:
   - _ALPHATEST_ON
   - _REPETITIONLESS_NOISE_TEXTURE
+  - _REPETITIONLESS_VARIATION
   m_InvalidKeywords:
   - _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 4
@@ -611,8 +612,11 @@ Material:
     - _MaterialTypeMask: 2
     - _OpaqueCullMode: 2
     - _PerPixelSorting: 0
+    - _REPETITIONLESS_DISTANCE_BLEND: 0
+    - _REPETITIONLESS_MATERIAL_BLEND: 0
     - _REPETITIONLESS_NOISE_TEXTURE: 1
     - _REPETITIONLESS_TRIPLANAR: 0
+    - _REPETITIONLESS_VARIATION: 1
     - _RayTracing: 0
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0

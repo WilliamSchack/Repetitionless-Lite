@@ -95,7 +95,7 @@ namespace Repetitionless.Editor.Materials
 #if !UNITY_6000_3_OR_NEWER
             ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
             if (currentPipeline == ERenderPipeline.HDRP)
-                mat.SetOverrideTag("TerrainCompatible", "True");
+                dataManager.Material.SetOverrideTag("TerrainCompatible", "True");
 #endif
 
             data.Save();

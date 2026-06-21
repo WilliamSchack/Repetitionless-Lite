@@ -28,8 +28,8 @@ namespace Repetitionless.Editor
         public const string SAMPLES_PATH_URP = SAMPLES_PATH + "/URP";
         public const string SAMPLES_PATH_HDRP = SAMPLES_PATH + "/HDRP";
 
-        public const string HDRP_TERRAN_OLD_FOLDER_PATH = PACKAGE_PATH + "/Shaders/HDRP/TerranOld";
-        public const string HDRP_TERRAN_NEW_FOLDER_PATH = PACKAGE_PATH + "/Shaders/HDRP/TerranNew";
+        public const string HDRP_TERRAN_OLD_FOLDER_PATH = PACKAGE_PATH + "/Shaders/HDRP/TerrainOld";
+        public const string HDRP_TERRAN_NEW_FOLDER_PATH = PACKAGE_PATH + "/Shaders/HDRP/TerrainNew";
 
         public const string DOCUMENTATION_URL = "https://docs.wilschack.dev/repetitionless/";
         public const string LOCAL_DOCUMENTATION_PATH = PACKAGE_PATH + "/OfflineDocumentation.pdf";
