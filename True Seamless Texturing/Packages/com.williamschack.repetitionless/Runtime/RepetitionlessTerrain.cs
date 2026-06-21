@@ -194,7 +194,6 @@ namespace Repetitionless.Runtime
             // May aswell also set holes while we are here
             UpdateLayersCount();
             UpdateControlTextures();
-            UpdateHolesTexture();
 
     #if UNITY_EDITOR
             SetDirty();
@@ -221,14 +220,6 @@ namespace Repetitionless.Runtime
                 Texture2D controlTexture = controlTextureCount > i ? _terrainData.alphamapTextures[i] : null;
                 _materialInstance.SetTexture($"_Control{i}", controlTexture);
             }
-        }
-
-        /// <summary>
-        /// Updates the holes texture on the material instance
-        /// </summary>
-        public void UpdateHolesTexture()
-        {
-            _materialInstance.SetTexture("_TerrainHoles", _terrainData.holesTexture);
         }
 
     #if UNITY_EDITOR

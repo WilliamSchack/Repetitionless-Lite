@@ -4,7 +4,7 @@
 #include "SampleRepetitionlessLayer.hlsl"
 
 // Assume control and terrain holes properties are:
-// _TerrainHoles
+// _TerrainHolesTexture
 // _Control{Index}
 
 #ifdef _MAX_LAYERS_4
@@ -68,7 +68,7 @@ void SampleRepetitionlessTerrain(
     float3 emission     = 0;
 
     // Terrain Holes
-    float holeColour = SAMPLE_TEXTURE2D(_TerrainHoles, sampler_TerrainHoles, UV).r;
+    float holeColour = SAMPLE_TEXTURE2D(_TerrainHolesTexture, sampler_TerrainHolesTexture, UV).r;
     clip(albedoColor.a - (1 - (holeColour - 0.01)));
 
     if (holeColour == 0) {

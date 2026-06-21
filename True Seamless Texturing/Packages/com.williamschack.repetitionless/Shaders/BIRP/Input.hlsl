@@ -10,10 +10,6 @@
 #define SAMPLE_TEXTURE2D(tex, ss, uv) tex.Sample(ss, uv)
 #define SAMPLE_TEXTURE2D_ARRAY(tex, ss, uv, i) tex.Sample(ss, float3(uv, i))
 
-// Repetitionless functions use _TerrainHoles, may aswell just do this
-#define _TerrainHoles _TerrainHolesTexture
-#define sampler_TerrainHoles sampler_TerrainHolesTexture
-
 // Material Properties
 float _SurfaceTypeSetting;
 float _UVSpace;
@@ -32,7 +28,7 @@ TEXTURE2D_ARRAY(_EMTextures);        SAMPLER(sampler_EMTextures);
 TEXTURE2D_ARRAY(_BMTextures);        SAMPLER(sampler_BMTextures);
 
 #ifdef REPETITIONLESS_LAYERED
-TEXTURE2D(_TerrainHoles);            SAMPLER(sampler_TerrainHoles);
+TEXTURE2D(_TerrainHolesTexture);     SAMPLER(sampler_TerrainHolesTexture);
 TEXTURE2D(_Control0);                SAMPLER(sampler_Control0);
 TEXTURE2D(_Control1);                SAMPLER(sampler_Control1);
 TEXTURE2D(_Control2);                SAMPLER(sampler_Control2);
