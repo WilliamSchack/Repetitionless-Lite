@@ -21,7 +21,7 @@ void DistanceBlendTilingOffset_float(
     // Visual Properties
     SamplerState SS, float2 UV,
     float4 BaseTilingOffset, float4 FarTilingOffset,
-    Texture2D Texture,
+    UnityTexture2D Texture,
     
     // Output
     out float4 ColourOut
