@@ -16,12 +16,13 @@ struct AttributesDepthNormal
 
 struct VaryingsDepthNormal
 {
-    float4 uvMainAndLM              : TEXCOORD0; // xy: control, zw: lightmap
-    half4 normal                   : TEXCOORD3;    // xyz: normal, w: viewDir.x
-    half4 tangent                  : TEXCOORD4;    // xyz: tangent, w: viewDir.y
-    half4 bitangent                : TEXCOORD5;    // xyz: bitangent, w: viewDir.z
+    float3 positionWS  : TEXCOORD0;
+    float4 uvMainAndLM : TEXCOORD1; // xy: control, zw: lightmap
+    half4 normal       : TEXCOORD2; // xyz: normal, w: viewDir.x
+    half4 tangent      : TEXCOORD3; // xyz: tangent, w: viewDir.y
+    half4 bitangent    : TEXCOORD4; // xyz: bitangent, w: viewDir.z
 
-    float4 clipPos                  : SV_POSITION;
+    float4 clipPos     : SV_POSITION;
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
@@ -34,6 +35,8 @@ VaryingsDepthNormal DepthNormalOnlyVertex(AttributesDepthNormal v)
     TerrainInstancing(v.positionOS, v.normalOS, v.texcoord);
 
     const VertexPositionInputs attributes = GetVertexPositionInputs(v.positionOS.xyz);
+
+    o.positionWS = attributes.positionWS;
 
     o.uvMainAndLM.xy = v.texcoord;
     o.uvMainAndLM.zw = v.texcoord * unity_LightmapST.xy + unity_LightmapST.zw;
