@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using System.IO;
 
 namespace Repetitionless.Editor.Processors
 {
@@ -39,9 +40,6 @@ namespace Repetitionless.Editor.Processors
             long sessionId = EditorAnalyticsSessionInfo.id;
             long lastSessionId = RepetitionlessPrefs.Data.LastSessionId;
 
-            Debug.Log(sessionId);
-            Debug.Log(lastSessionId);
-
             if (sessionId == lastSessionId)
                 return false;
 
@@ -54,27 +52,39 @@ namespace Repetitionless.Editor.Processors
 
         private static void CheckAndUpdateHDRPTerrainShader()
         {
-            bool newTerrainActive = RepetitionlessPrefs.Data.HadNewHDRPSupport;
-            Debug.Log(newTerrainActive);
+            bool newTerrainActive = RepetitionlessPrefs.Data.HasNewHDRPSupport;
 
 #if UNITY_6000_3_OR_NEWER
             if (newTerrainActive) return;
             
-            string oldFolderName = Constants.HDRP_TERRAN_OLD_FOLDER_PATH;
-            string newFolderName = Constants.HDRP_TERRAN_NEW_FOLDER_PATH;
+            string oldFolderPath = Constants.HDRP_TERRAN_OLD_FOLDER_PATH;
+            string newFolderPath = Constants.HDRP_TERRAN_NEW_FOLDER_PATH;
+            bool hasNewHDRPSupport = true;
 #else
             if (!newTerrainActive) return;
 
-            string oldFolderName = Constants.HDRP_TERRAN_NEW_FOLDER_PATH;
-            string newFolderName = Constants.HDRP_TERRAN_OLD_FOLDER_PATH;
+            string oldFolderPath = Constants.HDRP_TERRAN_NEW_FOLDER_PATH;
+            string newFolderPath = Constants.HDRP_TERRAN_OLD_FOLDER_PATH;
+            bool hasNewHDRPSupport = false;
 #endif
 
-            Debug.Log(oldFolderName);
-            Debug.Log(newFolderName);
+            // Change paths to absolute paths
+            string projectPath = Path.GetFullPath(Path.Combine(Application.dataPath, "../"));
+            oldFolderPath = projectPath + "/" + oldFolderPath;
+            newFolderPath = projectPath + "/" + newFolderPath;
 
-            AssetDatabase.RenameAsset(oldFolderName, oldFolderName + "~");
-            AssetDatabase.RenameAsset(newFolderName + "~", newFolderName);
+            string oldFolderMetaPath = oldFolderPath + ".meta";
+
+            // Hide old folder, unhide new folder
+            Directory.Move(oldFolderPath, oldFolderPath + "~");
+            Directory.Move(newFolderPath + "~", newFolderPath);
+            File.Delete(oldFolderMetaPath); // Delete old meta file
             AssetDatabase.Refresh();
+
+            // Update pref
+            RepetitionlessPrefs.UpdatePrefs((p) => {
+                p.HasNewHDRPSupport = hasNewHDRPSupport;
+            });
         }
     }
 }
