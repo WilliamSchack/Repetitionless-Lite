@@ -3,7 +3,7 @@
 
 // Fixing a TerrainLit error in vulkan when decals are enabled
 // This is a temporary workaround until Unity fixes it
-#if UNITY_VERSION >= 600030 && defined(SHADER_API_VULKAN) && defined(HAVE_DECALS)
+#if defined(SHADER_API_VULKAN) && defined(HAVE_DECALS)
 #undef HAVE_DECALS
 #endif
 

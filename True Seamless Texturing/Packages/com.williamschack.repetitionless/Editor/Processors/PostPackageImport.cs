@@ -173,6 +173,7 @@ namespace Repetitionless.Editor.Processors
 
             RemoveOldShaderFiles();
             UpdateOldMaterials();
+            PostProjectOpen.CheckAndUpdateHDRPTerrainShader(true);
         }
 
         private static void RemoveOldShaderFiles()

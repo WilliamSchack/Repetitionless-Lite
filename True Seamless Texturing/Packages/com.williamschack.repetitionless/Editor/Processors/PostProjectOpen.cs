@@ -51,18 +51,18 @@ namespace Repetitionless.Editor.Processors
             return true;
         }
 
-        private static void CheckAndUpdateHDRPTerrainShader()
+        internal static void CheckAndUpdateHDRPTerrainShader(bool forceUpdate = false)
         {
             bool newTerrainActive = RepetitionlessPrefs.Data.HasNewHDRPSupport;
 
 #if UNITY_6000_3_OR_NEWER
-            if (newTerrainActive) return;
+            if (!forceUpdate && newTerrainActive) return;
             
             string oldFolderPath = Constants.HDRP_TERRAN_OLD_FOLDER_PATH;
             string newFolderPath = Constants.HDRP_TERRAN_NEW_FOLDER_PATH;
             bool hasNewHDRPSupport = true;
 #else
-            if (!newTerrainActive) return;
+            if (!forceUpdate && !newTerrainActive) return;
 
             string oldFolderPath = Constants.HDRP_TERRAN_NEW_FOLDER_PATH;
             string newFolderPath = Constants.HDRP_TERRAN_OLD_FOLDER_PATH;
@@ -81,14 +81,11 @@ namespace Repetitionless.Editor.Processors
                 if (mat == null) continue;
 
                 string shaderName = mat.shader.name;
-                Debug.Log(shaderName);
 
                 if (!shaderName.StartsWith(Constants.SHADER_FOLDER) ||                    // Must be repetitionless shader
                     !shaderName.Contains(Constants.SHADER_FOLDER_HDRP) ||                 // Must be hdrp
                     !shaderName.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED_TERRAIN)) // Must use terrain shader
                     continue;
-
-                Debug.Log("UPDATING: " + mat.name);
 
                 updatingMaterials.Add(mat);
             }
@@ -99,9 +96,14 @@ namespace Repetitionless.Editor.Processors
             newFolderPath = projectPath + "/" + newFolderPath;
 
             // Hide old folder, unhide new folder
-            Directory.Move(oldFolderPath, oldFolderPath + "~");
-            Directory.Move(newFolderPath + "~", newFolderPath);
-            File.Delete(oldFolderPath + ".meta");
+            if (Directory.Exists(oldFolderPath)) {
+                Directory.Move(oldFolderPath, oldFolderPath + "~");
+                File.Delete(oldFolderPath + ".meta");
+            }
+
+            if (Directory.Exists(newFolderPath))
+                Directory.Move(newFolderPath + "~", newFolderPath);
+
             AssetDatabase.Refresh();
 
             // Update materials to the new shader

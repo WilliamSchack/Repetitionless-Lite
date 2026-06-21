@@ -21,12 +21,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RepetitionlessLayeredMaterial 3
-  m_Shader: {fileID: -6465566751694194690, guid: cb3ba3cb005025b548d1daf1d3c2b48f, type: 3}
+  m_Shader: {fileID: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _REPETITIONLESS_NOISE_TEXTURE
+  m_ValidKeywords: []
   m_InvalidKeywords:
+  - _REPETITIONLESS_NOISE_TEXTURE
   - _TERRAIN_INSTANCED_PERPIXEL_NORMAL
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

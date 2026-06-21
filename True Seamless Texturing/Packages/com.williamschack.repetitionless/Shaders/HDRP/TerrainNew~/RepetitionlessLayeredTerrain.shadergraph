@@ -13,9 +13,6 @@
             "m_Id": "d365f50ebc3745ee88af735523180c50"
         },
         {
-            "m_Id": "bd07e371e4f04f9ea629fc9d861d5b30"
-        },
-        {
             "m_Id": "9f62c904c6994095ad0fe95288eb5fb2"
         },
         {
@@ -50,9 +47,6 @@
         },
         {
             "m_Id": "21a95e7586af417eabf41c54dab244ee"
-        },
-        {
-            "m_Id": "635bdbcb31aa498aab8a97a223e1bcc7"
         },
         {
             "m_Id": "28b9fb3b06c445db99abfa438805bc87"
@@ -1218,8 +1212,8 @@
     "m_ObjectId": "032a91fd8751470b8bc5b5a2bb1096e5",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1138.999755859375,
-        "y": 2665.0
+        "x": 1139.0,
+        "y": 2665.000244140625
     }
 }
 
@@ -1282,12 +1276,6 @@
     "m_ObjectId": "057547d2b2fc4e879a02aa6fa74627fa",
     "m_Name": "Terrain Textures",
     "m_ChildObjectList": [
-        {
-            "m_Id": "635bdbcb31aa498aab8a97a223e1bcc7"
-        },
-        {
-            "m_Id": "bd07e371e4f04f9ea629fc9d861d5b30"
-        },
         {
             "m_Id": "9f62c904c6994095ad0fe95288eb5fb2"
         },
@@ -1692,8 +1680,8 @@
     "m_ObjectId": "19d4874b048847f382a74bf505188aca",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 620.9998779296875,
-        "y": 1919.9998779296875
+        "x": 621.0000610351563,
+        "y": 1920.0001220703125
     }
 }
 
@@ -3541,43 +3529,6 @@
     "m_DefaultValue": 0.0,
     "m_Labels": [],
     "m_LiteralMode": false
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
-    "m_ObjectId": "635bdbcb31aa498aab8a97a223e1bcc7",
-    "m_Guid": {
-        "m_GuidSerialized": "47bfdee2-a95c-4c33-acb3-b93cf2b87693"
-    },
-    "promotedFromAssetID": "",
-    "promotedFromCategoryName": "",
-    "promotedOrdering": -1,
-    "m_Name": "Control0",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Control0",
-    "m_DefaultReferenceName": "_Control0",
-    "m_OverrideReferenceName": "_Control0TEST",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_PerRendererData": false,
-    "m_customAttributes": [],
-    "m_Value": {
-        "m_SerializedTexture": "",
-        "m_Guid": ""
-    },
-    "isMainTexture": false,
-    "useTilingAndOffset": false,
-    "useTexelSize": true,
-    "isHDR": false,
-    "m_Modifiable": true,
-    "m_DefaultType": 0
 }
 
 {
@@ -5720,43 +5671,6 @@
     "m_ShaderOutputName": "",
     "m_StageCapability": 3,
     "m_BareResource": false
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
-    "m_ObjectId": "bd07e371e4f04f9ea629fc9d861d5b30",
-    "m_Guid": {
-        "m_GuidSerialized": "0e9d3ddf-e937-494d-84ce-d60cf60b606b"
-    },
-    "promotedFromAssetID": "",
-    "promotedFromCategoryName": "",
-    "promotedOrdering": -1,
-    "m_Name": "Control1",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Control1",
-    "m_DefaultReferenceName": "_Control1",
-    "m_OverrideReferenceName": "_Control1TEST",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_PerRendererData": false,
-    "m_customAttributes": [],
-    "m_Value": {
-        "m_SerializedTexture": "",
-        "m_Guid": ""
-    },
-    "isMainTexture": false,
-    "useTilingAndOffset": false,
-    "useTexelSize": true,
-    "isHDR": false,
-    "m_Modifiable": true,
-    "m_DefaultType": 1
 }
 
 {
