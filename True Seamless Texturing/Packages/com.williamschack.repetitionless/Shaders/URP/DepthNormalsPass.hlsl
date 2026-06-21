@@ -6,7 +6,7 @@
     #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
 #endif
 
-#include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
+#include "../Common/Main/SampleRepetitionlessDynamic.hlsl"
 
 struct Attributes
 {

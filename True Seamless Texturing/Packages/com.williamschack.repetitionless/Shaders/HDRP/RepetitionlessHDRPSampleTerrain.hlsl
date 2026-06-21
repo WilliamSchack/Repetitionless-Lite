@@ -1,7 +1,7 @@
 #ifndef REPETITIONLESSHDRPSAMPLETERRAIN_INCLUDED
 #define REPETITIONLESSHDRPSAMPLETERRAIN_INCLUDED
 
-#include "../../HLSL/Main/SampleRepetitionlessTerrain.hlsl"
+#include "../Common/Main/SampleRepetitionlessTerrain.hlsl"
 
 // Fixing a TerrainLit error in vulkan when decals are enabled
 // This is a temporary workaround until Unity fixes it

@@ -11,7 +11,7 @@
 #endif
 #endif
 
-#include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
+#include "../Common/Main/SampleRepetitionlessDynamic.hlsl"
 
 // Structs
 struct Attributes

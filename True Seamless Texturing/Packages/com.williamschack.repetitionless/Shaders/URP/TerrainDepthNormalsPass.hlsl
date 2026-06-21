@@ -3,7 +3,7 @@
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
-#include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
+#include "../Common/Main/SampleRepetitionlessDynamic.hlsl"
 
 // DepthNormal pass
 struct AttributesDepthNormal

@@ -6,7 +6,7 @@
 #include "UnityMetaPass.cginc"
 #include "UnityStandardCore.cginc"
 
-#include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
+#include "../Common/Main/SampleRepetitionlessDynamic.hlsl"
 
 struct v2f
 {

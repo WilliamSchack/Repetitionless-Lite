@@ -1,26 +1,16 @@
-#ifndef REPETITIONLESSPASSES_INCLUDED
-#define REPETITIONLESSPASSES_INCLUDED
-
-#ifndef UNITY_SETUP_BRDF_INPUT
-#define UNITY_SETUP_BRDF_INPUT MetallicSetup
-#endif
+#ifndef REPETITIONLESSTERRAINPASSES_INCLUDED
+#define REPETITIONLESSTERRAINPASSES_INCLUDED
 
 #include "UnityStandardCore.cginc"
 
-#include "../../HLSL/Main/SampleRepetitionlessDynamic.hlsl"
+#include "../Common/Main/SampleRepetitionlessDynamic.hlsl"
 
 struct Attributes
 {
-    float4 vertex     : POSITION; // positionOS, named for UNITY_TRANSFER_LIGHTING
+    float4 vertex     : POSITION;
     float3 normalOS   : NORMAL;
-    float4 tangentOS  : TANGENT;
     half4 colour      : COLOR;
-
     float2 texcoord   : TEXCOORD0;
-    float2 uv1        : TEXCOORD1;
-#if defined(DYNAMICLIGHTMAP_ON)
-    float2 uv2      : TEXCOORD2;
-#endif
 
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
@@ -31,18 +21,18 @@ struct v2f
     float4 eyeVec             : TEXCOORD1;
     float3 positionWS         : TEXCOORD2;
     float3 normalWS           : TEXCOORD3;
-    half4 tangentWS           : TEXCOORD4;
+    half3 tangentWS           : TEXCOORD4;
+    half3 bitangent           : TEXCOORD5;
 #ifdef ADD_PASS
-    half3 lightDir            : TEXCOORD5;
+    half3 lightDir            : TEXCOORD6;
 #else
-    half4 ambientOrLightmapUV : TEXCOORD5;
+    half4 ambientOrLightmapUV : TEXCOORD6;
 #endif
-    UNITY_LIGHTING_COORDS(6,7)
+    UNITY_LIGHTING_COORDS(7,8)
 
     float4 pos        : SV_POSITION; // positionCS, named for UNITY_TRANSFER_LIGHTING
     half4 colour      : COLOR;
 
-    UNITY_VERTEX_INPUT_INSTANCE_ID
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
@@ -77,10 +67,9 @@ inline half4 VertexGIForwardCustom(Attributes v, float3 posWorld, half3 normalWo
 FragmentCommonData ConstructFragData(v2f input, float4 albedo, float3 normalTS, float metallic, float smoothness)
 {
     // Convert normal from tangent space to world space
-    half sign = input.tangentWS.w;
-    float3 bitangent = sign * cross(input.normalWS.xyz, input.tangentWS.xyz);
-    half3x3 tangentToWorld = half3x3(input.tangentWS.xyz, bitangent.xyz, input.normalWS.xyz);
+    half3x3 tangentToWorld = half3x3(-input.tangentWS.xyz, input.bitangent.xyz, input.normalWS.xyz);
     half3 normalWS = mul(normalTS, tangentToWorld);
+    normalWS = normalize(normalWS);
 
     // Get colour
     half oneMinusReflectivity;
@@ -105,9 +94,9 @@ v2f Vert(Attributes v)
     v2f output = (v2f)0;
 
     UNITY_SETUP_INSTANCE_ID(v);
-    UNITY_TRANSFER_INSTANCE_ID(v, output);
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
-
+    TerrainInstancing(v.vertex, v.normalOS, v.texcoord);
+    
     float4 posWorld = mul(unity_ObjectToWorld, v.vertex);
     output.positionWS = posWorld.xyz;
     output.pos = UnityObjectToClipPos(v.vertex);
@@ -117,9 +106,13 @@ v2f Vert(Attributes v)
     float3 normalWorld = UnityObjectToWorldNormal(v.normalOS);
     output.normalWS = normalWorld;
 
-    half sign = half(v.tangentOS.w) * unity_WorldTransformParams.w;
-    half3 tangentWS = UnityObjectToWorldDir(v.tangentOS.xyz);
-    output.tangentWS = half4(tangentWS.xyz, sign);
+    half4 tangentOS;
+    tangentOS.xyz = cross(v.normalOS, float3(0,0,1));
+    tangentOS.w = -1;
+
+    half sign = half(tangentOS.w) * unity_WorldTransformParams.w;
+    output.tangentWS = half3(UnityObjectToWorldDir(tangentOS.xyz));
+    output.bitangent = half3(cross(normalWorld, float3(output.tangentWS))) * sign;
 
     output.eyeVec.xyz = NormalizePerVertexNormal(posWorld.xyz - _WorldSpaceCameraPos);
 
@@ -155,12 +148,6 @@ v2f Vert(Attributes v)
 
 half4 Frag(v2f i) : SV_TARGET
 {
-#ifdef ADD_PASS
-    UNITY_APPLY_DITHER_CROSSFADE(i.pos.xy);
-#else
-    UNITY_SETUP_INSTANCE_ID(i);
-    UNITY_APPLY_DITHER_CROSSFADE(i.pos.xy);
-#endif
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
     // Main Function
@@ -221,9 +208,6 @@ void FragDeferred (
         #endif
         return;
     #endif
-
-    UNITY_SETUP_INSTANCE_ID(i);
-    UNITY_APPLY_DITHER_CROSSFADE(i.pos.xy);
 
     // Main Function
     float4 albedo;

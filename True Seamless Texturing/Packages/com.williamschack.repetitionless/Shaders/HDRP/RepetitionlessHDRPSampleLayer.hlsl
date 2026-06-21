@@ -1,7 +1,7 @@
 #ifndef REPETITIONLESSHDRPSAMPLELAYER_INCLUDED
 #define REPETITIONLESSHDRPSAMPLELAYER_INCLUDED
 
-#include "../../HLSL/Main/SampleRepetitionlessLayer.hlsl"
+#include "../Common/Main/SampleRepetitionlessLayer.hlsl"
 
 void SampleRepetitionlessLayer_float(
     // General Settings
