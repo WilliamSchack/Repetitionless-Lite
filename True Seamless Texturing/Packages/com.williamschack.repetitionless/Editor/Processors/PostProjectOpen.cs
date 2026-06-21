@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 
 namespace Repetitionless.Editor.Processors
@@ -38,6 +39,9 @@ namespace Repetitionless.Editor.Processors
             long sessionId = EditorAnalyticsSessionInfo.id;
             long lastSessionId = RepetitionlessPrefs.Data.LastSessionId;
 
+            Debug.Log(sessionId);
+            Debug.Log(lastSessionId);
+
             if (sessionId == lastSessionId)
                 return false;
 
@@ -51,13 +55,26 @@ namespace Repetitionless.Editor.Processors
         private static void CheckAndUpdateHDRPTerrainShader()
         {
             bool newTerrainActive = RepetitionlessPrefs.Data.HadNewHDRPSupport;
+            Debug.Log(newTerrainActive);
+
 #if UNITY_6000_3_OR_NEWER
-            if (!newTerrainActive) return;
-#else
             if (newTerrainActive) return;
+            
+            string oldFolderName = Constants.HDRP_TERRAN_OLD_FOLDER_PATH;
+            string newFolderName = Constants.HDRP_TERRAN_NEW_FOLDER_PATH;
+#else
+            if (!newTerrainActive) return;
+
+            string oldFolderName = Constants.HDRP_TERRAN_NEW_FOLDER_PATH;
+            string newFolderName = Constants.HDRP_TERRAN_OLD_FOLDER_PATH;
 #endif
 
-            
+            Debug.Log(oldFolderName);
+            Debug.Log(newFolderName);
+
+            AssetDatabase.RenameAsset(oldFolderName, oldFolderName + "~");
+            AssetDatabase.RenameAsset(newFolderName + "~", newFolderName);
+            AssetDatabase.Refresh();
         }
     }
 }
