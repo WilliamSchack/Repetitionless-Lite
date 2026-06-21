@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Repetitionless_URP_RepetitionlessLayeredLit
-  m_Shader: {fileID: 4800000, guid: a96d624c17a63e720894f5733efde761, type: 3}
+  m_Shader: {fileID: 4800000, guid: c64d053c847236b588f5f2929851de36, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:

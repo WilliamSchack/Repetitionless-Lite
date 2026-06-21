@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Repetitionless_HDRP_Repetitionless
-  m_Shader: {fileID: -6465566751694194690, guid: 76352105cf8ad4a27979f0a922d49682, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7ff4e5f35a8b44e53b818e44b4af6e00, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
