@@ -19,6 +19,13 @@ namespace Repetitionless.Editor.Materials
 
             // Update default global tiling offset
             materialProperties.SetGlobalTilingOffset(Constants.DEFAULT_TILING_OFFSET_TERRAIN);
+
+            // If in HDRP & Under Unity 6.3, add TerrainCompatible keyword
+#if !UNITY_6000_3_OR_NEWER
+            ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
+            if (currentPipeline == ERenderPipeline.HDRP)
+                mat.SetOverrideTag("TerrainCompatible", "True");
+#endif
         }
 
         public static void UpdateLayerMode(MaterialDataManager dataManager, ELayerMode layerMode)
@@ -83,6 +90,13 @@ namespace Repetitionless.Editor.Materials
 
             RepetitionlessTerrainDataSO data = ScriptableObject.CreateInstance<RepetitionlessTerrainDataSO>();
             dataManager.CreateAsset(data, Constants.TERRAIN_DATA_FILE_NAME);
+
+            // If in HDRP & Under Unity 6.3, add TerrainCompatible keyword
+#if !UNITY_6000_3_OR_NEWER
+            ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
+            if (currentPipeline == ERenderPipeline.HDRP)
+                mat.SetOverrideTag("TerrainCompatible", "True");
+#endif
 
             data.Save();
             AssetDatabase.SaveAssetIfDirty(data);
