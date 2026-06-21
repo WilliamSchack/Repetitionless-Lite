@@ -131,6 +131,9 @@ namespace Repetitionless.Editor.Utilities.GUI
         /// </param>
         public TextureArrayCustomChannelsGUIDrawer(MaterialDataManager dataManager, RefFunc<int, TexturePacker.TextureData[]> getLayerChannelData, System.Action saveTextureDataAction, System.Func<int, int> assignedTexturesChangedGetter, System.Action<int, int> assignedTexturesChangedSetter, Vector4 defaultChannelColours, MaterialProperty arrayProperty, int textureCount, string fileName = null)
         {
+            if (arrayProperty.targets.Length == 0)
+                return;
+
             // Assign material
             _material = arrayProperty.targets[0];
 

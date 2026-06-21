@@ -30,6 +30,7 @@ Material:
   m_ValidKeywords:
   - _ALPHATEST_ON
   - _REPETITIONLESS_NOISE_TEXTURE
+  - _REPETITIONLESS_VARIATION
   m_InvalidKeywords:
   - _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 4
@@ -175,8 +176,11 @@ Material:
     - _MaterialTypeMask: 2
     - _OpaqueCullMode: 2
     - _PerPixelSorting: 0
+    - _REPETITIONLESS_DISTANCE_BLEND: 0
+    - _REPETITIONLESS_MATERIAL_BLEND: 0
     - _REPETITIONLESS_NOISE_TEXTURE: 1
     - _REPETITIONLESS_TRIPLANAR: 0
+    - _REPETITIONLESS_VARIATION: 1
     - _RayTracing: 0
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
