@@ -50,10 +50,10 @@ VaryingsDepthNormal DepthNormalOnlyVertex(AttributesDepthNormal v)
     return o;
 }
 
-half4 DepthNormalOnlyFragment(VaryingsDepthNormal IN) : SV_Target0
+half4 DepthNormalOnlyFragment(VaryingsDepthNormal input) : SV_Target0
 {
     #ifdef _ALPHATEST_ON
-        ClipHoles(IN.uvMainAndLM.xy);
+        ClipHoles(input.uvMainAndLM.xy);
     #endif
 
     // Sample material for the normals
@@ -68,7 +68,7 @@ half4 DepthNormalOnlyFragment(VaryingsDepthNormal IN) : SV_Target0
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
 
-    float3 normalWS = TransformTangentToWorld(normalTS, half3x3(-IN.tangent.xyz, IN.bitangent.xyz, IN.normal.xyz));
+    float3 normalWS = TransformTangentToWorld(normalTS, half3x3(-input.tangent.xyz, input.bitangent.xyz, input.normal.xyz));
     half4 outNormalWS = half4(NormalizeNormalPerPixel(normalWS), 0.0);
 
     return outNormalWS;
