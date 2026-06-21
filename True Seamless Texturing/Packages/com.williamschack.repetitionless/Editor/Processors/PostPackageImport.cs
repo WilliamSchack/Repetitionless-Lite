@@ -259,18 +259,14 @@ namespace Repetitionless.Editor.Processors
 
                 mat.shader = Shader.Find(newShader);
 
-                repetitionlessMaterials.Add(mat);
-            }
-
-            // Add new keywords if applicable
-            foreach (Material mat in repetitionlessMaterials) {
+                // Add new keywords if applicable
                 MaterialDataManager dataManager = new MaterialDataManager(mat);
                 if (!dataManager.AssetExists(Constants.PROPERTIES_FILE_NAME))
                     continue;
 
                 RepetitionlessMaterialDataSO data = dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
 
-                bool isLayered = mat.shader.name.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED);
+                bool isLayered = newShader.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED);
 
                 RepetitionlessMaterialUtilities.UpdateDistanceBlendKeyword(mat, data);
                 RepetitionlessMaterialUtilities.UpdateMaterialBlendKeyword(mat, data);
