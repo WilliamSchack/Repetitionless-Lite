@@ -475,6 +475,8 @@ namespace Repetitionless.Editor.Inspectors
             }
 
             RepetitionlessMaterialUtilities.SetBoolKeyword(_material, Constants.DISTANCE_BLEND_KEYWORD, enabled);
+
+            _materialProperties.CallOnExternalDataChanged();
         }
 
         private void UpdateMaterialBlendKeyword()
@@ -489,6 +491,8 @@ namespace Repetitionless.Editor.Inspectors
             }
 
             RepetitionlessMaterialUtilities.SetBoolKeyword(_material, Constants.MATERIAL_BLEND_KEYWORD, enabled);
+
+            _materialProperties.CallOnExternalDataChanged();
         }
 
         private void UpdateVariationKeyword()
@@ -509,11 +513,15 @@ namespace Repetitionless.Editor.Inspectors
             }
 
             RepetitionlessMaterialUtilities.SetBoolKeyword(_material, Constants.VARIATION_KEYWORD, enabled);
+
+            _materialProperties.CallOnExternalDataChanged();
         }
 
         private void SetNoiseQuality(ENoiseQuality noiseQuality)
         {
             RepetitionlessMaterialUtilities.SetNoiseQuality(_material, noiseQuality);
+
+            _materialProperties.CallOnExternalDataChanged();
         }
 
         private void SetTriplanarEnabled(bool enabled)
