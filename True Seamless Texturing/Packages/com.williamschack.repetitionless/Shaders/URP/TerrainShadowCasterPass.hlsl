@@ -62,8 +62,6 @@ Varyings ShadowPassVertex(Attributes input)
 
 half4 ShadowPassFragment(Varyings input) : SV_TARGET
 {
-    UNITY_SETUP_INSTANCE_ID(input);
-
 #ifdef _ALPHATEST_ON
     ClipHoles(input.texcoord);
 #endif

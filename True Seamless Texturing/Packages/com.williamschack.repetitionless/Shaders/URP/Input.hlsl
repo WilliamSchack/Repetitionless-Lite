@@ -41,6 +41,10 @@ CBUFFER_START(_Terrain)
 #ifdef UNITY_INSTANCING_ENABLED
     float4 _TerrainHeightmapRecipSize;
 #endif
+#ifdef SCENESELECTIONPASS
+    int _ObjectId;
+    int _PassValue;
+#endif
 CBUFFER_END
 
 #ifdef UNITY_INSTANCING_ENABLED
