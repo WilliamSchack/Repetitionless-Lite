@@ -73,12 +73,10 @@ namespace Repetitionless.Editor.Processors
             oldFolderPath = projectPath + "/" + oldFolderPath;
             newFolderPath = projectPath + "/" + newFolderPath;
 
-            string oldFolderMetaPath = oldFolderPath + ".meta";
-
             // Hide old folder, unhide new folder
             Directory.Move(oldFolderPath, oldFolderPath + "~");
             Directory.Move(newFolderPath + "~", newFolderPath);
-            File.Delete(oldFolderMetaPath); // Delete old meta file
+            File.Delete(oldFolderPath + ".meta");
             AssetDatabase.Refresh();
 
             // Update pref

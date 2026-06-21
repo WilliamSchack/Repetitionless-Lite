@@ -72,13 +72,19 @@ namespace Repetitionless.Editor.Processors
             int[] splitLastVersion = GetLastVersion();
             if (splitLastVersion[0] == 0) return;
 
+            // Upgrading to 1.0.3
             if (splitLastVersion[0] == 1 && splitLastVersion[1] == 0 && splitLastVersion[2] <= 3) {
                 ShowReviewLog();
             }
 
+            // Upgrading to 1.2.0
             if (splitLastVersion[0] == 1 && splitLastVersion[1] <= 2) {
                 AssetDatabase.importPackageCompleted += ConvertTerrainMaterials;
-                //ConvertTerrainMaterials();
+            }
+
+            // Upgrading to 1.4.0
+            if (splitLastVersion[0] == 1 && splitLastVersion[1] < 4) {
+                AssetDatabase.importPackageCompleted += RemoveOldShaderFiles;
             }
         }
 
@@ -151,6 +157,28 @@ namespace Repetitionless.Editor.Processors
 
             if (convertedTerrains)
                 EditorUtility.DisplayDialog("Repetitionless Update", "Some terrains using Repetitionless may have pink materials.\nTo fix this, click the Save Textures button on the RepetitionlessTerrain component and make sure those materials are set to the RepetitionlessLayered shader", "Ok");
+        }
+
+        private static void RemoveOldShaderFiles(string packageName = "")
+        {
+            AssetDatabase.importPackageCompleted -= RemoveOldShaderFiles;
+
+            string projectFolder = Path.GetFullPath(Path.Combine(Application.dataPath, "../"));
+            string shadersFolder = projectFolder + Constants.PACKAGE_PATH + "/Shaders/";
+            string hlslFolder = shadersFolder + "HLSL";
+            string graphsFolder = shadersFolder + "ShaderGraphs";
+
+            Directory.Delete(hlslFolder, true);
+            Directory.Delete(graphsFolder, true);
+            File.Delete(hlslFolder + ".meta");
+            File.Delete(graphsFolder + ".meta");
+            AssetDatabase.Refresh();
+        }
+
+        // Upgrade all materials pre 1.4.0 to the new shaders
+        private static void UpdateOldMaterials(string packageName = "")
+        {
+            AssetDatabase.importPackageCompleted -= UpdateOldMaterials;
         }
     }
 }
