@@ -59,17 +59,22 @@ namespace Repetitionless.Editor.Processors
         {
             bool newTerrainActive = RepetitionlessPrefs.Data.HasNewHDRPSupport;
 
+            string hdrpFolderName = RepetitionlessPrefs.Data.HDRPActive ? "HDRP" : "HDRP~";
+            string hdrpShaderFolderPath = Constants.PACKAGE_PATH + "/Shaders/" + hdrpFolderName + "/";
+            string oldFolderName = "TerrainOld";
+            string newFolderName = "TerrainNew";
+
 #if UNITY_6000_3_OR_NEWER
             if (!forceUpdate && newTerrainActive) return;
             
-            string oldFolderPath = Constants.HDRP_TERRAN_OLD_FOLDER_PATH;
-            string newFolderPath = Constants.HDRP_TERRAN_NEW_FOLDER_PATH;
+            string oldFolderPath = hdrpShaderFolderPath + oldFolderName;
+            string newFolderPath = hdrpShaderFolderPath + newFolderName;
             bool hasNewHDRPSupport = true;
 #else
             if (!forceUpdate && !newTerrainActive) return;
 
-            string oldFolderPath = Constants.HDRP_TERRAN_NEW_FOLDER_PATH;
-            string newFolderPath = Constants.HDRP_TERRAN_OLD_FOLDER_PATH;
+            string oldFolderPath = hdrpShaderFolderPath + newFolderName;
+            string newFolderPath = hdrpShaderFolderPath + oldFolderName;
             bool hasNewHDRPSupport = false;
 #endif
 
@@ -102,7 +107,9 @@ namespace Repetitionless.Editor.Processors
             // Hide old folder, unhide new folder
             if (Directory.Exists(oldFolderPath)) {
                 Directory.Move(oldFolderPath, oldFolderPath + "~");
-                File.Delete(oldFolderPath + ".meta");
+
+                if (File.Exists(oldFolderPath + ".meta"))
+                    File.Delete(oldFolderPath + ".meta");
             }
 
             if (Directory.Exists(newFolderPath + "~"))
