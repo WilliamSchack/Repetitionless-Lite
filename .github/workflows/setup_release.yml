@@ -80,10 +80,10 @@ jobs:
         working-directory: "${{ matrix.project-path }}/Packages/com.williamschack.repetitionless/Shaders"
         run: |
           mv "URP" "URP~"
-          mv "HDRP/TerrainNew" "HDRP/TerrainNew~"
-          mv "HDRP" "HDRP~"
           rm "URP.meta"
+          mv "HDRP/TerrainNew" "HDRP/TerrainNew~"
           rm "HDRP/TerrainNew.meta"
+          mv "HDRP" "HDRP~"
           rm "HDRP.meta"
           ls -R
       - name: Cache Library
