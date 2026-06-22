@@ -35,7 +35,7 @@ jobs:
         project-path: [ "True Seamless Texturing" ]
         documentation-path: [ "Documentation" ]
         unity-version:
-          - 2022.3
+          - 2022.3.62f3
     steps:
       - name: Free Up Storage
         uses: jlumbroso/free-disk-space@main
