@@ -52,6 +52,7 @@ jobs:
           sparse-checkout:  |
             ${{ matrix.project-path }}
             ${{ matrix.documentation-path }}
+            ${{ matrix.release-setup-folder }}
       - name: Install mkdocs
         working-directory: ${{ matrix.documentation-path }}
         run: |
