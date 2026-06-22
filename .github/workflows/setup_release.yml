@@ -35,7 +35,6 @@ jobs:
         project-path: [ "True Seamless Texturing" ]
         documentation-path: [ "Documentation" ]
         unity-version:
-          - None
           - 2022.3
     steps:
       - name: Free Up Storage
