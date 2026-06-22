@@ -15,8 +15,8 @@ using UnityEditorInternal;
 namespace Repetitionless.Editor.CustomWindows
 {
     using System;
-    using GUIUtilities;
-    using TextureUtilities;
+    using Utilities.GUI;
+    using Utilities.Texture;
 
     /// <summary>
     /// A window used to configure a texture array

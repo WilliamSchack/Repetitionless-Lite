@@ -34,16 +34,6 @@
     name: RepetitionlessTextureDataSO.LayerTextureData
   - uid: Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData
     name: RepetitionlessTextureDataSO.MaterialTextureData
-- uid: Repetitionless.Editor.GUIUtilities
-  name: Repetitionless.Editor.GUIUtilities
-  items:
-  - uid: Repetitionless.Editor.GUIUtilities.GUIUtilities
-    name: GUIUtilities
-  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
-    name: TextureArrayCustomChannelsGUIDrawer
-  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
-    name: TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
-    name.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
 - uid: Repetitionless.Editor.Inspectors
   name: Repetitionless.Editor.Inspectors
   items:
@@ -75,27 +65,44 @@
     name: PostPackageImport
   - uid: Repetitionless.Editor.Processors.PostProjectOpen
     name: PostProjectOpen
+  - uid: Repetitionless.Editor.Processors.RenderPipelineChecker
+    name: RenderPipelineChecker
   - uid: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
     name: RepetitionlessColourSpaceUpdater
   - uid: Repetitionless.Editor.Processors.RepetitionlessMaterialProcessor
     name: RepetitionlessMaterialProcessor
   - uid: Repetitionless.Editor.Processors.TerrainLayerPostprocessor
     name: TerrainLayerPostprocessor
-- uid: Repetitionless.Editor.TextureUtilities
-  name: Repetitionless.Editor.TextureUtilities
+- uid: Repetitionless.Editor.Utilities.GUI
+  name: Repetitionless.Editor.Utilities.GUI
   items:
-  - uid: Repetitionless.Editor.TextureUtilities.Texture2DArrayUtilities
+  - uid: Repetitionless.Editor.Utilities.GUI.GUIUtilities
+    name: GUIUtilities
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
+    name: TextureArrayCustomChannelsGUIDrawer
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+    name: TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
+    name.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
+- uid: Repetitionless.Editor.Utilities.Texture
+  name: Repetitionless.Editor.Utilities.Texture
+  items:
+  - uid: Repetitionless.Editor.Utilities.Texture.Texture2DArrayUtilities
     name: Texture2DArrayUtilities
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker
     name: TexturePacker
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.FromToChannel
     name: TexturePacker.FromToChannel
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureChannel
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
     name: TexturePacker.TextureChannel
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
     name: TexturePacker.TextureData
-  - uid: Repetitionless.Editor.TextureUtilities.TextureUtilities
+  - uid: Repetitionless.Editor.Utilities.Texture.TextureUtilities
     name: TextureUtilities
+- uid: Repetitionless.Editor.Utilities.Types
+  name: Repetitionless.Editor.Utilities.Types
+  items:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities
+    name: EnumUtilities
 - uid: Repetitionless.Runtime
   name: Repetitionless.Runtime
   items:
@@ -106,6 +113,11 @@
   items:
   - uid: Repetitionless.Runtime.Compression.BooleanCompression
     name: BooleanCompression
+- uid: Repetitionless.Runtime.Integrations.MapMagic
+  name: Repetitionless.Runtime.Integrations.MapMagic
+  items:
+  - uid: Repetitionless.Runtime.Integrations.MapMagic.RepetitionlessMapMagic
+    name: RepetitionlessMapMagic
 - uid: Repetitionless.Runtime.Variables
   name: Repetitionless.Runtime.Variables
   items:
@@ -115,6 +127,8 @@
     name: ELayerMode
   - uid: Repetitionless.Runtime.Variables.EMaskType
     name: EMaskType
+  - uid: Repetitionless.Runtime.Variables.EMaxLayers
+    name: EMaxLayers
   - uid: Repetitionless.Runtime.Variables.ENoiseQuality
     name: ENoiseQuality
   - uid: Repetitionless.Runtime.Variables.ERenderPipeline

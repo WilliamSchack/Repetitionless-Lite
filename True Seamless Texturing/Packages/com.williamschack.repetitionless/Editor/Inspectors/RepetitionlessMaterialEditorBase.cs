@@ -8,8 +8,8 @@ using Repetitionless.Runtime.Variables;
 namespace Repetitionless.Editor.Inspectors
 {
     using Materials;
-    using GUIUtilities;
-    using TextureUtilities;
+    using Utilities.GUI;
+    using Utilities.Texture;
     using CustomWindows;
     using CustomDialog;
     using Data;
@@ -248,14 +248,7 @@ namespace Repetitionless.Editor.Inspectors
         /// <returns></returns>
         protected RepetitionlessMaterialData GetMaterialData(int layerIndex, int sectionIndex)
         {
-            RepetitionlessMaterialData currentData = _materialProperties.Data[layerIndex].BaseMaterialData;
-            switch (sectionIndex) {
-              //case 0: currentData = _materialProperties.Data[layerIndex].BaseMaterialData;  break;
-                case 1: currentData = _materialProperties.Data[layerIndex].FarMaterialData;   break;
-                case 2: currentData = _materialProperties.Data[layerIndex].BlendMaterialData; break; 
-            }
-
-            return currentData;
+            return _materialProperties.GetMaterialData(layerIndex, sectionIndex);
         }
 
         /// <summary>
@@ -463,9 +456,29 @@ namespace Repetitionless.Editor.Inspectors
             });
         }
 
+        private void UpdateDistanceBlendKeyword()
+        {
+            RepetitionlessMaterialUtilities.UpdateDistanceBlendKeyword(_material, _materialProperties);
+            _materialProperties.CallOnExternalDataChanged();
+        }
+
+        private void UpdateMaterialBlendKeyword()
+        {
+            RepetitionlessMaterialUtilities.UpdateMaterialBlendKeyword(_material, _materialProperties);
+            _materialProperties.CallOnExternalDataChanged();
+        }
+
+        private void UpdateVariationKeyword()
+        {
+            RepetitionlessMaterialUtilities.UpdateVariationKeyword(_material, _maxLayers, _materialProperties);
+            _materialProperties.CallOnExternalDataChanged();
+        }
+
         private void SetNoiseQuality(ENoiseQuality noiseQuality)
         {
             RepetitionlessMaterialUtilities.SetNoiseQuality(_material, noiseQuality);
+
+            _materialProperties.CallOnExternalDataChanged();
         }
 
         private void SetTriplanarEnabled(bool enabled)
@@ -603,6 +616,9 @@ namespace Repetitionless.Editor.Inspectors
         /// </summary>
         protected virtual void DrawMaterialPropertiesGUI()
         {
+            if (_materialProperties == null)
+                return;
+
             // Header
             GUIUtilities.DrawHeaderLabelLarge($"Material Properties");
 
@@ -902,8 +918,12 @@ namespace Repetitionless.Editor.Inspectors
             if (showVariation) {
                 EditorGUI.BeginChangeCheck();
                 DrawProperty(layerIndex, () => currentData.VariationEnabled = GUILayout.Toggle(currentData.VariationEnabled, new GUIContent(GetScaledText(minScaledTextWidth, "Variation", "V"), "Adds random variation on top of the albedo color\n\nUsing a custom texture can cause visible tiling"), "Button"));
-                if (EditorGUI.EndChangeCheck() && currentData.VariationMode == EVariationType.CustomTexture)
-                    UpdateVariationTexture(layerIndex, sectionIndex, EVariationType.PerlinNoise, !currentData.VariationEnabled);
+                if (EditorGUI.EndChangeCheck()) {
+                    UpdateVariationKeyword();
+
+                    if (currentData.VariationMode == EVariationType.CustomTexture)
+                        UpdateVariationTexture(layerIndex, sectionIndex, EVariationType.PerlinNoise, !currentData.VariationEnabled);
+                }
             }
         }
 
@@ -1179,7 +1199,10 @@ namespace Repetitionless.Editor.Inspectors
             GUIUtilities.BeginBackgroundVertical();
 
             // Distance Blend Enabled Toggle
+            EditorGUI.BeginChangeCheck();
             DrawProperty(layerIndex, () => layerData.DistanceBlendEnabled = GUIUtilities.DrawMajorToggleButton(layerData.DistanceBlendEnabled, "Distance Blending"));
+            if (EditorGUI.EndChangeCheck())
+                UpdateDistanceBlendKeyword();
 
             // Draw distance blending settings
             if (layerData.DistanceBlendEnabled) {
@@ -1235,8 +1258,12 @@ namespace Repetitionless.Editor.Inspectors
             // Material Blend Enabled Toggle
             EditorGUI.BeginChangeCheck();
             DrawProperty(layerIndex, () => layerData.MaterialBlendEnabled = GUIUtilities.DrawMajorToggleButton(layerData.MaterialBlendEnabled, "Material Blending"));
-            if (EditorGUI.EndChangeCheck() && layerData.BlendMaskType == EMaskType.CustomTexture)
-                UpdateBlendMaskTexture(layerIndex, EMaskType.PerlinNoise, !layerData.MaterialBlendEnabled);
+            if (EditorGUI.EndChangeCheck()) {
+                UpdateMaterialBlendKeyword();
+
+                if (layerData.BlendMaskType == EMaskType.CustomTexture)
+                    UpdateBlendMaskTexture(layerIndex, EMaskType.PerlinNoise, !layerData.MaterialBlendEnabled);
+            }
 
             if (layerData.MaterialBlendEnabled) {
                 // Mask

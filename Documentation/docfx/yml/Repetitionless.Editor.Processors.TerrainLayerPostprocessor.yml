@@ -15,7 +15,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/TerrainLayerPostprocessor.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TerrainLayerPostprocessor
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/TerrainLayerPostprocessor.cs

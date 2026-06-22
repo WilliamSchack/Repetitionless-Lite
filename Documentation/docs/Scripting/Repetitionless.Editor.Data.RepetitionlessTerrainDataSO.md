@@ -11,6 +11,7 @@ Stores the terrain data for a Repetitionless material
 | Variable | Description |
 |----------|-------------|
 | TerrainLayers | The terrain layers linked to this material |
+| AutoUpdateMaxLayers | If the max layers is updated automatically with terrain layers |
 | AutoSyncLayers | Toggles if textures and settings are automatically saved and loaded to and from the terrain layers |
 
 ---

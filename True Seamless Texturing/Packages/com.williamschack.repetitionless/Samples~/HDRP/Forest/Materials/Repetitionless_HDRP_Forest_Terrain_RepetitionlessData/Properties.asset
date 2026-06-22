@@ -27,7 +27,7 @@ MonoBehaviour:
       NormalAssigned: 1
       OcclussionAssigned: 1
       EmissionAssigned: 0
-      VariationAssigned: 0
+      VariationAssigned: 1
       PackedTextureAssigned: 1
       AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
@@ -4207,7 +4207,7 @@ MonoBehaviour:
     BlendMaskVertexColourThreshold: {x: 0.01, y: 0.2}
   _dataCompressed:
   - BaseMaterialData:
-      Settings1: {x: 47, y: 159, z: 0, w: 0.5}
+      Settings1: {x: 47, y: 223, z: 0, w: 0.5}
       Settings2: {x: 1, y: 1, z: 0.5, w: 2}
       Settings3: {x: 2, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}

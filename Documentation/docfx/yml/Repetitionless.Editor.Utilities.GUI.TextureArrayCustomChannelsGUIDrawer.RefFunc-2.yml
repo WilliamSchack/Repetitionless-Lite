@@ -1,0 +1,97 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+  commentId: T:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+  id: TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+  parent: Repetitionless.Editor.Utilities.GUI
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
+  nameWithType: TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
+  type: Delegate
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RefFunc
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+    startLine: 87
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Utilities.GUI
+  summary: "\nCustom delegate to output a reference\n"
+  example: []
+  syntax:
+    content: public delegate ref TOut TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>(TIn input)
+    parameters:
+    - id: input
+      type: '{TIn}'
+      description: "\nThe input\n"
+    typeParameters:
+    - id: TIn
+      description: "\nThe input type\n"
+    - id: TOut
+      description: "\nThe output type\n"
+    return:
+      type: '{TOut}'
+      description: "\nThe reference to value of type TOut\n"
+    content.vb: Public Delegate ByRef Function TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)(input As TIn) As TOut
+  nameWithType.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
+  fullName.vb: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
+  name.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
+references:
+- uid: Repetitionless.Editor.Utilities.GUI
+  commentId: N:Repetitionless.Editor.Utilities.GUI
+  name: Repetitionless.Editor.Utilities.GUI
+  nameWithType: Repetitionless.Editor.Utilities.GUI
+  fullName: Repetitionless.Editor.Utilities.GUI
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.GUI
+    name: GUI
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.GUI
+    name: GUI
+- uid: '{TIn}'
+  commentId: '!:TIn'
+  definition: TIn
+  name: TIn
+  nameWithType: TIn
+  fullName: TIn
+- uid: '{TOut}'
+  commentId: '!:TOut'
+  definition: TOut
+  name: TOut
+  nameWithType: TOut
+  fullName: TOut
+- uid: TIn
+  commentId: '!:TIn'
+  name: TIn
+  nameWithType: TIn
+  fullName: TIn
+- uid: TOut
+  commentId: '!:TOut'
+  name: TOut
+  nameWithType: TOut
+  fullName: TOut

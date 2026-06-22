@@ -26,7 +26,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: MaterialDataManager
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -55,7 +55,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Material
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -86,7 +86,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: .ctor
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -121,7 +121,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: .ctor
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -155,7 +155,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GenerateFolderName
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -193,7 +193,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DataFolderParentPath
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -224,7 +224,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DataFolderName
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -255,7 +255,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DataFolderPath
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -286,7 +286,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateAsset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -327,7 +327,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: LoadAsset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -368,7 +368,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AssetExists
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -406,7 +406,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DeleteAsset
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/MaterialDataManager.cs
@@ -557,7 +557,6 @@ references:
   nameWithType: T
   fullName: T
 - uid: T
-  commentId: '!:T'
   name: T
   nameWithType: T
   fullName: T

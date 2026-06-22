@@ -17,7 +17,7 @@ The layered material is used to display up to 32 different material layers on on
 2. Select the shader dropdown
 3. Navigate to `Repetitionless`
 4. Select your render pipeline
-5. Select `RepetitionlessLayered`
+5. Select `RepetitionlessLayeredTerrain` or `RepetitionlessLayeredLit`
 
 ![image](Images/TerrainMaterial/TerrainMaterialSelection.png)
 
@@ -25,6 +25,7 @@ The layered material is used to display up to 32 different material layers on on
 
 - Render pipelines can be switched without losing data. ex. Changing a Repetitionless material from BIRP to its URP version will keep all the settings
 - Material data is stored in a folder along side the material named "{MaterialName}\_RepetitionlessData". This is automatically moved and deleted with the material but it will need to be manually copied when copying the material
+- The `LayeredTerrain` shader is used when the mode is set to Terrain Layers, `LayeredLit` is used when the mode is set to anything else. This can be changed in the inspector, so when creating the material you can select either.
 
 ## Using Terrain Layers
 
@@ -75,6 +76,13 @@ On terrains with the RepetitionlessTerrain, when using the Create Neighbour Terr
 
 ![image](Images/TerrainMaterial/LayersAutoSync.png)
 
+| Setting                | Description                                                                                                                               |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Editing Layer          | The layer currently being edited in the inspector                                                                                         |
+| Mode                   | The mode of this material. This changes the shader depending on the option with Terrain Layers changing it to a terrain compatible shader |
+| Max Layers             | The max layers allowed on this material. Set lower when possible for performance improvements                                             |
+| Auto Update Max Layers | Automatically updates the above Max Layers to fit your assigned layer count                                                               |
+
 After modifying any field in the terrain layer and saving, it will automatically update those properties in any material that is linked to that layer if the auto sync is enabled. You can manually load or save to and from the layer with the buttons
 
 The properties effected and what they link to include:
@@ -108,10 +116,13 @@ To use control textures, first make sure the layer mode is set to `Control Textu
 
 ![image](Images/TerrainMaterial/ControlLayerMode.png)
 
-| Setting         | Description                                                                                  |
-| --------------- | -------------------------------------------------------------------------------------------- |
-| Holes Texture   | The holes texture that will be used for the material. It will read from the selected channel |
-| Control Texture | The control texture that will be used for this layer. It will read from the selected channel |
+| Setting         | Description                                                                                                                               |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Editing Layer   | The layer currently being edited in the inspector                                                                                         |
+| Mode            | The mode of this material. This changes the shader depending on the option with Terrain Layers changing it to a terrain compatible shader |
+| Max Layers      | The max layers allowed on this material. Set lower when possible for performance improvements                                             |
+| Holes Texture   | The holes texture that will be used for the material. It will read from the selected channel                                              |
+| Control Texture | The control texture that will be used for this layer. It will read from the selected channel                                              |
 
 The control textures for a specific pixel must add up to 1. For example, if you want a spot to be the second layer, the second control texture will have a value of 1 in that spot where other layers will have a value of 0.
 

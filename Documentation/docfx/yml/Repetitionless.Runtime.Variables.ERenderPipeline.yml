@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/ERenderPipeline.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ERenderPipeline
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/ERenderPipeline.cs
@@ -32,6 +32,9 @@ items:
   syntax:
     content: public enum ERenderPipeline
     content.vb: Public Enum ERenderPipeline
+  extensionMethods:
+  - Repetitionless.Runtime.Variables.ERenderPipeline.Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1
+  - Repetitionless.Runtime.Variables.ERenderPipeline.Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1
 - uid: Repetitionless.Runtime.Variables.ERenderPipeline.Builtin
   commentId: F:Repetitionless.Runtime.Variables.ERenderPipeline.Builtin
   id: Builtin
@@ -46,7 +49,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/ERenderPipeline.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Builtin
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/ERenderPipeline.cs
@@ -74,7 +77,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/ERenderPipeline.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: URP
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/ERenderPipeline.cs
@@ -102,7 +105,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/ERenderPipeline.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: HDRP
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/ERenderPipeline.cs
@@ -130,7 +133,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/ERenderPipeline.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Unknown
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/ERenderPipeline.cs
@@ -168,6 +171,165 @@ references:
   - name: .
   - uid: Repetitionless.Runtime.Variables
     name: Variables
+- uid: Repetitionless.Runtime.Variables.ERenderPipeline.Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  parent: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  definition: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  name: Next<ERenderPipeline>(ERenderPipeline)
+  nameWithType: EnumUtilities.Next<ERenderPipeline>(ERenderPipeline)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next<Repetitionless.Runtime.Variables.ERenderPipeline>(Repetitionless.Runtime.Variables.ERenderPipeline)
+  nameWithType.vb: EnumUtilities.Next(Of ERenderPipeline)(ERenderPipeline)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next(Of Repetitionless.Runtime.Variables.ERenderPipeline)(Repetitionless.Runtime.Variables.ERenderPipeline)
+  name.vb: Next(Of ERenderPipeline)(ERenderPipeline)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(Repetitionless.Runtime.Variables.ERenderPipeline)
+    name: Next
+  - name: <
+  - uid: Repetitionless.Runtime.Variables.ERenderPipeline
+    name: ERenderPipeline
+  - name: '>'
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.ERenderPipeline
+    name: ERenderPipeline
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(Repetitionless.Runtime.Variables.ERenderPipeline)
+    name: Next
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Repetitionless.Runtime.Variables.ERenderPipeline
+    name: ERenderPipeline
+  - name: )
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.ERenderPipeline
+    name: ERenderPipeline
+  - name: )
+- uid: Repetitionless.Runtime.Variables.ERenderPipeline.Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  parent: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  definition: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  name: Previous<ERenderPipeline>(ERenderPipeline)
+  nameWithType: EnumUtilities.Previous<ERenderPipeline>(ERenderPipeline)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous<Repetitionless.Runtime.Variables.ERenderPipeline>(Repetitionless.Runtime.Variables.ERenderPipeline)
+  nameWithType.vb: EnumUtilities.Previous(Of ERenderPipeline)(ERenderPipeline)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous(Of Repetitionless.Runtime.Variables.ERenderPipeline)(Repetitionless.Runtime.Variables.ERenderPipeline)
+  name.vb: Previous(Of ERenderPipeline)(ERenderPipeline)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(Repetitionless.Runtime.Variables.ERenderPipeline)
+    name: Previous
+  - name: <
+  - uid: Repetitionless.Runtime.Variables.ERenderPipeline
+    name: ERenderPipeline
+  - name: '>'
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.ERenderPipeline
+    name: ERenderPipeline
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(Repetitionless.Runtime.Variables.ERenderPipeline)
+    name: Previous
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Repetitionless.Runtime.Variables.ERenderPipeline
+    name: ERenderPipeline
+  - name: )
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.ERenderPipeline
+    name: ERenderPipeline
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  name: Next<T>(T)
+  nameWithType: EnumUtilities.Next<T>(T)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next<T>(T)
+  nameWithType.vb: EnumUtilities.Next(Of T)(T)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next(Of T)(T)
+  name.vb: Next(Of T)(T)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+    name: Next
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+    name: Next
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  commentId: T:Repetitionless.Editor.Utilities.Types.EnumUtilities
+  parent: Repetitionless.Editor.Utilities.Types
+  name: EnumUtilities
+  nameWithType: EnumUtilities
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  name: Previous<T>(T)
+  nameWithType: EnumUtilities.Previous<T>(T)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous<T>(T)
+  nameWithType.vb: EnumUtilities.Previous(Of T)(T)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous(Of T)(T)
+  name.vb: Previous(Of T)(T)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+    name: Previous
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+    name: Previous
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types
+  commentId: N:Repetitionless.Editor.Utilities.Types
+  name: Repetitionless.Editor.Utilities.Types
+  nameWithType: Repetitionless.Editor.Utilities.Types
+  fullName: Repetitionless.Editor.Utilities.Types
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types
 - uid: Repetitionless.Runtime.Variables.ERenderPipeline
   commentId: T:Repetitionless.Runtime.Variables.ERenderPipeline
   parent: Repetitionless.Runtime.Variables

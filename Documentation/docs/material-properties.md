@@ -51,7 +51,7 @@ This is shown for each enabled material (Base material, distance blend material,
 
 ![image](Images/MaterialProperties/TextureChannelSelection.png)
 
-### MainProperties
+### Main Properties
 
 | Property             | Description                                                                                                                                                                                                                    |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

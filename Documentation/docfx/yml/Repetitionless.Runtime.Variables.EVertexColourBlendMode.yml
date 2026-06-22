@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: EVertexColourBlendMode
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -33,6 +33,9 @@ items:
   syntax:
     content: public enum EVertexColourBlendMode
     content.vb: Public Enum EVertexColourBlendMode
+  extensionMethods:
+  - Repetitionless.Runtime.Variables.EVertexColourBlendMode.Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1
+  - Repetitionless.Runtime.Variables.EVertexColourBlendMode.Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1
 - uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Off
   commentId: F:Repetitionless.Runtime.Variables.EVertexColourBlendMode.Off
   id: Off
@@ -47,7 +50,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Off
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -75,7 +78,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Multiply
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -103,7 +106,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Additive
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -131,7 +134,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Subtractive
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -159,7 +162,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Overwrite
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -197,6 +200,165 @@ references:
   - name: .
   - uid: Repetitionless.Runtime.Variables
     name: Variables
+- uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  parent: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  definition: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  name: Next<EVertexColourBlendMode>(EVertexColourBlendMode)
+  nameWithType: EnumUtilities.Next<EVertexColourBlendMode>(EVertexColourBlendMode)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next<Repetitionless.Runtime.Variables.EVertexColourBlendMode>(Repetitionless.Runtime.Variables.EVertexColourBlendMode)
+  nameWithType.vb: EnumUtilities.Next(Of EVertexColourBlendMode)(EVertexColourBlendMode)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next(Of Repetitionless.Runtime.Variables.EVertexColourBlendMode)(Repetitionless.Runtime.Variables.EVertexColourBlendMode)
+  name.vb: Next(Of EVertexColourBlendMode)(EVertexColourBlendMode)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(Repetitionless.Runtime.Variables.EVertexColourBlendMode)
+    name: Next
+  - name: <
+  - uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+    name: EVertexColourBlendMode
+  - name: '>'
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+    name: EVertexColourBlendMode
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(Repetitionless.Runtime.Variables.EVertexColourBlendMode)
+    name: Next
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+    name: EVertexColourBlendMode
+  - name: )
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+    name: EVertexColourBlendMode
+  - name: )
+- uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode.Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  parent: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  definition: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  name: Previous<EVertexColourBlendMode>(EVertexColourBlendMode)
+  nameWithType: EnumUtilities.Previous<EVertexColourBlendMode>(EVertexColourBlendMode)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous<Repetitionless.Runtime.Variables.EVertexColourBlendMode>(Repetitionless.Runtime.Variables.EVertexColourBlendMode)
+  nameWithType.vb: EnumUtilities.Previous(Of EVertexColourBlendMode)(EVertexColourBlendMode)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous(Of Repetitionless.Runtime.Variables.EVertexColourBlendMode)(Repetitionless.Runtime.Variables.EVertexColourBlendMode)
+  name.vb: Previous(Of EVertexColourBlendMode)(EVertexColourBlendMode)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(Repetitionless.Runtime.Variables.EVertexColourBlendMode)
+    name: Previous
+  - name: <
+  - uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+    name: EVertexColourBlendMode
+  - name: '>'
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+    name: EVertexColourBlendMode
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(Repetitionless.Runtime.Variables.EVertexColourBlendMode)
+    name: Previous
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+    name: EVertexColourBlendMode
+  - name: )
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
+    name: EVertexColourBlendMode
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  name: Next<T>(T)
+  nameWithType: EnumUtilities.Next<T>(T)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next<T>(T)
+  nameWithType.vb: EnumUtilities.Next(Of T)(T)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next(Of T)(T)
+  name.vb: Next(Of T)(T)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+    name: Next
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+    name: Next
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  commentId: T:Repetitionless.Editor.Utilities.Types.EnumUtilities
+  parent: Repetitionless.Editor.Utilities.Types
+  name: EnumUtilities
+  nameWithType: EnumUtilities
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  name: Previous<T>(T)
+  nameWithType: EnumUtilities.Previous<T>(T)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous<T>(T)
+  nameWithType.vb: EnumUtilities.Previous(Of T)(T)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous(Of T)(T)
+  name.vb: Previous(Of T)(T)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+    name: Previous
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+    name: Previous
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types
+  commentId: N:Repetitionless.Editor.Utilities.Types
+  name: Repetitionless.Editor.Utilities.Types
+  nameWithType: Repetitionless.Editor.Utilities.Types
+  fullName: Repetitionless.Editor.Utilities.Types
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types
 - uid: Repetitionless.Runtime.Variables.EVertexColourBlendMode
   commentId: T:Repetitionless.Runtime.Variables.EVertexColourBlendMode
   parent: Repetitionless.Runtime.Variables

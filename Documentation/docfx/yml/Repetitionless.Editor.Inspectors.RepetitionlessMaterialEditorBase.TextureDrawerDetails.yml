@@ -5,7 +5,7 @@ items:
   id: RepetitionlessMaterialEditorBase.TextureDrawerDetails
   parent: Repetitionless.Editor.Inspectors
   children:
-  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.#ctor(Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer,System.Int32)
+  - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.#ctor(Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer,System.Int32)
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.ChannelIndex
   - Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.TextureDrawer
   langs:
@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureDrawerDetails
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
@@ -45,7 +45,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureDrawer
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
@@ -58,7 +58,7 @@ items:
   syntax:
     content: public TextureArrayCustomChannelsGUIDrawer TextureDrawer
     return:
-      type: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+      type: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
     content.vb: Public TextureDrawer As TextureArrayCustomChannelsGUIDrawer
 - uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.ChannelIndex
   commentId: F:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.ChannelIndex
@@ -74,7 +74,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ChannelIndex
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
@@ -89,21 +89,21 @@ items:
     return:
       type: System.Int32
     content.vb: Public ChannelIndex As Integer
-- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.#ctor(Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer,System.Int32)
-  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.#ctor(Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer,System.Int32)
-  id: '#ctor(Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer,System.Int32)'
+- uid: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.#ctor(Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer,System.Int32)
+  commentId: M:Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.#ctor(Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer,System.Int32)
+  id: '#ctor(Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer,System.Int32)'
   parent: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails
   langs:
   - csharp
   - vb
   name: TextureDrawerDetails(TextureArrayCustomChannelsGUIDrawer, int)
   nameWithType: RepetitionlessMaterialEditorBase.TextureDrawerDetails.TextureDrawerDetails(TextureArrayCustomChannelsGUIDrawer, int)
-  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.TextureDrawerDetails(Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer, int)
+  fullName: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.TextureDrawerDetails(Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer, int)
   type: Constructor
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: .ctor
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Inspectors/RepetitionlessMaterialEditorBase.cs
@@ -117,7 +117,7 @@ items:
     content: public TextureDrawerDetails(TextureArrayCustomChannelsGUIDrawer textureDrawer, int channelIndex)
     parameters:
     - id: textureDrawer
-      type: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+      type: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
       description: "\nThe texture drawer used\n"
     - id: channelIndex
       type: System.Int32
@@ -125,7 +125,7 @@ items:
     content.vb: Public Sub New(textureDrawer As TextureArrayCustomChannelsGUIDrawer, channelIndex As Integer)
   overload: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.#ctor*
   nameWithType.vb: RepetitionlessMaterialEditorBase.TextureDrawerDetails.New(TextureArrayCustomChannelsGUIDrawer, Integer)
-  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.New(Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer, Integer)
+  fullName.vb: Repetitionless.Editor.Inspectors.RepetitionlessMaterialEditorBase.TextureDrawerDetails.New(Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer, Integer)
   name.vb: New(TextureArrayCustomChannelsGUIDrawer, Integer)
 references:
 - uid: Repetitionless.Editor.Inspectors
@@ -151,17 +151,17 @@ references:
   - name: .
   - uid: Repetitionless.Editor.Inspectors
     name: Inspectors
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
-  commentId: T:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
-  parent: Repetitionless.Editor.GUIUtilities
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
+  commentId: T:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI
   name: TextureArrayCustomChannelsGUIDrawer
   nameWithType: TextureArrayCustomChannelsGUIDrawer
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
-- uid: Repetitionless.Editor.GUIUtilities
-  commentId: N:Repetitionless.Editor.GUIUtilities
-  name: Repetitionless.Editor.GUIUtilities
-  nameWithType: Repetitionless.Editor.GUIUtilities
-  fullName: Repetitionless.Editor.GUIUtilities
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
+- uid: Repetitionless.Editor.Utilities.GUI
+  commentId: N:Repetitionless.Editor.Utilities.GUI
+  name: Repetitionless.Editor.Utilities.GUI
+  nameWithType: Repetitionless.Editor.Utilities.GUI
+  fullName: Repetitionless.Editor.Utilities.GUI
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
@@ -169,8 +169,11 @@ references:
   - uid: Repetitionless.Editor
     name: Editor
   - name: .
-  - uid: Repetitionless.Editor.GUIUtilities
-    name: GUIUtilities
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.GUI
+    name: GUI
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
@@ -178,8 +181,11 @@ references:
   - uid: Repetitionless.Editor
     name: Editor
   - name: .
-  - uid: Repetitionless.Editor.GUIUtilities
-    name: GUIUtilities
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.GUI
+    name: GUI
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System

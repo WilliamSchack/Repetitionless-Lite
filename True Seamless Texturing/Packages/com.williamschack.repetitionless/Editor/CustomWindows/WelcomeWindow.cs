@@ -9,9 +9,9 @@ using Repetitionless.Runtime.Variables;
 namespace Repetitionless.Editor.CustomWindows
 {
     using Materials;
-    using GUIUtilities;
     using Config;
     using Updating;
+    using Utilities.GUI;
 
     /// <summary>
     /// The welcome window that is shown when first installing the package
@@ -43,7 +43,7 @@ namespace Repetitionless.Editor.CustomWindows
         /// <summary>
         /// Opens the window
         /// </summary>
-        [MenuItem("Window/Repetitionless/Open Window", secondaryPriority = 0)]
+        [MenuItem("Window/Repetitionless/Open Window", priority = 0)]
         public static void Open()
         {
             Open(false, false);

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 
 using Repetitionless.Runtime.Compression;
-using Repetitionless.Editor.GUIUtilities;
+using Repetitionless.Editor.Utilities.GUI;
 
 public class DebugTextureWindow : EditorWindow
 {

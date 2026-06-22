@@ -6,6 +6,7 @@ items:
   children:
   - Repetitionless.Editor.Processors.PostPackageImport
   - Repetitionless.Editor.Processors.PostProjectOpen
+  - Repetitionless.Editor.Processors.RenderPipelineChecker
   - Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
   - Repetitionless.Editor.Processors.RepetitionlessMaterialProcessor
   - Repetitionless.Editor.Processors.TerrainLayerPostprocessor
@@ -24,6 +25,11 @@ references:
   name: RepetitionlessColourSpaceUpdater
   nameWithType: RepetitionlessColourSpaceUpdater
   fullName: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
+- uid: Repetitionless.Editor.Processors.RenderPipelineChecker
+  commentId: T:Repetitionless.Editor.Processors.RenderPipelineChecker
+  name: RenderPipelineChecker
+  nameWithType: RenderPipelineChecker
+  fullName: Repetitionless.Editor.Processors.RenderPipelineChecker
 - uid: Repetitionless.Editor.Processors.PostProjectOpen
   commentId: T:Repetitionless.Editor.Processors.PostProjectOpen
   name: PostProjectOpen

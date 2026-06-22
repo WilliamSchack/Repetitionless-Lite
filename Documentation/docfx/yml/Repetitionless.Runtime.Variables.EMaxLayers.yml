@@ -1,0 +1,436 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Runtime.Variables.EMaxLayers
+  commentId: T:Repetitionless.Runtime.Variables.EMaxLayers
+  id: EMaxLayers
+  parent: Repetitionless.Runtime.Variables
+  children:
+  - Repetitionless.Runtime.Variables.EMaxLayers.Eight
+  - Repetitionless.Runtime.Variables.EMaxLayers.Four
+  - Repetitionless.Runtime.Variables.EMaxLayers.Sixteen
+  - Repetitionless.Runtime.Variables.EMaxLayers.ThirtyTwo
+  - Repetitionless.Runtime.Variables.EMaxLayers.Twelve
+  - Repetitionless.Runtime.Variables.EMaxLayers.Twenty
+  - Repetitionless.Runtime.Variables.EMaxLayers.TwentyEight
+  - Repetitionless.Runtime.Variables.EMaxLayers.TwentyFour
+  langs:
+  - csharp
+  - vb
+  name: EMaxLayers
+  nameWithType: EMaxLayers
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers
+  type: Enum
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: EMaxLayers
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 171
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  syntax:
+    content: public enum EMaxLayers
+    content.vb: Public Enum EMaxLayers
+  extensionMethods:
+  - Repetitionless.Runtime.Variables.EMaxLayers.Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1
+  - Repetitionless.Runtime.Variables.EMaxLayers.Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1
+- uid: Repetitionless.Runtime.Variables.EMaxLayers.Four
+  commentId: F:Repetitionless.Runtime.Variables.EMaxLayers.Four
+  id: Four
+  parent: Repetitionless.Runtime.Variables.EMaxLayers
+  langs:
+  - csharp
+  - vb
+  name: Four
+  nameWithType: EMaxLayers.Four
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers.Four
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Four
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 173
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  syntax:
+    content: Four = 4
+    return:
+      type: Repetitionless.Runtime.Variables.EMaxLayers
+- uid: Repetitionless.Runtime.Variables.EMaxLayers.Eight
+  commentId: F:Repetitionless.Runtime.Variables.EMaxLayers.Eight
+  id: Eight
+  parent: Repetitionless.Runtime.Variables.EMaxLayers
+  langs:
+  - csharp
+  - vb
+  name: Eight
+  nameWithType: EMaxLayers.Eight
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers.Eight
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Eight
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 174
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  syntax:
+    content: Eight = 8
+    return:
+      type: Repetitionless.Runtime.Variables.EMaxLayers
+- uid: Repetitionless.Runtime.Variables.EMaxLayers.Twelve
+  commentId: F:Repetitionless.Runtime.Variables.EMaxLayers.Twelve
+  id: Twelve
+  parent: Repetitionless.Runtime.Variables.EMaxLayers
+  langs:
+  - csharp
+  - vb
+  name: Twelve
+  nameWithType: EMaxLayers.Twelve
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers.Twelve
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Twelve
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 175
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  syntax:
+    content: Twelve = 12
+    return:
+      type: Repetitionless.Runtime.Variables.EMaxLayers
+- uid: Repetitionless.Runtime.Variables.EMaxLayers.Sixteen
+  commentId: F:Repetitionless.Runtime.Variables.EMaxLayers.Sixteen
+  id: Sixteen
+  parent: Repetitionless.Runtime.Variables.EMaxLayers
+  langs:
+  - csharp
+  - vb
+  name: Sixteen
+  nameWithType: EMaxLayers.Sixteen
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers.Sixteen
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Sixteen
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 176
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  syntax:
+    content: Sixteen = 16
+    return:
+      type: Repetitionless.Runtime.Variables.EMaxLayers
+- uid: Repetitionless.Runtime.Variables.EMaxLayers.Twenty
+  commentId: F:Repetitionless.Runtime.Variables.EMaxLayers.Twenty
+  id: Twenty
+  parent: Repetitionless.Runtime.Variables.EMaxLayers
+  langs:
+  - csharp
+  - vb
+  name: Twenty
+  nameWithType: EMaxLayers.Twenty
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers.Twenty
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: Twenty
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 177
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  syntax:
+    content: Twenty = 20
+    return:
+      type: Repetitionless.Runtime.Variables.EMaxLayers
+- uid: Repetitionless.Runtime.Variables.EMaxLayers.TwentyFour
+  commentId: F:Repetitionless.Runtime.Variables.EMaxLayers.TwentyFour
+  id: TwentyFour
+  parent: Repetitionless.Runtime.Variables.EMaxLayers
+  langs:
+  - csharp
+  - vb
+  name: TwentyFour
+  nameWithType: EMaxLayers.TwentyFour
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers.TwentyFour
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: TwentyFour
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 178
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  syntax:
+    content: TwentyFour = 24
+    return:
+      type: Repetitionless.Runtime.Variables.EMaxLayers
+- uid: Repetitionless.Runtime.Variables.EMaxLayers.TwentyEight
+  commentId: F:Repetitionless.Runtime.Variables.EMaxLayers.TwentyEight
+  id: TwentyEight
+  parent: Repetitionless.Runtime.Variables.EMaxLayers
+  langs:
+  - csharp
+  - vb
+  name: TwentyEight
+  nameWithType: EMaxLayers.TwentyEight
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers.TwentyEight
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: TwentyEight
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 179
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  syntax:
+    content: TwentyEight = 28
+    return:
+      type: Repetitionless.Runtime.Variables.EMaxLayers
+- uid: Repetitionless.Runtime.Variables.EMaxLayers.ThirtyTwo
+  commentId: F:Repetitionless.Runtime.Variables.EMaxLayers.ThirtyTwo
+  id: ThirtyTwo
+  parent: Repetitionless.Runtime.Variables.EMaxLayers
+  langs:
+  - csharp
+  - vb
+  name: ThirtyTwo
+  nameWithType: EMaxLayers.ThirtyTwo
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers.ThirtyTwo
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: ThirtyTwo
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
+    startLine: 180
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Variables
+  syntax:
+    content: ThirtyTwo = 32
+    return:
+      type: Repetitionless.Runtime.Variables.EMaxLayers
+references:
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables
+- uid: Repetitionless.Runtime.Variables.EMaxLayers.Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  parent: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  definition: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  name: Next<EMaxLayers>(EMaxLayers)
+  nameWithType: EnumUtilities.Next<EMaxLayers>(EMaxLayers)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next<Repetitionless.Runtime.Variables.EMaxLayers>(Repetitionless.Runtime.Variables.EMaxLayers)
+  nameWithType.vb: EnumUtilities.Next(Of EMaxLayers)(EMaxLayers)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next(Of Repetitionless.Runtime.Variables.EMaxLayers)(Repetitionless.Runtime.Variables.EMaxLayers)
+  name.vb: Next(Of EMaxLayers)(EMaxLayers)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(Repetitionless.Runtime.Variables.EMaxLayers)
+    name: Next
+  - name: <
+  - uid: Repetitionless.Runtime.Variables.EMaxLayers
+    name: EMaxLayers
+  - name: '>'
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.EMaxLayers
+    name: EMaxLayers
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(Repetitionless.Runtime.Variables.EMaxLayers)
+    name: Next
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Repetitionless.Runtime.Variables.EMaxLayers
+    name: EMaxLayers
+  - name: )
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.EMaxLayers
+    name: EMaxLayers
+  - name: )
+- uid: Repetitionless.Runtime.Variables.EMaxLayers.Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  parent: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  definition: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  name: Previous<EMaxLayers>(EMaxLayers)
+  nameWithType: EnumUtilities.Previous<EMaxLayers>(EMaxLayers)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous<Repetitionless.Runtime.Variables.EMaxLayers>(Repetitionless.Runtime.Variables.EMaxLayers)
+  nameWithType.vb: EnumUtilities.Previous(Of EMaxLayers)(EMaxLayers)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous(Of Repetitionless.Runtime.Variables.EMaxLayers)(Repetitionless.Runtime.Variables.EMaxLayers)
+  name.vb: Previous(Of EMaxLayers)(EMaxLayers)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(Repetitionless.Runtime.Variables.EMaxLayers)
+    name: Previous
+  - name: <
+  - uid: Repetitionless.Runtime.Variables.EMaxLayers
+    name: EMaxLayers
+  - name: '>'
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.EMaxLayers
+    name: EMaxLayers
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(Repetitionless.Runtime.Variables.EMaxLayers)
+    name: Previous
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Repetitionless.Runtime.Variables.EMaxLayers
+    name: EMaxLayers
+  - name: )
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.EMaxLayers
+    name: EMaxLayers
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  name: Next<T>(T)
+  nameWithType: EnumUtilities.Next<T>(T)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next<T>(T)
+  nameWithType.vb: EnumUtilities.Next(Of T)(T)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next(Of T)(T)
+  name.vb: Next(Of T)(T)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+    name: Next
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+    name: Next
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  commentId: T:Repetitionless.Editor.Utilities.Types.EnumUtilities
+  parent: Repetitionless.Editor.Utilities.Types
+  name: EnumUtilities
+  nameWithType: EnumUtilities
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  name: Previous<T>(T)
+  nameWithType: EnumUtilities.Previous<T>(T)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous<T>(T)
+  nameWithType.vb: EnumUtilities.Previous(Of T)(T)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous(Of T)(T)
+  name.vb: Previous(Of T)(T)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+    name: Previous
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+    name: Previous
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types
+  commentId: N:Repetitionless.Editor.Utilities.Types
+  name: Repetitionless.Editor.Utilities.Types
+  nameWithType: Repetitionless.Editor.Utilities.Types
+  fullName: Repetitionless.Editor.Utilities.Types
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types
+- uid: Repetitionless.Runtime.Variables.EMaxLayers
+  commentId: T:Repetitionless.Runtime.Variables.EMaxLayers
+  parent: Repetitionless.Runtime.Variables
+  name: EMaxLayers
+  nameWithType: EMaxLayers
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers

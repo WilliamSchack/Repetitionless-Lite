@@ -57,13 +57,13 @@ namespace Repetitionless.Editor.Materials
             return "Assets";
         }
 
-        [MenuItem("Window/Repetitionless/Create Material", secondaryPriority = 1)]
+        [MenuItem("Window/Repetitionless/Create Material", priority = 1)]
         private static void CreateMaterialToolbar()
         {
             EditorApplication.delayCall += () => { CreateMaterialAtCurrentFolder(); };
         }
 
-        [MenuItem("Window/Repetitionless/Create Layered Material", secondaryPriority = 2)]
+        [MenuItem("Window/Repetitionless/Create Layered Material", priority = 2)]
         private static void CreateTerrainMaterialToolbar()
         {
             EditorApplication.delayCall += () => { CreateTerrainMaterialAtCurrentFolder(); };
@@ -218,7 +218,7 @@ namespace Repetitionless.Editor.Materials
             string shaderName = GetShaderFolder(pipeline);
             if (shaderName == "") return materialDataObjects;
 
-            shaderName += Constants.SHADER_MATERIAL_NAME_LAYERED;
+            shaderName += Constants.SHADER_MATERIAL_NAME_LAYERED_TERRAIN;
             Shader shader = GetShader(shaderName);
             if (shader == null) return materialDataObjects;
 
@@ -228,9 +228,9 @@ namespace Repetitionless.Editor.Materials
             assetPath = AssetDatabase.GenerateUniqueAssetPath(assetPath);
 
             AssetDatabase.CreateAsset(material, assetPath);
-            materialDataObjects = SetupMaterial(material, Constants.MAX_LAYERS_TERRAIN, (RepetitionlessMaterialDataSO data) => { RepetitionlessTerrainMaterialUtilities.SetupProperties(material, data); });
-            RepetitionlessTerrainMaterialUtilities.SetupLayeredData(materialDataObjects.DataManager);
-            RepetitionlessTerrainMaterialUtilities.SetupTerrainData(materialDataObjects.DataManager);
+            materialDataObjects = SetupMaterial(material, Constants.MAX_LAYERS_TERRAIN, (RepetitionlessMaterialDataSO data) => { RepetitionlessLayeredMaterialUtilities.SetupProperties(material, data); });
+            RepetitionlessLayeredMaterialUtilities.SetupLayeredData(materialDataObjects.DataManager);
+            RepetitionlessLayeredMaterialUtilities.SetupTerrainData(materialDataObjects.DataManager);
 
             if (ping)
                 PingAsset(material);

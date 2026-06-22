@@ -1,0 +1,93 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Utilities.GUI
+  commentId: N:Repetitionless.Editor.Utilities.GUI
+  id: Repetitionless.Editor.Utilities.GUI
+  children:
+  - Repetitionless.Editor.Utilities.GUI.GUIUtilities
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Editor.Utilities.GUI
+  nameWithType: Repetitionless.Editor.Utilities.GUI
+  fullName: Repetitionless.Editor.Utilities.GUI
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+references:
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
+  commentId: T:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI
+  name: TextureArrayCustomChannelsGUIDrawer
+  nameWithType: TextureArrayCustomChannelsGUIDrawer
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+  commentId: T:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+  name: TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
+  nameWithType: TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
+  nameWithType.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
+  fullName.vb: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
+  name.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
+    name: TextureArrayCustomChannelsGUIDrawer
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+    name: RefFunc
+  - name: <
+  - name: TIn
+  - name: ','
+  - name: " "
+  - name: TOut
+  - name: '>'
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
+    name: TextureArrayCustomChannelsGUIDrawer
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+    name: RefFunc
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TIn
+  - name: ','
+  - name: " "
+  - name: TOut
+  - name: )
+- uid: Repetitionless.Editor.Utilities.GUI.GUIUtilities
+  commentId: T:Repetitionless.Editor.Utilities.GUI.GUIUtilities
+  name: GUIUtilities
+  nameWithType: GUIUtilities
+  fullName: Repetitionless.Editor.Utilities.GUI.GUIUtilities
+- uid: Repetitionless.Editor.Utilities.GUI
+  commentId: N:Repetitionless.Editor.Utilities.GUI
+  name: Repetitionless.Editor.Utilities.GUI
+  nameWithType: Repetitionless.Editor.Utilities.GUI
+  fullName: Repetitionless.Editor.Utilities.GUI
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.GUI
+    name: GUI
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.GUI
+    name: GUI

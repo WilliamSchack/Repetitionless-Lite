@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ELayerMode
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -30,6 +30,9 @@ items:
   syntax:
     content: public enum ELayerMode
     content.vb: Public Enum ELayerMode
+  extensionMethods:
+  - Repetitionless.Runtime.Variables.ELayerMode.Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1
+  - Repetitionless.Runtime.Variables.ELayerMode.Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1
 - uid: Repetitionless.Runtime.Variables.ELayerMode.TerrainLayers
   commentId: F:Repetitionless.Runtime.Variables.ELayerMode.TerrainLayers
   id: TerrainLayers
@@ -44,7 +47,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TerrainLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -72,7 +75,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -110,6 +113,165 @@ references:
   - name: .
   - uid: Repetitionless.Runtime.Variables
     name: Variables
+- uid: Repetitionless.Runtime.Variables.ELayerMode.Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  parent: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  definition: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  name: Next<ELayerMode>(ELayerMode)
+  nameWithType: EnumUtilities.Next<ELayerMode>(ELayerMode)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next<Repetitionless.Runtime.Variables.ELayerMode>(Repetitionless.Runtime.Variables.ELayerMode)
+  nameWithType.vb: EnumUtilities.Next(Of ELayerMode)(ELayerMode)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next(Of Repetitionless.Runtime.Variables.ELayerMode)(Repetitionless.Runtime.Variables.ELayerMode)
+  name.vb: Next(Of ELayerMode)(ELayerMode)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(Repetitionless.Runtime.Variables.ELayerMode)
+    name: Next
+  - name: <
+  - uid: Repetitionless.Runtime.Variables.ELayerMode
+    name: ELayerMode
+  - name: '>'
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.ELayerMode
+    name: ELayerMode
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(Repetitionless.Runtime.Variables.ELayerMode)
+    name: Next
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Repetitionless.Runtime.Variables.ELayerMode
+    name: ELayerMode
+  - name: )
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.ELayerMode
+    name: ELayerMode
+  - name: )
+- uid: Repetitionless.Runtime.Variables.ELayerMode.Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  parent: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  definition: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  name: Previous<ELayerMode>(ELayerMode)
+  nameWithType: EnumUtilities.Previous<ELayerMode>(ELayerMode)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous<Repetitionless.Runtime.Variables.ELayerMode>(Repetitionless.Runtime.Variables.ELayerMode)
+  nameWithType.vb: EnumUtilities.Previous(Of ELayerMode)(ELayerMode)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous(Of Repetitionless.Runtime.Variables.ELayerMode)(Repetitionless.Runtime.Variables.ELayerMode)
+  name.vb: Previous(Of ELayerMode)(ELayerMode)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(Repetitionless.Runtime.Variables.ELayerMode)
+    name: Previous
+  - name: <
+  - uid: Repetitionless.Runtime.Variables.ELayerMode
+    name: ELayerMode
+  - name: '>'
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.ELayerMode
+    name: ELayerMode
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(Repetitionless.Runtime.Variables.ELayerMode)
+    name: Previous
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Repetitionless.Runtime.Variables.ELayerMode
+    name: ELayerMode
+  - name: )
+  - name: (
+  - uid: Repetitionless.Runtime.Variables.ELayerMode
+    name: ELayerMode
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  name: Next<T>(T)
+  nameWithType: EnumUtilities.Next<T>(T)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next<T>(T)
+  nameWithType.vb: EnumUtilities.Next(Of T)(T)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next(Of T)(T)
+  name.vb: Next(Of T)(T)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+    name: Next
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+    name: Next
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  commentId: T:Repetitionless.Editor.Utilities.Types.EnumUtilities
+  parent: Repetitionless.Editor.Utilities.Types
+  name: EnumUtilities
+  nameWithType: EnumUtilities
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  name: Previous<T>(T)
+  nameWithType: EnumUtilities.Previous<T>(T)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous<T>(T)
+  nameWithType.vb: EnumUtilities.Previous(Of T)(T)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous(Of T)(T)
+  name.vb: Previous(Of T)(T)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+    name: Previous
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+    name: Previous
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types
+  commentId: N:Repetitionless.Editor.Utilities.Types
+  name: Repetitionless.Editor.Utilities.Types
+  nameWithType: Repetitionless.Editor.Utilities.Types
+  fullName: Repetitionless.Editor.Utilities.Types
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types
 - uid: Repetitionless.Runtime.Variables.ELayerMode
   commentId: T:Repetitionless.Runtime.Variables.ELayerMode
   parent: Repetitionless.Runtime.Variables

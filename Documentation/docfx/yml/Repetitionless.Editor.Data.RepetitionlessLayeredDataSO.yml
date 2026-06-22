@@ -13,6 +13,7 @@ items:
   - Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.HolesTexture
   - Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.Init
   - Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.LayerMode
+  - Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.MaxLayers
   - Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.PackControlTexture(System.Int32)
   - Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.PackControlTextures
   - Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.PackedControlTextures
@@ -33,7 +34,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessLayeredDataSO
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
@@ -62,7 +63,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: LayerMode
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
@@ -85,6 +86,43 @@ items:
   - type: UnityEngine.SerializeField
     ctor: UnityEngine.SerializeField.#ctor
     arguments: []
+- uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.MaxLayers
+  commentId: F:Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.MaxLayers
+  id: MaxLayers
+  parent: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO
+  langs:
+  - csharp
+  - vb
+  name: MaxLayers
+  nameWithType: RepetitionlessLayeredDataSO.MaxLayers
+  fullName: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.MaxLayers
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: MaxLayers
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
+    startLine: 27
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  syntax:
+    content: >-
+      [SerializeField]
+
+      public EMaxLayers MaxLayers
+    return:
+      type: Repetitionless.Runtime.Variables.EMaxLayers
+    content.vb: >-
+      <SerializeField>
+
+      Public MaxLayers As EMaxLayers
+  attributes:
+  - type: UnityEngine.SerializeField
+    ctor: UnityEngine.SerializeField.#ctor
+    arguments: []
 - uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.ControlTextures
   commentId: F:Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.ControlTextures
   id: ControlTextures
@@ -99,11 +137,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 28
+    startLine: 30
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -136,11 +174,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PackedControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 31
+    startLine: 33
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -165,11 +203,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: HolesTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 33
+    startLine: 35
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -179,7 +217,7 @@ items:
 
       public TexturePacker.TextureData HolesTexture
     return:
-      type: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+      type: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
     content.vb: >-
       <SerializeField>
 
@@ -202,11 +240,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Save
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 50
+    startLine: 52
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -230,11 +268,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Init
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 60
+    startLine: 62
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -258,11 +296,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 71
+    startLine: 73
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -286,11 +324,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 80
+    startLine: 82
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -318,11 +356,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupControlChannelTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 89
+    startLine: 91
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -352,11 +390,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupControlTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 112
+    startLine: 114
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -384,11 +422,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetControlTextureData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 120
+    startLine: 122
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -398,7 +436,7 @@ items:
     - id: layerIndex
       type: System.Int32
     return:
-      type: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+      type: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
     content.vb: Public ByRef Function GetControlTextureData(layerIndex As Integer) As TexturePacker.TextureData
   overload: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.GetControlTextureData*
   nameWithType.vb: RepetitionlessLayeredDataSO.GetControlTextureData(Integer)
@@ -418,11 +456,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupHolesTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 131
+    startLine: 133
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -446,11 +484,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PackControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 147
+    startLine: 149
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -472,11 +510,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetControlIndexFromLayerIndex
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 154
+    startLine: 156
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -506,11 +544,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PackControlTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 159
+    startLine: 161
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -538,11 +576,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AssignControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 195
+    startLine: 197
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -564,11 +602,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AssignControlTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 202
+    startLine: 204
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -596,11 +634,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateLayersCount
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 207
+    startLine: 209
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -697,6 +735,12 @@ references:
   - name: .
   - uid: Repetitionless.Runtime.Variables
     name: Variables
+- uid: Repetitionless.Runtime.Variables.EMaxLayers
+  commentId: T:Repetitionless.Runtime.Variables.EMaxLayers
+  parent: Repetitionless.Runtime.Variables
+  name: EMaxLayers
+  nameWithType: EMaxLayers
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers
 - uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.ControlTexture[]
   isExternal: true
   name: ControlTexture[]
@@ -740,29 +784,29 @@ references:
     isExternal: true
   - name: (
   - name: )
-- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
-  commentId: T:Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
-  parent: Repetitionless.Editor.TextureUtilities
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
+  commentId: T:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
+  parent: Repetitionless.Editor.Utilities.Texture
   name: TexturePacker.TextureData
   nameWithType: TexturePacker.TextureData
-  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
   spec.csharp:
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker
     name: TexturePacker
   - name: .
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
     name: TextureData
   spec.vb:
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker
     name: TexturePacker
   - name: .
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
     name: TextureData
-- uid: Repetitionless.Editor.TextureUtilities
-  commentId: N:Repetitionless.Editor.TextureUtilities
-  name: Repetitionless.Editor.TextureUtilities
-  nameWithType: Repetitionless.Editor.TextureUtilities
-  fullName: Repetitionless.Editor.TextureUtilities
+- uid: Repetitionless.Editor.Utilities.Texture
+  commentId: N:Repetitionless.Editor.Utilities.Texture
+  name: Repetitionless.Editor.Utilities.Texture
+  nameWithType: Repetitionless.Editor.Utilities.Texture
+  fullName: Repetitionless.Editor.Utilities.Texture
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
@@ -770,8 +814,11 @@ references:
   - uid: Repetitionless.Editor
     name: Editor
   - name: .
-  - uid: Repetitionless.Editor.TextureUtilities
-    name: TextureUtilities
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Texture
+    name: Texture
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
@@ -779,8 +826,11 @@ references:
   - uid: Repetitionless.Editor
     name: Editor
   - name: .
-  - uid: Repetitionless.Editor.TextureUtilities
-    name: TextureUtilities
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Texture
+    name: Texture
 - uid: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.Save*
   commentId: Overload:Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.Save
   name: Save

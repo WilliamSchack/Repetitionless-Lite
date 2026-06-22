@@ -21,6 +21,10 @@ namespace Repetitionless.Editor.Config
             public string LastProcessedVersion = "0.0.0";
             public bool LiteMode = false;
 
+            public bool URPActive = false;
+            public bool HDRPActive = false;
+            public bool HasNewHDRPSupport = true; // If the last processed unity version was 6.3+
+
             public long LastSessionId = 0;
         }
 

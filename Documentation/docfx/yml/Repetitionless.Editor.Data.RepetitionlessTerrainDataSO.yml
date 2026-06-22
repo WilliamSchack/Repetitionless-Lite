@@ -6,6 +6,7 @@ items:
   parent: Repetitionless.Editor.Data
   children:
   - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.AutoSyncLayers
+  - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.AutoUpdateMaxLayers
   - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.ClearTerrainLayers
   - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.RemoveUnusedLayerTextures
   - Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.Save
@@ -22,11 +23,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessTerrainDataSO
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -53,11 +54,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TerrainLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 24
+    startLine: 25
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -70,6 +71,35 @@ items:
       type: System.Collections.Generic.List{UnityEngine.TerrainLayer}
     content.vb: Public ReadOnly Property TerrainLayers As List(Of TerrainLayer)
   overload: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.TerrainLayers*
+- uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.AutoUpdateMaxLayers
+  commentId: F:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.AutoUpdateMaxLayers
+  id: AutoUpdateMaxLayers
+  parent: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO
+  langs:
+  - csharp
+  - vb
+  name: AutoUpdateMaxLayers
+  nameWithType: RepetitionlessTerrainDataSO.AutoUpdateMaxLayers
+  fullName: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.AutoUpdateMaxLayers
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: AutoUpdateMaxLayers
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
+    startLine: 52
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Data
+  summary: "\nIf the max layers is updated automatically with terrain layers\n"
+  example: []
+  syntax:
+    content: public bool AutoUpdateMaxLayers
+    return:
+      type: System.Boolean
+    content.vb: Public AutoUpdateMaxLayers As Boolean
 - uid: Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.AutoSyncLayers
   commentId: F:Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.AutoSyncLayers
   id: AutoSyncLayers
@@ -84,11 +114,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AutoSyncLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 40
+    startLine: 57
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -113,11 +143,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Save
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 45
+    startLine: 62
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -141,11 +171,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTerrainLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 58
+    startLine: 75
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -176,11 +206,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ClearTerrainLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 67
+    startLine: 96
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -204,11 +234,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateLayerMaterialData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 82
+    startLine: 111
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -242,11 +272,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RemoveUnusedLayerTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessTerrainDataSO.cs
-    startLine: 162
+    startLine: 191
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data

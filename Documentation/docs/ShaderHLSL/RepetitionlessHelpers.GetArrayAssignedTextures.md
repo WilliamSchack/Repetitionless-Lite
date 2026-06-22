@@ -12,7 +12,7 @@ Loads the array assigned textures from a texture
 
 ``` csharp
 float MacroMicroVariationTexture(
-	UnityTexture2D tex,
+	Texture2D tex,
 	
 	out int AssignedAVTextures[3],
 	out int AssignedNSOTextures[3],

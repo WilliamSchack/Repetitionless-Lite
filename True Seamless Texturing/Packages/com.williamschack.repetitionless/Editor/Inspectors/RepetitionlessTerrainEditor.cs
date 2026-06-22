@@ -5,6 +5,8 @@ using UnityEditor;
 using Repetitionless.Runtime;
 using Repetitionless.Runtime.Variables;
 
+using System.Linq;
+
 namespace Repetitionless.Editor.Inspectors
 {
     using Materials;
@@ -124,7 +126,7 @@ namespace Repetitionless.Editor.Inspectors
 
             MaterialDataManager dataManager = new MaterialDataManager(mat);
             _materialLayeredData = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
-            if (_materialLayeredData == null) _materialLayeredData = RepetitionlessTerrainMaterialUtilities.SetupLayeredData(dataManager);
+            if (_materialLayeredData == null) _materialLayeredData = RepetitionlessLayeredMaterialUtilities.SetupLayeredData(dataManager);
 
             _materialTerrainData = dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
             _materialTextureData = dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
@@ -406,6 +408,29 @@ namespace Repetitionless.Editor.Inspectors
 
                     SyncLayersToMaterial();
                     UpdateMaterialTerrainLayerTextures(true);
+                }
+            }
+
+            if (_main.Terrain.drawInstanced)
+            {
+                Shader shader = _main.MainMaterial?.shader;
+                if (shader != null)
+                {
+                    // Check the shader has instancing options baked in
+                    bool hasInstancingPragma = _main.MainMaterial.shader
+                        .keywordSpace.keywords
+                        .Any(k => k.name == "INSTANCING_ON");
+                        
+                    if (!hasInstancingPragma)
+                    {
+                        EditorGUILayout.HelpBox(
+                            "Draw Instanced is enabled but the material may not have " +
+                            "terrain instancing pragmas. Make sure TerrainInstancingPragmas.hlsl " +
+                            "is included in the Shader Graph and the Custom Function " +
+                            "vertex node is wired up.",
+                            MessageType.Warning
+                        );
+                    }
                 }
             }
         }

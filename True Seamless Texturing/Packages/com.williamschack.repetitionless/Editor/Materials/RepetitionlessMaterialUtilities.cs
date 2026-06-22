@@ -1,9 +1,11 @@
 #if UNITY_EDITOR
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 using Repetitionless.Runtime.Variables;
+using Repetitionless.Editor.Data;
 
 namespace Repetitionless.Editor.Materials
 {
@@ -27,7 +29,57 @@ namespace Repetitionless.Editor.Materials
             return ERenderPipeline.Unknown;
         }
 
-        public static void SetKeyword(Material mat, string keyword, bool enabled)
+        // Enables "prefix{(int)value}"
+        // Disables all other enum values
+        public static void SetEnumKeywordInt<T>(Material mat, string keywordPrefix, T value) where T : Enum
+        {
+            int intValue = Convert.ToInt32(value);
+
+            EditorApplication.delayCall += () => {
+                foreach (T currentEnumValue in Enum.GetValues(typeof(T))) {
+                    int currentEnumIntValue = Convert.ToInt32(currentEnumValue);
+
+                    string keyword = $"{keywordPrefix}{currentEnumIntValue}";
+
+                    // Disable others
+                    if (currentEnumIntValue != intValue) {
+                        mat.DisableKeyword(keyword);
+                        continue;
+                    }
+
+                    mat.EnableKeyword(keyword);
+                }
+
+                EditorUtility.SetDirty(mat);
+            };
+        }
+
+        // Enables "prefix{(string)value}"
+        // Disables all other enum values
+        public static void SetEnumKeywordString<T>(Material mat, string keywordPrefix, T value) where T : Enum
+        {
+            string stringValue = value.ToString().ToUpper();
+
+            EditorApplication.delayCall += () => {
+                foreach (T currentEnumValue in Enum.GetValues(typeof(T))) {
+                    string currentEnumStringValue = currentEnumValue.ToString().ToUpper();
+
+                    string keyword = $"{keywordPrefix}{currentEnumStringValue}";
+
+                    // Disable others
+                    if (currentEnumStringValue != stringValue) {
+                        mat.DisableKeyword(keyword);
+                        continue;
+                    }
+
+                    mat.EnableKeyword(keyword);
+                }
+
+                EditorUtility.SetDirty(mat);
+            };
+        }
+
+        public static void SetBoolKeyword(Material mat, string keyword, bool enabled)
         {
             // Delay call to prevent recursive warnings, this will take a while if variant not cached
             EditorApplication.delayCall += () => {
@@ -57,26 +109,72 @@ namespace Repetitionless.Editor.Materials
                 }
             }
         }
+        public static void UpdateDistanceBlendKeyword(Material mat, RepetitionlessMaterialDataSO data)
+        {
+            // If its enabled at all, enable the keyword, otherwise disable
+            bool enabled = false;
+            foreach (RepetitionlessLayerData currentLayerData in data.Data) {
+                if (currentLayerData.DistanceBlendEnabled) {
+                    enabled = true;
+                    break;                    
+                }
+            }
+
+            SetBoolKeyword(mat, Constants.DISTANCE_BLEND_KEYWORD, enabled);
+        }
+        public static void UpdateMaterialBlendKeyword(Material mat, RepetitionlessMaterialDataSO data)
+        {
+            // If its enabled at all, enable the keyword, otherwise disable
+            bool enabled = false;
+            foreach (RepetitionlessLayerData currentLayerData in data.Data) {
+                if (currentLayerData.MaterialBlendEnabled) {
+                    enabled = true;
+                    break;                    
+                }
+            }
+
+            SetBoolKeyword(mat, Constants.MATERIAL_BLEND_KEYWORD, enabled);
+        }
+
+        public static void UpdateVariationKeyword(Material mat, int maxLayers, RepetitionlessMaterialDataSO data)
+        {
+            // If its enabled at all, enable the keyword, otherwise disable
+            bool enabled = false;
+            for (int layer = 0; layer < maxLayers; layer++) {
+                for (int section = 0; section < 3; section++) {
+                    RepetitionlessMaterialData materialData = data.GetMaterialData(layer, section);
+                    if (materialData.VariationEnabled) {
+                        enabled = true;
+                        break;
+                    }
+                }
+
+                if (enabled)
+                    break;
+            }
+
+            SetBoolKeyword(mat, Constants.VARIATION_KEYWORD, enabled);
+        }
 
         public static void SetNoiseQuality(Material mat, ENoiseQuality noiseQuality)
         {
-            SetKeyword(mat, Constants.NOISE_TEXTURE_KEYWORD, noiseQuality != ENoiseQuality.High);
+            SetBoolKeyword(mat, Constants.NOISE_TEXTURE_KEYWORD, noiseQuality != ENoiseQuality.High);
             UpdateNoiseQualityTexture(mat, noiseQuality);
         }
 
         public static void SetTriplanarEnabled(Material mat, bool enabled)
         {
-            SetKeyword(mat, Constants.TRIPLANAR_KEYWORD, enabled);
+            SetBoolKeyword(mat, Constants.TRIPLANAR_KEYWORD, enabled);
         }
 
         public static void SetSpecularHighlightsEnabled(Material mat, bool enabled)
         {
-            SetKeyword(mat, Constants.SPECULAR_HIGHLIGHTS_OFF_KEYWORD, !enabled);
+            SetBoolKeyword(mat, Constants.SPECULAR_HIGHLIGHTS_OFF_KEYWORD, !enabled);
         }
 
         public static void SetEnvironmentReflectionsEnabled(Material mat, bool enabled)
         {
-            SetKeyword(mat, Constants.ENVIRONMENT_REFLECTIONS_OFF_KEYWORD, !enabled);
+            SetBoolKeyword(mat, Constants.ENVIRONMENT_REFLECTIONS_OFF_KEYWORD, !enabled);
         }
 
         public static void SetSurface(Material mat, ESurfaceType surfaceType, ERenderPipeline pipeline)

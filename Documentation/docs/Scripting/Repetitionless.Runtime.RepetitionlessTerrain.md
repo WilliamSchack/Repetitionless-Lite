@@ -96,20 +96,6 @@ Updates the control textures on the material instance
 
 ---
 
-## UpdateHolesTexture()
-
-### Declaration
-
-``` csharp
-public void UpdateHolesTexture()
-```
-
-### Description
-
-Updates the holes texture on the material instance
-
----
-
 ## UpdateParentCallback(RepetitionlessTerrain)
 
 ### Declaration

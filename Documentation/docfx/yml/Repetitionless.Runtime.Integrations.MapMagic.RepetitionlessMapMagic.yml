@@ -1,0 +1,128 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Runtime.Integrations.MapMagic.RepetitionlessMapMagic
+  commentId: T:Repetitionless.Runtime.Integrations.MapMagic.RepetitionlessMapMagic
+  id: RepetitionlessMapMagic
+  parent: Repetitionless.Runtime.Integrations.MapMagic
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: RepetitionlessMapMagic
+  nameWithType: RepetitionlessMapMagic
+  fullName: Repetitionless.Runtime.Integrations.MapMagic.RepetitionlessMapMagic
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Integrations/MapMagic/RepetitionlessMapMagic.cs
+      branch: shader-code
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RepetitionlessMapMagic
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Integrations/MapMagic/RepetitionlessMapMagic.cs
+    startLine: 12
+  assemblies:
+  - NewAssembly
+  namespace: Repetitionless.Runtime.Integrations.MapMagic
+  syntax:
+    content: >-
+      [ExecuteInEditMode]
+
+      [RequireComponent(typeof(MapMagicObject))]
+
+      public class RepetitionlessMapMagic : MonoBehaviour
+    content.vb: >-
+      <ExecuteInEditMode>
+
+      <RequireComponent(GetType(MapMagicObject))>
+
+      Public Class RepetitionlessMapMagic Inherits MonoBehaviour
+  inheritance:
+  - System.Object
+  - UnityEngine.Object
+  - UnityEngine.Component
+  - UnityEngine.Behaviour
+  - UnityEngine.MonoBehaviour
+  attributes:
+  - type: UnityEngine.ExecuteInEditMode
+    ctor: UnityEngine.ExecuteInEditMode.#ctor
+    arguments: []
+references:
+- uid: Repetitionless.Runtime.Integrations.MapMagic
+  commentId: N:Repetitionless.Runtime.Integrations.MapMagic
+  name: Repetitionless.Runtime.Integrations.MapMagic
+  nameWithType: Repetitionless.Runtime.Integrations.MapMagic
+  fullName: Repetitionless.Runtime.Integrations.MapMagic
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Integrations
+    name: Integrations
+  - name: .
+  - uid: Repetitionless.Runtime.Integrations.MapMagic
+    name: MapMagic
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Integrations
+    name: Integrations
+  - name: .
+  - uid: Repetitionless.Runtime.Integrations.MapMagic
+    name: MapMagic
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: UnityEngine.Object
+  commentId: T:UnityEngine.Object
+  parent: UnityEngine
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: UnityEngine.Object
+- uid: UnityEngine.Component
+  commentId: T:UnityEngine.Component
+  parent: UnityEngine
+  isExternal: true
+  name: Component
+  nameWithType: Component
+  fullName: UnityEngine.Component
+- uid: UnityEngine.Behaviour
+  commentId: T:UnityEngine.Behaviour
+  parent: UnityEngine
+  isExternal: true
+  name: Behaviour
+  nameWithType: Behaviour
+  fullName: UnityEngine.Behaviour
+- uid: UnityEngine.MonoBehaviour
+  commentId: T:UnityEngine.MonoBehaviour
+  parent: UnityEngine
+  isExternal: true
+  name: MonoBehaviour
+  nameWithType: MonoBehaviour
+  fullName: UnityEngine.MonoBehaviour
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
