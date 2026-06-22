@@ -34,6 +34,7 @@ jobs:
       matrix:
         project-path: [ "True Seamless Texturing" ]
         documentation-path: [ "Documentation" ]
+        release-setup-folder: [ "ReleaseSetup" ]
         unity-version:
           - 2022.3.62f3
     steps:
@@ -85,6 +86,11 @@ jobs:
           rm "HDRP/TerrainNew.meta"
           mv "HDRP" "HDRP~"
           rm "HDRP.meta"
+      - name: Setup packages for 2022.3
+        run: |
+          rm "${{ matrix.project-path }}/Packages/manifest.json"
+          rm "${{ matrix.project-path }}/Packages/packages-lock.json"
+          mv "${{ matrix.release-setup-folder }}/build_manifest.json" "${{ matrix.project-path }}/Packages/manifest.json"
       - name: Cache Library
         uses: actions/cache@v3
         with:
