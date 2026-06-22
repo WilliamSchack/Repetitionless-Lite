@@ -19,22 +19,6 @@ namespace Repetitionless.Editor.Processors
     {
         static PostPackageImport()
         {
-            if (RepetitionlessPrefs.Data.LiteMode) {
-                ProUpgrade();
-            }
-
-            if (NewVersionImported()) {
-                HandleVersionUpdate();
-                
-                RepetitionlessPrefs.UpdatePrefs((p) => {
-                    p.LastProcessedVersion = RepetitionlessPackageInfo.Info.version;
-                });
-            }
-
-            if (RepetitionlessPrefs.Data.WelcomeWindowShown)
-                return;
-
-            // Open the window after importing
             AssetDatabase.importPackageCompleted += PackageImported;
         }
 
@@ -67,6 +51,26 @@ namespace Repetitionless.Editor.Processors
 
         private static void PackageImported(string packageName)
         {
+            AssetDatabase.importPackageCompleted -= PackageImported;
+
+            if (RepetitionlessPrefs.Data.LiteMode) {
+                ProUpgrade();
+            }
+
+            if (NewVersionImported()) {
+                HandleVersionUpdate();
+                
+                RepetitionlessPrefs.UpdatePrefs((p) => {
+                    p.LastProcessedVersion = RepetitionlessPackageInfo.Info.version;
+                });
+            }
+
+            RenderPipelineChecker.CheckInstalledPackages();
+
+            // Show welcome window if first time installing
+            if (RepetitionlessPrefs.Data.WelcomeWindowShown)
+                return;
+
             WelcomeWindow.Open(true);
             ShowReviewLog();
 
@@ -74,8 +78,6 @@ namespace Repetitionless.Editor.Processors
                 p.WelcomeWindowShown = true;
                 p.LastProcessedVersion = RepetitionlessPackageInfo.Info.version;
             });
-
-            AssetDatabase.importPackageCompleted -= PackageImported;
         }
 
         private static int[] GetLastVersion()

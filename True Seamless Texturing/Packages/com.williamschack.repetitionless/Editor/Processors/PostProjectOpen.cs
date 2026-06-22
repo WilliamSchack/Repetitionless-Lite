@@ -1,8 +1,9 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
+using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Repetitionless.Editor.Processors
 {
@@ -26,6 +27,9 @@ namespace Repetitionless.Editor.Processors
 
             // Setup colour space checker
             RepetitionlessColourSpaceUpdater.Initialize();
+
+            // Check if urp/hdrp was updated while project was closed
+            RenderPipelineChecker.CheckInstalledPackages();
 
             // Update hdrp terrain shader if required
             CheckAndUpdateHDRPTerrainShader();
