@@ -1,6 +1,18 @@
 **CHANGELOG**
 
-- Replaced Terrain with Layered shader
-- Added mode selection for layered materials with terrain layers and control textures
-- Improved the layer interface
-- Removed internal sub graph
+- Improved performance by 2x-10x depending on the setup
+- Added terrain instancing support for
+  - BIRP & URP in all unity versions
+  - HDRP in Unity 6.3+
+- Many various improvements and fixes
+
+**This update includes breaking changes but most will be automatically handled when updating. This includes:**
+
+**Automatically Updated**
+- BIRP & URP shaders replaced with shader code
+- Layered shader split into LayeredTerrain & LayeredLit
+- New shader keywords have been added
+
+**Require Manual Updating**
+- SubGraphs will need to be re-added to shaders using them
+- Shader code has moved to "Shaders/Common". Paths in shaders referencing them will need to be updated
