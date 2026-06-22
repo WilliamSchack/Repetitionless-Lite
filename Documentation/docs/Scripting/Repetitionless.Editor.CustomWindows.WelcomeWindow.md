@@ -14,7 +14,7 @@ The welcome window that is shown when first installing the package
 ### Declaration
 
 ``` csharp
-[MenuItem("Window/Repetitionless/Open Window", secondaryPriority = 0)]
+[MenuItem("Window/Repetitionless/Open Window", priority = 0)]
 public static void Open()
 ```
 

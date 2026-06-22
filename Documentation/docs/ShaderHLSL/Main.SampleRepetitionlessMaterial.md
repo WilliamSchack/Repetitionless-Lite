@@ -12,13 +12,13 @@ Used to sample a repetitionless material
 
 ``` csharp
 void GetRepetitionlessMaterialColor(
-	SamplerState SS, float2 UV, float3 TangentNormalVector,
+	SamplerState SS, float2 UV, float3 WorldNormalVector,
 	int SurfaceType, int DebuggingIndex,
 	
 	int ArrayLayerIndex,
-	UnityTexture2DArray AVTextures,
-	UnityTexture2DArray NSOTextures,
-	UnityTexture2DArray EMTextures,
+	Texture2DArray AVTextures,
+	Texture2DArray NSOTextures,
+	Texture2DArray EMTextures,
 	int AssignedAVTextures[3],
 	int AssignedNSOTextures[3],
 	int AssignedEMTextures[3],
@@ -40,7 +40,7 @@ void GetRepetitionlessMaterialColor(
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SS                  | Sampler state used for sampling textures                                                                                                                                                                             |
 | UV                  | The UV used for sampling textures and noise                                                                                                                                                                          |
-| TangentNormalVector | The current tangent normal vector                                                                                                                                                                                    |
+| WorldNormalVector   | The current world normal vector                                                                                                                                                                                      |
 | SurfaceType         | The surface type of the material as shown in the inspector<br>0: Opaque<br>1: Cutout<br>2: Transparent                                                                                                               |
 | DebuggingIndex      | The selected debugging type as shown in the inspector<br>*Anything outside the below range is disabled*<br>0: Voronoi Cells<br>1: Edge Mask<br>2: Distance Mask<br>3: Blend Material Mask<br>4: Variation Multiplier |
 | LayerIndex          | The constant index of the layer in the texture arrays                                                                                                                                                                |

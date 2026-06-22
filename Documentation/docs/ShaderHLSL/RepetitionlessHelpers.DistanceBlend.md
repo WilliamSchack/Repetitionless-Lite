@@ -44,7 +44,7 @@ void DistanceBlendTilingOffset_float(
 	
 	SamplerState SS, float2 UV,
 	float4 BaseTilingOffset, float4 FarTilingOffset,
-	UnityTexture2D Texture,
+	Texture2D Texture,
 	
 	out float4 ColourOut
 )

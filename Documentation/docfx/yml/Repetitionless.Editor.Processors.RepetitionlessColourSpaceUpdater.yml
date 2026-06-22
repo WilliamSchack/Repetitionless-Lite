@@ -5,7 +5,6 @@ items:
   id: RepetitionlessColourSpaceUpdater
   parent: Repetitionless.Editor.Processors
   children:
-  - Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.Initialize
   - Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.RepackMaterialsIfColourSpaceChanged(System.Collections.Generic.List{UnityEngine.Material},System.Boolean)
   langs:
   - csharp
@@ -17,7 +16,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RepetitionlessColourSpaceUpdater.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessColourSpaceUpdater
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RepetitionlessColourSpaceUpdater.cs
@@ -32,34 +31,6 @@ items:
     content.vb: Public Module RepetitionlessColourSpaceUpdater
   inheritance:
   - System.Object
-- uid: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.Initialize
-  commentId: M:Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.Initialize
-  id: Initialize
-  parent: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater
-  langs:
-  - csharp
-  - vb
-  name: Initialize()
-  nameWithType: RepetitionlessColourSpaceUpdater.Initialize()
-  fullName: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.Initialize()
-  type: Method
-  source:
-    remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RepetitionlessColourSpaceUpdater.cs
-      branch: main
-      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
-    id: Initialize
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RepetitionlessColourSpaceUpdater.cs
-    startLine: 19
-  assemblies:
-  - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.Processors
-  summary: "\nCalled on project open in PostProjectOpen\n"
-  example: []
-  syntax:
-    content: public static void Initialize()
-    content.vb: Public Shared Sub Initialize()
-  overload: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.Initialize*
 - uid: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.RepackMaterialsIfColourSpaceChanged(System.Collections.Generic.List{UnityEngine.Material},System.Boolean)
   commentId: M:Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.RepackMaterialsIfColourSpaceChanged(System.Collections.Generic.List{UnityEngine.Material},System.Boolean)
   id: RepackMaterialsIfColourSpaceChanged(System.Collections.Generic.List{UnityEngine.Material},System.Boolean)
@@ -74,7 +45,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RepetitionlessColourSpaceUpdater.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepackMaterialsIfColourSpaceChanged
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RepetitionlessColourSpaceUpdater.cs
@@ -138,11 +109,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.Initialize*
-  commentId: Overload:Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.Initialize
-  name: Initialize
-  nameWithType: RepetitionlessColourSpaceUpdater.Initialize
-  fullName: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.Initialize
 - uid: Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.RepackMaterialsIfColourSpaceChanged*
   commentId: Overload:Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.RepackMaterialsIfColourSpaceChanged
   name: RepackMaterialsIfColourSpaceChanged

@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessMaterialCreator
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
@@ -51,7 +51,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
@@ -98,7 +98,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
@@ -142,7 +142,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateMaterialAtCurrentFolder
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
@@ -180,7 +180,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateTerrainMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
@@ -227,7 +227,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateTerrainMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
@@ -271,7 +271,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateTerrainMaterialAtCurrentFolder
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
@@ -309,7 +309,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialCreator.cs

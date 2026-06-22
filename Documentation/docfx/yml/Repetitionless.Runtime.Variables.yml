@@ -7,6 +7,7 @@ items:
   - Repetitionless.Runtime.Variables.EDistanceBlendMode
   - Repetitionless.Runtime.Variables.ELayerMode
   - Repetitionless.Runtime.Variables.EMaskType
+  - Repetitionless.Runtime.Variables.EMaxLayers
   - Repetitionless.Runtime.Variables.ENoiseQuality
   - Repetitionless.Runtime.Variables.ERenderPipeline
   - Repetitionless.Runtime.Variables.ESurfaceType
@@ -93,6 +94,12 @@ references:
   name: ELayerMode
   nameWithType: ELayerMode
   fullName: Repetitionless.Runtime.Variables.ELayerMode
+- uid: Repetitionless.Runtime.Variables.EMaxLayers
+  commentId: T:Repetitionless.Runtime.Variables.EMaxLayers
+  parent: Repetitionless.Runtime.Variables
+  name: EMaxLayers
+  nameWithType: EMaxLayers
+  fullName: Repetitionless.Runtime.Variables.EMaxLayers
 - uid: Repetitionless.Runtime.Variables.RepetitionlessLayerData
   commentId: T:Repetitionless.Runtime.Variables.RepetitionlessLayerData
   parent: Repetitionless.Runtime.Variables

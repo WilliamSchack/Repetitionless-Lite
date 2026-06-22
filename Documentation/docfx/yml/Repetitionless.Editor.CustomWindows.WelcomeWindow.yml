@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: WelcomeWindow
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
@@ -49,7 +49,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Open
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
@@ -61,11 +61,11 @@ items:
   example: []
   syntax:
     content: >-
-      [MenuItem("Window/Repetitionless/Open Window", secondaryPriority = 0)]
+      [MenuItem("Window/Repetitionless/Open Window", priority = 0)]
 
       public static void Open()
     content.vb: >-
-      <MenuItem("Window/Repetitionless/Open Window", secondaryPriority:=0)>
+      <MenuItem("Window/Repetitionless/Open Window", priority:=0)>
 
       Public Shared Sub Open()
   overload: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open*
@@ -76,8 +76,8 @@ items:
     - type: System.String
       value: Window/Repetitionless/Open Window
     namedArguments:
-    - name: secondaryPriority
-      type: System.Single
+    - name: priority
+      type: System.Int32
       value: 0
 - uid: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean,System.Boolean)
   commentId: M:Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean,System.Boolean)
@@ -93,7 +93,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Open
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs

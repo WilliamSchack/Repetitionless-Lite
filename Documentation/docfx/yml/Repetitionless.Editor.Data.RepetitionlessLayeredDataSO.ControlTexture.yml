@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ControlTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
@@ -53,7 +53,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-      branch: main
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ChannelTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
@@ -64,7 +64,7 @@ items:
   syntax:
     content: public TexturePacker.TextureData[] ChannelTextures
     return:
-      type: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]
+      type: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]
     content.vb: Public ChannelTextures As TexturePacker.TextureData()
 references:
 - uid: Repetitionless.Editor.Data
@@ -106,21 +106,21 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]
   isExternal: true
   name: TextureData[]
   nameWithType: TexturePacker.TextureData[]
-  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]
   nameWithType.vb: TexturePacker.TextureData()
-  fullName.vb: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData()
+  fullName.vb: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData()
   name.vb: TextureData()
   spec.csharp:
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
     name: TextureData
   - name: '['
   - name: ']'
   spec.vb:
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
     name: TextureData
   - name: (
   - name: )

@@ -64,7 +64,7 @@ Gets the actual index in a texture array based off the assigned textures and con
 
 ``` csharp
 float4 SampleArrayAtConstantIndex(
-	UnityTexture2DArray TextureArray,
+	Texture2DArray TextureArray,
 	int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNKS],
 	int Index,
 	float2 UV,
@@ -102,7 +102,7 @@ Samples a texture array based on a constant index
 
 ``` csharp
 void SampleArrayAtConstantIndex_float(
-	UnityTexture2DArray TextureArray,
+	Texture2DArray TextureArray,
 	int TexturesAssignedCompressed,
 	int Index,
 	float2 UV,

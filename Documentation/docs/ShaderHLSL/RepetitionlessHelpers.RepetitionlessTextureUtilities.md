@@ -12,7 +12,7 @@ Samples textures at the center and edges if required of modified UVs based on vo
 
 ``` csharp
 float4 SampleRepetitionlessTexture(
-	UnityTexture2D Texture,
+	Texture2D Texture,
 	SamplerState SS,
 	
 	float EdgeMask,
@@ -53,7 +53,7 @@ Samples the base and edge colour if required and lerps them together using a reg
 
 ``` csharp
 float4 SampleRepetitionlessArrayTexture(
-	UnityTexture2DArray TextureArray,
+	Texture2DArray TextureArray,
 	int AssignedTextures[3],
 	int ConstantIndex,
 	SamplerState SS,

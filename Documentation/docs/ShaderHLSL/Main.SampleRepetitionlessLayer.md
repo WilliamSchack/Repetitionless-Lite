@@ -12,18 +12,18 @@ Used to sample a repetitionless layer
 
 ``` csharp
 void SampleRepetitionlessLayer_float(
-	SamplerState SS, float2 UV, float3 TangentNormalVector,
+	SamplerState SS, float2 UV, float3 WorldNormalVector,
 	float3 WorldPosition, float3 CameraPosition,
 	int SurfaceType, int DebuggingIndex,
 	
 	int LayerIndex,
-	UnityTexture2D PropertiesTexture,
-	UnityTexture2D AssignedTexturesTexture,
+	Texture2D PropertiesTexture,
+	Texture2D AssignedTexturesTexture,
 
-	UnityTexture2DArray AVTextures,
-	UnityTexture2DArray NSOTextures,
-	UnityTexture2DArray EMTextures,
-	UnityTexture2DArray BMTextures,
+	Texture2DArray AVTextures,
+	Texture2DArray NSOTextures,
+	Texture2DArray EMTextures,
+	Texture2DArray BMTextures,
 	
     out float4 AlbedoColorOut,
     out float3 NormalVectorOut,
@@ -40,7 +40,7 @@ void SampleRepetitionlessLayer_float(
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SS                      | Sampler state used for sampling textures                                                                                                                                                                             |
 | UV                      | The UV used for sampling textures and noise                                                                                                                                                                          |
-| TangentNormalVector     | The current tangent normal vector                                                                                                                                                                                    |
+| WorldNormalVector       | The current world normal vector                                                                                                                                                                                      |
 | WorldPosition           | The current world position                                                                                                                                                                                           |
 | CameraPosition          | The current camera position                                                                                                                                                                                          |
 | SurfaceType             | The surface type of the material as shown in the inspector<br>0: Opaque<br>1: Cutout<br>2: Transparent                                                                                                               |
@@ -76,12 +76,12 @@ Samples a RepetitionlessLayer, automatically blending between and handling each 
 
 ``` csharp
 void SampleRepetitionlessLayer_float(
-	SamplerState SS, float2 UV, float3 TangentNormalVector,
+	SamplerState SS, float2 UV, float3 WorldNormalVector,
 	float3 WorldPosition, float3 CameraPosition,
 	int SurfaceType, int DebuggingIndex,
 	
 	int LayerIndex,
-	UnityTexture2D PropertiesTexture,
+	Texture2D PropertiesTexture,
 	int AssignedAVTextures0,
 	int AssignedAVTextures1,
 	int AssignedAVTextures2,
@@ -93,10 +93,10 @@ void SampleRepetitionlessLayer_float(
 	int AssignedEMTextures2,
 	int AssignedBMTextures0,
 
-	UnityTexture2DArray AVTextures,
-	UnityTexture2DArray NSOTextures,
-	UnityTexture2DArray EMTextures,
-	UnityTexture2DArray BMTextures,
+	Texture2DArray AVTextures,
+	Texture2DArray NSOTextures,
+	Texture2DArray EMTextures,
+	Texture2DArray BMTextures,
 	
     out float4 AlbedoColorOut,
     out float3 NormalVectorOut,
@@ -113,7 +113,7 @@ void SampleRepetitionlessLayer_float(
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SS                   | Sampler state used for sampling textures                                                                                                                                                                             |
 | UV                   | The UV used for sampling textures and noise                                                                                                                                                                          |
-| TangentNormalVector  | The current tangent normal vector                                                                                                                                                                                    |
+| WorldNormalVector    | The current world normal vector                                                                                                                                                                                      |
 | WorldPosition        | The current world position                                                                                                                                                                                           |
 | CameraPosition       | The current camera position                                                                                                                                                                                          |
 | SurfaceType          | The surface type of the material as shown in the inspector<br>0: Opaque<br>1: Cutout<br>2: Transparent                                                                                                               |

@@ -1,41 +1,41 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
-  commentId: T:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
+  commentId: T:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   id: TextureArrayCustomChannelsGUIDrawer
-  parent: Repetitionless.Editor.GUIUtilities
+  parent: Repetitionless.Editor.Utilities.GUI
   children:
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.#ctor(Repetitionless.Editor.Data.MaterialDataManager,Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]},System.Action,System.Func{System.Int32,System.Int32},System.Action{System.Int32,System.Int32},UnityEngine.Vector4,UnityEditor.MaterialProperty,System.Int32,System.String)
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.Array
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.ArrayLinear
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DeleteArray
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent)
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture(UnityEngine.Rect,System.Int32,System.Int32,UnityEngine.GUIContent)
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.OnTextureUpdated
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(System.Int32)
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(System.Int32)
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureFormat
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TransferMipmaps
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateArray(UnityEngine.Texture2DArray)
-  - Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateTexture(UnityEngine.Texture2D,System.Int32,System.Int32,System.Boolean)
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.#ctor(Repetitionless.Editor.Data.MaterialDataManager,Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]},System.Action,System.Func{System.Int32,System.Int32},System.Action{System.Int32,System.Int32},UnityEngine.Vector4,UnityEditor.MaterialProperty,System.Int32,System.String)
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.Array
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.ArrayLinear
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DeleteArray
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent)
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture(UnityEngine.Rect,System.Int32,System.Int32,UnityEngine.GUIContent)
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.OnTextureUpdated
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(System.Int32)
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(System.Int32)
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureFormat
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TransferMipmaps
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateArray(UnityEngine.Texture2DArray)
+  - Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateTexture(UnityEngine.Texture2D,System.Int32,System.Int32,System.Boolean)
   langs:
   - csharp
   - vb
   name: TextureArrayCustomChannelsGUIDrawer
   nameWithType: TextureArrayCustomChannelsGUIDrawer
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   type: Class
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureArrayCustomChannelsGUIDrawer
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
     startLine: 23
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nAllows drawing textures stored in a Texture2DArray to the GUI as well as functions for reading and deleting the array<br />\nAutomatically creates and manages its own array when textures are modified\n"
   example: []
   syntax:
@@ -43,28 +43,28 @@ items:
     content.vb: Public Class TextureArrayCustomChannelsGUIDrawer
   inheritance:
   - System.Object
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.Array
-  commentId: P:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.Array
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.Array
+  commentId: P:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.Array
   id: Array
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: Array
   nameWithType: TextureArrayCustomChannelsGUIDrawer.Array
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.Array
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.Array
   type: Property
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Array
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
     startLine: 32
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nThe array used for this field\n"
   example: []
   syntax:
@@ -73,29 +73,29 @@ items:
     return:
       type: UnityEngine.Texture2DArray
     content.vb: Public ReadOnly Property Array As Texture2DArray
-  overload: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.Array*
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureFormat
-  commentId: F:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureFormat
+  overload: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.Array*
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureFormat
+  commentId: F:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureFormat
   id: TextureFormat
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: TextureFormat
   nameWithType: TextureArrayCustomChannelsGUIDrawer.TextureFormat
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureFormat
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureFormat
   type: Field
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureFormat
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
     startLine: 39
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nThe texture format of the array\n"
   example: []
   syntax:
@@ -103,28 +103,28 @@ items:
     return:
       type: UnityEngine.TextureFormat
     content.vb: Public TextureFormat As TextureFormat
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TransferMipmaps
-  commentId: F:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TransferMipmaps
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TransferMipmaps
+  commentId: F:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TransferMipmaps
   id: TransferMipmaps
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: TransferMipmaps
   nameWithType: TextureArrayCustomChannelsGUIDrawer.TransferMipmaps
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TransferMipmaps
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TransferMipmaps
   type: Field
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TransferMipmaps
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
     startLine: 44
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nIf mipmaps will be transferred from the texture to the array if possible\n"
   example: []
   syntax:
@@ -132,28 +132,28 @@ items:
     return:
       type: System.Boolean
     content.vb: Public TransferMipmaps As Boolean
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.ArrayLinear
-  commentId: F:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.ArrayLinear
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.ArrayLinear
+  commentId: F:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.ArrayLinear
   id: ArrayLinear
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: ArrayLinear
   nameWithType: TextureArrayCustomChannelsGUIDrawer.ArrayLinear
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.ArrayLinear
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.ArrayLinear
   type: Field
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ArrayLinear
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
     startLine: 51
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nIf the output array will be linear<br />\nRecommended in the Built-In Render Pipeline only when including normal maps<br />\nNot Recommended in URP/HDRP as it will result in brighter textures\n"
   example: []
   syntax:
@@ -161,28 +161,28 @@ items:
     return:
       type: System.Boolean
     content.vb: Public ArrayLinear As Boolean
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.OnTextureUpdated
-  commentId: F:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.OnTextureUpdated
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.OnTextureUpdated
+  commentId: F:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.OnTextureUpdated
   id: OnTextureUpdated
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: OnTextureUpdated
   nameWithType: TextureArrayCustomChannelsGUIDrawer.OnTextureUpdated
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.OnTextureUpdated
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.OnTextureUpdated
   type: Field
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTextureUpdated
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
     startLine: 99
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nCallback for when the texture is updated\n"
   example: []
   syntax:
@@ -190,28 +190,28 @@ items:
     return:
       type: System.Action
     content.vb: Public OnTextureUpdated As Action
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.#ctor(Repetitionless.Editor.Data.MaterialDataManager,Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]},System.Action,System.Func{System.Int32,System.Int32},System.Action{System.Int32,System.Int32},UnityEngine.Vector4,UnityEditor.MaterialProperty,System.Int32,System.String)
-  commentId: M:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.#ctor(Repetitionless.Editor.Data.MaterialDataManager,Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]},System.Action,System.Func{System.Int32,System.Int32},System.Action{System.Int32,System.Int32},UnityEngine.Vector4,UnityEditor.MaterialProperty,System.Int32,System.String)
-  id: '#ctor(Repetitionless.Editor.Data.MaterialDataManager,Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]},System.Action,System.Func{System.Int32,System.Int32},System.Action{System.Int32,System.Int32},UnityEngine.Vector4,UnityEditor.MaterialProperty,System.Int32,System.String)'
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.#ctor(Repetitionless.Editor.Data.MaterialDataManager,Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]},System.Action,System.Func{System.Int32,System.Int32},System.Action{System.Int32,System.Int32},UnityEngine.Vector4,UnityEditor.MaterialProperty,System.Int32,System.String)
+  commentId: M:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.#ctor(Repetitionless.Editor.Data.MaterialDataManager,Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]},System.Action,System.Func{System.Int32,System.Int32},System.Action{System.Int32,System.Int32},UnityEngine.Vector4,UnityEditor.MaterialProperty,System.Int32,System.String)
+  id: '#ctor(Repetitionless.Editor.Data.MaterialDataManager,Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]},System.Action,System.Func{System.Int32,System.Int32},System.Action{System.Int32,System.Int32},UnityEngine.Vector4,UnityEditor.MaterialProperty,System.Int32,System.String)'
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: TextureArrayCustomChannelsGUIDrawer(MaterialDataManager, RefFunc<int, TextureData[]>, Action, Func<int, int>, Action<int, int>, Vector4, MaterialProperty, int, string)
   nameWithType: TextureArrayCustomChannelsGUIDrawer.TextureArrayCustomChannelsGUIDrawer(MaterialDataManager, TextureArrayCustomChannelsGUIDrawer.RefFunc<int, TexturePacker.TextureData[]>, Action, Func<int, int>, Action<int, int>, Vector4, MaterialProperty, int, string)
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureArrayCustomChannelsGUIDrawer(Repetitionless.Editor.Data.MaterialDataManager, Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc<int, Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]>, System.Action, System.Func<int, int>, System.Action<int, int>, UnityEngine.Vector4, UnityEditor.MaterialProperty, int, string)
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureArrayCustomChannelsGUIDrawer(Repetitionless.Editor.Data.MaterialDataManager, Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc<int, Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]>, System.Action, System.Func<int, int>, System.Action<int, int>, UnityEngine.Vector4, UnityEditor.MaterialProperty, int, string)
   type: Constructor
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: .ctor
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
     startLine: 131
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nConstructor\n"
   example: []
   syntax:
@@ -221,7 +221,7 @@ items:
       type: Repetitionless.Editor.Data.MaterialDataManager
       description: "\nThe material data manager that will be used\n"
     - id: getLayerChannelData
-      type: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]}
+      type: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]}
       description: "\nGetter for the layer channel data\n"
     - id: saveTextureDataAction
       type: System.Action
@@ -245,32 +245,32 @@ items:
       type: System.String
       description: "\nThe filename of the array asset\n"
     content.vb: Public Sub New(dataManager As MaterialDataManager, getLayerChannelData As TextureArrayCustomChannelsGUIDrawer.RefFunc(Of Integer, TexturePacker.TextureData()), saveTextureDataAction As Action, assignedTexturesChangedGetter As Func(Of Integer, Integer), assignedTexturesChangedSetter As Action(Of Integer, Integer), defaultChannelColours As Vector4, arrayProperty As MaterialProperty, textureCount As Integer, fileName As String = Nothing)
-  overload: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.#ctor*
+  overload: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.#ctor*
   nameWithType.vb: TextureArrayCustomChannelsGUIDrawer.New(MaterialDataManager, TextureArrayCustomChannelsGUIDrawer.RefFunc(Of Integer, TexturePacker.TextureData()), Action, Func(Of Integer, Integer), Action(Of Integer, Integer), Vector4, MaterialProperty, Integer, String)
-  fullName.vb: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.New(Repetitionless.Editor.Data.MaterialDataManager, Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc(Of Integer, Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData()), System.Action, System.Func(Of Integer, Integer), System.Action(Of Integer, Integer), UnityEngine.Vector4, UnityEditor.MaterialProperty, Integer, String)
+  fullName.vb: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.New(Repetitionless.Editor.Data.MaterialDataManager, Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc(Of Integer, Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData()), System.Action, System.Func(Of Integer, Integer), System.Action(Of Integer, Integer), UnityEngine.Vector4, UnityEditor.MaterialProperty, Integer, String)
   name.vb: New(MaterialDataManager, RefFunc(Of Integer, TextureData()), Action, Func(Of Integer, Integer), Action(Of Integer, Integer), Vector4, MaterialProperty, Integer, String)
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateArray(UnityEngine.Texture2DArray)
-  commentId: M:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateArray(UnityEngine.Texture2DArray)
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateArray(UnityEngine.Texture2DArray)
+  commentId: M:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateArray(UnityEngine.Texture2DArray)
   id: UpdateArray(UnityEngine.Texture2DArray)
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: UpdateArray(Texture2DArray)
   nameWithType: TextureArrayCustomChannelsGUIDrawer.UpdateArray(Texture2DArray)
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateArray(UnityEngine.Texture2DArray)
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateArray(UnityEngine.Texture2DArray)
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateArray
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 272
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+    startLine: 275
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nChanges the array to a new one<br />\n!! Assumes no textures were added or removed !!\n"
   example: []
   syntax:
@@ -280,29 +280,29 @@ items:
       type: UnityEngine.Texture2DArray
       description: "\nThe new array\n"
     content.vb: Public Sub UpdateArray(newArray As Texture2DArray)
-  overload: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateArray*
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(System.Int32)
-  commentId: M:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(System.Int32)
+  overload: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateArray*
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(System.Int32)
+  commentId: M:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(System.Int32)
   id: RemoveArrayLayer(System.Int32)
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: RemoveArrayLayer(int)
   nameWithType: TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(int)
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(int)
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(int)
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RemoveArrayLayer
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 307
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+    startLine: 310
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nDeletes a layer from the texture array\n"
   example: []
   syntax:
@@ -312,32 +312,32 @@ items:
       type: System.Int32
       description: "\nThe layer index\n"
     content.vb: Public Sub RemoveArrayLayer(index As Integer)
-  overload: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer*
+  overload: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer*
   nameWithType.vb: TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(Integer)
-  fullName.vb: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(Integer)
+  fullName.vb: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer(Integer)
   name.vb: RemoveArrayLayer(Integer)
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateTexture(UnityEngine.Texture2D,System.Int32,System.Int32,System.Boolean)
-  commentId: M:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateTexture(UnityEngine.Texture2D,System.Int32,System.Int32,System.Boolean)
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateTexture(UnityEngine.Texture2D,System.Int32,System.Int32,System.Boolean)
+  commentId: M:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateTexture(UnityEngine.Texture2D,System.Int32,System.Int32,System.Boolean)
   id: UpdateTexture(UnityEngine.Texture2D,System.Int32,System.Int32,System.Boolean)
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: UpdateTexture(Texture2D, int, int, bool)
   nameWithType: TextureArrayCustomChannelsGUIDrawer.UpdateTexture(Texture2D, int, int, bool)
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateTexture(UnityEngine.Texture2D, int, int, bool)
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateTexture(UnityEngine.Texture2D, int, int, bool)
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTexture
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 392
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+    startLine: 395
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nUpdates the texture in the array while handling its order, asset file, and material variables<br />\nAutomatically packs textures, specifically updating the texture at the input channelIndex<br />\nIn some situations this will request user input when changing textures with a popup\n"
   example: []
   syntax:
@@ -359,32 +359,32 @@ items:
       type: System.ValueTuple{UnityEngine.Texture2D,System.Boolean}
       description: "\nItem1: The changed texture<br />\nItem2: If the array was updated\n"
     content.vb: Public Function UpdateTexture(newTexture As Texture2D, index As Integer, channelIndex As Integer, force As Boolean = False) As (Texture2D, Boolean)
-  overload: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateTexture*
+  overload: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateTexture*
   nameWithType.vb: TextureArrayCustomChannelsGUIDrawer.UpdateTexture(Texture2D, Integer, Integer, Boolean)
-  fullName.vb: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateTexture(UnityEngine.Texture2D, Integer, Integer, Boolean)
+  fullName.vb: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateTexture(UnityEngine.Texture2D, Integer, Integer, Boolean)
   name.vb: UpdateTexture(Texture2D, Integer, Integer, Boolean)
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent)
-  commentId: M:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent)
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent)
   id: DrawTexture(System.Int32,System.Int32,UnityEngine.GUIContent)
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: DrawTexture(int, int, GUIContent)
   nameWithType: TextureArrayCustomChannelsGUIDrawer.DrawTexture(int, int, GUIContent)
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture(int, int, UnityEngine.GUIContent)
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture(int, int, UnityEngine.GUIContent)
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 669
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+    startLine: 672
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nDraws a texture from the array at a specific channel<br />\nGets the texture from the assigned texture data\n"
   example: []
   syntax:
@@ -403,32 +403,32 @@ items:
       type: UnityEngine.Texture2D
       description: "\nThe assigned texture\n"
     content.vb: Public Function DrawTexture(index As Integer, channelTextureIndex As Integer, content As GUIContent) As Texture2D
-  overload: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture*
+  overload: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture*
   nameWithType.vb: TextureArrayCustomChannelsGUIDrawer.DrawTexture(Integer, Integer, GUIContent)
-  fullName.vb: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture(Integer, Integer, UnityEngine.GUIContent)
+  fullName.vb: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture(Integer, Integer, UnityEngine.GUIContent)
   name.vb: DrawTexture(Integer, Integer, GUIContent)
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture(UnityEngine.Rect,System.Int32,System.Int32,UnityEngine.GUIContent)
-  commentId: M:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture(UnityEngine.Rect,System.Int32,System.Int32,UnityEngine.GUIContent)
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture(UnityEngine.Rect,System.Int32,System.Int32,UnityEngine.GUIContent)
+  commentId: M:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture(UnityEngine.Rect,System.Int32,System.Int32,UnityEngine.GUIContent)
   id: DrawTexture(UnityEngine.Rect,System.Int32,System.Int32,UnityEngine.GUIContent)
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: DrawTexture(Rect, int, int, GUIContent)
   nameWithType: TextureArrayCustomChannelsGUIDrawer.DrawTexture(Rect, int, int, GUIContent)
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture(UnityEngine.Rect, int, int, UnityEngine.GUIContent)
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture(UnityEngine.Rect, int, int, UnityEngine.GUIContent)
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 694
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+    startLine: 697
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nDraws a texture from the array at a specific channel<br />\nGets the texture from the assigned texture data\n"
   example: []
   syntax:
@@ -450,32 +450,32 @@ items:
       type: UnityEngine.Texture2D
       description: "\nThe assigned texture\n"
     content.vb: Public Function DrawTexture(rect As Rect, index As Integer, channelTextureIndex As Integer, content As GUIContent) As Texture2D
-  overload: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture*
+  overload: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture*
   nameWithType.vb: TextureArrayCustomChannelsGUIDrawer.DrawTexture(Rect, Integer, Integer, GUIContent)
-  fullName.vb: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture(UnityEngine.Rect, Integer, Integer, UnityEngine.GUIContent)
+  fullName.vb: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture(UnityEngine.Rect, Integer, Integer, UnityEngine.GUIContent)
   name.vb: DrawTexture(Rect, Integer, Integer, GUIContent)
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(System.Int32)
-  commentId: M:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(System.Int32)
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(System.Int32)
+  commentId: M:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(System.Int32)
   id: TextureAssignedAt(System.Int32)
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: TextureAssignedAt(int)
   nameWithType: TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(int)
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(int)
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(int)
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureAssignedAt
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 710
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+    startLine: 713
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nReturns if a texture is assigned at the given index\n"
   example: []
   syntax:
@@ -488,44 +488,44 @@ items:
       type: System.Boolean
       description: "\nIf the texture at the given index is assigned in the inspector\n"
     content.vb: Public Function TextureAssignedAt(index As Integer) As Boolean
-  overload: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt*
+  overload: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt*
   nameWithType.vb: TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(Integer)
-  fullName.vb: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(Integer)
+  fullName.vb: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt(Integer)
   name.vb: TextureAssignedAt(Integer)
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DeleteArray
-  commentId: M:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DeleteArray
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DeleteArray
+  commentId: M:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DeleteArray
   id: DeleteArray
-  parent: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  parent: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
   langs:
   - csharp
   - vb
   name: DeleteArray()
   nameWithType: TextureArrayCustomChannelsGUIDrawer.DeleteArray()
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DeleteArray()
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DeleteArray()
   type: Method
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DeleteArray
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/GUIUtilities/TextureArrayCustomChannelsGUIDrawer.cs
-    startLine: 718
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
+    startLine: 721
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.GUIUtilities
+  namespace: Repetitionless.Editor.Utilities.GUI
   summary: "\nClears the array and deletes its file and folder if empty\n"
   example: []
   syntax:
     content: public void DeleteArray()
     content.vb: Public Sub DeleteArray()
-  overload: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DeleteArray*
+  overload: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DeleteArray*
 references:
-- uid: Repetitionless.Editor.GUIUtilities
-  commentId: N:Repetitionless.Editor.GUIUtilities
-  name: Repetitionless.Editor.GUIUtilities
-  nameWithType: Repetitionless.Editor.GUIUtilities
-  fullName: Repetitionless.Editor.GUIUtilities
+- uid: Repetitionless.Editor.Utilities.GUI
+  commentId: N:Repetitionless.Editor.Utilities.GUI
+  name: Repetitionless.Editor.Utilities.GUI
+  nameWithType: Repetitionless.Editor.Utilities.GUI
+  fullName: Repetitionless.Editor.Utilities.GUI
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
@@ -533,8 +533,11 @@ references:
   - uid: Repetitionless.Editor
     name: Editor
   - name: .
-  - uid: Repetitionless.Editor.GUIUtilities
-    name: GUIUtilities
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.GUI
+    name: GUI
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
@@ -542,8 +545,11 @@ references:
   - uid: Repetitionless.Editor
     name: Editor
   - name: .
-  - uid: Repetitionless.Editor.GUIUtilities
-    name: GUIUtilities
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.GUI
+    name: GUI
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -560,11 +566,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.Array*
-  commentId: Overload:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.Array
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.Array*
+  commentId: Overload:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.Array
   name: Array
   nameWithType: TextureArrayCustomChannelsGUIDrawer.Array
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.Array
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.Array
 - uid: UnityEngine.Texture2DArray
   commentId: T:UnityEngine.Texture2DArray
   parent: UnityEngine
@@ -602,13 +608,13 @@ references:
   name: Action
   nameWithType: Action
   fullName: System.Action
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.#ctor*
-  commentId: Overload:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.#ctor
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.#ctor*
+  commentId: Overload:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.#ctor
   name: TextureArrayCustomChannelsGUIDrawer
   nameWithType: TextureArrayCustomChannelsGUIDrawer.TextureArrayCustomChannelsGUIDrawer
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureArrayCustomChannelsGUIDrawer
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureArrayCustomChannelsGUIDrawer
   nameWithType.vb: TextureArrayCustomChannelsGUIDrawer.New
-  fullName.vb: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.New
+  fullName.vb: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.New
   name.vb: New
 - uid: Repetitionless.Editor.Data.MaterialDataManager
   commentId: T:Repetitionless.Editor.Data.MaterialDataManager
@@ -616,21 +622,21 @@ references:
   name: MaterialDataManager
   nameWithType: MaterialDataManager
   fullName: Repetitionless.Editor.Data.MaterialDataManager
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]}
-  commentId: T:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]}
-  parent: Repetitionless.Editor.GUIUtilities
-  definition: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]}
+  commentId: T:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc{System.Int32,Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]}
+  parent: Repetitionless.Editor.Utilities.GUI
+  definition: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
   name: TextureArrayCustomChannelsGUIDrawer.RefFunc<int, TexturePacker.TextureData[]>
   nameWithType: TextureArrayCustomChannelsGUIDrawer.RefFunc<int, TexturePacker.TextureData[]>
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc<int, Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData[]>
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc<int, Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData[]>
   nameWithType.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of Integer, TexturePacker.TextureData())
-  fullName.vb: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc(Of Integer, Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData())
+  fullName.vb: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc(Of Integer, Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData())
   name.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of Integer, TexturePacker.TextureData())
   spec.csharp:
-  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
     name: TextureArrayCustomChannelsGUIDrawer
   - name: .
-  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
     name: RefFunc
   - name: <
   - uid: System.Int32
@@ -638,19 +644,19 @@ references:
     isExternal: true
   - name: ','
   - name: " "
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker
     name: TexturePacker
   - name: .
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
     name: TextureData
   - name: '['
   - name: ']'
   - name: '>'
   spec.vb:
-  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
     name: TextureArrayCustomChannelsGUIDrawer
   - name: .
-  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
     name: RefFunc
   - name: (
   - name: Of
@@ -660,10 +666,10 @@ references:
     isExternal: true
   - name: ','
   - name: " "
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker
     name: TexturePacker
   - name: .
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
     name: TextureData
   - name: (
   - name: )
@@ -805,19 +811,19 @@ references:
   - name: .
   - uid: Repetitionless.Editor.Data
     name: Data
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
-  commentId: T:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+  commentId: T:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
   name: TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
   nameWithType: TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc<TIn, TOut>
   nameWithType.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
-  fullName.vb: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
+  fullName.vb: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
   name.vb: TextureArrayCustomChannelsGUIDrawer.RefFunc(Of TIn, TOut)
   spec.csharp:
-  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
     name: TextureArrayCustomChannelsGUIDrawer
   - name: .
-  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
     name: RefFunc
   - name: <
   - name: TIn
@@ -826,10 +832,10 @@ references:
   - name: TOut
   - name: '>'
   spec.vb:
-  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer
     name: TextureArrayCustomChannelsGUIDrawer
   - name: .
-  - uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
+  - uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RefFunc`2
     name: RefFunc
   - name: (
   - name: Of
@@ -907,21 +913,21 @@ references:
   name: UnityEditor
   nameWithType: UnityEditor
   fullName: UnityEditor
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateArray*
-  commentId: Overload:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateArray
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateArray*
+  commentId: Overload:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateArray
   name: UpdateArray
   nameWithType: TextureArrayCustomChannelsGUIDrawer.UpdateArray
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateArray
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer*
-  commentId: Overload:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateArray
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer*
+  commentId: Overload:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer
   name: RemoveArrayLayer
   nameWithType: TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateTexture*
-  commentId: Overload:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateTexture
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.RemoveArrayLayer
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateTexture*
+  commentId: Overload:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateTexture
   name: UpdateTexture
   nameWithType: TextureArrayCustomChannelsGUIDrawer.UpdateTexture
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.UpdateTexture
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.UpdateTexture
 - uid: UnityEngine.Texture2D
   commentId: T:UnityEngine.Texture2D
   parent: UnityEngine
@@ -980,11 +986,11 @@ references:
   - name: " "
   - name: T2
   - name: )
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture*
-  commentId: Overload:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture*
+  commentId: Overload:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture
   name: DrawTexture
   nameWithType: TextureArrayCustomChannelsGUIDrawer.DrawTexture
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DrawTexture
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DrawTexture
 - uid: UnityEngine.GUIContent
   commentId: T:UnityEngine.GUIContent
   parent: UnityEngine
@@ -999,13 +1005,13 @@ references:
   name: Rect
   nameWithType: Rect
   fullName: UnityEngine.Rect
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt*
-  commentId: Overload:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt*
+  commentId: Overload:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt
   name: TextureAssignedAt
   nameWithType: TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt
-- uid: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DeleteArray*
-  commentId: Overload:Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DeleteArray
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.TextureAssignedAt
+- uid: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DeleteArray*
+  commentId: Overload:Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DeleteArray
   name: DeleteArray
   nameWithType: TextureArrayCustomChannelsGUIDrawer.DeleteArray
-  fullName: Repetitionless.Editor.GUIUtilities.TextureArrayCustomChannelsGUIDrawer.DeleteArray
+  fullName: Repetitionless.Editor.Utilities.GUI.TextureArrayCustomChannelsGUIDrawer.DeleteArray

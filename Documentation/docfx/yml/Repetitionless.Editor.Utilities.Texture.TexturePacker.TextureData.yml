@@ -1,33 +1,33 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
-  commentId: T:Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
+  commentId: T:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
   id: TexturePacker.TextureData
-  parent: Repetitionless.Editor.TextureUtilities
+  parent: Repetitionless.Editor.Utilities.Texture
   children:
-  - Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.DataTexture
-  - Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.Disabled
-  - Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.FromToChannels
-  - Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.NormalMap
-  - Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.Texture
+  - Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.DataTexture
+  - Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.Disabled
+  - Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.FromToChannels
+  - Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.NormalMap
+  - Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.Texture
   langs:
   - csharp
   - vb
   name: TexturePacker.TextureData
   nameWithType: TexturePacker.TextureData
-  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
   type: Struct
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureData
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
     startLine: 68
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.TextureUtilities
+  namespace: Repetitionless.Editor.Utilities.Texture
   summary: "\nContains the data for a texture\n"
   example: []
   syntax:
@@ -43,28 +43,28 @@ items:
   - type: System.SerializableAttribute
     ctor: System.SerializableAttribute.#ctor
     arguments: []
-- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.Texture
-  commentId: F:Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.Texture
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.Texture
+  commentId: F:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.Texture
   id: Texture
-  parent: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  parent: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
   langs:
   - csharp
   - vb
   name: Texture
   nameWithType: TexturePacker.TextureData.Texture
-  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.Texture
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.Texture
   type: Field
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Texture
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
     startLine: 74
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.TextureUtilities
+  namespace: Repetitionless.Editor.Utilities.Texture
   summary: "\nThe texture\n"
   example: []
   syntax:
@@ -72,28 +72,28 @@ items:
     return:
       type: UnityEngine.Texture2D
     content.vb: Public Texture As Texture2D
-- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.Disabled
-  commentId: F:Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.Disabled
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.Disabled
+  commentId: F:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.Disabled
   id: Disabled
-  parent: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  parent: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
   langs:
   - csharp
   - vb
   name: Disabled
   nameWithType: TexturePacker.TextureData.Disabled
-  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.Disabled
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.Disabled
   type: Field
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Disabled
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
     startLine: 78
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.TextureUtilities
+  namespace: Repetitionless.Editor.Utilities.Texture
   summary: "\nIf the texture will be ignored\n"
   example: []
   syntax:
@@ -101,28 +101,28 @@ items:
     return:
       type: System.Boolean
     content.vb: Public Disabled As Boolean
-- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.DataTexture
-  commentId: F:Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.DataTexture
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.DataTexture
+  commentId: F:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.DataTexture
   id: DataTexture
-  parent: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  parent: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
   langs:
   - csharp
   - vb
   name: DataTexture
   nameWithType: TexturePacker.TextureData.DataTexture
-  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.DataTexture
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.DataTexture
   type: Field
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DataTexture
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
     startLine: 83
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.TextureUtilities
+  namespace: Repetitionless.Editor.Utilities.Texture
   summary: "\nIf this texture is a data texture<br />\nIf enabled it will not be treated as srgb\n"
   example: []
   syntax:
@@ -130,28 +130,28 @@ items:
     return:
       type: System.Boolean
     content.vb: Public DataTexture As Boolean
-- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.NormalMap
-  commentId: F:Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.NormalMap
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.NormalMap
+  commentId: F:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.NormalMap
   id: NormalMap
-  parent: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  parent: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
   langs:
   - csharp
   - vb
   name: NormalMap
   nameWithType: TexturePacker.TextureData.NormalMap
-  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.NormalMap
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.NormalMap
   type: Field
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: NormalMap
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
     startLine: 88
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.TextureUtilities
+  namespace: Repetitionless.Editor.Utilities.Texture
   summary: "\nIf this texture is a normal map<br />\nIf enabled it will not be treated as srgb and will be packed as a normal\n"
   example: []
   syntax:
@@ -159,41 +159,41 @@ items:
     return:
       type: System.Boolean
     content.vb: Public NormalMap As Boolean
-- uid: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.FromToChannels
-  commentId: F:Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.FromToChannels
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.FromToChannels
+  commentId: F:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.FromToChannels
   id: FromToChannels
-  parent: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData
+  parent: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
   langs:
   - csharp
   - vb
   name: FromToChannels
   nameWithType: TexturePacker.TextureData.FromToChannels
-  fullName: Repetitionless.Editor.TextureUtilities.TexturePacker.TextureData.FromToChannels
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData.FromToChannels
   type: Field
   source:
     remote:
-      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
-      branch: main
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+      branch: shader-code
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: FromToChannels
-    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/TextureUtilities/TexturePacker.cs
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
     startLine: 92
   assemblies:
   - com.williamschack.Repetitionless.Editor
-  namespace: Repetitionless.Editor.TextureUtilities
+  namespace: Repetitionless.Editor.Utilities.Texture
   summary: "\nWhich channels will be copied to which other channels\n"
   example: []
   syntax:
     content: public List<TexturePacker.FromToChannel> FromToChannels
     return:
-      type: System.Collections.Generic.List{Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel}
+      type: System.Collections.Generic.List{Repetitionless.Editor.Utilities.Texture.TexturePacker.FromToChannel}
     content.vb: Public FromToChannels As List(Of TexturePacker.FromToChannel)
 references:
-- uid: Repetitionless.Editor.TextureUtilities
-  commentId: N:Repetitionless.Editor.TextureUtilities
-  name: Repetitionless.Editor.TextureUtilities
-  nameWithType: Repetitionless.Editor.TextureUtilities
-  fullName: Repetitionless.Editor.TextureUtilities
+- uid: Repetitionless.Editor.Utilities.Texture
+  commentId: N:Repetitionless.Editor.Utilities.Texture
+  name: Repetitionless.Editor.Utilities.Texture
+  nameWithType: Repetitionless.Editor.Utilities.Texture
+  fullName: Repetitionless.Editor.Utilities.Texture
   spec.csharp:
   - uid: Repetitionless
     name: Repetitionless
@@ -201,8 +201,11 @@ references:
   - uid: Repetitionless.Editor
     name: Editor
   - name: .
-  - uid: Repetitionless.Editor.TextureUtilities
-    name: TextureUtilities
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Texture
+    name: Texture
   spec.vb:
   - uid: Repetitionless
     name: Repetitionless
@@ -210,8 +213,11 @@ references:
   - uid: Repetitionless.Editor
     name: Editor
   - name: .
-  - uid: Repetitionless.Editor.TextureUtilities
-    name: TextureUtilities
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Texture
+    name: Texture
 - uid: UnityEngine.Texture2D
   commentId: T:UnityEngine.Texture2D
   parent: UnityEngine
@@ -241,25 +247,25 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: System.Collections.Generic.List{Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel}
-  commentId: T:System.Collections.Generic.List{Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel}
+- uid: System.Collections.Generic.List{Repetitionless.Editor.Utilities.Texture.TexturePacker.FromToChannel}
+  commentId: T:System.Collections.Generic.List{Repetitionless.Editor.Utilities.Texture.TexturePacker.FromToChannel}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.List`1
   name: List<TexturePacker.FromToChannel>
   nameWithType: List<TexturePacker.FromToChannel>
-  fullName: System.Collections.Generic.List<Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel>
+  fullName: System.Collections.Generic.List<Repetitionless.Editor.Utilities.Texture.TexturePacker.FromToChannel>
   nameWithType.vb: List(Of TexturePacker.FromToChannel)
-  fullName.vb: System.Collections.Generic.List(Of Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel)
+  fullName.vb: System.Collections.Generic.List(Of Repetitionless.Editor.Utilities.Texture.TexturePacker.FromToChannel)
   name.vb: List(Of TexturePacker.FromToChannel)
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
     isExternal: true
   - name: <
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker
     name: TexturePacker
   - name: .
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.FromToChannel
     name: FromToChannel
   - name: '>'
   spec.vb:
@@ -269,10 +275,10 @@ references:
   - name: (
   - name: Of
   - name: " "
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker
     name: TexturePacker
   - name: .
-  - uid: Repetitionless.Editor.TextureUtilities.TexturePacker.FromToChannel
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.FromToChannel
     name: FromToChannel
   - name: )
 - uid: System.Collections.Generic.List`1

@@ -71,7 +71,7 @@ void GetRepetitionlessNoiseUVs(
 	bool RandomiseRotation,
 	float2 RandomiseRotationMinMax,
 	
-	UnityTexture2D NoiseTexture,
+	Texture2D NoiseTexture,
 	int TextureResolution,
 	
 	out float VoronoiCells,
@@ -115,7 +115,7 @@ Gets UVs based on a voronoi texture
 
 ``` csharp
 void AddRepetitionlessNoise_float(
-	UnityTexture2D InputTexture,
+	Texture2D InputTexture,
 	SamplerState SS,
 	float2 UV,
 	
