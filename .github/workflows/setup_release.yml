@@ -47,7 +47,7 @@ jobs:
           large-packages: false
           docker-images: false
           swap-storage: false
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           sparse-checkout:  |
             ${{ matrix.project-path }}
@@ -93,7 +93,7 @@ jobs:
           rm "${{ matrix.project-path }}/Packages/packages-lock.json"
           mv "${{ matrix.release-setup-folder }}/build_manifest.json" "${{ matrix.project-path }}/Packages/manifest.json"
       - name: Cache Library
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: "${{ matrix.project-path }}/Library"
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
@@ -139,7 +139,7 @@ jobs:
         package-download-dir: [ "package" ]
         release-notes-filename: [ "ReleaseSetup/ReleaseNotes.md" ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           sparse-checkout: ${{ matrix.release-notes-filename }}
           fetch-depth: 0
