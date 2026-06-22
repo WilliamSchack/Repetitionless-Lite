@@ -56,13 +56,13 @@ jobs:
         local-docs-folder: [ "Documentation/site" ]
     steps:
       - name: Checkout Website
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: WilliamSchack/Website
           token: ${{ secrets.ACTIONS_PAT_TOKEN }}
           path: Website
       - name: Get Built Docs
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           sparse-checkout: ${{ matrix.release-setup-folder }}
           fetch-depth: 0
@@ -94,7 +94,7 @@ jobs:
         package-download-dir: [ "package" ]
     steps:
       - name: Get Repo Details
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           sparse-checkout: ''
           sparse-checkout-cone-mode: false # Dont checkout anything
