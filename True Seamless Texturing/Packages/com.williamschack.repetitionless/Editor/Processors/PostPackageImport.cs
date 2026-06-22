@@ -177,6 +177,8 @@ namespace Repetitionless.Editor.Processors
             RemoveOldShaderFiles();
             UpdateOldMaterials();
             PostProjectOpen.CheckAndUpdateHDRPTerrainShader(true);
+
+            EditorUtility.DisplayDialog("Repetitionless Update", "v1.4.0 includes major performance increases but also comes with many breaking changes. Many of these have been automatically updated but if you are using the sub graphs or shader code, view the github or discord for any required changes. Enjoy the extra frames :)", "Ok");
         }
 
         private static void RemoveOldShaderFiles()
