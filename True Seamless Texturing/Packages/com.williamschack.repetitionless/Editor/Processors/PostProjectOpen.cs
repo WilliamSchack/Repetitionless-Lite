@@ -101,7 +101,7 @@ namespace Repetitionless.Editor.Processors
                 File.Delete(oldFolderPath + ".meta");
             }
 
-            if (Directory.Exists(newFolderPath))
+            if (Directory.Exists(newFolderPath + "~"))
                 Directory.Move(newFolderPath + "~", newFolderPath);
 
             AssetDatabase.Refresh();
