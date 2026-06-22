@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using System.IO;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -12,13 +13,27 @@ namespace Repetitionless.Editor.Processors
     using Data;
     using CustomWindows;
     using Config;
-    using Repetitionless.Editor.Materials;
+    using Materials;
 
     [InitializeOnLoad]
     public static class PostPackageImport
     {
         static PostPackageImport()
         {
+            if (RepetitionlessPrefs.Data.LiteMode) {
+                ProUpgrade();
+            }
+
+            if (NewVersionImported()) {
+                HandleVersionUpdate();
+                
+                RepetitionlessPrefs.UpdatePrefs((p) => {
+                    p.LastProcessedVersion = RepetitionlessPackageInfo.Info.version;
+                });
+            }
+
+            RenderPipelineChecker.CheckInstalledPackages();
+
             AssetDatabase.importPackageCompleted += PackageImported;
         }
 
@@ -52,20 +67,6 @@ namespace Repetitionless.Editor.Processors
         private static void PackageImported(string packageName)
         {
             AssetDatabase.importPackageCompleted -= PackageImported;
-
-            if (RepetitionlessPrefs.Data.LiteMode) {
-                ProUpgrade();
-            }
-
-            if (NewVersionImported()) {
-                HandleVersionUpdate();
-                
-                RepetitionlessPrefs.UpdatePrefs((p) => {
-                    p.LastProcessedVersion = RepetitionlessPackageInfo.Info.version;
-                });
-            }
-
-            RenderPipelineChecker.CheckInstalledPackages();
 
             // Show welcome window if first time installing
             if (RepetitionlessPrefs.Data.WelcomeWindowShown)
@@ -185,10 +186,16 @@ namespace Repetitionless.Editor.Processors
             string hlslFolder = shadersFolder + "HLSL";
             string graphsFolder = shadersFolder + "ShaderGraphs";
 
-            Directory.Delete(hlslFolder, true);
-            Directory.Delete(graphsFolder, true);
-            File.Delete(hlslFolder + ".meta");
-            File.Delete(graphsFolder + ".meta");
+            if (Directory.Exists(hlslFolder)) {
+                Directory.Delete(hlslFolder, true);
+                File.Delete(hlslFolder + ".meta");
+            }
+
+            if (Directory.Exists(graphsFolder)) {
+                Directory.Delete(graphsFolder, true);
+                File.Delete(graphsFolder + ".meta");
+            }
+
             AssetDatabase.Refresh();
         }
 
@@ -274,6 +281,26 @@ namespace Repetitionless.Editor.Processors
                 RepetitionlessMaterialUtilities.UpdateDistanceBlendKeyword(mat, data);
                 RepetitionlessMaterialUtilities.UpdateMaterialBlendKeyword(mat, data);
                 RepetitionlessMaterialUtilities.UpdateVariationKeyword(mat, isLayered ? Constants.MAX_LAYERS_TERRAIN : Constants.MAX_LAYERS_REGULAR, data);
+
+                // Get and apply max layers
+                if (isLayered) {
+                    // Get the layer count
+                    // For control texture materials, it will have to be manually increased
+                    int layerCount = 4;
+                    if (dataManager.AssetExists(Constants.TERRAIN_DATA_FILE_NAME)) {
+                        RepetitionlessTerrainDataSO terrainData = dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
+                        layerCount = terrainData.TerrainLayers.Count;
+                    }
+
+                    // Update the layer count and keyword
+                    RepetitionlessLayeredDataSO layeredData = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
+                    layeredData.MaxLayers = (EMaxLayers)Mathf.Max(4, Mathf.Min((layerCount + 3) / 4 * 4, 32));
+
+                    RepetitionlessMaterialUtilities.SetEnumKeywordInt(mat, Constants.MAX_LAYERS_KEYWORD_PREFIX, layeredData.MaxLayers);
+                }
+
+                // Save the scene to reload terrains in the active scene
+                EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
             }
         }
 

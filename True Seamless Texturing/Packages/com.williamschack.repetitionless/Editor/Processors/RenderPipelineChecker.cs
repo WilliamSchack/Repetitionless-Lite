@@ -42,7 +42,6 @@ namespace Repetitionless.Editor.Processors
             bool urpFound = false;
             bool hdrpFound = false;
             foreach (PackageInfo package in PackageInfo.GetAllRegisteredPackages()) {
-                Debug.Log(package.name);
                 if (package.name == URP_PACKAGE_NAME)  urpFound = true;
                 if (package.name == HDRP_PACKAGE_NAME) hdrpFound = true;
             }
