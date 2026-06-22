@@ -77,6 +77,16 @@ jobs:
           git add -A
           git commit -m '[automated commit] v${{ inputs.version }} Updated docs and package.json'
           git push
+      - name: Hide URP/HDRP Folders
+        working-directory: "${{ matrix.project-path }}/Packages/com.williamschack.repetitionless/Shaders"
+        run: |
+          mv "URP" "URP~"
+          mv "HDRP/TerrainNew" "HDRP/TerrainNew~"
+          mv "HDRP" "HDRP~"
+          rm "URP.meta"
+          rm "HDRP/TerrainNew.meta"
+          rm "HDRP.meta"
+          ls -R
       - name: Cache Library
         uses: actions/cache@v3
         with:
