@@ -79,6 +79,9 @@
         },
         {
             "m_Id": "4f3c3ec718f9475bbbdfa4f2531b68eb"
+        },
+        {
+            "m_Id": "b201bf456c8d480db6e3647e39dfe3f5"
         }
     ],
     "m_Dropdowns": [],
@@ -1212,8 +1215,8 @@
     "m_ObjectId": "032a91fd8751470b8bc5b5a2bb1096e5",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1139.0,
-        "y": 2665.000244140625
+        "x": 1138.999755859375,
+        "y": 2665.0
     }
 }
 
@@ -1680,8 +1683,8 @@
     "m_ObjectId": "19d4874b048847f382a74bf505188aca",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 621.0000610351563,
-        "y": 1920.0001220703125
+        "x": 620.999755859375,
+        "y": 1919.999755859375
     }
 }
 
@@ -3256,6 +3259,9 @@
         },
         {
             "m_Id": "dfbf9dcb34784d7a946b467c01d89972"
+        },
+        {
+            "m_Id": "b201bf456c8d480db6e3647e39dfe3f5"
         }
     ]
 }
@@ -5490,6 +5496,75 @@
         "w": 0.0
     },
     "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "b201bf456c8d480db6e3647e39dfe3f5",
+    "m_Guid": {
+        "m_GuidSerialized": "9de21618-decd-4d84-98f7-dc52a6cf0db7"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "MAX_LAYERS",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "MAX_LAYERS",
+    "m_DefaultReferenceName": "_MAX_LAYERS",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 1,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [
+        {
+            "id": 1,
+            "displayName": "_MAX_LAYERS_4",
+            "referenceName": "_MAX_LAYERS_4"
+        },
+        {
+            "id": 2,
+            "displayName": "_MAX_LAYERS_8",
+            "referenceName": "_MAX_LAYERS_8"
+        },
+        {
+            "id": 3,
+            "displayName": "_MAX_LAYERS_12",
+            "referenceName": "_MAX_LAYERS_12"
+        },
+        {
+            "id": 4,
+            "displayName": "_MAX_LAYERS_16",
+            "referenceName": "_MAX_LAYERS_16"
+        },
+        {
+            "id": 5,
+            "displayName": "_MAX_LAYERS_20",
+            "referenceName": "_MAX_LAYERS_20"
+        },
+        {
+            "id": 6,
+            "displayName": "_MAX_LAYERS_24",
+            "referenceName": "_MAX_LAYERS_24"
+        },
+        {
+            "id": 7,
+            "displayName": "_MAX_LAYERS_28",
+            "referenceName": "_MAX_LAYERS_28"
+        },
+        {
+            "id": 8,
+            "displayName": "_MAX_LAYERS_32",
+            "referenceName": "_MAX_LAYERS_32"
+        }
+    ],
+    "m_Value": 0,
+    "m_IsEditable": true
 }
 
 {
