@@ -12,6 +12,7 @@ namespace Repetitionless.Editor.Data
 {
     using Utilities.GUI;
     using Utilities.Types;
+    using Materials;
 
     /// <summary>
     /// Stores the terrain data for a Repetitionless material
@@ -86,6 +87,9 @@ namespace Repetitionless.Editor.Data
                     _layeredData.MaxLayers = _layeredData.MaxLayers.Previous();
                 else if (_terrainLayers.Count > maxLayers)
                     _layeredData.MaxLayers = _layeredData.MaxLayers.Next();
+
+                // Update the keyword
+                RepetitionlessMaterialUtilities.SetEnumKeywordInt(_dataManager.Material, Constants.MAX_LAYERS_KEYWORD_PREFIX, _layeredData.MaxLayers);
             }
 
             Save();

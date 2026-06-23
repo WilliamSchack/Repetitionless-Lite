@@ -1,3 +1,4 @@
+#if MAPMAGIC2
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -74,3 +75,5 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
         }
     }
 }
+
+#endif
