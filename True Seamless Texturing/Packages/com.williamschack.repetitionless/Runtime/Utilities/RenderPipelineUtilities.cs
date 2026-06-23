@@ -27,7 +27,7 @@ namespace Repetitionless.Runtime.Utilities
             Shader terrainShader = GraphicsSettings.defaultRenderPipeline?.defaultTerrainMaterial?.shader;
 
             // Fallback
-            if (terrainShader = null) {
+            if (terrainShader == null) {
                 ERenderPipeline currentPipeline = GetActiveRenderPipeline();
                 switch (currentPipeline) {
                     case ERenderPipeline.Builtin:
