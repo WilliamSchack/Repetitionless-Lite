@@ -16,9 +16,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
     {
         [SerializeField] private Material _mainMaterial;
         public Material MainMaterial => _mainMaterial;
-
-        public bool AutoSaveTextures = true;
-
+        
         private Material _defaultTerrainMaterial;
 
         private MapMagicObject _mapMagicObject;

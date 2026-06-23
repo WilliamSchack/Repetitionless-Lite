@@ -22,10 +22,8 @@ namespace Repetitionless.Editor.Integrations.MapMagic
         private RepetitionlessMaterialDataSO _materialProperties;
 
         private SerializedProperty _materialProp;
-        private SerializedProperty _autoSaveProp;
 
         private GUIStyle _headerStyle;
-        private GUIStyle _headerStyleError;
         private GUIStyle _toggleStyle;
 
         private bool _incorrectMaterial = false;
@@ -93,7 +91,6 @@ namespace Repetitionless.Editor.Integrations.MapMagic
             GetMaterialTerrainLayersData(_main.MainMaterial);
 
             _materialProp = serializedObject.FindProperty("_mainMaterial");
-            _autoSaveProp = serializedObject.FindProperty("AutoSaveTextures");
 
             _headerStyle = new GUIStyle();
             _headerStyle.fontSize = 14;
@@ -101,9 +98,6 @@ namespace Repetitionless.Editor.Integrations.MapMagic
             _headerStyle.fontStyle = FontStyle.Bold;
             _headerStyle.alignment = TextAnchor.MiddleCenter;
             _headerStyle.normal.textColor = Color.white;
-
-            _headerStyleError = new GUIStyle(_headerStyle);
-            _headerStyleError.normal.textColor = new Color(1, 0.4f, 0.4f);
         }
 
         private void OnDisable()
@@ -138,7 +132,6 @@ namespace Repetitionless.Editor.Integrations.MapMagic
         {
             if (newMat == null) {
                 _incorrectMaterial = false;
-                _autoSaveProp.boolValue = true;
 
                 if (_materialTerrainData != null)
                     _materialTerrainData.ClearTerrainLayers();
@@ -152,7 +145,6 @@ namespace Repetitionless.Editor.Integrations.MapMagic
             
             if (newShaderName.StartsWith("Repetitionless/") && newShaderName.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED)) {
                 _incorrectMaterial = false;
-                _autoSaveProp.boolValue = true;
 
                 if (_materialTerrainData != null)
                     _materialTerrainData.ClearTerrainLayers();
@@ -222,22 +214,13 @@ namespace Repetitionless.Editor.Integrations.MapMagic
         {
             GUILayout.Space(5);
 
-            //GUILayout.Label("Material", _headerStyle);
             DrawIncorrectMaterialWarning();
-
-            //GUILayout.Space(10);
 
             DrawMaterialProperty();
 
             // Edit Material Button
             if (GUILayout.Button("Edit Material", GUILayout.Height(30)))
                 Selection.activeObject = _main.MainMaterial;
-
-            // Save Texture Layers Button
-            //GUILayout.Space(10);
-
-            //GUILayout.Label("Textures", _headerStyle);
-            //GUILayout.Space(5);
 
             if (_materialTerrainData == null)
                 return;
