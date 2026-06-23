@@ -121,9 +121,18 @@ namespace Repetitionless.Editor.Integrations.MapMagic
             // There is no callback for mapmagic terrain setting changes so check every gui update instead
             if (_main.enabled)
                 _main.CheckAndUpdateMaterials();
+            else
+                GUI.enabled = false;
 
             if (_main.MainMaterial == null) DrawNoMaterialGUI();
             else DrawAssignedMaterialGUI();
+
+            if (!_main.enabled) {
+                GUI.enabled = true;
+
+                GUILayout.Space(10);
+                EditorGUILayout.HelpBox("This component is disabled, enable it to use Repetitionless", MessageType.Info);
+            }
 
             serializedObject.ApplyModifiedProperties();
         }
