@@ -1,0 +1,20 @@
+{
+    "name": "com.williamschack.Repetitionless.Editor.Integrations.MapMagic",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7b4d755afc1fe7a62bde7ca49568c8be"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "MAPMAGIC2"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

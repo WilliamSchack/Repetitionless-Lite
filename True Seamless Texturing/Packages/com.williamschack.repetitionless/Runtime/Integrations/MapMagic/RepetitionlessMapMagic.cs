@@ -1,4 +1,3 @@
-#if MAPMAGIC2
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -18,20 +17,20 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
         [SerializeField] private Material _mat;
         private Material _defaultTerrainMaterial;
 
-        private MapMagicObject _main;
+        private MapMagicObject _mapMagicObject;
 
         private void OnEnable()
         {
             // Sync material terrain layers in editor
             // Do this function on enable for all pinned tiles
 
-            _main = GetComponent<MapMagicObject>();
+            _mapMagicObject = GetComponent<MapMagicObject>();
             _defaultTerrainMaterial = DefaultTerrainMaterial();
 
             TerrainTile.OnTileApplied -= OnTileApplied;
             TerrainTile.OnTileApplied += OnTileApplied;
 
-            foreach (TerrainTile tile in _main.tiles.pinned.Values) {
+            foreach (TerrainTile tile in _mapMagicObject.tiles.pinned.Values) {
                 SetupTile(tile);
             }
         }
@@ -42,7 +41,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
 
 #if UNITY_EDITOR
             // Disable all repetitionless terrains and reset materials
-            foreach (TerrainTile tile in _main.tiles.pinned.Values) {
+            foreach (TerrainTile tile in _mapMagicObject.tiles.pinned.Values) {
                 DisableTile(tile);
             }
 #endif
@@ -53,7 +52,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
         {
             // Remove all repetitionless terrain components
             // OnDisable handles the rest and is called before this
-            foreach (TerrainTile tile in _main.tiles.pinned.Values) {
+            foreach (TerrainTile tile in _mapMagicObject.tiles.pinned.Values) {
                 RemoveTile(tile);
             }
         }
@@ -91,11 +90,14 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
                 
                 if (repetitionlessTerrain == null) {
                     repetitionlessTerrain = terrain.gameObject.AddComponent<RepetitionlessTerrain>();
-
-                    repetitionlessTerrain.UpdateTerrainMaterial(_mat);
                 }
 
                 repetitionlessTerrain.enabled = true;
+
+                if (repetitionlessTerrain.MainMaterial == null) {
+                    repetitionlessTerrain.UpdateTerrainMaterial(_mat);
+                }
+
                 repetitionlessTerrain.UpdateMaterialTerrainTextures();
                 repetitionlessTerrain.AssignMaterialInstance();
             }
@@ -144,7 +146,35 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
                 DestroyImmediate(repetitionlessTerrain);
             }
         }
+
+#if UNITY_EDITOR
+        public void CheckAndUpdateMaterials()
+        {
+            // Check one terrain, if its material has changed, we can assume all terrains have and reapply for all terrains
+            if(_mapMagicObject.tiles.grid.Count == 0)
+                return;
+
+            // Get the first tile out of the grid
+            TerrainTile checkingTile = null;
+            foreach (var kvp in _mapMagicObject.tiles.grid) {
+                checkingTile = kvp.Value;
+                break;
+            }
+            if (checkingTile == null) return; // Shouldnt happen
+
+            Terrain mainTerrain = checkingTile.main.terrain;
+            RepetitionlessTerrain repetitionlessTerrain;
+            mainTerrain.gameObject.TryGetComponent(out repetitionlessTerrain);
+            if (repetitionlessTerrain == null) return;
+
+            if (mainTerrain.materialTemplate == repetitionlessTerrain.MaterialInstance)
+                return;
+
+            // Update material for all terrains
+            foreach (TerrainTile tile in _mapMagicObject.tiles.grid.Values) {
+                SetupTile(tile);
+            }
+        }
+#endif
     }
 }
-
-#endif
