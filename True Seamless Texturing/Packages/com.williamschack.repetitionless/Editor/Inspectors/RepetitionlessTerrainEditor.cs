@@ -29,6 +29,7 @@ namespace Repetitionless.Editor.Inspectors
         private TerrainLayer[] _terrainLayers;
         private Terrain[] _terrainNeighbours = new Terrain[4];
 
+        private MaterialDataManager _dataManager;
         private RepetitionlessLayeredDataSO _materialLayeredData;
         private RepetitionlessTerrainDataSO _materialTerrainData;
         private RepetitionlessTextureDataSO _materialTextureData;
@@ -124,13 +125,13 @@ namespace Repetitionless.Editor.Inspectors
                 return;
             }
 
-            MaterialDataManager dataManager = new MaterialDataManager(mat);
-            _materialLayeredData = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
-            if (_materialLayeredData == null) _materialLayeredData = RepetitionlessLayeredMaterialUtilities.SetupLayeredData(dataManager);
+            _dataManager = new MaterialDataManager(mat);
+            _materialLayeredData = _dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
+            if (_materialLayeredData == null) _materialLayeredData = RepetitionlessLayeredMaterialUtilities.SetupLayeredData(_dataManager);
 
-            _materialTerrainData = dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
-            _materialTextureData = dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
-            _materialProperties  = dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
+            _materialTerrainData = _dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
+            _materialTextureData = _dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
+            _materialProperties  = _dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
 
             _materialTextureData.OnDataChanged += UpdateMaterialTerrainTextures;
             _materialProperties.OnExternalDataChanged  += UpdateMaterialTerrainTextures;
@@ -249,8 +250,8 @@ namespace Repetitionless.Editor.Inspectors
 
                 // Assign textures after a frame so the material is properly assigned
                 EditorApplication.delayCall += () => {
-                    UpdateMaterialTerrainLayerTextures(true);
                     SyncLayersToMaterial();
+                    UpdateMaterialTerrainLayerTextures(true);
 
                     // Assign after material has been initialized, will cause white light otherwise
                     EditorApplication.delayCall += _main.AssignMaterialInstance;
@@ -403,8 +404,7 @@ namespace Repetitionless.Editor.Inspectors
                         _main.UpdateTerrainMaterial(_main.MainMaterial);
 
                     // Make sure the material is set to terrain mode
-                    _materialLayeredData.LayerMode = ELayerMode.TerrainLayers;
-                    _materialLayeredData.Save();
+                    RepetitionlessLayeredMaterialUtilities.UpdateLayerMode(_dataManager, ELayerMode.TerrainLayers);
 
                     SyncLayersToMaterial();
                     UpdateMaterialTerrainLayerTextures(true);
