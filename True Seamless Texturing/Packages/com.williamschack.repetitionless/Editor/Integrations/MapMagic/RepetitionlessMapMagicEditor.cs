@@ -43,8 +43,6 @@ namespace Repetitionless.Editor.Integrations.MapMagic
         private void UpdateMaterialTerrainLayerTextures(bool forceUpdate = false)
         {
             EditorApplication.delayCall += () => {
-                Debug.Log(_main.MainMaterial);
-                Debug.Log(_materialTerrainData);
                 if (_main.MainMaterial == null || _materialTerrainData == null)
                     return;
 

@@ -136,6 +136,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
                     return;
 
                 repetitionlessTerrain.enabled = false;
+                terrain.materialTemplate = _defaultTerrainMaterial;
             });
         }
 
