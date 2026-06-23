@@ -220,10 +220,12 @@ namespace Repetitionless.Editor.Integrations.MapMagic
 
         private void DrawAssignedMaterialGUI()
         {
-            GUILayout.Label("Material", _headerStyle);
+            GUILayout.Space(5);
+
+            //GUILayout.Label("Material", _headerStyle);
             DrawIncorrectMaterialWarning();
 
-            GUILayout.Space(10);
+            //GUILayout.Space(10);
 
             DrawMaterialProperty();
 
@@ -232,28 +234,19 @@ namespace Repetitionless.Editor.Integrations.MapMagic
                 Selection.activeObject = _main.MainMaterial;
 
             // Save Texture Layers Button
-            GUILayout.Space(10);
+            //GUILayout.Space(10);
 
-            GUILayout.Label("Textures", _headerStyle);
-            GUILayout.Space(5);
+            //GUILayout.Label("Textures", _headerStyle);
+            //GUILayout.Space(5);
 
             if (_materialTerrainData == null)
                 return;
 
             if (!_materialTerrainData.AutoSyncLayers) {
                 EditorGUILayout.HelpBox("Auto sync is disabled in the material, layers will not be auto saved", MessageType.Info);
-                GUI.enabled = false;
             }
 
-            Color prevBackgroundColor = GUI.backgroundColor;
-            GUI.backgroundColor = _materialTerrainData.AutoSyncLayers && _autoSaveProp.boolValue ? Color.green : Color.red;
-            _autoSaveProp.boolValue = GUILayout.Toggle(_autoSaveProp.boolValue, "Auto Save Textures", _toggleStyle, GUILayout.Height(30));
-            GUI.backgroundColor = prevBackgroundColor;
-
-            if (!_materialTerrainData.AutoSyncLayers)
-                GUI.enabled = true;
-
-            if (GUILayout.Button(new GUIContent("Save Textures", "Manually save the data from the terrain layers to the material"), GUILayout.Height(30))) {
+            if (GUILayout.Button(new GUIContent("Save Textures", "Manually save the data from the terrain layers to the material"), GUILayout.Height(22))) {
                 _main.UpdateTerrainMaterials(_main.MainMaterial);
 
                 // Make sure the material is set to terrain mode
