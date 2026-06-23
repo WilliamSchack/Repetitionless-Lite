@@ -10,6 +10,7 @@ using Repetitionless.Runtime.Variables;
 namespace Repetitionless.Editor.Data
 {
     using Utilities.Texture;
+    using Materials;
 
     public class RepetitionlessLayeredDataSO : ScriptableObject
     {
@@ -222,6 +223,14 @@ namespace Repetitionless.Editor.Data
 
             // Set layers count
             _dataManager.Material.SetFloat("_LayersCount", texturesAssigned);
+        }
+
+        public void UpdateMaxLayers(int layerCount)
+        {
+            MaxLayers = (EMaxLayers)Mathf.Max(4, Mathf.Min((layerCount + 3) / 4 * 4, 32));
+            Save();
+
+            RepetitionlessMaterialUtilities.SetEnumKeywordInt(_dataManager.Material, Constants.MAX_LAYERS_KEYWORD_PREFIX, MaxLayers);
         }
     }
 }

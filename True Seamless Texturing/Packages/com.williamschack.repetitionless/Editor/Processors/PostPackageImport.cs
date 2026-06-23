@@ -296,9 +296,7 @@ namespace Repetitionless.Editor.Processors
 
                     // Update the layer count and keyword
                     RepetitionlessLayeredDataSO layeredData = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
-                    layeredData.MaxLayers = (EMaxLayers)Mathf.Max(4, Mathf.Min((layerCount + 3) / 4 * 4, 32));
-
-                    RepetitionlessMaterialUtilities.SetEnumKeywordInt(mat, Constants.MAX_LAYERS_KEYWORD_PREFIX, layeredData.MaxLayers);
+                    layeredData.UpdateMaxLayers(layerCount);
                 }
 
                 // Save the scene to reload terrains in the active scene
