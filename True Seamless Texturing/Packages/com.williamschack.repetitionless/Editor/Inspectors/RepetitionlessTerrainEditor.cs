@@ -101,7 +101,7 @@ namespace Repetitionless.Editor.Inspectors
 
                 // Will only update changed layers
                 for (int i = 0; i < _terrainData.terrainLayers.Length; i++)
-                    _materialTerrainData.UpdateLayerMaterialData(_terrainData.terrainLayers[i], forceUpdate);
+                    _materialTerrainData.UpdateLayerMaterialData(i, forceUpdate);
 
                 _main.UpdateMaterialTerrainTextures();
             };

@@ -270,7 +270,7 @@ namespace Repetitionless.Editor.Inspectors
             GUILayout.BeginHorizontal();
             
             if (GUILayout.Button(new GUIContent("Load From Layer", "Loads the textures and settings from the current terrain layer"))) {
-                EditorApplication.delayCall += () => { _materialTerrainData.UpdateLayerMaterialData(_terrainLayers[_currentLayerIndex], true); };
+                EditorApplication.delayCall += () => { _materialTerrainData.UpdateLayerMaterialData(_currentLayerIndex, true); };
             }
 
             if (GUILayout.Button(new GUIContent("Save To Layer", "Saves the textures and settings in the base material to the current terrain layer"))) {

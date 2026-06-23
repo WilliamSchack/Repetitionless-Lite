@@ -107,16 +107,21 @@ namespace Repetitionless.Editor.Data
         /// <summary>
         /// Updates the layer linked to the inputted terrain layer on the material
         /// </summary>
-        /// <param name="terrainLayer">
-        /// The terrain layer to update
+        /// <param name="layerIndex">
+        /// The index of the terrain layer to update
         /// </param>
         /// <param name="forceUpdate">
         /// Ignores the AutoSyncLayers setting and updates the data anyway
         /// </param>
-        public void UpdateLayerMaterialData(TerrainLayer terrainLayer, bool forceUpdate = false)
+        public void UpdateLayerMaterialData(int layerIndex, bool forceUpdate = false)
         {
             if (!AutoSyncLayers && !forceUpdate)
                 return;
+
+            if (layerIndex < 0 || layerIndex >= _terrainLayers.Count)
+                return;
+
+            TerrainLayer terrainLayer = _terrainLayers[layerIndex];
 
             Material mat = _dataManager.Material;
             if (mat == null) return;
@@ -139,9 +144,7 @@ namespace Repetitionless.Editor.Data
                 textureData.SetupTextureDrawers();
 
                 // Get the layer index
-                int layerIndex = _terrainLayers.IndexOf(terrainLayer);
-                if (layerIndex >= materialProperties.Data.Length ||
-                    layerIndex >= textureData.LayersTextureData.Length) {
+                if (layerIndex >= materialProperties.Data.Length || layerIndex >= textureData.LayersTextureData.Length) {
                     EditorUtility.ClearProgressBar();
                     return;
                 }
@@ -185,6 +188,25 @@ namespace Repetitionless.Editor.Data
             }
 
             EditorUtility.ClearProgressBar();
+        }
+
+        /// <summary>
+        /// Finds all layers using this terrain layer and updates them
+        /// </summary>
+        /// <param name="terrainLayer">
+        /// The terrain layer to update
+        /// </param>
+        /// <param name="forceUpdate">
+        /// Ignores the AutoSyncLayers setting and updates the data anyway
+        /// </param>
+        public void UpdateLayerMaterialData(TerrainLayer terrainLayer, bool forceUpdate = false)
+        {
+            for (int i = 0; i < _terrainLayers.Count; i++) {
+                if (_terrainLayers[i] != terrainLayer)
+                    continue;
+
+                UpdateLayerMaterialData(i, forceUpdate);
+            }
         }
 
         /// <summary>
