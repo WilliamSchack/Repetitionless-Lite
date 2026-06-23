@@ -152,17 +152,28 @@ namespace Repetitionless.Editor.Data
                 if(terrainLayer.normalMapTexture != textureData.GetTextureData(layerIndex, 0, 1)[0].Texture)
                     textureData.NSOTexturesDrawer.UpdateTexture(terrainLayer.normalMapTexture, arrayLayerIndex, 0, true);
 
-                // Update packed textures
-                if(!baseMaterialData.PackedTexture ||
-                    textureData.GetTextureData(layerIndex, 0, 1)[3].Texture != terrainLayer.maskMapTexture ||
-                    textureData.GetTextureData(layerIndex, 0, 2)[2].Texture != terrainLayer.maskMapTexture
-                ) {
-                    baseMaterialData.PackedTexture = true;
-                
-                    textureData.GetTextureData(layerIndex, 0, 1)[3].Texture = terrainLayer.maskMapTexture;
-                    textureData.GetTextureData(layerIndex, 0, 2)[2].Texture = terrainLayer.maskMapTexture;
+                if (terrainLayer.maskMapTexture == null) {
+                    baseMaterialData.Metallic = terrainLayer.metallic;
+                    baseMaterialData.SmoothnessRoughness = terrainLayer.smoothness;
 
-                    textureData.UpdatePackedTexture(layerIndex, 0, true);
+                    if (baseMaterialData.PackedTexture) {
+                        // Disable packed texture
+                        baseMaterialData.PackedTexture = false;
+                        textureData.UpdatePackedTexture(layerIndex, 0, false);
+                    }
+                } else {
+                    // Update packed textures
+                    if(!baseMaterialData.PackedTexture ||
+                        textureData.GetTextureData(layerIndex, 0, 1)[3].Texture != terrainLayer.maskMapTexture ||
+                        textureData.GetTextureData(layerIndex, 0, 2)[2].Texture != terrainLayer.maskMapTexture
+                    ) {
+                        baseMaterialData.PackedTexture = true;
+                    
+                        textureData.GetTextureData(layerIndex, 0, 1)[3].Texture = terrainLayer.maskMapTexture;
+                        textureData.GetTextureData(layerIndex, 0, 2)[2].Texture = terrainLayer.maskMapTexture;
+
+                        textureData.UpdatePackedTexture(layerIndex, 0, true);
+                    }
                 }
 
                 EditorUtility.DisplayProgressBar(progressBarTitle, "Updating Properties", 0.8f);
