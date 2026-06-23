@@ -1,10 +1,10 @@
 #if UNITY_EDITOR
 using System.IO;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEditor;
 
 using Repetitionless.Runtime.Variables;
+using Repetitionless.Runtime.Utilities;
 
 namespace Repetitionless.Editor.CustomWindows
 {
@@ -256,7 +256,7 @@ namespace Repetitionless.Editor.CustomWindows
             string targetCorePathFull = $"{targetBasePath}/Core Sample Assets";
             string targetPipelinePath = $"{targetBasePath}/";
 
-            ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
+            ERenderPipeline currentPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
             switch (currentPipeline) {
                 case ERenderPipeline.Builtin:
                     samplesPipelinePathFull += Constants.SAMPLES_PATH_BIRP;

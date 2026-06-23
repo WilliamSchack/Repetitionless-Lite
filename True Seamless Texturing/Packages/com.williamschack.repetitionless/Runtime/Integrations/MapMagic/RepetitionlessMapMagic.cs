@@ -1,12 +1,11 @@
 using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
 using MapMagic.Core;
 using MapMagic.Products;
 using MapMagic.Terrains;
+
+using Repetitionless.Runtime.Variables;
+using Repetitionless.Runtime.Utilities;
 
 namespace Repetitionless.Runtime.Integrations.MapMagic
 {
@@ -16,7 +15,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
     {
         [SerializeField] private Material _mainMaterial;
         public Material MainMaterial => _mainMaterial;
-        
+
         private Material _defaultTerrainMaterial;
 
         private MapMagicObject _mapMagicObject;
@@ -27,7 +26,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             // Do this function on enable for all pinned tiles
 
             _mapMagicObject = GetComponent<MapMagicObject>();
-            _defaultTerrainMaterial = DefaultTerrainMaterial();
+            _defaultTerrainMaterial = RenderPipelineUtilities.GetDefaultTerrainMaterial();
 
             TerrainTile.OnTileApplied -= OnTileApplied;
             TerrainTile.OnTileApplied += OnTileApplied;
@@ -51,15 +50,6 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             RemoveAllTiles();
         }
 #endif
-
-        private Material DefaultTerrainMaterial()
-        {
-            // PROPERLY IMPLEMENT ME, TEST BIRP, URP, HDRP
-
-            return new Material(Shader.Find("Universal Render Pipeline/Terrain/Lit"));
-        }
-
-        // If terrain layers are not the same, sync up if in the editor
 
         private void OnTileApplied(TerrainTile tile, TileData data, StopToken stopToken)
         {

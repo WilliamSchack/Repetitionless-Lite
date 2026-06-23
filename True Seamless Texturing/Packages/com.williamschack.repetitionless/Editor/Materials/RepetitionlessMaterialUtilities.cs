@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 using Repetitionless.Runtime.Variables;
+using Repetitionless.Runtime.Utilities;
 using Repetitionless.Editor.Data;
 
 namespace Repetitionless.Editor.Materials
@@ -13,21 +14,6 @@ namespace Repetitionless.Editor.Materials
     {
         private const string NOISE_TEXTURE_PROP_NAME = "_NoiseTexture";
         private const string SURFACE_TYPE_PROP_NAME = "_SurfaceTypeSetting";
-
-        public static ERenderPipeline GetActiveRenderPipeline()
-        {
-            RenderPipelineAsset currentPipeline = GraphicsSettings.currentRenderPipeline;
-            if (currentPipeline == null)
-                return ERenderPipeline.Builtin;
-            
-            if (currentPipeline.GetType().Name.Contains("UniversalRenderPipeline"))
-                return ERenderPipeline.URP;
-            
-            if (currentPipeline.GetType().Name.Contains("HDRenderPipeline"))
-                return ERenderPipeline.HDRP;
-
-            return ERenderPipeline.Unknown;
-        }
 
         // Enables "prefix{(int)value}"
         // Disables all other enum values
@@ -255,7 +241,7 @@ namespace Repetitionless.Editor.Materials
 
         public static void SetSurface(Material mat, ESurfaceType surfaceType)
         {
-            ERenderPipeline currentPipeline = GetActiveRenderPipeline();
+            ERenderPipeline currentPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
             SetSurface(mat, surfaceType, currentPipeline);
         }
 

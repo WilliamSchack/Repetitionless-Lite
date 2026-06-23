@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 using Repetitionless.Runtime.Variables;
+using Repetitionless.Runtime.Utilities;
 
 namespace Repetitionless.Editor.Materials
 {
@@ -171,7 +172,7 @@ namespace Repetitionless.Editor.Materials
         /// </returns>
         public static MaterialDataObjects CreateMaterial(string folderPath, string fileName = DEFAULT_MATERIAL_NAME_REGULAR, bool ping = true)
         {
-            ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
+            ERenderPipeline currentPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
             return CreateMaterial(currentPipeline, folderPath, fileName, ping);
         }
 
@@ -257,7 +258,7 @@ namespace Repetitionless.Editor.Materials
         /// </returns>
         public static MaterialDataObjects CreateTerrainMaterial(string folderPath, string fileName = DEFAULT_MATERIAL_NAME_TERRAIN, bool ping = true)
         {
-            ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
+            ERenderPipeline currentPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
             return CreateTerrainMaterial(currentPipeline, folderPath, fileName, ping);
         }
 
