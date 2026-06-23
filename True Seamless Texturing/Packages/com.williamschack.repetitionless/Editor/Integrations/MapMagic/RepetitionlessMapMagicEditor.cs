@@ -227,6 +227,14 @@ namespace Repetitionless.Editor.Integrations.MapMagic
 
             DrawMaterialProperty();
 
+            // Draft terrain toggle
+            EditorGUI.BeginChangeCheck();
+            _main.ApplyToDraftTerrains = EditorGUILayout.Toggle(new GUIContent("Apply to Draft Terrains", "If the material is assigned to draft terrains"), _main.ApplyToDraftTerrains);
+            if (EditorGUI.EndChangeCheck())
+                _main.UpdateDraftTerrains();
+
+            GUILayout.Space(5);
+
             // Edit Material Button
             if (GUILayout.Button("Edit Material", GUILayout.Height(30)))
                 Selection.activeObject = _main.MainMaterial;

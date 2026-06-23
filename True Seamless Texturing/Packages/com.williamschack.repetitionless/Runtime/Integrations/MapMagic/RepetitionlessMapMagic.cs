@@ -1,10 +1,10 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 using MapMagic.Core;
 using MapMagic.Products;
 using MapMagic.Terrains;
 
-using Repetitionless.Runtime.Variables;
 using Repetitionless.Runtime.Utilities;
 
 namespace Repetitionless.Runtime.Integrations.MapMagic
@@ -13,12 +13,14 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
     [RequireComponent(typeof(MapMagicObject))]
     public class RepetitionlessMapMagic : MonoBehaviour
     {
+        private MapMagicObject _mapMagicObject;
+
         [SerializeField] private Material _mainMaterial;
         public Material MainMaterial => _mainMaterial;
 
         private Material _defaultTerrainMaterial;
 
-        private MapMagicObject _mapMagicObject;
+        public bool ApplyToDraftTerrains = true;
 
         private void OnEnable()
         {
@@ -61,10 +63,8 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             if (tile == null || !tile.transform.IsChildOf(transform))
                     return;
 
-            Terrain[] terrains = {
-                tile.main.terrain,
-                tile.draft.terrain
-            };
+            List<Terrain> terrains = new List<Terrain>() { tile.main.terrain };
+            if (ApplyToDraftTerrains) terrains.Add(tile.draft.terrain);
 
             foreach (Terrain terrain in terrains) {
                 RepetitionlessTerrain repetitionlessTerrain;
@@ -185,6 +185,29 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
                     
                 repetitionlessTerrain.UpdateTerrainMaterial(material, assignMaterial);
             });
+        }
+
+        // Enables/Disabled draft terrains based on variable
+        public void UpdateDraftTerrains()
+        {
+            foreach (TerrainTile tile in _mapMagicObject.tiles.grid.Values) {
+                if (tile == null) continue;
+
+                Terrain draftTerrain = tile.draft.terrain;
+
+                RepetitionlessTerrain repetitionlessTerrain;
+                draftTerrain.TryGetComponent(out repetitionlessTerrain);
+
+                if (repetitionlessTerrain == null)
+                    continue;
+
+                repetitionlessTerrain.enabled = ApplyToDraftTerrains;
+                if (ApplyToDraftTerrains) {
+                    SetupTile(tile);
+                } else {
+                    draftTerrain.materialTemplate = _defaultTerrainMaterial;
+                }
+            }
         }
 
 #if UNITY_EDITOR
