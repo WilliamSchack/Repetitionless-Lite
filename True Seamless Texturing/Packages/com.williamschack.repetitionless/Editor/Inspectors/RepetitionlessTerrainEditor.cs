@@ -411,27 +411,8 @@ namespace Repetitionless.Editor.Inspectors
                 }
             }
 
-            if (_main.Terrain.drawInstanced)
-            {
-                Shader shader = _main.MainMaterial?.shader;
-                if (shader != null)
-                {
-                    // Check the shader has instancing options baked in
-                    bool hasInstancingPragma = _main.MainMaterial.shader
-                        .keywordSpace.keywords
-                        .Any(k => k.name == "INSTANCING_ON");
-                        
-                    if (!hasInstancingPragma)
-                    {
-                        EditorGUILayout.HelpBox(
-                            "Draw Instanced is enabled but the material may not have " +
-                            "terrain instancing pragmas. Make sure TerrainInstancingPragmas.hlsl " +
-                            "is included in the Shader Graph and the Custom Function " +
-                            "vertex node is wired up.",
-                            MessageType.Warning
-                        );
-                    }
-                }
+            if (_main.Terrain.drawInstanced) {
+                // Check for hdrp, Unity < 6.3, display error
             }
         }
     }

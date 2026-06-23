@@ -105,11 +105,11 @@ namespace Repetitionless.Runtime
 
             if (ParentTerrain != null) {
                 ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
-                ParentTerrain.OnMaterialAssigned         -= ParentMaterialChanged;
+                ParentTerrain.OnMaterialAssigned        -= ParentMaterialChanged;
                 ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
 
                 ParentTerrain.OnTerrainLayersChanged    += ParentTerrainLayersChanged;
-                ParentTerrain.OnMaterialAssigned         += ParentMaterialChanged;
+                ParentTerrain.OnMaterialAssigned        += ParentMaterialChanged;
                 ParentTerrain.OnMaterialTexturesUpdated += ParentMaterialTexturesUpdated;
             }
 
@@ -131,7 +131,7 @@ namespace Repetitionless.Runtime
 
             if (ParentTerrain != null) {
                 ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
-                ParentTerrain.OnMaterialAssigned         -= ParentMaterialChanged;
+                ParentTerrain.OnMaterialAssigned        -= ParentMaterialChanged;
                 ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
             }
     #endif
