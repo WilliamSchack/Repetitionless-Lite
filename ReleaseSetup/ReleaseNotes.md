@@ -1,6 +1,6 @@
 **CHANGELOG**
 
-- Improved performance up to 10x depending on material and hardware setup
+- Major performance improvements depending on material and hardware setup
 - Added terrain instancing support for
   - BIRP & URP in all unity versions
   - HDRP in Unity 6.3+
