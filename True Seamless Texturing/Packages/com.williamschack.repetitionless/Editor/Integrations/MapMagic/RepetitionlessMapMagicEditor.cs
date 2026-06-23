@@ -15,6 +15,7 @@ namespace Repetitionless.Editor.Integrations.MapMagic
     {
         private RepetitionlessMapMagic _main;
 
+        private MaterialDataManager _dataManager;
         private RepetitionlessLayeredDataSO _materialLayeredData;
         private RepetitionlessTerrainDataSO _materialTerrainData;
         private RepetitionlessTextureDataSO _materialTextureData;
@@ -28,6 +29,33 @@ namespace Repetitionless.Editor.Integrations.MapMagic
         private GUIStyle _toggleStyle;
 
         private bool _incorrectMaterial = false;
+
+        private void SyncLayersToMaterial()
+        {
+            if (_materialTerrainData == null)
+                return;
+
+            // Update global data for terrain layer saving
+            _materialTerrainData.UpdateTerrainLayers(_main.GetFirstTerrain().terrainData.terrainLayers);
+        }
+
+        // Save textures to the material
+        private void UpdateMaterialTerrainLayerTextures(bool forceUpdate = false)
+        {
+            EditorApplication.delayCall += () => {
+                Debug.Log(_main.MainMaterial);
+                Debug.Log(_materialTerrainData);
+                if (_main.MainMaterial == null || _materialTerrainData == null)
+                    return;
+
+                // Will only update changed layers
+                TerrainLayer[] terrainLayers = _main.GetFirstTerrain().terrainData.terrainLayers;
+                for (int i = 0; i < terrainLayers.Length; i++)
+                    _materialTerrainData.UpdateLayerMaterialData(i, forceUpdate);
+
+                _main.UpdateMaterialTerrainTextures();
+            };
+        }
 
         private void UpdateMaterialTerrainTextures()
         {
@@ -46,13 +74,13 @@ namespace Repetitionless.Editor.Integrations.MapMagic
                 return;
             }
 
-            MaterialDataManager dataManager = new MaterialDataManager(mat);
-            _materialLayeredData = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
-            if (_materialLayeredData == null) _materialLayeredData = RepetitionlessLayeredMaterialUtilities.SetupLayeredData(dataManager);
+            _dataManager = new MaterialDataManager(mat);
+            _materialLayeredData = _dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
+            if (_materialLayeredData == null) _materialLayeredData = RepetitionlessLayeredMaterialUtilities.SetupLayeredData(_dataManager);
 
-            _materialTerrainData = dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
-            _materialTextureData = dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
-            _materialProperties  = dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
+            _materialTerrainData = _dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
+            _materialTextureData = _dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
+            _materialProperties  = _dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
 
             _materialTextureData.OnDataChanged += UpdateMaterialTerrainTextures;
             _materialProperties.OnExternalDataChanged  += UpdateMaterialTerrainTextures;
@@ -136,6 +164,17 @@ namespace Repetitionless.Editor.Integrations.MapMagic
                 _materialLayeredData.Save();
 
                 _main.UpdateTerrainMaterials(newMat, false);
+
+                // Assign textures after a frame so the material is properly assigned
+                EditorApplication.delayCall += () => {
+                    SyncLayersToMaterial();
+
+                    // Assign after material has been initialized, will cause white light otherwise
+                    EditorApplication.delayCall += () => {
+                        _main.AssignNewMaterial(newMat);
+                        UpdateMaterialTerrainLayerTextures(true);
+                    };
+                };
             } else {
                 _incorrectMaterial = true;
                 _materialProp.objectReferenceValue = _main.MainMaterial;
@@ -217,17 +256,18 @@ namespace Repetitionless.Editor.Integrations.MapMagic
                 GUI.enabled = true;
 
             if (GUILayout.Button(new GUIContent("Save Textures", "Manually save the data from the terrain layers to the material"), GUILayout.Height(30))) {
-                SaveTextures();
+                _main.UpdateTerrainMaterials(_main.MainMaterial);
+
+                // Make sure the material is set to terrain mode
+                RepetitionlessLayeredMaterialUtilities.UpdateLayerMode(_dataManager, ELayerMode.TerrainLayers);
+
+                SyncLayersToMaterial();
+                UpdateMaterialTerrainLayerTextures(true);
             }
 
             //if (_main.Terrain.drawInstanced) {
             //    // Check for hdrp, Unity < 6.3, display error
             //}
-        }
-
-        private void SaveTextures()
-        {
-            
         }
     }
 }

@@ -199,11 +199,11 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
         }
 
 #if UNITY_EDITOR
-        public void CheckAndUpdateMaterials()
+        public Terrain GetFirstTerrain()
         {
             // Check one terrain, if its material has changed, we can assume all terrains have and reapply for all terrains
-            if(_mapMagicObject.tiles.grid.Count == 0 || _mainMaterial == null)
-                return;
+            if(_mapMagicObject.tiles.grid.Count == 0)
+                return null;
 
             // Get the first tile out of the grid
             TerrainTile checkingTile = null;
@@ -211,9 +211,31 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
                 checkingTile = kvp.Value;
                 break;
             }
-            if (checkingTile == null) return; // Shouldnt happen
+            if (checkingTile == null) return null; // Shouldnt happen
 
-            Terrain mainTerrain = checkingTile.main.terrain;
+            return checkingTile.main.terrain;
+        }
+
+        public void AssignNewMaterial(Material mat)
+        {
+            _mainMaterial = mat;
+
+            ForEachTerrain((terrain, repetitionlessTerrain) => {
+                if (repetitionlessTerrain == null)
+                    return;
+                    
+                repetitionlessTerrain.AssignMaterialInstance();
+            });
+        }
+
+        public void CheckAndUpdateMaterials()
+        {
+            if (_mainMaterial == null)
+                return;
+
+            Terrain mainTerrain = GetFirstTerrain();
+            if (mainTerrain == null) return;
+
             RepetitionlessTerrain repetitionlessTerrain;
             mainTerrain.gameObject.TryGetComponent(out repetitionlessTerrain);
             if (repetitionlessTerrain == null) return;
