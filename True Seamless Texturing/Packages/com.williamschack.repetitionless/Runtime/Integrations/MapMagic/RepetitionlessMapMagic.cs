@@ -68,14 +68,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             SetupTile(tile);
         }
 
-        private void SetupAllTiles()
-        {
-            foreach (TerrainTile tile in _mapMagicObject.tiles.grid.Values) {
-                SetupTile(tile);
-            }
-        }
-
-        private void SetupTile(TerrainTile tile)
+        private void ForEachTerrainInTile(TerrainTile tile, System.Action<Terrain, RepetitionlessTerrain> action)
         {
             if (tile == null || !tile.transform.IsChildOf(transform))
                     return;
@@ -86,11 +79,30 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             };
 
             foreach (Terrain terrain in terrains) {
-                //terrain.drawInstanced = false;
-
                 RepetitionlessTerrain repetitionlessTerrain;
                 terrain.TryGetComponent(out repetitionlessTerrain);
-                
+
+                action?.Invoke(terrain, repetitionlessTerrain);
+            }
+        }
+
+        private void ForEachTerrain(System.Action<Terrain, RepetitionlessTerrain> action)
+        {
+            foreach (TerrainTile tile in _mapMagicObject.tiles.grid.Values) {
+                ForEachTerrainInTile(tile, action);
+            }
+        }
+
+        private void SetupAllTiles()
+        {
+            foreach (TerrainTile tile in _mapMagicObject.tiles.grid.Values) {
+                SetupTile(tile);
+            }
+        }
+
+        private void SetupTile(TerrainTile tile)
+        {
+            ForEachTerrainInTile(tile, (terrain, repetitionlessTerrain) => {
                 if (repetitionlessTerrain == null) {
                     repetitionlessTerrain = terrain.gameObject.AddComponent<RepetitionlessTerrain>();
                 }
@@ -98,7 +110,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
                 repetitionlessTerrain.enabled = true;
 
                 if (_mainMaterial == null)
-                    continue;
+                    return;
 
                 if (repetitionlessTerrain.MainMaterial == null) {
                     repetitionlessTerrain.UpdateTerrainMaterial(_mainMaterial);
@@ -106,7 +118,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
 
                 repetitionlessTerrain.UpdateMaterialTerrainTextures();
                 repetitionlessTerrain.AssignMaterialInstance();
-            }
+            });
         }
 
         private void DisableAllTiles()
@@ -119,25 +131,12 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
 
         private void DisableTile(TerrainTile tile)
         {
-            if (tile == null || !tile.transform.IsChildOf(transform))
+            ForEachTerrainInTile(tile, (terrain, repetitionlessTerrain) => {
+                if (repetitionlessTerrain == null)
                     return;
 
-            Terrain[] terrains = {
-                tile.main.terrain,
-                tile.draft.terrain
-            };
-
-            foreach (Terrain terrain in terrains) {
-                terrain.materialTemplate = _defaultTerrainMaterial;
-
-                RepetitionlessTerrain repetitionlessTerrain;
-                terrain.gameObject.TryGetComponent(out repetitionlessTerrain);
-
-                if (repetitionlessTerrain == null)
-                    continue;
-
                 repetitionlessTerrain.enabled = false;
-            }
+            });
         }
 
         public void RemoveAllTilesMaterials()
@@ -150,24 +149,13 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
 
         private void RemoveTileMaterials(TerrainTile tile)
         {
-            if (tile == null || !tile.transform.IsChildOf(transform))
-                    return;
-
-            Terrain[] terrains = {
-                tile.main.terrain,
-                tile.draft.terrain
-            };
-
-            foreach (Terrain terrain in terrains) {
-                RepetitionlessTerrain repetitionlessTerrain;
-                terrain.gameObject.TryGetComponent(out repetitionlessTerrain);
-
+            ForEachTerrainInTile(tile, (terrain, repetitionlessTerrain) => {
                 if (repetitionlessTerrain == null)
-                    continue;
+                    return;
 
                 repetitionlessTerrain.UpdateTerrainMaterial(null, true);
                 terrain.materialTemplate = _defaultTerrainMaterial;
-            }
+            });
         }
 
         private void RemoveAllTiles()
@@ -180,71 +168,34 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
 
         private void RemoveTile(TerrainTile tile)
         {
-            if (tile == null || !tile.transform.IsChildOf(transform))
+            ForEachTerrainInTile(tile, (terrain, repetitionlessTerrain) => {
+                if (repetitionlessTerrain == null)
                     return;
 
-            Terrain[] terrains = {
-                tile.main.terrain,
-                tile.draft.terrain
-            };
-
-            foreach (Terrain terrain in terrains) {
-                RepetitionlessTerrain repetitionlessTerrain;
-                terrain.gameObject.TryGetComponent(out repetitionlessTerrain);
-
-                if (repetitionlessTerrain == null)
-                    continue;
-
                 DestroyImmediate(repetitionlessTerrain);
-            }
+            });
         }
 
         public void UpdateMaterialTerrainTextures()
         {
             // Call the same function on each RepetitionlessTerrain
-            foreach (TerrainTile tile in _mapMagicObject.tiles.grid.Values) {
-                if (tile == null)
+            ForEachTerrain((terrain, repetitionlessTerrain) => {
+                if (repetitionlessTerrain == null)
                     return;
-
-                Terrain[] terrains = {
-                    tile.main.terrain,
-                    tile.draft.terrain
-                };
-
-                foreach (Terrain terrain in terrains) {
-                    RepetitionlessTerrain repetitionlessTerrain;
-                    terrain.gameObject.TryGetComponent(out repetitionlessTerrain);
-
-                    if (repetitionlessTerrain == null)
-                        continue;
-                        
-                    repetitionlessTerrain.UpdateMaterialTerrainTextures();
-                }
-            }
+                    
+                repetitionlessTerrain.UpdateMaterialTerrainTextures();
+            });
         }
 
         public void UpdateTerrainMaterials(Material material, bool assignMaterial = true)
         {
             // Call the same function on each RepetitionlessTerrain
-            foreach (TerrainTile tile in _mapMagicObject.tiles.grid.Values) {
-                if (tile == null)
+            ForEachTerrain((terrain, repetitionlessTerrain) => {
+                if (repetitionlessTerrain == null)
                     return;
-
-                Terrain[] terrains = {
-                    tile.main.terrain,
-                    tile.draft.terrain
-                };
-
-                foreach (Terrain terrain in terrains) {
-                    RepetitionlessTerrain repetitionlessTerrain;
-                    terrain.gameObject.TryGetComponent(out repetitionlessTerrain);
-
-                    if (repetitionlessTerrain == null)
-                        continue;
-                        
-                    repetitionlessTerrain.UpdateTerrainMaterial(material, assignMaterial);
-                }
-            }
+                    
+                repetitionlessTerrain.UpdateTerrainMaterial(material, assignMaterial);
+            });
         }
 
 #if UNITY_EDITOR
