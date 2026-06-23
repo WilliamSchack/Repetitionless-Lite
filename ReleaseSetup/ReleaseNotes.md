@@ -4,6 +4,7 @@
 - Added terrain instancing support for
   - BIRP & URP in all unity versions
   - HDRP in Unity 6.3+
+- Changed default layered tiling to 1x1
 - Many various improvements and fixes
 
 **This update includes breaking changes but most will be automatically handled when updating. This includes:**
