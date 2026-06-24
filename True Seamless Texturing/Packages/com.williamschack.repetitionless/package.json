@@ -26,24 +26,9 @@
   "license": "See LICENSE.md",
   "samples": [
     {
-      "displayName": "Core Sample Assets",
-      "description": "The core assets used for the samples.\nMust be installed alongside the chosen render pipeline",
-      "path": "Samples~/Assets"
-    },
-    {
-      "displayName": "BIRP Examples",
-      "description": "Contains 3 seperate example scenes showcasing the materials.\nFor the Built-In Render pipeline",
-      "path": "Samples~/BIRP"
-    },
-    {
-      "displayName": "URP Examples",
-      "description": "Contains 3 seperate example scenes showcasing the materials.\nFor URP",
-      "path": "Samples~/URP"
-    },
-    {
-      "displayName": "HDRP Examples",
-      "description": "Contains 3 seperate example scenes showcasing the materials.\nFor HDRP",
-      "path": "Samples~/HDRP"
+      "displayName": "Use Automatic Install",
+      "description": "To install the samples, open the Repetitionless window (Window > Repetitionless > Open Window) and import them with the \"Import Samples\" button. That will automatically import the samples for your render pipeline and complete extra required import steps",
+      "path": "Samples~/Manual"
     }
   ]
 }
