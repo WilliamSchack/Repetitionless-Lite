@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEditor;
 
 using Repetitionless.Runtime.Variables;
+using Repetitionless.Runtime.Utilities;
 using Repetitionless.Runtime.Integrations.MapMagic;
 
 namespace Repetitionless.Editor.Integrations.MapMagic
