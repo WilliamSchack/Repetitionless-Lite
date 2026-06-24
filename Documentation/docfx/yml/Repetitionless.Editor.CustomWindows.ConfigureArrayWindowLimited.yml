@@ -25,7 +25,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ConfigureArrayWindowLimited
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
@@ -85,7 +85,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Open
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
@@ -126,7 +126,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateGUI
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
@@ -155,7 +155,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnGUIUpdate
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
@@ -184,7 +184,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTextureAdd
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
@@ -217,7 +217,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTextureRemove
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
@@ -250,7 +250,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTexturesReorder
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
@@ -292,7 +292,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnDragUpdate
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
@@ -328,7 +328,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnDragPerform
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
@@ -364,7 +364,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CalculateElementHeight
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
@@ -403,7 +403,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTextureField
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/ConfigureArrayWindowLimited.cs

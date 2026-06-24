@@ -28,7 +28,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureArrayCustomChannelsGUIDrawer
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -57,7 +57,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Array
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -88,7 +88,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureFormat
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -117,7 +117,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TransferMipmaps
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -146,7 +146,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ArrayLinear
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -175,7 +175,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTextureUpdated
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -204,7 +204,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: .ctor
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -263,7 +263,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateArray
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -295,7 +295,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RemoveArrayLayer
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -330,7 +330,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -377,7 +377,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -421,7 +421,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DrawTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -468,7 +468,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureAssignedAt
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
@@ -506,7 +506,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: DeleteArray
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/GUI/TextureArrayCustomChannelsGUIDrawer.cs

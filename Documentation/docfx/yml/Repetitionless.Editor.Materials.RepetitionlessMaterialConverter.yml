@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessMaterialConverter
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
@@ -46,7 +46,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ConvertMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
@@ -81,7 +81,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ConvertMaterials
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Materials/RepetitionlessMaterialConverter.cs

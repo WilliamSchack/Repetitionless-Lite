@@ -245,3 +245,21 @@ Updates the packed texture data and the associated arrays
 
 ---
 
+## UpdateTextureProperties()
+
+### Declaration
+
+``` csharp
+public void UpdateTextureProperties()
+```
+
+### Description
+
+Assigns the texture arrays to their material properties
+
+Use in the case the properties may not be assigned
+
+Make sure SetupTextureDrawers is called before this
+
+---
+

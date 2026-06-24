@@ -32,11 +32,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessTerrain
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 23
+    startLine: 25
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -79,11 +79,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: MainMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 34
+    startLine: 36
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -110,11 +110,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: MaterialInstance
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 41
+    startLine: 45
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -141,11 +141,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AutoSaveTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 46
+    startLine: 50
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -170,11 +170,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Terrain
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 53
+    startLine: 57
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -201,11 +201,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ParentTerrain
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 66
+    startLine: 70
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -240,11 +240,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnTerrainLayersChanged
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 71
+    startLine: 75
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -269,11 +269,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnMaterialAssigned
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 76
+    startLine: 80
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -298,11 +298,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: OnMaterialTexturesUpdated
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 81
+    startLine: 85
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -327,11 +327,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTerrainMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 148
+    startLine: 158
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -365,11 +365,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AssignMaterialInstance
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 171
+    startLine: 181
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -393,11 +393,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateMaterialTerrainTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 180
+    startLine: 190
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -421,11 +421,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateLayersCount
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 207
+    startLine: 224
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -449,11 +449,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 215
+    startLine: 232
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -477,11 +477,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateParentCallback
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 232
+    startLine: 249
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -509,11 +509,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ParentMaterialChanged
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 257
+    startLine: 274
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -541,11 +541,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ParentMaterialTexturesUpdated
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 267
+    startLine: 284
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime
@@ -569,11 +569,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupNewTerrainNeighbour
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/RepetitionlessTerrain.cs
-    startLine: 279
+    startLine: 296
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime

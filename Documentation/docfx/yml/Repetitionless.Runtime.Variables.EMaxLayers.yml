@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: EMaxLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -51,7 +51,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Four
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -77,7 +77,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Eight
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Twelve
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -129,7 +129,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Sixteen
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -155,7 +155,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Twenty
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -181,7 +181,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TwentyFour
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -207,7 +207,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TwentyEight
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
@@ -233,7 +233,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ThirtyTwo
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs

@@ -26,7 +26,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Texture2DArrayUtilities
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
@@ -55,7 +55,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SUPPORTED_TEXTURE_FORMATS
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
@@ -84,7 +84,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArray
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
@@ -131,7 +131,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArrayAutoResize
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
@@ -178,7 +178,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArrayAutoResize
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
@@ -228,7 +228,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: CreateArrayUserInput
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
@@ -278,7 +278,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
@@ -325,7 +325,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTextureAutoResize
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
@@ -372,7 +372,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateTextureUserInput
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
@@ -419,7 +419,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
@@ -460,7 +460,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
@@ -495,7 +495,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ResizeArrayTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/Texture2DArrayUtilities.cs

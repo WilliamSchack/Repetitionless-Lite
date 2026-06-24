@@ -64,6 +64,27 @@ Clears the terrain layers
 
 ---
 
+## UpdateLayerMaterialData(int, bool)
+
+### Declaration
+
+``` csharp
+public void UpdateLayerMaterialData(int layerIndex, bool forceUpdate = false)
+```
+
+### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| layerIndex | The index of the terrain layer to update |
+| forceUpdate | Ignores the AutoSyncLayers setting and updates the data anyway |
+
+### Description
+
+Updates the layer linked to the inputted terrain layer on the material
+
+---
+
 ## UpdateLayerMaterialData(TerrainLayer, bool)
 
 ### Declaration
@@ -81,7 +102,7 @@ public void UpdateLayerMaterialData(TerrainLayer terrainLayer, bool forceUpdate 
 
 ### Description
 
-Updates the layer linked to the inputted terrain layer on the material
+Finds all layers using this terrain layer and updates them
 
 ---
 

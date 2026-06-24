@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureUtilities
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
@@ -50,7 +50,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: COMPRESSED_TEXTURE_FORMATS
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
@@ -79,7 +79,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ResizeTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
@@ -126,7 +126,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetReadable
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
@@ -164,7 +164,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetReadable
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
@@ -202,7 +202,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TextureIsNormal
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
@@ -237,7 +237,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetTextureToNormal
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TextureUtilities.cs

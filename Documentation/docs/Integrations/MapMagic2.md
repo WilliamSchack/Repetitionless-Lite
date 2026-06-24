@@ -2,7 +2,7 @@
 
 ## Applying Repetitionless
 
-To use repetitionless on a MapMagic terrain, add a RepetitionlessMapMagic component to the object that has the MapMagicObject
+To use repetitionless on a MapMagic terrain, add a [`RepetitionlessMapMagic`](../Scripting/Repetitionless.Runtime.Integrations.MapMagic.RepetitionlessMapMagic.md) component to the object that has the MapMagicObject
 
 1. Select the map magic terrain you want to use
 2. Select `Add Component`
@@ -26,7 +26,7 @@ To add a material you can either:
 | Edit Material           | Opens the inspector for the selected material                                                                                                 |
 | Save Textures           | Reapplies the terrain materials if required, and syncs the terrain layers to the material. Click this if you have any issues with the terrain |
 
-The script automatically applies and updates [`RepetitionlessTerrain`](Scripting/Repetitionless.Runtime.RepetitionlessTerrain.md) components to all the terrains that the MapMagicObject creates. It will also do the same for terrains generated in play mode
+The script automatically applies and updates [`RepetitionlessTerrain`](../Scripting/Repetitionless.Runtime.RepetitionlessTerrain.md) components to all the terrains that the MapMagicObject creates. It will also do the same for terrains generated in play mode
 
 After creation, you can then edit the material by clicking Edit Material or selecting the material and everything will be automatically applied to all terrains the MapMagicObject created
 

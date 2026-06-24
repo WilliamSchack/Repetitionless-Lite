@@ -10,6 +10,9 @@ namespace Repetitionless.Editor.Integrations.MapMagic
     using Materials;
     using Data;
 
+    /// <summary>
+    /// The editor for the repetitionless map magic component
+    /// </summary>
     [CustomEditor(typeof(RepetitionlessMapMagic))]
     public class RepetitionlessMapMagicEditor : UnityEditor.Editor
     {
@@ -105,6 +108,9 @@ namespace Repetitionless.Editor.Integrations.MapMagic
             Undo.undoRedoPerformed -= UpdateMaterialTerrainTextures;
         }
 
+        /// <summary>
+        /// Base OnGUI function
+        /// </summary>
         public override void OnInspectorGUI()
         {
             //base.OnInspectorGUI();

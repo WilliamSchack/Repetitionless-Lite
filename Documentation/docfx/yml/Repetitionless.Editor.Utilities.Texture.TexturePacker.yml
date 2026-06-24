@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TexturePacker
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
@@ -45,7 +45,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PackTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs

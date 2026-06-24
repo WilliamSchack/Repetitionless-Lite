@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: WelcomeWindow
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-    startLine: 18
+    startLine: 20
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.CustomWindows
@@ -49,11 +49,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Open
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-    startLine: 45
+    startLine: 47
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.CustomWindows
@@ -74,11 +74,11 @@ items:
     ctor: UnityEditor.MenuItem.#ctor(System.String)
     arguments:
     - type: System.String
-      value: Window/Repetitionless/Open Window
+      value: {}
     namedArguments:
     - name: priority
       type: System.Int32
-      value: 0
+      value: {}
 - uid: Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean,System.Boolean)
   commentId: M:Repetitionless.Editor.CustomWindows.WelcomeWindow.Open(System.Boolean,System.Boolean)
   id: Open(System.Boolean,System.Boolean)
@@ -93,11 +93,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Open
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/CustomWindows/WelcomeWindow.cs
-    startLine: 60
+    startLine: 62
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.CustomWindows

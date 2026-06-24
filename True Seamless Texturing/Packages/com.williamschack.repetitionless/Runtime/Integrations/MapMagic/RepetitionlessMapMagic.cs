@@ -10,18 +10,32 @@ using Repetitionless.Runtime.Utilities;
 
 namespace Repetitionless.Runtime.Integrations.MapMagic
 {
+    /// <summary>
+    /// Handles Repetitionless materials interfacing with a MapMagicObject, automatically updating terrain textures and syncing the terrain layers to the material
+    /// </summary>
     [ExecuteInEditMode]
     [RequireComponent(typeof(MapMagicObject))]
     public class RepetitionlessMapMagic : MonoBehaviour
     {
         private MapMagicObject _mapMagicObject; 
+
+        /// <summary>
+        /// The MapMagicObject this component is referencing
+        /// </summary>
         public MapMagicObject MapMagicObject => _mapMagicObject;
 
         [SerializeField] private Material _mainMaterial;
+
+        /// <summary>
+        /// The main material set in the inspector
+        /// </summary>
         public Material MainMaterial => _mainMaterial;
 
         private Material _defaultTerrainMaterial;
 
+        /// <summary>
+        /// If the material is applied to draft (Low-Detail) terrains
+        /// </summary>
         public bool ApplyToDraftTerrains = true;
 
         private void OnEnable()
@@ -130,6 +144,9 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             });
         }
 
+        /// <summary>
+        /// Removes the materials from every terrain
+        /// </summary>
         public void RemoveAllTilesMaterials()
         {
             // Remove all repetitionless terrain components
@@ -167,6 +184,9 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             });
         }
 
+        /// <summary>
+        /// Updates the terrain textures on the material instance of every terrain
+        /// </summary>
         public void UpdateMaterialTerrainTextures()
         {
             // Call the same function on each RepetitionlessTerrain
@@ -178,6 +198,15 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             });
         }
 
+        /// <summary>
+        /// Creates a new material instance and updates every terrain
+        /// </summary>
+        /// <param name="material">
+        /// The material that will be instanced
+        /// </param>
+        /// <param name="assignMaterial">
+        /// If the material instance should be assigned to the terrains
+        /// </param>
         public void UpdateTerrainMaterials(Material material, bool assignMaterial = true)
         {
             // Call the same function on each RepetitionlessTerrain
@@ -189,7 +218,9 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             });
         }
 
-        // Enables/Disabled draft terrains based on variable
+        /// <summary>
+        /// Enables or Disables draft terrains based on ApplyToDraftTerrains
+        /// </summary>
         public void UpdateDraftTerrains()
         {
             foreach (TerrainTile tile in _mapMagicObject.tiles.grid.Values) {
@@ -213,6 +244,12 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
         }
 
 #if UNITY_EDITOR
+        /// <summary>
+        /// Gets the first terrain in the MapMagic grid
+        /// </summary>
+        /// <returns>
+        /// The first terrain in the MapMagic grid
+        /// </returns>
         public Terrain GetFirstTerrain()
         {
             // Check one terrain, if its material has changed, we can assume all terrains have and reapply for all terrains
@@ -230,6 +267,12 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             return checkingTile.main.terrain;
         }
 
+        /// <summary>
+        /// Updates the main material and assigns it to every terrain
+        /// </summary>
+        /// <param name="mat">
+        /// The material to use
+        /// </param>
         public void AssignNewMaterial(Material mat)
         {
             _mainMaterial = mat;
@@ -242,6 +285,9 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             });
         }
 
+        /// <summary>
+        /// Checks if a terrain is using the repetitionless material and if not, it re-assigns it to every terrain
+        /// </summary>
         public void CheckAndUpdateMaterials()
         {
             if (_mainMaterial == null)

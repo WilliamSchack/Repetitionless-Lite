@@ -15,7 +15,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RenderPipelineChecker.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RenderPipelineChecker
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RenderPipelineChecker.cs

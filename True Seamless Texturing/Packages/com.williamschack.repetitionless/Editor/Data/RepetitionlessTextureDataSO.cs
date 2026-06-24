@@ -676,9 +676,11 @@ namespace Repetitionless.Editor.Data
             Save();
         }
 
-        // Assigns the texture arrays to their material properties
-        // Use in the case the properties may not be assigned
-        // Make sure SetupTextureDrawers is called before this
+        /// <summary>
+        /// Assigns the texture arrays to their material properties<br />
+        /// Use in the case the properties may not be assigned<br />
+        /// Make sure SetupTextureDrawers is called before this
+        /// </summary>
         public void UpdateTextureProperties()
         {
             MaterialProperty avTexturesProp  = GetTexturesProp(0);

@@ -72,6 +72,9 @@ nav:
         - RepetitionlessMaterialDataCompressed: Scripting/Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.md
         - RepetitionlessLayerData: Scripting/Repetitionless.Runtime.Variables.RepetitionlessLayerData.md
         - RepetitionlessLayerDataCompressed: Scripting/Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed.md
+      - Integrations:
+        - MapMagic:
+          - RepetitionlessMapMagic: Scripting/Repetitionless.Runtime.Integrations.MapMagic.RepetitionlessMapMagic.md
     - Editor:
       - Data:
         - MaterialDataManager: Scripting/Repetitionless.Editor.Data.MaterialDataManager.md
@@ -112,6 +115,9 @@ nav:
         - WelcomeWindow: Scripting/Repetitionless.Editor.CustomWindows.WelcomeWindow.md
       - Processors:
         - RepetitionlessColourSpaceUpdater: Scripting/Repetitionless.Editor.Processors.RepetitionlessColourSpaceUpdater.md
+      - Integrations:
+        - MapMagic:
+          - RepetitionlessMapMagicEditor: Scripting/Repetitionless.Editor.Integrations.MapMagic.RepetitionlessMapMagicEditor.md
 theme:
     name: material
     custom_dir: overrides

@@ -49,6 +49,11 @@
     name: RepetitionlessMaterialEditorTerrain
   - uid: Repetitionless.Editor.Inspectors.RepetitionlessTerrainEditor
     name: RepetitionlessTerrainEditor
+- uid: Repetitionless.Editor.Integrations.MapMagic
+  name: Repetitionless.Editor.Integrations.MapMagic
+  items:
+  - uid: Repetitionless.Editor.Integrations.MapMagic.RepetitionlessMapMagicEditor
+    name: RepetitionlessMapMagicEditor
 - uid: Repetitionless.Editor.Materials
   name: Repetitionless.Editor.Materials
   items:
@@ -118,6 +123,11 @@
   items:
   - uid: Repetitionless.Runtime.Integrations.MapMagic.RepetitionlessMapMagic
     name: RepetitionlessMapMagic
+- uid: Repetitionless.Runtime.Utilities
+  name: Repetitionless.Runtime.Utilities
+  items:
+  - uid: Repetitionless.Runtime.Utilities.RenderPipelineUtilities
+    name: RenderPipelineUtilities
 - uid: Repetitionless.Runtime.Variables
   name: Repetitionless.Runtime.Variables
   items:

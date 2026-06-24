@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RepetitionlessColourSpaceUpdater.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessColourSpaceUpdater
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RepetitionlessColourSpaceUpdater.cs
@@ -45,7 +45,7 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RepetitionlessColourSpaceUpdater.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepackMaterialsIfColourSpaceChanged
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/RepetitionlessColourSpaceUpdater.cs

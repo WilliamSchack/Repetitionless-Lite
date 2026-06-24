@@ -1,0 +1,22 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Integrations.MapMagic
+  commentId: N:Repetitionless.Editor.Integrations.MapMagic
+  id: Repetitionless.Editor.Integrations.MapMagic
+  children:
+  - Repetitionless.Editor.Integrations.MapMagic.RepetitionlessMapMagicEditor
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Editor.Integrations.MapMagic
+  nameWithType: Repetitionless.Editor.Integrations.MapMagic
+  fullName: Repetitionless.Editor.Integrations.MapMagic
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.Editor.Integrations.MapMagic
+references:
+- uid: Repetitionless.Editor.Integrations.MapMagic.RepetitionlessMapMagicEditor
+  commentId: T:Repetitionless.Editor.Integrations.MapMagic.RepetitionlessMapMagicEditor
+  name: RepetitionlessMapMagicEditor
+  nameWithType: RepetitionlessMapMagicEditor
+  fullName: Repetitionless.Editor.Integrations.MapMagic.RepetitionlessMapMagicEditor

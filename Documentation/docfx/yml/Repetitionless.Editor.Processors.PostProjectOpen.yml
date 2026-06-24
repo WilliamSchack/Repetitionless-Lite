@@ -15,11 +15,11 @@ items:
   source:
     remote:
       path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/PostProjectOpen.cs
-      branch: shader-code
+      branch: main
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PostProjectOpen
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Processors/PostProjectOpen.cs
-    startLine: 13
+    startLine: 12
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Processors
