@@ -87,6 +87,11 @@ jobs:
           rm "HDRP/TerrainNew.meta"
           mv "HDRP" "HDRP~"
           rm "HDRP.meta"
+      - name: Remove Duplicate Sample Data Folders
+        working-directory: "${{ matrix.release-setup-folder }}"
+        run: |
+          python DeleteDuplicateSampleAssets.py
+          ls -R "../True Seamless Texturing/Packages/com.williamschack.repetitionless/Samples~"
       - name: Setup packages for 2022.3
         run: |
           rm "${{ matrix.project-path }}/Packages/manifest.json"
