@@ -180,6 +180,11 @@ namespace Repetitionless.Runtime
         /// </summary>
         public void UpdateMaterialTerrainTextures()
         {
+    #if UNITY_EDITOR
+            // Delay call so new properties can apply
+            EditorApplication.delayCall += () => {
+    #endif
+
             // this == null to prevent error on end of build
             if (_mainMaterial == null || _terrain == null || _terrainData == null || this == null)
                 return;
@@ -188,7 +193,9 @@ namespace Repetitionless.Runtime
                 UpdateTerrainMaterial(_mainMaterial);
 
             // Copy any changed properties from the main material
+            //EditorApplication.delayCall += () => {
             _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);
+            //};
 
             // Control textures 2-8 are not exposed in the shader graph
             // May aswell also set holes while we are here
@@ -200,6 +207,9 @@ namespace Repetitionless.Runtime
     #endif
 
             OnMaterialTexturesUpdated?.Invoke();
+    #if UNITY_EDITOR
+            };
+    #endif
         }
 
         /// <summary>
