@@ -1,3 +1,4 @@
+#if MAPMAGIC2
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -264,3 +265,4 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
 #endif
     }
 }
+#endif
