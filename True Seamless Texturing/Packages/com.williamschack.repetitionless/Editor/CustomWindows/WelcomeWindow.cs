@@ -8,7 +8,6 @@ using Repetitionless.Runtime.Utilities;
 
 namespace Repetitionless.Editor.CustomWindows
 {
-    using Materials;
     using Config;
     using Updating;
     using Utilities.GUI;

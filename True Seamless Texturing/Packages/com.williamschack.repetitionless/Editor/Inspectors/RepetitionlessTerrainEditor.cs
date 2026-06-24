@@ -5,13 +5,13 @@ using UnityEditor;
 using Repetitionless.Runtime;
 using Repetitionless.Runtime.Variables;
 
-using System.Linq;
-
 namespace Repetitionless.Editor.Inspectors
 {
     using Materials;
     using Data;
-    
+    using Utilities.GUI;
+    using UnityEngine.UI;
+
     /// <summary>
     /// The editor for the repetitionless terrain component
     /// </summary>
@@ -322,6 +322,8 @@ namespace Repetitionless.Editor.Inspectors
             
             EditorGUILayout.HelpBox("Only Repetitionless terrain materials are accepted", MessageType.Warning);
             if (GUILayout.Button("Dismiss")) _incorrectMaterial = false;
+
+            GUILayout.Space(10);
         }
 
         private void DrawNoMaterialGUI()
@@ -343,39 +345,39 @@ namespace Repetitionless.Editor.Inspectors
 
         private void DrawAssignedMaterialGUI()
         {
-            GUILayout.Label("Material", _headerStyle);
-            DrawIncorrectMaterialWarning();
-
-            GUILayout.Space(10);
-
-            DrawMaterialProperty();
-
-            // Edit Material Button
-            if (GUILayout.Button("Edit Material", GUILayout.Height(30)))
-                Selection.activeObject = _main.MainMaterial;
+            GUILayout.Space(5);
 
             // Check if terrain exists
             if (_terrainData == null) {
-                GUILayout.Space(10);
-
                 EditorGUILayout.HelpBox("No terrain data is assigned. Please create a new terrain or assign a terrain data to this one.", MessageType.Error);
-                return;
+                GUILayout.Space(5);
             }
-
-            // Save Texture Layers Button
-            GUILayout.Space(10);
-
-            GUILayout.Label("Textures", _headerStyle);
-            GUILayout.Space(5);
 
             if (_terrainLayers.Length > 32) {
                 EditorGUILayout.HelpBox("Over 32 terrain layers are assigned. Only 32 are supported, any extras will appear white.", MessageType.Warning);
                 GUILayout.Space(5);
             }
 
+            //GUILayout.Label("Material", _headerStyle);
+            DrawIncorrectMaterialWarning();
+
+            //GUILayout.Space(10);
+
+            DrawMaterialProperty();
+
             // Terrain Parent
             if (_settingUpParent) _settingUpParent = false;
             DrawParentProperty();
+
+            if (_terrainData == null)
+                return;
+
+            // Save Texture Layers Button
+            GUILayout.Space(5);
+
+            // Edit Material Button
+            if (GUILayout.Button("Edit Material", GUILayout.Height(30)))
+                Selection.activeObject = _main.MainMaterial;
 
             if (_parentTerrainProp.objectReferenceValue != null) {
                 EditorGUILayout.HelpBox("This terrain is taking the material and terrain layers from the parent terrain assigned above. Change the terrain layers, material, or remove the parent to use this terrains textures", MessageType.Info);
@@ -383,22 +385,22 @@ namespace Repetitionless.Editor.Inspectors
                 if (_materialTerrainData == null)
                     return;
 
-                GUILayout.Space(10);
-
-                if (!_materialTerrainData.AutoSyncLayers) {
-                    EditorGUILayout.HelpBox("Auto sync is disabled in the material, layers will not be auto saved", MessageType.Info);
+                if (!_materialTerrainData.AutoSyncLayers)
                     GUI.enabled = false;
-                }
+
+                GUILayout.BeginHorizontal();
+
+                float buttonMaxWidth = EditorGUIUtility.currentViewWidth / 2 - 15;
 
                 Color prevBackgroundColor = GUI.backgroundColor;
                 GUI.backgroundColor = _materialTerrainData.AutoSyncLayers && _autoSaveProp.boolValue ? Color.green : Color.red;
-                _autoSaveProp.boolValue = GUILayout.Toggle(_autoSaveProp.boolValue, "Auto Save Textures", _toggleStyle, GUILayout.Height(30));
+                _autoSaveProp.boolValue = GUILayout.Toggle(_autoSaveProp.boolValue, "Auto Save Textures", _toggleStyle, GUILayout.MaxWidth(buttonMaxWidth), GUILayout.Height(22));
                 GUI.backgroundColor = prevBackgroundColor;
 
                 if (!_materialTerrainData.AutoSyncLayers)
                     GUI.enabled = true;
 
-                if (GUILayout.Button(new GUIContent("Save Textures", "Manually save the data from the terrain layers to the material"), GUILayout.Height(30))) {
+                if (GUILayout.Button(new GUIContent("Save Textures", "Manually save the data from the terrain layers to the material"), GUILayout.MaxWidth(buttonMaxWidth), GUILayout.Height(22))) {
                     // Incase the material was changed to something different
                     if (_main.Terrain.materialTemplate != _main.MaterialInstance || _main.MaterialInstance.shader.name == "Hidden/InternalErrorShader")
                         _main.UpdateTerrainMaterial(_main.MainMaterial);
@@ -409,6 +411,11 @@ namespace Repetitionless.Editor.Inspectors
                     SyncLayersToMaterial();
                     UpdateMaterialTerrainLayerTextures(true);
                 }
+
+                GUILayout.EndHorizontal();
+
+                if (!_materialTerrainData.AutoSyncLayers)
+                    EditorGUILayout.HelpBox("Auto sync is disabled in the material, layers will not be auto saved", MessageType.Info);
             }
 
             if (_main.Terrain.drawInstanced) {
