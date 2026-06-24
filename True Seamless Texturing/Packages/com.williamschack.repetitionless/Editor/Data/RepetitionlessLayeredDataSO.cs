@@ -12,28 +12,53 @@ namespace Repetitionless.Editor.Data
     using Utilities.Texture;
     using Materials;
 
+    /// <summary>
+    /// Stores the properties for a layered Repetitionless material
+    /// </summary>
     public class RepetitionlessLayeredDataSO : ScriptableObject
     {
-        // Using class for serialization
+        /// <summary>
+        /// Holds the TextureData for every channel in a control texture<br />
+        /// In a class for serialization
+        /// </summary>
         [System.Serializable]
         public class ControlTexture
         {
+            /// <summary>
+            /// A length of 4 with each index assigning to a target texture channel<br />
+            /// 0 = R, 1 = G, 2 = B, 3 = A 
+            /// </summary>
             public TexturePacker.TextureData[] ChannelTextures;
         }
 
         private static readonly Vector4 DEFAULT_LAYER_COLOURS_FIRST = new Vector4(1.0f, 0.0f, 0.0f, 0.0f);
         private static readonly Vector4 DEFAULT_LAYER_COLOURS = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
 
+        /// <summary>
+        /// The layer mode
+        /// </summary>
         [SerializeField] public ELayerMode LayerMode = ELayerMode.TerrainLayers;
 
+        /// <summary>
+        /// The max amount of layers allowed to be rendered
+        /// </summary>
         [SerializeField] public EMaxLayers MaxLayers = EMaxLayers.Four;
-
-        // 8 Control textures, 4 channels/textures per
+        
+        /// <summary>
+        /// The control textures, storing 4 channels/textures per control texture
+        /// </summary>
         [SerializeField] public ControlTexture[] ControlTextures = new ControlTexture[Constants.MAX_LAYERS_TERRAIN / 4];
+        
         [SerializeField] private Texture2D[] _packedControlTextures = new Texture2D[Constants.MAX_LAYERS_TERRAIN / 4];
 
+        /// <summary>
+        /// Stores references to the packed control textures
+        /// </summary>
         public Texture2D[] PackedControlTextures => _packedControlTextures;
 
+        /// <summary>
+        /// The holes texture for when the layer mode is set to ControlTextures
+        /// </summary>
         [SerializeField] public TexturePacker.TextureData HolesTexture = new TexturePacker.TextureData();
 
         // Non-Serializable
@@ -81,6 +106,12 @@ namespace Repetitionless.Editor.Data
             }
         }
 
+        /// <summary>
+        /// Initialises the control textures array for a specific control texture
+        /// </summary>
+        /// <param name="controlIndex">
+        /// The index to setup
+        /// </param>
         public void SetupControlTextures(int controlIndex)
         {
             ControlTextures[controlIndex] = new ControlTexture { ChannelTextures = new TexturePacker.TextureData[4] };
@@ -90,6 +121,15 @@ namespace Repetitionless.Editor.Data
             }
         }
 
+        /// <summary>
+        /// Initialises a texture channel for a control texture
+        /// </summary>
+        /// <param name="controlIndex">
+        /// The index to setup
+        /// </param>
+        /// <param name="channelIndex">
+        /// The channel to setup
+        /// </param>
         public void SetupControlChannelTexture(int controlIndex, int channelIndex)
         {
             TexturePacker.TextureChannel[] textureChannels = {
@@ -113,6 +153,12 @@ namespace Repetitionless.Editor.Data
             };
         }
 
+        /// <summary>
+        /// Initialises a control texture based on a layer index
+        /// </summary>
+        /// <param name="layerIndex">
+        /// The layer index to setup
+        /// </param>
         public void SetupControlTexture(int layerIndex)
         {
             int controlTextureIndex = GetControlIndexFromLayerIndex(layerIndex);
@@ -121,6 +167,15 @@ namespace Repetitionless.Editor.Data
             SetupControlChannelTexture(controlTextureIndex, channelIndex);
         }
 
+        /// <summary>
+        /// Gets a reference to the control texture data from a layer index
+        /// </summary>
+        /// <param name="layerIndex">
+        /// The layer index used to get the control index
+        /// </param>
+        /// <returns>
+        /// A reference to the TextureData
+        /// </returns>
         public ref TexturePacker.TextureData GetControlTextureData(int layerIndex)
         {
             int controlTextureIndex = GetControlIndexFromLayerIndex(layerIndex);
@@ -148,6 +203,9 @@ namespace Repetitionless.Editor.Data
             };
         }
 
+        /// <summary>
+        /// Packs all the control textures
+        /// </summary>
         public void PackControlTextures()
         {
             for (int i = 0; i < ControlTextures.Length; i++) {
@@ -155,11 +213,26 @@ namespace Repetitionless.Editor.Data
             }
         }
 
+        /// <summary>
+        /// Gets a control texture index from a layer index
+        /// </summary>
+        /// <param name="layerIndex">
+        /// The layer index used to get the control index
+        /// </param>
+        /// <returns>
+        /// The control index
+        /// </returns>
         public int GetControlIndexFromLayerIndex(int layerIndex)
         {
             return (int)Mathf.Floor(layerIndex / 4.0f);
         }
 
+        /// <summary>
+        /// Packs a control texture based on the textures set in ControlTextures
+        /// </summary>
+        /// <param name="controlIndex">
+        /// The control texture index to pack
+        /// </param>
         public void PackControlTexture(int controlIndex)
         {
             ref TexturePacker.TextureData[] textures = ref ControlTextures[controlIndex].ChannelTextures;
@@ -196,6 +269,9 @@ namespace Repetitionless.Editor.Data
             _packedControlTextures[controlIndex] = packedTexture;
         }
 
+        /// <summary>
+        /// Assigns all the control textures to the material
+        /// </summary>
         public void AssignControlTextures()
         {
             for (int i = 0; i < ControlTextures.Length; i++) {
@@ -203,11 +279,20 @@ namespace Repetitionless.Editor.Data
             }
         }
 
+        /// <summary>
+        /// Assigns a control texture to the material
+        /// </summary>
+        /// <param name="index">
+        /// The index to assign
+        /// </param>
         public void AssignControlTexture(int index)
         {
             _dataManager.Material.SetTexture($"_Control{index}", PackedControlTextures[index]);
         }
 
+        /// <summary>
+        /// Updates the layer count in the material based on the textures assigned
+        /// </summary>
         public void UpdateLayersCount()
         {
             // Get amount of control textures assigned
@@ -225,6 +310,12 @@ namespace Repetitionless.Editor.Data
             _dataManager.Material.SetFloat("_LayersCount", texturesAssigned);
         }
 
+        /// <summary>
+        /// Updates the max layers keyword based on an input layer count
+        /// </summary>
+        /// <param name="layerCount">
+        /// The layer count to transfer to EMaxLayers
+        /// </param>
         public void UpdateMaxLayers(int layerCount)
         {
             MaxLayers = (EMaxLayers)Mathf.Max(4, Mathf.Min((layerCount + 3) / 4 * 4, 32));

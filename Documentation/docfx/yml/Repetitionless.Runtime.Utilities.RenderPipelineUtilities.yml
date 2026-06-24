@@ -21,10 +21,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RenderPipelineUtilities
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Utilities/RenderPipelineUtilities.cs
-    startLine: 7
+    startLine: 10
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Utilities
+  summary: "\nContains utilities related to the render pipeline\n"
+  example: []
   syntax:
     content: public static class RenderPipelineUtilities
     content.vb: Public Module RenderPipelineUtilities
@@ -48,14 +50,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetActiveRenderPipeline
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Utilities/RenderPipelineUtilities.cs
-    startLine: 9
+    startLine: 19
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Utilities
+  summary: "\nGets the render pipeline currently being used\n"
+  example: []
   syntax:
     content: public static ERenderPipeline GetActiveRenderPipeline()
     return:
       type: Repetitionless.Runtime.Variables.ERenderPipeline
+      description: "\nThe render pipeline being used\n"
     content.vb: Public Shared Function GetActiveRenderPipeline() As ERenderPipeline
   overload: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetActiveRenderPipeline*
 - uid: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetDefaultTerrainMaterial
@@ -76,14 +81,17 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetDefaultTerrainMaterial
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Utilities/RenderPipelineUtilities.cs
-    startLine: 24
+    startLine: 40
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Utilities
+  summary: "\nGets the default terrain material based on the current render pipeline\n"
+  example: []
   syntax:
     content: public static Material GetDefaultTerrainMaterial()
     return:
       type: UnityEngine.Material
+      description: "\nThe default terrain material for the used render pipeline\n"
     content.vb: Public Shared Function GetDefaultTerrainMaterial() As Material
   overload: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetDefaultTerrainMaterial*
 references:

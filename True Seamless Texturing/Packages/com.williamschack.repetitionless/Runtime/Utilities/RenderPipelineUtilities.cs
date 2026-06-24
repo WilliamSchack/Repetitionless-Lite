@@ -5,8 +5,18 @@ namespace Repetitionless.Runtime.Utilities
 {
     using Variables;
 
+    /// <summary>
+    /// Contains utilities related to the render pipeline
+    /// </summary>
     public static class RenderPipelineUtilities
     {
+
+        /// <summary>
+        /// Gets the render pipeline currently being used
+        /// </summary>
+        /// <returns>
+        /// The render pipeline being used
+        /// </returns>
         public static ERenderPipeline GetActiveRenderPipeline()
         {
             RenderPipelineAsset currentPipeline = GraphicsSettings.currentRenderPipeline;
@@ -22,6 +32,12 @@ namespace Repetitionless.Runtime.Utilities
             return ERenderPipeline.Unknown;
         }
 
+        /// <summary>
+        /// Gets the default terrain material based on the current render pipeline
+        /// </summary>
+        /// <returns>
+        /// The default terrain material for the used render pipeline
+        /// </returns>
         public static Material GetDefaultTerrainMaterial()
         {
             Shader terrainShader = GraphicsSettings.defaultRenderPipeline?.defaultTerrainMaterial?.shader;

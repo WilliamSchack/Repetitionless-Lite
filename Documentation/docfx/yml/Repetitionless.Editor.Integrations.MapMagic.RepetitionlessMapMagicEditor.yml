@@ -45,7 +45,7 @@ items:
     ctor: UnityEditor.CustomEditor.#ctor(System.Type)
     arguments:
     - type: System.Type
-      value: {}
+      value: Repetitionless.Runtime.Integrations.MapMagic.RepetitionlessMapMagic
 - uid: Repetitionless.Editor.Integrations.MapMagic.RepetitionlessMapMagicEditor.OnInspectorGUI
   commentId: M:Repetitionless.Editor.Integrations.MapMagic.RepetitionlessMapMagicEditor.OnInspectorGUI
   id: OnInspectorGUI

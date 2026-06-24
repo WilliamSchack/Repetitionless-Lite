@@ -67,11 +67,14 @@ nav:
         - EDistanceBlendMode: Scripting/Repetitionless.Runtime.Variables.EDistanceBlendMode.md
         - EVertexColourBlendMode: Scripting/Repetitionless.Runtime.Variables.EVertexColourBlendMode.md
         - ELayerMode: Scripting/Repetitionless.Runtime.Variables.ELayerMode.md
+        - EMaxLayers: Scripting/Repetitionless.Runtime.Variables.EMaxLayers.md
         - ERenderPipeline: Scripting/Repetitionless.Runtime.Variables.ERenderPipeline.md
         - RepetitionlessMaterialData: Scripting/Repetitionless.Runtime.Variables.RepetitionlessMaterialData.md
         - RepetitionlessMaterialDataCompressed: Scripting/Repetitionless.Runtime.Variables.RepetitionlessMaterialDataCompressed.md
         - RepetitionlessLayerData: Scripting/Repetitionless.Runtime.Variables.RepetitionlessLayerData.md
         - RepetitionlessLayerDataCompressed: Scripting/Repetitionless.Runtime.Variables.RepetitionlessLayerDataCompressed.md
+      - Utilities:
+        - RenderPipelineUtilities: Scripting/Repetitionless.Runtime.Utilities.RenderPipelineUtilities.md
       - Integrations:
         - MapMagic:
           - RepetitionlessMapMagic: Scripting/Repetitionless.Runtime.Integrations.MapMagic.RepetitionlessMapMagic.md
@@ -83,6 +86,7 @@ nav:
         - RepetitionlessTextureDataSO Variables:
           - MaterialTextureData: Scripting/Repetitionless.Editor.Data.RepetitionlessTextureDataSO.MaterialTextureData.md
           - LayerTextureData: Scripting/Repetitionless.Editor.Data.RepetitionlessTextureDataSO.LayerTextureData.md
+        - RepetitionlessLayeredDataSO: Scripting/Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.md
         - RepetitionlessTerrainDataSO: Scripting/Repetitionless.Editor.Data.RepetitionlessTerrainDataSO.md
         - RepetitionlessDataPacker: Scripting/Repetitionless.Editor.Data.RepetitionlessDataPacker.md
       - Materials:

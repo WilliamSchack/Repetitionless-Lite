@@ -39,10 +39,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: RepetitionlessLayeredDataSO
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 14
+    startLine: 17
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nStores the properties for a layered Repetitionless material\n"
+  example: []
   syntax:
     content: 'public class RepetitionlessLayeredDataSO : ScriptableObject'
     content.vb: Public Class RepetitionlessLayeredDataSO Inherits ScriptableObject
@@ -68,10 +70,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: LayerMode
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 26
+    startLine: 39
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nThe layer mode\n"
+  example: []
   syntax:
     content: >-
       [SerializeField]
@@ -105,10 +109,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: MaxLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 28
+    startLine: 44
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nThe max amount of layers allowed to be rendered\n"
+  example: []
   syntax:
     content: >-
       [SerializeField]
@@ -142,10 +148,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 31
+    startLine: 49
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nThe control textures, storing 4 channels/textures per control texture\n"
+  example: []
   syntax:
     content: >-
       [SerializeField]
@@ -179,10 +187,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PackedControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 34
+    startLine: 56
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nStores references to the packed control textures\n"
+  example: []
   syntax:
     content: public Texture2D[] PackedControlTextures { get; }
     parameters: []
@@ -208,10 +218,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: HolesTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 36
+    startLine: 61
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nThe holes texture for when the layer mode is set to ControlTextures\n"
+  example: []
   syntax:
     content: >-
       [SerializeField]
@@ -245,7 +257,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Save
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 53
+    startLine: 78
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -273,7 +285,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Init
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 63
+    startLine: 88
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -301,7 +313,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 74
+    startLine: 99
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -329,15 +341,18 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 83
+    startLine: 114
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nInitialises the control textures array for a specific control texture\n"
+  example: []
   syntax:
     content: public void SetupControlTextures(int controlIndex)
     parameters:
     - id: controlIndex
       type: System.Int32
+      description: "\nThe index to setup\n"
     content.vb: Public Sub SetupControlTextures(controlIndex As Integer)
   overload: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.SetupControlTextures*
   nameWithType.vb: RepetitionlessLayeredDataSO.SetupControlTextures(Integer)
@@ -361,17 +376,21 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupControlChannelTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 92
+    startLine: 132
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nInitialises a texture channel for a control texture\n"
+  example: []
   syntax:
     content: public void SetupControlChannelTexture(int controlIndex, int channelIndex)
     parameters:
     - id: controlIndex
       type: System.Int32
+      description: "\nThe index to setup\n"
     - id: channelIndex
       type: System.Int32
+      description: "\nThe channel to setup\n"
     content.vb: Public Sub SetupControlChannelTexture(controlIndex As Integer, channelIndex As Integer)
   overload: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.SetupControlChannelTexture*
   nameWithType.vb: RepetitionlessLayeredDataSO.SetupControlChannelTexture(Integer, Integer)
@@ -395,15 +414,18 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupControlTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 115
+    startLine: 161
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nInitialises a control texture based on a layer index\n"
+  example: []
   syntax:
     content: public void SetupControlTexture(int layerIndex)
     parameters:
     - id: layerIndex
       type: System.Int32
+      description: "\nThe layer index to setup\n"
     content.vb: Public Sub SetupControlTexture(layerIndex As Integer)
   overload: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.SetupControlTexture*
   nameWithType.vb: RepetitionlessLayeredDataSO.SetupControlTexture(Integer)
@@ -427,17 +449,21 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetControlTextureData
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 123
+    startLine: 178
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nGets a reference to the control texture data from a layer index\n"
+  example: []
   syntax:
     content: public ref TexturePacker.TextureData GetControlTextureData(int layerIndex)
     parameters:
     - id: layerIndex
       type: System.Int32
+      description: "\nThe layer index used to get the control index\n"
     return:
       type: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureData
+      description: "\nA reference to the TextureData\n"
     content.vb: Public ByRef Function GetControlTextureData(layerIndex As Integer) As TexturePacker.TextureData
   overload: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.GetControlTextureData*
   nameWithType.vb: RepetitionlessLayeredDataSO.GetControlTextureData(Integer)
@@ -461,7 +487,7 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: SetupHolesTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 134
+    startLine: 189
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
@@ -489,10 +515,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PackControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 150
+    startLine: 208
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nPacks all the control textures\n"
+  example: []
   syntax:
     content: public void PackControlTextures()
     content.vb: Public Sub PackControlTextures()
@@ -515,17 +543,21 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: GetControlIndexFromLayerIndex
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 157
+    startLine: 224
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nGets a control texture index from a layer index\n"
+  example: []
   syntax:
     content: public int GetControlIndexFromLayerIndex(int layerIndex)
     parameters:
     - id: layerIndex
       type: System.Int32
+      description: "\nThe layer index used to get the control index\n"
     return:
       type: System.Int32
+      description: "\nThe control index\n"
     content.vb: Public Function GetControlIndexFromLayerIndex(layerIndex As Integer) As Integer
   overload: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.GetControlIndexFromLayerIndex*
   nameWithType.vb: RepetitionlessLayeredDataSO.GetControlIndexFromLayerIndex(Integer)
@@ -549,15 +581,18 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: PackControlTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 162
+    startLine: 235
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nPacks a control texture based on the textures set in ControlTextures\n"
+  example: []
   syntax:
     content: public void PackControlTexture(int controlIndex)
     parameters:
     - id: controlIndex
       type: System.Int32
+      description: "\nThe control texture index to pack\n"
     content.vb: Public Sub PackControlTexture(controlIndex As Integer)
   overload: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.PackControlTexture*
   nameWithType.vb: RepetitionlessLayeredDataSO.PackControlTexture(Integer)
@@ -581,10 +616,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AssignControlTextures
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 198
+    startLine: 274
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nAssigns all the control textures to the material\n"
+  example: []
   syntax:
     content: public void AssignControlTextures()
     content.vb: Public Sub AssignControlTextures()
@@ -607,15 +644,18 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: AssignControlTexture
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 205
+    startLine: 287
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nAssigns a control texture to the material\n"
+  example: []
   syntax:
     content: public void AssignControlTexture(int index)
     parameters:
     - id: index
       type: System.Int32
+      description: "\nThe index to assign\n"
     content.vb: Public Sub AssignControlTexture(index As Integer)
   overload: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.AssignControlTexture*
   nameWithType.vb: RepetitionlessLayeredDataSO.AssignControlTexture(Integer)
@@ -639,10 +679,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateLayersCount
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 210
+    startLine: 295
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nUpdates the layer count in the material based on the textures assigned\n"
+  example: []
   syntax:
     content: public void UpdateLayersCount()
     content.vb: Public Sub UpdateLayersCount()
@@ -665,15 +707,18 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: UpdateMaxLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Data/RepetitionlessLayeredDataSO.cs
-    startLine: 227
+    startLine: 318
   assemblies:
   - com.williamschack.Repetitionless.Editor
   namespace: Repetitionless.Editor.Data
+  summary: "\nUpdates the max layers keyword based on an input layer count\n"
+  example: []
   syntax:
     content: public void UpdateMaxLayers(int layerCount)
     parameters:
     - id: layerCount
       type: System.Int32
+      description: "\nThe layer count to transfer to EMaxLayers\n"
     content.vb: Public Sub UpdateMaxLayers(layerCount As Integer)
   overload: Repetitionless.Editor.Data.RepetitionlessLayeredDataSO.UpdateMaxLayers*
   nameWithType.vb: RepetitionlessLayeredDataSO.UpdateMaxLayers(Integer)

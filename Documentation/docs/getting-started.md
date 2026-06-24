@@ -51,9 +51,9 @@ To view what each material property does:
 
 ## Integrations
 
-**If you want to use any of the asset integrations, details are below:**
+**If you want to use any of the asset integrations, details are in their respective pages:**
 
-**View the [MapMagic2 Page](Integrations/MapMagic2.md)**
+**View the [MapMagic Page](Integrations/MapMagic2.md)**
 
 For instructions on using Repetitionless terrain materials on a MapMagic terrain
 

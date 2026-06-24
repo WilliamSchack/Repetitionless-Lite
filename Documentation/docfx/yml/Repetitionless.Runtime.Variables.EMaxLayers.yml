@@ -27,10 +27,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: EMaxLayers
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 171
+    startLine: 176
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
+  summary: "\nAvailable options for the max layers keyword in a Repetitionless material<br />\nEach value has an int assigned being the same as its name<br />\nCan be directly translated to the keyword _MAX_LAYERS_X\n"
+  example: []
   syntax:
     content: public enum EMaxLayers
     content.vb: Public Enum EMaxLayers
@@ -55,10 +57,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Four
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 173
+    startLine: 181
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
+  summary: "\n= 4\n"
+  example: []
   syntax:
     content: Four = 4
     return:
@@ -81,10 +85,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Eight
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 174
+    startLine: 186
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
+  summary: "\n= 8\n"
+  example: []
   syntax:
     content: Eight = 8
     return:
@@ -107,10 +113,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Twelve
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 175
+    startLine: 191
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
+  summary: "\n= 12\n"
+  example: []
   syntax:
     content: Twelve = 12
     return:
@@ -133,10 +141,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Sixteen
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 176
+    startLine: 196
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
+  summary: "\n= 16\n"
+  example: []
   syntax:
     content: Sixteen = 16
     return:
@@ -159,10 +169,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: Twenty
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 177
+    startLine: 201
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
+  summary: "\n= 20\n"
+  example: []
   syntax:
     content: Twenty = 20
     return:
@@ -185,10 +197,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TwentyFour
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 178
+    startLine: 206
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
+  summary: "\n= 24\n"
+  example: []
   syntax:
     content: TwentyFour = 24
     return:
@@ -211,10 +225,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: TwentyEight
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 179
+    startLine: 211
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
+  summary: "\n= 28\n"
+  example: []
   syntax:
     content: TwentyEight = 28
     return:
@@ -237,10 +253,12 @@ items:
       repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
     id: ThirtyTwo
     path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Variables/SeamlessEnums.cs
-    startLine: 180
+    startLine: 216
   assemblies:
   - com.williamschack.Repetitionless.Runtime
   namespace: Repetitionless.Runtime.Variables
+  summary: "\n= 32\n"
+  example: []
   syntax:
     content: ThirtyTwo = 32
     return:
