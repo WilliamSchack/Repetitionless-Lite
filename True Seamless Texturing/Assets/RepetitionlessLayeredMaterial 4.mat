@@ -34,7 +34,7 @@ Material:
   - _TERRAIN_INSTANCED_PERPIXEL_NORMAL
   m_InvalidKeywords:
   - _DISABLE_SSR_TRANSPARENT
-  - _MAX_LAYERS_4
+  - _MAX_LAYERS_8
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

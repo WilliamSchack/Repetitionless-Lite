@@ -12,7 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _MAX_LAYERS_12
+  - _MAX_LAYERS_8
   - _REPETITIONLESS_NOISE_TEXTURE
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -26,7 +26,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AVTextures:
-        m_Texture: {fileID: 18700000, guid: bd0f3916311d08b08bd91a8a610d58bd, type: 2}
+        m_Texture: {fileID: 18700000, guid: b47c9ee01c91e01f28afbd28b88bcf75, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AssignedTexturesTexture:
@@ -74,7 +74,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NSOTextures:
-        m_Texture: {fileID: 18700000, guid: 8c2370989f9b531cc99bf16a982277f4, type: 2}
+        m_Texture: {fileID: 18700000, guid: f57021e12ef097af79a0904ad511b934, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:

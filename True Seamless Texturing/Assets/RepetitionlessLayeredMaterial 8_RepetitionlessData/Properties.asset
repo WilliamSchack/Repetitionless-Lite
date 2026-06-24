@@ -555,10 +555,10 @@ MonoBehaviour:
       PackedTextureAssigned: 0
       AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
-      TilingOffset: {x: 41.4, y: 30, z: 0, w: 0}
+      TilingOffset: {x: 50, y: 50, z: 0, w: 0}
       Metallic: 0
       SmoothnessRoughness: 0
-      NormalScale: 1
+      NormalScale: 3
       OcclussionStrength: 1
       AlphaClipping: 0.5
       NoiseAngleOffset: 2
@@ -4348,13 +4348,13 @@ MonoBehaviour:
     MaterialBlendMaskExtraSettings: {x: 0, y: 0, z: 0, w: 0}
   - BaseMaterialData:
       Settings1: {x: 15, y: 9, z: 0, w: 0}
-      Settings2: {x: 1, y: 1, z: 0.5, w: 2}
+      Settings2: {x: 3, y: 1, z: 0.5, w: 2}
       Settings3: {x: 2, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
       AlbedoTint: {x: 1, y: 1, z: 1}
       EmissionColour: {x: 0, y: 0, z: 0}
-      TilingOffset: {x: 82.8, y: 60, z: 0, w: 0}
+      TilingOffset: {x: 100, y: 100, z: 0, w: 0}
       VariationTO: {x: 5, y: 5, z: 0, w: 0}
     FarMaterialData:
       Settings1: {x: 15, y: 0, z: 0, w: 0.5}
