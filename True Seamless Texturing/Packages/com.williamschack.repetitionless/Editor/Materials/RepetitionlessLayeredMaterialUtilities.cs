@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEditor;
 
 using Repetitionless.Runtime.Variables;
+using Repetitionless.Runtime.Utilities;
 
 namespace Repetitionless.Editor.Materials
 {
@@ -25,7 +26,7 @@ namespace Repetitionless.Editor.Materials
 
             // If in HDRP & Under Unity 6.3, add TerrainCompatible keyword
 #if !UNITY_6000_3_OR_NEWER
-            ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
+            ERenderPipeline currentPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
             if (currentPipeline == ERenderPipeline.HDRP)
                 mat.SetOverrideTag("TerrainCompatible", "True");
 #endif
@@ -96,7 +97,7 @@ namespace Repetitionless.Editor.Materials
 
             // If in HDRP & Under Unity 6.3, add TerrainCompatible keyword
 #if !UNITY_6000_3_OR_NEWER
-            ERenderPipeline currentPipeline = RepetitionlessMaterialUtilities.GetActiveRenderPipeline();
+            ERenderPipeline currentPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
             if (currentPipeline == ERenderPipeline.HDRP)
                 dataManager.Material.SetOverrideTag("TerrainCompatible", "True");
 #endif

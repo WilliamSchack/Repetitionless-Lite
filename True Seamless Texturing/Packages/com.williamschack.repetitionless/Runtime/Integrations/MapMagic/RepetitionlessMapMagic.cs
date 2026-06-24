@@ -13,7 +13,8 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
     [RequireComponent(typeof(MapMagicObject))]
     public class RepetitionlessMapMagic : MonoBehaviour
     {
-        private MapMagicObject _mapMagicObject;
+        private MapMagicObject _mapMagicObject; 
+        public MapMagicObject MapMagicObject => _mapMagicObject;
 
         [SerializeField] private Material _mainMaterial;
         public Material MainMaterial => _mainMaterial;

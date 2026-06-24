@@ -9,7 +9,7 @@ using UnityEditor.SceneManagement;
 
 using Repetitionless.Runtime.Utilities;
 
-// Set the control and holes render textures to the material directly
+// Set the control render textures to the material directly
 // Better than trying to fiddle with saving the textures
 // Also allows me to instance the material and have different textures for different terrains
 
@@ -206,7 +206,6 @@ namespace Repetitionless.Runtime
             _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);
 
             // Control textures 2-8 are not exposed in the shader graph
-            // May aswell also set holes while we are here
             UpdateLayersCount();
             UpdateControlTextures();
 
