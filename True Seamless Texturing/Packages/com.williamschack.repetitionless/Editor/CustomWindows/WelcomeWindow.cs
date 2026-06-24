@@ -2,12 +2,15 @@
 using System.IO;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 using Repetitionless.Runtime.Variables;
 using Repetitionless.Runtime.Utilities;
 
 namespace Repetitionless.Editor.CustomWindows
 {
+    using Data;
+    using Materials;
     using Config;
     using Updating;
     using Utilities.GUI;
@@ -255,18 +258,23 @@ namespace Repetitionless.Editor.CustomWindows
             string targetCorePathFull = $"{targetBasePath}/Core Sample Assets";
             string targetPipelinePath = $"{targetBasePath}/";
 
+            string renderPipelineName = "";
+
             ERenderPipeline currentPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
             switch (currentPipeline) {
                 case ERenderPipeline.Builtin:
                     samplesPipelinePathFull += Constants.SAMPLES_PATH_BIRP;
+                    renderPipelineName = "BIRP";
                     targetPipelinePath += "BIRP Examples";
                     break;
                 case ERenderPipeline.URP:
                     samplesPipelinePathFull += Constants.SAMPLES_PATH_URP;
+                    renderPipelineName = "URP";
                     targetPipelinePath += "URP Examples";
                     break;
                 case ERenderPipeline.HDRP:
                     samplesPipelinePathFull += Constants.SAMPLES_PATH_HDRP;
+                    renderPipelineName = "HDRP";
                     targetPipelinePath += "HDRP Examples";
                     break;
                 default:
@@ -294,11 +302,62 @@ namespace Repetitionless.Editor.CustomWindows
                 anyFilesCreated = true;
             }
 
-            if (anyFilesCreated)
+            // Copy material data files to their respective folders
+            // (These are removed from the Samples~ folder when building the package)
+            string materialDataFolderCommon = targetCorePathFull + "/MaterialData/";
+
+            // Sample, Material Folder
+            Tuple<string, string>[] materialFolders = {
+                new Tuple<string, string>("Comparison", "Repetitionless"),
+                new Tuple<string, string>("Comparison", "Repetitionless 1"),
+                new Tuple<string, string>("Comparison", "Repetitionless 2"),
+                new Tuple<string, string>("Comparison", "Repetitionless 3"),
+                new Tuple<string, string>("Flat", "Repetitionless"),
+                new Tuple<string, string>("Forest", "Terrain"),
+            };
+
+            foreach (Tuple<string, string> folders in materialFolders) {
+                string sampleName = folders.Item1;
+                string materialName = folders.Item2;
+
+                string materialFolder = "_" + sampleName + "_" + materialName + "_RepetitionlessData";
+                string coreFolderPath = materialDataFolderCommon + sampleName + "/Repetitionless" + materialFolder;
+                string targetFolderPath = targetPipelinePathFull + "/" + sampleName + "/Materials/Repetitionless_" + renderPipelineName + materialFolder;
+
+                // Dont do if target folder exists
+                if (Directory.Exists(targetFolderPath))
+                    continue;
+
+                FileUtil.MoveFileOrDirectory(coreFolderPath, targetFolderPath);
+
+                // Remove all meta files
+                foreach (string metaFilePath in Directory.GetFiles(targetFolderPath, "*.meta", SearchOption.TopDirectoryOnly))
+                    File.Delete(metaFilePath);
+
+                anyFilesCreated = true;
+            }
+
+            if (anyFilesCreated) {
                 AssetDatabase.Refresh();
-            else {
+
+                // Fix materials, textures will not be assigned and they will appear broken otherwise
+                foreach (Tuple<string, string> folders in materialFolders) {
+                    string sampleName = folders.Item1;
+                    string materialName = folders.Item2;
+                    string materialPath = targetPipelinePath + "/" + sampleName + "/Materials/Repetitionless_" + renderPipelineName + "_" + sampleName + "_" + materialName + ".mat";
+                    Material mat = AssetDatabase.LoadAssetAtPath<Material>(materialPath);
+
+                    MaterialDataManager dataManager = new MaterialDataManager(mat);
+                    RepetitionlessTextureDataSO textureData = dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
+                    RepetitionlessMaterialDataSO materialProperties = dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
+                    textureData.SetupTextureDrawers();
+                    textureData.UpdateTextureProperties();
+                    textureData.UpdateAssignedTexturesTexture();
+                    materialProperties.UpdateMaterialTexture(mat, 0);
+                }
+            } else {
                 // Ping object in project window if already created
-                Object samplesFolderObject = AssetDatabase.LoadAssetAtPath<Object>(targetPipelinePath);
+                UnityEngine.Object samplesFolderObject = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(targetPipelinePath);
                 EditorGUIUtility.PingObject(samplesFolderObject);
             }
         }

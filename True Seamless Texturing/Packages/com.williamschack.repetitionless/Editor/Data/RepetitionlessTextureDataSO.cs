@@ -675,5 +675,23 @@ namespace Repetitionless.Editor.Data
 
             Save();
         }
+
+        // Assigns the texture arrays to their material properties
+        // Use in the case the properties may not be assigned
+        // Make sure SetupTextureDrawers is called before this
+        public void UpdateTextureProperties()
+        {
+            MaterialProperty avTexturesProp  = GetTexturesProp(0);
+            MaterialProperty nsoTexturesProp = GetTexturesProp(1);
+            MaterialProperty emTexturesProp  = GetTexturesProp(2);
+            MaterialProperty bmTexturesProp  = GetTexturesProp(3);
+
+            avTexturesProp.textureValue = AVTexturesDrawer.Array;
+            nsoTexturesProp.textureValue = NSOTexturesDrawer.Array;
+            emTexturesProp.textureValue = EMTexturesDrawer.Array;
+            bmTexturesProp.textureValue = BMTexturesDrawer.Array;
+
+            Debug.Log(AVTexturesDrawer.Array);
+        }
     }
 }
