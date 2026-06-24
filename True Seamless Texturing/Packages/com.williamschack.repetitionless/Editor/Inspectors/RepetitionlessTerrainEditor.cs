@@ -4,13 +4,12 @@ using UnityEditor;
 
 using Repetitionless.Runtime;
 using Repetitionless.Runtime.Variables;
+using Repetitionless.Runtime.Utilities;
 
 namespace Repetitionless.Editor.Inspectors
 {
     using Materials;
     using Data;
-    using Utilities.GUI;
-    using UnityEngine.UI;
 
     /// <summary>
     /// The editor for the repetitionless terrain component
@@ -347,7 +346,13 @@ namespace Repetitionless.Editor.Inspectors
         {
             GUILayout.Space(5);
 
-            // Check if terrain exists
+#if !UNITY_6000_3_OR_NEWER
+            ERenderPipeline renderPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
+            if (_main.Terrain.drawInstanced && renderPipeline == ERenderPipeline.HDRP) {
+                EditorGUILayout.HelpBox("Terrain instancing is not supported in HDRP under Unity 6.3\nThe terrain may appear incorrect and performance will be lowered with many terrains. Please disable Draw Instanced in the terrain settings.", MessageType.Error);
+            }
+#endif
+
             if (_terrainData == null) {
                 EditorGUILayout.HelpBox("No terrain data is assigned. Please create a new terrain or assign a terrain data to this one.", MessageType.Error);
                 GUILayout.Space(5);
@@ -416,10 +421,6 @@ namespace Repetitionless.Editor.Inspectors
 
                 if (!_materialTerrainData.AutoSyncLayers)
                     EditorGUILayout.HelpBox("Auto sync is disabled in the material, layers will not be auto saved", MessageType.Info);
-            }
-
-            if (_main.Terrain.drawInstanced) {
-                // Check for hdrp, Unity < 6.3, display error
             }
         }
     }

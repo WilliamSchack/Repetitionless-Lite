@@ -223,6 +223,14 @@ namespace Repetitionless.Editor.Integrations.MapMagic
         {
             GUILayout.Space(5);
 
+#if !UNITY_6000_3_OR_NEWER
+            ERenderPipeline renderPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
+            if (_main.Terrain.drawInstanced && renderPipeline == ERenderPipeline.HDRP) {
+                EditorGUILayout.HelpBox("Terrain instancing is not supported in HDRP under Unity 6.3\nThe terrain may appear incorrect and performance will be lowered with many terrains.\nPlease disable Draw Instanced in the mapmagic settings.", MessageType.Error);
+                GUILayout.Space(5);
+            }
+#endif
+
             DrawIncorrectMaterialWarning();
 
             DrawMaterialProperty();
@@ -255,10 +263,6 @@ namespace Repetitionless.Editor.Integrations.MapMagic
                 SyncLayersToMaterial();
                 UpdateMaterialTerrainLayerTextures(true);
             }
-
-            //if (_main.Terrain.drawInstanced) {
-            //    // Check for hdrp, Unity < 6.3, display error
-            //}
         }
     }
 }
