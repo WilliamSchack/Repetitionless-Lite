@@ -7,6 +7,8 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 #endif
 
+using Repetitionless.Runtime.Utilities;
+
 // Set the control and holes render textures to the material directly
 // Better than trying to fiddle with saving the textures
 // Also allows me to instance the material and have different textures for different terrains
@@ -34,6 +36,8 @@ namespace Repetitionless.Runtime
         /// </summary>
         public Material MainMaterial => _mainMaterial;
         
+        private Material _defaultTerrainMaterial;
+
         private Material _materialInstance;
 
         /// <summary>
@@ -99,6 +103,8 @@ namespace Repetitionless.Runtime
 
         void OnEnable()
         {
+            _defaultTerrainMaterial = RenderPipelineUtilities.GetDefaultTerrainMaterial();
+
     #if UNITY_EDITOR
             EditorSceneManager.sceneSaved -= OnSceneSaved;
             EditorSceneManager.sceneSaved += OnSceneSaved;
@@ -118,6 +124,7 @@ namespace Repetitionless.Runtime
             EditorApplication.delayCall += () => {
                 SetDirty();
                 UpdateMaterialTerrainTextures();
+                AssignMaterialInstance();
             };
     #else
             UpdateMaterialTerrainTextures();
@@ -134,6 +141,9 @@ namespace Repetitionless.Runtime
                 ParentTerrain.OnMaterialAssigned        -= ParentMaterialChanged;
                 ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
             }
+
+            // Switch to default terrain material
+            _terrain.materialTemplate = _defaultTerrainMaterial;
     #endif
         }
 

@@ -212,8 +212,18 @@ namespace Repetitionless.Editor.Inspectors
             // Add scripts to terrain neighbours if added
             HandleUpdatedTerrainNeighbours();
 
+            if (!_main.enabled)
+                GUI.enabled = false;
+
             if (_main.MainMaterial == null) DrawNoMaterialGUI();
             else DrawAssignedMaterialGUI();
+
+            if (!_main.enabled) {
+                GUI.enabled = true;
+
+                GUILayout.Space(10);
+                EditorGUILayout.HelpBox("This component is disabled, enable it to use Repetitionless", MessageType.Info);
+            }
 
             serializedObject.ApplyModifiedProperties();
         }
