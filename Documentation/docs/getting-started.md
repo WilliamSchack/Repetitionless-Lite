@@ -49,6 +49,14 @@ To view what each material property does:
 
 **View the [Material Properties Page](material-properties.md)**
 
+## Integrations
+
+**If you want to use any of the asset integrations, details are below:**
+
+**View the [MapMagic2 Page](Integrations/MapMagic2.md)**
+
+For instructions on using Repetitionless terrain materials on a MapMagic terrain
+
 ## Creating Shaders
 
 You can view the Sub Graphs and Shader API documentation in the contents on the left of the page

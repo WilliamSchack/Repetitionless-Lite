@@ -48,6 +48,14 @@ To add a material you can either:
 
 ![image](Images/TerrainMaterial/UsingTerrainComponent.png)
 
+| Setting            | Description                                                                                                                                   |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Main Material      | The material applied to the terrains                                                                                                          |
+| Parent Terrain     | The terrain to take the material and terrain layers from. See [below](#using-multiple-terrains) for details                                   |
+| Edit Material      | Opens the inspector for the selected material                                                                                                 |
+| Auto Save Textures | Toggles if the material layers are automatically updated if the terrain layers change                                                         |
+| Save Textures      | Reapplies the terrain materials if required, and syncs the terrain layers to the material. Click this if you have any issues with the terrain |
+
 That is basically all you need to do! The script will handle the material assigning and texture syncing for you
 
 With Auto Save Textures enabled, the terrain will sync whenever you update the terrain layers, updating the materials textures. With it disabled, it will not sync the textures until you click the Save Textures button.
