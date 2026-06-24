@@ -14,6 +14,8 @@ nav:
   - Shader Creation: shader-creation.md
   - Scripting: scripting.md
   - Submitting Issues: issues.md
+  - Integrations:
+    - MapMagic: Integrations/MapMagic2.md
   - Sub Graphs:
     - Compression:
       - Add Compressed Bool: SubGraphs/BooleanCompression.AddCompressedBool.md
