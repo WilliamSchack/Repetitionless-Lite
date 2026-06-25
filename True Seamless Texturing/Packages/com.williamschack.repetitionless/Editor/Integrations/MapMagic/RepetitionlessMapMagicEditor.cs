@@ -152,8 +152,6 @@ namespace Repetitionless.Editor.Integrations.MapMagic
 
             _terrainLayers = terrain.terrainData.terrainLayers;
 
-            Debug.Log("UPDATED");
-
             // Save the new terrain layers to the material
             SyncLayersToMaterial();
             UpdateMaterialTerrainLayerTextures(true);
