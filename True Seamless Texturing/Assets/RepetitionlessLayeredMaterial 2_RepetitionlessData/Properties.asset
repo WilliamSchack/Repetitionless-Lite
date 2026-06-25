@@ -32,7 +32,7 @@ MonoBehaviour:
       AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
       TilingOffset: {x: 20, y: 20, z: 0, w: 0}
-      Metallic: 0
+      Metallic: 0.056
       SmoothnessRoughness: 0
       NormalScale: 2
       OcclussionStrength: 1
@@ -4207,7 +4207,7 @@ MonoBehaviour:
     BlendMaskVertexColourThreshold: {x: 0.01, y: 0.2}
   _dataCompressed:
   - BaseMaterialData:
-      Settings1: {x: 15, y: 9, z: 0, w: 0}
+      Settings1: {x: 15, y: 9, z: 0.056, w: 0}
       Settings2: {x: 2, y: 1, z: 0.5, w: 2}
       Settings3: {x: 2, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
