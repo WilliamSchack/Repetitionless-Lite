@@ -321,7 +321,7 @@ namespace Repetitionless.Editor.Data
             MaxLayers = (EMaxLayers)Mathf.Max(4, Mathf.Min((layerCount + 3) / 4 * 4, 32));
             Save();
 
-            RepetitionlessMaterialUtilities.SetEnumKeywordInt(_dataManager.Material, Constants.MAX_LAYERS_KEYWORD_PREFIX, MaxLayers);
+            RepetitionlessMaterialUtilities.UpdateMaxLayersKeyword(_dataManager.Material, MaxLayers);
         }
     }
 }

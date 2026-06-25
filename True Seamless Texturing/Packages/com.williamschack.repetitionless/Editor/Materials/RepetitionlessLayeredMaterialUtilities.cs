@@ -22,7 +22,7 @@ namespace Repetitionless.Editor.Materials
             materialProperties.SetGlobalTilingOffset(Constants.DEFAULT_TILING_OFFSET_TERRAIN);
 
             // Add max layers keyword
-            RepetitionlessMaterialUtilities.SetEnumKeywordInt(mat, Constants.MAX_LAYERS_KEYWORD_PREFIX, EMaxLayers.Four);
+            RepetitionlessMaterialUtilities.UpdateMaxLayersKeyword(mat, EMaxLayers.Four);
 
             // If in HDRP & Under Unity 6.3, add TerrainCompatible keyword
 #if !UNITY_6000_3_OR_NEWER

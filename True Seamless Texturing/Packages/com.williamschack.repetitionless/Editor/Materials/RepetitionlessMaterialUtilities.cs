@@ -17,7 +17,8 @@ namespace Repetitionless.Editor.Materials
 
         // Enables "prefix{(int)value}"
         // Disables all other enum values
-        public static void SetEnumKeywordInt<T>(Material mat, string keywordPrefix, T value) where T : Enum
+        // If enumReference is set, enumIndex must be set. The enum will then have an int set beside it so it can save properly
+        public static void SetEnumKeywordInt<T>(Material mat, string keywordPrefix, T value, string enumReference = "", int enumIndex = 0) where T : Enum
         {
             int intValue = Convert.ToInt32(value);
 
@@ -34,6 +35,9 @@ namespace Repetitionless.Editor.Materials
                     }
 
                     mat.EnableKeyword(keyword);
+
+                    if (enumReference != "")
+                        mat.SetInt(enumReference, enumIndex);
                 }
 
                 EditorUtility.SetDirty(mat);
@@ -140,6 +144,18 @@ namespace Repetitionless.Editor.Materials
             }
 
             SetBoolKeyword(mat, Constants.VARIATION_KEYWORD, enabled);
+        }
+
+        public static void UpdateMaxLayersKeyword(Material mat, EMaxLayers value)
+        {
+            // If in HDRP, the shader graphs have the max layers set weird and require the int to be set aswell to save
+            ERenderPipeline renderPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
+
+            if (renderPipeline == ERenderPipeline.HDRP) {
+                int enumIndex = Convert.ToInt32(value) / 4 - 1;
+                SetEnumKeywordInt(mat, Constants.MAX_LAYERS_KEYWORD_PREFIX, value, "_MAX", enumIndex);
+            } else
+                SetEnumKeywordInt(mat, Constants.MAX_LAYERS_KEYWORD_PREFIX, value);
         }
 
         public static void SetNoiseQuality(Material mat, ENoiseQuality noiseQuality)
