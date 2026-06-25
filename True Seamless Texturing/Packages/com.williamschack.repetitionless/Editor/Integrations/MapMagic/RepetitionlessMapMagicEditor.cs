@@ -119,8 +119,6 @@ namespace Repetitionless.Editor.Integrations.MapMagic
         private void OnDisable()
         {
             Undo.undoRedoPerformed -= UpdateMaterialTerrainTextures;
-
-            TerrainTile.OnTileApplied -= TileApplied;
         }
 
         private bool TerrainLayersUpdated(Terrain terrain)
@@ -143,18 +141,24 @@ namespace Repetitionless.Editor.Integrations.MapMagic
 
         private void TileApplied(TerrainTile tile, TileData data, StopToken stopToken)
         {
+            // This can be called outside of the editors life
+            // If so, just return null, any new terrain layers will be added OnEnable
+            if (_main == null) return;
+
             if (tile == null || !tile.transform.IsChildOf(_main.transform))
                 return;
             
-            Terrain terrain = tile.main.terrain;
-            if (!TerrainLayersUpdated(terrain))
-                return;
+            EditorApplication.delayCall += () => {
+                Terrain terrain = tile.main.terrain;
+                if (!TerrainLayersUpdated(terrain))
+                    return;
 
-            _terrainLayers = terrain.terrainData.terrainLayers;
+                _terrainLayers = terrain.terrainData.terrainLayers;
 
-            // Save the new terrain layers to the material
-            SyncLayersToMaterial();
-            UpdateMaterialTerrainLayerTextures(true);
+                // Save the new terrain layers to the material
+                SyncLayersToMaterial();
+                UpdateMaterialTerrainLayerTextures(true);
+            };
         }
 
         /// <summary>
