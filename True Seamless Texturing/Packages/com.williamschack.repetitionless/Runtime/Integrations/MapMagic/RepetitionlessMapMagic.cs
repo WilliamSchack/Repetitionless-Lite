@@ -248,7 +248,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
         /// Gets the first terrain in the MapMagic grid
         /// </summary>
         /// <returns>
-        /// The first terrain in the MapMagic grid
+        /// The first active terrain in the MapMagic grid
         /// </returns>
         public Terrain GetFirstTerrain()
         {
@@ -264,7 +264,7 @@ namespace Repetitionless.Runtime.Integrations.MapMagic
             }
             if (checkingTile == null) return null; // Shouldnt happen
 
-            return checkingTile.main.terrain;
+            return checkingTile.ActiveTerrain;
         }
 
         /// <summary>
