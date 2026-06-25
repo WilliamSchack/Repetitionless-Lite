@@ -1216,7 +1216,7 @@
     "m_Title": "Textures",
     "m_Position": {
         "x": 1139.0001220703125,
-        "y": 2665.000244140625
+        "y": 2665.0
     }
 }
 
@@ -1684,7 +1684,7 @@
     "m_Title": "Material Setup",
     "m_Position": {
         "x": 621.0000610351563,
-        "y": 1920.0001220703125
+        "y": 1920.0
     }
 }
 
@@ -3041,7 +3041,7 @@
     "m_KeywordScope": 0,
     "m_KeywordStages": 63,
     "m_Entries": [],
-    "m_Value": 1,
+    "m_Value": 0,
     "m_IsEditable": true
 }
 

@@ -1125,8 +1125,8 @@
     "m_ObjectId": "0076ba164b9440a9b97a9e160169306f",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 606.9999389648438,
-        "y": 1929.9998779296875
+        "x": 607.0001220703125,
+        "y": 1930.0
     }
 }
 
@@ -3523,8 +3523,8 @@
     "m_ObjectId": "715ef89249d342a58e41095702ab016f",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1124.9998779296875,
-        "y": 2656.999755859375
+        "x": 1125.0,
+        "y": 2657.000244140625
     }
 }
 
@@ -6388,7 +6388,7 @@
     "m_KeywordScope": 0,
     "m_KeywordStages": 63,
     "m_Entries": [],
-    "m_Value": 1,
+    "m_Value": 0,
     "m_IsEditable": true
 }
 
