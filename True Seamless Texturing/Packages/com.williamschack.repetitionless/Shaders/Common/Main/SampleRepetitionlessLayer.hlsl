@@ -81,6 +81,13 @@ void SampleRepetitionlessLayer(
     float materialMask = 0;
     float farDistance  = 0;
 
+    // Use world space UVs if enabled
+    if (UVSpace == 1) {
+        // This makes the tiling the same as the standard terrain tiling
+        // Dont ask me why
+        UV = WorldPosition.xz / 1000;
+    }
+
 #ifdef _REPETITIONLESS_MATERIAL_BLEND
     if (layerData.MaterialBlendEnabled) {
         // Get mask of blended material
@@ -149,13 +156,6 @@ void SampleRepetitionlessLayer(
     samplingBase = farDistance != 1 && materialMask != 1;
 
     // ----------------------- UVs / Triplanar ------------------------- // 
-
-    // Use world space UVs if enabled
-    if (UVSpace == 1) {
-        // This makes the tiling the same as the standard terrain tiling
-        // Dont ask me why
-        UV = WorldPosition.xz / 1000;
-    }
 
 #ifdef _REPETITIONLESS_TRIPLANAR
     float3 triplanarWeights = pow(abs(WorldNormalVector), 8);
