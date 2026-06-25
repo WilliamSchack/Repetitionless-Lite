@@ -87,7 +87,7 @@
             "m_Id": "1d52cb9fcbf34296ae1775730d4b1234"
         },
         {
-            "m_Id": "3de30c35d57943589978094b59ba1628"
+            "m_Id": "bdb8158b02b04647870d4a98ec9c5189"
         }
     ],
     "m_Dropdowns": [],
@@ -1239,7 +1239,7 @@
     "m_ObjectId": "032a91fd8751470b8bc5b5a2bb1096e5",
     "m_Title": "Textures",
     "m_Position": {
-        "x": 1138.9998779296875,
+        "x": 1139.0,
         "y": 2665.0
     }
 }
@@ -1303,6 +1303,9 @@
     "m_ObjectId": "057547d2b2fc4e879a02aa6fa74627fa",
     "m_Name": "Terrain Textures",
     "m_ChildObjectList": [
+        {
+            "m_Id": "bdb8158b02b04647870d4a98ec9c5189"
+        },
         {
             "m_Id": "635bdbcb31aa498aab8a97a223e1bcc7"
         },
@@ -1713,7 +1716,7 @@
     "m_ObjectId": "19d4874b048847f382a74bf505188aca",
     "m_Title": "Material Setup",
     "m_Position": {
-        "x": 620.999755859375,
+        "x": 621.0,
         "y": 1919.999755859375
     }
 }
@@ -2612,75 +2615,6 @@
 }
 
 {
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
-    "m_ObjectId": "3de30c35d57943589978094b59ba1628",
-    "m_Guid": {
-        "m_GuidSerialized": "f2930d7a-92f8-463b-86ac-6b527132ec09"
-    },
-    "promotedFromAssetID": "",
-    "promotedFromCategoryName": "",
-    "promotedOrdering": -1,
-    "m_Name": "MAX_LAYERS",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "MAX_LAYERS",
-    "m_DefaultReferenceName": "_MAX_LAYERS",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_KeywordType": 1,
-    "m_KeywordDefinition": 0,
-    "m_KeywordScope": 0,
-    "m_KeywordStages": 63,
-    "m_Entries": [
-        {
-            "id": 1,
-            "displayName": "_MAX_LAYERS_4",
-            "referenceName": "_MAX_LAYERS_4"
-        },
-        {
-            "id": 2,
-            "displayName": "_MAX_LAYERS_8",
-            "referenceName": "_MAX_LAYERS_8"
-        },
-        {
-            "id": 3,
-            "displayName": "_MAX_LAYERS_12",
-            "referenceName": "_MAX_LAYERS_12"
-        },
-        {
-            "id": 4,
-            "displayName": "_MAX_LAYERS_16",
-            "referenceName": "_MAX_LAYERS_16"
-        },
-        {
-            "id": 5,
-            "displayName": "_MAX_LAYERS_20",
-            "referenceName": "_MAX_LAYERS_20"
-        },
-        {
-            "id": 6,
-            "displayName": "_MAX_LAYERS_24",
-            "referenceName": "_MAX_LAYERS_24"
-        },
-        {
-            "id": 7,
-            "displayName": "_MAX_LAYERS_28",
-            "referenceName": "_MAX_LAYERS_28"
-        },
-        {
-            "id": 8,
-            "displayName": "_MAX_LAYERS_32",
-            "referenceName": "_MAX_LAYERS_32"
-        }
-    ],
-    "m_Value": 0,
-    "m_IsEditable": true
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "3e05dc4ddf2f4d25b41af45bf3676289",
@@ -3364,9 +3298,6 @@
         },
         {
             "m_Id": "dfbf9dcb34784d7a946b467c01d89972"
-        },
-        {
-            "m_Id": "3de30c35d57943589978094b59ba1628"
         }
     ]
 }
@@ -3669,7 +3600,7 @@
     },
     "m_SourceType": 0,
     "m_FunctionName": "SampleRepetitionlessTerrain",
-    "m_FunctionSource": "467fa291ebe1bce22a0f59077d306e50",
+    "m_FunctionSource": "0dd8aa32153dcaf43b030f9013bc1107",
     "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."
 }
@@ -6023,6 +5954,75 @@
     "isHDR": false,
     "m_Modifiable": true,
     "m_DefaultType": 1
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "bdb8158b02b04647870d4a98ec9c5189",
+    "m_Guid": {
+        "m_GuidSerialized": "75b15dab-931a-459b-9e33-b4e0a700420d"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "MAX_LAYERS",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "MAX_LAYERS",
+    "m_DefaultReferenceName": "_MAX_LAYERS",
+    "m_OverrideReferenceName": "_MAX",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 1,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [
+        {
+            "id": 1,
+            "displayName": "LAYERS_4",
+            "referenceName": "LAYERS_4"
+        },
+        {
+            "id": 2,
+            "displayName": "LAYERS_8",
+            "referenceName": "LAYERS_8"
+        },
+        {
+            "id": 3,
+            "displayName": "LAYERS_12",
+            "referenceName": "LAYERS_12"
+        },
+        {
+            "id": 4,
+            "displayName": "LAYERS_16",
+            "referenceName": "LAYERS_16"
+        },
+        {
+            "id": 5,
+            "displayName": "LAYERS_20",
+            "referenceName": "LAYERS_20"
+        },
+        {
+            "id": 6,
+            "displayName": "LAYERS_24",
+            "referenceName": "LAYERS_24"
+        },
+        {
+            "id": 7,
+            "displayName": "LAYERS_28",
+            "referenceName": "LAYERS_28"
+        },
+        {
+            "id": 8,
+            "displayName": "LAYERS_32",
+            "referenceName": "LAYERS_32"
+        }
+    ],
+    "m_Value": 0,
+    "m_IsEditable": true
 }
 
 {

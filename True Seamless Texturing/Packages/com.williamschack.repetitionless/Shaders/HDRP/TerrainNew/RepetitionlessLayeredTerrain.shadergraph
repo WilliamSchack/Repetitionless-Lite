@@ -1216,7 +1216,7 @@
     "m_Title": "Textures",
     "m_Position": {
         "x": 1139.0001220703125,
-        "y": 2665.0
+        "y": 2665.000244140625
     }
 }
 
@@ -1684,7 +1684,7 @@
     "m_Title": "Material Setup",
     "m_Position": {
         "x": 621.0000610351563,
-        "y": 1920.0
+        "y": 1920.0001220703125
     }
 }
 
@@ -5512,7 +5512,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "MAX_LAYERS",
     "m_DefaultReferenceName": "_MAX_LAYERS",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_MAX",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -5524,43 +5524,43 @@
     "m_Entries": [
         {
             "id": 1,
-            "displayName": "_MAX_LAYERS_4",
-            "referenceName": "_MAX_LAYERS_4"
+            "displayName": "LAYERS_4",
+            "referenceName": "LAYERS_4"
         },
         {
             "id": 2,
-            "displayName": "_MAX_LAYERS_8",
-            "referenceName": "_MAX_LAYERS_8"
+            "displayName": "LAYERS_8",
+            "referenceName": "LAYERS_8"
         },
         {
             "id": 3,
-            "displayName": "_MAX_LAYERS_12",
-            "referenceName": "_MAX_LAYERS_12"
+            "displayName": "LAYERS_12",
+            "referenceName": "LAYERS_12"
         },
         {
             "id": 4,
-            "displayName": "_MAX_LAYERS_16",
-            "referenceName": "_MAX_LAYERS_16"
+            "displayName": "LAYERS_16",
+            "referenceName": "LAYERS_16"
         },
         {
             "id": 5,
-            "displayName": "_MAX_LAYERS_20",
-            "referenceName": "_MAX_LAYERS_20"
+            "displayName": "LAYERS_20",
+            "referenceName": "LAYERS_20"
         },
         {
             "id": 6,
-            "displayName": "_MAX_LAYERS_24",
-            "referenceName": "_MAX_LAYERS_24"
+            "displayName": "LAYERS_24",
+            "referenceName": "LAYERS_24"
         },
         {
             "id": 7,
-            "displayName": "_MAX_LAYERS_28",
-            "referenceName": "_MAX_LAYERS_28"
+            "displayName": "LAYERS_28",
+            "referenceName": "LAYERS_28"
         },
         {
             "id": 8,
-            "displayName": "_MAX_LAYERS_32",
-            "referenceName": "_MAX_LAYERS_32"
+            "displayName": "LAYERS_32",
+            "referenceName": "LAYERS_32"
         }
     ],
     "m_Value": 0,
