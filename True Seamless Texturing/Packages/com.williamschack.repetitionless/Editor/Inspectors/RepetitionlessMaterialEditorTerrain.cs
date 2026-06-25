@@ -253,6 +253,9 @@ namespace Repetitionless.Editor.Inspectors
                 return;
             }
 
+            // Cap layer index incase they changed while outside the inspector
+            _currentLayerIndex = Mathf.Min(_currentLayerIndex, _terrainLayers.Count - 1);
+
             _materialTerrainData.AutoUpdateMaxLayers = EditorGUILayout.Toggle(new GUIContent("Auto Update Max Layers"), _materialTerrainData.AutoUpdateMaxLayers);
 
             if (_terrainLayers.Count > (int)_layeredData.MaxLayers) {
