@@ -116,6 +116,8 @@ namespace Repetitionless.Editor.Processors
             RepetitionlessPrefs.UpdatePrefs((p) => {
                 p.HDRPActive = true; 
             });
+
+            PostProjectOpen.CheckAndUpdateHDRPTerrainShader(true);
         }
 
         private static void HideHDRP()
