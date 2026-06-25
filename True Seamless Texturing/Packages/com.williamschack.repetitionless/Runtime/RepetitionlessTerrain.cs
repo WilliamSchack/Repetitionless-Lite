@@ -181,7 +181,8 @@ namespace Repetitionless.Runtime
         /// </summary>
         public void AssignMaterialInstance()
         {
-            Terrain.materialTemplate = _materialInstance;
+            Material assigning = _materialInstance == null ? _defaultTerrainMaterial : _materialInstance;
+            Terrain.materialTemplate = assigning;
             OnMaterialAssigned?.Invoke(_mainMaterial);
         }
 
