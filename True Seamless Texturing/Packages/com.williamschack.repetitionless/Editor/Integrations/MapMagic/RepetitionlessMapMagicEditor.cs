@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEditor;
 
+using MapMagic.Products;
+using MapMagic.Terrains;
+
 using Repetitionless.Runtime.Variables;
 using Repetitionless.Runtime.Utilities;
 using Repetitionless.Runtime.Integrations.MapMagic;
@@ -18,6 +21,8 @@ namespace Repetitionless.Editor.Integrations.MapMagic
     public class RepetitionlessMapMagicEditor : UnityEditor.Editor
     {
         private RepetitionlessMapMagic _main;
+
+        private TerrainLayer[] _terrainLayers;
 
         private MaterialDataManager _dataManager;
         private RepetitionlessLayeredDataSO _materialLayeredData;
@@ -91,10 +96,17 @@ namespace Repetitionless.Editor.Integrations.MapMagic
             Undo.undoRedoPerformed -= UpdateMaterialTerrainTextures;
             Undo.undoRedoPerformed += UpdateMaterialTerrainTextures;
 
+            TerrainTile.OnTileApplied -= TileApplied;
+            TerrainTile.OnTileApplied += TileApplied;
+
             _main = (RepetitionlessMapMagic)serializedObject.targetObject;
             GetMaterialTerrainLayersData(_main.MainMaterial);
 
             _materialProp = serializedObject.FindProperty("_mainMaterial");
+
+            Terrain firstTerrain = _main.GetFirstTerrain();
+            if (firstTerrain != null)
+                _terrainLayers = firstTerrain.terrainData.terrainLayers;
 
             _headerStyle = new GUIStyle();
             _headerStyle.fontSize = 14;
@@ -107,6 +119,44 @@ namespace Repetitionless.Editor.Integrations.MapMagic
         private void OnDisable()
         {
             Undo.undoRedoPerformed -= UpdateMaterialTerrainTextures;
+
+            TerrainTile.OnTileApplied -= TileApplied;
+        }
+
+        private bool TerrainLayersUpdated(Terrain terrain)
+        {
+            TerrainLayer[] newTerrainLayers = terrain.terrainData.terrainLayers;
+
+            if (_terrainLayers == null)
+                return true;
+
+            if (_terrainLayers.Length != newTerrainLayers.Length)
+                return true;
+
+            for (int i = 0; i < _terrainLayers.Length; i++) {
+                if (_terrainLayers[i] != newTerrainLayers[i])
+                    return true;
+            }
+
+            return false;
+        }
+
+        private void TileApplied(TerrainTile tile, TileData data, StopToken stopToken)
+        {
+            if (tile == null || !tile.transform.IsChildOf(_main.transform))
+                return;
+            
+            Terrain terrain = tile.main.terrain;
+            if (!TerrainLayersUpdated(terrain))
+                return;
+
+            _terrainLayers = terrain.terrainData.terrainLayers;
+
+            Debug.Log("UPDATED");
+
+            // Save the new terrain layers to the material
+            SyncLayersToMaterial();
+            UpdateMaterialTerrainLayerTextures(true);
         }
 
         /// <summary>

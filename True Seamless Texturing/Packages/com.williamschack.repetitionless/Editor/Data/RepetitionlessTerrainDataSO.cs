@@ -111,6 +111,7 @@ namespace Repetitionless.Editor.Data
                 return;
 
             TerrainLayer terrainLayer = _terrainLayers[layerIndex];
+            if (terrainLayer == null) return;
 
             Material mat = _dataManager.Material;
             if (mat == null) return;
