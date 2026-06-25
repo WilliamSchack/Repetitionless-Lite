@@ -6,7 +6,7 @@
 - Reduced the package size
 - Fixed errors when importing to pre Unity 6.3
 - Fixed various issues with HDRP materials
-- In the terrain material now only enabling packed texture when the TerrainData has one set
+- The terrain material now only enables packed texture when loading a TerrainData if it has one set
 - Fixed some properties not automatically transferring to terrains
 - Fixed texture arrays having incorrect names with new shaders
 - Fixed max layers keyword not updating properly on auto update
