@@ -1,0 +1,266 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6720dbbcea5f57418d1d05916957934, type: 3}
+  m_Name: LayeredData
+  m_EditorClassIdentifier: com.williamschack.Repetitionless.Editor::Repetitionless.Editor.Data.RepetitionlessLayeredDataSO
+  LayerMode: 0
+  MaxLayers: 4
+  ControlTextures:
+  - ChannelTextures:
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 0
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 1
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 2
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 3
+  - ChannelTextures:
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 0
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 1
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 2
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 3
+  - ChannelTextures:
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 0
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 1
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 2
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 3
+  - ChannelTextures:
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 0
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 1
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 2
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 3
+  - ChannelTextures:
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 0
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 1
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 2
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 3
+  - ChannelTextures:
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 0
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 1
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 2
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 3
+  - ChannelTextures:
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 0
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 1
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 2
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 3
+  - ChannelTextures:
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 0
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 1
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 2
+    - Texture: {fileID: 0}
+      Disabled: 0
+      DataTexture: 1
+      NormalMap: 0
+      FromToChannels:
+      - From: 0
+        To: 3
+  _packedControlTextures:
+  - {fileID: 2800000, guid: e7f631a21a51c98e08dc46c064882daa, type: 2}
+  - {fileID: 2800000, guid: 35df3640aba2be555aec5f7fa16d3217, type: 2}
+  - {fileID: 2800000, guid: fc7058ed4375107ce949629c5365c79c, type: 2}
+  - {fileID: 2800000, guid: 6188ab5e841e4d9318b65d56ccdac655, type: 2}
+  - {fileID: 2800000, guid: 994ca0ae4abc8738eb3251e0b7c2edcc, type: 2}
+  - {fileID: 2800000, guid: 5bc6ad5315512a682a53437cb347745f, type: 2}
+  - {fileID: 2800000, guid: 87679dfd8ed66a7fcbd49c2d1a1bd5e4, type: 2}
+  - {fileID: 2800000, guid: 0ef4f4baee43605528e0c94df92aa73a, type: 2}
+  HolesTexture:
+    Texture: {fileID: 0}
+    Disabled: 0
+    DataTexture: 1
+    NormalMap: 0
+    FromToChannels:
+    - From: 0
+      To: 0

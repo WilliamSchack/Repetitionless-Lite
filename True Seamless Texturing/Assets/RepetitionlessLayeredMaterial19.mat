@@ -12,17 +12,17 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _MAX_LAYERS__MAX_LAYERS_4
+  - _MAX_LAYERS_20
   - _REPETITIONLESS_NOISE_TEXTURE
   - _REPETITIONLESS_VARIATION
   - _TERRAIN_INSTANCED_PERPIXEL_NORMAL
   m_InvalidKeywords:
   - _DISABLE_SSR_TRANSPARENT
-  - _MAX_LAYERS_4
+  - _MAX_LAYERS__MAX_LAYERS_4
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2225
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -123,6 +123,7 @@ Material:
     - _EnableInstancedPerPixelNormal: 1
     - _ExcludeFromTUAndAA: 0
     - _LayersCount: 1
+    - _MAX: 4
     - _MAX_LAYERS: 0
     - _REPETITIONLESS_DISTANCE_BLEND: 0
     - _REPETITIONLESS_MATERIAL_BLEND: 0
