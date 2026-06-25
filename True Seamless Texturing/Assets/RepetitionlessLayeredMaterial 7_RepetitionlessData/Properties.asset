@@ -31,10 +31,10 @@ MonoBehaviour:
       PackedTextureAssigned: 0
       AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
-      TilingOffset: {x: 29.53, y: 30, z: 0, w: 0}
+      TilingOffset: {x: 20, y: 20, z: 0, w: 0}
       Metallic: 0
       SmoothnessRoughness: 0
-      NormalScale: 4
+      NormalScale: 2
       OcclussionStrength: 1
       AlphaClipping: 0.5
       NoiseAngleOffset: 2
@@ -162,10 +162,10 @@ MonoBehaviour:
       PackedTextureAssigned: 0
       AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
-      TilingOffset: {x: 15, y: 15, z: 0, w: 0}
+      TilingOffset: {x: 40, y: 40, z: 0, w: 0}
       Metallic: 0
       SmoothnessRoughness: 0
-      NormalScale: 2
+      NormalScale: 5
       OcclussionStrength: 1
       AlphaClipping: 0.5
       NoiseAngleOffset: 2
@@ -4208,13 +4208,13 @@ MonoBehaviour:
   _dataCompressed:
   - BaseMaterialData:
       Settings1: {x: 15, y: 73, z: 0, w: 0}
-      Settings2: {x: 4, y: 1, z: 0.5, w: 2}
+      Settings2: {x: 2, y: 1, z: 0.5, w: 2}
       Settings3: {x: 2, y: 0, z: 0.595, w: 0.393}
       Settings4: {x: 0.3, y: 0.67, z: 0.68, w: 0.51}
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
       AlbedoTint: {x: 1, y: 1, z: 1}
       EmissionColour: {x: 0, y: 0, z: 0}
-      TilingOffset: {x: 59.06, y: 60, z: 0, w: 0}
+      TilingOffset: {x: 40, y: 40, z: 0, w: 0}
       VariationTO: {x: 90.96, y: 0, z: 0, w: 0}
     FarMaterialData:
       Settings1: {x: 15, y: 0, z: 0, w: 0.5}
@@ -4243,13 +4243,13 @@ MonoBehaviour:
     MaterialBlendMaskExtraSettings: {x: 0, y: 0, z: 0, w: 0}
   - BaseMaterialData:
       Settings1: {x: 15, y: 9, z: 0, w: 0}
-      Settings2: {x: 2, y: 1, z: 0.5, w: 2}
+      Settings2: {x: 5, y: 1, z: 0.5, w: 2}
       Settings3: {x: 2, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
       AlbedoTint: {x: 1, y: 1, z: 1}
       EmissionColour: {x: 0, y: 0, z: 0}
-      TilingOffset: {x: 30, y: 30, z: 0, w: 0}
+      TilingOffset: {x: 80, y: 80, z: 0, w: 0}
       VariationTO: {x: 5, y: 5, z: 0, w: 0}
     FarMaterialData:
       Settings1: {x: 15, y: 0, z: 0, w: 0.5}
