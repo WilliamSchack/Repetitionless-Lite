@@ -30,7 +30,7 @@
 #define MAX_LAYERS 4
 #endif
 
-#define R_SAMPLE_CONTROL(i, uv) (i * 4) < LayersCount ? SAMPLE_TEXTURE2D(_Control##i, sampler_Control##i, uv) : 0
+#define R_SAMPLE_CONTROL(i, uv) (i * 4) < LayersCount ? SAMPLE_TEXTURE2D(_Control##i, sampler_Control0, uv) : 0
 
 void SampleRepetitionlessTerrain(
     // General Settings

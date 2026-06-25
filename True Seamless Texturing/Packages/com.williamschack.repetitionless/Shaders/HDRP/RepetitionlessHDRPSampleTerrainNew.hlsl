@@ -1,0 +1,10 @@
+#ifndef REPETITIONLESSHDRPSAMPLETERRAINNEW_INCLUDED
+#define REPETITIONLESSHDRPSAMPLETERRAINNEW_INCLUDED
+
+#ifndef _TERRAIN_8_LAYERS
+TEXTURE2D(_Control1);
+#endif
+
+#include "RepetitionlessHDRPSampleTerrain.hlsl"
+
+#endif
