@@ -1,0 +1,356 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+  commentId: T:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+  id: TexturePacker.TextureChannel
+  parent: Repetitionless.Editor.Utilities.Texture
+  children:
+  - Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.A
+  - Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.B
+  - Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.G
+  - Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.R
+  langs:
+  - csharp
+  - vb
+  name: TexturePacker.TextureChannel
+  nameWithType: TexturePacker.TextureChannel
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+  type: Enum
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: TextureChannel
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+    startLine: 14
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Utilities.Texture
+  summary: "\nThe valid texture channels\n"
+  example: []
+  syntax:
+    content: public enum TexturePacker.TextureChannel
+    content.vb: Public Enum TexturePacker.TextureChannel
+  extensionMethods:
+  - Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1
+  - Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.R
+  commentId: F:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.R
+  id: R
+  parent: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+  langs:
+  - csharp
+  - vb
+  name: R
+  nameWithType: TexturePacker.TextureChannel.R
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.R
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: R
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+    startLine: 19
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Utilities.Texture
+  summary: "\nRed channel\n"
+  example: []
+  syntax:
+    content: R = 0
+    return:
+      type: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.G
+  commentId: F:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.G
+  id: G
+  parent: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+  langs:
+  - csharp
+  - vb
+  name: G
+  nameWithType: TexturePacker.TextureChannel.G
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.G
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: G
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+    startLine: 23
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Utilities.Texture
+  summary: "\nGreen channel\n"
+  example: []
+  syntax:
+    content: G = 1
+    return:
+      type: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.B
+  commentId: F:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.B
+  id: B
+  parent: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+  langs:
+  - csharp
+  - vb
+  name: B
+  nameWithType: TexturePacker.TextureChannel.B
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.B
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: B
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+    startLine: 27
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Utilities.Texture
+  summary: "\nBlue channel\n"
+  example: []
+  syntax:
+    content: B = 2
+    return:
+      type: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.A
+  commentId: F:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.A
+  id: A
+  parent: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+  langs:
+  - csharp
+  - vb
+  name: A
+  nameWithType: TexturePacker.TextureChannel.A
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.A
+  type: Field
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: A
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Editor/Utiliities/Texture/TexturePacker.cs
+    startLine: 31
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+  namespace: Repetitionless.Editor.Utilities.Texture
+  summary: "\nAlpha channel\n"
+  example: []
+  syntax:
+    content: A = 3
+    return:
+      type: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+references:
+- uid: Repetitionless.Editor.Utilities.Texture
+  commentId: N:Repetitionless.Editor.Utilities.Texture
+  name: Repetitionless.Editor.Utilities.Texture
+  nameWithType: Repetitionless.Editor.Utilities.Texture
+  fullName: Repetitionless.Editor.Utilities.Texture
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Texture
+    name: Texture
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Texture
+    name: Texture
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  parent: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  definition: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  name: Next<TextureChannel>(TextureChannel)
+  nameWithType: EnumUtilities.Next<TexturePacker.TextureChannel>(TexturePacker.TextureChannel)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next<Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel>(Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel)
+  nameWithType.vb: EnumUtilities.Next(Of TexturePacker.TextureChannel)(TexturePacker.TextureChannel)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next(Of Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel)(Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel)
+  name.vb: Next(Of TextureChannel)(TextureChannel)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel)
+    name: Next
+  - name: <
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+    name: TextureChannel
+  - name: '>'
+  - name: (
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+    name: TextureChannel
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel)
+    name: Next
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+    name: TextureChannel
+  - name: )
+  - name: (
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+    name: TextureChannel
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel.Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  parent: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  definition: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  name: Previous<TextureChannel>(TextureChannel)
+  nameWithType: EnumUtilities.Previous<TexturePacker.TextureChannel>(TexturePacker.TextureChannel)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous<Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel>(Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel)
+  nameWithType.vb: EnumUtilities.Previous(Of TexturePacker.TextureChannel)(TexturePacker.TextureChannel)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous(Of Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel)(Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel)
+  name.vb: Previous(Of TextureChannel)(TextureChannel)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel)
+    name: Previous
+  - name: <
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+    name: TextureChannel
+  - name: '>'
+  - name: (
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+    name: TextureChannel
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel)
+    name: Previous
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+    name: TextureChannel
+  - name: )
+  - name: (
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+    name: TextureChannel
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+  name: Next<T>(T)
+  nameWithType: EnumUtilities.Next<T>(T)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next<T>(T)
+  nameWithType.vb: EnumUtilities.Next(Of T)(T)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next(Of T)(T)
+  name.vb: Next(Of T)(T)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+    name: Next
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Next``1(``0)
+    name: Next
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  commentId: T:Repetitionless.Editor.Utilities.Types.EnumUtilities
+  parent: Repetitionless.Editor.Utilities.Types
+  name: EnumUtilities
+  nameWithType: EnumUtilities
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  commentId: M:Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+  name: Previous<T>(T)
+  nameWithType: EnumUtilities.Previous<T>(T)
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous<T>(T)
+  nameWithType.vb: EnumUtilities.Previous(Of T)(T)
+  fullName.vb: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous(Of T)(T)
+  name.vb: Previous(Of T)(T)
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+    name: Previous
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Types.EnumUtilities.Previous``1(``0)
+    name: Previous
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Repetitionless.Editor.Utilities.Types
+  commentId: N:Repetitionless.Editor.Utilities.Types
+  name: Repetitionless.Editor.Utilities.Types
+  nameWithType: Repetitionless.Editor.Utilities.Types
+  fullName: Repetitionless.Editor.Utilities.Types
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types
+- uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+  commentId: T:Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+  parent: Repetitionless.Editor.Utilities.Texture
+  name: TexturePacker.TextureChannel
+  nameWithType: TexturePacker.TextureChannel
+  fullName: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+  spec.csharp:
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker
+    name: TexturePacker
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+    name: TextureChannel
+  spec.vb:
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker
+    name: TexturePacker
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Texture.TexturePacker.TextureChannel
+    name: TextureChannel

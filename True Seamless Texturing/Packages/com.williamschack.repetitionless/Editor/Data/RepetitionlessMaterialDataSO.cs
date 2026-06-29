@@ -268,7 +268,7 @@ namespace Repetitionless.Editor.Data
         {
             RepetitionlessMaterialData currentData = Data[layerIndex].BaseMaterialData;
             switch (materialIndex) {
-              //case 0: currentData = Data.BaseMaterialData;  break;
+              //case 0: currentData = Data[layerIndex].BaseMaterialData;  break;
                 case 1: currentData = Data[layerIndex].FarMaterialData;   break;
                 case 2: currentData = Data[layerIndex].BlendMaterialData; break; 
             }

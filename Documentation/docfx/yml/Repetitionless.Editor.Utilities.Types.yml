@@ -1,0 +1,52 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Editor.Utilities.Types
+  commentId: N:Repetitionless.Editor.Utilities.Types
+  id: Repetitionless.Editor.Utilities.Types
+  children:
+  - Repetitionless.Editor.Utilities.Types.EnumUtilities
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Editor.Utilities.Types
+  nameWithType: Repetitionless.Editor.Utilities.Types
+  fullName: Repetitionless.Editor.Utilities.Types
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.Editor
+references:
+- uid: Repetitionless.Editor.Utilities.Types.EnumUtilities
+  commentId: T:Repetitionless.Editor.Utilities.Types.EnumUtilities
+  parent: Repetitionless.Editor.Utilities.Types
+  name: EnumUtilities
+  nameWithType: EnumUtilities
+  fullName: Repetitionless.Editor.Utilities.Types.EnumUtilities
+- uid: Repetitionless.Editor.Utilities.Types
+  commentId: N:Repetitionless.Editor.Utilities.Types
+  name: Repetitionless.Editor.Utilities.Types
+  nameWithType: Repetitionless.Editor.Utilities.Types
+  fullName: Repetitionless.Editor.Utilities.Types
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Editor
+    name: Editor
+  - name: .
+  - uid: Repetitionless.Editor.Utilities
+    name: Utilities
+  - name: .
+  - uid: Repetitionless.Editor.Utilities.Types
+    name: Types

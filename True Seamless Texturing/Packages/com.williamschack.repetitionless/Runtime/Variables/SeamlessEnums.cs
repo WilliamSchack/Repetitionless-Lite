@@ -168,4 +168,52 @@ namespace Repetitionless.Runtime.Variables
         /// </summary>
         ControlTextures
     }
+
+    /// <summary>
+    /// Available options for the max layers keyword in a Repetitionless material<br />
+    /// Each value has an int assigned being the same as its name<br />
+    /// Can be directly translated to the keyword _MAX_LAYERS_X
+    /// </summary>
+    public enum EMaxLayers
+    {
+        /// <summary>
+        /// = 4
+        /// </summary>
+        Four = 4,
+
+        /// <summary>
+        /// = 8
+        /// </summary>
+        Eight = 8,
+
+        /// <summary>
+        /// = 12
+        /// </summary>
+        Twelve = 12,
+
+        /// <summary>
+        /// = 16
+        /// </summary>
+        Sixteen = 16,
+
+        /// <summary>
+        /// = 20
+        /// </summary>
+        Twenty = 20,
+
+        /// <summary>
+        /// = 24
+        /// </summary>
+        TwentyFour = 24,
+
+        /// <summary>
+        /// = 28
+        /// </summary>
+        TwentyEight = 28,
+
+        /// <summary>
+        /// = 32
+        /// </summary>
+        ThirtyTwo = 32
+    }
 }

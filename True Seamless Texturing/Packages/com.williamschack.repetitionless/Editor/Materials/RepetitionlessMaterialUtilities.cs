@@ -1,9 +1,12 @@
 #if UNITY_EDITOR
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 using Repetitionless.Runtime.Variables;
+using Repetitionless.Runtime.Utilities;
+using Repetitionless.Editor.Data;
 
 namespace Repetitionless.Editor.Materials
 {
@@ -12,22 +15,61 @@ namespace Repetitionless.Editor.Materials
         private const string NOISE_TEXTURE_PROP_NAME = "_NoiseTexture";
         private const string SURFACE_TYPE_PROP_NAME = "_SurfaceTypeSetting";
 
-        public static ERenderPipeline GetActiveRenderPipeline()
+        // Enables "prefix{(int)value}"
+        // Disables all other enum values
+        // If enumReference is set, enumIndex must be set. The enum will then have an int set beside it so it can save properly
+        public static void SetEnumKeywordInt<T>(Material mat, string keywordPrefix, T value, string enumReference = "", int enumIndex = 0) where T : Enum
         {
-            RenderPipelineAsset currentPipeline = GraphicsSettings.currentRenderPipeline;
-            if (currentPipeline == null)
-                return ERenderPipeline.Builtin;
-            
-            if (currentPipeline.GetType().Name.Contains("UniversalRenderPipeline"))
-                return ERenderPipeline.URP;
-            
-            if (currentPipeline.GetType().Name.Contains("HDRenderPipeline"))
-                return ERenderPipeline.HDRP;
+            int intValue = Convert.ToInt32(value);
 
-            return ERenderPipeline.Unknown;
+            EditorApplication.delayCall += () => {
+                foreach (T currentEnumValue in Enum.GetValues(typeof(T))) {
+                    int currentEnumIntValue = Convert.ToInt32(currentEnumValue);
+
+                    string keyword = $"{keywordPrefix}{currentEnumIntValue}";
+
+                    // Disable others
+                    if (currentEnumIntValue != intValue) {
+                        mat.DisableKeyword(keyword);
+                        continue;
+                    }
+
+                    mat.EnableKeyword(keyword);
+
+                    if (enumReference != "")
+                        mat.SetInt(enumReference, enumIndex);
+                }
+
+                EditorUtility.SetDirty(mat);
+            };
         }
 
-        public static void SetKeyword(Material mat, string keyword, bool enabled)
+        // Enables "prefix{(string)value}"
+        // Disables all other enum values
+        public static void SetEnumKeywordString<T>(Material mat, string keywordPrefix, T value) where T : Enum
+        {
+            string stringValue = value.ToString().ToUpper();
+
+            EditorApplication.delayCall += () => {
+                foreach (T currentEnumValue in Enum.GetValues(typeof(T))) {
+                    string currentEnumStringValue = currentEnumValue.ToString().ToUpper();
+
+                    string keyword = $"{keywordPrefix}{currentEnumStringValue}";
+
+                    // Disable others
+                    if (currentEnumStringValue != stringValue) {
+                        mat.DisableKeyword(keyword);
+                        continue;
+                    }
+
+                    mat.EnableKeyword(keyword);
+                }
+
+                EditorUtility.SetDirty(mat);
+            };
+        }
+
+        public static void SetBoolKeyword(Material mat, string keyword, bool enabled)
         {
             // Delay call to prevent recursive warnings, this will take a while if variant not cached
             EditorApplication.delayCall += () => {
@@ -57,26 +99,84 @@ namespace Repetitionless.Editor.Materials
                 }
             }
         }
+        public static void UpdateDistanceBlendKeyword(Material mat, RepetitionlessMaterialDataSO data)
+        {
+            // If its enabled at all, enable the keyword, otherwise disable
+            bool enabled = false;
+            foreach (RepetitionlessLayerData currentLayerData in data.Data) {
+                if (currentLayerData.DistanceBlendEnabled) {
+                    enabled = true;
+                    break;                    
+                }
+            }
+
+            SetBoolKeyword(mat, Constants.DISTANCE_BLEND_KEYWORD, enabled);
+        }
+        public static void UpdateMaterialBlendKeyword(Material mat, RepetitionlessMaterialDataSO data)
+        {
+            // If its enabled at all, enable the keyword, otherwise disable
+            bool enabled = false;
+            foreach (RepetitionlessLayerData currentLayerData in data.Data) {
+                if (currentLayerData.MaterialBlendEnabled) {
+                    enabled = true;
+                    break;                    
+                }
+            }
+
+            SetBoolKeyword(mat, Constants.MATERIAL_BLEND_KEYWORD, enabled);
+        }
+
+        public static void UpdateVariationKeyword(Material mat, int maxLayers, RepetitionlessMaterialDataSO data)
+        {
+            // If its enabled at all, enable the keyword, otherwise disable
+            bool enabled = false;
+            for (int layer = 0; layer < maxLayers; layer++) {
+                for (int section = 0; section < 3; section++) {
+                    RepetitionlessMaterialData materialData = data.GetMaterialData(layer, section);
+                    if (materialData.VariationEnabled) {
+                        enabled = true;
+                        break;
+                    }
+                }
+
+                if (enabled)
+                    break;
+            }
+
+            SetBoolKeyword(mat, Constants.VARIATION_KEYWORD, enabled);
+        }
+
+        public static void UpdateMaxLayersKeyword(Material mat, EMaxLayers value)
+        {
+            // If in HDRP, the shader graphs have the max layers set weird and require the int to be set aswell to save
+            ERenderPipeline renderPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
+
+            if (renderPipeline == ERenderPipeline.HDRP) {
+                int enumIndex = Convert.ToInt32(value) / 4 - 1;
+                SetEnumKeywordInt(mat, Constants.MAX_LAYERS_KEYWORD_PREFIX, value, "_MAX", enumIndex);
+            } else
+                SetEnumKeywordInt(mat, Constants.MAX_LAYERS_KEYWORD_PREFIX, value);
+        }
 
         public static void SetNoiseQuality(Material mat, ENoiseQuality noiseQuality)
         {
-            SetKeyword(mat, Constants.NOISE_TEXTURE_KEYWORD, noiseQuality != ENoiseQuality.High);
+            SetBoolKeyword(mat, Constants.NOISE_TEXTURE_KEYWORD, noiseQuality != ENoiseQuality.High);
             UpdateNoiseQualityTexture(mat, noiseQuality);
         }
 
         public static void SetTriplanarEnabled(Material mat, bool enabled)
         {
-            SetKeyword(mat, Constants.TRIPLANAR_KEYWORD, enabled);
+            SetBoolKeyword(mat, Constants.TRIPLANAR_KEYWORD, enabled);
         }
 
         public static void SetSpecularHighlightsEnabled(Material mat, bool enabled)
         {
-            SetKeyword(mat, Constants.SPECULAR_HIGHLIGHTS_OFF_KEYWORD, !enabled);
+            SetBoolKeyword(mat, Constants.SPECULAR_HIGHLIGHTS_OFF_KEYWORD, !enabled);
         }
 
         public static void SetEnvironmentReflectionsEnabled(Material mat, bool enabled)
         {
-            SetKeyword(mat, Constants.ENVIRONMENT_REFLECTIONS_OFF_KEYWORD, !enabled);
+            SetBoolKeyword(mat, Constants.ENVIRONMENT_REFLECTIONS_OFF_KEYWORD, !enabled);
         }
 
         public static void SetSurface(Material mat, ESurfaceType surfaceType, ERenderPipeline pipeline)
@@ -157,7 +257,7 @@ namespace Repetitionless.Editor.Materials
 
         public static void SetSurface(Material mat, ESurfaceType surfaceType)
         {
-            ERenderPipeline currentPipeline = GetActiveRenderPipeline();
+            ERenderPipeline currentPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
             SetSurface(mat, surfaceType, currentPipeline);
         }
 

@@ -1,0 +1,188 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Runtime.Utilities.RenderPipelineUtilities
+  commentId: T:Repetitionless.Runtime.Utilities.RenderPipelineUtilities
+  id: RenderPipelineUtilities
+  parent: Repetitionless.Runtime.Utilities
+  children:
+  - Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetActiveRenderPipeline
+  - Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetDefaultTerrainMaterial
+  langs:
+  - csharp
+  - vb
+  name: RenderPipelineUtilities
+  nameWithType: RenderPipelineUtilities
+  fullName: Repetitionless.Runtime.Utilities.RenderPipelineUtilities
+  type: Class
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Utilities/RenderPipelineUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: RenderPipelineUtilities
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Utilities/RenderPipelineUtilities.cs
+    startLine: 10
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Utilities
+  summary: "\nContains utilities related to the render pipeline\n"
+  example: []
+  syntax:
+    content: public static class RenderPipelineUtilities
+    content.vb: Public Module RenderPipelineUtilities
+  inheritance:
+  - System.Object
+- uid: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetActiveRenderPipeline
+  commentId: M:Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetActiveRenderPipeline
+  id: GetActiveRenderPipeline
+  parent: Repetitionless.Runtime.Utilities.RenderPipelineUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetActiveRenderPipeline()
+  nameWithType: RenderPipelineUtilities.GetActiveRenderPipeline()
+  fullName: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetActiveRenderPipeline()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Utilities/RenderPipelineUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GetActiveRenderPipeline
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Utilities/RenderPipelineUtilities.cs
+    startLine: 19
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Utilities
+  summary: "\nGets the render pipeline currently being used\n"
+  example: []
+  syntax:
+    content: public static ERenderPipeline GetActiveRenderPipeline()
+    return:
+      type: Repetitionless.Runtime.Variables.ERenderPipeline
+      description: "\nThe render pipeline being used\n"
+    content.vb: Public Shared Function GetActiveRenderPipeline() As ERenderPipeline
+  overload: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetActiveRenderPipeline*
+- uid: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetDefaultTerrainMaterial
+  commentId: M:Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetDefaultTerrainMaterial
+  id: GetDefaultTerrainMaterial
+  parent: Repetitionless.Runtime.Utilities.RenderPipelineUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetDefaultTerrainMaterial()
+  nameWithType: RenderPipelineUtilities.GetDefaultTerrainMaterial()
+  fullName: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetDefaultTerrainMaterial()
+  type: Method
+  source:
+    remote:
+      path: True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Utilities/RenderPipelineUtilities.cs
+      branch: main
+      repo: https://github.com/WilliamSchack/True-Seamless-Texturing.git
+    id: GetDefaultTerrainMaterial
+    path: ../../True Seamless Texturing/Packages/com.williamschack.repetitionless/Runtime/Utilities/RenderPipelineUtilities.cs
+    startLine: 40
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+  namespace: Repetitionless.Runtime.Utilities
+  summary: "\nGets the default terrain material based on the current render pipeline\n"
+  example: []
+  syntax:
+    content: public static Material GetDefaultTerrainMaterial()
+    return:
+      type: UnityEngine.Material
+      description: "\nThe default terrain material for the used render pipeline\n"
+    content.vb: Public Shared Function GetDefaultTerrainMaterial() As Material
+  overload: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetDefaultTerrainMaterial*
+references:
+- uid: Repetitionless.Runtime.Utilities
+  commentId: N:Repetitionless.Runtime.Utilities
+  name: Repetitionless.Runtime.Utilities
+  nameWithType: Repetitionless.Runtime.Utilities
+  fullName: Repetitionless.Runtime.Utilities
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Utilities
+    name: Utilities
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Utilities
+    name: Utilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetActiveRenderPipeline*
+  commentId: Overload:Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetActiveRenderPipeline
+  name: GetActiveRenderPipeline
+  nameWithType: RenderPipelineUtilities.GetActiveRenderPipeline
+  fullName: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetActiveRenderPipeline
+- uid: Repetitionless.Runtime.Variables.ERenderPipeline
+  commentId: T:Repetitionless.Runtime.Variables.ERenderPipeline
+  parent: Repetitionless.Runtime.Variables
+  name: ERenderPipeline
+  nameWithType: ERenderPipeline
+  fullName: Repetitionless.Runtime.Variables.ERenderPipeline
+- uid: Repetitionless.Runtime.Variables
+  commentId: N:Repetitionless.Runtime.Variables
+  name: Repetitionless.Runtime.Variables
+  nameWithType: Repetitionless.Runtime.Variables
+  fullName: Repetitionless.Runtime.Variables
+  spec.csharp:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables
+  spec.vb:
+  - uid: Repetitionless
+    name: Repetitionless
+  - name: .
+  - uid: Repetitionless.Runtime
+    name: Runtime
+  - name: .
+  - uid: Repetitionless.Runtime.Variables
+    name: Variables
+- uid: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetDefaultTerrainMaterial*
+  commentId: Overload:Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetDefaultTerrainMaterial
+  name: GetDefaultTerrainMaterial
+  nameWithType: RenderPipelineUtilities.GetDefaultTerrainMaterial
+  fullName: Repetitionless.Runtime.Utilities.RenderPipelineUtilities.GetDefaultTerrainMaterial
+- uid: UnityEngine.Material
+  commentId: T:UnityEngine.Material
+  parent: UnityEngine
+  isExternal: true
+  name: Material
+  nameWithType: Material
+  fullName: UnityEngine.Material
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine

@@ -17,7 +17,7 @@ namespace Repetitionless.Editor.Processors
         /// <summary>
         /// Called on project open in PostProjectOpen
         /// </summary>
-        public static void Initialize()
+        internal static void Initialize()
         {
             _colourSpace = PlayerSettings.colorSpace;
             EditorApplication.projectChanged += ProjectChanged;

@@ -16,6 +16,8 @@ namespace Repetitionless.Editor
         public const string SHADER_FOLDER = "Repetitionless/";
         public const string SHADER_MATERIAL_NAME_REGULAR = "Repetitionless";
         public const string SHADER_MATERIAL_NAME_LAYERED = "RepetitionlessLayered";
+        public const string SHADER_MATERIAL_NAME_LAYERED_TERRAIN = SHADER_MATERIAL_NAME_LAYERED + "Terrain";
+        public const string SHADER_MATERIAL_NAME_LAYERED_LIT = SHADER_MATERIAL_NAME_LAYERED + "Lit";
         public const string SHADER_FOLDER_BIRP = "BIRP/";
         public const string SHADER_FOLDER_URP = "URP/";
         public const string SHADER_FOLDER_HDRP = "HDRP/";
@@ -25,6 +27,9 @@ namespace Repetitionless.Editor
         public const string SAMPLES_PATH_BIRP = SAMPLES_PATH + "/BIRP";
         public const string SAMPLES_PATH_URP = SAMPLES_PATH + "/URP";
         public const string SAMPLES_PATH_HDRP = SAMPLES_PATH + "/HDRP";
+
+        public const string HDRP_TERRAN_OLD_FOLDER_PATH = PACKAGE_PATH + "/Shaders/HDRP/TerrainOld";
+        public const string HDRP_TERRAN_NEW_FOLDER_PATH = PACKAGE_PATH + "/Shaders/HDRP/TerrainNew";
 
         public const string DOCUMENTATION_URL = "https://docs.wilschack.dev/repetitionless/";
         public const string LOCAL_DOCUMENTATION_PATH = PACKAGE_PATH + "/OfflineDocumentation.pdf";
@@ -42,6 +47,8 @@ namespace Repetitionless.Editor
 
         public const string TEXTURE_DATA_FILE_NAME = "TextureData.asset";
         public const string PROPERTIES_FILE_NAME = "Properties.asset";
+        public const string LAYERED_DATA_FILE_NAME = "LayeredData.asset";
+        public const string TERRAIN_DATA_FILE_NAME = "TerrainData.asset";
         public const string CONTROL_TEXTURE_FILE_NAME_PREFIX = "Control";
 
         public const string PROPERTIES_TEXTURE_ASSET_NAME = "PropertiesTexture.asset";
@@ -54,13 +61,20 @@ namespace Repetitionless.Editor
         public const string NOISE_TEXTURE_NAME_1K = "repetitionless_NoiseTexture_1024";
 
         public const int MAX_LAYERS_REGULAR = 1;
+        public const int MAX_LAYERS_TERRAIN = 32;
+
+        public static readonly Vector4 DEFAULT_TILING_OFFSET_TERRAIN = new Vector4(1, 1, 0, 0);
 
         public const int MATERIALS_PER_LAYER_COUNT = 3;
         public const int COMPRESSED_MATERIAL_VARIABLES_COUNT = 9;
         public const int COMPRESSED_LAYER_VARIABLES_COUNT = COMPRESSED_MATERIAL_VARIABLES_COUNT * MATERIALS_PER_LAYER_COUNT + 5;
 
-        public const string NOISE_TEXTURE_KEYWORD = "_REPETITIONLESS_NOISE_TEXTURE";
+        public const string DISTANCE_BLEND_KEYWORD = "_REPETITIONLESS_DISTANCE_BLEND";
+        public const string MATERIAL_BLEND_KEYWORD = "_REPETITIONLESS_MATERIAL_BLEND";
         public const string TRIPLANAR_KEYWORD = "_REPETITIONLESS_TRIPLANAR";
+        public const string NOISE_TEXTURE_KEYWORD = "_REPETITIONLESS_NOISE_TEXTURE";
+        public const string VARIATION_KEYWORD = "_REPETITIONLESS_VARIATION";
+        public const string MAX_LAYERS_KEYWORD_PREFIX = "_MAX_LAYERS_";
         public const string SPECULAR_HIGHLIGHTS_OFF_KEYWORD = "_SPECULARHIGHLIGHTS_OFF";
         public const string ENVIRONMENT_REFLECTIONS_OFF_KEYWORD = "_ENVIRONMENTREFLECTIONS_OFF";
     }

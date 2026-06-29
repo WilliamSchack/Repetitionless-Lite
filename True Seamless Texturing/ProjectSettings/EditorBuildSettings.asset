@@ -5,8 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/New Scene.unity
     guid: be1e710733b4b2e5bbf1e42f1953245a
+  - enabled: 1
+    path: Assets/MapMagic/MapMagic/Demo/TutorialURP.unity
+    guid: a6ccfec92389974439e5e0f3730bbcf1
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

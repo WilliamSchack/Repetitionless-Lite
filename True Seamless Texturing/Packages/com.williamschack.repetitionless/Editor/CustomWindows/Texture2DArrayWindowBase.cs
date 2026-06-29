@@ -12,8 +12,8 @@ using UnityEditorInternal;
 
 namespace Repetitionless.Editor.CustomWindows
 {
-    using GUIUtilities;
-    using TextureUtilities;
+    using Utilities.GUI;
+    using Utilities.Texture;
 
     /// <summary>
     /// Base class for creating the Create/Configure Array windows in Texture Array Essentials

@@ -1,0 +1,22 @@
+### YamlMime:ManagedReference
+items:
+- uid: Repetitionless.Runtime.Utilities
+  commentId: N:Repetitionless.Runtime.Utilities
+  id: Repetitionless.Runtime.Utilities
+  children:
+  - Repetitionless.Runtime.Utilities.RenderPipelineUtilities
+  langs:
+  - csharp
+  - vb
+  name: Repetitionless.Runtime.Utilities
+  nameWithType: Repetitionless.Runtime.Utilities
+  fullName: Repetitionless.Runtime.Utilities
+  type: Namespace
+  assemblies:
+  - com.williamschack.Repetitionless.Runtime
+references:
+- uid: Repetitionless.Runtime.Utilities.RenderPipelineUtilities
+  commentId: T:Repetitionless.Runtime.Utilities.RenderPipelineUtilities
+  name: RenderPipelineUtilities
+  nameWithType: RenderPipelineUtilities
+  fullName: Repetitionless.Runtime.Utilities.RenderPipelineUtilities

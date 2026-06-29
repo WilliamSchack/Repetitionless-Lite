@@ -34,7 +34,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Repetitionless_URP_Comparison_Repetitionless 1
-  m_Shader: {fileID: -6465566751694194690, guid: 2668dc74239987d2abd177adfc8716b8, type: 3}
+  m_Shader: {fileID: 4800000, guid: a34c87654ae95ff4ebd9e2f6c720f2a1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -242,16 +242,19 @@ Material:
     - _BUILTIN_ZWriteControl: 0
     - _BaseVariationBrightness: 0.3
     - _BaseVariationMode: 2
+    - _Blend: 0
     - _BlendMaskType: 0
     - _BlendVariationBrightness: 0.3
     - _BlendVariationMode: 2
     - _BumpScale: 1
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DebuggingIndex: -1
     - _DetailNormalMapScale: 1
     - _DistanceBlendEnabled: 0
     - _DistanceBlendMode: 0
     - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _ENVIRONMENTREFLECTIONS_OFF: 0
     - _FarVariationBrightness: 0.3
     - _FarVariationMode: 2
@@ -271,11 +274,14 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
+    - _Surface: 0
     - _SurfaceType: 0
     - _SurfaceTypeSetting: 0
     - _UVSec: 0
     - _UVSpace: 0
     - _VertexColourBlendMode: 0
+    - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseAlbedoTint: {r: 1, g: 1, b: 1, a: 1}

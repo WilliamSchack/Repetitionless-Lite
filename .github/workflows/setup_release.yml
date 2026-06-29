@@ -34,6 +34,9 @@ jobs:
       matrix:
         project-path: [ "True Seamless Texturing" ]
         documentation-path: [ "Documentation" ]
+        release-setup-folder: [ "ReleaseSetup" ]
+        unity-version:
+          - 2022.3.62f3
     steps:
       - name: Free Up Storage
         uses: jlumbroso/free-disk-space@main
@@ -44,11 +47,12 @@ jobs:
           large-packages: false
           docker-images: false
           swap-storage: false
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           sparse-checkout:  |
             ${{ matrix.project-path }}
             ${{ matrix.documentation-path }}
+            ${{ matrix.release-setup-folder }}
       - name: Install mkdocs
         working-directory: ${{ matrix.documentation-path }}
         run: |
@@ -74,8 +78,25 @@ jobs:
           git add -A
           git commit -m '[automated commit] v${{ inputs.version }} Updated docs and package.json'
           git push
+      - name: Hide URP/HDRP Folders
+        working-directory: "${{ matrix.project-path }}/Packages/com.williamschack.repetitionless/Shaders"
+        run: |
+          mv "URP" "URP~"
+          rm "URP.meta"
+          mv "HDRP/TerrainNew" "HDRP/TerrainNew~"
+          rm "HDRP/TerrainNew.meta"
+          mv "HDRP" "HDRP~"
+          rm "HDRP.meta"
+      - name: Remove Duplicate Sample Data Folders
+        working-directory: "${{ matrix.release-setup-folder }}"
+        run: python DeleteDuplicateSampleAssets.py
+      - name: Setup packages for 2022.3
+        run: |
+          rm "${{ matrix.project-path }}/Packages/manifest.json"
+          rm "${{ matrix.project-path }}/Packages/packages-lock.json"
+          mv "${{ matrix.release-setup-folder }}/build_manifest.json" "${{ matrix.project-path }}/Packages/manifest.json"
       - name: Cache Library
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: "${{ matrix.project-path }}/Library"
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
@@ -85,7 +106,7 @@ jobs:
         uses: buildalon/unity-setup@v2
         id: unity-setup
         with:
-          version-file: '${{ matrix.project-path }}/ProjectSettings/ProjectVersion.txt'
+          unity-version: ${{ matrix.unity-version }}
           cache-installation: true
       - name: Activate Unity
         uses: buildalon/activate-unity-license@v2
@@ -121,7 +142,7 @@ jobs:
         package-download-dir: [ "package" ]
         release-notes-filename: [ "ReleaseSetup/ReleaseNotes.md" ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           sparse-checkout: ${{ matrix.release-notes-filename }}
           fetch-depth: 0

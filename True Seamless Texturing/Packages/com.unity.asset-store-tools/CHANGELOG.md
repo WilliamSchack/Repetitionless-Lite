@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [12.0.4] - 2026-05-22
+
+## General changes
+- Minimum Unity version raised to 2022.3
+
+## Uploader changes
+- Updated minimum version check to prevent package uploads from unsupported Unity versions
+
 ## [12.0.3] - 2026-04-14
 
 ## General changes
