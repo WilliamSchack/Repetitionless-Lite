@@ -27,12 +27,6 @@ int GetIndexInArray(int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNK
     return arrayIndex;
 }
 
-void GetIndexInArray_float(int TexturesAssignedCompressed, int Index, out int Out)
-{
-    int array[BOOLEAN_COMPRESSION_MAX_CHUNKS] = { TexturesAssignedCompressed , 0, 0, 0};
-    Out = GetIndexInArray(array, Index);
-}
-
 float4 SampleArrayAtConstantIndex(
     Texture2DArray TextureArray,
     int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNKS],
@@ -49,19 +43,6 @@ float4 SampleArrayAtConstantIndex(
 
     // Sample the array at the index found previously
     return SAMPLE_TEXTURE2D_ARRAY(TextureArray, SS, UV, arrayIndex);
-}
-
-void SampleArrayAtConstantIndex_float(
-    Texture2DArray TextureArray,
-    int TexturesAssignedCompressed,
-    int Index,
-    float2 UV,
-    float4 UnassignedColor,
-    SamplerState SS,
-    out float4 Out
-){
-    int array[BOOLEAN_COMPRESSION_MAX_CHUNKS] = { TexturesAssignedCompressed , 0, 0, 0};
-    Out = SampleArrayAtConstantIndex(TextureArray, array, Index, UV, UnassignedColor, SS);
 }
 
 #endif
