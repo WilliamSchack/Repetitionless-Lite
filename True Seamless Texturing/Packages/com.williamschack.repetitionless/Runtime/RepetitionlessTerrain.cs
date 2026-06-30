@@ -27,8 +27,6 @@ namespace Repetitionless.Runtime
     [RequireComponent(typeof(Terrain))]
     public class RepetitionlessTerrain : MonoBehaviour
     {
-        private const int CONTROL_TEXTURE_COUNT = 8;
-
         [SerializeField] private Material _mainMaterial;
 
         /// <summary>
@@ -225,7 +223,7 @@ namespace Repetitionless.Runtime
         /// </summary>
         public void UpdateLayersCount()
         {
-            _materialInstance.SetFloat("_LayersCount", _terrainData.alphamapLayers);
+            _materialInstance.SetFloat("_LayersCount", Mathf.Min(_terrainData.alphamapLayers, 4));
         }
 
         /// <summary>
@@ -234,10 +232,8 @@ namespace Repetitionless.Runtime
         public void UpdateControlTextures()
         {
             int controlTextureCount = Mathf.CeilToInt(_terrainData.alphamapLayers / 4.0f);
-            for (int i = 0; i < CONTROL_TEXTURE_COUNT; i++) {
-                Texture2D controlTexture = controlTextureCount > i ? _terrainData.alphamapTextures[i] : null;
-                _materialInstance.SetTexture($"_Control{i}", controlTexture);
-            }
+            Texture2D controlTexture = controlTextureCount > 0 ? _terrainData.alphamapTextures[0] : null;
+            _materialInstance.SetTexture($"_Control0", controlTexture);
         }
 
     #if UNITY_EDITOR

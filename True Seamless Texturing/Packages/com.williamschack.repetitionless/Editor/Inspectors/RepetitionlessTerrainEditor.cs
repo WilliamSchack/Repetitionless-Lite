@@ -356,6 +356,11 @@ namespace Repetitionless.Editor.Inspectors
         {
             GUILayout.Space(5);
 
+            if (_terrainLayers.Length > 4) {
+                EditorGUILayout.HelpBox($"You have {_terrainLayers.Length} terrain layers set with a max of 4 layers.\nAny layers past 4 will not be shown,upgrade to Repetitionless Pro to support up to 32 terrain layers.", MessageType.Warning);
+                GUILayout.Space(5);
+            }
+
 #if !UNITY_6000_3_OR_NEWER
             ERenderPipeline renderPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
             if (_main.Terrain.drawInstanced && renderPipeline == ERenderPipeline.HDRP) {
@@ -365,11 +370,6 @@ namespace Repetitionless.Editor.Inspectors
 
             if (_terrainData == null) {
                 EditorGUILayout.HelpBox("No terrain data is assigned. Please create a new terrain or assign a terrain data to this one.", MessageType.Error);
-                GUILayout.Space(5);
-            }
-
-            if (_terrainLayers.Length > 32) {
-                EditorGUILayout.HelpBox("Over 32 terrain layers are assigned. Only 32 are supported, any extras will appear white.", MessageType.Warning);
                 GUILayout.Space(5);
             }
 
