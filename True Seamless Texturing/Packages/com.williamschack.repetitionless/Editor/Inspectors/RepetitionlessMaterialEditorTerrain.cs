@@ -156,9 +156,11 @@ namespace Repetitionless.Editor.Inspectors
             _currentLayerIndex = Mathf.Min(_currentLayerIndex, _terrainLayers.Count - 1);
 
             if (_terrainLayers.Count > (int)_layeredData.MaxLayers) {
-                EditorGUILayout.HelpBox($"You have {_terrainLayers.Count} terrain layers synced with a max of {(int)_layeredData.MaxLayers} layers.\nAll layers past {(int)_layeredData.MaxLayers} will not be shown, upgrade to Repetitionless Pro to support up to 32 layers.", MessageType.Warning);
+                EditorGUILayout.HelpBox($"You have {_terrainLayers.Count} terrain layers synced with a max of {(int)_layeredData.MaxLayers} layers, all layers past {(int)_layeredData.MaxLayers} will not be shown.\nUpgrade to Repetitionless Pro to support up to 32 layers.", MessageType.Warning);
             } else if (_terrainLayers.Count < (int)_layeredData.MaxLayers - MAX_LAYER_OFFSET_WARNING) {
                 EditorGUILayout.HelpBox($"You have a max of {(int)_layeredData.MaxLayers} terrain layers with only {_terrainLayers.Count} assigned.\nChange Max Layers to a lower amount, you are wasting performance.", MessageType.Error);
+            } else if (_terrainLayers.Count == 4) {
+                EditorGUILayout.HelpBox($"You have 4 terrain layers synced, any more assigned to the terrain are unsupported and will not be shown. Upgrade to Repetitionless Pro to support up to 32 layers.", MessageType.Info);
             }
 
             GUILayout.Space(10);
