@@ -61,7 +61,7 @@ namespace Repetitionless.Editor
         public const string NOISE_TEXTURE_NAME_1K = "repetitionless_NoiseTexture_1024";
 
         public const int MAX_LAYERS_REGULAR = 1;
-        public const int MAX_LAYERS_TERRAIN = 32;
+        public const int MAX_LAYERS_TERRAIN = 4;
 
         public static readonly Vector4 DEFAULT_TILING_OFFSET_TERRAIN = new Vector4(1, 1, 0, 0);
 

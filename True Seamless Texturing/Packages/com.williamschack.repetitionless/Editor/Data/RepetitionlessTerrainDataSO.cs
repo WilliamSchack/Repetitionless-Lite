@@ -47,11 +47,6 @@ namespace Repetitionless.Editor.Data
         }
 
         /// <summary>
-        /// If the max layers is updated automatically with terrain layers
-        /// </summary>
-        public bool AutoUpdateMaxLayers = true;
-
-        /// <summary>
         /// Toggles if textures and settings are automatically saved and loaded to and from the terrain layers
         /// </summary>
         public bool AutoSyncLayers = true;
@@ -76,10 +71,6 @@ namespace Repetitionless.Editor.Data
         {
             // Update Layers
             _terrainLayers = layers.ToList();
-
-            // Update max layers if auto is set
-            if (AutoUpdateMaxLayers)
-                _layeredData.UpdateMaxLayers(TerrainLayers.Count);
 
             Save();
         }

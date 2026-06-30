@@ -309,19 +309,5 @@ namespace Repetitionless.Editor.Data
             // Set layers count
             _dataManager.Material.SetFloat("_LayersCount", texturesAssigned);
         }
-
-        /// <summary>
-        /// Updates the max layers keyword based on an input layer count
-        /// </summary>
-        /// <param name="layerCount">
-        /// The layer count to transfer to EMaxLayers
-        /// </param>
-        public void UpdateMaxLayers(int layerCount)
-        {
-            MaxLayers = (EMaxLayers)Mathf.Max(4, Mathf.Min((layerCount + 3) / 4 * 4, 32));
-            Save();
-
-            RepetitionlessMaterialUtilities.UpdateMaxLayersKeyword(_dataManager.Material, MaxLayers);
-        }
     }
 }

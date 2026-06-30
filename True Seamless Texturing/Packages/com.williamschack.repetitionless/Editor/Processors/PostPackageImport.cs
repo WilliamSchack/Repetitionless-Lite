@@ -279,10 +279,6 @@ namespace Repetitionless.Editor.Processors
                         RepetitionlessTerrainDataSO terrainData = dataManager.LoadAsset<RepetitionlessTerrainDataSO>(Constants.TERRAIN_DATA_FILE_NAME);
                         layerCount = terrainData.TerrainLayers.Count;
                     }
-
-                    // Update the layer count and keyword
-                    RepetitionlessLayeredDataSO layeredData = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
-                    layeredData.UpdateMaxLayers(layerCount);
                 }
 
                 // Save the scene to reload terrains in the active scene

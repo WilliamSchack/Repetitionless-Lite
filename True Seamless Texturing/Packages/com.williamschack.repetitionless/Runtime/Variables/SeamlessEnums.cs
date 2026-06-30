@@ -179,41 +179,6 @@ namespace Repetitionless.Runtime.Variables
         /// <summary>
         /// = 4
         /// </summary>
-        Four = 4,
-
-        /// <summary>
-        /// = 8
-        /// </summary>
-        Eight = 8,
-
-        /// <summary>
-        /// = 12
-        /// </summary>
-        Twelve = 12,
-
-        /// <summary>
-        /// = 16
-        /// </summary>
-        Sixteen = 16,
-
-        /// <summary>
-        /// = 20
-        /// </summary>
-        Twenty = 20,
-
-        /// <summary>
-        /// = 24
-        /// </summary>
-        TwentyFour = 24,
-
-        /// <summary>
-        /// = 28
-        /// </summary>
-        TwentyEight = 28,
-
-        /// <summary>
-        /// = 32
-        /// </summary>
-        ThirtyTwo = 32
+        Four = 4
     }
 }

@@ -138,110 +138,9 @@ namespace Repetitionless.Editor.Inspectors
             _currentLayerIndex = EditorGUILayout.IntSlider("Editing Layer", _currentLayerIndex + 1, 1, _layeredData.LayerMode == ELayerMode.TerrainLayers && !terrainNotAvailable ? Mathf.Min(_terrainLayers.Count, (int)_layeredData.MaxLayers) : (int)_layeredData.MaxLayers) - 1;
             if (terrainNotAvailable) GUI.enabled = true;
 
-            EditorGUI.BeginChangeCheck();
-            _layeredData.LayerMode = (ELayerMode)EditorGUILayout.EnumPopup(new GUIContent("Mode", "Control Textures: Uses manually set textures to specify where each layer is\nTerrain Layers: Uses automatically synced terrain textures and its terrain layers to assign textures and settings to each layer"), _layeredData.LayerMode);
-            bool layerModeChanged = EditorGUI.EndChangeCheck();
-            if (layerModeChanged) {
-                RepetitionlessLayeredMaterialUtilities.UpdateLayerMode(_dataManager, _layeredData.LayerMode);
-
-                if (_layeredData.LayerMode == ELayerMode.TerrainLayers)
-                    UpdateTerrainDetails();
-
-                _layeredData.Save();
-                _materialProperties.CallOnExternalDataChanged();
-            }
-
-            EditorGUI.BeginChangeCheck();
-            _layeredData.MaxLayers = (EMaxLayers)EditorGUILayout.EnumPopup(new GUIContent("Max Layers"), _layeredData.MaxLayers);
-            if (EditorGUI.EndChangeCheck()) {
-                _currentLayerIndex = Mathf.Min(_currentLayerIndex, (int)_layeredData.MaxLayers - 1);
-
-                RepetitionlessMaterialUtilities.UpdateMaxLayersKeyword(_material, _layeredData.MaxLayers);
-
-                _layeredData.Save();
-                _materialProperties.CallOnExternalDataChanged();
-            }
-
-            switch (_layeredData.LayerMode) {
-                case ELayerMode.ControlTextures:
-                    DrawControlTextureSettings();
-                    break;
-                case ELayerMode.TerrainLayers:
-                    if (layerModeChanged && (_terrainLayers == null || _terrainLayers.Count == 0))
-                        _currentLayerIndex = 0;
-
-                    DrawTerrainSettings();
-                    break;
-            }
+            DrawTerrainSettings();
 
             GUIUtilities.EndBackgroundVertical();
-        }
-
-        private void DrawControlTextureSettings()
-        {
-            DrawHolesTexture();
-            DrawControlTexture(_currentLayerIndex, $"Control Texture");
-
-            if (_currentLayerIndex == 0 && _layeredData.GetControlTextureData(0).Texture == null) {
-                EditorGUILayout.HelpBox("With no texture assigned, the first layer will always be visible/have a full white control texture", MessageType.Info);
-            }
-
-            GUILayout.Space(10);
-
-            GUIUtilities.BeginBackgroundVertical();
-            _showingLayersDropdown = GUIUtilities.DrawFoldout(_showingLayersDropdown, "Control Textures");
-            if (_showingLayersDropdown) {
-                for (int i = 0; i < _maxLayers; i++) {
-                    DrawControlTexture(i, $"Control Texture {i + 1}");
-                }
-            }
-            GUIUtilities.EndBackgroundVertical();
-        }
-
-        private void DrawControlTexture(int layerIndex, string label)
-        {
-            // Have to use only line height for ObjectField to draw texture properly
-            Rect lineRect = GUIUtilities.GetLineRect(GUIUtilities.LINE_HEIGHT);
-            Rect textureRect = lineRect;
-            textureRect.width -= CHANNEL_PICKER_WIDTH + 5;
-
-            ref TexturePacker.TextureData textureData = ref _layeredData.GetControlTextureData(layerIndex);
-            if (textureData.FromToChannels.Count == 0) {
-                // In the case of an error, will reset the from channel
-                _layeredData.SetupControlTexture(layerIndex);
-                textureData = ref _layeredData.GetControlTextureData(layerIndex);
-            }
-
-            EditorGUI.BeginChangeCheck();
-            textureData.Texture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent(label, "The control texture that will be used for this layer. It will read from the selected channel"), textureData.Texture, typeof(Texture2D), false);
-            textureData.FromToChannels[0] = new TexturePacker.FromToChannel(DrawChannelPicker(lineRect, textureData.FromToChannels[0].From), textureData.FromToChannels[0].To);
-            if (EditorGUI.EndChangeCheck()) {
-                int controlIndex = _layeredData.GetControlIndexFromLayerIndex(layerIndex);
-                _layeredData.PackControlTexture(controlIndex);
-                _layeredData.AssignControlTexture(controlIndex);
-                _layeredData.UpdateLayersCount();
-                _layeredData.Save();
-            }
-        }
-
-        private void DrawHolesTexture()
-        {
-            // Have to use only line height for ObjectField to draw texture properly
-            Rect lineRect = GUIUtilities.GetLineRect(GUIUtilities.LINE_HEIGHT);
-            Rect textureRect = lineRect;
-            textureRect.width -= CHANNEL_PICKER_WIDTH + 5;
-
-            ref TexturePacker.TextureData textureData = ref _layeredData.HolesTexture;
-            if (textureData.FromToChannels.Count == 0) {
-                // In the case of an error, will reset the from channel
-                _layeredData.SetupHolesTexture();
-                textureData = ref _layeredData.HolesTexture;
-            }
-
-            EditorGUI.BeginChangeCheck();
-            textureData.Texture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent("Holes Texture", "The holes texture that will be used for the material. It will read from the selected channel"), textureData.Texture, typeof(Texture2D), false);
-            textureData.FromToChannels[0] = new TexturePacker.FromToChannel(DrawChannelPicker(lineRect, textureData.FromToChannels[0].From), textureData.FromToChannels[0].To);
-            if (EditorGUI.EndChangeCheck()) _layeredData.Save();
         }
 
         private void DrawTerrainSettings()
@@ -255,8 +154,6 @@ namespace Repetitionless.Editor.Inspectors
 
             // Cap layer index incase they changed while outside the inspector
             _currentLayerIndex = Mathf.Min(_currentLayerIndex, _terrainLayers.Count - 1);
-
-            _materialTerrainData.AutoUpdateMaxLayers = EditorGUILayout.Toggle(new GUIContent("Auto Update Max Layers"), _materialTerrainData.AutoUpdateMaxLayers);
 
             if (_terrainLayers.Count > (int)_layeredData.MaxLayers) {
                 EditorGUILayout.HelpBox($"You have {_terrainLayers.Count} terrain layers synced with a max of {(int)_layeredData.MaxLayers} layers.\nAll layers past {(int)_layeredData.MaxLayers} will not be shown, change Max Layers above to allow more layers.", MessageType.Warning);
