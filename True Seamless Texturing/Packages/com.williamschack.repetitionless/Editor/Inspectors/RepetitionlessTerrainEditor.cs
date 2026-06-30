@@ -357,7 +357,7 @@ namespace Repetitionless.Editor.Inspectors
             GUILayout.Space(5);
 
             if (_terrainLayers.Length > 4) {
-                EditorGUILayout.HelpBox($"You have {_terrainLayers.Length} terrain layers set with a max of 4 layers.\nAny layers past 4 will not be shown,upgrade to Repetitionless Pro to support up to 32 terrain layers.", MessageType.Warning);
+                EditorGUILayout.HelpBox($"You have {_terrainLayers.Length} terrain layers set with a max of 4 layers.\nAny layers past 4 will not be shown, upgrade to Repetitionless Pro to support up to 32 terrain layers.", MessageType.Warning);
                 GUILayout.Space(5);
             }
 

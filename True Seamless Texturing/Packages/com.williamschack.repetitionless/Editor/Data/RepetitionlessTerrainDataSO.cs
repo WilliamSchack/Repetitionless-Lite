@@ -70,7 +70,7 @@ namespace Repetitionless.Editor.Data
         public void UpdateTerrainLayers(TerrainLayer[] layers)
         {
             // Update Layers
-            _terrainLayers = layers.ToList();
+            _terrainLayers = layers.Take(4).ToList();
 
             Save();
         }
