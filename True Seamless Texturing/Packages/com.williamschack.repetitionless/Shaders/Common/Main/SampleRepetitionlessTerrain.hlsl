@@ -7,31 +7,6 @@
 // _TerrainHolesTexture
 // _Control{Index}
 
-#ifdef _MAX_LAYERS_4
-#define MAX_LAYERS 4
-#elif _MAX_LAYERS_8
-#define MAX_LAYERS 8
-#elif _MAX_LAYERS_12
-#define MAX_LAYERS 12
-#elif _MAX_LAYERS_16
-#define MAX_LAYERS 16
-#elif _MAX_LAYERS_20
-#define MAX_LAYERS 20
-#elif _MAX_LAYERS_24
-#define MAX_LAYERS 24
-#elif _MAX_LAYERS_28
-#define MAX_LAYERS 28
-#elif _MAX_LAYERS_32
-#define MAX_LAYERS 32
-#endif
-
-// Shouldnt happen, but as a fallback incase
-#ifndef MAX_LAYERS
-#define MAX_LAYERS 4
-#endif
-
-#define R_SAMPLE_CONTROL(i, uv) (i * 4) < LayersCount ? SAMPLE_TEXTURE2D(_Control##i, sampler_Control0, uv) : 0
-
 void SampleRepetitionlessTerrain(
     // General Settings
     SamplerState SS, float2 UV, float3 WorldNormalVector,
@@ -85,65 +60,30 @@ void SampleRepetitionlessTerrain(
         return;
     }
 
-    // Sample control textures
-    half4 controlColours[8] = {
-        R_SAMPLE_CONTROL(0, UV),
-        half4(0, 0, 0, 0),
-        half4(0, 0, 0, 0),
-        half4(0, 0, 0, 0),
-        half4(0, 0, 0, 0),
-        half4(0, 0, 0, 0),
-        half4(0, 0, 0, 0),
-        half4(0, 0, 0, 0)
-    };
-
-#if MAX_LAYERS > 4
-    controlColours[1] = R_SAMPLE_CONTROL(1, UV);
-#endif
-#if MAX_LAYERS > 8
-    controlColours[2] = R_SAMPLE_CONTROL(2, UV);
-#endif
-#if MAX_LAYERS > 12
-    controlColours[3] = R_SAMPLE_CONTROL(3, UV);
-#endif
-#if MAX_LAYERS > 16
-    controlColours[4] = R_SAMPLE_CONTROL(4, UV);
-#endif
-#if MAX_LAYERS > 20
-    controlColours[5] = R_SAMPLE_CONTROL(5, UV);
-#endif
-#if MAX_LAYERS > 24
-    controlColours[6] = R_SAMPLE_CONTROL(6, UV);
-#endif
-#if MAX_LAYERS > 28
-    controlColours[7] = R_SAMPLE_CONTROL(7, UV);
-#endif
+    // Sample control texture
+    half4 controlColour = SAMPLE_TEXTURE2D(_Control0, sampler_Control0, UV);
     
     // Get individual weights and sum
-    half controlWeights[32];
-    half controlSum = 0;
+    half controlWeights[4] = {
+        controlColour.x,
+        controlColour.y,
+        controlColour.z,
+        controlColour.w
+    };
 
-    [unroll]
-    for (int controlLayer = 0; controlLayer < 8; controlLayer++) {
-        controlWeights[controlLayer * 4 + 0] = controlColours[controlLayer].x;
-        controlWeights[controlLayer * 4 + 1] = controlColours[controlLayer].y;
-        controlWeights[controlLayer * 4 + 2] = controlColours[controlLayer].z;
-        controlWeights[controlLayer * 4 + 3] = controlColours[controlLayer].w;
-
-        controlSum += dot(controlColours[controlLayer], 1.0);
-    }
+    half controlSum = dot(controlColour, 1.0);
 
     half backgroundControl = saturate(1 - controlSum);
 
     // Normalize weights for additive blending
     if (controlSum > 1) {
         [unroll]
-        for (int controlWeightIndex = 0; controlWeightIndex < 32; controlWeightIndex++) {
+        for (int controlWeightIndex = 0; controlWeightIndex < 4; controlWeightIndex++) {
             controlWeights[controlWeightIndex] /= controlSum;
         }
     }
 
-    // Read array assigned textures
+    // Read array assigned texture
     int assignedAVTextures[3];
     int assignedNSOTextures[3];
     int assignedEVTextures[3];
@@ -161,7 +101,7 @@ void SampleRepetitionlessTerrain(
 
     // Sample Layers
     [loop]
-    for (int i = 0; i < MAX_LAYERS; i++) {
+    for (int i = 0; i < 4; i++) {
         half layerControl = controlWeights[i];
 
         [branch]
