@@ -6,6 +6,7 @@ namespace Repetitionless.Editor
     {
         public const string PACKAGE_ID = "374778";
         public const string ASSET_STORE_URL = "https://assetstore.unity.com/packages/slug/" + PACKAGE_ID;
+        public const string ASSET_STORE_URL_FULL = "https://assetstore.unity.com/packages/slug/345604";
         public const string ASSET_STORE_REVIEW_URL = ASSET_STORE_URL + "#reviews";
         public const string ASSET_ITCH_URL = "https://wilschack.itch.io/repetitionless";
 

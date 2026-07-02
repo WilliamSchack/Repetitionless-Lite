@@ -86,7 +86,7 @@ namespace Repetitionless.Editor.CustomWindows
             _headerStyle = new GUIStyle("label");
             _headerStyle.alignment = TextAnchor.MiddleCenter;
             _headerStyle.fontStyle = FontStyle.Bold;
-            _headerStyle.fontSize = 30;
+            _headerStyle.fontSize = 14;
             _headerStyle.wordWrap = true;
 
             _boldLabelStyle = new GUIStyle("label");
@@ -113,6 +113,17 @@ namespace Repetitionless.Editor.CustomWindows
             GUIUtilities.BeginBackgroundVertical();
 
             DrawLogo();
+
+            GUIUtilities.BeginBackgroundVertical();
+
+            GUILayout.Label("Thank you for using Repetitionless Free! If you are enjoying the asset, please leave a review or check out the expanded feature set in the full version of Repetitionless!", _headerStyle);
+
+            GUILayout.Space(5);
+
+            if (GUILayout.Button("Check out the full version"))
+                Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
+
+            GUIUtilities.EndBackgroundVertical();
 
             GUILayout.Space(10);
 
