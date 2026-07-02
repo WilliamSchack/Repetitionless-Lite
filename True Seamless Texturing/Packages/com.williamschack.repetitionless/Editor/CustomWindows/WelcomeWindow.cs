@@ -120,7 +120,7 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUILayout.Space(5);
 
-            if (GUILayout.Button("Check out the full version"))
+            if (GUILayout.Button("View the full version"))
                 Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
 
             GUIUtilities.EndBackgroundVertical();

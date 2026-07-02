@@ -162,6 +162,15 @@ namespace Repetitionless.Editor.Inspectors
         private bool _triplanarEnabled = false;
         private bool _specularHighlightsEnabled = true;
         private bool _environmentReflectionsEnabled = true;
+
+        // Free Version
+        private const string LOGO_FILE_NAME = "repetitionless_WelcomeLogo";
+        private const int LOGO_HEIGHT = 40;
+        private const int LOGO_PADDING = 3;
+        private Texture _logoTextureDark;
+        private Texture _logoTextureLight;
+        private Color _logoBackgroundDarkColour;
+        private Color _logoBackgroundLightColour;
         #endregion
 
         #region Helpers
@@ -565,6 +574,12 @@ namespace Repetitionless.Editor.Inspectors
 
             // Load noise texture incase it got removed
             RepetitionlessMaterialUtilities.UpdateNoiseQualityTexture(_material, _materialProperties.NoiseQuality);
+
+            // Free version
+            _logoTextureDark = Resources.Load<Texture>($"{LOGO_FILE_NAME}_Dark");
+            _logoTextureLight = Resources.Load<Texture>($"{LOGO_FILE_NAME}_Light");
+            _logoBackgroundDarkColour = new Color(30 / 256f, 30 / 256f, 30 / 256f);
+            _logoBackgroundLightColour = new Color(240 / 256f, 240 / 256f, 240 / 256f);
         }
 
         /// <summary>
@@ -601,12 +616,32 @@ namespace Repetitionless.Editor.Inspectors
             
             GUILayout.Space(HEADER_PADDING);
 
+            DrawLogo();
+
             // Material Properties
             GUIUtilities.BeginBackgroundVertical();
             DrawMaterialPropertiesGUI();
             GUIUtilities.EndBackgroundVertical();
 
             GUILayout.Space(SETTING_PADDING);
+        }
+        #endregion
+
+        #region Free Version
+        private void DrawLogo()
+        {
+            bool darkMode = EditorGUIUtility.isProSkin;
+            Texture texture = darkMode ? _logoTextureDark : _logoTextureLight;
+            Color backgroundColour = darkMode ? _logoBackgroundDarkColour : _logoBackgroundLightColour;
+
+            Rect logoBackgroundRect = GUILayoutUtility.GetRect(1, LOGO_HEIGHT);
+            EditorGUI.DrawRect(logoBackgroundRect, backgroundColour);
+
+            Rect logoRect = logoBackgroundRect;
+            logoRect.yMin += LOGO_PADDING;
+            logoRect.yMax -= LOGO_PADDING;
+            
+            GUI.DrawTexture(logoRect, texture, ScaleMode.ScaleToFit);
         }
         #endregion
 
