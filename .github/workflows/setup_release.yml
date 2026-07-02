@@ -8,6 +8,11 @@ on:
         default: false
         required: true
         type: boolean
+      free_version_merged:
+        description: 'Have you merged changes to the free version?'
+        default: false
+        required: true
+        type: boolean
       version:
         description: 'Version tag (no leading "v")'
         default: ''
@@ -23,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validating Inputs
-        if: ${{ github.event.inputs.release_notes_updated != 'true' || github.event.inputs.version == '' }}
+        if: ${{ github.event.inputs.release_notes_updated != 'true' || github.event.inputs.free_version_merged != 'true'  || github.event.inputs.version == '' }}
         run: exit 1
 
   update_files_and_build:
