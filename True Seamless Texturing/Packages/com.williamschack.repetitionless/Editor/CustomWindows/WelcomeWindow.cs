@@ -29,7 +29,6 @@ namespace Repetitionless.Editor.CustomWindows
         private Color _logoBackgroundDarkColour;
         private Color _logoBackgroundLightColour;
 
-        private GUIStyle _headerStyle;
         private GUIStyle _boldLabelStyle;
         private GUIStyle _buttonStyle;
         private GUIStyle _largeButtonStyle;
@@ -83,12 +82,6 @@ namespace Repetitionless.Editor.CustomWindows
 
         private void SetupStyles()
         {
-            _headerStyle = new GUIStyle("label");
-            _headerStyle.alignment = TextAnchor.MiddleCenter;
-            _headerStyle.fontStyle = FontStyle.Bold;
-            _headerStyle.fontSize = 14;
-            _headerStyle.wordWrap = true;
-
             _boldLabelStyle = new GUIStyle("label");
             _boldLabelStyle.alignment = TextAnchor.MiddleCenter;
             _boldLabelStyle.fontStyle = FontStyle.Bold;
@@ -116,7 +109,7 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUIUtilities.BeginBackgroundVertical();
 
-            GUILayout.Label("Thank you for using Repetitionless Free! If you are enjoying the asset, please leave a review or check out the expanded feature set in the full version of Repetitionless!", _headerStyle);
+            GUILayout.Label("Thank you for using Repetitionless Free! If you are enjoying the asset, please leave a review or check out the expanded feature set in the full version of Repetitionless!", _boldLabelStyle);
 
             GUILayout.Space(5);
 
