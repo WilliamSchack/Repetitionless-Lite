@@ -116,6 +116,13 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUILayout.Space(10);
 
+            if (_showWelcomeMessage) {
+                GUIUtilities.BeginBackgroundVertical();
+                GUILayout.Label("Welcome to repetitionless! To get started view the getting started page in the documentation for instructions on how to use the asset, or import the samples for examples. Please also consider leaving a review to support the asset and its development, any feedback is appreciated!", _boldLabelStyle);
+                GUIUtilities.EndBackgroundVertical();
+                GUILayout.Space(10);
+            }
+
             float buttonMinWidth = position.width / 2 - 15;
 
             GUILayout.BeginHorizontal();
@@ -152,11 +159,6 @@ namespace Repetitionless.Editor.CustomWindows
             GUILayout.EndHorizontal();
 
             if (GUILayout.Button("Import Samples")) ImportSamples();
-
-            if (_showWelcomeMessage) {
-                GUILayout.Space(20);
-                GUILayout.Label("Welcome to repetitionless! To get started view the getting started page in the documentation for instructions on how to use the asset, or import the samples for examples. Please also consider leaving a review to support the asset and its development, any feedback is appreciated!", _boldLabelStyle);
-            }
 
             if (_showUpdateMessage) {
                 GUILayout.Space(20);
