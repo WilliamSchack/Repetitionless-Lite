@@ -67,7 +67,7 @@ half4 DepthNormalOnlyFragment(VaryingsDepthNormal input) : SV_Target0
     float  occlusion;
     float3 emission;
     SampleRepetitionless(
-        input.uv, input.normalWS, input.positionWS, 0,
+        input.uvMainAndLM.xy, input.normalWS, input.positionWS, 0,
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
 
