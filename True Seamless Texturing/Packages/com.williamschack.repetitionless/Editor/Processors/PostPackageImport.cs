@@ -96,7 +96,7 @@ namespace Repetitionless.Editor.Processors
 #region Updating to 1.0.3
         private static void ShowReviewLog()
         {
-            Debug.Log("<b>Thanks for downloading Repetitionless Lite! <color=#3FFFFF>Please consider leaving a review to support the asset and its development, any feedback is appreciated!</color></b>");
+            Debug.Log("<b>Thanks for downloading Repetitionless Free! <color=#3FFFFF>Please consider leaving a review to support the asset and its development, any feedback is appreciated!</color></b>");
         }
 #endregion
 
