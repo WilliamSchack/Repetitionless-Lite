@@ -96,6 +96,13 @@ namespace Repetitionless.Runtime
         private void OnSceneSaved(Scene scene)
         {
             UpdateMaterialTerrainTextures();
+
+    #if UNITY_EDITOR
+            if (Terrain.materialTemplate != MaterialInstance || MaterialInstance.shader.name == "Hidden/InternalErrorShader")
+                UpdateTerrainMaterial(MainMaterial);
+            else
+                _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);
+    #endif
         }
     #endif
 
@@ -123,6 +130,12 @@ namespace Repetitionless.Runtime
                 SetDirty();
                 UpdateMaterialTerrainTextures();
                 AssignMaterialInstance();
+
+                // Update the material if required
+                if (Terrain.materialTemplate != MaterialInstance || MaterialInstance.shader.name == "Hidden/InternalErrorShader")
+                    UpdateTerrainMaterial(MainMaterial);
+                else
+                    _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);
             };
     #else
             UpdateMaterialTerrainTextures();

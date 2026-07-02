@@ -92,6 +92,23 @@ namespace Repetitionless.Editor.Data
             SetupHolesTexture();
 
             PackControlTextures();
+
+            Save();
+        }
+
+        public void InitNewLayerCount()
+        {
+            ControlTexture[] oldControlTextures = ControlTextures;
+
+            SetupControlTextures();
+
+            for (int i = 0; i < Mathf.Min(ControlTextures.Length, oldControlTextures.Length); i++) {
+                ControlTextures[i] = oldControlTextures[i];
+            }
+
+            PackControlTextures();
+
+            Save();
         }
 
         /// <summary>
@@ -100,6 +117,7 @@ namespace Repetitionless.Editor.Data
         public void SetupControlTextures()
         {
             ControlTextures = new ControlTexture[Constants.MAX_LAYERS_TERRAIN / 4];
+            _packedControlTextures = new Texture2D[Constants.MAX_LAYERS_TERRAIN / 4]; 
 
             for (int i = 0; i < ControlTextures.Length; i++) {
                 SetupControlTextures(i);

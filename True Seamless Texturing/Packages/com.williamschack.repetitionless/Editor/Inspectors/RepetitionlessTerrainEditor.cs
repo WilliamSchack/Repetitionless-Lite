@@ -153,6 +153,12 @@ namespace Repetitionless.Editor.Inspectors
                 _terrainLayers = _terrainData.terrainLayers;
             }
 
+            // Update the material if required
+            if (_main.Terrain.materialTemplate != _main.MaterialInstance || _main.MaterialInstance.shader.name == "Hidden/InternalErrorShader")
+                _main.UpdateTerrainMaterial(_main.MainMaterial);
+            else
+                _main.MaterialInstance.CopyPropertiesFromMaterial(_main.MainMaterial);
+
             _terrainNeighbours[0] = _main.Terrain.leftNeighbor;
             _terrainNeighbours[1] = _main.Terrain.rightNeighbor;
             _terrainNeighbours[2] = _main.Terrain.topNeighbor;

@@ -189,7 +189,7 @@ half4 Frag(Varyings input) : SV_TARGET
     float  occlusion;
     float3 emission;
     SampleRepetitionless(
-        uv, input.normal, input.positionWS, input.colour,
+        uv, input.normal.xyz, input.positionWS, input.colour,
         albedo, normalTS, metallic, smoothness, occlusion, emission
     );
 

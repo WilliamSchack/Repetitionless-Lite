@@ -1,12 +1,6 @@
 #ifndef REPETITIONLESSHDRPSAMPLETERRAIN_INCLUDED
 #define REPETITIONLESSHDRPSAMPLETERRAIN_INCLUDED
 
-// Fixing a TerrainLit error in vulkan when decals are enabled
-// This is a temporary workaround until Unity fixes it
-#if defined(SHADER_API_VULKAN) && defined(HAVE_DECALS)
-#undef HAVE_DECALS
-#endif
-
 #if defined(_ALPHATEST_ON) && !defined(_HOLES_TEXTURE_DEF)
 #define _HOLES_TEXTURE_DEF
 TEXTURE2D(_TerrainHolesTexture);
