@@ -142,13 +142,28 @@ namespace Repetitionless.Editor.Data
         /// <param name="layersCount">
         /// The max amount of terrain layers that will be used
         /// </param>
-        public void Init(int layersCount)
+        public void Init(int layerCount)
         {
-            LayersTextureData = new LayerTextureData[layersCount];
+            LayersTextureData = new LayerTextureData[layerCount];
 
-            for (int i = 0; i < layersCount; i++) {
+            for (int i = 0; i < layerCount; i++) {
                 SetupLayer(i);
             }
+
+            Save();
+        }
+
+        public void InitNewLayerCount(int layerCount)
+        {
+            LayerTextureData[] oldLayerTextureData = LayersTextureData;
+
+            Init(layerCount);
+
+            for (int i = 0; i < Mathf.Min(LayersTextureData.Length, oldLayerTextureData.Length); i++) {
+                LayersTextureData[i] = oldLayerTextureData[i];
+            }
+
+            Save();
         }
 
         /// <summary>

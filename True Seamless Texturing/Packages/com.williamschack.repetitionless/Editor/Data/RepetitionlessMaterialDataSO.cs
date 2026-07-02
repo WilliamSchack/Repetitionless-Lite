@@ -80,6 +80,24 @@ namespace Repetitionless.Editor.Data
             Save();
         }
 
+        public void InitNewLayerCount(int layerCount)
+        {
+            RepetitionlessLayerData[] oldData = Data;
+            RepetitionlessLayerDataCompressed[] oldCompressedData = _dataCompressed;
+
+            Init(layerCount);
+
+            for (int i = 0; i < Mathf.Min(Data.Length, oldData.Length); i++) {
+                Data[i] = oldData[i];
+                _dataCompressed[i] = oldCompressedData[i];
+            }
+            
+            // Recreate the material texture
+            CreateMaterialTexture();
+
+            Save();
+        }
+
         /// <summary>
         /// Saves this object
         /// </summary>
@@ -196,11 +214,13 @@ namespace Repetitionless.Editor.Data
                 return;
             }
 
-            Texture2D texture;
-            if (_dataManager.AssetExists(Constants.PROPERTIES_TEXTURE_ASSET_NAME)) {
-                // Load and modify the texture
+            bool textureExists = _dataManager.AssetExists(Constants.PROPERTIES_TEXTURE_ASSET_NAME);
+
+            Texture2D texture = null;
+            if (textureExists)
                 texture = _dataManager.LoadAsset<Texture2D>(Constants.PROPERTIES_TEXTURE_ASSET_NAME);
-                
+
+            if (textureExists && texture.height == Data.Length) {
                 // Check if the width is the same, it may have less variables from a previous version
                 if (texture.width != Constants.COMPRESSED_LAYER_VARIABLES_COUNT) {
                     // Recreate texture with new width
@@ -225,30 +245,39 @@ namespace Repetitionless.Editor.Data
                     texture.Apply();
                 }
             } else {
-                // Create a new texture
-                texture = new Texture2D(Constants.COMPRESSED_LAYER_VARIABLES_COUNT, Data.Length, DATA_TEXTURE_FORMAT, false);
-
-                Color[] dataColours = new Color[Constants.COMPRESSED_LAYER_VARIABLES_COUNT * Data.Length];
-                for (int i = 0; i < Data.Length; i++) {
-                    // Compress all values
-                    RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed[i], Data[i], true);
-                    Color[] layerDataColours = GetLayerDataColour(layerIndex);
-
-                    // Add colours to the main array
-                    int coloursOffset = Constants.COMPRESSED_LAYER_VARIABLES_COUNT * i;
-                    for (int x = 0; x < Constants.COMPRESSED_LAYER_VARIABLES_COUNT; x++) {
-                        dataColours[coloursOffset + x] = layerDataColours[x];
-                    }
-                }
-
-                texture.SetPixels(dataColours);
-                texture.Apply();
-
-                _dataManager.CreateAsset(texture, Constants.PROPERTIES_TEXTURE_ASSET_NAME);
+                CreateMaterialTexture();
             }
 
             if ((Texture2D)property.textureValue != texture)
                 property.textureValue = texture;
+        }
+
+        private void CreateMaterialTexture()
+        {
+            // Create a new texture
+            Texture2D texture = new Texture2D(Constants.COMPRESSED_LAYER_VARIABLES_COUNT, Data.Length, DATA_TEXTURE_FORMAT, false);
+
+            Color[] dataColours = new Color[Constants.COMPRESSED_LAYER_VARIABLES_COUNT * Data.Length];
+            for (int i = 0; i < Data.Length; i++) {
+                // Compress all values
+                RepetitionlessDataPacker.UpdateCompressedLayerData(ref _dataCompressed[i], Data[i], true);
+                //Color[] layerDataColours = GetLayerDataColour(layerIndex);
+                Color[] layerDataColours = GetLayerDataColour(i);
+
+                // Add colours to the main array
+                int coloursOffset = Constants.COMPRESSED_LAYER_VARIABLES_COUNT * i;
+                for (int x = 0; x < Constants.COMPRESSED_LAYER_VARIABLES_COUNT; x++) {
+                    dataColours[coloursOffset + x] = layerDataColours[x];
+                }
+            }
+
+            texture.SetPixels(dataColours);
+            texture.Apply();
+
+            if (_dataManager.AssetExists(Constants.PROPERTIES_TEXTURE_ASSET_NAME))
+                _dataManager.DeleteAsset(Constants.PROPERTIES_TEXTURE_ASSET_NAME);
+
+            _dataManager.CreateAsset(texture, Constants.PROPERTIES_TEXTURE_ASSET_NAME);
         }
 
         /// <summary>
