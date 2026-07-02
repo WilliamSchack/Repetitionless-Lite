@@ -93,7 +93,9 @@ namespace Repetitionless.Editor.Data
             }
             
             // Recreate the material texture
-            CreateMaterialTexture();
+            Texture2D newMaterialTexture = CreateMaterialTexture();
+            MaterialProperty materialTextureProp = MaterialEditor.GetMaterialProperty(new Object[] { _dataManager.Material }, PROPERTIES_TEXTURE_PROP_NAME);
+            materialTextureProp.textureValue = newMaterialTexture;
 
             Save();
         }
@@ -245,14 +247,14 @@ namespace Repetitionless.Editor.Data
                     texture.Apply();
                 }
             } else {
-                CreateMaterialTexture();
+                texture = CreateMaterialTexture();
             }
 
             if ((Texture2D)property.textureValue != texture)
                 property.textureValue = texture;
         }
 
-        private void CreateMaterialTexture()
+        private Texture2D CreateMaterialTexture()
         {
             // Create a new texture
             Texture2D texture = new Texture2D(Constants.COMPRESSED_LAYER_VARIABLES_COUNT, Data.Length, DATA_TEXTURE_FORMAT, false);
@@ -278,6 +280,8 @@ namespace Repetitionless.Editor.Data
                 _dataManager.DeleteAsset(Constants.PROPERTIES_TEXTURE_ASSET_NAME);
 
             _dataManager.CreateAsset(texture, Constants.PROPERTIES_TEXTURE_ASSET_NAME);
+
+            return texture;
         }
 
         /// <summary>

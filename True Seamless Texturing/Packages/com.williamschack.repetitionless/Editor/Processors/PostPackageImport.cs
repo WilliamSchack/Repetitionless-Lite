@@ -39,12 +39,36 @@ namespace Repetitionless.Editor.Processors
 
         private static void ProUpgrade()
         {
-            WelcomeWindow.Open();
-            ShowReviewLog();
+            // Update old layered materials to new max layer count
+            List<Material> repetitionlessMaterials = RepetitionlessMaterialFinder.GetAll();
+            foreach (Material mat in repetitionlessMaterials) {
+                MaterialDataManager dataManager = new MaterialDataManager(mat);
 
-            RepetitionlessPrefs.UpdatePrefs((p) => {
-                p.LiteMode = false;
-            });
+                if (!dataManager.AssetExists(Constants.LAYERED_DATA_FILE_NAME))
+                    continue;
+
+                RepetitionlessMaterialDataSO materialDataSO = dataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
+                RepetitionlessTextureDataSO textureDataSO = dataManager.LoadAsset<RepetitionlessTextureDataSO>(Constants.TEXTURE_DATA_FILE_NAME);
+                RepetitionlessLayeredDataSO layeredDataSO = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
+
+                materialDataSO.InitNewLayerCount(Constants.MAX_LAYERS_TERRAIN);
+                textureDataSO.InitNewLayerCount(Constants.MAX_LAYERS_TERRAIN);
+                layeredDataSO.InitNewLayerCount();
+            }
+
+            EditorApplication.delayCall += () => {
+                // To update terrains in the current scene
+                EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
+
+                WelcomeWindow.Open();
+                ShowReviewLog();
+
+                RepetitionlessPrefs.UpdatePrefs((p) => {
+                    p.LiteMode = false;
+                });
+
+                EditorUtility.DisplayDialog("Repetitionless Upgrade", "Thanks for purchasing the full version of Repetitionless! Your materials have been automatically updated but any terrain layers past 4 will appear blank. Click the \"Save Textures\" button in each RepetitionlessTerrain component to fix this.\nEnjoy the new features :)", "Ok");
+            };
         }
 
         private static int[] SplitVersion(string version)
