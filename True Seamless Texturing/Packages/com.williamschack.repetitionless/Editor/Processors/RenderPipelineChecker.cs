@@ -54,18 +54,21 @@ namespace Repetitionless.Editor.Processors
 
         private static void UnhideFolder(string folderPath)
         {
-            if (Directory.Exists(folderPath + "~"))
-                Directory.Move(folderPath + "~", folderPath);
+            if (!Directory.Exists(folderPath + "~"))
+                return;
+
+            Directory.Move(folderPath + "~", folderPath);
 
             UnityEditor.AssetDatabase.Refresh();
         }
 
         private static void HideFolder(string folderPath)
         {
-            if (Directory.Exists(folderPath)) {
-                Directory.Move(folderPath, folderPath + "~");
-                File.Delete(folderPath + ".meta");
-            }
+            if (!Directory.Exists(folderPath))
+                return;
+
+            Directory.Move(folderPath, folderPath + "~");
+            File.Delete(folderPath + ".meta");
 
             UnityEditor.AssetDatabase.Refresh();
         }
@@ -84,8 +87,8 @@ namespace Repetitionless.Editor.Processors
 
         private static void UnhideURP()
         {
-            if (RepetitionlessPrefs.Data.URPActive)
-                return;
+            //if (RepetitionlessPrefs.Data.URPActive)
+            //    return;
 
             UnhideFolder(GetPathURP());
 
@@ -96,8 +99,8 @@ namespace Repetitionless.Editor.Processors
 
         private static void HideURP()
         {
-            if (!RepetitionlessPrefs.Data.URPActive)
-                return;
+            //if (!RepetitionlessPrefs.Data.URPActive)
+            //    return;
 
             HideFolder(GetPathURP());
 
@@ -108,8 +111,8 @@ namespace Repetitionless.Editor.Processors
 
         private static void UnhideHDRP()
         {
-            if (RepetitionlessPrefs.Data.HDRPActive)
-                return;
+            //if (RepetitionlessPrefs.Data.HDRPActive)
+            //    return;
 
             UnhideFolder(GetPathHDRP());
 
@@ -122,8 +125,8 @@ namespace Repetitionless.Editor.Processors
 
         private static void HideHDRP()
         {
-            if (!RepetitionlessPrefs.Data.HDRPActive)
-                return;
+            //if (!RepetitionlessPrefs.Data.HDRPActive)
+            //    return;
 
             HideFolder(GetPathHDRP());
 
