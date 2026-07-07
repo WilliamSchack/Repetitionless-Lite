@@ -93,7 +93,14 @@ namespace Repetitionless.Editor.Processors
             if (RepetitionlessPrefs.Data.URPActive && !forceCheck)
                 return;
 
-            UnhideFolder(GetPathURP());
+            string folderPath = GetPathURP();
+
+            if (Directory.Exists(folderPath + "~")) {
+                // We can assume that changes have been made due to an update and have not been properly merged
+                MergeURP();
+            }
+
+            UnhideFolder(folderPath);
 
             RepetitionlessPrefs.UpdatePrefs((p) => {
                 p.URPActive = true; 
@@ -105,7 +112,8 @@ namespace Repetitionless.Editor.Processors
             if (!RepetitionlessPrefs.Data.URPActive && !forceCheck)
                 return;
 
-            HideFolder(GetPathURP());
+            string folderPath = GetPathURP();
+            HideFolder(folderPath);
 
             RepetitionlessPrefs.UpdatePrefs((p) => {
                 p.URPActive = false; 
@@ -117,7 +125,14 @@ namespace Repetitionless.Editor.Processors
             if (RepetitionlessPrefs.Data.HDRPActive && !forceCheck)
                 return;
 
-            UnhideFolder(GetPathHDRP());
+            string folderPath = GetPathHDRP();
+
+            if (Directory.Exists(folderPath + "~")) {
+                // We can assume that changes have been made due to an update and have not been properly merged
+                MergeHDRP();
+            }
+
+            UnhideFolder(folderPath);
 
             RepetitionlessPrefs.UpdatePrefs((p) => {
                 p.HDRPActive = true; 
@@ -131,7 +146,8 @@ namespace Repetitionless.Editor.Processors
             if (!RepetitionlessPrefs.Data.HDRPActive && !forceCheck)
                 return;
 
-            HideFolder(GetPathHDRP());
+            string folderPath = GetPathHDRP();
+            HideFolder(folderPath);
 
             RepetitionlessPrefs.UpdatePrefs((p) => {
                 p.HDRPActive = false; 
