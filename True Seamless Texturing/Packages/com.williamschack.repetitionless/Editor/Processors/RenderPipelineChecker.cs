@@ -170,11 +170,6 @@ namespace Repetitionless.Editor.Processors
                 string fileName = Path.GetFileName(file);
                 string destFile = Path.Combine(newFolderPath, fileName);
 
-                UnityEditor.EditorApplication.delayCall += () => { 
-                    UnityEngine.Debug.Log("From: " + file);
-                    UnityEngine.Debug.Log("To: " + destFile);
-                };
-
                 if (File.Exists(destFile))
                     File.Delete(destFile);
 
