@@ -20,6 +20,9 @@ namespace Repetitionless.Editor.Processors
     {
         static PostPackageImport()
         {
+            if (Application.isBatchMode)
+                return;
+
             if (RepetitionlessPrefs.Data.LiteMode) {
                 ProUpgrade();
             }

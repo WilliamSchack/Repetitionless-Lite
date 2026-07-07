@@ -15,6 +15,9 @@ namespace Repetitionless.Editor.Processors
     {
         static PostProjectOpen()
         {
+            if (Application.isBatchMode)
+                return;
+
             // Wait a frame for the editor id to initialize
             EditorApplication.delayCall += OnInitializeOnLoad;
         }

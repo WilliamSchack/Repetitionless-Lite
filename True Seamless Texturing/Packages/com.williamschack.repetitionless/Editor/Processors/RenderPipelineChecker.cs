@@ -15,6 +15,9 @@ namespace Repetitionless.Editor.Processors
 
         static RenderPipelineChecker()
         {
+            if (Application.isBatchMode)
+                return;
+
             Events.registeredPackages += OnPackagesRegistered;
         }
 
@@ -57,7 +60,7 @@ namespace Repetitionless.Editor.Processors
 
         private static void UnhideFolder(string folderPath)
         {
-            if (!Directory.Exists(folderPath + "~"))
+            if (!Directory.Exists(folderPath + "~") || Directory.Exists(folderPath))
                 return;
 
             Directory.Move(folderPath + "~", folderPath);
@@ -67,7 +70,7 @@ namespace Repetitionless.Editor.Processors
 
         private static void HideFolder(string folderPath)
         {
-            if (!Directory.Exists(folderPath))
+            if (!Directory.Exists(folderPath) || Directory.Exists(folderPath + "~"))
                 return;
 
             Directory.Move(folderPath, folderPath + "~");
@@ -94,12 +97,6 @@ namespace Repetitionless.Editor.Processors
                 return;
 
             string folderPath = GetPathURP();
-
-            if (Directory.Exists(folderPath + "~")) {
-                // We can assume that changes have been made due to an update and have not been properly merged
-                MergeURP();
-            }
-
             UnhideFolder(folderPath);
 
             RepetitionlessPrefs.UpdatePrefs((p) => {
@@ -113,6 +110,12 @@ namespace Repetitionless.Editor.Processors
                 return;
 
             string folderPath = GetPathURP();
+
+            if (Directory.Exists(folderPath + "~")) {
+                // We can assume that changes have been made due to an update and have not been properly merged
+                MergeURP();
+            }
+
             HideFolder(folderPath);
 
             RepetitionlessPrefs.UpdatePrefs((p) => {
@@ -126,12 +129,6 @@ namespace Repetitionless.Editor.Processors
                 return;
 
             string folderPath = GetPathHDRP();
-
-            if (Directory.Exists(folderPath + "~")) {
-                // We can assume that changes have been made due to an update and have not been properly merged
-                MergeHDRP();
-            }
-
             UnhideFolder(folderPath);
 
             RepetitionlessPrefs.UpdatePrefs((p) => {
@@ -147,6 +144,12 @@ namespace Repetitionless.Editor.Processors
                 return;
 
             string folderPath = GetPathHDRP();
+
+            if (Directory.Exists(folderPath + "~")) {   
+                // We can assume that changes have been made due to an update and have not been properly merged
+                MergeHDRP();
+            }
+
             HideFolder(folderPath);
 
             RepetitionlessPrefs.UpdatePrefs((p) => {
@@ -199,9 +202,7 @@ namespace Repetitionless.Editor.Processors
         internal static void MergeNewShaderFolders()
         {
             // These files will exist if they have had changes
-            // No need to check respective folder if they are still hidden
-            // First check URP~, HDRP~
-            // Then check TerrainNew~, TerrainOld~
+            // No need to check respective folders if they are still hidden
 
             if (RepetitionlessPrefs.Data.URPActive) {
                 MergeURP();
@@ -228,10 +229,10 @@ namespace Repetitionless.Editor.Processors
             // Check TerrainNew~, TerrainOld~, they should have been moved to the main HDRP folder
             string oldTerrainPath = folderPath + "/TerrainOld";
             string newTerrainPath = folderPath + "/TerrainNew";
-            if (RepetitionlessPrefs.Data.HasNewHDRPSupport)
-                MergeFolders(newTerrainPath + "~", newTerrainPath);
-            else
+            if (Directory.Exists(oldTerrainPath))
                 MergeFolders(oldTerrainPath + "~", oldTerrainPath);
+            if (Directory.Exists(newTerrainPath))
+                MergeFolders(newTerrainPath + "~", newTerrainPath);
         }
     }
 }
