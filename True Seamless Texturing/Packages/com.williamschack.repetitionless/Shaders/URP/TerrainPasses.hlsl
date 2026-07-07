@@ -199,7 +199,7 @@ half4 Frag(Varyings input) : SV_TARGET
 #if defined(_DBUFFER)
     half3 specular = half3(0.0h, 0.0h, 0.0h);
     ApplyDecal(input.clipPos,
-        albedo,
+        albedo.rgb,
         specular,
         inputData.normalWS,
         metallic,
