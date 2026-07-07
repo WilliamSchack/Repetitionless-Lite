@@ -92,6 +92,8 @@ namespace Repetitionless.Editor.Processors
         {
             AssetDatabase.importPackageCompleted -= PackageImported;
 
+            RenderPipelineChecker.CheckInstalledPackages(true);
+
             // Show welcome window if first time installing
             if (RepetitionlessPrefs.Data.WelcomeWindowShown)
                 return;
@@ -114,6 +116,8 @@ namespace Repetitionless.Editor.Processors
         {
             int[] splitLastVersion = GetLastVersion();
             if (splitLastVersion[0] == 0) return;
+
+            RenderPipelineChecker.MergeNewShaderFolders();
 
             // Upgrading to 1.0.3
             if (splitLastVersion[0] == 1 && splitLastVersion[1] == 0 && splitLastVersion[2] <= 3) {
