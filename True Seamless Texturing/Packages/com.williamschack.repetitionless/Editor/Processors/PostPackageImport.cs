@@ -32,8 +32,6 @@ namespace Repetitionless.Editor.Processors
                 });
             }
 
-            RenderPipelineChecker.CheckInstalledPackages();
-
             AssetDatabase.importPackageCompleted += PackageImported;
         }
 
@@ -92,11 +90,11 @@ namespace Repetitionless.Editor.Processors
         {
             AssetDatabase.importPackageCompleted -= PackageImported;
 
-            RenderPipelineChecker.CheckInstalledPackages(true);
-
             // Show welcome window if first time installing
             if (RepetitionlessPrefs.Data.WelcomeWindowShown)
                 return;
+
+            RenderPipelineChecker.CheckInstalledPackages();
 
             WelcomeWindow.Open(true);
             ShowReviewLog();
@@ -117,6 +115,7 @@ namespace Repetitionless.Editor.Processors
             int[] splitLastVersion = GetLastVersion();
             if (splitLastVersion[0] == 0) return;
 
+            RenderPipelineChecker.CheckInstalledPackages(true);
             RenderPipelineChecker.MergeNewShaderFolders();
 
             // Upgrading to 1.0.3
