@@ -37,7 +37,10 @@ namespace Repetitionless.Editor.Processors
             }
         }
 
-        internal static void CheckInstalledPackages()
+        /// <param name="forceCheck">
+        /// Overrides the RPActive pref
+        /// </param>
+        internal static void CheckInstalledPackages(bool forceCheck = false)
         {
             bool urpFound = false;
             bool hdrpFound = false;
@@ -46,26 +49,29 @@ namespace Repetitionless.Editor.Processors
                 if (package.name == HDRP_PACKAGE_NAME) hdrpFound = true;
             }
 
-            if (urpFound)  UnhideURP();
-            else           HideURP();
-            if (hdrpFound) UnhideHDRP();
-            else           HideHDRP();
+            if (urpFound)  UnhideURP(forceCheck);
+            else           HideURP(forceCheck);
+            if (hdrpFound) UnhideHDRP(forceCheck);
+            else           HideHDRP(forceCheck);
         }
 
         private static void UnhideFolder(string folderPath)
         {
-            if (Directory.Exists(folderPath + "~"))
-                Directory.Move(folderPath + "~", folderPath);
+            if (!Directory.Exists(folderPath + "~"))
+                return;
+
+            Directory.Move(folderPath + "~", folderPath);
 
             UnityEditor.AssetDatabase.Refresh();
         }
 
         private static void HideFolder(string folderPath)
         {
-            if (Directory.Exists(folderPath)) {
-                Directory.Move(folderPath, folderPath + "~");
-                File.Delete(folderPath + ".meta");
-            }
+            if (!Directory.Exists(folderPath))
+                return;
+
+            Directory.Move(folderPath, folderPath + "~");
+            File.Delete(folderPath + ".meta");
 
             UnityEditor.AssetDatabase.Refresh();
         }
@@ -82,9 +88,9 @@ namespace Repetitionless.Editor.Processors
             return projectPath + "/" + Constants.PACKAGE_PATH + "/Shaders/HDRP";
         }
 
-        private static void UnhideURP()
+        private static void UnhideURP(bool forceCheck = false)
         {
-            if (RepetitionlessPrefs.Data.URPActive)
+            if (RepetitionlessPrefs.Data.URPActive && !forceCheck)
                 return;
 
             UnhideFolder(GetPathURP());
@@ -94,9 +100,9 @@ namespace Repetitionless.Editor.Processors
             });
         }
 
-        private static void HideURP()
+        private static void HideURP(bool forceCheck = false)
         {
-            if (!RepetitionlessPrefs.Data.URPActive)
+            if (!RepetitionlessPrefs.Data.URPActive && !forceCheck)
                 return;
 
             HideFolder(GetPathURP());
@@ -106,9 +112,9 @@ namespace Repetitionless.Editor.Processors
             });
         }
 
-        private static void UnhideHDRP()
+        private static void UnhideHDRP(bool forceCheck = false)
         {
-            if (RepetitionlessPrefs.Data.HDRPActive)
+            if (RepetitionlessPrefs.Data.HDRPActive && !forceCheck)
                 return;
 
             UnhideFolder(GetPathHDRP());
@@ -120,9 +126,9 @@ namespace Repetitionless.Editor.Processors
             PostProjectOpen.CheckAndUpdateHDRPTerrainShader(true);
         }
 
-        private static void HideHDRP()
+        private static void HideHDRP(bool forceCheck = false)
         {
-            if (!RepetitionlessPrefs.Data.HDRPActive)
+            if (!RepetitionlessPrefs.Data.HDRPActive && !forceCheck)
                 return;
 
             HideFolder(GetPathHDRP());
@@ -130,6 +136,86 @@ namespace Repetitionless.Editor.Processors
             RepetitionlessPrefs.UpdatePrefs((p) => {
                 p.HDRPActive = false; 
             });
+        }
+
+        /// <summary>
+        /// All files from source will overwrite files in new path
+        /// </summary>
+        /// <param name="sourceFolderPath">
+        /// The folder with the new files to use
+        /// </param>
+        /// <param name="newFolderPath">
+        /// The folder with the old files that will be overwritten for the new files
+        /// </param>
+        private static void MergeFolders(string sourceFolderPath, string newFolderPath)
+        {
+            if (!Directory.Exists(sourceFolderPath))
+                return;
+
+            // Move the directory if no folder exists to merge
+            if (!Directory.Exists(newFolderPath)) {
+                Directory.Move(sourceFolderPath, newFolderPath);
+                return;
+            }
+
+            // Merge subdirectories
+            foreach (string dir in Directory.GetDirectories(sourceFolderPath)) {
+                string dirName = Path.GetFileName(dir);
+                string destDir = Path.Combine(newFolderPath, dirName);
+                MergeFolders(dir, destDir);
+            }
+
+            // Overwrite files in this directory
+            foreach (string file in Directory.GetFiles(sourceFolderPath)) {
+                string fileName = Path.GetFileName(file);
+                string destFile = Path.Combine(newFolderPath, fileName);
+
+                if (File.Exists(destFile))
+                    File.Delete(destFile);
+
+                File.Move(file, destFile);
+            }
+
+            // Delete this folder
+            Directory.Delete(sourceFolderPath, true);
+        }
+
+        internal static void MergeNewShaderFolders()
+        {
+            // These files will exist if they have had changes
+            // No need to check respective folder if they are still hidden
+            // First check URP~, HDRP~
+            // Then check TerrainNew~, TerrainOld~
+
+            if (RepetitionlessPrefs.Data.URPActive) {
+                MergeURP();
+            }
+
+            if (RepetitionlessPrefs.Data.HDRPActive) {
+                MergeHDRP();
+            }
+
+            UnityEditor.AssetDatabase.Refresh();
+        }
+
+        internal static void MergeURP()
+        {
+            string folderPath = GetPathURP();
+            MergeFolders(folderPath + "~", folderPath);
+        }
+
+        internal static void MergeHDRP()
+        {
+            string folderPath = GetPathHDRP();
+            MergeFolders(folderPath + "~", folderPath);
+
+            // Check TerrainNew~, TerrainOld~, they should have been moved to the main HDRP folder
+            string oldTerrainPath = folderPath + "/TerrainOld";
+            string newTerrainPath = folderPath + "/TerrainNew";
+            if (RepetitionlessPrefs.Data.HasNewHDRPSupport)
+                MergeFolders(newTerrainPath + "~", newTerrainPath);
+            else
+                MergeFolders(oldTerrainPath + "~", oldTerrainPath);
         }
     }
 }
