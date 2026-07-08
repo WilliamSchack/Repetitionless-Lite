@@ -31,7 +31,9 @@ namespace Repetitionless.Editor.Processors
             RepetitionlessColourSpaceUpdater.Initialize();
 
             // Check if urp/hdrp was updated while project was closed
-            RenderPipelineChecker.CheckInstalledPackages();
+            EditorApplication.delayCall += () => {
+                RenderPipelineChecker.CheckInstalledPackages();
+            };
 
             // Update hdrp terrain shader if required
             CheckAndUpdateHDRPTerrainShader();
