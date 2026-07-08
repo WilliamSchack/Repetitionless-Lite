@@ -59,7 +59,9 @@ namespace Repetitionless.Editor.Processors
             if (RepetitionlessPrefs.Data.WelcomeWindowShown)
                 return;
 
-            RenderPipelineChecker.CheckInstalledPackages();
+            EditorApplication.delayCall += () => {
+                RenderPipelineChecker.CheckInstalledPackages();
+            };
 
             WelcomeWindow.Open(true);
             ShowReviewLog();
@@ -80,8 +82,10 @@ namespace Repetitionless.Editor.Processors
             int[] splitLastVersion = GetLastVersion();
             if (splitLastVersion[0] == 0) return;
 
-            RenderPipelineChecker.CheckInstalledPackages(true);
-            RenderPipelineChecker.MergeNewShaderFolders();
+            EditorApplication.delayCall += () => {
+                RenderPipelineChecker.CheckInstalledPackages(true);
+                RenderPipelineChecker.MergeNewShaderFolders();
+            };
 
             // Upgrading to 1.0.3
             if (splitLastVersion[0] == 1 && splitLastVersion[1] == 0 && splitLastVersion[2] <= 3) {

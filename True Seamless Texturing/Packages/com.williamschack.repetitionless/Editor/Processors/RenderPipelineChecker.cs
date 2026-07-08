@@ -111,7 +111,7 @@ namespace Repetitionless.Editor.Processors
 
             string folderPath = GetPathURP();
 
-            if (Directory.Exists(folderPath + "~")) {
+            if (Directory.Exists(folderPath) && Directory.Exists(folderPath + "~")) {
                 // We can assume that changes have been made due to an update and have not been properly merged
                 MergeURP();
             }
@@ -145,7 +145,7 @@ namespace Repetitionless.Editor.Processors
 
             string folderPath = GetPathHDRP();
 
-            if (Directory.Exists(folderPath + "~")) {   
+            if (Directory.Exists(folderPath) && Directory.Exists(folderPath + "~")) {   
                 // We can assume that changes have been made due to an update and have not been properly merged
                 MergeHDRP();
             }
