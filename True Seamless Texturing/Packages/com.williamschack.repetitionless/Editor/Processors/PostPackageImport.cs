@@ -93,13 +93,13 @@ namespace Repetitionless.Editor.Processors
         {
             AssetDatabase.importPackageCompleted -= PackageImported;
 
-            // Show welcome window if first time installing
-            if (RepetitionlessPrefs.Data.WelcomeWindowShown)
-                return;
-
             EditorApplication.delayCall += () => {
                 RenderPipelineChecker.CheckInstalledPackages();
             };
+
+            // Show welcome window if first time installing
+            if (RepetitionlessPrefs.Data.WelcomeWindowShown)
+                return;
 
             WelcomeWindow.Open(true);
             ShowReviewLog();
