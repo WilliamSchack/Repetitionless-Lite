@@ -285,6 +285,16 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma vertex DepthNormalsVertex
             #pragma fragment DepthNormalsFragment
 
+            // Material Keywords
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
+
+            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
+
 #if UNITY_VERSION >= 202220
             #pragma multi_compile _ LOD_FADE_CROSSFADE
 #endif
@@ -319,6 +329,17 @@ Shader "Repetitionless/URP/Repetitionless"
             #pragma vertex VertexMeta
             #pragma fragment FragmentMetaLit
 
+            // Material Keywords
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
+
+            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
+
+            // Unity defined
             #pragma shader_feature EDITOR_VISUALIZATION
 
             #include "Input.hlsl"
