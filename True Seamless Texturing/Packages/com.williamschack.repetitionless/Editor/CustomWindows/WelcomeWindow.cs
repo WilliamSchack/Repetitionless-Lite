@@ -120,7 +120,8 @@ namespace Repetitionless.Editor.CustomWindows
 
             DrawLogo();
 
-            _toolbarIndex = GUILayout.Toolbar(_toolbarIndex, new GUIContent[] { new GUIContent("Main"), new GUIContent("Settings") }, GUILayout.Height(24));
+            string[] toolbarOptions = {"Main", "Settings"};
+            _toolbarIndex = GUILayout.Toolbar(_toolbarIndex, toolbarOptions, GUILayout.Height(24));
             //GUILayout.Space(2);
             GUIUtilities.BeginBackgroundVertical();
             GUILayout.Space(10);
@@ -231,7 +232,7 @@ namespace Repetitionless.Editor.CustomWindows
             GUIUtilities.BeginBackgroundVertical();
 
             EditorGUI.BeginChangeCheck();
-            bool openWindowOnUpdate = GUILayout.Toggle(RepetitionlessPrefs.Data.OpenWindowOnUpdate, "Show window on update available");
+            bool openWindowOnUpdate = GUILayout.Toggle(RepetitionlessPrefs.Data.OpenWindowOnUpdate, "Show window on available update");
             if (EditorGUI.EndChangeCheck()) {
                 RepetitionlessPrefs.UpdatePrefs((p) => {
                     p.OpenWindowOnUpdate = openWindowOnUpdate;
