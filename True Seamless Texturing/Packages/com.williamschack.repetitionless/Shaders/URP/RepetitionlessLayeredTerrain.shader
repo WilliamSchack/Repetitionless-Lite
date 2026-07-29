@@ -288,6 +288,17 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             #pragma vertex DepthNormalOnlyVertex
             #pragma fragment DepthNormalOnlyFragment
 
+            // Material Keywords
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
+
+            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
+            #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
+
 #if UNITY_VERSION >= 202220
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
 #endif
@@ -331,6 +342,18 @@ Shader "Repetitionless/URP/RepetitionlessLayeredTerrain"
             #pragma vertex TerrainVertexMeta
             #pragma fragment TerrainFragmentMeta
 
+            // Material Keywords
+            #pragma shader_feature_local _ _REPETITIONLESS_DISTANCE_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_MATERIAL_BLEND
+            #pragma shader_feature_local _ _REPETITIONLESS_TRIPLANAR
+            #pragma shader_feature_local _ _REPETITIONLESS_NOISE_TEXTURE
+            #pragma shader_feature_local _ _REPETITIONLESS_VARIATION
+
+            #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
+            #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
+
+            // Unity defined
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
 
