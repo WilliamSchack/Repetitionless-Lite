@@ -12,8 +12,8 @@ namespace Repetitionless.Editor.CustomWindows
     using Data;
     using Config;
     using Updating;
+    using Processors;
     using Utilities.GUI;
-    using UnityEngine.Rendering;
 
     /// <summary>
     /// The welcome window that is shown when first installing the package
@@ -24,6 +24,7 @@ namespace Repetitionless.Editor.CustomWindows
         private const int LOGO_HEIGHT = 60;
         private const int LOGO_PADDING = 3;
         private const int LOGO_BACKGROUND_PADDING = 4;
+        private const int SETTINGS_WIDTH_PADDING = 10;
 
         private Texture _logoTextureDark;
         private Texture _logoTextureLight;
@@ -32,6 +33,7 @@ namespace Repetitionless.Editor.CustomWindows
 
         private GUIStyle _headerStyle;
         private GUIStyle _boldLabelStyle;
+        private GUIStyle _richBoldLabelStyle;
         private GUIStyle _buttonStyle;
         private GUIStyle _largeButtonStyle;
 
@@ -87,15 +89,18 @@ namespace Repetitionless.Editor.CustomWindows
         private void SetupStyles()
         {
             _headerStyle = new GUIStyle("label");
-            _headerStyle.alignment = TextAnchor.MiddleCenter;
             _headerStyle.fontStyle = FontStyle.Bold;
-            _headerStyle.fontSize = 30;
+            _headerStyle.fontSize = 18;
             _headerStyle.wordWrap = true;
 
             _boldLabelStyle = new GUIStyle("label");
             _boldLabelStyle.alignment = TextAnchor.MiddleCenter;
             _boldLabelStyle.fontStyle = FontStyle.Bold;
             _boldLabelStyle.wordWrap = true;
+
+            _richBoldLabelStyle = new GUIStyle("label");
+            _richBoldLabelStyle.fontStyle = FontStyle.Bold;
+            _richBoldLabelStyle.richText = true;
 
             _buttonStyle = new GUIStyle("button");
             _buttonStyle.fontStyle = FontStyle.Bold;
@@ -113,16 +118,12 @@ namespace Repetitionless.Editor.CustomWindows
                 _stylesSetup = true;
             }
 
-            //GUIUtilities.BeginBackgroundVertical();
-
             DrawLogo();
-
-            //GUILayout.Space(5);
 
             _toolbarIndex = GUILayout.Toolbar(_toolbarIndex, new GUIContent[] { new GUIContent("Main"), new GUIContent("Settings") }, GUILayout.Height(24));
             //GUILayout.Space(2);
             GUIUtilities.BeginBackgroundVertical();
-            //GUILayout.Space(10);
+            GUILayout.Space(10);
 
             switch (_toolbarIndex) {
                 case 0:
@@ -136,7 +137,6 @@ namespace Repetitionless.Editor.CustomWindows
             GUILayout.FlexibleSpace();
 
             GUIUtilities.EndBackgroundVertical();
-            //GUIUtilities.EndBackgroundVertical();
 
             if (_showUpdateMessage) {
                 DrawUpdateButton();
@@ -181,14 +181,6 @@ namespace Repetitionless.Editor.CustomWindows
                 EditorGUILayout.HelpBox($"An update is available for Repetitionless (v{RepetitionlessPackageInfo.Info.version} > {_remoteVersion}). Click the button at the bottom of the window to update", MessageType.Info);
                 GUILayout.Space(10);
 
-                //if (GUILayout.Button("Never open window when an update is available")) {
-                //    RepetitionlessPrefs.UpdatePrefs((p) => {
-                //        p.OpenWindowOnUpdate = false;
-                //    });
-
-                //    _showUpdateMessage = false;
-                //}
-
             }
 
             float buttonMinWidth = position.width / 2 - 15;
@@ -231,7 +223,44 @@ namespace Repetitionless.Editor.CustomWindows
 
         private void DrawSettingsSection()
         {
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(SETTINGS_WIDTH_PADDING / 2);
+            GUILayout.BeginVertical();
+
+            GUILayout.Label("General", _headerStyle);
+            GUIUtilities.BeginBackgroundVertical();
+
+            EditorGUI.BeginChangeCheck();
+            bool openWindowOnUpdate = GUILayout.Toggle(RepetitionlessPrefs.Data.OpenWindowOnUpdate, "Show window on update available");
+            if (EditorGUI.EndChangeCheck()) {
+                RepetitionlessPrefs.UpdatePrefs((p) => {
+                    p.OpenWindowOnUpdate = openWindowOnUpdate;
+                });
+            }
+
+            GUIUtilities.EndBackgroundVertical();
+
+            GUILayout.Space(10);
             
+            GUILayout.Label("Shaders", _headerStyle);
+            GUIUtilities.BeginBackgroundVertical();
+
+            string urpActiveText = RepetitionlessPrefs.Data.URPActive ? "<color=green>Enabled</color>" : "<color=#fc3c3c>Disabled</color>";
+            string hdrpActiveText = RepetitionlessPrefs.Data.HDRPActive ? "<color=green>Enabled</color>" : "<color=#fc3c3c>Disabled</color>";
+            string shadersActiveText = $"URP {urpActiveText} | HDRP {hdrpActiveText}";
+            float size = _richBoldLabelStyle.CalcSize(new GUIContent(shadersActiveText)).x;
+            
+            GUILayout.Label(shadersActiveText, _richBoldLabelStyle);
+            if (GUILayout.Button("Check Shader Folders", GUILayout.Width(size)))
+                RenderPipelineChecker.CheckInstalledPackages(true);
+            
+            GUIUtilities.EndBackgroundVertical();
+
+            GUILayout.Space(10);
+
+            GUILayout.EndVertical();
+            GUILayout.Space(SETTINGS_WIDTH_PADDING / 2);
+            GUILayout.EndHorizontal();
         }
 
         private void DrawLogo()
