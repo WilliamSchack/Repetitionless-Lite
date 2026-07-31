@@ -260,6 +260,20 @@ namespace Repetitionless.Editor.CustomWindows
                 });
             }
 
+            EditorGUI.BeginChangeCheck();
+            bool checkForSales = GUILayout.Toggle(RepetitionlessPrefs.Data.CheckForSales, new GUIContent("Check for full version sales", "Toggles if sales are retrieved for the full version of the asset and if they are shown in the inspectors when active"));
+            if (EditorGUI.EndChangeCheck()) {
+                RepetitionlessPrefs.UpdatePrefs((p) => {
+                    p.CheckForSales = checkForSales;
+                });
+
+                if (!checkForSales) {
+                    _activeSale = new SaleChecker.SaleInfo();
+                } else {
+                    _activeSale = SaleChecker.GetActiveSale();
+                }
+            }
+
             GUIUtilities.EndBackgroundVertical();
 
             GUILayout.Space(10);

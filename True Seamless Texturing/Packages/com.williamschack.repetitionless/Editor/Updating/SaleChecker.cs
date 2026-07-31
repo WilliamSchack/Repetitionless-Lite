@@ -105,6 +105,9 @@ namespace Repetitionless.Editor.Updating
 
         public static void FetchSalesAndUpdateCache()
         {
+            if (!RepetitionlessPrefs.Data.CheckForSales)
+                return;
+
             // Get sales data
             HttpRequestMessage request = new HttpRequestMessage() {
                 RequestUri = new Uri(SALES_FILE_URL),
@@ -136,7 +139,10 @@ namespace Repetitionless.Editor.Updating
         // Returns empty SaleInfo if no sale is active
         public static SaleInfo GetActiveSale()
         {
-            ReadCache(false);
+            if (!RepetitionlessPrefs.Data.CheckForSales)
+                return new SaleInfo();
+
+            ReadCache();
 
             if (_sales.Count == 0)
                 return new SaleInfo();
