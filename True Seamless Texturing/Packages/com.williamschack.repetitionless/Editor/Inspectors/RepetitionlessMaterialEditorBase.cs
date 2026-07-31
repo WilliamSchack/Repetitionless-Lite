@@ -13,6 +13,7 @@ namespace Repetitionless.Editor.Inspectors
     using CustomWindows;
     using CustomDialog;
     using Data;
+    using Updating;
 
     /// <summary>
     /// Base class for creating the Master/Terrain repetitionless inspector windows<br />
@@ -171,6 +172,8 @@ namespace Repetitionless.Editor.Inspectors
         private Texture _logoTextureLight;
         private Color _logoBackgroundDarkColour;
         private Color _logoBackgroundLightColour;
+
+        private SaleChecker.SaleInfo _activeSale;
         #endregion
 
         #region Helpers
@@ -580,6 +583,8 @@ namespace Repetitionless.Editor.Inspectors
             _logoTextureLight = Resources.Load<Texture>($"{LOGO_FILE_NAME}_Light");
             _logoBackgroundDarkColour = new Color(30 / 256f, 30 / 256f, 30 / 256f);
             _logoBackgroundLightColour = new Color(240 / 256f, 240 / 256f, 240 / 256f);
+
+            _activeSale = SaleChecker.GetActiveSale();
         }
 
         /// <summary>
@@ -644,22 +649,22 @@ namespace Repetitionless.Editor.Inspectors
             GUI.DrawTexture(logoRect, texture, ScaleMode.ScaleToFit);
 
             // Sale
-            // if (sale) {
-            int testHeight = 30;
-            int testPadding = 4;
-            int testOffset = -6;
+            if (_activeSale.PercentOff != 0) {
+                int testHeight = 28;
+                int testPadding = 4;
+                int testOffset = -4;
 
-            Rect saleBackgroundRect = GUILayoutUtility.GetRect(1, testHeight + testOffset);
-            EditorGUI.DrawRect(saleBackgroundRect, backgroundColour);
+                Rect saleBackgroundRect = GUILayoutUtility.GetRect(1, testHeight + testOffset);
+                EditorGUI.DrawRect(saleBackgroundRect, backgroundColour);
 
-            Rect saleButtonRect = saleBackgroundRect;
-            saleButtonRect.x += testPadding;
-            saleButtonRect.width -= testPadding * 2;
-            saleButtonRect.y += testPadding + testOffset;
-            saleButtonRect.height -= testPadding * 2 + testOffset;
+                Rect saleButtonRect = saleBackgroundRect;
+                saleButtonRect.x += testPadding;
+                saleButtonRect.width -= testPadding * 2;
+                saleButtonRect.y += testPadding + testOffset;
+                saleButtonRect.height -= testPadding * 2 + testOffset;
 
-            GUI.Button(saleButtonRect, "Get the full version for 50% Off (5 days)");
-            // }
+                GUI.Button(saleButtonRect, SaleChecker.GetSaleText(_activeSale));
+            }
         }
         #endregion
 

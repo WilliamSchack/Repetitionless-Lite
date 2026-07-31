@@ -72,39 +72,6 @@ namespace Repetitionless.Editor.Updating
             File.WriteAllText(prefsFileInfo.FullName, contents);
         }
 
-        public static void FetchSalesAndUpdateCache()
-        {
-            // Get sales data
-            HttpRequestMessage request = new HttpRequestMessage() {
-                RequestUri = new Uri(SALES_FILE_URL),
-                Method = HttpMethod.Get
-            };
-
-            request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            request.Headers.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("Mozilla", "5.0"));
-
-            Task<HttpResponseMessage> getTask;
-            try {
-                getTask = _client.SendAsync(request);
-                getTask.Wait();
-            } catch (Exception e) {
-                Debug.LogException(e);
-                return;
-            }
-
-            HttpResponseMessage response = getTask.Result;
-            Task<string> getContentTask = response.Content.ReadAsStringAsync();
-            getContentTask.Wait();
-
-            Debug.Log(getContentTask.Result);
-
-            // Save to cache
-            FileInfo cacheFileInfo = GetCacheFileInfo();
-            File.WriteAllText(cacheFileInfo.FullName, getContentTask.Result);
-
-            ReadCache();
-        }
-
         public static void ReadCache(bool force = false)
         {
             // Only read the cache if required
@@ -130,14 +97,48 @@ namespace Repetitionless.Editor.Updating
                 sale.StartDate = DateTime.ParseExact(saleJson.startDate, DATE_TIME_FORMAT, null);
                 sale.EndDate = DateTime.ParseExact(saleJson.endDate, DATE_TIME_FORMAT, null);
 
-                _sales.Append(sale);
+                _sales.Add(sale);
             }
+        }
+
+        public static void FetchSalesAndUpdateCache()
+        {
+            // Get sales data
+            HttpRequestMessage request = new HttpRequestMessage() {
+                RequestUri = new Uri(SALES_FILE_URL),
+                Method = HttpMethod.Get
+            };
+
+            request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            request.Headers.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("Mozilla", "5.0"));
+
+            Task<HttpResponseMessage> getTask;
+            try {
+                getTask = _client.SendAsync(request);
+                getTask.Wait();
+            } catch (Exception e) {
+                Debug.LogException(e);
+                return;
+            }
+
+            HttpResponseMessage response = getTask.Result;
+            Task<string> getContentTask = response.Content.ReadAsStringAsync();
+            getContentTask.Wait();
+
+            // Save to cache
+            FileInfo cacheFileInfo = GetCacheFileInfo();
+            File.WriteAllText(cacheFileInfo.FullName, getContentTask.Result);
+
+            ReadCache(true);
         }
 
         // Returns empty SaleInfo if no sale is active
         public static SaleInfo GetActiveSale()
         {
-            ReadCache();
+            ReadCache(true);
+
+            if (_sales.Count == 0)
+                return new SaleInfo();
 
             // Most recent sale is stored at index 0, assuming there isnt any multiple overlapping
             SaleInfo mostRecentSale = _sales[0];
@@ -154,6 +155,14 @@ namespace Repetitionless.Editor.Updating
         {
             SaleInfo saleInfo = GetActiveSale();
             return saleInfo.PercentOff != 0;
+        }
+
+        public static string GetSaleText(SaleInfo sale)
+        {
+            TimeSpan timeLeft = sale.EndDate.Subtract(DateTime.Now);
+            int daysLeft = timeLeft.Days;
+
+            return $"Get the full version for {sale.PercentOff}% Off! ({daysLeft} Day{(daysLeft == 1 ? "" : "s")})";
         }
     }
 }
