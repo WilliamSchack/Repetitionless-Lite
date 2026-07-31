@@ -25,6 +25,8 @@ namespace Repetitionless.Editor.Config
             public bool HDRPActive = false;
             public bool HasNewHDRPSupport = true; // If the last processed unity version was 6.3+
 
+            public bool CheckForSales = false; // Only used in the free version
+
             public long LastSessionId = 0;
         }
 
