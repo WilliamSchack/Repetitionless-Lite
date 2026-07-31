@@ -57,6 +57,15 @@ namespace Repetitionless.Editor.Processors
                 layeredDataSO.InitNewLayerCount();
             }
 
+            // Remove unused files
+            string[] unusedFiles = {
+                Constants.PACKAGE_PATH + "/Editor/Updating/SaleChecker.cs"
+            };
+
+            foreach (string filePath in unusedFiles) {
+                AssetDatabase.DeleteAsset(filePath);
+            }
+
             EditorApplication.delayCall += () => {
                 // To update terrains in the current scene
                 EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
