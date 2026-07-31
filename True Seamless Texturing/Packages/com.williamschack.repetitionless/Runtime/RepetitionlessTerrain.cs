@@ -100,7 +100,7 @@ namespace Repetitionless.Runtime
     #if UNITY_EDITOR
             if (Terrain.materialTemplate != MaterialInstance || MaterialInstance.shader.name == "Hidden/InternalErrorShader")
                 UpdateTerrainMaterial(MainMaterial);
-            else
+            else if (_mainMaterial != null)
                 _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);
     #endif
         }
@@ -134,7 +134,7 @@ namespace Repetitionless.Runtime
                 // Update the material if required
                 if (Terrain.materialTemplate != MaterialInstance || MaterialInstance.shader.name == "Hidden/InternalErrorShader")
                     UpdateTerrainMaterial(MainMaterial);
-                else
+                else if (_mainMaterial != null)
                     _materialInstance.CopyPropertiesFromMaterial(_mainMaterial);
             };
     #else
