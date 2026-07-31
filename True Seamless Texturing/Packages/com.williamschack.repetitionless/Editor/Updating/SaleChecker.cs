@@ -118,8 +118,7 @@ namespace Repetitionless.Editor.Updating
             try {
                 getTask = _client.SendAsync(request);
                 getTask.Wait();
-            } catch (Exception e) {
-                Debug.LogException(e);
+            } catch (Exception) {
                 return;
             }
 
