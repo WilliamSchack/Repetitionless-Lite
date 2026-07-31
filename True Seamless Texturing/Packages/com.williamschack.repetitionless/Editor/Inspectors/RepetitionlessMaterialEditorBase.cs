@@ -642,6 +642,24 @@ namespace Repetitionless.Editor.Inspectors
             logoRect.yMax -= LOGO_PADDING;
             
             GUI.DrawTexture(logoRect, texture, ScaleMode.ScaleToFit);
+
+            // Sale
+            // if (sale) {
+            int testHeight = 30;
+            int testPadding = 4;
+            int testOffset = -6;
+
+            Rect saleBackgroundRect = GUILayoutUtility.GetRect(1, testHeight + testOffset);
+            EditorGUI.DrawRect(saleBackgroundRect, backgroundColour);
+
+            Rect saleButtonRect = saleBackgroundRect;
+            saleButtonRect.x += testPadding;
+            saleButtonRect.width -= testPadding * 2;
+            saleButtonRect.y += testPadding + testOffset;
+            saleButtonRect.height -= testPadding * 2 + testOffset;
+
+            GUI.Button(saleButtonRect, "Get the full version for 50% Off (5 days)");
+            // }
         }
         #endregion
 

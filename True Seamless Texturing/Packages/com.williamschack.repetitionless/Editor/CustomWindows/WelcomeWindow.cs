@@ -25,6 +25,8 @@ namespace Repetitionless.Editor.CustomWindows
         private const int LOGO_PADDING = 3;
         private const int LOGO_BACKGROUND_PADDING = 4;
         private const int SETTINGS_WIDTH_PADDING = 10;
+        private const int SALE_BUTTON_HEIGHT = 24;
+        private const int SALE_BUTTON_BACKGROUND_PADDING = 4;
 
         private Texture _logoTextureDark;
         private Texture _logoTextureLight;
@@ -123,11 +125,15 @@ namespace Repetitionless.Editor.CustomWindows
             GUIUtilities.BeginBackgroundVertical();
 
             GUILayout.Label("Thank you for using Repetitionless Free! If you are enjoying the asset, please leave a review or check out the expanded feature set in the full version of Repetitionless!", _boldLabelStyle);
-
             GUILayout.Space(5);
 
-            if (GUILayout.Button("View the full version"))
-                Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
+            // if (sale) {
+            GUILayout.Button("Get the full version for 50% Off (5 days)", GUILayout.Height(SALE_BUTTON_HEIGHT));
+            // } else {
+//
+            //if (GUILayout.Button("View the full version"))
+            //    Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
+            // }
 
             GUIUtilities.EndBackgroundVertical();
 
@@ -296,6 +302,28 @@ namespace Repetitionless.Editor.CustomWindows
             GUI.DrawTexture(logoRect, texture, ScaleMode.ScaleToFit);
 
             GUILayout.Space(LOGO_BACKGROUND_PADDING);
+
+            /*
+
+            // Sale
+            // if (sale) {
+            Rect saleBackgroundRect = GUILayoutUtility.GetRect(1, SALE_BUTTON_HEIGHT);
+            saleBackgroundRect.x += LOGO_BACKGROUND_PADDING;
+            saleBackgroundRect.width -= LOGO_BACKGROUND_PADDING * 2;
+
+            EditorGUI.DrawRect(saleBackgroundRect, backgroundColour);
+
+            Rect saleButtonRect = saleBackgroundRect;
+            saleButtonRect.x += SALE_BUTTON_BACKGROUND_PADDING;
+            saleButtonRect.width -= SALE_BUTTON_BACKGROUND_PADDING * 2;
+            saleButtonRect.y += SALE_BUTTON_BACKGROUND_PADDING;
+            saleButtonRect.height -= SALE_BUTTON_BACKGROUND_PADDING * 2;
+
+            GUI.Button(saleButtonRect, "Get the full version for 50% Off (5 days)");
+
+            // }
+
+            */
         }
 
         private void DrawUpdateButton()
