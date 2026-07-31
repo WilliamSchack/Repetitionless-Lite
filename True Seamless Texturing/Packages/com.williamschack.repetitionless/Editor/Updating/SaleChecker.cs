@@ -186,35 +186,6 @@ namespace Repetitionless.Editor.Updating
 
             return $"Get the full version for {sale.PercentOff}% Off! ({daysLeft} Day{(daysLeft == 1 ? "" : "s")})";
         }
-
-        public static void OpenSalePage()
-        {
-            switch (RepetitionlessPackageInfo.PackageSource) {
-                case RepetitionlessPackageInfo.EPackageSource.AssetStore:
-                    Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
-                    break;
-                case RepetitionlessPackageInfo.EPackageSource.Itch:
-                    Application.OpenURL(Constants.ASSET_ITCH_URL);
-                    break;
-                case RepetitionlessPackageInfo.EPackageSource.Unknown:
-                    switch(EditorUtility.DisplayDialogComplex(
-                        "Repetitionless",
-                        "Which store would you like to view the package on?",
-                        "Itch.io",
-                        "Asset Store",
-                        "Cancel"
-                    ))
-                    {
-                        case 0: // Itch.io
-                            Application.OpenURL(Constants.ASSET_ITCH_URL);
-                            break;
-                        case 1: // Asset Store
-                            Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
-                            break;
-                    }
-                    break;
-            }
-        }
     }
 }
 #endif

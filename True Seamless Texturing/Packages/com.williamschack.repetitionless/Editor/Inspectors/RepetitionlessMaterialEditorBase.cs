@@ -668,8 +668,33 @@ namespace Repetitionless.Editor.Inspectors
                 saleButtonRect.y += testPadding + testOffset;
                 saleButtonRect.height -= testPadding * 2 + testOffset;
 
-                if (GUI.Button(saleButtonRect, SaleChecker.GetSaleText(_activeSale)))
-                    SaleChecker.OpenSalePage();
+                if (GUI.Button(saleButtonRect, SaleChecker.GetSaleText(_activeSale))) {
+                    switch (RepetitionlessPackageInfo.PackageSource) {
+                        case RepetitionlessPackageInfo.EPackageSource.AssetStore:
+                            Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
+                            break;
+                        case RepetitionlessPackageInfo.EPackageSource.Itch:
+                            Application.OpenURL(Constants.ASSET_ITCH_URL);
+                            break;
+                        case RepetitionlessPackageInfo.EPackageSource.Unknown:
+                            switch(EditorUtility.DisplayDialogComplex(
+                                "Repetitionless",
+                                "Which store would you like to view the package on?",
+                                "Itch.io",
+                                "Asset Store",
+                                "Cancel"
+                            ))
+                            {
+                                case 0: // Itch.io
+                                    Application.OpenURL(Constants.ASSET_ITCH_URL);
+                                    break;
+                                case 1: // Asset Store
+                                    Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
+                                    break;
+                            }
+                            break;
+                    }
+                }
 
                 // Disable Button
                 Rect disableButtonRect = saleButtonRect;

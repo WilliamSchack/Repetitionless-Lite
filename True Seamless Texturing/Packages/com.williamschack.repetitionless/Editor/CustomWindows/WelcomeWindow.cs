@@ -131,8 +131,33 @@ namespace Repetitionless.Editor.CustomWindows
             GUILayout.Space(2);
 
             if (_activeSale.PercentOff != 0) {
-                if (GUILayout.Button(SaleChecker.GetSaleText(_activeSale), GUILayout.Height(SALE_BUTTON_HEIGHT)))
-                    SaleChecker.OpenSalePage();
+                if (GUILayout.Button(SaleChecker.GetSaleText(_activeSale), GUILayout.Height(SALE_BUTTON_HEIGHT))) {
+                    switch (RepetitionlessPackageInfo.PackageSource) {
+                        case RepetitionlessPackageInfo.EPackageSource.AssetStore:
+                            Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
+                            break;
+                        case RepetitionlessPackageInfo.EPackageSource.Itch:
+                            Application.OpenURL(Constants.ASSET_ITCH_URL);
+                            break;
+                        case RepetitionlessPackageInfo.EPackageSource.Unknown:
+                            switch(EditorUtility.DisplayDialogComplex(
+                                "Repetitionless",
+                                "Which store would you like to view the package on?",
+                                "Itch.io",
+                                "Asset Store",
+                                "Cancel"
+                            ))
+                            {
+                                case 0: // Itch.io
+                                    Application.OpenURL(Constants.ASSET_ITCH_URL);
+                                    break;
+                                case 1: // Asset Store
+                                    Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
+                                    break;
+                            }
+                            break;
+                    }
+                }
             } else {
                 if (GUILayout.Button("View the full version", GUILayout.Height(SALE_BUTTON_HEIGHT)))
                     Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
