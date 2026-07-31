@@ -31,6 +31,7 @@ namespace Repetitionless.Editor.CustomWindows
         private Color _logoBackgroundDarkColour;
         private Color _logoBackgroundLightColour;
 
+        private GUIStyle _headerStyle;
         private GUIStyle _boldLabelStyle;
         private GUIStyle _richBoldLabelStyle;
         private GUIStyle _buttonStyle;
