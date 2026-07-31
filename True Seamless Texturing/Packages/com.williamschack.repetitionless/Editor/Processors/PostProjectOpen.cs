@@ -41,6 +41,10 @@ namespace Repetitionless.Editor.Processors
             // Open window if update available
             if (UpdateChecker.UpdateAvailable($"v{RepetitionlessPackageInfo.Info.version}") && RepetitionlessPrefs.Data.OpenWindowOnUpdate)
                 WelcomeWindow.Open(showUpdateMessage: true);
+
+            // Update sale data if not in a sale
+            if (!SaleChecker.SaleActive())
+                SaleChecker.FetchSalesAndUpdateCache();
         }
 
         // InitializeOnLoad is called every domain reload, this makes sure its only on startup

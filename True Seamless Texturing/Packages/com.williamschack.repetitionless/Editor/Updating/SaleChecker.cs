@@ -11,7 +11,7 @@ namespace Repetitionless.Editor.Updating
 {
     internal static class SaleChecker
     {
-        private enum ESalePlatform
+        public enum ESalePlatform
         {
             All,
             Unity,
@@ -19,7 +19,7 @@ namespace Repetitionless.Editor.Updating
         }
 
         [Serializable]
-        private struct SaleInfo
+        public struct SaleInfo
         {
             public ESalePlatform Platform;
             public int PercentOff;
@@ -130,19 +130,30 @@ namespace Repetitionless.Editor.Updating
                 sale.StartDate = DateTime.ParseExact(saleJson.startDate, DATE_TIME_FORMAT, null);
                 sale.EndDate = DateTime.ParseExact(saleJson.endDate, DATE_TIME_FORMAT, null);
 
-                Debug.Log(sale.Platform);
-                Debug.Log(sale.PercentOff);
-                Debug.Log(sale.StartDate);
-                Debug.Log(sale.EndDate);
-
                 _sales.Append(sale);
             }
         }
 
-        // Returns 0 ifno sale is active
-        public static int ActiveSalePercent()
+        // Returns empty SaleInfo if no sale is active
+        public static SaleInfo GetActiveSale()
         {
-            return 0;
+            ReadCache();
+
+            // Most recent sale is stored at index 0, assuming there isnt any multiple overlapping
+            SaleInfo mostRecentSale = _sales[0];
+
+            // Check if in the start - end date
+            DateTime now = DateTime.Now;
+            if (now.Ticks > mostRecentSale.StartDate.Ticks && now.Ticks < mostRecentSale.EndDate.Ticks)
+                return mostRecentSale;
+
+            return new SaleInfo();
+        }
+
+        public static bool SaleActive()
+        {
+            SaleInfo saleInfo = GetActiveSale();
+            return saleInfo.PercentOff != 0;
         }
     }
 }
