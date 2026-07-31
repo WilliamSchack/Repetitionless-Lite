@@ -7,6 +7,7 @@ using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Inspectors
 {
+    using Config;
     using Materials;
     using Utilities.GUI;
     using Utilities.Texture;
@@ -653,18 +654,35 @@ namespace Repetitionless.Editor.Inspectors
                 int testHeight = 28;
                 int testPadding = 4;
                 int testOffset = -4;
+                int dismissButtonWidth = 20;
+                int dismissButtonPadding = 4;
 
+                // Background
                 Rect saleBackgroundRect = GUILayoutUtility.GetRect(1, testHeight + testOffset);
                 EditorGUI.DrawRect(saleBackgroundRect, backgroundColour);
 
+                // Main Button
                 Rect saleButtonRect = saleBackgroundRect;
                 saleButtonRect.x += testPadding;
-                saleButtonRect.width -= testPadding * 2;
+                saleButtonRect.width -= testPadding * 2 + dismissButtonWidth + dismissButtonPadding;
                 saleButtonRect.y += testPadding + testOffset;
                 saleButtonRect.height -= testPadding * 2 + testOffset;
 
                 if (GUI.Button(saleButtonRect, SaleChecker.GetSaleText(_activeSale)))
                     SaleChecker.OpenSalePage();
+
+                // Disable Button
+                Rect disableButtonRect = saleButtonRect;
+                disableButtonRect.x += saleButtonRect.width + dismissButtonPadding;
+                disableButtonRect.width = dismissButtonWidth;
+
+                if (GUI.Button(disableButtonRect, new GUIContent("X", "Disables sale checking. Can be toggled in the Main Window > Settings"))) {
+                    RepetitionlessPrefs.UpdatePrefs((p) => {
+                        p.CheckForSales = false;
+                    });
+
+                    _activeSale = new SaleChecker.SaleInfo();
+                }
             }
         }
         #endregion
