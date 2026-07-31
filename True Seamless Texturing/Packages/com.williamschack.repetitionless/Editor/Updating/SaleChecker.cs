@@ -99,8 +99,6 @@ namespace Repetitionless.Editor.Updating
                 sale.StartDate = DateTime.ParseExact(saleJson.startDate, DATE_TIME_FORMAT, null);
                 sale.EndDate = DateTime.ParseExact(saleJson.endDate, DATE_TIME_FORMAT, null);
 
-                Debug.Log(saleJson.startDate);
-
                 _sales.Add(sale);
             }
         }
