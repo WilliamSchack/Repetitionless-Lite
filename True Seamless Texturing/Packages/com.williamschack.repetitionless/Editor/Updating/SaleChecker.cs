@@ -2,13 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEditor;
 
 namespace Repetitionless.Editor.Updating
 {
+    using Config;
+
     internal static class SaleChecker
     {
         public enum ESalePlatform
@@ -97,6 +99,8 @@ namespace Repetitionless.Editor.Updating
                 sale.StartDate = DateTime.ParseExact(saleJson.startDate, DATE_TIME_FORMAT, null);
                 sale.EndDate = DateTime.ParseExact(saleJson.endDate, DATE_TIME_FORMAT, null);
 
+                Debug.Log(saleJson.startDate);
+
                 _sales.Add(sale);
             }
         }
@@ -135,7 +139,7 @@ namespace Repetitionless.Editor.Updating
         // Returns empty SaleInfo if no sale is active
         public static SaleInfo GetActiveSale()
         {
-            ReadCache(true);
+            ReadCache(false);
 
             if (_sales.Count == 0)
                 return new SaleInfo();
@@ -163,6 +167,35 @@ namespace Repetitionless.Editor.Updating
             int daysLeft = timeLeft.Days;
 
             return $"Get the full version for {sale.PercentOff}% Off! ({daysLeft} Day{(daysLeft == 1 ? "" : "s")})";
+        }
+
+        public static void OpenSale(SaleInfo sale)
+        {
+            switch (RepetitionlessPackageInfo.PackageSource) {
+                case RepetitionlessPackageInfo.EPackageSource.AssetStore:
+                    Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
+                    break;
+                case RepetitionlessPackageInfo.EPackageSource.Itch:
+                    Application.OpenURL(Constants.ASSET_ITCH_URL);
+                    break;
+                case RepetitionlessPackageInfo.EPackageSource.Unknown:
+                    switch(EditorUtility.DisplayDialogComplex(
+                        "Repetitionless",
+                        "Which store would you like to view the package on?",
+                        "Itch.io",
+                        "Asset Store",
+                        "Cancel"
+                    ))
+                    {
+                        case 0: // Itch.io
+                            Application.OpenURL(Constants.ASSET_ITCH_URL);
+                            break;
+                        case 1: // Asset Store
+                            Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
+                            break;
+                    }
+                    break;
+            }
         }
     }
 }

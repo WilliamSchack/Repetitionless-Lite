@@ -131,7 +131,8 @@ namespace Repetitionless.Editor.CustomWindows
             GUILayout.Space(2);
 
             if (_activeSale.PercentOff != 0) {
-                GUILayout.Button(SaleChecker.GetSaleText(_activeSale), GUILayout.Height(SALE_BUTTON_HEIGHT));
+                if (GUILayout.Button(SaleChecker.GetSaleText(_activeSale), GUILayout.Height(SALE_BUTTON_HEIGHT)))
+                    SaleChecker.OpenSale(_activeSale);
             } else {
                 if (GUILayout.Button("View the full version", GUILayout.Height(SALE_BUTTON_HEIGHT)))
                     Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
@@ -304,28 +305,6 @@ namespace Repetitionless.Editor.CustomWindows
             GUI.DrawTexture(logoRect, texture, ScaleMode.ScaleToFit);
 
             GUILayout.Space(LOGO_BACKGROUND_PADDING);
-
-            /*
-
-            // Sale
-            // if (sale) {
-            Rect saleBackgroundRect = GUILayoutUtility.GetRect(1, SALE_BUTTON_HEIGHT);
-            saleBackgroundRect.x += LOGO_BACKGROUND_PADDING;
-            saleBackgroundRect.width -= LOGO_BACKGROUND_PADDING * 2;
-
-            EditorGUI.DrawRect(saleBackgroundRect, backgroundColour);
-
-            Rect saleButtonRect = saleBackgroundRect;
-            saleButtonRect.x += SALE_BUTTON_BACKGROUND_PADDING;
-            saleButtonRect.width -= SALE_BUTTON_BACKGROUND_PADDING * 2;
-            saleButtonRect.y += SALE_BUTTON_BACKGROUND_PADDING;
-            saleButtonRect.height -= SALE_BUTTON_BACKGROUND_PADDING * 2;
-
-            GUI.Button(saleButtonRect, "Get the full version for 50% Off (5 days)");
-
-            // }
-
-            */
         }
 
         private void DrawUpdateButton()
