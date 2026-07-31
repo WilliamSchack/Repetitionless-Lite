@@ -146,8 +146,23 @@ namespace Repetitionless.Editor.Updating
 
             // Check if in the start - end date
             DateTime now = DateTime.Now;
-            if (now.Ticks > mostRecentSale.StartDate.Ticks && now.Ticks < mostRecentSale.EndDate.Ticks)
-                return mostRecentSale;
+            if (now.Ticks <= mostRecentSale.StartDate.Ticks || now.Ticks >= mostRecentSale.EndDate.Ticks)
+                return new SaleInfo();
+
+            // Only return the sale if its on this platform
+            ESalePlatform platform = mostRecentSale.Platform;
+            switch (RepetitionlessPackageInfo.PackageSource) {
+                case RepetitionlessPackageInfo.EPackageSource.AssetStore:
+                    if (platform == ESalePlatform.All || platform == ESalePlatform.Unity)
+                        return mostRecentSale;
+                    break;
+                case RepetitionlessPackageInfo.EPackageSource.Itch:
+                    if (platform == ESalePlatform.All || platform == ESalePlatform.Itch)
+                        return mostRecentSale;
+                    break;
+                case RepetitionlessPackageInfo.EPackageSource.Unknown:
+                    return mostRecentSale;
+            }
 
             return new SaleInfo();
         }
@@ -166,7 +181,7 @@ namespace Repetitionless.Editor.Updating
             return $"Get the full version for {sale.PercentOff}% Off! ({daysLeft} Day{(daysLeft == 1 ? "" : "s")})";
         }
 
-        public static void OpenSale(SaleInfo sale)
+        public static void OpenSalePage()
         {
             switch (RepetitionlessPackageInfo.PackageSource) {
                 case RepetitionlessPackageInfo.EPackageSource.AssetStore:

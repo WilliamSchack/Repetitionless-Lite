@@ -664,7 +664,7 @@ namespace Repetitionless.Editor.Inspectors
                 saleButtonRect.height -= testPadding * 2 + testOffset;
 
                 if (GUI.Button(saleButtonRect, SaleChecker.GetSaleText(_activeSale)))
-                    SaleChecker.OpenSale(_activeSale);
+                    SaleChecker.OpenSalePage();
             }
         }
         #endregion

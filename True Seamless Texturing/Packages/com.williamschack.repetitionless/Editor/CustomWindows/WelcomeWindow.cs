@@ -132,7 +132,7 @@ namespace Repetitionless.Editor.CustomWindows
 
             if (_activeSale.PercentOff != 0) {
                 if (GUILayout.Button(SaleChecker.GetSaleText(_activeSale), GUILayout.Height(SALE_BUTTON_HEIGHT)))
-                    SaleChecker.OpenSale(_activeSale);
+                    SaleChecker.OpenSalePage();
             } else {
                 if (GUILayout.Button("View the full version", GUILayout.Height(SALE_BUTTON_HEIGHT)))
                     Application.OpenURL(Constants.ASSET_STORE_URL_FULL);
