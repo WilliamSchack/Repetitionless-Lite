@@ -221,7 +221,7 @@ namespace Repetitionless.Editor.Utilities.Texture
 
             // Create render texture
             bool generateMipMaps = inputTextures.Count > 0;
-            RenderTextureDescriptor desc =  new RenderTextureDescriptor(resolution.x, resolution.y) {
+            RenderTextureDescriptor desc = new RenderTextureDescriptor(resolution.x, resolution.y) {
                 enableRandomWrite = true,
                 useMipMap = true,
                 autoGenerateMips = generateMipMaps,

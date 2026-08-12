@@ -1,0 +1,41 @@
+#pragma kernel CSMain
+
+RWTexture2D<float4> ControlTexture;
+
+float4 HitUV;
+float Radius;
+int TargetChannel;
+
+[numthreads(8, 8, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    uint width, height;
+    ControlTexture.GetDimensions(width, height);
+
+    float2 uv = id.xy / float2(width, height);
+
+    // Get the distance from the current uv to the hit uv
+    // If its within the radius add the target colour
+    // Later sample the texture here within the radius
+    float brushValue = 0.0;
+
+    float dist = distance(uv, HitUV.xy);
+    if (dist < Radius) {
+        // Sample brush tex here
+        brushValue = 1.0;
+    }
+
+    if (brushValue > 0.0) {
+        // Do some sort of blending here from the original to the new based on a strength (for opacity and whatnot)
+        // This should idealy also remove this pixel from other layers
+        half4 colour = ControlTexture[id.xy];
+        switch (TargetChannel) {
+            case 0: colour.r = brushValue; break;
+            case 1: colour.g = brushValue; break;
+            case 2: colour.b = brushValue; break;
+            case 3: colour.a = brushValue; break;
+        }
+
+        ControlTexture[id.xy] = colour;
+    }
+}
