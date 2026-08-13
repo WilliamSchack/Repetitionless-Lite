@@ -22,6 +22,7 @@ namespace Repetitionless.Editor
         private float _brushRadius = 0.1f;
 
         List<GameObject> _selectedPaintableObjects = new List<GameObject>();
+        Dictionary<GameObject, MeshRenderer> _paintableObjectRenderers = new Dictionary<GameObject, MeshRenderer>();
 
         [MenuItem("Window/Repetitionless/Open Painter", priority = 0)]
         public static void Open()
@@ -41,8 +42,10 @@ namespace Repetitionless.Editor
 
             // Check all selected objects and add paintable ones
             foreach (GameObject selectedObject in Selection.objects) {
-                if (ObjectCanBeSelected(selectedObject))
+                if (ObjectCanBeSelected(selectedObject)) {
                     _selectedPaintableObjects.Add(selectedObject);
+                    _paintableObjectRenderers.Add(selectedObject, selectedObject.GetComponent<MeshRenderer>());
+                }
             }
         }
 
@@ -79,8 +82,12 @@ namespace Repetitionless.Editor
             // == Test with the first control for now
 
             // If no texture exists, create a blank one
-            Material mat = mouseHit.collider.gameObject.GetComponent<MeshRenderer>().sharedMaterial;
-            MaterialDataManager dataManager = new MaterialDataManager(mat);
+
+            // Will cause issues if:
+            // Repetitionless material is removed
+            // Repetitionless material is not the first
+            MaterialDataManager dataManager = new MaterialDataManager(_paintableObjectRenderers[mouseHit.collider.gameObject].sharedMaterial);
+
             RepetitionlessLayeredDataSO layeredDataSO = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
 
             Texture2D texture = dataManager.LoadAsset<Texture2D>(Constants.CONTROL_TEXTURE_FILE_NAME_PREFIX + "0.asset"); 
@@ -152,8 +159,10 @@ namespace Repetitionless.Editor
 
                     Selection.objects = selections.ToArray();
 
-                    if (!_selectedPaintableObjects.Contains(hitObject))
+                    if (!_selectedPaintableObjects.Contains(hitObject)) {
                         _selectedPaintableObjects.Add(hitObject);
+                        _paintableObjectRenderers.Add(hitObject, hitObject.GetComponent<MeshRenderer>());
+                    }
                 }
 
                 // If holding shift and the object is selected, remove it
@@ -163,8 +172,10 @@ namespace Repetitionless.Editor
 
                     Selection.objects = selections.ToArray();
 
-                    if (_selectedPaintableObjects.Contains(hitObject))
+                    if (_selectedPaintableObjects.Contains(hitObject)) {
                         _selectedPaintableObjects.Remove(hitObject);
+                        _paintableObjectRenderers.Remove(hitObject);
+                    }
                 }
             }
         }
