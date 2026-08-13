@@ -1,16 +1,23 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 namespace Repetitionless.Editor
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using Data;
     using Utilities.Texture;
 
     public class Brush : EditorWindow
     {
+        private struct PaintableObjectData
+        {
+            public MaterialDataManager DataManager;
+            public MeshRenderer MeshRenderer;
+            public RenderTexture RenderTexture;
+            public Texture2D Texture;
+        }
+
         private const string PAINT_TEXTURE_COMPUTE_RESOURCES_PATH = "repetitionless_PaintControlTexture";
         private const int COMPUTE_THREADS_X = 8;
         private const int COMPUTE_THREADS_Y = 8;
@@ -22,9 +29,10 @@ namespace Repetitionless.Editor
         private int _editingLayer = 1;
         private int _textureResolution = 2048;
         private float _brushRadius = 0.1f;
+        private bool _painting = false;
 
         List<GameObject> _selectedPaintableObjects = new List<GameObject>();
-        Dictionary<GameObject, MeshRenderer> _paintableObjectRenderers = new Dictionary<GameObject, MeshRenderer>();
+        Dictionary<GameObject, PaintableObjectData> _paintableObjectData = new Dictionary<GameObject, PaintableObjectData>();
 
         [MenuItem("Window/Repetitionless/Open Painter", priority = 0)]
         public static void Open()
@@ -44,10 +52,8 @@ namespace Repetitionless.Editor
 
             // Check all selected objects and add paintable ones
             foreach (GameObject selectedObject in Selection.objects) {
-                if (ObjectCanBeSelected(selectedObject)) {
-                    _selectedPaintableObjects.Add(selectedObject);
-                    _paintableObjectRenderers.Add(selectedObject, selectedObject.GetComponent<MeshRenderer>());
-                }
+                if (ObjectCanBeSelected(selectedObject))
+                    SelectionAdd(selectedObject);
             }
 
             // INSTEAD OF CLEARING, CACHE SELECTION AND RESELECT ON DISABLE
@@ -76,15 +82,15 @@ namespace Repetitionless.Editor
             if (currentEvent.alt) return;
 
             RaycastHit mouseHit = GetMouseHit();
-            if (mouseHit.collider == null) return;
 
-            HandleSelection(mouseHit);
+            HandleSelection(mouseHit, sceneView);
+            if (mouseHit.collider == null) return;
 
             // Always draw brush if hovering something
             Handles.DrawSolidDisc(mouseHit.point, mouseHit.normal, 0.1f);
             sceneView.Repaint();
 
-            if (currentEvent.button != 0 || (currentEvent.type != EventType.MouseDown && currentEvent.type != EventType.MouseDrag))
+            if (currentEvent.button != 0)
                 return;
 
             if (!_selectedPaintableObjects.Contains(mouseHit.collider.gameObject))
@@ -92,93 +98,142 @@ namespace Repetitionless.Editor
 
             // == Test with the first control for now
 
-            // If no texture exists, create a blank one
+            PaintableObjectData objectData = _paintableObjectData[mouseHit.collider.gameObject];
+
+            // If mouse down, initialise painting
+            if (currentEvent.type == EventType.MouseDown) {
+                _painting = true;
+
+                // Apply render texture to material
+                Graphics.Blit(objectData.Texture, objectData.RenderTexture); // Copy texture to rt
+
+                Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
+                repetitionlessMaterial.SetTexture("_Control0", objectData.RenderTexture);
+            }
+
+            // If mouse down / drag, paint
+            if (currentEvent.type == EventType.MouseDown || currentEvent.type == EventType.MouseDrag) {
+                // Dispatch paint compute shader
+                int kernel = _computeShader.FindKernel("CSMain");
+                _computeShader.SetTexture(kernel, "ControlTexture", objectData.RenderTexture);
+                _computeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
+                _computeShader.SetFloat("Radius", _brushRadius);
+                _computeShader.SetInt("TargetChannel", _editingLayer % 4);
+
+                int groupsX = Mathf.CeilToInt(objectData.Texture.width  / (float)COMPUTE_THREADS_X);
+                int groupsY = Mathf.CeilToInt(objectData.Texture.height / (float)COMPUTE_THREADS_Y);
+
+                _computeShader.Dispatch(kernel, groupsX, groupsY, 1);
+            }
+
+            // If mouse up, apply to texture
+            if (_painting && currentEvent.type == EventType.MouseUp) {
+                _painting = false;
+
+                // Save rt to texture
+                RenderTexture previousRT = RenderTexture.active;
+                RenderTexture.active = objectData.RenderTexture;
+
+                objectData.Texture.ReadPixels(new Rect(0, 0, objectData.Texture.width, objectData.Texture.height), 0, 0);
+                objectData.Texture.Apply();
+
+                RenderTexture.active = previousRT;
+                objectData.RenderTexture.Release(); 
+
+                // Apply texture to material
+                Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
+                repetitionlessMaterial.SetTexture("_Control0", objectData.Texture);
+            }
+        }
+
+        private void HandleSelection(RaycastHit mouseHit, SceneView sceneView)
+        {
+            Event currentEvent = Event.current;
+
+            // On click decide if it will be selected
+            if (currentEvent.button == 0 && currentEvent.type == EventType.MouseDown) {
+                // Clear selection if clicked nothing
+                if (mouseHit.collider == null) {
+                    _selectedPaintableObjects.Clear();
+                    _paintableObjectData.Clear();
+                    sceneView.Repaint();
+
+                    return;
+                }
+
+                GameObject hitObject = mouseHit.collider.gameObject;
+
+                // Check if object is valid and add to selected
+                if (ObjectCanBeSelected(mouseHit.collider))
+                    SelectionAdd(hitObject);
+
+                // If holding shift and the object is selected, remove it
+                if (currentEvent.shift && _selectedPaintableObjects.Contains(hitObject))
+                    SelectionRemove(hitObject);
+            }
+        }
+
+        private void SelectionAdd(GameObject obj)
+        {
+            if (_selectedPaintableObjects.Contains(obj))
+                return;
+            
+            _selectedPaintableObjects.Add(obj);
+
+            PaintableObjectData objectData = new PaintableObjectData {
+                MeshRenderer = obj.GetComponent<MeshRenderer>()
+            };
+
+            // Get/Create control texture
 
             // Need to test if:
             // Repetitionless material is removed
-            Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(_paintableObjectRenderers[mouseHit.collider.gameObject]);
-            MaterialDataManager dataManager = new MaterialDataManager(repetitionlessMaterial);
+            Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
+            objectData.DataManager = new MaterialDataManager(repetitionlessMaterial);
 
-            RepetitionlessLayeredDataSO layeredDataSO = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
-
-            Texture2D texture = dataManager.LoadAsset<Texture2D>(Constants.CONTROL_TEXTURE_FILE_NAME_PREFIX + "0.asset"); 
-            if (texture.width != _textureResolution) {
-                TextureUtilities.ResizeTexture(texture, _textureResolution, _textureResolution, modifyOriginal: true);
-                EditorUtility.SetDirty(texture);
-                AssetDatabase.SaveAssetIfDirty(texture);
+            objectData.Texture = objectData.DataManager.LoadAsset<Texture2D>(Constants.CONTROL_TEXTURE_FILE_NAME_PREFIX + "0.asset"); 
+            if (objectData.Texture.width != _textureResolution) {
+                TextureUtilities.ResizeTexture(objectData.Texture, _textureResolution, _textureResolution, modifyOriginal: true);
+                EditorUtility.SetDirty(objectData.Texture);
+                AssetDatabase.SaveAssetIfDirty(objectData.Texture);
             }
 
-            // Should check for each channel
-            layeredDataSO.ControlTextures[0].ChannelTextures[0].Texture = texture;
-            layeredDataSO.ControlTextures[0].ChannelTextures[1].Texture = texture;
-            layeredDataSO.ControlTextures[0].ChannelTextures[2].Texture = texture;
-            layeredDataSO.ControlTextures[0].ChannelTextures[3].Texture = texture;
+            // Assign texture to layered data
+            // SHOULD BE CHECKED FREQUENTLY
+            RepetitionlessLayeredDataSO layeredDataSO = objectData.DataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
+            layeredDataSO.ControlTextures[0].ChannelTextures[0].Texture = objectData.Texture;
+            layeredDataSO.ControlTextures[0].ChannelTextures[1].Texture = objectData.Texture;
+            layeredDataSO.ControlTextures[0].ChannelTextures[2].Texture = objectData.Texture;
+            layeredDataSO.ControlTextures[0].ChannelTextures[3].Texture = objectData.Texture;
             layeredDataSO.ControlTextures[0].ChannelTextures[0].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.R, TexturePacker.TextureChannel.R);
             layeredDataSO.ControlTextures[0].ChannelTextures[1].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.G, TexturePacker.TextureChannel.G);
             layeredDataSO.ControlTextures[0].ChannelTextures[2].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.B, TexturePacker.TextureChannel.B);
             layeredDataSO.ControlTextures[0].ChannelTextures[3].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.A, TexturePacker.TextureChannel.A);
             layeredDataSO.Save();
 
-            // Apply mask
-
-            // Create Render Texture (CACHE THIS PLEASE)
-            RenderTexture rt = new RenderTexture(texture.width, texture.height, 0, RenderTextureFormat.ARGB32) {
+            // Create render texture
+            objectData.RenderTexture = new RenderTexture(objectData.Texture.width, objectData.Texture.height, 0, RenderTextureFormat.ARGB32) {
                 enableRandomWrite = true,
-                filterMode = texture.filterMode
+                filterMode = objectData.Texture.filterMode
             };
-            rt.Create();
-            Graphics.Blit(texture, rt); // Copy texture to rt
 
-            int kernel = _computeShader.FindKernel("CSMain");
-            _computeShader.SetTexture(kernel, "ControlTexture", rt);
-            _computeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
-            _computeShader.SetFloat("Radius", _brushRadius);
-            _computeShader.SetInt("TargetChannel", _editingLayer % 4);
+            objectData.RenderTexture.Create();
 
-            int groupsX = Mathf.CeilToInt(texture.width  / (float)COMPUTE_THREADS_X);
-            int groupsY = Mathf.CeilToInt(texture.height / (float)COMPUTE_THREADS_Y);
-
-            _computeShader.Dispatch(kernel, groupsX, groupsY, 1);
-
-            // Read result and apply back to texture
-            RenderTexture previousRT = RenderTexture.active;
-            RenderTexture.active = rt;
-
-            texture.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
-            texture.Apply();
-
-            RenderTexture.active = previousRT;
-            rt.Release();
+            _paintableObjectData.Add(obj, objectData);
         }
 
-        private void HandleSelection(RaycastHit mouseHit)
+        private void SelectionRemove(GameObject obj)
         {
-            Event currentEvent = Event.current;
+            if (!_selectedPaintableObjects.Contains(obj))
+                return;
+            
+            _selectedPaintableObjects.Remove(obj);
 
-            // On click decide if it will be selected
-            if (currentEvent.button == 0 && currentEvent.type == EventType.MouseDown) {
-                GameObject hitObject = mouseHit.collider.gameObject;
+            // Clear Render Texture
+            PaintableObjectData objectData = _paintableObjectData[obj];
+            objectData.RenderTexture.Release();
 
-                // Check if object is valid and add to selected
-                if (ObjectCanBeSelected(mouseHit.collider)) {
-                    if (!_selectedPaintableObjects.Contains(hitObject)) {
-                        _selectedPaintableObjects.Add(hitObject);
-                        _paintableObjectRenderers.Add(hitObject, hitObject.GetComponent<MeshRenderer>());
-                    }
-                }
-
-                // If holding shift and the object is selected, remove it
-                if (currentEvent.shift && _selectedPaintableObjects.Contains(hitObject)) {
-                    if (_selectedPaintableObjects.Contains(hitObject)) {
-                        _selectedPaintableObjects.Remove(hitObject);
-                        _paintableObjectRenderers.Remove(hitObject);
-                    }
-                }
-
-                // If select into the void, deselect all
-
-                // If ctrl clicking, deselect all
-            }
+            _paintableObjectData.Remove(obj);
         }
 
         private bool ObjectCanBeSelected(Collider hitCollider)
