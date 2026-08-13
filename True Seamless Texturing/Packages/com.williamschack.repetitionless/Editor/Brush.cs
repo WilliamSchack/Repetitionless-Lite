@@ -4,6 +4,8 @@ using UnityEditor;
 
 namespace Repetitionless.Editor
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Data;
     using Utilities.Texture;
 
@@ -19,6 +21,8 @@ namespace Repetitionless.Editor
         private int _textureResolution = 2048;
         private float _brushRadius = 0.1f;
 
+        List<GameObject> _selectedPaintableObjects = new List<GameObject>();
+
         [MenuItem("Window/Repetitionless/Open Painter", priority = 0)]
         public static void Open()
         {
@@ -32,6 +36,14 @@ namespace Repetitionless.Editor
             SceneView.duringSceneGui += DuringSceneGUI;
 
             _computeShader = Resources.Load<ComputeShader>(PAINT_TEXTURE_COMPUTE_RESOURCES_PATH);
+            if (_computeShader == null)
+                Debug.LogError("No texture paint compute shader found...");
+
+            // Check all selected objects and add paintable ones
+            foreach (GameObject selectedObject in Selection.objects) {
+                if (ObjectCanBeSelected(selectedObject))
+                    _selectedPaintableObjects.Add(selectedObject);
+            }
         }
 
         private void OnDisable()
@@ -41,6 +53,9 @@ namespace Repetitionless.Editor
 
         private void DuringSceneGUI(SceneView sceneView)
         {
+            if (_computeShader == null)
+                return;
+
             Event currentEvent = Event.current;
 
             // Dont paint when moving cam
@@ -49,46 +64,26 @@ namespace Repetitionless.Editor
             RaycastHit mouseHit = GetMouseHit();
             if (mouseHit.collider == null) return;
 
-            // Must be mesh collider to have proper uvs
-            // Need to add some sort of warning
-            if (mouseHit.collider is not MeshCollider meshCollider || meshCollider.sharedMesh == null) return;
+            HandleSelection(mouseHit);
 
-            // Disable default left click events
-            HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
-
+            // Always draw brush if hovering something
             Handles.DrawSolidDisc(mouseHit.point, mouseHit.normal, 0.1f);
+            sceneView.Repaint();
 
-            if (currentEvent.button != 0 || (currentEvent.type != EventType.MouseDown && currentEvent.type != EventType.MouseDrag)) return;
-
-            if (_computeShader == null) {
-                Debug.LogError("No texture paint compute shader found...");
+            if (currentEvent.button != 0 || (currentEvent.type != EventType.MouseDown && currentEvent.type != EventType.MouseDrag))
                 return;
-            }
 
-            // Make sure the mesh has a repetitionless material
-            MeshRenderer meshRenderer;
-            mouseHit.collider.TryGetComponent(out meshRenderer);
-            if (meshRenderer == null) return;
-
-            Material repetitionlessMaterial = null;
-            foreach (Material mat in meshRenderer.sharedMaterials) {
-                if (!mat.shader.name.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED))
-                    continue;
-
-                repetitionlessMaterial = mat;
-                break; // Assume only one material is on the object
-            }
-
-            // If the repetitionless material is using the terrain shader, dont allow either but give a message prompting to change
-            if (repetitionlessMaterial == null) return;
+            if (!_selectedPaintableObjects.Contains(mouseHit.collider.gameObject))
+                return;
 
             // == Test with the first control for now
 
             // If no texture exists, create a blank one
-            MaterialDataManager dataManager = new MaterialDataManager(repetitionlessMaterial);
+            Material mat = mouseHit.collider.gameObject.GetComponent<MeshRenderer>().sharedMaterial;
+            MaterialDataManager dataManager = new MaterialDataManager(mat);
             RepetitionlessLayeredDataSO layeredDataSO = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
 
-            Texture2D texture = dataManager.LoadAsset<Texture2D>(Constants.CONTROL_TEXTURE_FILE_NAME_PREFIX + "0.asset");          
+            Texture2D texture = dataManager.LoadAsset<Texture2D>(Constants.CONTROL_TEXTURE_FILE_NAME_PREFIX + "0.asset"); 
             if (texture.width != _textureResolution) {
                 TextureUtilities.ResizeTexture(texture, _textureResolution, _textureResolution, modifyOriginal: true);
                 EditorUtility.SetDirty(texture);
@@ -107,8 +102,6 @@ namespace Repetitionless.Editor
             layeredDataSO.Save();
 
             // Apply mask
-
-            Debug.Log(mouseHit.textureCoord);
 
             // Create Render Texture (CACHE THIS PLEASE)
             RenderTexture rt = new RenderTexture(texture.width, texture.height, 0, RenderTextureFormat.ARGB32) {
@@ -138,6 +131,87 @@ namespace Repetitionless.Editor
 
             RenderTexture.active = previousRT;
             rt.Release();
+        }
+
+        private void HandleSelection(RaycastHit mouseHit)
+        {
+            Event currentEvent = Event.current;
+
+            // Disable default left click events
+            HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
+
+            // On click decide if it will be selected
+            if (currentEvent.button == 0 && currentEvent.type == EventType.MouseDown) {
+                GameObject hitObject = mouseHit.collider.gameObject;
+
+                // Check if object is valid and add to selected
+                if (ObjectCanBeSelected(mouseHit.collider)) {
+                    // Add object to selections
+                    List<Object> selections = Selection.objects.ToList();
+                    selections.Add(hitObject);
+
+                    Selection.objects = selections.ToArray();
+
+                    if (!_selectedPaintableObjects.Contains(hitObject))
+                        _selectedPaintableObjects.Add(hitObject);
+                }
+
+                // If holding shift and the object is selected, remove it
+                if (currentEvent.shift && Selection.objects.Contains(hitObject)) {
+                    List<Object> selections = Selection.objects.ToList();
+                    selections.Remove(hitObject);
+
+                    Selection.objects = selections.ToArray();
+
+                    if (_selectedPaintableObjects.Contains(hitObject))
+                        _selectedPaintableObjects.Remove(hitObject);
+                }
+            }
+        }
+
+        private bool ObjectCanBeSelected(Collider hitCollider)
+        {
+            // Must be mesh collider to have proper uvs
+            // Need to add some sort of warning
+            if (hitCollider is not MeshCollider meshCollider || meshCollider.sharedMesh == null)
+                return false;
+
+            return ObjectCanBeSelectedInner(hitCollider.gameObject);
+        }
+
+        private bool ObjectCanBeSelected(GameObject obj)
+        {
+            // Must be mesh collider to have proper uvs
+            // Need to add some sort of warning
+            MeshCollider meshCollider = null;
+            obj.TryGetComponent(out meshCollider);
+            if (meshCollider == null || meshCollider.sharedMesh == null)
+                return false;
+
+            return ObjectCanBeSelectedInner(obj);
+        }
+
+        private bool ObjectCanBeSelectedInner(GameObject obj)
+        {
+            // Mesh must have a repetitionless material
+            MeshRenderer meshRenderer;
+            obj.TryGetComponent(out meshRenderer);
+            if (meshRenderer == null) return false;
+
+            Material repetitionlessMaterial = null;
+            foreach (Material mat in meshRenderer.sharedMaterials) {
+                if (!mat.shader.name.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED))
+                    continue;
+
+                repetitionlessMaterial = mat;
+                break; // Assume only one material is on the object
+            }
+
+            // If the repetitionless material is using the terrain shader, dont allow either
+            // Need to add a message to change
+            if (repetitionlessMaterial == null) return false;
+
+            return true;
         }
 
         private static RaycastHit GetMouseHit()
