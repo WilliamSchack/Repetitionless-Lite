@@ -76,19 +76,55 @@ namespace Repetitionless.Editor
             // Draw custom outline to fake selection
             Handles.DrawOutline(_selectedPaintableObjects, SELECTION_OUTLINE_COLOUR, 0);
 
-            Event currentEvent = Event.current;
-
-            // Dont paint when moving cam
-            if (currentEvent.alt) return;
+            // Dont do anything when moving cam
+            if (Event.current.alt) return;
 
             RaycastHit mouseHit = GetMouseHit();
 
             HandleSelection(mouseHit, sceneView);
             if (mouseHit.collider == null) return;
 
+            DrawBrush(mouseHit, sceneView);
+            Paint(mouseHit);
+        }
+
+        private void HandleSelection(RaycastHit mouseHit, SceneView sceneView)
+        {
+            Event currentEvent = Event.current;
+
+            // On click decide if it will be selected
+            if (currentEvent.button == 0 && currentEvent.type == EventType.MouseDown) {
+                // Clear selection if clicked nothing
+                if (mouseHit.collider == null) {
+                    _selectedPaintableObjects.Clear();
+                    _paintableObjectData.Clear();
+                    sceneView.Repaint();
+
+                    return;
+                }
+
+                GameObject hitObject = mouseHit.collider.gameObject;
+
+                // Check if object is valid and add to selected
+                if (ObjectCanBeSelected(mouseHit.collider))
+                    SelectionAdd(hitObject);
+
+                // If holding shift and the object is selected, remove it
+                if (currentEvent.shift && _selectedPaintableObjects.Contains(hitObject))
+                    SelectionRemove(hitObject);
+            }
+        }
+
+        private void DrawBrush(RaycastHit mouseHit, SceneView sceneView)
+        {
             // Always draw brush if hovering something
             Handles.DrawSolidDisc(mouseHit.point, mouseHit.normal, 0.1f);
             sceneView.Repaint();
+        }
+
+        private void Paint(RaycastHit mouseHit)
+        {
+            Event currentEvent = Event.current;
 
             if (currentEvent.button != 0)
                 return;
@@ -143,33 +179,6 @@ namespace Repetitionless.Editor
                 // Apply texture to material
                 Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
                 repetitionlessMaterial.SetTexture("_Control0", objectData.Texture);
-            }
-        }
-
-        private void HandleSelection(RaycastHit mouseHit, SceneView sceneView)
-        {
-            Event currentEvent = Event.current;
-
-            // On click decide if it will be selected
-            if (currentEvent.button == 0 && currentEvent.type == EventType.MouseDown) {
-                // Clear selection if clicked nothing
-                if (mouseHit.collider == null) {
-                    _selectedPaintableObjects.Clear();
-                    _paintableObjectData.Clear();
-                    sceneView.Repaint();
-
-                    return;
-                }
-
-                GameObject hitObject = mouseHit.collider.gameObject;
-
-                // Check if object is valid and add to selected
-                if (ObjectCanBeSelected(mouseHit.collider))
-                    SelectionAdd(hitObject);
-
-                // If holding shift and the object is selected, remove it
-                if (currentEvent.shift && _selectedPaintableObjects.Contains(hitObject))
-                    SelectionRemove(hitObject);
             }
         }
 
