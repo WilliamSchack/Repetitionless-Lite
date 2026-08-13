@@ -15,6 +15,8 @@ namespace Repetitionless.Editor
         private const int COMPUTE_THREADS_X = 8;
         private const int COMPUTE_THREADS_Y = 8;
 
+        private static readonly Color SELECTION_OUTLINE_COLOUR = Color.blue;
+
         ComputeShader _computeShader = null;
 
         private int _editingLayer = 1;
@@ -47,6 +49,9 @@ namespace Repetitionless.Editor
                     _paintableObjectRenderers.Add(selectedObject, selectedObject.GetComponent<MeshRenderer>());
                 }
             }
+
+            // INSTEAD OF CLEARING, CACHE SELECTION AND RESELECT ON DISABLE
+            Selection.objects = new Object[] {};
         }
 
         private void OnDisable()
@@ -58,6 +63,12 @@ namespace Repetitionless.Editor
         {
             if (_computeShader == null)
                 return;
+
+            // Disable default left click events
+            HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
+
+            // Draw custom outline to fake selection
+            Handles.DrawOutline(_selectedPaintableObjects, SELECTION_OUTLINE_COLOUR, 0);
 
             Event currentEvent = Event.current;
 
@@ -144,21 +155,12 @@ namespace Repetitionless.Editor
         {
             Event currentEvent = Event.current;
 
-            // Disable default left click events
-            HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
-
             // On click decide if it will be selected
             if (currentEvent.button == 0 && currentEvent.type == EventType.MouseDown) {
                 GameObject hitObject = mouseHit.collider.gameObject;
 
                 // Check if object is valid and add to selected
                 if (ObjectCanBeSelected(mouseHit.collider)) {
-                    // Add object to selections
-                    List<Object> selections = Selection.objects.ToList();
-                    selections.Add(hitObject);
-
-                    Selection.objects = selections.ToArray();
-
                     if (!_selectedPaintableObjects.Contains(hitObject)) {
                         _selectedPaintableObjects.Add(hitObject);
                         _paintableObjectRenderers.Add(hitObject, hitObject.GetComponent<MeshRenderer>());
@@ -166,17 +168,16 @@ namespace Repetitionless.Editor
                 }
 
                 // If holding shift and the object is selected, remove it
-                if (currentEvent.shift && Selection.objects.Contains(hitObject)) {
-                    List<Object> selections = Selection.objects.ToList();
-                    selections.Remove(hitObject);
-
-                    Selection.objects = selections.ToArray();
-
+                if (currentEvent.shift && _selectedPaintableObjects.Contains(hitObject)) {
                     if (_selectedPaintableObjects.Contains(hitObject)) {
                         _selectedPaintableObjects.Remove(hitObject);
                         _paintableObjectRenderers.Remove(hitObject);
                     }
                 }
+
+                // If select into the void, deselect all
+
+                // If ctrl clicking, deselect all
             }
         }
 
