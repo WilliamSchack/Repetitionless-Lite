@@ -83,10 +83,10 @@ namespace Repetitionless.Editor
 
             // If no texture exists, create a blank one
 
-            // Will cause issues if:
+            // Need to test if:
             // Repetitionless material is removed
-            // Repetitionless material is not the first
-            MaterialDataManager dataManager = new MaterialDataManager(_paintableObjectRenderers[mouseHit.collider.gameObject].sharedMaterial);
+            Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(_paintableObjectRenderers[mouseHit.collider.gameObject]);
+            MaterialDataManager dataManager = new MaterialDataManager(repetitionlessMaterial);
 
             RepetitionlessLayeredDataSO layeredDataSO = dataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
 
@@ -209,20 +209,25 @@ namespace Repetitionless.Editor
             obj.TryGetComponent(out meshRenderer);
             if (meshRenderer == null) return false;
 
-            Material repetitionlessMaterial = null;
-            foreach (Material mat in meshRenderer.sharedMaterials) {
-                if (!mat.shader.name.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED))
-                    continue;
-
-                repetitionlessMaterial = mat;
-                break; // Assume only one material is on the object
-            }
+            Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(meshRenderer);
 
             // If the repetitionless material is using the terrain shader, dont allow either
             // Need to add a message to change
             if (repetitionlessMaterial == null) return false;
 
             return true;
+        }
+
+        private Material GetFirstRepetitionlessMaterial(MeshRenderer renderer)
+        {
+            foreach (Material mat in renderer.sharedMaterials) {
+                if (!mat.shader.name.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED))
+                    continue;
+
+                return mat; // Assume only one material is on the object
+            }
+
+            return null;
         }
 
         private static RaycastHit GetMouseHit()
