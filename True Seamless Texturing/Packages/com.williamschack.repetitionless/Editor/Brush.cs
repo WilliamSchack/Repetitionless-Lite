@@ -65,6 +65,11 @@ namespace Repetitionless.Editor
             SceneView.duringSceneGui -= DuringSceneGUI;
         }
 
+        private void OnGUI()
+        {
+            _editingLayer = EditorGUILayout.IntSlider(_editingLayer, 0, 3);
+        }
+
         private void DuringSceneGUI(SceneView sceneView)
         {
             if (_computeShader == null)

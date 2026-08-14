@@ -28,13 +28,26 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     if (brushValue > 0.0) {
         // Do some sort of blending here from the original to the new based on a strength (for opacity and whatnot)
         // This should idealy also remove this pixel from other layers
+
+        // Add value to target and remove from others
+        // There has to be a better way to do this
         half4 colour = ControlTexture[id.xy];
-        switch (TargetChannel) {
-            case 0: colour.r = brushValue; break;
-            case 1: colour.g = brushValue; break;
-            case 2: colour.b = brushValue; break;
-            case 3: colour.a = brushValue; break;
+        half colours[4] = { colour.r, colour.g, colour.b, colour.a };
+        
+        [unroll]
+        for (int i = 0; i < 4; i++) {
+            if (i == TargetChannel) {
+                colours[i] += brushValue;
+                continue;
+            }
+
+            colours[i] -= brushValue;
         }
+
+        colour.r = colours[0];
+        colour.g = colours[1];
+        colour.b = colours[2];
+        colour.a = colours[3];
 
         ControlTexture[id.xy] = colour;
     }
