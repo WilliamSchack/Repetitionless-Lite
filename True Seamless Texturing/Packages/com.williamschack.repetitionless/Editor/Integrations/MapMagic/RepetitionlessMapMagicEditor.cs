@@ -317,7 +317,7 @@ namespace Repetitionless.Editor.Integrations.MapMagic
                 _main.UpdateTerrainMaterials(_main.MainMaterial);
 
                 // Make sure the material is set to terrain mode
-                RepetitionlessLayeredMaterialUtilities.UpdateLayerMode(_dataManager, ELayerMode.TerrainLayers);
+                RepetitionlessLayeredMaterialUtilities.UpdateLayerModeShader(_dataManager, ELayerMode.TerrainLayers);
 
                 SyncLayersToMaterial();
                 UpdateMaterialTerrainLayerTextures(true);

@@ -32,7 +32,7 @@ namespace Repetitionless.Editor.Materials
 #endif
         }
 
-        public static void UpdateLayerMode(MaterialDataManager dataManager, ELayerMode layerMode)
+        public static void UpdateLayerModeShader(MaterialDataManager dataManager, ELayerMode layerMode)
         {
             string newShader = "";
             switch (layerMode) {
@@ -79,7 +79,7 @@ namespace Repetitionless.Editor.Materials
                 data.LayerMode = ELayerMode.TerrainLayers;
             }
 
-            UpdateLayerMode(dataManager, data.LayerMode);
+            UpdateLayerModeShader(dataManager, data.LayerMode);
 
             data.Save();
             AssetDatabase.SaveAssetIfDirty(data);

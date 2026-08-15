@@ -3,10 +3,14 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
+using Repetitionless.Runtime.Variables;
+
 namespace Repetitionless.Editor
 {
     using Data;
+    using Materials;
     using Utilities.Texture;
+    using Utilities.GUI;
 
     public class Brush : EditorWindow
     {
@@ -28,7 +32,10 @@ namespace Repetitionless.Editor
 
         private int _editingLayer = 1;
         private int _textureResolution = 2048;
-        private float _brushRadius = 0.1f;
+        private float _brushRadiusReal = 15;
+        private float _brushRadius => _brushRadiusReal * 0.01f;
+
+        private Texture2D _brushTexture = null;
 
         List<GameObject> _selectedPaintableObjects = new List<GameObject>();
         Dictionary<GameObject, PaintableObjectData> _paintableObjectData = new Dictionary<GameObject, PaintableObjectData>();
@@ -68,7 +75,9 @@ namespace Repetitionless.Editor
 
         private void OnGUI()
         {
-            _editingLayer = EditorGUILayout.IntSlider(_editingLayer, 0, 3);
+            _editingLayer = EditorGUILayout.IntSlider("Layer", _editingLayer, 0, 3);
+            _brushRadiusReal = Mathf.Max(0, EditorGUILayout.FloatField("Brush Radius", _brushRadiusReal));
+            _brushTexture = (Texture2D)EditorGUILayout.ObjectField("Brush Texture", _brushTexture, typeof(Texture2D), false, GUILayout.Height(GUIUtilities.LINE_HEIGHT));
         }
 
         private void DuringSceneGUI(SceneView sceneView)
@@ -130,7 +139,8 @@ namespace Repetitionless.Editor
         private void DrawBrush(RaycastHit mouseHit, SceneView sceneView)
         {
             // Always draw brush if hovering something
-            Handles.DrawSolidDisc(mouseHit.point, mouseHit.normal, 0.1f);
+            Handles.DrawSolidDisc(mouseHit.point, mouseHit.normal, _brushRadius);
+            
             sceneView.Repaint();
         }
 
@@ -195,7 +205,6 @@ namespace Repetitionless.Editor
                 objectData.Texture.Apply();
 
                 RenderTexture.active = previousRT;
-                objectData.RenderTexture.Release(); 
 
                 // Apply texture material
                 Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
@@ -233,6 +242,11 @@ namespace Repetitionless.Editor
             // Assign texture to layered data
             // SHOULD BE CHECKED FREQUENTLY
             RepetitionlessLayeredDataSO layeredDataSO = objectData.DataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
+
+            // Make sure its mode is set to control textures
+            RepetitionlessLayeredMaterialUtilities.UpdateLayerModeShader(objectData.DataManager, ELayerMode.ControlTextures);
+            layeredDataSO.LayerMode = ELayerMode.ControlTextures;
+
             layeredDataSO.ControlTextures[0].ChannelTextures[0].Texture = objectData.Texture;
             layeredDataSO.ControlTextures[0].ChannelTextures[1].Texture = objectData.Texture;
             layeredDataSO.ControlTextures[0].ChannelTextures[2].Texture = objectData.Texture;
@@ -241,6 +255,7 @@ namespace Repetitionless.Editor
             layeredDataSO.ControlTextures[0].ChannelTextures[1].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.G, TexturePacker.TextureChannel.G);
             layeredDataSO.ControlTextures[0].ChannelTextures[2].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.B, TexturePacker.TextureChannel.B);
             layeredDataSO.ControlTextures[0].ChannelTextures[3].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.A, TexturePacker.TextureChannel.A);
+            
             layeredDataSO.Save();
 
             // Create render texture
