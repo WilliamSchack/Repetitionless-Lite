@@ -29,10 +29,11 @@ namespace Repetitionless.Editor
         private int _editingLayer = 1;
         private int _textureResolution = 2048;
         private float _brushRadius = 0.1f;
-        private bool _painting = false;
 
         List<GameObject> _selectedPaintableObjects = new List<GameObject>();
         Dictionary<GameObject, PaintableObjectData> _paintableObjectData = new Dictionary<GameObject, PaintableObjectData>();
+
+        List<GameObject> _paintingObjects = new List<GameObject>();
 
         [MenuItem("Window/Repetitionless/Open Painter", priority = 0)]
         public static void Open()
@@ -84,8 +85,10 @@ namespace Repetitionless.Editor
             // Dont do anything when moving cam
             if (Event.current.alt) return;
 
-            RaycastHit mouseHit = GetMouseHit();
+            if (Event.current.button == 0 && Event.current.type == EventType.MouseUp)
+                FinishPaintStroke();
 
+            RaycastHit mouseHit = GetMouseHit();
             HandleSelection(mouseHit, sceneView);
             if (mouseHit.collider == null) return;
 
@@ -101,6 +104,10 @@ namespace Repetitionless.Editor
             if (currentEvent.button == 0 && currentEvent.type == EventType.MouseDown) {
                 // Clear selection if clicked nothing
                 if (mouseHit.collider == null) {
+                    // Clear render textures
+                    foreach (PaintableObjectData objectData in _paintableObjectData.Values)
+                        objectData.RenderTexture.Release();
+
                     _selectedPaintableObjects.Clear();
                     _paintableObjectData.Clear();
                     sceneView.Repaint();
@@ -134,42 +141,51 @@ namespace Repetitionless.Editor
             if (currentEvent.button != 0)
                 return;
 
-            if (!_selectedPaintableObjects.Contains(mouseHit.collider.gameObject))
+            GameObject gameObject = mouseHit.collider.gameObject;
+            if (!_selectedPaintableObjects.Contains(gameObject))
+                return;
+
+            if (currentEvent.type != EventType.MouseDown && currentEvent.type != EventType.MouseDrag)
                 return;
 
             // == Test with the first control for now
 
-            PaintableObjectData objectData = _paintableObjectData[mouseHit.collider.gameObject];
+            PaintableObjectData objectData = _paintableObjectData[gameObject];
 
-            // If mouse down, initialise painting
-            if (currentEvent.type == EventType.MouseDown) {
-                _painting = true;
+            // If stroke just passed over object, initialise painting
+            if (!_paintingObjects.Contains(gameObject))
+                InitialisePainting(gameObject);
 
-                // Apply render texture to material
-                Graphics.Blit(objectData.Texture, objectData.RenderTexture); // Copy texture to rt
+            // Dispatch paint compute shader
+            int kernel = _computeShader.FindKernel("CSMain");
+            _computeShader.SetTexture(kernel, "ControlTexture", objectData.RenderTexture);
+            _computeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
+            _computeShader.SetFloat("Radius", _brushRadius);
+            _computeShader.SetInt("TargetChannel", _editingLayer % 4);
 
-                Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
-                repetitionlessMaterial.SetTexture("_Control0", objectData.RenderTexture);
-            }
+            int groupsX = Mathf.CeilToInt(objectData.Texture.width  / (float)COMPUTE_THREADS_X);
+            int groupsY = Mathf.CeilToInt(objectData.Texture.height / (float)COMPUTE_THREADS_Y);
 
-            // If mouse down / drag, paint
-            if (currentEvent.type == EventType.MouseDown || currentEvent.type == EventType.MouseDrag) {
-                // Dispatch paint compute shader
-                int kernel = _computeShader.FindKernel("CSMain");
-                _computeShader.SetTexture(kernel, "ControlTexture", objectData.RenderTexture);
-                _computeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
-                _computeShader.SetFloat("Radius", _brushRadius);
-                _computeShader.SetInt("TargetChannel", _editingLayer % 4);
+            _computeShader.Dispatch(kernel, groupsX, groupsY, 1);
+        }
 
-                int groupsX = Mathf.CeilToInt(objectData.Texture.width  / (float)COMPUTE_THREADS_X);
-                int groupsY = Mathf.CeilToInt(objectData.Texture.height / (float)COMPUTE_THREADS_Y);
+        private void InitialisePainting(GameObject gameObject)
+        {
+            PaintableObjectData objectData = _paintableObjectData[gameObject];
 
-                _computeShader.Dispatch(kernel, groupsX, groupsY, 1);
-            }
+            _paintingObjects.Add(gameObject);
 
-            // If mouse up, apply to texture
-            if (_painting && currentEvent.type == EventType.MouseUp) {
-                _painting = false;
+            // Apply render texture to material
+            Graphics.Blit(objectData.Texture, objectData.RenderTexture); // Copy texture to rt
+
+            Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
+            repetitionlessMaterial.SetTexture("_Control0", objectData.RenderTexture);
+        }
+
+        private void FinishPaintStroke()
+        {
+            foreach (GameObject gameObject in _paintingObjects) {
+                PaintableObjectData objectData = _paintableObjectData[gameObject];
 
                 // Save rt to texture
                 RenderTexture previousRT = RenderTexture.active;
@@ -181,10 +197,12 @@ namespace Repetitionless.Editor
                 RenderTexture.active = previousRT;
                 objectData.RenderTexture.Release(); 
 
-                // Apply texture to material
+                // Apply texture material
                 Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
                 repetitionlessMaterial.SetTexture("_Control0", objectData.Texture);
             }
+
+            _paintingObjects.Clear();
         }
 
         private void SelectionAdd(GameObject obj)
