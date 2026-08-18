@@ -1,47 +1,86 @@
 #pragma kernel CSMain
 
-RWTexture2D<float4> ControlTexture;
+RWTexture2D<float4> Control0;
+RWTexture2D<float4> Control1;
+RWTexture2D<float4> Control2;
+RWTexture2D<float4> Control3;
+RWTexture2D<float4> Control4;
+RWTexture2D<float4> Control5;
+RWTexture2D<float4> Control6;
+RWTexture2D<float4> Control7;
+
+int TargetSlice;
+int TargetChannel;
 
 float4 HitUV;
 float Radius;
-int TargetChannel;
+
+float4 ReadControl(int index, uint2 xy)
+{
+    switch (index) {
+        case 0: return Control0[xy];
+        case 1: return Control1[xy];
+        case 2: return Control2[xy];
+        case 3: return Control3[xy];
+        case 4: return Control4[xy];
+        case 5: return Control5[xy];
+        case 6: return Control6[xy];
+        case 7: return Control7[xy];
+    }
+
+    return 0;
+}
+
+void WriteControl(int index, uint2 xy, float4 value)
+{
+    switch (index) {
+        case 0: Control0[xy] = value; break;
+        case 1: Control1[xy] = value; break;
+        case 2: Control2[xy] = value; break;
+        case 3: Control3[xy] = value; break;
+        case 4: Control4[xy] = value; break;
+        case 5: Control5[xy] = value; break;
+        case 6: Control6[xy] = value; break;
+        case 7: Control7[xy] = value; break;
+    }
+}
 
 [numthreads(8, 8, 1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
     uint width, height;
-    ControlTexture.GetDimensions(width, height);
+    Control0.GetDimensions(width, height);
 
     float2 uv = id.xy / float2(width, height);
 
     // Get the distance from the current uv to the hit uv
     // If its within the radius add the target colour
     // Later sample the texture here within the radius
-    float brushValue = 0.0;
-
+    
     float dist = distance(uv, HitUV.xy);
-    if (dist < Radius) {
-        // Sample brush tex here
-        brushValue = 1.0;
-    }
+    if (dist >= Radius)
+        return;
+    
+    float brushValue = 1.0;
 
-    if (brushValue > 0.0) {
-        // Do some sort of blending here from the original to the new based on a strength (for opacity and whatnot)
-        // This should idealy also remove this pixel from other layers
-
-        // Add value to target and remove from others
-        // There has to be a better way to do this
-        half4 colour = ControlTexture[id.xy];
+    // Do some sort of blending here from the original to the new based on a strength (for opacity and whatnot)
+    // This should idealy also remove this pixel from other layers
+    
+    // Add value to target and remove from others
+    // There has to be a better way to do this
+    [unroll]
+    for (int slice = 0; slice < 8; slice++) {
+        half4 colour = ReadControl(slice, id.xy);
         half colours[4] = { colour.r, colour.g, colour.b, colour.a };
-        
+
         [unroll]
         for (int i = 0; i < 4; i++) {
-            if (i == TargetChannel) {
-                colours[i] += brushValue;
+            if (slice == TargetSlice && i == TargetChannel) {
+                colours[i] = min(colours[i] + brushValue, 1);
                 continue;
             }
 
-            colours[i] -= brushValue;
+            colours[i] = max(0, colours[i] - brushValue);
         }
 
         colour.r = colours[0];
@@ -49,6 +88,6 @@ void CSMain(uint3 id : SV_DispatchThreadID)
         colour.b = colours[2];
         colour.a = colours[3];
 
-        ControlTexture[id.xy] = colour;
+        WriteControl(slice, id.xy, colour);
     }
 }

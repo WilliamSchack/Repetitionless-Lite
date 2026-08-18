@@ -22,8 +22,10 @@ namespace Repetitionless.Editor
             public System.Action DataChangedAction;
 
             public MeshRenderer MeshRenderer;
-            public RenderTexture RenderTexture;
-            public Texture2D Texture;
+            //public RenderTexture RenderTexture;
+            public List<RenderTexture> RenderTextures;
+            //public Texture2D Texture;
+            public List<Texture2D> ControlTextures;
         }
 
         private const string PAINT_TEXTURE_COMPUTE_RESOURCES_PATH = "repetitionless_PaintControlTexture";
@@ -170,20 +172,11 @@ namespace Repetitionless.Editor
             if (currentEvent.button == 0 && currentEvent.type == EventType.MouseDown) {
                 // Clear selection if clicked nothing
                 if (mouseHit.collider == null) {
-                    // Should change to all selectionremove
-                    foreach (PaintableObjectData objectData in _paintableObjectData.Values) {
-                        // Clear render textures
-                        objectData.RenderTexture.Release();
+                    // Loop backwards to allow removing elements during loop
+                    for (int i = _selectedPaintableObjects.Count - 1; i >= 0; i--)
+                        SelectionRemove(_selectedPaintableObjects[i]);
 
-                        // Clear callback
-                        RepetitionlessMaterialDataSO materialPropertiesSO = objectData.DataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
-                        materialPropertiesSO.OnExternalDataChanged -= objectData.DataChangedAction;
-                    }
-
-                    _selectedPaintableObjects.Clear();
-                    _paintableObjectData.Clear();
                     sceneView.Repaint();
-
                     return;
                 }
 
@@ -307,47 +300,58 @@ namespace Repetitionless.Editor
 
             // Dispatch paint compute shader
             int kernel = _computeShader.FindKernel("CSMain");
-            _computeShader.SetTexture(kernel, "ControlTexture", objectData.RenderTexture);
+            for (int i = 0; i < objectData.RenderTextures.Count; i++)
+                _computeShader.SetTexture(kernel, $"Control{i}", objectData.RenderTextures[i]);
+
             _computeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
             _computeShader.SetFloat("Radius", _brushRadius);
+            _computeShader.SetInt("TargetSlice", _editingLayer / 4);
             _computeShader.SetInt("TargetChannel", _editingLayer % 4);
 
-            int groupsX = Mathf.CeilToInt(objectData.Texture.width  / (float)COMPUTE_THREADS_X);
-            int groupsY = Mathf.CeilToInt(objectData.Texture.height / (float)COMPUTE_THREADS_Y);
+            int groupsX = Mathf.CeilToInt(objectData.ControlTextures[0].width  / (float)COMPUTE_THREADS_X);
+            int groupsY = Mathf.CeilToInt(objectData.ControlTextures[0].height / (float)COMPUTE_THREADS_Y);
 
             _computeShader.Dispatch(kernel, groupsX, groupsY, 1);
         }
 
         private void InitialisePainting(GameObject gameObject)
         {
-            PaintableObjectData objectData = _paintableObjectData[gameObject];
-
             _paintingObjects.Add(gameObject);
 
-            // Apply render texture to material
-            Graphics.Blit(objectData.Texture, objectData.RenderTexture); // Copy texture to rt
+            PaintableObjectData objectData = _paintableObjectData[gameObject];
 
             Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
-            repetitionlessMaterial.SetTexture("_Control0", objectData.RenderTexture);
+
+            for (int i = 0; i < objectData.ControlTextures.Count; i++) {
+                // Copy control texture to the rt
+                Graphics.Blit(objectData.ControlTextures[i], objectData.RenderTextures[i]);
+
+                // Apply to the object material
+                repetitionlessMaterial.SetTexture($"_Control{i}", objectData.RenderTextures[i]);
+            }
         }
 
         private void FinishPaintStroke()
         {
             foreach (GameObject gameObject in _paintingObjects) {
                 PaintableObjectData objectData = _paintableObjectData[gameObject];
+                Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
 
-                // Save rt to texture
                 RenderTexture previousRT = RenderTexture.active;
-                RenderTexture.active = objectData.RenderTexture;
 
-                objectData.Texture.ReadPixels(new Rect(0, 0, objectData.Texture.width, objectData.Texture.height), 0, 0);
-                objectData.Texture.Apply();
+                for (int i = 0; i < objectData.ControlTextures.Count; i++) {
+                    // Save rt to texture
+                    RenderTexture.active = objectData.RenderTextures[i];
+
+                    Texture2D controlTexture = objectData.ControlTextures[i];
+                    controlTexture.ReadPixels(new Rect(0, 0, controlTexture.width, controlTexture.height), 0, 0);
+                    controlTexture.Apply();
+
+                    // Apply texture material
+                    repetitionlessMaterial.SetTexture($"_Control{i}", controlTexture);
+                }
 
                 RenderTexture.active = previousRT;
-
-                // Apply texture material
-                Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
-                repetitionlessMaterial.SetTexture("_Control0", objectData.Texture);
             }
 
             _currentlyPaintingObject = null;
@@ -365,19 +369,10 @@ namespace Repetitionless.Editor
                 MeshRenderer = obj.GetComponent<MeshRenderer>()
             };
 
-            // Get/Create control texture
-
             // Need to test if:
             // Repetitionless material is removed
             Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
             objectData.DataManager = new MaterialDataManager(repetitionlessMaterial);
-
-            objectData.Texture = objectData.DataManager.LoadAsset<Texture2D>(Constants.CONTROL_TEXTURE_FILE_NAME_PREFIX + "0.asset"); 
-            if (objectData.Texture.width != _textureResolution) {
-                TextureUtilities.ResizeTexture(objectData.Texture, _textureResolution, _textureResolution, modifyOriginal: true);
-                EditorUtility.SetDirty(objectData.Texture);
-                AssetDatabase.SaveAssetIfDirty(objectData.Texture);
-            }
 
             RepetitionlessMaterialDataSO materialPropertiesSO = objectData.DataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
             objectData.DataChangedAction = () => { MaterialExternalDataChanged(obj); };
@@ -393,24 +388,42 @@ namespace Repetitionless.Editor
             RepetitionlessLayeredMaterialUtilities.UpdateLayerModeShader(objectData.DataManager, ELayerMode.ControlTextures);
             layeredDataSO.LayerMode = ELayerMode.ControlTextures;
 
-            layeredDataSO.ControlTextures[0].ChannelTextures[0].Texture = objectData.Texture;
-            layeredDataSO.ControlTextures[0].ChannelTextures[1].Texture = objectData.Texture;
-            layeredDataSO.ControlTextures[0].ChannelTextures[2].Texture = objectData.Texture;
-            layeredDataSO.ControlTextures[0].ChannelTextures[3].Texture = objectData.Texture;
-            layeredDataSO.ControlTextures[0].ChannelTextures[0].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.R, TexturePacker.TextureChannel.R);
-            layeredDataSO.ControlTextures[0].ChannelTextures[1].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.G, TexturePacker.TextureChannel.G);
-            layeredDataSO.ControlTextures[0].ChannelTextures[2].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.B, TexturePacker.TextureChannel.B);
-            layeredDataSO.ControlTextures[0].ChannelTextures[3].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.A, TexturePacker.TextureChannel.A);
+            objectData.ControlTextures = new List<Texture2D>();
+            objectData.RenderTextures = new List<RenderTexture>();
+
+            int controlTextureCount = Constants.MAX_LAYERS_TERRAIN / 4;
+            for (int i = 0; i < controlTextureCount; i++) {
+                // Get/Create control texture
+                Texture2D texture = objectData.DataManager.LoadAsset<Texture2D>($"{Constants.CONTROL_TEXTURE_FILE_NAME_PREFIX}{i}.asset");
+                
+                // Resize texture to target
+                TextureUtilities.ResizeTexture(texture, _textureResolution, _textureResolution, modifyOriginal: true);
+                EditorUtility.SetDirty(texture);
+                AssetDatabase.SaveAssetIfDirty(texture);
+
+                objectData.ControlTextures.Add(texture);
+
+                // Setup layered data
+                layeredDataSO.ControlTextures[i].ChannelTextures[0].Texture = texture;
+                layeredDataSO.ControlTextures[i].ChannelTextures[1].Texture = texture;
+                layeredDataSO.ControlTextures[i].ChannelTextures[2].Texture = texture;
+                layeredDataSO.ControlTextures[i].ChannelTextures[3].Texture = texture;
+                layeredDataSO.ControlTextures[i].ChannelTextures[0].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.R, TexturePacker.TextureChannel.R);
+                layeredDataSO.ControlTextures[i].ChannelTextures[1].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.G, TexturePacker.TextureChannel.G);
+                layeredDataSO.ControlTextures[i].ChannelTextures[2].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.B, TexturePacker.TextureChannel.B);
+                layeredDataSO.ControlTextures[i].ChannelTextures[3].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.A, TexturePacker.TextureChannel.A);
+
+                // Create render texture
+                RenderTexture renderTexture = new RenderTexture(_textureResolution, _textureResolution, 0, RenderTextureFormat.ARGB32) {
+                    enableRandomWrite = true,
+                    filterMode = texture.filterMode
+                };
+                renderTexture.Create();
+
+                objectData.RenderTextures.Add(renderTexture);
+            }
             
             layeredDataSO.Save();
-
-            // Create render texture
-            objectData.RenderTexture = new RenderTexture(objectData.Texture.width, objectData.Texture.height, 0, RenderTextureFormat.ARGB32) {
-                enableRandomWrite = true,
-                filterMode = objectData.Texture.filterMode
-            };
-
-            objectData.RenderTexture.Create();
 
             _paintableObjectData.Add(obj, objectData);
         }
@@ -422,9 +435,10 @@ namespace Repetitionless.Editor
             
             _selectedPaintableObjects.Remove(obj);
 
-            // Clear Render Texture
+            // Clear Render Textures
             PaintableObjectData objectData = _paintableObjectData[obj];
-            objectData.RenderTexture.Release();
+            foreach (RenderTexture rt in objectData.RenderTextures)
+                rt.Release();
 
             RepetitionlessMaterialDataSO materialPropertiesSO = objectData.DataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
             materialPropertiesSO.OnExternalDataChanged -= objectData.DataChangedAction;
