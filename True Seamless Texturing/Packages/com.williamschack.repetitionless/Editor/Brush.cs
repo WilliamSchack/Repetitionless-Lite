@@ -59,6 +59,8 @@ namespace Repetitionless.Editor
         private float _brushResizeStartMousePosX;
         private RaycastHit _lastMouseHit;
 
+        private bool _rightClickHeld = false;
+
         private Texture2D _brushTexture = null;
 
         List<GameObject> _selectedPaintableObjects = new List<GameObject>();
@@ -251,8 +253,13 @@ namespace Repetitionless.Editor
         {
             Event currentEvent = Event.current;
 
+            // Track right click, cant check on S event as its a different event
+            if (currentEvent.type == EventType.MouseDown && currentEvent.button == 1) _rightClickHeld = true;
+            if (currentEvent.type == EventType.MouseUp && currentEvent.button == 1) _rightClickHeld = false;
+
             // Cancel on control to allow ctrl+s saving
-            if (currentEvent.control || (currentEvent.keyCode != KeyCode.S && !_resizingBrush))
+            // Cancel on right click to avoid camera movement
+            if (currentEvent.control || _rightClickHeld || (currentEvent.keyCode != KeyCode.S && !_resizingBrush))
                 return;
 
             if (currentEvent.type == EventType.KeyDown && !_resizingBrush) {
