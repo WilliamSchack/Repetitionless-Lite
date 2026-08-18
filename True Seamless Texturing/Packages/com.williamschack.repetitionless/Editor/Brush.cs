@@ -273,7 +273,7 @@ namespace Repetitionless.Editor
                 return;
 
             // Cannot paint if selected layer exceeds available layers, show on hover
-            if (gameObject != null && _editingLayer + 1 >= (int)_paintableObjectData[gameObject].MaxLayers) {
+            if (gameObject != null && _editingLayer >= (int)_paintableObjectData[gameObject].MaxLayers) {
                 DrawMousePopupLabel(
                     $"You are painting on an invalid Layer ({_editingLayer + 1})\nUpdate the Max Layers property on this material",
                     new Color(0.25f, 0, 0, 1), 350, 60
