@@ -39,6 +39,8 @@ namespace Repetitionless.Editor
 
         private static readonly Color SELECTION_OUTLINE_COLOUR = Color.blue;
 
+        private const float BRUSH_RESIZE_SENSITIVITY = 0.2f;
+
         private GUIStyle _notificationBoxStyle;
         private GUIStyle _notificationLabelStyle;
         private bool _guiStylesSetup = false;
@@ -51,6 +53,11 @@ namespace Repetitionless.Editor
         private int _textureResolution = 512;
         private float _brushRadiusReal = 15;
         private float _brushRadius => _brushRadiusReal * 0.01f;
+
+        private bool _resizingBrush = false;
+        private float _brushResizeStartRadius;
+        private float _brushResizeStartMousePosX;
+        private RaycastHit _lastMouseHit;
 
         private Texture2D _brushTexture = null;
 
@@ -102,7 +109,8 @@ namespace Repetitionless.Editor
             backgroundTexture.Apply();
 
             _notificationBoxStyle = new GUIStyle(GUI.skin.box) {
-                normal = { background = backgroundTexture }
+                normal = { background = backgroundTexture },
+                padding = { right = 5 }
             };
 
             // Notification label
@@ -136,7 +144,7 @@ namespace Repetitionless.Editor
             
             GUILayout.Space(10);
 
-            _brushRadiusReal = Mathf.Max(0, EditorGUILayout.FloatField("Brush Radius", _brushRadiusReal));
+            _brushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField("Brush Radius", _brushRadiusReal));
             _brushTexture = (Texture2D)EditorGUILayout.ObjectField("Brush Texture", _brushTexture, typeof(Texture2D), false, GUILayout.Height(GUIUtilities.LINE_HEIGHT));
         }
 
@@ -179,13 +187,22 @@ namespace Repetitionless.Editor
             if (Event.current.button == 0 && Event.current.type == EventType.MouseUp)
                 FinishPaintStroke();
 
-            RaycastHit mouseHit = GetMouseHit();
-            HandleSelection(mouseHit, sceneView);
-
-            if (mouseHit.collider != null) {
-                DrawBrush(mouseHit, sceneView);
-                Paint(mouseHit);
+            if (!_resizingBrush) {
+                _lastMouseHit = GetMouseHit();
+                HandleSelection(_lastMouseHit, sceneView);
             }
+
+            HandleBrushResize();
+
+            if (_lastMouseHit.collider != null) {
+                DrawBrush(_lastMouseHit, sceneView);
+
+                if (!_resizingBrush)
+                    Paint(_lastMouseHit);
+            }
+
+            if (_resizingBrush)
+                DrawMousePopupLabel($"Radus {_brushRadiusReal:0.0}", new Color(0.1f, 0.1f, 0.1f, 1.0f), true, new Vector2(0, -25));
 
             if (_layerNotificationDisplayUntil >= 0)
                 DrawLayerChangeNotification(sceneView);
@@ -229,6 +246,37 @@ namespace Repetitionless.Editor
             }
         }
 
+        private void HandleBrushResize()
+        {
+            Event currentEvent = Event.current;
+
+            if (currentEvent.keyCode != KeyCode.S && !_resizingBrush)
+                return;
+
+            if (currentEvent.type == EventType.KeyDown && !_resizingBrush) {
+                _resizingBrush = true;
+                _brushResizeStartRadius = _brushRadiusReal;
+                _brushResizeStartMousePosX = currentEvent.mousePosition.x;
+                currentEvent.Use();
+                return;
+            }
+
+            if (currentEvent.type == EventType.KeyUp && _resizingBrush) {
+                _resizingBrush = false;
+                currentEvent.Use();
+                return;
+            }
+
+            if (currentEvent.type != EventType.MouseMove)
+                return;
+
+            // Resizing
+            float delta = currentEvent.mousePosition.x - _brushResizeStartMousePosX;
+            _brushRadiusReal = Mathf.Max(0.01f, _brushResizeStartRadius + delta * BRUSH_RESIZE_SENSITIVITY);
+
+            Repaint();
+        }
+
         private void DrawBrush(RaycastHit mouseHit, SceneView sceneView)
         {
             // Always draw brush if hovering something
@@ -247,21 +295,26 @@ namespace Repetitionless.Editor
 
             float alpha = timeRemaining < LAYER_CHANGE_NOTIFICATION_FADE_DURATION ? Mathf.Clamp01((float)(timeRemaining / LAYER_CHANGE_NOTIFICATION_FADE_DURATION)) : 1.0f;
 
-            DrawMousePopupLabel($"Layer {_editingLayer + 1}", new Color(0.1f, 0.1f, 0.1f, alpha), 72, 60, true, new Vector2(0, -25));
+            DrawMousePopupLabel($"Layer {_editingLayer + 1}", new Color(0.1f, 0.1f, 0.1f, alpha), true, new Vector2(0, -25));
             sceneView.Repaint();
         }
 
-        private void DrawMousePopupLabel(string label, Color backgroundColor, int width = 400, int maxHeight = 60, bool alphaToColour = false)
+        private void DrawMousePopupLabel(string label, Color backgroundColor, bool alphaToColour = false)
         {
-            DrawMousePopupLabel(label, backgroundColor, width, maxHeight, alphaToColour, Vector2.zero);
+            DrawMousePopupLabel(label, backgroundColor, alphaToColour, Vector2.zero);
         }
 
-        private void DrawMousePopupLabel(string label, Color backgroundColor, int width, int maxHeight, bool alphaToColour, Vector2 positionOffset)
+        private void DrawMousePopupLabel(string label, Color backgroundColor, bool alphaToColour, Vector2 positionOffset)
         {
             Handles.BeginGUI();
 
+            // Calculate size based on contents
+            Vector2 size = _notificationLabelStyle.CalcSize(new GUIContent(label));
+            size.x += _notificationBoxStyle.padding.left + _notificationBoxStyle.padding.right;
+            size.y += _notificationBoxStyle.padding.top + _notificationBoxStyle.padding.bottom;
+
             Vector2 mousePos = Event.current.mousePosition;
-            Rect maxAreaRect = new Rect(mousePos.x + MOUSE_NOTIFICATION_OFFSET.x + positionOffset.x, mousePos.y + MOUSE_NOTIFICATION_OFFSET.y + positionOffset.y, width, maxHeight);
+            Rect maxAreaRect = new Rect(mousePos.x + MOUSE_NOTIFICATION_OFFSET.x + positionOffset.x, mousePos.y + MOUSE_NOTIFICATION_OFFSET.y + positionOffset.y, size.x, size.y);
 
             Color prevColour = GUI.color;
             if (alphaToColour) {
@@ -300,7 +353,7 @@ namespace Repetitionless.Editor
             if (gameObject != null && _editingLayer >= (int)_paintableObjectData[gameObject].MaxLayers) {
                 DrawMousePopupLabel(
                     $"You are painting on an invalid Layer ({_editingLayer + 1})\nUpdate the Max Layers property on this material",
-                    new Color(0.25f, 0, 0, 1), 350, 60
+                    new Color(0.25f, 0, 0, 1)
                 );
 
                 return;
