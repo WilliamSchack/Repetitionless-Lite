@@ -193,6 +193,7 @@ namespace Repetitionless.Editor
             }
 
             HandleBrushResize();
+            HandleZoom(_lastMouseHit, sceneView);
 
             if (_lastMouseHit.collider != null) {
                 DrawBrush(_lastMouseHit, sceneView);
@@ -250,7 +251,8 @@ namespace Repetitionless.Editor
         {
             Event currentEvent = Event.current;
 
-            if (currentEvent.keyCode != KeyCode.S && !_resizingBrush)
+            // Cancel on control to allow ctrl+s saving
+            if (currentEvent.control || (currentEvent.keyCode != KeyCode.S && !_resizingBrush))
                 return;
 
             if (currentEvent.type == EventType.KeyDown && !_resizingBrush) {
@@ -275,6 +277,17 @@ namespace Repetitionless.Editor
             _brushRadiusReal = Mathf.Max(0.01f, _brushResizeStartRadius + delta * BRUSH_RESIZE_SENSITIVITY);
 
             Repaint();
+        }
+
+        private void HandleZoom(RaycastHit mouseHit, SceneView sceneView)
+        {
+            Event currentEvent = Event.current;
+
+            if (_lastMouseHit.collider == null || currentEvent.keyCode != KeyCode.F || currentEvent.type != EventType.KeyDown)
+                return;
+
+            sceneView.Frame(new Bounds(mouseHit.point, Vector3.one), false);
+            currentEvent.Use();
         }
 
         private void DrawBrush(RaycastHit mouseHit, SceneView sceneView)
