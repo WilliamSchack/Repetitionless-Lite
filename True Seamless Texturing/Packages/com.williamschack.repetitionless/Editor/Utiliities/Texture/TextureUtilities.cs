@@ -58,7 +58,8 @@ namespace Repetitionless.Editor.Utilities.Texture
 
         /// <summary>
         /// Scales the input texture to the desired resolution<br />
-        /// Does not modify the original texture unless set, returns a new resized one
+        /// Does not modify the original texture unless set, returns a new resized one<br />
+        /// If the texture is the same resolution as the target, it will do nothing and return the input texture
         /// </summary>
         /// <param name="texture">
         /// The texture that will be resized
@@ -81,6 +82,13 @@ namespace Repetitionless.Editor.Utilities.Texture
         /// </returns>
         public static Texture2D ResizeTexture(Texture2D texture, int newWidth, int newHeight, FilterMode filterMode = FilterMode.Bilinear, bool modifyOriginal = false)
         {
+            if (texture == null)
+                return texture;
+
+            // Dont resize if the same 
+            if (texture.width == newWidth && texture.height == newHeight)
+                return texture;
+
             RenderTexture rt = RenderTexture.GetTemporary(newWidth, newHeight);
             rt.filterMode = filterMode;
 
