@@ -946,7 +946,7 @@ MonoBehaviour:
       EmissionAssigned: 0
       VariationAssigned: 0
       PackedTextureAssigned: 0
-      AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
+      AlbedoTint: {r: 0, g: 0.9080217, b: 1, a: 1}
       EmissionColour: {r: 0, g: 0, b: 0, a: 1}
       TilingOffset: {x: 1, y: 1, z: 0, w: 0}
       Metallic: 0
@@ -4457,7 +4457,7 @@ MonoBehaviour:
       Settings3: {x: 2, y: 2, z: 0.5, w: 0.3}
       Settings4: {x: 2, y: 1, z: 0.5, w: 0.4}
       Settings5: {x: 0.8, y: 1.2, z: 0, w: 360}
-      AlbedoTint: {x: 1, y: 1, z: 1}
+      AlbedoTint: {x: 0, y: 0.9080217, z: 1}
       EmissionColour: {x: 0, y: 0, z: 0}
       TilingOffset: {x: 1000, y: 1000, z: 0, w: 0}
       VariationTO: {x: 5, y: 5, z: 0, w: 0}

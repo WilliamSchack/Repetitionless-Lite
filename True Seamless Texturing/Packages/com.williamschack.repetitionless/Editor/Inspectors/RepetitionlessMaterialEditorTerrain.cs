@@ -12,6 +12,7 @@ namespace Repetitionless.Editor.Inspectors
     using Materials;
     using Utilities.GUI;
     using Utilities.Texture;
+    using Editor.CustomDialog;
 
     /// <summary>
     /// The editor for the terrain repetitionless material
@@ -212,15 +213,35 @@ namespace Repetitionless.Editor.Inspectors
                 textureData = ref _layeredData.GetControlTextureData(layerIndex);
             }
 
+            TexturePacker.TextureChannel previousFromChannel = textureData.FromToChannels[0].From;
+
             EditorGUI.BeginChangeCheck();
             textureData.Texture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent(label, "The control texture that will be used for this layer. It will read from the selected channel"), textureData.Texture, typeof(Texture2D), false);
             textureData.FromToChannels[0] = new TexturePacker.FromToChannel(DrawChannelPicker(lineRect, textureData.FromToChannels[0].From), textureData.FromToChannels[0].To);
             if (EditorGUI.EndChangeCheck()) {
-                int controlIndex = _layeredData.GetControlIndexFromLayerIndex(layerIndex);
-                _layeredData.PackControlTexture(controlIndex);
-                _layeredData.AssignControlTexture(controlIndex);
-                _layeredData.UpdateLayersCount();
-                _layeredData.Save();
+                bool packingTexture = true;
+
+                // If from channel changed and texture is the packed texture, warn of issues
+                if (previousFromChannel != textureData.FromToChannels[0].From &&
+                    textureData.Texture == _layeredData.PackedControlTextures[_layeredData.GetControlIndexFromLayerIndex(layerIndex)]) {
+                    packingTexture = ShaderGUIDialog.DisplayDialog(
+                        "Channel Update Warning",
+                        "THIS WILL CAUSE ISSUES!\nUpdating the channel while its packed texture is assigned will lose the channel data and cause undefined behaviour.\nWould you still like to proceed?",
+                        "Proceed",
+                        "Cancel"
+                    );
+
+                    if (!packingTexture)
+                        textureData.FromToChannels[0] = new TexturePacker.FromToChannel(previousFromChannel, textureData.FromToChannels[0].To);
+                }
+
+                if (packingTexture) {
+                    int controlIndex = _layeredData.GetControlIndexFromLayerIndex(layerIndex);
+                    _layeredData.PackControlTexture(controlIndex);
+                    _layeredData.AssignControlTexture(controlIndex);
+                    _layeredData.UpdateLayersCount();
+                    _layeredData.Save();
+                }
             }
         }
 
