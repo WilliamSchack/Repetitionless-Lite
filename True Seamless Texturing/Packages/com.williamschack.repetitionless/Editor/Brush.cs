@@ -11,20 +11,21 @@ namespace Repetitionless.Editor
     using Materials;
     using Utilities.Texture;
     using Utilities.GUI;
+    using System.Linq;
 
     public class Brush : EditorWindow
     {
         // Class for reference
         private class PaintableObjectData
         {
-            public MaterialDataManager DataManager;
-            public EMaxLayers MaxLayers;
             public System.Action DataChangedAction;
 
+            public MaterialDataManager DataManager;
+            public EMaxLayers MaxLayers;
+
             public MeshRenderer MeshRenderer;
-            //public RenderTexture RenderTexture;
+
             public List<RenderTexture> RenderTextures;
-            //public Texture2D Texture;
             public List<Texture2D> ControlTextures;
         }
 
@@ -70,6 +71,9 @@ namespace Repetitionless.Editor
         {
             SceneView.duringSceneGui -= DuringSceneGUI;
             SceneView.duringSceneGui += DuringSceneGUI;
+
+            ObjectChangeEvents.changesPublished -= ChangesPublished;
+            ObjectChangeEvents.changesPublished += ChangesPublished;
 
             _computeShader = Resources.Load<ComputeShader>(PAINT_TEXTURE_COMPUTE_RESOURCES_PATH);
             if (_computeShader == null)
@@ -119,6 +123,7 @@ namespace Repetitionless.Editor
         private void OnDisable()
         {
             SceneView.duringSceneGui -= DuringSceneGUI;
+            ObjectChangeEvents.changesPublished -= ChangesPublished;
         }
 
         private void OnGUI()
@@ -133,6 +138,28 @@ namespace Repetitionless.Editor
 
             _brushRadiusReal = Mathf.Max(0, EditorGUILayout.FloatField("Brush Radius", _brushRadiusReal));
             _brushTexture = (Texture2D)EditorGUILayout.ObjectField("Brush Texture", _brushTexture, typeof(Texture2D), false, GUILayout.Height(GUIUtilities.LINE_HEIGHT));
+        }
+
+        private void ChangesPublished(ref ObjectChangeEventStream stream)
+        {
+            // Listen for when an object is deleted in the scene
+            for (int i = 0; i < stream.length; i++) {
+                switch (stream.GetEventType(i)) {
+                    case ObjectChangeKind.DestroyGameObjectHierarchy:
+                        stream.GetDestroyGameObjectHierarchyEvent(i, out DestroyGameObjectHierarchyEventArgs destroyGameObjectHierarchyEvent);
+#if UNITY_6000_3_OR_NEWER
+                        Object destroyedObject = EditorUtility.EntityIdToObject(destroyGameObjectHierarchyEvent.instanceId);
+#else
+                        Object destroyedObject = EditorUtility.InstanceIDToObject(destroyGameObjectHierarchyEvent.instanceId);
+#endif
+
+                        // There is a scene object that was deleted
+                        // We dont know exactly which one but make sure none of the painting objects were deleted
+                        SelectionRemoveNull();
+
+                        break;
+                }
+            }
         }
 
         private void DuringSceneGUI(SceneView sceneView)
@@ -172,10 +199,7 @@ namespace Repetitionless.Editor
             if (currentEvent.button == 0 && currentEvent.type == EventType.MouseDown) {
                 // Clear selection if clicked nothing
                 if (mouseHit.collider == null) {
-                    // Loop backwards to allow removing elements during loop
-                    for (int i = _selectedPaintableObjects.Count - 1; i >= 0; i--)
-                        SelectionRemove(_selectedPaintableObjects[i]);
-
+                    SelectionRemoveAll();
                     sceneView.Repaint();
                     return;
                 }
@@ -446,6 +470,21 @@ namespace Repetitionless.Editor
             materialPropertiesSO.OnExternalDataChanged -= objectData.DataChangedAction;
 
             _paintableObjectData.Remove(obj);
+        }
+
+        // Removes all objects that have been deleted from the painted list
+        private void SelectionRemoveNull()
+        {
+            List<GameObject> destroyedObjects = _selectedPaintableObjects.Where(obj => obj == null).ToList();
+            foreach (GameObject gameObject in destroyedObjects)
+                SelectionRemove(gameObject);
+        }
+
+        private void SelectionRemoveAll()
+        {
+            // Loop backwards to allow removing elements during loop
+            for (int i = _selectedPaintableObjects.Count - 1; i >= 0; i--)
+                SelectionRemove(_selectedPaintableObjects[i]);
         }
 
         private void MaterialExternalDataChanged(GameObject obj)
