@@ -47,7 +47,7 @@ namespace Repetitionless.Editor
         ComputeShader _computeShader = null;
 
         private int _editingLayer = 1;
-        private int _textureResolution = 2048;
+        private int _textureResolution = 512;
         private float _brushRadiusReal = 15;
         private float _brushRadius => _brushRadiusReal * 0.01f;
 
@@ -273,7 +273,7 @@ namespace Repetitionless.Editor
                 return;
 
             // Cannot paint if selected layer exceeds available layers, show on hover
-            if (gameObject != null && _editingLayer >= (int)_paintableObjectData[gameObject].MaxLayers) {
+            if (gameObject != null && _editingLayer + 1 >= (int)_paintableObjectData[gameObject].MaxLayers) {
                 DrawMousePopupLabel(
                     $"You are painting on an invalid Layer ({_editingLayer + 1})\nUpdate the Max Layers property on this material",
                     new Color(0.25f, 0, 0, 1), 350, 60
@@ -397,9 +397,11 @@ namespace Repetitionless.Editor
                 Texture2D texture = objectData.DataManager.LoadAsset<Texture2D>($"{Constants.CONTROL_TEXTURE_FILE_NAME_PREFIX}{i}.asset");
                 
                 // Resize texture to target
-                TextureUtilities.ResizeTexture(texture, _textureResolution, _textureResolution, modifyOriginal: true);
-                EditorUtility.SetDirty(texture);
-                AssetDatabase.SaveAssetIfDirty(texture);
+                if (texture.width != _textureResolution || texture.height != _textureResolution) {
+                    TextureUtilities.ResizeTexture(texture, _textureResolution, _textureResolution, modifyOriginal: true);
+                    EditorUtility.SetDirty(texture);
+                    AssetDatabase.SaveAssetIfDirty(texture);
+                }
 
                 objectData.ControlTextures.Add(texture);
 
