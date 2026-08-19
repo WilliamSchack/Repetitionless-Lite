@@ -322,7 +322,12 @@ namespace Repetitionless.Editor
         private void DrawBrush(RaycastHit mouseHit, SceneView sceneView)
         {
             // Always draw brush if hovering something
+            
             Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, _brushRadius, 3f);
+
+            // Draw smoothness disc
+            float innerRadius = _brushRadius * (1 - _brushSmoothness);
+            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, innerRadius);
 
             sceneView.Repaint();
         }
