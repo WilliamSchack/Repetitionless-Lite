@@ -543,7 +543,7 @@ namespace Repetitionless.Editor
                 layeredDataSO.ControlTextures[i].ChannelTextures[3].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.A, TexturePacker.TextureChannel.A);
 
                 // Create render texture
-                RenderTexture renderTexture = new RenderTexture(_textureResolution, _textureResolution, 0, RenderTextureFormat.ARGB32) {
+                RenderTexture renderTexture = new RenderTexture(_textureResolution, _textureResolution, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear) {
                     enableRandomWrite = true,
                     filterMode = FilterMode.Point
                 };

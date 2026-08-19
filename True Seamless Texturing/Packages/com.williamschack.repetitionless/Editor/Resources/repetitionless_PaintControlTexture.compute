@@ -83,8 +83,8 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     // There has to be a better way to do this
     [unroll]
     for (int slice = 0; slice < 8; slice++) {
-        half4 colour = ReadControl(slice, id.xy);
-        half colours[4] = { colour.r, colour.g, colour.b, colour.a };
+        float4 colour = ReadControl(slice, id.xy);
+        float colours[4] = { colour.r, colour.g, colour.b, colour.a };
 
         [unroll]
         for (int i = 0; i < 4; i++) {
