@@ -8,9 +8,14 @@ RWTexture2D<float4> Control4;
 RWTexture2D<float4> Control5;
 RWTexture2D<float4> Control6;
 RWTexture2D<float4> Control7;
+Texture2D<float4> BrushTexture;
+
+SamplerState sampler_LinearClamp;
 
 int TargetSlice;
 int TargetChannel;
+
+int BrushChannel;
 
 float4 HitUV;
 float Radius;
@@ -67,10 +72,12 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     float smoothEdgeStart = Radius * (1 - Smoothness);
     float falloff = 1 - smoothstep(smoothEdgeStart, Radius, dist);
 
-    // Sample texture
-    //float brushUV = (uv - HitUV.xy) / Radius * 0.5 + 0.5;
-    //float brushSample = ...;
     float brushSample = 1.0;
+    //if (BrushChannel >= 0) {
+        // Sample texture
+        float2 brushUV = (uv - HitUV.xy) / (Radius * 2) + 0.5;
+        brushSample = BrushTexture.SampleLevel(sampler_LinearClamp, brushUV, 0).r;
+    //}
 
     float brushValue = falloff * brushSample * Opacity;
     if (brushValue <= 0.0)

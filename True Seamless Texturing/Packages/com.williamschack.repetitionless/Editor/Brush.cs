@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Linq;
 
 using Repetitionless.Runtime.Variables;
 
@@ -11,7 +12,6 @@ namespace Repetitionless.Editor
     using Materials;
     using Utilities.Texture;
     using Utilities.GUI;
-    using System.Linq;
 
     public class Brush : EditorWindow
     {
@@ -524,9 +524,11 @@ namespace Repetitionless.Editor
             int kernel = _computeShader.FindKernel("CSMain");
             for (int i = 0; i < objectData.RenderTextures.Count; i++)
                 _computeShader.SetTexture(kernel, $"Control{i}", objectData.RenderTextures[i]);
-
+        
+            _computeShader.SetTexture(kernel, "BrushTexture", _brushTexture == null ? Texture2D.whiteTexture : _brushTexture);
             _computeShader.SetInt("TargetSlice", _editingLayer / 4);
             _computeShader.SetInt("TargetChannel", _editingLayer % 4);
+            _computeShader.SetInt("BrushChannel", 0);
             _computeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
             _computeShader.SetFloat("Radius", _brushRadius);
             _computeShader.SetFloat("Opacity", _brushOpacity);
