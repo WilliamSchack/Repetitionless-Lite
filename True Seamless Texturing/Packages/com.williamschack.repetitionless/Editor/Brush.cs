@@ -290,6 +290,17 @@ namespace Repetitionless.Editor
             if (currentEvent.type == EventType.MouseDown && currentEvent.button == 1) _rightClickHeld = true;
             if (currentEvent.type == EventType.MouseUp && currentEvent.button == 1) _rightClickHeld = false;
 
+            // If starting to move during resize, cancel resize
+            if (_resizingBrush && _rightClickHeld) {
+                _resizingBrush = false;
+                _resizingProperty = ResizingProperty.None;
+            }
+
+            // Cancel on control to allow ctrl+s saving
+            // Cancel on right click to avoid camera movement
+            if (currentEvent.control || _rightClickHeld)
+                return;
+
             ResizingProperty prevResizingProperty = _resizingProperty;
             switch (currentEvent.keyCode) {
                 case KeyCode.S: _resizingProperty = ResizingProperty.Radius; break;
@@ -303,9 +314,7 @@ namespace Repetitionless.Editor
                 return;
             }
 
-            // Cancel on control to allow ctrl+s saving
-            // Cancel on right click to avoid camera movement
-            if (currentEvent.control || _rightClickHeld || (_resizingProperty == ResizingProperty.None && !_resizingBrush))
+            if (_resizingProperty == ResizingProperty.None && !_resizingBrush)
                 return;
 
             if (currentEvent.type == EventType.KeyDown && !_resizingBrush) {
@@ -385,11 +394,11 @@ namespace Repetitionless.Editor
         {
             // Always draw brush if hovering something
             
-            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, _brushRadius, 3f);
+            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, _brushRadius, 3);
 
             // Draw smoothness disc
             float innerRadius = _brushRadius * (1 - _brushSmoothness);
-            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, innerRadius);
+            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, innerRadius, 1);
 
             sceneView.Repaint();
         }
