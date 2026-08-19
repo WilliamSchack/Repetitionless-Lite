@@ -91,6 +91,9 @@ namespace Repetitionless.Editor
             ObjectChangeEvents.changesPublished -= ChangesPublished;
             ObjectChangeEvents.changesPublished += ChangesPublished;
 
+            Undo.undoRedoPerformed -= UndoRedoPerformed;
+            Undo.undoRedoPerformed += UndoRedoPerformed;
+
             _computeShader = Resources.Load<ComputeShader>(PAINT_TEXTURE_COMPUTE_RESOURCES_PATH);
             if (_computeShader == null)
                 Debug.LogError("No texture paint compute shader found...");
@@ -141,6 +144,7 @@ namespace Repetitionless.Editor
         {
             SceneView.duringSceneGui -= DuringSceneGUI;
             ObjectChangeEvents.changesPublished -= ChangesPublished;
+            Undo.undoRedoPerformed -= UndoRedoPerformed;
         }
 
         private void OnGUI()
@@ -218,6 +222,16 @@ namespace Repetitionless.Editor
 
             if (_layerNotificationDisplayUntil >= 0)
                 DrawLayerChangeNotification(sceneView);
+        }
+
+        private void UndoRedoPerformed()
+        {
+            // Blit control textures back to painted objects as they may have changed
+            foreach (PaintableObjectData objectData in _paintableObjectData.Values) {
+                for (int i = 0; i < objectData.ControlTextures.Count; i++) {
+                    Graphics.Blit(objectData.ControlTextures[i], objectData.RenderTextures[i]);
+                }
+            }
         }
 
         private void HandleSelection(RaycastHit mouseHit, SceneView sceneView)
@@ -442,9 +456,6 @@ namespace Repetitionless.Editor
             Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
 
             for (int i = 0; i < objectData.ControlTextures.Count; i++) {
-                // Copy control texture to the rt
-                Graphics.Blit(objectData.ControlTextures[i], objectData.RenderTextures[i]);
-
                 // Apply to the object material
                 repetitionlessMaterial.SetTexture($"_Control{i}", objectData.RenderTextures[i]);
             }
@@ -548,6 +559,9 @@ namespace Repetitionless.Editor
                     filterMode = FilterMode.Point
                 };
                 renderTexture.Create();
+
+                // Copy control texture to the rt
+                Graphics.Blit(texture, renderTexture);
 
                 objectData.RenderTextures.Add(renderTexture);
             }
