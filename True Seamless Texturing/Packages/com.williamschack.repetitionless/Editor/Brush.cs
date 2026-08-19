@@ -226,15 +226,14 @@ namespace Repetitionless.Editor
 
                 GameObject hitObject = mouseHit.collider.gameObject;
 
-                // Check if object is valid and add to selected
-                if (ObjectCanBeSelected(mouseHit.collider))
-                    SelectionAdd(hitObject);
-
-                // If holding shift and the object is selected, remove it
-                if (currentEvent.shift && _selectedPaintableObjects.Contains(hitObject)) {
+                // If holding ctrl/shift and the object is selected, remove it
+                if ((currentEvent.shift || currentEvent.control) && _selectedPaintableObjects.Contains(hitObject)) {
                     SelectionRemove(hitObject);
                     currentEvent.Use();
                 }
+                // Check if object is valid and add to selected
+                else if (ObjectCanBeSelected(mouseHit.collider))
+                    SelectionAdd(hitObject);
             }
 
             // If shift + mouse wheel, change layer
