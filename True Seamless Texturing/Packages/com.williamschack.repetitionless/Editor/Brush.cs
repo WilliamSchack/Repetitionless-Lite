@@ -41,6 +41,8 @@ namespace Repetitionless.Editor
 
         private const float BRUSH_RESIZE_SENSITIVITY = 0.2f;
 
+        private const string UNDO_STROKE_NAME = "Repetitionless Paint Brush Stroke";
+
         private GUIStyle _notificationBoxStyle;
         private GUIStyle _notificationLabelStyle;
         private bool _guiStylesSetup = false;
@@ -60,6 +62,8 @@ namespace Repetitionless.Editor
         private RaycastHit _lastMouseHit;
 
         private bool _rightClickHeld = false;
+
+        private int _strokeUndoGroup = -1;
 
         private Texture2D _brushTexture = null;
 
@@ -389,8 +393,16 @@ namespace Repetitionless.Editor
             PaintableObjectData objectData = _paintableObjectData[gameObject];
 
             // If stroke just passed over object, initialise painting
-            if (!_paintingObjects.Contains(gameObject))
+            if (!_paintingObjects.Contains(gameObject)) {
+                // If starting stroke, register undo
+                if (_paintingObjects.Count == 0) {
+                    Undo.IncrementCurrentGroup();
+                    Undo.SetCurrentGroupName(UNDO_STROKE_NAME);
+                    _strokeUndoGroup = Undo.GetCurrentGroup();
+                }
+
                 InitialisePainting(gameObject);
+            }
 
             _currentlyPaintingObject = gameObject;
 
@@ -415,6 +427,10 @@ namespace Repetitionless.Editor
             _paintingObjects.Add(gameObject);
 
             PaintableObjectData objectData = _paintableObjectData[gameObject];
+
+            // Register control textures for undo
+            foreach (Texture2D controlTexture in objectData.ControlTextures)
+                Undo.RegisterCompleteObjectUndo(controlTexture, UNDO_STROKE_NAME);
 
             Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
 
@@ -443,11 +459,19 @@ namespace Repetitionless.Editor
                     controlTexture.ReadPixels(new Rect(0, 0, controlTexture.width, controlTexture.height), 0, 0);
                     controlTexture.Apply();
 
+                    EditorUtility.SetDirty(controlTexture);
+
                     // Apply texture material
                     repetitionlessMaterial.SetTexture($"_Control{i}", controlTexture);
                 }
 
                 RenderTexture.active = previousRT;
+            }
+
+            // Merge texture changes into one undo group
+            if (_strokeUndoGroup >= 0) {
+                Undo.CollapseUndoOperations(_strokeUndoGroup);
+                _strokeUndoGroup = -1;
             }
 
             _currentlyPaintingObject = null;
