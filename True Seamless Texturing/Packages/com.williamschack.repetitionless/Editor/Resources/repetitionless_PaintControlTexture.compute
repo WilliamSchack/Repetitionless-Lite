@@ -14,6 +14,8 @@ int TargetChannel;
 
 float4 HitUV;
 float Radius;
+float Opacity;
+float Smoothness;
 
 float4 ReadControl(int index, uint2 xy)
 {
@@ -61,7 +63,18 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     if (dist >= Radius)
         return;
     
-    float brushValue = 1.0;
+    // Smoothness: Smooths from inner circle to outer circle
+    float smoothEdgeStart = Radius * (1 - Smoothness);
+    float falloff = 1 - smoothstep(smoothEdgeStart, Radius, dist);
+
+    // Sample texture
+    //float brushUV = (uv - HitUV.xy) / Radius * 0.5 + 0.5;
+    //float brushSample = ...;
+    float brushSample = 1.0;
+
+    float brushValue = falloff * brushSample * Opacity;
+    if (brushValue <= 0.0)
+        return;
 
     // Do some sort of blending here from the original to the new based on a strength (for opacity and whatnot)
     // This should idealy also remove this pixel from other layers

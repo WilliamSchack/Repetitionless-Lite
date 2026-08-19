@@ -56,6 +56,9 @@ namespace Repetitionless.Editor
         private float _brushRadiusReal = 15;
         private float _brushRadius => _brushRadiusReal * 0.01f;
 
+        private float _brushOpacity = 1.0f;
+        private float _brushSmoothness = 0.5f;
+
         private bool _resizingBrush = false;
         private float _brushResizeStartRadius;
         private float _brushResizeStartMousePosX;
@@ -150,8 +153,10 @@ namespace Repetitionless.Editor
             
             GUILayout.Space(10);
 
-            _brushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField("Brush Radius", _brushRadiusReal));
             _brushTexture = (Texture2D)EditorGUILayout.ObjectField("Brush Texture", _brushTexture, typeof(Texture2D), false, GUILayout.Height(GUIUtilities.LINE_HEIGHT));
+            _brushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField("Brush Radius", _brushRadiusReal));
+            _brushOpacity = EditorGUILayout.Slider("Brush Opacity", _brushOpacity, 0, 1);
+            _brushSmoothness = EditorGUILayout.Slider("Brush Smoothness", _brushSmoothness, 0, 1);
         }
 
         private void ChangesPublished(ref ObjectChangeEventStream stream)
@@ -303,7 +308,7 @@ namespace Repetitionless.Editor
         private void DrawBrush(RaycastHit mouseHit, SceneView sceneView)
         {
             // Always draw brush if hovering something
-            Handles.DrawSolidDisc(mouseHit.point, mouseHit.normal, _brushRadius);
+            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, _brushRadius, 3f);
 
             sceneView.Repaint();
         }
@@ -411,10 +416,12 @@ namespace Repetitionless.Editor
             for (int i = 0; i < objectData.RenderTextures.Count; i++)
                 _computeShader.SetTexture(kernel, $"Control{i}", objectData.RenderTextures[i]);
 
-            _computeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
-            _computeShader.SetFloat("Radius", _brushRadius);
             _computeShader.SetInt("TargetSlice", _editingLayer / 4);
             _computeShader.SetInt("TargetChannel", _editingLayer % 4);
+            _computeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
+            _computeShader.SetFloat("Radius", _brushRadius);
+            _computeShader.SetFloat("Opacity", _brushOpacity);
+            _computeShader.SetFloat("Smoothness", _brushSmoothness);
 
             int groupsX = Mathf.CeilToInt(objectData.ControlTextures[0].width  / (float)COMPUTE_THREADS_X);
             int groupsY = Mathf.CeilToInt(objectData.ControlTextures[0].height / (float)COMPUTE_THREADS_Y);
@@ -538,7 +545,7 @@ namespace Repetitionless.Editor
                 // Create render texture
                 RenderTexture renderTexture = new RenderTexture(_textureResolution, _textureResolution, 0, RenderTextureFormat.ARGB32) {
                     enableRandomWrite = true,
-                    filterMode = texture.filterMode
+                    filterMode = FilterMode.Point
                 };
                 renderTexture.Create();
 
