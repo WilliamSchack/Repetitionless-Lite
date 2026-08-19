@@ -50,6 +50,7 @@ namespace Repetitionless.Editor
         private const float BRUSH_RADIUS_SENSITIVITY = 0.2f;
         private const float BRUSH_OPACITY_SENSITIVITY = 0.008f;
         private const float BRUSH_SMOOTHNESS_SENSITIVITY = 0.008f;
+        private const float BRUSH_SENSITIVITY_SHIFT_MULTIPLIER = 0.1f;
 
         private const string UNDO_STROKE_NAME = "Repetitionless Paint Brush Stroke";
 
@@ -72,7 +73,7 @@ namespace Repetitionless.Editor
         private ResizingProperty _resizingProperty = ResizingProperty.None;
         private bool _resizingBrush = false;
         private float _brushResizeStartValue;
-        private float _brushResizeStartMousePosX;
+        private float _brushResizeLastMousePosX;
         private RaycastHit _lastMouseHit;
 
         private bool _rightClickHeld = false;
@@ -286,7 +287,7 @@ namespace Repetitionless.Editor
         {
             Event currentEvent = Event.current;
 
-            // Track right click, cant check on S event as its a different event
+            // Track right click, cant check on any resize keys event as its a different event
             if (currentEvent.type == EventType.MouseDown && currentEvent.button == 1) _rightClickHeld = true;
             if (currentEvent.type == EventType.MouseUp && currentEvent.button == 1) _rightClickHeld = false;
 
@@ -302,11 +303,17 @@ namespace Repetitionless.Editor
                 return;
 
             ResizingProperty prevResizingProperty = _resizingProperty;
+            bool isResizeKey = true;
             switch (currentEvent.keyCode) {
                 case KeyCode.S: _resizingProperty = ResizingProperty.Radius; break;
                 case KeyCode.A: _resizingProperty = ResizingProperty.Opacity; break;
                 case KeyCode.D: _resizingProperty = ResizingProperty.Smoothness; break;
+                default: isResizeKey = false; break;
             }
+
+            // Dont allow other key presses to cancel the resize
+            if (_resizingBrush && !isResizeKey && (currentEvent.type == EventType.KeyDown || currentEvent.type == EventType.KeyUp))
+                return;
 
             // Dont allow resizing multiple properties at once
             if (_resizingBrush && prevResizingProperty != _resizingProperty) {
@@ -317,9 +324,10 @@ namespace Repetitionless.Editor
             if (_resizingProperty == ResizingProperty.None && !_resizingBrush)
                 return;
 
+            // Start resize
             if (currentEvent.type == EventType.KeyDown && !_resizingBrush) {
                 _resizingBrush = true;
-                _brushResizeStartMousePosX = currentEvent.mousePosition.x;
+                _brushResizeLastMousePosX = currentEvent.mousePosition.x;
 
                 switch (_resizingProperty) {
                     case ResizingProperty.Radius: _brushResizeStartValue = _brushRadiusReal; break;
@@ -331,6 +339,7 @@ namespace Repetitionless.Editor
                 return;
             }
 
+            // Finish resize
             if (currentEvent.type == EventType.KeyUp && _resizingBrush) {
                 _resizingBrush = false;
                 _resizingProperty = ResizingProperty.None;
@@ -339,19 +348,24 @@ namespace Repetitionless.Editor
                 return;
             }
 
+            // Resizing
             if (currentEvent.type != EventType.MouseMove)
                 return;
 
-            float delta = currentEvent.mousePosition.x - _brushResizeStartMousePosX;
+            float delta = currentEvent.mousePosition.x - _brushResizeLastMousePosX;
+            _brushResizeLastMousePosX = currentEvent.mousePosition.x;
+
+            float sensitivityMultiplier = currentEvent.shift ? BRUSH_SENSITIVITY_SHIFT_MULTIPLIER : 1.0f;
+
             switch (_resizingProperty) {
                 case ResizingProperty.Radius:
-                    _brushRadiusReal = Mathf.Max(0.01f, _brushResizeStartValue + delta * BRUSH_RADIUS_SENSITIVITY);
+                    _brushRadiusReal = Mathf.Max(0.01f, _brushRadiusReal + delta * (BRUSH_RADIUS_SENSITIVITY * sensitivityMultiplier));
                     break;
                 case ResizingProperty.Opacity:
-                    _brushOpacity = Mathf.Clamp01(_brushResizeStartValue + delta * BRUSH_OPACITY_SENSITIVITY);
+                    _brushOpacity = Mathf.Clamp01(_brushOpacity + delta * (BRUSH_OPACITY_SENSITIVITY * sensitivityMultiplier));
                     break;
                 case ResizingProperty.Smoothness:
-                    _brushSmoothness = Mathf.Clamp01(_brushResizeStartValue + delta * BRUSH_SMOOTHNESS_SENSITIVITY);
+                    _brushSmoothness = Mathf.Clamp01(_brushSmoothness + delta * (BRUSH_SMOOTHNESS_SENSITIVITY * sensitivityMultiplier));
                     break;
             }
 
