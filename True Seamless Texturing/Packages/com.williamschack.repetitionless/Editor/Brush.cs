@@ -77,6 +77,7 @@ namespace Repetitionless.Editor
         private RaycastHit _lastMouseHit;
 
         private bool _rightClickHeld = false;
+        private bool _shiftHeld = false;
 
         private int _strokeUndoGroup = -1;
 
@@ -291,6 +292,10 @@ namespace Repetitionless.Editor
             if (currentEvent.type == EventType.MouseDown && currentEvent.button == 1) _rightClickHeld = true;
             if (currentEvent.type == EventType.MouseUp && currentEvent.button == 1) _rightClickHeld = false;
 
+            // Track if shift is held for modifying resize
+            if (currentEvent.type == EventType.KeyDown && (currentEvent.keyCode == KeyCode.LeftShift || currentEvent.keyCode == KeyCode.RightShift)) _shiftHeld = true;
+            if (currentEvent.type == EventType.KeyUp && (currentEvent.keyCode == KeyCode.LeftShift || currentEvent.keyCode == KeyCode.RightShift)) _shiftHeld = false;
+
             // If starting to move during resize, cancel resize
             if (_resizingBrush && _rightClickHeld) {
                 _resizingBrush = false;
@@ -349,13 +354,13 @@ namespace Repetitionless.Editor
             }
 
             // Resizing
-            if (currentEvent.type != EventType.MouseMove)
+            if (currentEvent.type != EventType.MouseMove || !_resizingBrush)
                 return;
 
             float delta = currentEvent.mousePosition.x - _brushResizeLastMousePosX;
             _brushResizeLastMousePosX = currentEvent.mousePosition.x;
 
-            float sensitivityMultiplier = currentEvent.shift ? BRUSH_SENSITIVITY_SHIFT_MULTIPLIER : 1.0f;
+            float sensitivityMultiplier = _shiftHeld ? BRUSH_SENSITIVITY_SHIFT_MULTIPLIER : 1.0f;
 
             switch (_resizingProperty) {
                 case ResizingProperty.Radius:
@@ -380,13 +385,13 @@ namespace Repetitionless.Editor
             string text = "";
             switch (_resizingProperty) {
                 case ResizingProperty.Radius:
-                    text = $"Radus {_brushRadiusReal:0.0}";
+                    text = $"Radus {_brushRadiusReal.ToString(_shiftHeld ? "0.00" : "0.0")}";
                     break;
                 case ResizingProperty.Opacity:
-                    text = $"Opacity {_brushOpacity:0.00}";
+                    text = $"Opacity {_brushOpacity.ToString(_shiftHeld ? "0.000" : "0.00")}";
                     break;
                 case ResizingProperty.Smoothness:
-                    text = $"Smoothness {_brushSmoothness:0.00}";
+                    text = $"Smoothness {_brushSmoothness.ToString(_shiftHeld ? "0.000" : "0.00")}";
                     break;
             }
             
