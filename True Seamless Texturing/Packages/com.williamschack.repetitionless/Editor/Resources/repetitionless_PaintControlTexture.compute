@@ -1,5 +1,7 @@
 #pragma kernel CSMain
 
+#define EPSILON 1e-5
+
 RWTexture2D<float4> Control0;
 RWTexture2D<float4> Control1;
 RWTexture2D<float4> Control2;
@@ -62,52 +64,65 @@ void CSMain(uint3 id : SV_DispatchThreadID)
 
     // Get the distance from the current uv to the hit uv
     // If its within the radius add the target colour
-    // Later sample the texture here within the radius
     
     float dist = distance(uv, HitUV.xy);
     if (dist >= Radius)
         return;
     
-    // Smoothness: Smooths from inner circle to outer circle
+    // Smooths from inner circle to outer circle
     float smoothEdgeStart = Radius * (1 - Smoothness);
     float falloff = 1 - smoothstep(smoothEdgeStart, Radius, dist);
 
     float brushSample = 1.0;
-    //if (BrushChannel >= 0) {
+    if (BrushChannel >= 0) {
         // Sample texture
         float2 brushUV = (uv - HitUV.xy) / (Radius * 2) + 0.5;
         brushSample = BrushTexture.SampleLevel(sampler_LinearClamp, brushUV, 0).r;
-    //}
+    }
 
     float brushValue = falloff * brushSample * Opacity;
     if (brushValue <= 0.0)
         return;
-
-    // Do some sort of blending here from the original to the new based on a strength (for opacity and whatnot)
-    // This should idealy also remove this pixel from other layers
     
-    // Add value to target and remove from others
-    // There has to be a better way to do this
+    // Add the brush value to the target control texture and channel
+    // Sample all the colours and scale them to a total value of 1 to avoid artifacting
+
+    float colours[8][4];
+    float sumOthers = 0;
+
     [unroll]
     for (int slice = 0; slice < 8; slice++) {
         float4 colour = ReadControl(slice, id.xy);
-        float colours[4] = { colour.r, colour.g, colour.b, colour.a };
+        colours[slice][0] = colour.r;
+        colours[slice][1] = colour.g;
+        colours[slice][2] = colour.b;
+        colours[slice][3] = colour.a;
 
         [unroll]
-        for (int i = 0; i < 4; i++) {
-            if (slice == TargetSlice && i == TargetChannel) {
-                colours[i] = min(colours[i] + brushValue, 1);
+        for (int channel = 0; channel < 4; channel++) {
+            if (slice == TargetSlice && channel == TargetChannel)
                 continue;
-            }
+            
+                sumOthers += colours[slice][channel];
+        }
+    }
 
-            colours[i] = max(0, colours[i] - brushValue);
+    float targetOld = colours[TargetSlice][TargetChannel];
+    float targetNew = min(targetOld + brushValue, 1.0);
+    float valueAdded = targetNew - targetOld;
+    float scale = (sumOthers > 0) ? saturate((sumOthers - valueAdded) / sumOthers) : 0;
+
+    [unroll]
+    for (int slice = 0; slice < 8; slice++) {
+        [unroll]
+        for (int channel = 0; channel < 4; channel++) {
+            if (slice == TargetSlice && channel == TargetChannel)
+                colours[slice][channel] = targetNew;
+            else
+                colours[slice][channel] *= scale;
         }
 
-        colour.r = colours[0];
-        colour.g = colours[1];
-        colour.b = colours[2];
-        colour.a = colours[3];
-
+        float4 colour = float4(colours[slice][0], colours[slice][1], colours[slice][2], colours[slice][3]);
         WriteControl(slice, id.xy, colour);
     }
 }
