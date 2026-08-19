@@ -29,6 +29,14 @@ namespace Repetitionless.Editor
             public List<Texture2D> ControlTextures;
         }
 
+        private enum ResizingProperty
+        {
+            None,
+            Radius,
+            Opacity,
+            Smoothness
+        }
+
         private const string PAINT_TEXTURE_COMPUTE_RESOURCES_PATH = "repetitionless_PaintControlTexture";
         private const int COMPUTE_THREADS_X = 8;
         private const int COMPUTE_THREADS_Y = 8;
@@ -39,7 +47,9 @@ namespace Repetitionless.Editor
 
         private static readonly Color SELECTION_OUTLINE_COLOUR = Color.blue;
 
-        private const float BRUSH_RESIZE_SENSITIVITY = 0.2f;
+        private const float BRUSH_RADIUS_SENSITIVITY = 0.2f;
+        private const float BRUSH_OPACITY_SENSITIVITY = 0.008f;
+        private const float BRUSH_SMOOTHNESS_SENSITIVITY = 0.008f;
 
         private const string UNDO_STROKE_NAME = "Repetitionless Paint Brush Stroke";
 
@@ -59,8 +69,9 @@ namespace Repetitionless.Editor
         private float _brushOpacity = 1.0f;
         private float _brushSmoothness = 0.5f;
 
+        private ResizingProperty _resizingProperty = ResizingProperty.None;
         private bool _resizingBrush = false;
-        private float _brushResizeStartRadius;
+        private float _brushResizeStartValue;
         private float _brushResizeStartMousePosX;
         private RaycastHit _lastMouseHit;
 
@@ -218,7 +229,7 @@ namespace Repetitionless.Editor
             }
 
             if (_resizingBrush)
-                DrawMousePopupLabel($"Radus {_brushRadiusReal:0.0}", new Color(0.1f, 0.1f, 0.1f, 1.0f), true, new Vector2(0, -25));
+                DrawBrushResizeNotification();
 
             if (_layerNotificationDisplayUntil >= 0)
                 DrawLayerChangeNotification(sceneView);
@@ -279,21 +290,42 @@ namespace Repetitionless.Editor
             if (currentEvent.type == EventType.MouseDown && currentEvent.button == 1) _rightClickHeld = true;
             if (currentEvent.type == EventType.MouseUp && currentEvent.button == 1) _rightClickHeld = false;
 
+            ResizingProperty prevResizingProperty = _resizingProperty;
+            switch (currentEvent.keyCode) {
+                case KeyCode.S: _resizingProperty = ResizingProperty.Radius; break;
+                case KeyCode.A: _resizingProperty = ResizingProperty.Opacity; break;
+                case KeyCode.D: _resizingProperty = ResizingProperty.Smoothness; break;
+            }
+
+            // Dont allow resizing multiple properties at once
+            if (_resizingBrush && prevResizingProperty != _resizingProperty) {
+                _resizingProperty = prevResizingProperty;
+                return;
+            }
+
             // Cancel on control to allow ctrl+s saving
             // Cancel on right click to avoid camera movement
-            if (currentEvent.control || _rightClickHeld || (currentEvent.keyCode != KeyCode.S && !_resizingBrush))
+            if (currentEvent.control || _rightClickHeld || (_resizingProperty == ResizingProperty.None && !_resizingBrush))
                 return;
 
             if (currentEvent.type == EventType.KeyDown && !_resizingBrush) {
                 _resizingBrush = true;
-                _brushResizeStartRadius = _brushRadiusReal;
                 _brushResizeStartMousePosX = currentEvent.mousePosition.x;
+
+                switch (_resizingProperty) {
+                    case ResizingProperty.Radius: _brushResizeStartValue = _brushRadiusReal; break;
+                    case ResizingProperty.Opacity: _brushResizeStartValue = _brushOpacity; break;
+                    case ResizingProperty.Smoothness: _brushResizeStartValue = _brushSmoothness; break;
+                }
+                
                 currentEvent.Use();
                 return;
             }
 
             if (currentEvent.type == EventType.KeyUp && _resizingBrush) {
                 _resizingBrush = false;
+                _resizingProperty = ResizingProperty.None;
+
                 currentEvent.Use();
                 return;
             }
@@ -301,11 +333,41 @@ namespace Repetitionless.Editor
             if (currentEvent.type != EventType.MouseMove)
                 return;
 
-            // Resizing
             float delta = currentEvent.mousePosition.x - _brushResizeStartMousePosX;
-            _brushRadiusReal = Mathf.Max(0.01f, _brushResizeStartRadius + delta * BRUSH_RESIZE_SENSITIVITY);
+            switch (_resizingProperty) {
+                case ResizingProperty.Radius:
+                    _brushRadiusReal = Mathf.Max(0.01f, _brushResizeStartValue + delta * BRUSH_RADIUS_SENSITIVITY);
+                    break;
+                case ResizingProperty.Opacity:
+                    _brushOpacity = Mathf.Clamp01(_brushResizeStartValue + delta * BRUSH_OPACITY_SENSITIVITY);
+                    break;
+                case ResizingProperty.Smoothness:
+                    _brushSmoothness = Mathf.Clamp01(_brushResizeStartValue + delta * BRUSH_SMOOTHNESS_SENSITIVITY);
+                    break;
+            }
 
             Repaint();
+        }
+
+        private void DrawBrushResizeNotification()
+        {
+            if (!_resizingBrush)
+                return;
+
+            string text = "";
+            switch (_resizingProperty) {
+                case ResizingProperty.Radius:
+                    text = $"Radus {_brushRadiusReal:0.0}";
+                    break;
+                case ResizingProperty.Opacity:
+                    text = $"Opacity {_brushOpacity:0.00}";
+                    break;
+                case ResizingProperty.Smoothness:
+                    text = $"Smoothness {_brushSmoothness:0.00}";
+                    break;
+            }
+            
+            DrawMousePopupLabel(text, new Color(0.1f, 0.1f, 0.1f, 1.0f), true, new Vector2(0, -25));
         }
 
         private void HandleZoom(RaycastHit mouseHit, SceneView sceneView)
