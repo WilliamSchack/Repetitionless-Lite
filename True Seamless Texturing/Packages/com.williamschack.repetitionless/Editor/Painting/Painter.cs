@@ -33,6 +33,11 @@ namespace Repetitionless.Editor.Painter
 
         private ComputeShader _computeShader = null;
 
+        public int TextureResolution {
+            get { return _selection.TextureResolution; }
+            set { _selection.TextureResolution = value; }
+        }
+        
         public int EditingLayer = 1;
         public Texture2D BrushTexture = null;
         public float BrushRadiusReal = 15;
@@ -124,7 +129,7 @@ namespace Repetitionless.Editor.Painter
                 _selection.DuringSceneGUI(_sceneInteraction.LastMouseHit, sceneView);
 
             if (_sceneInteraction.LastMouseHit.collider != null) {
-                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, BrushRadius, BrushSmoothness, BrushRotationDegrees);
+                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, BrushRadius, BrushSmoothness);
 
                 if (!_sceneInteraction.ResizingBrush)
                     Paint(_sceneInteraction.LastMouseHit);
@@ -235,7 +240,7 @@ namespace Repetitionless.Editor.Painter
                     text = $"Smoothness: {BrushSmoothness.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
                     break;
                 case EResizingProperty.Rotation:
-                    text = $"Rotation (Degrees): {BrushRotationDegrees.ToString(_sceneInteraction.ShiftHeld ? "0.0" : "0")}";
+                    text = $"Rotation: {BrushRotationDegrees.ToString(_sceneInteraction.ShiftHeld ? "0.0" : "0")}\u00B0";
                     break;
             }
             

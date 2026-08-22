@@ -55,17 +55,16 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUIUtilities.EndBackgroundVertical();
 
-            GUILayout.Space(5);
-
             GUIUtilities.BeginBackgroundVertical();
-            _painter.EditingLayer = EditorGUILayout.IntSlider("Layer", _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
-            GUIUtilities.EndBackgroundVertical();
+            GUILayout.Space(5);
+
+            EditorGUILayout.LabelField("Painting Settings", EditorStyles.boldLabel);            
+            _painter.EditingLayer = EditorGUILayout.IntSlider("Painting Layer", _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
+            _painter.TextureResolution = EditorGUILayout.IntField(new GUIContent("Control Resolution", "The resolution of the control textures"), _painter.TextureResolution);
 
             GUILayout.Space(5);
 
-            GUIUtilities.BeginBackgroundVertical();
-            GUIUtilities.DrawHeaderLabelLarge("Brush Settings");
-            GUILayout.Space(5);
+            EditorGUILayout.LabelField("Brush Settings", EditorStyles.boldLabel);            
             _painter.BrushTexture = (Texture2D)EditorGUILayout.ObjectField("Brush Texture", _painter.BrushTexture, typeof(Texture2D), false, GUILayout.Height(GUIUtilities.LINE_HEIGHT));
             _painter.BrushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField("Brush Radius", _painter.BrushRadiusReal));
             _painter.BrushOpacity = EditorGUILayout.Slider("Brush Opacity", _painter.BrushOpacity, 0, 1);

@@ -16,7 +16,7 @@ namespace Repetitionless.Editor.Painter
     {
         private static readonly Color SELECTION_OUTLINE_COLOUR = Color.blue;
 
-        private int _textureResolution = 512;
+        public int TextureResolution = 512;
 
         private List<GameObject> _selectedPaintableObjects = new List<GameObject>();
         private Dictionary<GameObject, PaintableObjectData> _paintableObjectData = new Dictionary<GameObject, PaintableObjectData>();
@@ -126,8 +126,8 @@ namespace Repetitionless.Editor.Painter
                 Texture2D texture = objectData.DataManager.LoadAsset<Texture2D>($"{Constants.CONTROL_TEXTURE_FILE_NAME_PREFIX}{i}.asset");
                 
                 // Resize texture to target
-                if (texture.width != _textureResolution || texture.height != _textureResolution) {
-                    TextureUtilities.ResizeTexture(texture, _textureResolution, _textureResolution, modifyOriginal: true);
+                if (texture.width != TextureResolution || texture.height != TextureResolution) {
+                    TextureUtilities.ResizeTexture(texture, TextureResolution, TextureResolution, modifyOriginal: true);
                     EditorUtility.SetDirty(texture);
                     AssetDatabase.SaveAssetIfDirty(texture);
                 }
@@ -145,7 +145,7 @@ namespace Repetitionless.Editor.Painter
                 layeredDataSO.ControlTextures[i].ChannelTextures[3].FromToChannels[0] = new TexturePacker.FromToChannel(TexturePacker.TextureChannel.A, TexturePacker.TextureChannel.A);
 
                 // Create render texture
-                RenderTexture renderTexture = new RenderTexture(_textureResolution, _textureResolution, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear) {
+                RenderTexture renderTexture = new RenderTexture(TextureResolution, TextureResolution, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear) {
                     enableRandomWrite = true,
                     filterMode = FilterMode.Point
                 };

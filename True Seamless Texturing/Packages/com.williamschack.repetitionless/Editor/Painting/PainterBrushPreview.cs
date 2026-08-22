@@ -28,7 +28,7 @@ namespace Repetitionless.Editor.Painter
         private List<FadingPopupData> _fadingPopups = new List<FadingPopupData>();
 
         // Brush
-        public void DrawBrush(RaycastHit mouseHit, SceneView sceneView, float radius, float smoothness, float rotationDegrees)
+        public void DrawBrush(RaycastHit mouseHit, SceneView sceneView, float radius, float smoothness)
         {
             // Outer circle
             Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, radius, 3);

@@ -124,7 +124,7 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     float targetOld = colours[TargetSlice][TargetChannel];
     float targetNew = min(targetOld + brushValue, 1.0);
     float valueAdded = targetNew - targetOld;
-    float scale = (sumOthers > 0) ? saturate((sumOthers - valueAdded) / sumOthers) : 0;
+    float scale = (sumOthers > 0) ? saturate((1.0 - targetNew) / sumOthers) : 0;
 
     [unroll]
     for (int slice = 0; slice < 8; slice++) {
