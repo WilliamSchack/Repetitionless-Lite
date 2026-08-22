@@ -63,7 +63,7 @@ namespace Repetitionless.Editor.CustomWindows
             GUIUtilities.BeginBackgroundVertical();
 
             EditorGUILayout.LabelField("Painting Settings", EditorStyles.boldLabel);            
-            _painter.EditingLayer = EditorGUILayout.IntSlider("Painting Layer", _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
+            _painter.EditingLayer = EditorGUILayout.IntSlider(new GUIContent("Painting Layer", "The layer that will be painted. This is determined per material in its layer selection"), _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
             _painter.TextureResolution = EditorGUILayout.IntField(new GUIContent("Control Resolution", "The resolution of the control textures"), _painter.TextureResolution);
 
             GUILayout.Space(5);
@@ -74,13 +74,13 @@ namespace Repetitionless.Editor.CustomWindows
             Rect textureRect = textureLineRect;
             textureRect.width -= CHANNEL_PICKER_WIDTH + 5;
 
-            _painter.BrushTexture = (Texture2D)EditorGUI.ObjectField(textureRect, "Brush Texture", _painter.BrushTexture, typeof(Texture2D), false);
+            _painter.BrushTexture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent("Brush Texture", "The texture used for painting, if not set it will be a circle filling the radius. The channel is what channel to read from in the texture"), _painter.BrushTexture, typeof(Texture2D), false);
             _painter.BrushTextureChannel = DrawChannelPicker(textureLineRect, _painter.BrushTextureChannel);
 
-            _painter.BrushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField("Brush Radius", _painter.BrushRadiusReal));
-            _painter.BrushOpacity = EditorGUILayout.Slider("Brush Opacity", _painter.BrushOpacity, 0, 1);
-            _painter.BrushSmoothness = EditorGUILayout.Slider("Brush Smoothness", _painter.BrushSmoothness, 0, 1);
-            _painter.BrushRotationDegrees = EditorGUILayout.Slider("Brush Rotation", _painter.BrushRotationDegrees, 0, 360);
+            _painter.BrushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField(new GUIContent("Brush Radius", "The size of the brush"), _painter.BrushRadiusReal));
+            _painter.BrushOpacity = EditorGUILayout.Slider(new GUIContent("Brush Opacity", "The strength of the brush.\nThe brush will accumulate so if you want opacity while dragging set this to <= 0.05"), _painter.BrushOpacity, 0, 1);
+            _painter.BrushSmoothness = EditorGUILayout.Slider(new GUIContent("Brush Smoothness", "What radius to start fading out the brush. This is visualised as the inner circle in the scene view"), _painter.BrushSmoothness, 0, 1);
+            _painter.BrushRotationDegrees = EditorGUILayout.Slider(new GUIContent("Brush Rotation", "The rotation of the brush texture relative to the uvs of the painted object. This does nothing with no texture set"), _painter.BrushRotationDegrees, 0, 360);
 
             GUIUtilities.EndBackgroundVertical();
         }
