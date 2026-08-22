@@ -58,13 +58,13 @@ namespace Repetitionless.Editor.Materials
             return "Assets";
         }
 
-        [MenuItem("Window/Repetitionless/Create Material", priority = 1)]
+        [MenuItem("Window/Repetitionless/Create Material", priority = 2)]
         private static void CreateMaterialToolbar()
         {
             EditorApplication.delayCall += () => { CreateMaterialAtCurrentFolder(); };
         }
 
-        [MenuItem("Window/Repetitionless/Create Layered Material", priority = 2)]
+        [MenuItem("Window/Repetitionless/Create Layered Material", priority = 3)]
         private static void CreateTerrainMaterialToolbar()
         {
             EditorApplication.delayCall += () => { CreateTerrainMaterialAtCurrentFolder(); };

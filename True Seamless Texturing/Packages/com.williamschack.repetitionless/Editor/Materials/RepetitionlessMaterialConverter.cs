@@ -19,7 +19,7 @@ namespace Repetitionless.Editor.Materials
         private const string LIT_SHADER_NAME_URP  = "Universal Render Pipeline/Lit";
         private const string LIT_SHADER_NAME_HDRP = "HDRP/Lit";
 
-        [MenuItem("Window/Repetitionless/Convert Selected Materials", priority = 3)]
+        [MenuItem("Window/Repetitionless/Convert Selected Materials", priority = 4)]
         private static void ConvertSelectedMaterialsToolbar()
         {
             Material[] selectedMaterials = Selection.GetFiltered<Material>(SelectionMode.Assets);

@@ -6,37 +6,15 @@ using System.Linq;
 
 using Repetitionless.Runtime.Variables;
 
-namespace Repetitionless.Editor
+namespace Repetitionless.Editor.Painter
 {
     using Data;
     using Materials;
     using Utilities.Texture;
     using Utilities.GUI;
 
-    public class Brush : EditorWindow
+    public class Painter
     {
-        // Class for reference
-        private class PaintableObjectData
-        {
-            public System.Action DataChangedAction;
-
-            public MaterialDataManager DataManager;
-            public EMaxLayers MaxLayers;
-
-            public MeshRenderer MeshRenderer;
-
-            public List<RenderTexture> RenderTextures;
-            public List<Texture2D> ControlTextures;
-        }
-
-        private enum ResizingProperty
-        {
-            None,
-            Radius,
-            Opacity,
-            Smoothness
-        }
-
         private const string PAINT_TEXTURE_COMPUTE_RESOURCES_PATH = "repetitionless_PaintControlTexture";
         private const int COMPUTE_THREADS_X = 8;
         private const int COMPUTE_THREADS_Y = 8;
@@ -70,14 +48,7 @@ namespace Repetitionless.Editor
         private float _brushOpacity = 1.0f;
         private float _brushSmoothness = 0.5f;
 
-        private ResizingProperty _resizingProperty = ResizingProperty.None;
-        private bool _resizingBrush = false;
-        private float _brushResizeStartValue;
         private float _brushResizeLastMousePosX;
-        private RaycastHit _lastMouseHit;
-
-        private bool _rightClickHeld = false;
-        private bool _shiftHeld = false;
 
         private int _strokeUndoGroup = -1;
 
@@ -89,14 +60,14 @@ namespace Repetitionless.Editor
         List<GameObject> _paintingObjects = new List<GameObject>();
         GameObject _currentlyPaintingObject = null;
 
-        [MenuItem("Window/Repetitionless/Open Painter OLD", priority = 0)]
-        public static void Open()
-        {
-            Brush window = GetWindow<Brush>(false, "Repetitionless Painter");
-            window.Show();
-        }
 
-        private void CreateGUI()
+
+        // New vars
+        private PainterSceneInteraction _sceneInteraction = new PainterSceneInteraction();
+
+        public bool Painting = false;
+
+        public void StartPainting()
         {
             SceneView.duringSceneGui -= DuringSceneGUI;
             SceneView.duringSceneGui += DuringSceneGUI;
@@ -106,6 +77,16 @@ namespace Repetitionless.Editor
 
             Undo.undoRedoPerformed -= UndoRedoPerformed;
             Undo.undoRedoPerformed += UndoRedoPerformed;
+
+            _sceneInteraction.Listen();
+            _sceneInteraction.ResizePressed  -= ResizePressed;
+            _sceneInteraction.ResizeHeld     -= ResizeHeld;
+            _sceneInteraction.ResizeReleased -= ResizeReleased;
+            _sceneInteraction.ZoomPressed    -= ZoomPressed;
+            _sceneInteraction.ResizePressed  += ResizePressed;
+            _sceneInteraction.ResizeHeld     += ResizeHeld;
+            _sceneInteraction.ResizeReleased += ResizeReleased;
+            _sceneInteraction.ZoomPressed    += ZoomPressed;
 
             _computeShader = Resources.Load<ComputeShader>(PAINT_TEXTURE_COMPUTE_RESOURCES_PATH);
             if (_computeShader == null)
@@ -122,6 +103,23 @@ namespace Repetitionless.Editor
 
             // INSTEAD OF CLEARING, CACHE SELECTION AND RESELECT ON DISABLE
             Selection.objects = new Object[] {};
+
+            Painting = true;
+        }
+
+        public void StopPainting()
+        {
+            SceneView.duringSceneGui -= DuringSceneGUI;
+            ObjectChangeEvents.changesPublished -= ChangesPublished;
+            Undo.undoRedoPerformed -= UndoRedoPerformed;
+
+            _sceneInteraction.StopListening();
+            _sceneInteraction.ResizePressed  -= ResizePressed;
+            _sceneInteraction.ResizeHeld     -= ResizeHeld;
+            _sceneInteraction.ResizeReleased -= ResizeReleased;
+            _sceneInteraction.ZoomPressed    -= ZoomPressed;
+
+            Painting = false;
         }
 
         private void SetupGUIStyles()
@@ -153,29 +151,6 @@ namespace Repetitionless.Editor
             SetupGUIStyles();
         }
 
-        private void OnDisable()
-        {
-            SceneView.duringSceneGui -= DuringSceneGUI;
-            ObjectChangeEvents.changesPublished -= ChangesPublished;
-            Undo.undoRedoPerformed -= UndoRedoPerformed;
-        }
-
-        private void OnGUI()
-        {
-            if (!_guiStylesSetup)
-                SetupGUIStyles();
-            KeepNotificationBackgroundAlive();
-
-            _editingLayer = EditorGUILayout.IntSlider("Layer", _editingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
-            
-            GUILayout.Space(10);
-
-            _brushTexture = (Texture2D)EditorGUILayout.ObjectField("Brush Texture", _brushTexture, typeof(Texture2D), false, GUILayout.Height(GUIUtilities.LINE_HEIGHT));
-            _brushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField("Brush Radius", _brushRadiusReal));
-            _brushOpacity = EditorGUILayout.Slider("Brush Opacity", _brushOpacity, 0, 1);
-            _brushSmoothness = EditorGUILayout.Slider("Brush Smoothness", _brushSmoothness, 0, 1);
-        }
-
         private void ChangesPublished(ref ObjectChangeEventStream stream)
         {
             // Listen for when an object is deleted in the scene
@@ -203,8 +178,7 @@ namespace Repetitionless.Editor
             if (_computeShader == null)
                 return;
 
-            // Disable default left click events
-            HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
+            KeepNotificationBackgroundAlive();
 
             // Draw custom outline to fake selection
             Handles.DrawOutline(_selectedPaintableObjects, SELECTION_OUTLINE_COLOUR, 0);
@@ -215,22 +189,17 @@ namespace Repetitionless.Editor
             if (Event.current.button == 0 && Event.current.type == EventType.MouseUp)
                 FinishPaintStroke();
 
-            if (!_resizingBrush) {
-                _lastMouseHit = GetMouseHit();
-                HandleSelection(_lastMouseHit, sceneView);
+            if (!_sceneInteraction.ResizingBrush)
+                HandleSelection(_sceneInteraction.LastMouseHit, sceneView);
+
+            if (_sceneInteraction.LastMouseHit.collider != null) {
+                DrawBrush(_sceneInteraction.LastMouseHit, sceneView);
+
+                if (!_sceneInteraction.ResizingBrush)
+                    Paint(_sceneInteraction.LastMouseHit);
             }
 
-            HandleBrushResize();
-            HandleZoom(_lastMouseHit, sceneView);
-
-            if (_lastMouseHit.collider != null) {
-                DrawBrush(_lastMouseHit, sceneView);
-
-                if (!_resizingBrush)
-                    Paint(_lastMouseHit);
-            }
-
-            if (_resizingBrush)
+            if (_sceneInteraction.ResizingBrush)
                 DrawBrushResizeNotification();
 
             if (_layerNotificationDisplayUntil >= 0)
@@ -279,134 +248,66 @@ namespace Repetitionless.Editor
 
                 _layerNotificationDisplayUntil = EditorApplication.timeSinceStartup + LAYER_CHANGE_NOTIFICATION_HOLD_DURATION;
 
-                Repaint();
+                //Repaint();
                 currentEvent.Use();
             }
         }
 
-        private void HandleBrushResize()
+        private void ResizePressed(EResizingProperty resizingProperty)
+        {
+            _brushResizeLastMousePosX = Event.current.mousePosition.x;
+        }
+
+        private void ResizeHeld(EResizingProperty resizingProperty)
         {
             Event currentEvent = Event.current;
-
-            // Track right click, cant check on any resize keys event as its a different event
-            if (currentEvent.type == EventType.MouseDown && currentEvent.button == 1) _rightClickHeld = true;
-            if (currentEvent.type == EventType.MouseUp && currentEvent.button == 1) _rightClickHeld = false;
-
-            // Track if shift is held for modifying resize
-            if (currentEvent.type == EventType.KeyDown && (currentEvent.keyCode == KeyCode.LeftShift || currentEvent.keyCode == KeyCode.RightShift)) _shiftHeld = true;
-            if (currentEvent.type == EventType.KeyUp && (currentEvent.keyCode == KeyCode.LeftShift || currentEvent.keyCode == KeyCode.RightShift)) _shiftHeld = false;
-
-            // If starting to move during resize, cancel resize
-            if (_resizingBrush && _rightClickHeld) {
-                _resizingBrush = false;
-                _resizingProperty = ResizingProperty.None;
-            }
-
-            // Cancel on control to allow ctrl+s saving
-            // Cancel on right click to avoid camera movement
-            if (currentEvent.control || _rightClickHeld)
-                return;
-
-            ResizingProperty prevResizingProperty = _resizingProperty;
-            bool isResizeKey = true;
-            switch (currentEvent.keyCode) {
-                case KeyCode.S: _resizingProperty = ResizingProperty.Radius; break;
-                case KeyCode.A: _resizingProperty = ResizingProperty.Opacity; break;
-                case KeyCode.D: _resizingProperty = ResizingProperty.Smoothness; break;
-                default: isResizeKey = false; break;
-            }
-
-            // Dont allow other key presses to cancel the resize
-            if (_resizingBrush && !isResizeKey && (currentEvent.type == EventType.KeyDown || currentEvent.type == EventType.KeyUp))
-                return;
-
-            // Dont allow resizing multiple properties at once
-            if (_resizingBrush && prevResizingProperty != _resizingProperty) {
-                _resizingProperty = prevResizingProperty;
-                return;
-            }
-
-            if (_resizingProperty == ResizingProperty.None && !_resizingBrush)
-                return;
-
-            // Start resize
-            if (currentEvent.type == EventType.KeyDown && !_resizingBrush) {
-                _resizingBrush = true;
-                _brushResizeLastMousePosX = currentEvent.mousePosition.x;
-
-                switch (_resizingProperty) {
-                    case ResizingProperty.Radius: _brushResizeStartValue = _brushRadiusReal; break;
-                    case ResizingProperty.Opacity: _brushResizeStartValue = _brushOpacity; break;
-                    case ResizingProperty.Smoothness: _brushResizeStartValue = _brushSmoothness; break;
-                }
-                
-                currentEvent.Use();
-                return;
-            }
-
-            // Finish resize
-            if (currentEvent.type == EventType.KeyUp && _resizingBrush) {
-                _resizingBrush = false;
-                _resizingProperty = ResizingProperty.None;
-
-                currentEvent.Use();
-                return;
-            }
-
-            // Resizing
-            if (currentEvent.type != EventType.MouseMove || !_resizingBrush)
-                return;
-
             float delta = currentEvent.mousePosition.x - _brushResizeLastMousePosX;
             _brushResizeLastMousePosX = currentEvent.mousePosition.x;
 
-            float sensitivityMultiplier = _shiftHeld ? BRUSH_SENSITIVITY_SHIFT_MULTIPLIER : 1.0f;
+            float sensitivityMultiplier = _sceneInteraction.ShiftHeld ? BRUSH_SENSITIVITY_SHIFT_MULTIPLIER : 1.0f;
 
-            switch (_resizingProperty) {
-                case ResizingProperty.Radius:
+            switch (resizingProperty) {
+                case EResizingProperty.Radius:
                     _brushRadiusReal = Mathf.Max(0.01f, _brushRadiusReal + delta * (BRUSH_RADIUS_SENSITIVITY * sensitivityMultiplier));
                     break;
-                case ResizingProperty.Opacity:
+                case EResizingProperty.Opacity:
                     _brushOpacity = Mathf.Clamp01(_brushOpacity + delta * (BRUSH_OPACITY_SENSITIVITY * sensitivityMultiplier));
                     break;
-                case ResizingProperty.Smoothness:
+                case EResizingProperty.Smoothness:
                     _brushSmoothness = Mathf.Clamp01(_brushSmoothness + delta * (BRUSH_SMOOTHNESS_SENSITIVITY * sensitivityMultiplier));
                     break;
             }
+        }
 
-            Repaint();
+        private void ResizeReleased()
+        {
+            //
+        }
+
+        private void ZoomPressed(SceneView sceneView, Vector3 pos)
+        {
+            sceneView.Frame(new Bounds(pos, Vector3.one), false);
         }
 
         private void DrawBrushResizeNotification()
         {
-            if (!_resizingBrush)
+            if (!_sceneInteraction.ResizingBrush)
                 return;
 
             string text = "";
-            switch (_resizingProperty) {
-                case ResizingProperty.Radius:
-                    text = $"Radus {_brushRadiusReal.ToString(_shiftHeld ? "0.00" : "0.0")}";
+            switch (_sceneInteraction.ResizingProperty) {
+                case EResizingProperty.Radius:
+                    text = $"Radus {_brushRadiusReal.ToString(_sceneInteraction.ShiftHeld ? "0.00" : "0.0")}";
                     break;
-                case ResizingProperty.Opacity:
-                    text = $"Opacity {_brushOpacity.ToString(_shiftHeld ? "0.000" : "0.00")}";
+                case EResizingProperty.Opacity:
+                    text = $"Opacity {_brushOpacity.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
                     break;
-                case ResizingProperty.Smoothness:
-                    text = $"Smoothness {_brushSmoothness.ToString(_shiftHeld ? "0.000" : "0.00")}";
+                case EResizingProperty.Smoothness:
+                    text = $"Smoothness {_brushSmoothness.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
                     break;
             }
             
             DrawMousePopupLabel(text, new Color(0.1f, 0.1f, 0.1f, 1.0f), true, new Vector2(0, -25));
-        }
-
-        private void HandleZoom(RaycastHit mouseHit, SceneView sceneView)
-        {
-            Event currentEvent = Event.current;
-
-            if (_lastMouseHit.collider == null || currentEvent.keyCode != KeyCode.F || currentEvent.type != EventType.KeyDown)
-                return;
-
-            sceneView.Frame(new Bounds(mouseHit.point, Vector3.one), false);
-            currentEvent.Use();
         }
 
         private void DrawBrush(RaycastHit mouseHit, SceneView sceneView)
@@ -759,16 +660,7 @@ namespace Repetitionless.Editor
 
             return null;
         }
-
-        private static RaycastHit GetMouseHit()
-        {
-            Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit)) {
-                return hit;
-            }
-
-            return new RaycastHit();
-        }
     }
 }
+
 #endif
