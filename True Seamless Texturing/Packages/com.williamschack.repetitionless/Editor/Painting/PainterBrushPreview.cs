@@ -88,7 +88,7 @@ namespace Repetitionless.Editor.Painter
             size.y += _popupBoxStyle.padding.top + _popupBoxStyle.padding.bottom;
 
             Vector2 mousePos = Event.current.mousePosition;
-            Rect maxAreaRect = new Rect(mousePos.x + MOUSE_POPUP_OFFSET.x + positionOffset.x, mousePos.y + MOUSE_POPUP_OFFSET.y + positionOffset.y, size.x, size.y);
+            Rect rect = new Rect(mousePos.x + MOUSE_POPUP_OFFSET.x + positionOffset.x, mousePos.y + MOUSE_POPUP_OFFSET.y + positionOffset.y, size.x, size.y);
 
             Color prevColour = GUI.color;
             if (alphaToColour) {
@@ -97,17 +97,13 @@ namespace Repetitionless.Editor.Painter
                 GUI.color = newColour;
             }
 
-            GUILayout.BeginArea(maxAreaRect);
-
             Color prevBackgroundColour = GUI.backgroundColor;
             GUI.backgroundColor = backgroundColor;
-            GUILayout.BeginVertical(_popupBoxStyle);
+            GUI.Box(rect, GUIContent.none, _popupBoxStyle);
             GUI.backgroundColor = prevBackgroundColour;
 
-            GUILayout.Label(label, _popupLabelStyle);
-
-            GUILayout.EndVertical();
-            GUILayout.EndArea();
+            Rect contentRect = _popupBoxStyle.padding.Remove(rect);
+            GUI.Label(contentRect, label, _popupLabelStyle);
 
             if (alphaToColour)
                 GUI.color = prevColour;
@@ -146,7 +142,6 @@ namespace Repetitionless.Editor.Painter
             colour.a = alpha;
 
             DrawMousePopup(data.Label, colour, data.AlphaToColour, data.PositionOffset);
-            //sceneView.Repaint();
         }
 
         public void ClearFadingPopups()

@@ -14,6 +14,9 @@ namespace Repetitionless.Editor.Painter
 
         public Action<SceneView, Vector3> ZoomPressed;
 
+        public Action LayerDecreased;
+        public Action LayerIncreased;
+
         // Variables
         private bool _shiftHeld = false;
         private bool _rightClickHeld = false;
@@ -52,6 +55,7 @@ namespace Repetitionless.Editor.Painter
             TrackHeldKeys(currentEvent);
             TrackResize(currentEvent);
             TrackZoom(currentEvent, sceneView);
+            TrackLayerChange(currentEvent);
         }
 
         // Mouse Hit
@@ -122,17 +126,6 @@ namespace Repetitionless.Editor.Painter
                 ResizePressed?.Invoke(_resizingProperty);
                 currentEvent.Use();
                 return;
-
-                //_brushResizeLastMousePosX = currentEvent.mousePosition.x;
-//
-                //switch (_resizingProperty) {
-                //    case EResizingProperty.Radius: _brushResizeStartValue = _brushRadiusReal; break;
-                //    case EResizingProperty.Opacity: _brushResizeStartValue = _brushOpacity; break;
-                //    case EResizingProperty.Smoothness: _brushResizeStartValue = _brushSmoothness; break;
-                //}
-                //
-                //currentEvent.Use();
-                //return;
             }
 
             // Finish resize
@@ -150,23 +143,6 @@ namespace Repetitionless.Editor.Painter
 
             ResizeHeld(_resizingProperty);
             currentEvent.Use();
-
-            //float delta = currentEvent.mousePosition.x - _brushResizeLastMousePosX;
-            //_brushResizeLastMousePosX = currentEvent.mousePosition.x;
-//
-            //float sensitivityMultiplier = _shiftHeld ? BRUSH_SENSITIVITY_SHIFT_MULTIPLIER : 1.0f;
-//
-            //switch (_resizingProperty) {
-            //    case EResizingProperty.Radius:
-            //        _brushRadiusReal = Mathf.Max(0.01f, _brushRadiusReal + delta * (BRUSH_RADIUS_SENSITIVITY * sensitivityMultiplier));
-            //        break;
-            //    case EResizingProperty.Opacity:
-            //        _brushOpacity = Mathf.Clamp01(_brushOpacity + delta * (BRUSH_OPACITY_SENSITIVITY * sensitivityMultiplier));
-            //        break;
-            //    case EResizingProperty.Smoothness:
-            //        _brushSmoothness = Mathf.Clamp01(_brushSmoothness + delta * (BRUSH_SMOOTHNESS_SENSITIVITY * sensitivityMultiplier));
-            //        break;
-            //}
         }
 
         private void TrackZoom(Event currentEvent, SceneView sceneView)
@@ -176,6 +152,17 @@ namespace Repetitionless.Editor.Painter
 
             ZoomPressed?.Invoke(sceneView, _lastMouseHit.point);
             currentEvent.Use();
+        }
+
+        private void TrackLayerChange(Event currentEvent)
+        {
+            // If shift + mouse wheel, change layer
+            if (currentEvent.shift && currentEvent.type == EventType.ScrollWheel) {
+                if (currentEvent.delta.y > 0) LayerDecreased?.Invoke();
+                else                          LayerIncreased?.Invoke();
+
+                currentEvent.Use();
+            }
         }
     }
 }

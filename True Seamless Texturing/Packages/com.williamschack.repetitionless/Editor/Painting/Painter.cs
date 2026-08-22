@@ -71,10 +71,14 @@ namespace Repetitionless.Editor.Painter
             _sceneInteraction.ResizeHeld     -= ResizeHeld;
             _sceneInteraction.ResizeReleased -= ResizeReleased;
             _sceneInteraction.ZoomPressed    -= ZoomPressed;
+            _sceneInteraction.LayerDecreased -= LayerDecreased;
+            _sceneInteraction.LayerIncreased -= LayerIncreased;
             _sceneInteraction.ResizePressed  += ResizePressed;
             _sceneInteraction.ResizeHeld     += ResizeHeld;
             _sceneInteraction.ResizeReleased += ResizeReleased;
             _sceneInteraction.ZoomPressed    += ZoomPressed;
+            _sceneInteraction.LayerDecreased += LayerDecreased;
+            _sceneInteraction.LayerIncreased += LayerIncreased;
 
             _computeShader = Resources.Load<ComputeShader>(PAINT_TEXTURE_COMPUTE_RESOURCES_PATH);
             if (_computeShader == null)
@@ -112,10 +116,8 @@ namespace Repetitionless.Editor.Painter
             if (Event.current.button == 0 && Event.current.type == EventType.MouseUp)
                 FinishPaintStroke();
 
-            if (!_sceneInteraction.ResizingBrush) {
+            if (!_sceneInteraction.ResizingBrush)
                 _selection.OnSceneGUI(_sceneInteraction.LastMouseHit, sceneView);
-                HandleLayerChange();
-            }
 
             if (_sceneInteraction.LastMouseHit.collider != null) {
                 _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, _brushRadius, _brushSmoothness);
@@ -130,24 +132,32 @@ namespace Repetitionless.Editor.Painter
             _brushPreview.OnSceneGUI();
         }
 
-        private void HandleLayerChange()
+        private void LayerDecreased()
         {
-            Event currentEvent = Event.current;
+            if (_sceneInteraction.ResizingBrush)
+                return;
 
-            // If shift + mouse wheel, change layer
-            if (currentEvent.shift && currentEvent.type == EventType.ScrollWheel) {
-                if (currentEvent.delta.y > 0) _editingLayer = Mathf.Max(0, _editingLayer - 1);
-                else                          _editingLayer = Mathf.Min(_editingLayer + 1, Constants.MAX_LAYERS_TERRAIN - 1);
+            _editingLayer = Mathf.Max(0, _editingLayer - 1);
+            AddLayerPopup();
+        }
 
-                _brushPreview.ClearFadingPopups();
-                _brushPreview.AddFadingPopup(
-                    EditorApplication.timeSinceStartup + LAYER_CHANGE_POPUP_HOLD_DURATION,
-                    LAYER_CHANGE_POPUP_FADE_DURATION,
-                     $"Layer {_editingLayer + 1}", new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
-                );
+        private void LayerIncreased()
+        {
+            if (_sceneInteraction.ResizingBrush)
+                return;
 
-                currentEvent.Use();
-            }
+            _editingLayer = Mathf.Min(_editingLayer + 1, Constants.MAX_LAYERS_TERRAIN - 1);
+            AddLayerPopup();
+        }
+
+        private void AddLayerPopup()
+        {
+            _brushPreview.ClearFadingPopups();
+            _brushPreview.AddFadingPopup(
+                EditorApplication.timeSinceStartup + LAYER_CHANGE_POPUP_HOLD_DURATION,
+                LAYER_CHANGE_POPUP_FADE_DURATION,
+                    $"Layer {_editingLayer + 1}", new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
+            );
         }
 
         
