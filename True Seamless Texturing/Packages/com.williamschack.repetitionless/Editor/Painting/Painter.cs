@@ -19,7 +19,6 @@ namespace Repetitionless.Editor.Painter
         private const int COMPUTE_THREADS_X = 8;
         private const int COMPUTE_THREADS_Y = 8;
 
-        private static readonly Vector2 MOUSE_NOTIFICATION_OFFSET = new Vector2(20, 0); 
         private const double LAYER_CHANGE_NOTIFICATION_HOLD_DURATION = 1.0f;
         private const double LAYER_CHANGE_NOTIFICATION_FADE_DURATION = 0.4f;
 
@@ -30,11 +29,7 @@ namespace Repetitionless.Editor.Painter
         private const float BRUSH_SMOOTHNESS_SENSITIVITY = 0.008f;
         private const float BRUSH_SENSITIVITY_SHIFT_MULTIPLIER = 0.1f;
 
-        private const string UNDO_STROKE_NAME = "Repetitionless Paint Brush Stroke";
-
-        private GUIStyle _notificationBoxStyle;
-        private GUIStyle _notificationLabelStyle;
-        private bool _guiStylesSetup = false;
+        private const string UNDO_STROKE_NAME = "Repetitionless Paint Brush Stroke";        
 
         private double _layerNotificationDisplayUntil = -1;
 
@@ -64,6 +59,7 @@ namespace Repetitionless.Editor.Painter
 
         // New vars
         private PainterSceneInteraction _sceneInteraction = new PainterSceneInteraction();
+        private PainterBrushPreview _brushPreview = new PainterBrushPreview();
 
         public bool Painting = false;
 
@@ -122,34 +118,9 @@ namespace Repetitionless.Editor.Painter
             Painting = false;
         }
 
-        private void SetupGUIStyles()
-        {
-            _guiStylesSetup = true;
+        
 
-            // Notification box
-            Texture2D backgroundTexture = new Texture2D(1, 1);
-            backgroundTexture.SetPixel(0, 0, Color.white);
-            backgroundTexture.Apply();
-
-            _notificationBoxStyle = new GUIStyle(GUI.skin.box) {
-                normal = { background = backgroundTexture },
-                padding = { right = 5 }
-            };
-
-            // Notification label
-            _notificationLabelStyle = new GUIStyle(GUI.skin.label);
-            _notificationLabelStyle.fontSize = 14;
-            _notificationLabelStyle.fontStyle = FontStyle.Bold;
-        }
-
-        // Resets on domain reload
-        private void KeepNotificationBackgroundAlive()
-        {
-            if (_notificationBoxStyle?.normal.background != null)
-                return;
-
-            SetupGUIStyles();
-        }
+        
 
         private void ChangesPublished(ref ObjectChangeEventStream stream)
         {
@@ -178,8 +149,6 @@ namespace Repetitionless.Editor.Painter
             if (_computeShader == null)
                 return;
 
-            KeepNotificationBackgroundAlive();
-
             // Draw custom outline to fake selection
             Handles.DrawOutline(_selectedPaintableObjects, SELECTION_OUTLINE_COLOUR, 0);
 
@@ -193,7 +162,7 @@ namespace Repetitionless.Editor.Painter
                 HandleSelection(_sceneInteraction.LastMouseHit, sceneView);
 
             if (_sceneInteraction.LastMouseHit.collider != null) {
-                DrawBrush(_sceneInteraction.LastMouseHit, sceneView);
+                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, _brushRadius, _brushSmoothness);
 
                 if (!_sceneInteraction.ResizingBrush)
                     Paint(_sceneInteraction.LastMouseHit);
@@ -307,20 +276,7 @@ namespace Repetitionless.Editor.Painter
                     break;
             }
             
-            DrawMousePopupLabel(text, new Color(0.1f, 0.1f, 0.1f, 1.0f), true, new Vector2(0, -25));
-        }
-
-        private void DrawBrush(RaycastHit mouseHit, SceneView sceneView)
-        {
-            // Always draw brush if hovering something
-            
-            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, _brushRadius, 3);
-
-            // Draw smoothness disc
-            float innerRadius = _brushRadius * (1 - _brushSmoothness);
-            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, innerRadius, 1);
-
-            sceneView.Repaint();
+            _brushPreview.DrawMousePopup(text, new Color(0.1f, 0.1f, 0.1f, 1.0f), true, new Vector2(0, -25));
         }
 
         private void DrawLayerChangeNotification(SceneView sceneView)
@@ -333,50 +289,8 @@ namespace Repetitionless.Editor.Painter
 
             float alpha = timeRemaining < LAYER_CHANGE_NOTIFICATION_FADE_DURATION ? Mathf.Clamp01((float)(timeRemaining / LAYER_CHANGE_NOTIFICATION_FADE_DURATION)) : 1.0f;
 
-            DrawMousePopupLabel($"Layer {_editingLayer + 1}", new Color(0.1f, 0.1f, 0.1f, alpha), true, new Vector2(0, -25));
+            _brushPreview.DrawMousePopup($"Layer {_editingLayer + 1}", new Color(0.1f, 0.1f, 0.1f, alpha), true, new Vector2(0, -25));
             sceneView.Repaint();
-        }
-
-        private void DrawMousePopupLabel(string label, Color backgroundColor, bool alphaToColour = false)
-        {
-            DrawMousePopupLabel(label, backgroundColor, alphaToColour, Vector2.zero);
-        }
-
-        private void DrawMousePopupLabel(string label, Color backgroundColor, bool alphaToColour, Vector2 positionOffset)
-        {
-            Handles.BeginGUI();
-
-            // Calculate size based on contents
-            Vector2 size = _notificationLabelStyle.CalcSize(new GUIContent(label));
-            size.x += _notificationBoxStyle.padding.left + _notificationBoxStyle.padding.right;
-            size.y += _notificationBoxStyle.padding.top + _notificationBoxStyle.padding.bottom;
-
-            Vector2 mousePos = Event.current.mousePosition;
-            Rect maxAreaRect = new Rect(mousePos.x + MOUSE_NOTIFICATION_OFFSET.x + positionOffset.x, mousePos.y + MOUSE_NOTIFICATION_OFFSET.y + positionOffset.y, size.x, size.y);
-
-            Color prevColour = GUI.color;
-            if (alphaToColour) {
-                Color newColour = prevColour;
-                newColour.a = backgroundColor.a;
-                GUI.color = newColour;
-            }
-
-            GUILayout.BeginArea(maxAreaRect);
-
-            Color prevBackgroundColour = GUI.backgroundColor;
-            GUI.backgroundColor = backgroundColor;
-            GUILayout.BeginVertical(_notificationBoxStyle);
-            GUI.backgroundColor = prevBackgroundColour;
-
-            GUILayout.Label(label, _notificationLabelStyle);
-
-            GUILayout.EndVertical();
-            GUILayout.EndArea();
-
-            if (alphaToColour)
-                GUI.color = prevColour;
-
-            Handles.EndGUI();
         }
 
         private void Paint(RaycastHit mouseHit)
@@ -389,7 +303,7 @@ namespace Repetitionless.Editor.Painter
 
             // Cannot paint if selected layer exceeds available layers, show on hover
             if (gameObject != null && _editingLayer >= (int)_paintableObjectData[gameObject].MaxLayers) {
-                DrawMousePopupLabel(
+                _brushPreview.DrawMousePopup(
                     $"You are painting on an invalid Layer ({_editingLayer + 1})\nUpdate the Max Layers property on this material",
                     new Color(0.25f, 0, 0, 1)
                 );
