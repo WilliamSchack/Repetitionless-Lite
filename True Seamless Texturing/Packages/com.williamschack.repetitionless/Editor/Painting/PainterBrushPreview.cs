@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 
 namespace Repetitionless.Editor.Painter
 {
@@ -27,12 +28,12 @@ namespace Repetitionless.Editor.Painter
         private List<FadingPopupData> _fadingPopups = new List<FadingPopupData>();
 
         // Brush
-        public void DrawBrush(RaycastHit mouseHit, SceneView sceneView, float radius, float smoothness)
+        public void DrawBrush(RaycastHit mouseHit, SceneView sceneView, float radius, float smoothness, float rotationDegrees)
         {
             // Outer circle
             Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, radius, 3);
 
-            // Draw smoothness circle
+            // Smoothness circle
             float innerRadius = radius * (1 - smoothness);
             Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, innerRadius, 1);
 

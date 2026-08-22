@@ -20,6 +20,7 @@ namespace Repetitionless.Editor.Painter
         private const float BRUSH_RADIUS_SENSITIVITY = 0.2f;
         private const float BRUSH_OPACITY_SENSITIVITY = 0.008f;
         private const float BRUSH_SMOOTHNESS_SENSITIVITY = 0.008f;
+        private const float BRUSH_ROTATION_SENSITIVITY = 2.0f;
         private const float BRUSH_SENSITIVITY_SHIFT_MULTIPLIER = 0.1f;
 
         private const string UNDO_STROKE_NAME = "Repetitionless Paint Brush Stroke";
@@ -38,6 +39,7 @@ namespace Repetitionless.Editor.Painter
         public float BrushRadius => BrushRadiusReal * 0.01f;
         public float BrushOpacity = 1.0f;
         public float BrushSmoothness = 0.5f;
+        public float BrushRotationDegrees = 0.0f;
 
         private float _brushResizeLastMousePosX;
 
@@ -122,7 +124,7 @@ namespace Repetitionless.Editor.Painter
                 _selection.DuringSceneGUI(_sceneInteraction.LastMouseHit, sceneView);
 
             if (_sceneInteraction.LastMouseHit.collider != null) {
-                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, BrushRadius, BrushSmoothness);
+                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, BrushRadius, BrushSmoothness, BrushRotationDegrees);
 
                 if (!_sceneInteraction.ResizingBrush)
                     Paint(_sceneInteraction.LastMouseHit);
@@ -188,6 +190,9 @@ namespace Repetitionless.Editor.Painter
                 case EResizingProperty.Smoothness:
                     BrushSmoothness = Mathf.Clamp01(BrushSmoothness + delta * (BRUSH_SMOOTHNESS_SENSITIVITY * sensitivityMultiplier));
                     break;
+                case EResizingProperty.Rotation:
+                    BrushRotationDegrees = Mathf.Clamp(BrushRotationDegrees + delta * (BRUSH_ROTATION_SENSITIVITY * sensitivityMultiplier), 0, 360);
+                    break;
             }
             
             OnPropertyChanged?.Invoke();
@@ -221,13 +226,16 @@ namespace Repetitionless.Editor.Painter
             string text = "";
             switch (_sceneInteraction.ResizingProperty) {
                 case EResizingProperty.Radius:
-                    text = $"Radus {BrushRadiusReal.ToString(_sceneInteraction.ShiftHeld ? "0.00" : "0.0")}";
+                    text = $"Radus: {BrushRadiusReal.ToString(_sceneInteraction.ShiftHeld ? "0.00" : "0.0")}";
                     break;
                 case EResizingProperty.Opacity:
-                    text = $"Opacity {BrushOpacity.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
+                    text = $"Opacity: {BrushOpacity.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
                     break;
                 case EResizingProperty.Smoothness:
-                    text = $"Smoothness {BrushSmoothness.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
+                    text = $"Smoothness: {BrushSmoothness.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
+                    break;
+                case EResizingProperty.Rotation:
+                    text = $"Rotation (Degrees): {BrushRotationDegrees.ToString(_sceneInteraction.ShiftHeld ? "0.0" : "0")}";
                     break;
             }
             
@@ -288,6 +296,7 @@ namespace Repetitionless.Editor.Painter
             _computeShader.SetFloat("Radius", BrushRadius);
             _computeShader.SetFloat("Opacity", BrushOpacity);
             _computeShader.SetFloat("Smoothness", BrushSmoothness);
+            _computeShader.SetFloat("RotationRadians", BrushRotationDegrees * Mathf.Deg2Rad);
 
             int groupsX = Mathf.CeilToInt(objectData.ControlTextures[0].width  / (float)COMPUTE_THREADS_X);
             int groupsY = Mathf.CeilToInt(objectData.ControlTextures[0].height / (float)COMPUTE_THREADS_Y);

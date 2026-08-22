@@ -70,6 +70,7 @@ namespace Repetitionless.Editor.CustomWindows
             _painter.BrushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField("Brush Radius", _painter.BrushRadiusReal));
             _painter.BrushOpacity = EditorGUILayout.Slider("Brush Opacity", _painter.BrushOpacity, 0, 1);
             _painter.BrushSmoothness = EditorGUILayout.Slider("Brush Smoothness", _painter.BrushSmoothness, 0, 1);
+            _painter.BrushRotationDegrees = EditorGUILayout.Slider("Brush Rotation", _painter.BrushRotationDegrees, 0, 360);
             GUIUtilities.EndBackgroundVertical();
         }
 

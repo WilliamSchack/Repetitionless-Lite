@@ -101,9 +101,10 @@ namespace Repetitionless.Editor.Painter
             EResizingProperty prevEResizingProperty = _resizingProperty;
             bool isResizeKey = true;
             switch (currentEvent.keyCode) {
-                case KeyCode.S: _resizingProperty = EResizingProperty.Radius; break;
-                case KeyCode.A: _resizingProperty = EResizingProperty.Opacity; break;
+                case KeyCode.S: _resizingProperty = EResizingProperty.Radius;     break;
+                case KeyCode.A: _resizingProperty = EResizingProperty.Opacity;    break;
                 case KeyCode.D: _resizingProperty = EResizingProperty.Smoothness; break;
+                case KeyCode.C: _resizingProperty = EResizingProperty.Rotation;   break;
                 default: isResizeKey = false; break;
             }
 

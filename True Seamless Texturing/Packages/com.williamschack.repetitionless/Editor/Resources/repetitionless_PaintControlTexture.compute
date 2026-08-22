@@ -23,6 +23,7 @@ float4 HitUV;
 float Radius;
 float Opacity;
 float Smoothness;
+float RotationRadians;
 
 float4 ReadControl(int index, uint2 xy)
 {
@@ -77,6 +78,19 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     if (BrushChannel >= 0) {
         // Sample texture
         float2 brushUV = (uv - HitUV.xy) / (Radius * 2) + 0.5;
+
+        // Rotate texture if required
+        if (RotationRadians != 0) {
+            float s = sin(RotationRadians);
+            float c = cos(RotationRadians);
+            float2 centered = brushUV - 0.5;
+            float2 rotated = float2(
+                centered.x * c - centered.y * s,
+                centered.x * s + centered.y * c
+            );
+            brushUV = rotated + 0.5;
+        }
+
         brushSample = BrushTexture.SampleLevel(sampler_LinearClamp, brushUV, 0).r;
     }
 
