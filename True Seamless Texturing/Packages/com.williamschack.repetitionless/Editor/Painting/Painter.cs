@@ -7,6 +7,7 @@ using System.Collections.Generic;
 namespace Repetitionless.Editor.Painter
 {
     using Materials;
+    using Utilities.Texture;
 
     public class Painter
     {
@@ -40,6 +41,7 @@ namespace Repetitionless.Editor.Painter
         
         public int EditingLayer = 1;
         public Texture2D BrushTexture = null;
+        public TexturePacker.TextureChannel BrushTextureChannel = TexturePacker.TextureChannel.R;
         public float BrushRadiusReal = 15;
         public float BrushRadius => BrushRadiusReal * 0.01f;
         public float BrushOpacity = 1.0f;
@@ -296,7 +298,7 @@ namespace Repetitionless.Editor.Painter
             _computeShader.SetTexture(kernel, "BrushTexture", BrushTexture == null ? Texture2D.whiteTexture : BrushTexture);
             _computeShader.SetInt("TargetSlice", EditingLayer / 4);
             _computeShader.SetInt("TargetChannel", EditingLayer % 4);
-            _computeShader.SetInt("BrushChannel", 0);
+            _computeShader.SetInt("BrushChannel", (int)BrushTextureChannel);
             _computeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
             _computeShader.SetFloat("Radius", BrushRadius);
             _computeShader.SetFloat("Opacity", BrushOpacity);

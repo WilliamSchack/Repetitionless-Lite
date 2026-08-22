@@ -17,19 +17,19 @@ namespace Repetitionless.Editor.Utilities.Texture
             /// <summary>
             /// Red channel
             /// </summary>
-            R,
+            R = 0,
             /// <summary>
             /// Green channel
             /// </summary>
-            G,
+            G = 1,
             /// <summary>
             /// Blue channel
             /// </summary>
-            B,
+            B = 2,
             /// <summary>
             /// Alpha channel
             /// </summary>
-            A
+            A = 3
         }
 
         /// <summary>

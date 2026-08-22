@@ -91,7 +91,7 @@ void CSMain(uint3 id : SV_DispatchThreadID)
             brushUV = rotated + 0.5;
         }
 
-        brushSample = BrushTexture.SampleLevel(sampler_LinearClamp, brushUV, 0).r;
+        brushSample = BrushTexture.SampleLevel(sampler_LinearClamp, brushUV, 0)[BrushChannel];
     }
 
     float brushValue = falloff * brushSample * Opacity;
