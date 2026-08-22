@@ -46,6 +46,10 @@ namespace Repetitionless.Editor.Painter
 
         private List<GameObject> _paintingObjects = new List<GameObject>();
         private GameObject _currentlyPaintingObject = null;
+        private GameObject _lastPaintedObject = null;
+
+        public GameObject CurrentlyPaintingObject => _currentlyPaintingObject;
+        public GameObject LastPaintedObject => _lastPaintedObject;
 
         private bool _painting = false;
         public bool Painting => _painting;
@@ -269,6 +273,7 @@ namespace Repetitionless.Editor.Painter
             }
 
             _currentlyPaintingObject = gameObject;
+            _lastPaintedObject = gameObject;
 
             // Dispatch paint compute shader
             int kernel = _computeShader.FindKernel("CSMain");

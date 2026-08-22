@@ -5,6 +5,7 @@ using UnityEditor;
 namespace Repetitionless.Editor.CustomWindows
 {
     using Painter;
+    using Materials;
     using Utilities.GUI;
 
     public class PainterWindow : EditorWindow
@@ -36,19 +37,40 @@ namespace Repetitionless.Editor.CustomWindows
         
         private void OnGUI()
         {
+            GUIUtilities.BeginBackgroundVertical();
+
             EditorGUI.BeginChangeCheck();
-            GUILayout.Toggle(_painter.Painting, "Paint", GUI.skin.button);
+            GUIUtilities.DrawMajorToggleButton(_painter.Painting, "Painting");
             if (EditorGUI.EndChangeCheck())
                 _painter.TogglePainting();
 
+            GUI.enabled = _painter.LastPaintedObject != null;
+            if (GUILayout.Button("Edit Last Painted Material")) {
+                // Get the material and select it
+                MeshRenderer meshRenderer = _painter.LastPaintedObject.GetComponent<MeshRenderer>(); // MeshRendere is required to paint
+                Material material = RepetitionlessLayeredMaterialUtilities.GetFirstLayeredMaterial(meshRenderer);
+                Selection.activeObject = material;
+            }
+            GUI.enabled = true;
+
+            GUIUtilities.EndBackgroundVertical();
+
+            GUILayout.Space(5);
+
+            GUIUtilities.BeginBackgroundVertical();
             _painter.EditingLayer = EditorGUILayout.IntSlider("Layer", _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
+            GUIUtilities.EndBackgroundVertical();
 
-            GUILayout.Space(10);
+            GUILayout.Space(5);
 
+            GUIUtilities.BeginBackgroundVertical();
+            GUIUtilities.DrawHeaderLabelLarge("Brush Settings");
+            GUILayout.Space(5);
             _painter.BrushTexture = (Texture2D)EditorGUILayout.ObjectField("Brush Texture", _painter.BrushTexture, typeof(Texture2D), false, GUILayout.Height(GUIUtilities.LINE_HEIGHT));
             _painter.BrushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField("Brush Radius", _painter.BrushRadiusReal));
             _painter.BrushOpacity = EditorGUILayout.Slider("Brush Opacity", _painter.BrushOpacity, 0, 1);
             _painter.BrushSmoothness = EditorGUILayout.Slider("Brush Smoothness", _painter.BrushSmoothness, 0, 1);
+            GUIUtilities.EndBackgroundVertical();
         }
 
         private void DuringSceneGUI(SceneView sceneView)
