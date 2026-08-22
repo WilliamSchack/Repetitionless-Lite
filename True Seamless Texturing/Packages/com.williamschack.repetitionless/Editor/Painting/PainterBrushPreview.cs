@@ -2,48 +2,73 @@
 using UnityEngine;
 using UnityEditor;
 using System;
+using System.Collections.Generic;
 
 namespace Repetitionless.Editor.Painter
 {
     public class PainterBrushPreview
     {
-        private static readonly Vector2 MOUSE_NOTIFICATION_OFFSET = new Vector2(20, 0); 
+        private class FadingPopupData
+        {
+            public string Label;
+            public Color BackgroundColor;
+            public bool AlphaToColour;
+            public Vector2 PositionOffset;
 
-        private GUIStyle _notificationBoxStyle;
-        private GUIStyle _notificationLabelStyle;
-        private bool _notificationStylesSetup = false;
+            public double DisplayUntil;
+            public double FadeDuration;
+        }
 
+        private static readonly Vector2 MOUSE_POPUP_OFFSET = new Vector2(20, 0); 
+
+        private GUIStyle _popupBoxStyle;
+        private GUIStyle _popupLabelStyle;
+        private bool _popupStylesSetup = false;
+
+        private List<FadingPopupData> _fadingPopups = new List<FadingPopupData>();
+
+        // Brush
+        public void DrawBrush(RaycastHit mouseHit, SceneView sceneView, float radius, float smoothness)
+        {
+            // Outer circle
+            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, radius, 3);
+
+            // Draw smoothness circle
+            float innerRadius = radius * (1 - smoothness);
+            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, innerRadius, 1);
+
+            sceneView.Repaint();
+        }
+
+        // Mouse Popups
         private void SetupNotificationGUIStyles()
         {
-            _notificationStylesSetup = true;
+            _popupStylesSetup = true;
 
             // Notification box
             Texture2D backgroundTexture = new Texture2D(1, 1);
             backgroundTexture.SetPixel(0, 0, Color.white);
             backgroundTexture.Apply();
 
-            _notificationBoxStyle = new GUIStyle(GUI.skin.box) {
+            _popupBoxStyle = new GUIStyle(GUI.skin.box) {
                 normal = { background = backgroundTexture },
                 padding = { right = 5 }
             };
 
             // Notification label
-            _notificationLabelStyle = new GUIStyle(GUI.skin.label);
-            _notificationLabelStyle.fontSize = 14;
-            _notificationLabelStyle.fontStyle = FontStyle.Bold;
+            _popupLabelStyle = new GUIStyle(GUI.skin.label);
+            _popupLabelStyle.fontSize = 14;
+            _popupLabelStyle.fontStyle = FontStyle.Bold;
         }
 
-        public void DrawBrush(RaycastHit mouseHit, SceneView sceneView, float radius, float smoothness)
+        // Only required if using fading notifications
+        // Must be called every scene gui call
+        public void OnSceneGUI()
         {
-            // Always draw brush if hovering something
-            
-            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, radius, 3);
-
-            // Draw smoothness disc
-            float innerRadius = radius * (1 - smoothness);
-            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, innerRadius, 1);
-
-            sceneView.Repaint();
+            // Loop backwards to allow removing popups
+            for (int i = _fadingPopups.Count - 1; i >= 0; i--) {
+                UpdateFadingPopup(_fadingPopups[i]);
+            }
         }
 
         public void DrawMousePopup(string label, Color backgroundColor, bool alphaToColour = false)
@@ -53,18 +78,18 @@ namespace Repetitionless.Editor.Painter
 
         public void DrawMousePopup(string label, Color backgroundColor, bool alphaToColour, Vector2 positionOffset)
         {
-            if (!_notificationStylesSetup || _notificationBoxStyle?.normal.background == null)
+            if (!_popupStylesSetup || _popupBoxStyle?.normal.background == null)
                 SetupNotificationGUIStyles();
 
             Handles.BeginGUI();
 
             // Calculate size based on contents
-            Vector2 size = _notificationLabelStyle.CalcSize(new GUIContent(label));
-            size.x += _notificationBoxStyle.padding.left + _notificationBoxStyle.padding.right;
-            size.y += _notificationBoxStyle.padding.top + _notificationBoxStyle.padding.bottom;
+            Vector2 size = _popupLabelStyle.CalcSize(new GUIContent(label));
+            size.x += _popupBoxStyle.padding.left + _popupBoxStyle.padding.right;
+            size.y += _popupBoxStyle.padding.top + _popupBoxStyle.padding.bottom;
 
             Vector2 mousePos = Event.current.mousePosition;
-            Rect maxAreaRect = new Rect(mousePos.x + MOUSE_NOTIFICATION_OFFSET.x + positionOffset.x, mousePos.y + MOUSE_NOTIFICATION_OFFSET.y + positionOffset.y, size.x, size.y);
+            Rect maxAreaRect = new Rect(mousePos.x + MOUSE_POPUP_OFFSET.x + positionOffset.x, mousePos.y + MOUSE_POPUP_OFFSET.y + positionOffset.y, size.x, size.y);
 
             Color prevColour = GUI.color;
             if (alphaToColour) {
@@ -77,10 +102,10 @@ namespace Repetitionless.Editor.Painter
 
             Color prevBackgroundColour = GUI.backgroundColor;
             GUI.backgroundColor = backgroundColor;
-            GUILayout.BeginVertical(_notificationBoxStyle);
+            GUILayout.BeginVertical(_popupBoxStyle);
             GUI.backgroundColor = prevBackgroundColour;
 
-            GUILayout.Label(label, _notificationLabelStyle);
+            GUILayout.Label(label, _popupLabelStyle);
 
             GUILayout.EndVertical();
             GUILayout.EndArea();
@@ -89,6 +114,45 @@ namespace Repetitionless.Editor.Painter
                 GUI.color = prevColour;
 
             Handles.EndGUI();
+        }
+
+        public void AddFadingPopup(double displayUntil, double fadeDuration, string label, Color backgroundColor, bool alphaToColour = false)
+        {
+            AddFadingPopup(displayUntil, fadeDuration, label, backgroundColor, alphaToColour, Vector2.zero);
+        }
+
+        public void AddFadingPopup(double displayUntil, double fadeDuration, string label, Color backgroundColor, bool alphaToColour, Vector2 positionOffset)
+        {
+            _fadingPopups.Add(new FadingPopupData {
+                Label = label,
+                BackgroundColor = backgroundColor,
+                AlphaToColour = alphaToColour,
+                PositionOffset = positionOffset,
+                DisplayUntil = displayUntil,
+                FadeDuration = fadeDuration
+            });
+        }
+
+        private void UpdateFadingPopup(FadingPopupData data)
+        {
+            double timeRemaining = data.DisplayUntil - EditorApplication.timeSinceStartup;
+            if (timeRemaining <= 0) {
+                _fadingPopups.Remove(data);
+                return;
+            }
+
+            float alpha = timeRemaining < data.FadeDuration ? Mathf.Clamp01((float)(timeRemaining / data.FadeDuration)) : 1.0f;
+
+            Color colour = data.BackgroundColor;
+            colour.a = alpha;
+
+            DrawMousePopup(data.Label, colour, data.AlphaToColour, data.PositionOffset);
+            //sceneView.Repaint();
+        }
+
+        public void ClearFadingPopups()
+        {
+            _fadingPopups.Clear();
         }
     }
 }

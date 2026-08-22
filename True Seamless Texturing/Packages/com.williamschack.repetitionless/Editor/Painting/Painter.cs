@@ -171,8 +171,7 @@ namespace Repetitionless.Editor.Painter
             if (_sceneInteraction.ResizingBrush)
                 DrawBrushResizeNotification();
 
-            if (_layerNotificationDisplayUntil >= 0)
-                DrawLayerChangeNotification(sceneView);
+            _brushPreview.OnSceneGUI();
         }
 
         private void UndoRedoPerformed()
@@ -215,9 +214,13 @@ namespace Repetitionless.Editor.Painter
                 if (currentEvent.delta.y > 0) _editingLayer = Mathf.Max(0, _editingLayer - 1);
                 else                          _editingLayer = Mathf.Min(_editingLayer + 1, Constants.MAX_LAYERS_TERRAIN - 1);
 
-                _layerNotificationDisplayUntil = EditorApplication.timeSinceStartup + LAYER_CHANGE_NOTIFICATION_HOLD_DURATION;
+                _brushPreview.ClearFadingPopups();
+                _brushPreview.AddFadingPopup(
+                    EditorApplication.timeSinceStartup + LAYER_CHANGE_NOTIFICATION_HOLD_DURATION,
+                    LAYER_CHANGE_NOTIFICATION_FADE_DURATION,
+                     $"Layer {_editingLayer + 1}", new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
+                );
 
-                //Repaint();
                 currentEvent.Use();
             }
         }
@@ -277,20 +280,6 @@ namespace Repetitionless.Editor.Painter
             }
             
             _brushPreview.DrawMousePopup(text, new Color(0.1f, 0.1f, 0.1f, 1.0f), true, new Vector2(0, -25));
-        }
-
-        private void DrawLayerChangeNotification(SceneView sceneView)
-        {
-            double timeRemaining = _layerNotificationDisplayUntil - EditorApplication.timeSinceStartup;
-            if (timeRemaining <= 0) {
-                _layerNotificationDisplayUntil = -1;
-                return;
-            }
-
-            float alpha = timeRemaining < LAYER_CHANGE_NOTIFICATION_FADE_DURATION ? Mathf.Clamp01((float)(timeRemaining / LAYER_CHANGE_NOTIFICATION_FADE_DURATION)) : 1.0f;
-
-            _brushPreview.DrawMousePopup($"Layer {_editingLayer + 1}", new Color(0.1f, 0.1f, 0.1f, alpha), true, new Vector2(0, -25));
-            sceneView.Repaint();
         }
 
         private void Paint(RaycastHit mouseHit)
