@@ -20,21 +20,26 @@ namespace Repetitionless.Editor.CustomWindows
 
         private void CreateGUI()
         {
+            SceneView.duringSceneGui -= DuringSceneGUI;
+            SceneView.duringSceneGui += DuringSceneGUI;
+
             _painter = new Painter();
             _painter.OnPropertyChanged += Repaint;
         }
 
         private void OnDisable()
         {
+            SceneView.duringSceneGui -= DuringSceneGUI;
+
             _painter.StopPainting();
         }
         
         private void OnGUI()
         {
-            if (GUILayout.Button("Paint")) {
-                if (_painter.Painting) _painter.StopPainting();
-                else                   _painter.StartPainting();
-            }
+            EditorGUI.BeginChangeCheck();
+            GUILayout.Toggle(_painter.Painting, "Paint", GUI.skin.button);
+            if (EditorGUI.EndChangeCheck())
+                _painter.TogglePainting();
 
             _painter.EditingLayer = EditorGUILayout.IntSlider("Layer", _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
 
@@ -44,6 +49,15 @@ namespace Repetitionless.Editor.CustomWindows
             _painter.BrushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField("Brush Radius", _painter.BrushRadiusReal));
             _painter.BrushOpacity = EditorGUILayout.Slider("Brush Opacity", _painter.BrushOpacity, 0, 1);
             _painter.BrushSmoothness = EditorGUILayout.Slider("Brush Smoothness", _painter.BrushSmoothness, 0, 1);
+        }
+
+        private void DuringSceneGUI(SceneView sceneView)
+        {
+            Event currentEvent = Event.current;
+            if (currentEvent.type == EventType.KeyDown && currentEvent.keyCode == KeyCode.G) {
+                _painter.TogglePainting();
+                Repaint();
+            }
         }
     }
 }

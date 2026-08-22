@@ -81,6 +81,7 @@ namespace Repetitionless.Editor.Painter
             _selection.AddSelected();
 
             _painting = true;
+            SceneView.RepaintAll();
         }
 
         public void StopPainting()
@@ -93,6 +94,13 @@ namespace Repetitionless.Editor.Painter
             _selection.Cleanup();
 
             _painting = false;
+            SceneView.RepaintAll();
+        }
+
+        public void TogglePainting()
+        {
+            if (_painting) StopPainting();
+            else           StartPainting();
         }
 
         private void DuringSceneGUI(SceneView sceneView)
