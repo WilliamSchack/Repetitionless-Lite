@@ -2,16 +2,10 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
-using System.Linq;
-
-using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Painter
 {
-    using Data;
     using Materials;
-    using Utilities.Texture;
-    using Utilities.GUI;
 
     public class Painter
     {
@@ -22,16 +16,17 @@ namespace Repetitionless.Editor.Painter
         private const double LAYER_CHANGE_POPUP_HOLD_DURATION = 1.0f;
         private const double LAYER_CHANGE_POPUP_FADE_DURATION = 0.4f;
 
-        
-
         private const float BRUSH_RADIUS_SENSITIVITY = 0.2f;
         private const float BRUSH_OPACITY_SENSITIVITY = 0.008f;
         private const float BRUSH_SMOOTHNESS_SENSITIVITY = 0.008f;
         private const float BRUSH_SENSITIVITY_SHIFT_MULTIPLIER = 0.1f;
 
-        private const string UNDO_STROKE_NAME = "Repetitionless Paint Brush Stroke";        
+        private const string UNDO_STROKE_NAME = "Repetitionless Paint Brush Stroke";
 
-        private double _layerNotificationDisplayUntil = -1;
+        private PainterSceneInteraction _sceneInteraction = new PainterSceneInteraction();
+        private PainterBrushPreview _brushPreview = new PainterBrushPreview();
+        private PainterSelection _selection = new PainterSelection();
+
 
         ComputeShader _computeShader = null;
 
@@ -39,7 +34,6 @@ namespace Repetitionless.Editor.Painter
         
         private float _brushRadiusReal = 15;
         private float _brushRadius => _brushRadiusReal * 0.01f;
-
         private float _brushOpacity = 1.0f;
         private float _brushSmoothness = 0.5f;
 
@@ -49,22 +43,18 @@ namespace Repetitionless.Editor.Painter
 
         private Texture2D _brushTexture = null;
 
-        List<GameObject> _paintingObjects = new List<GameObject>();
-        GameObject _currentlyPaintingObject = null;
+        private List<GameObject> _paintingObjects = new List<GameObject>();
+        private GameObject _currentlyPaintingObject = null;
 
-
-
-        // New vars
-        private PainterSceneInteraction _sceneInteraction = new PainterSceneInteraction();
-        private PainterBrushPreview _brushPreview = new PainterBrushPreview();
-        private PainterSelection _selection = new PainterSelection();
-
-        public bool Painting = false;
+        private bool _painting = false;
+        public bool Painting => _painting;
 
         public void StartPainting()
         {
             SceneView.duringSceneGui -= DuringSceneGUI;
             SceneView.duringSceneGui += DuringSceneGUI;
+            Undo.undoRedoPerformed -= UndoRedoPerformed;
+            Undo.undoRedoPerformed += UndoRedoPerformed;
 
             _sceneInteraction.Listen();
             _sceneInteraction.ResizePressed  -= ResizePressed;
@@ -80,19 +70,22 @@ namespace Repetitionless.Editor.Painter
             _sceneInteraction.LayerDecreased += LayerDecreased;
             _sceneInteraction.LayerIncreased += LayerIncreased;
 
-            _computeShader = Resources.Load<ComputeShader>(PAINT_TEXTURE_COMPUTE_RESOURCES_PATH);
-            if (_computeShader == null)
-                Debug.LogError("No texture paint compute shader found...");
+            if (_computeShader == null) {
+                _computeShader = Resources.Load<ComputeShader>(PAINT_TEXTURE_COMPUTE_RESOURCES_PATH);
+                if (_computeShader == null)
+                    Debug.LogError("No texture paint compute shader found...");
+            }
             
             _selection.Setup();
             _selection.AddSelected();
 
-            Painting = true;
+            _painting = true;
         }
 
         public void StopPainting()
         {
             SceneView.duringSceneGui -= DuringSceneGUI;
+            Undo.undoRedoPerformed -= UndoRedoPerformed;
 
             _sceneInteraction.StopListening();
             _sceneInteraction.ResizePressed  -= ResizePressed;
@@ -102,7 +95,7 @@ namespace Repetitionless.Editor.Painter
 
             _selection.Cleanup();
 
-            Painting = false;
+            _painting = false;
         }
 
         private void DuringSceneGUI(SceneView sceneView)
@@ -160,10 +153,6 @@ namespace Repetitionless.Editor.Painter
             );
         }
 
-        
-
-        
-
         private void ResizePressed(EResizingProperty resizingProperty)
         {
             _brushResizeLastMousePosX = Event.current.mousePosition.x;
@@ -198,6 +187,16 @@ namespace Repetitionless.Editor.Painter
         private void ZoomPressed(SceneView sceneView, Vector3 pos)
         {
             sceneView.Frame(new Bounds(pos, Vector3.one), false);
+        }
+
+        private void UndoRedoPerformed()
+        {
+            // Blit control textures back to painted objects as they may have changed
+            foreach (PaintableObjectData objectData in _selection.PaintableObjectData.Values) {
+                for (int i = 0; i < objectData.ControlTextures.Count; i++) {
+                    Graphics.Blit(objectData.ControlTextures[i], objectData.RenderTextures[i]);
+                }
+            }
         }
 
         private void DrawBrushResizeNotification()
@@ -291,7 +290,7 @@ namespace Repetitionless.Editor.Painter
             foreach (Texture2D controlTexture in objectData.ControlTextures)
                 Undo.RegisterCompleteObjectUndo(controlTexture, UNDO_STROKE_NAME);
 
-            Material repetitionlessMaterial = _selection.GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
+            Material repetitionlessMaterial = RepetitionlessLayeredMaterialUtilities.GetFirstLayeredMaterial(objectData.MeshRenderer);
 
             for (int i = 0; i < objectData.ControlTextures.Count; i++) {
                 // Apply to the object material
@@ -303,7 +302,7 @@ namespace Repetitionless.Editor.Painter
         {
             foreach (GameObject gameObject in _paintingObjects) {
                 PaintableObjectData objectData = _selection.PaintableObjectData[gameObject];
-                Material repetitionlessMaterial = _selection.GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
+                Material repetitionlessMaterial = RepetitionlessLayeredMaterialUtilities.GetFirstLayeredMaterial(objectData.MeshRenderer);
 
                 RenderTexture previousRT = RenderTexture.active;
 

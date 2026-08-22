@@ -28,15 +28,11 @@ namespace Repetitionless.Editor.Painter
         {
             ObjectChangeEvents.changesPublished -= ChangesPublished;
             ObjectChangeEvents.changesPublished += ChangesPublished;
-
-            Undo.undoRedoPerformed -= UndoRedoPerformed;
-            Undo.undoRedoPerformed += UndoRedoPerformed;
         }
 
         public void Cleanup()
         {
             ObjectChangeEvents.changesPublished -= ChangesPublished;
-            Undo.undoRedoPerformed -= UndoRedoPerformed;
         }
 
         // Must be called in OnSceneGUI
@@ -91,16 +87,6 @@ namespace Repetitionless.Editor.Painter
             }
         }
 
-        private void UndoRedoPerformed()
-        {
-            // Blit control textures back to painted objects as they may have changed
-            foreach (PaintableObjectData objectData in _paintableObjectData.Values) {
-                for (int i = 0; i < objectData.ControlTextures.Count; i++) {
-                    Graphics.Blit(objectData.ControlTextures[i], objectData.RenderTextures[i]);
-                }
-            }
-        }
-
         public void Add(GameObject obj)
         {
             if (_selectedPaintableObjects.Contains(obj))
@@ -114,7 +100,7 @@ namespace Repetitionless.Editor.Painter
 
             // Need to test if:
             // Repetitionless material is removed
-            Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(objectData.MeshRenderer);
+            Material repetitionlessMaterial = RepetitionlessLayeredMaterialUtilities.GetFirstLayeredMaterial(objectData.MeshRenderer);
             objectData.DataManager = new MaterialDataManager(repetitionlessMaterial);
 
             RepetitionlessMaterialDataSO materialPropertiesSO = objectData.DataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
@@ -253,7 +239,7 @@ namespace Repetitionless.Editor.Painter
             obj.TryGetComponent(out meshRenderer);
             if (meshRenderer == null) return false;
 
-            Material repetitionlessMaterial = GetFirstRepetitionlessMaterial(meshRenderer);
+            Material repetitionlessMaterial = RepetitionlessLayeredMaterialUtilities.GetFirstLayeredMaterial(meshRenderer);
 
             // If the repetitionless material is using the terrain shader, dont allow either
             // Need to add a message to change
@@ -271,19 +257,6 @@ namespace Repetitionless.Editor.Painter
             if (layeredDataSO.MaxLayers != objectData.MaxLayers)
                 objectData.MaxLayers = layeredDataSO.MaxLayers;
                 
-        }
-
-        // MOVE ME OUT OF THIS FILE
-        public Material GetFirstRepetitionlessMaterial(MeshRenderer renderer)
-        {
-            foreach (Material mat in renderer.sharedMaterials) {
-                if (!mat.shader.name.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED))
-                    continue;
-
-                return mat; // Assume only one material is on the object
-            }
-
-            return null;
         }
     }
 }

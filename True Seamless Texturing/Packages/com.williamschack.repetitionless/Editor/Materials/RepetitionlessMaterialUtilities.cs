@@ -260,7 +260,7 @@ namespace Repetitionless.Editor.Materials
             ERenderPipeline currentPipeline = RenderPipelineUtilities.GetActiveRenderPipeline();
             SetSurface(mat, surfaceType, currentPipeline);
         }
-
+        
         // Should move more utility functions here from the inspector but they arent globally needed so for now this is it
     }
 }

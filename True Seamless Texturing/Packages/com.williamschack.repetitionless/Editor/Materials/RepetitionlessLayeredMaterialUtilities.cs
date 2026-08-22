@@ -107,6 +107,18 @@ namespace Repetitionless.Editor.Materials
 
             return data;
         }
+
+        public static Material GetFirstLayeredMaterial(MeshRenderer renderer)
+        {
+            foreach (Material mat in renderer.sharedMaterials) {
+                if (!mat.shader.name.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED))
+                    continue;
+
+                return mat; // Assume only one material is on the object
+            }
+
+            return null;
+        }
     }
 }
 #endif
