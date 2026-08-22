@@ -8,14 +8,14 @@ namespace Repetitionless.Editor.Painter
     public class PainterSceneInteraction
     {
         // Callbacks
-        public Action<EResizingProperty> ResizePressed;
-        public Action<EResizingProperty> ResizeHeld;
-        public Action ResizeReleased;
+        public Action<EResizingProperty> OnResizePressed;
+        public Action<EResizingProperty> OnResizeHeld;
+        public Action OnResizeReleased;
 
-        public Action<SceneView, Vector3> ZoomPressed;
+        public Action<SceneView, Vector3> OnZoomPressed;
 
-        public Action LayerDecreased;
-        public Action LayerIncreased;
+        public Action OnLayerDecreased;
+        public Action OnLayerIncreased;
 
         // Variables
         private bool _shiftHeld = false;
@@ -123,7 +123,7 @@ namespace Repetitionless.Editor.Painter
             // Start resize
             if (currentEvent.type == EventType.KeyDown && !_resizingBrush) {
                 _resizingBrush = true;
-                ResizePressed?.Invoke(_resizingProperty);
+                OnResizePressed?.Invoke(_resizingProperty);
                 currentEvent.Use();
                 return;
             }
@@ -132,7 +132,7 @@ namespace Repetitionless.Editor.Painter
             if (currentEvent.type == EventType.KeyUp && _resizingBrush) {
                 _resizingBrush = false;
                 _resizingProperty = EResizingProperty.None;
-                ResizeReleased?.Invoke();
+                OnResizeReleased?.Invoke();
                 currentEvent.Use();
                 return;
             }
@@ -141,7 +141,7 @@ namespace Repetitionless.Editor.Painter
             if (currentEvent.type != EventType.MouseMove || !_resizingBrush)
                 return;
 
-            ResizeHeld(_resizingProperty);
+            OnResizeHeld(_resizingProperty);
             currentEvent.Use();
         }
 
@@ -150,7 +150,7 @@ namespace Repetitionless.Editor.Painter
             if (_lastMouseHit.collider == null || currentEvent.keyCode != KeyCode.F || currentEvent.type != EventType.KeyDown)
                 return;
 
-            ZoomPressed?.Invoke(sceneView, _lastMouseHit.point);
+            OnZoomPressed?.Invoke(sceneView, _lastMouseHit.point);
             currentEvent.Use();
         }
 
@@ -158,8 +158,8 @@ namespace Repetitionless.Editor.Painter
         {
             // If shift + mouse wheel, change layer
             if (currentEvent.shift && currentEvent.type == EventType.ScrollWheel) {
-                if (currentEvent.delta.y > 0) LayerDecreased?.Invoke();
-                else                          LayerIncreased?.Invoke();
+                if (currentEvent.delta.y > 0) OnLayerDecreased?.Invoke();
+                else                          OnLayerIncreased?.Invoke();
 
                 currentEvent.Use();
             }

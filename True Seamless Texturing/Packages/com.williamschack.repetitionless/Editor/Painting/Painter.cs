@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using System;
 using System.Collections.Generic;
 
 namespace Repetitionless.Editor.Painter
@@ -23,25 +24,25 @@ namespace Repetitionless.Editor.Painter
 
         private const string UNDO_STROKE_NAME = "Repetitionless Paint Brush Stroke";
 
+        public Action OnPropertyChanged;
+
         private PainterSceneInteraction _sceneInteraction = new PainterSceneInteraction();
         private PainterBrushPreview _brushPreview = new PainterBrushPreview();
         private PainterSelection _selection = new PainterSelection();
 
+        private ComputeShader _computeShader = null;
 
-        ComputeShader _computeShader = null;
-
-        private int _editingLayer = 1;
-        
-        private float _brushRadiusReal = 15;
-        private float _brushRadius => _brushRadiusReal * 0.01f;
-        private float _brushOpacity = 1.0f;
-        private float _brushSmoothness = 0.5f;
+        public int EditingLayer = 1;
+        public Texture2D BrushTexture = null;
+        public float BrushRadiusReal = 15;
+        public float BrushRadius => BrushRadiusReal * 0.01f;
+        public float BrushOpacity = 1.0f;
+        public float BrushSmoothness = 0.5f;
 
         private float _brushResizeLastMousePosX;
 
         private int _strokeUndoGroup = -1;
 
-        private Texture2D _brushTexture = null;
 
         private List<GameObject> _paintingObjects = new List<GameObject>();
         private GameObject _currentlyPaintingObject = null;
@@ -57,18 +58,18 @@ namespace Repetitionless.Editor.Painter
             Undo.undoRedoPerformed += UndoRedoPerformed;
 
             _sceneInteraction.Listen();
-            _sceneInteraction.ResizePressed  -= ResizePressed;
-            _sceneInteraction.ResizeHeld     -= ResizeHeld;
-            _sceneInteraction.ResizeReleased -= ResizeReleased;
-            _sceneInteraction.ZoomPressed    -= ZoomPressed;
-            _sceneInteraction.LayerDecreased -= LayerDecreased;
-            _sceneInteraction.LayerIncreased -= LayerIncreased;
-            _sceneInteraction.ResizePressed  += ResizePressed;
-            _sceneInteraction.ResizeHeld     += ResizeHeld;
-            _sceneInteraction.ResizeReleased += ResizeReleased;
-            _sceneInteraction.ZoomPressed    += ZoomPressed;
-            _sceneInteraction.LayerDecreased += LayerDecreased;
-            _sceneInteraction.LayerIncreased += LayerIncreased;
+            _sceneInteraction.OnResizePressed  -= ResizePressed;
+            _sceneInteraction.OnResizeHeld     -= ResizeHeld;
+            _sceneInteraction.OnResizeReleased -= ResizeReleased;
+            _sceneInteraction.OnZoomPressed    -= ZoomPressed;
+            _sceneInteraction.OnLayerDecreased -= LayerDecreased;
+            _sceneInteraction.OnLayerIncreased -= LayerIncreased;
+            _sceneInteraction.OnResizePressed  += ResizePressed;
+            _sceneInteraction.OnResizeHeld     += ResizeHeld;
+            _sceneInteraction.OnResizeReleased += ResizeReleased;
+            _sceneInteraction.OnZoomPressed    += ZoomPressed;
+            _sceneInteraction.OnLayerDecreased += LayerDecreased;
+            _sceneInteraction.OnLayerIncreased += LayerIncreased;
 
             if (_computeShader == null) {
                 _computeShader = Resources.Load<ComputeShader>(PAINT_TEXTURE_COMPUTE_RESOURCES_PATH);
@@ -88,10 +89,6 @@ namespace Repetitionless.Editor.Painter
             Undo.undoRedoPerformed -= UndoRedoPerformed;
 
             _sceneInteraction.StopListening();
-            _sceneInteraction.ResizePressed  -= ResizePressed;
-            _sceneInteraction.ResizeHeld     -= ResizeHeld;
-            _sceneInteraction.ResizeReleased -= ResizeReleased;
-            _sceneInteraction.ZoomPressed    -= ZoomPressed;
 
             _selection.Cleanup();
 
@@ -110,10 +107,10 @@ namespace Repetitionless.Editor.Painter
                 FinishPaintStroke();
 
             if (!_sceneInteraction.ResizingBrush)
-                _selection.OnSceneGUI(_sceneInteraction.LastMouseHit, sceneView);
+                _selection.DuringSceneGUI(_sceneInteraction.LastMouseHit, sceneView);
 
             if (_sceneInteraction.LastMouseHit.collider != null) {
-                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, _brushRadius, _brushSmoothness);
+                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, BrushRadius, BrushSmoothness);
 
                 if (!_sceneInteraction.ResizingBrush)
                     Paint(_sceneInteraction.LastMouseHit);
@@ -130,8 +127,7 @@ namespace Repetitionless.Editor.Painter
             if (_sceneInteraction.ResizingBrush)
                 return;
 
-            _editingLayer = Mathf.Max(0, _editingLayer - 1);
-            AddLayerPopup();
+            UpdateLayer(Mathf.Max(0, EditingLayer - 1));
         }
 
         private void LayerIncreased()
@@ -139,17 +135,21 @@ namespace Repetitionless.Editor.Painter
             if (_sceneInteraction.ResizingBrush)
                 return;
 
-            _editingLayer = Mathf.Min(_editingLayer + 1, Constants.MAX_LAYERS_TERRAIN - 1);
-            AddLayerPopup();
+            UpdateLayer(Mathf.Min(EditingLayer + 1, Constants.MAX_LAYERS_TERRAIN - 1));
         }
 
-        private void AddLayerPopup()
+        private void UpdateLayer(int newLayer)
         {
+            // Update layer
+            EditingLayer = newLayer;
+            OnPropertyChanged?.Invoke();
+
+            // Draw popup
             _brushPreview.ClearFadingPopups();
             _brushPreview.AddFadingPopup(
                 EditorApplication.timeSinceStartup + LAYER_CHANGE_POPUP_HOLD_DURATION,
                 LAYER_CHANGE_POPUP_FADE_DURATION,
-                    $"Layer {_editingLayer + 1}", new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
+                    $"Layer {EditingLayer + 1}", new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
             );
         }
 
@@ -168,15 +168,17 @@ namespace Repetitionless.Editor.Painter
 
             switch (resizingProperty) {
                 case EResizingProperty.Radius:
-                    _brushRadiusReal = Mathf.Max(0.01f, _brushRadiusReal + delta * (BRUSH_RADIUS_SENSITIVITY * sensitivityMultiplier));
+                    BrushRadiusReal = Mathf.Max(0.01f, BrushRadiusReal + delta * (BRUSH_RADIUS_SENSITIVITY * sensitivityMultiplier));
                     break;
                 case EResizingProperty.Opacity:
-                    _brushOpacity = Mathf.Clamp01(_brushOpacity + delta * (BRUSH_OPACITY_SENSITIVITY * sensitivityMultiplier));
+                    BrushOpacity = Mathf.Clamp01(BrushOpacity + delta * (BRUSH_OPACITY_SENSITIVITY * sensitivityMultiplier));
                     break;
                 case EResizingProperty.Smoothness:
-                    _brushSmoothness = Mathf.Clamp01(_brushSmoothness + delta * (BRUSH_SMOOTHNESS_SENSITIVITY * sensitivityMultiplier));
+                    BrushSmoothness = Mathf.Clamp01(BrushSmoothness + delta * (BRUSH_SMOOTHNESS_SENSITIVITY * sensitivityMultiplier));
                     break;
             }
+            
+            OnPropertyChanged?.Invoke();
         }
 
         private void ResizeReleased()
@@ -207,13 +209,13 @@ namespace Repetitionless.Editor.Painter
             string text = "";
             switch (_sceneInteraction.ResizingProperty) {
                 case EResizingProperty.Radius:
-                    text = $"Radus {_brushRadiusReal.ToString(_sceneInteraction.ShiftHeld ? "0.00" : "0.0")}";
+                    text = $"Radus {BrushRadiusReal.ToString(_sceneInteraction.ShiftHeld ? "0.00" : "0.0")}";
                     break;
                 case EResizingProperty.Opacity:
-                    text = $"Opacity {_brushOpacity.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
+                    text = $"Opacity {BrushOpacity.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
                     break;
                 case EResizingProperty.Smoothness:
-                    text = $"Smoothness {_brushSmoothness.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
+                    text = $"Smoothness {BrushSmoothness.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
                     break;
             }
             
@@ -229,9 +231,9 @@ namespace Repetitionless.Editor.Painter
                 return;
 
             // Cannot paint if selected layer exceeds available layers, show on hover
-            if (gameObject != null && _editingLayer >= (int)_selection.PaintableObjectData[gameObject].MaxLayers) {
+            if (gameObject != null && EditingLayer >= (int)_selection.PaintableObjectData[gameObject].MaxLayers) {
                 _brushPreview.DrawMousePopup(
-                    $"You are painting on an invalid Layer ({_editingLayer + 1})\nUpdate the Max Layers property on this material",
+                    $"You are painting on an invalid Layer ({EditingLayer + 1})\nUpdate the Max Layers property on this material",
                     new Color(0.25f, 0, 0, 1)
                 );
 
@@ -265,14 +267,14 @@ namespace Repetitionless.Editor.Painter
             for (int i = 0; i < objectData.RenderTextures.Count; i++)
                 _computeShader.SetTexture(kernel, $"Control{i}", objectData.RenderTextures[i]);
         
-            _computeShader.SetTexture(kernel, "BrushTexture", _brushTexture == null ? Texture2D.whiteTexture : _brushTexture);
-            _computeShader.SetInt("TargetSlice", _editingLayer / 4);
-            _computeShader.SetInt("TargetChannel", _editingLayer % 4);
+            _computeShader.SetTexture(kernel, "BrushTexture", BrushTexture == null ? Texture2D.whiteTexture : BrushTexture);
+            _computeShader.SetInt("TargetSlice", EditingLayer / 4);
+            _computeShader.SetInt("TargetChannel", EditingLayer % 4);
             _computeShader.SetInt("BrushChannel", 0);
             _computeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
-            _computeShader.SetFloat("Radius", _brushRadius);
-            _computeShader.SetFloat("Opacity", _brushOpacity);
-            _computeShader.SetFloat("Smoothness", _brushSmoothness);
+            _computeShader.SetFloat("Radius", BrushRadius);
+            _computeShader.SetFloat("Opacity", BrushOpacity);
+            _computeShader.SetFloat("Smoothness", BrushSmoothness);
 
             int groupsX = Mathf.CeilToInt(objectData.ControlTextures[0].width  / (float)COMPUTE_THREADS_X);
             int groupsY = Mathf.CeilToInt(objectData.ControlTextures[0].height / (float)COMPUTE_THREADS_Y);
@@ -332,12 +334,6 @@ namespace Repetitionless.Editor.Painter
             _currentlyPaintingObject = null;
             _paintingObjects.Clear();
         }
-
-        
-
-        
-
-
     }
 }
 

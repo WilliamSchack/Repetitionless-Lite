@@ -9,20 +9,6 @@ namespace Repetitionless.Editor.CustomWindows
 
     public class PainterWindow : EditorWindow
     {
-        private int _textureResolution = 512;
-
-        private int _editingLayer = 1;
-
-        private Texture2D _brushTexture = null;
-        private float _brushRadiusReal = 15;
-        private float _brushRadius => _brushRadiusReal * 0.01f;
-        private float _brushOpacity = 1.0f;
-        private float _brushSmoothness = 0.5f;
-
-        private GUIStyle _notificationBoxStyle;
-        private GUIStyle _notificationLabelStyle;
-        private bool _guiStylesSetup = false;
-
         private Painter _painter;
 
         [MenuItem("Window/Repetitionless/Open Painter", priority = 1)]
@@ -35,51 +21,29 @@ namespace Repetitionless.Editor.CustomWindows
         private void CreateGUI()
         {
             _painter = new Painter();
-        }
-
-        private void SetupGUIStyles()
-        {
-            _guiStylesSetup = true;
-
-            // Notification box
-            Texture2D backgroundTexture = new Texture2D(1, 1);
-            backgroundTexture.SetPixel(0, 0, Color.white);
-            backgroundTexture.Apply();
-
-            _notificationBoxStyle = new GUIStyle(GUI.skin.box) {
-                normal = { background = backgroundTexture },
-                padding = { right = 5 }
-            };
-
-            // Notification label
-            _notificationLabelStyle = new GUIStyle(GUI.skin.label);
-            _notificationLabelStyle.fontSize = 14;
-            _notificationLabelStyle.fontStyle = FontStyle.Bold;
-        }
-
-        private void OnGUI()
-        {
-            if (!_guiStylesSetup)
-                SetupGUIStyles();
-
-            if (GUILayout.Button("Paint")) {
-                if (_painter.Painting) _painter.StopPainting();
-                else                   _painter.StartPainting();
-            }
-
-            _editingLayer = EditorGUILayout.IntSlider("Layer", _editingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
-
-            GUILayout.Space(10);
-
-            _brushTexture = (Texture2D)EditorGUILayout.ObjectField("Brush Texture", _brushTexture, typeof(Texture2D), false, GUILayout.Height(GUIUtilities.LINE_HEIGHT));
-            _brushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField("Brush Radius", _brushRadiusReal));
-            _brushOpacity = EditorGUILayout.Slider("Brush Opacity", _brushOpacity, 0, 1);
-            _brushSmoothness = EditorGUILayout.Slider("Brush Smoothness", _brushSmoothness, 0, 1);
+            _painter.OnPropertyChanged += Repaint;
         }
 
         private void OnDisable()
         {
             _painter.StopPainting();
+        }
+        
+        private void OnGUI()
+        {
+            if (GUILayout.Button("Paint")) {
+                if (_painter.Painting) _painter.StopPainting();
+                else                   _painter.StartPainting();
+            }
+
+            _painter.EditingLayer = EditorGUILayout.IntSlider("Layer", _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
+
+            GUILayout.Space(10);
+
+            _painter.BrushTexture = (Texture2D)EditorGUILayout.ObjectField("Brush Texture", _painter.BrushTexture, typeof(Texture2D), false, GUILayout.Height(GUIUtilities.LINE_HEIGHT));
+            _painter.BrushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField("Brush Radius", _painter.BrushRadiusReal));
+            _painter.BrushOpacity = EditorGUILayout.Slider("Brush Opacity", _painter.BrushOpacity, 0, 1);
+            _painter.BrushSmoothness = EditorGUILayout.Slider("Brush Smoothness", _painter.BrushSmoothness, 0, 1);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Repetitionless.Editor.Painter
         }
 
         // Must be called in OnSceneGUI
-        public void OnSceneGUI(RaycastHit mouseHit, SceneView sceneView)
+        public void DuringSceneGUI(RaycastHit mouseHit, SceneView sceneView)
         {
             Event currentEvent = Event.current;
 
