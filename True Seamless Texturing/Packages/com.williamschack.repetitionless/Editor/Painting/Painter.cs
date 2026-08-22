@@ -120,7 +120,7 @@ namespace Repetitionless.Editor.Painter
                 return;
 
             // Dont do anything when moving cam
-            if (Event.current.alt) return;
+            if (_sceneInteraction.AltHeld) return;
 
             if (Event.current.button == 0 && Event.current.type == EventType.MouseUp)
                 FinishPaintStroke();

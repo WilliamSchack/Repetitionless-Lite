@@ -18,10 +18,12 @@ namespace Repetitionless.Editor.Painter
         public Action OnLayerIncreased;
 
         // Variables
-        private bool _shiftHeld = false;
         private bool _rightClickHeld = false;
-        public bool ShiftHeld => _shiftHeld;
+        private bool _altHeld = false;
+        private bool _shiftHeld = false;
         public bool RightClickHeld => _rightClickHeld;
+        public bool AltHeld => _altHeld;
+        public bool ShiftHeld => _shiftHeld;
 
         private EResizingProperty _resizingProperty = EResizingProperty.None;
         public EResizingProperty ResizingProperty => _resizingProperty;
@@ -79,6 +81,10 @@ namespace Repetitionless.Editor.Painter
             // Right click
             if (currentEvent.type == EventType.MouseDown && currentEvent.button == 1) _rightClickHeld = true;
             if (currentEvent.type == EventType.MouseUp && currentEvent.button == 1) _rightClickHeld = false;
+
+            // Alt
+            if (currentEvent.type == EventType.KeyDown && (currentEvent.keyCode == KeyCode.LeftAlt || currentEvent.keyCode == KeyCode.RightAlt)) _altHeld = true;
+            if (currentEvent.type == EventType.KeyUp && (currentEvent.keyCode == KeyCode.LeftAlt || currentEvent.keyCode == KeyCode.RightAlt)) _altHeld = false;
 
             // Shift
             if (currentEvent.type == EventType.KeyDown && (currentEvent.keyCode == KeyCode.LeftShift || currentEvent.keyCode == KeyCode.RightShift)) _shiftHeld = true;
