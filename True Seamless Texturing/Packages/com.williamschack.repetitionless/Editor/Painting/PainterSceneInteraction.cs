@@ -23,9 +23,11 @@ namespace Repetitionless.Editor.Painter
         private bool _rightClickHeld = false;
         private bool _altHeld = false;
         private bool _shiftHeld = false;
+        private bool _controlHeld = false;
         public bool RightClickHeld => _rightClickHeld;
         public bool AltHeld => _altHeld;
         public bool ShiftHeld => _shiftHeld;
+        public bool ControlHeld => _controlHeld;
 
         private EResizingProperty _resizingProperty = EResizingProperty.None;
         public EResizingProperty ResizingProperty => _resizingProperty;
@@ -82,6 +84,10 @@ namespace Repetitionless.Editor.Painter
             // Shift
             if (currentEvent.type == EventType.KeyDown && (currentEvent.keyCode == KeyCode.LeftShift || currentEvent.keyCode == KeyCode.RightShift)) _shiftHeld = true;
             if (currentEvent.type == EventType.KeyUp && (currentEvent.keyCode == KeyCode.LeftShift || currentEvent.keyCode == KeyCode.RightShift)) _shiftHeld = false;
+
+            // Control
+            if (currentEvent.type == EventType.KeyDown && (currentEvent.keyCode == KeyCode.LeftControl || currentEvent.keyCode == KeyCode.RightControl)) _controlHeld = true;
+            if (currentEvent.type == EventType.KeyUp && (currentEvent.keyCode == KeyCode.LeftControl || currentEvent.keyCode == KeyCode.RightControl)) _controlHeld = false;
         }
 
         private void TrackResize(Event currentEvent, bool paintingHoles)
@@ -94,7 +100,7 @@ namespace Repetitionless.Editor.Painter
 
             // Cancel on control to allow ctrl+s saving
             // Cancel on right click to avoid camera movement
-            if (currentEvent.control || _rightClickHeld)
+            if (_controlHeld || _rightClickHeld)
                 return;
 
             EResizingProperty prevEResizingProperty = _resizingProperty;
