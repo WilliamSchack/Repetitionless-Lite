@@ -12,6 +12,9 @@ namespace Repetitionless.Editor.Painter
         public Action<EResizingProperty> OnResizeHeld;
         public Action OnResizeReleased;
 
+        public Action OnInvertPressed;
+        public Action OnInvertReleased;
+
         public Action<SceneView, Vector3> OnZoomPressed;
 
         public Action OnToggleEraseHolesPressed;
@@ -50,6 +53,7 @@ namespace Repetitionless.Editor.Painter
 
             TrackHeldKeys(currentEvent);
             TrackResize(currentEvent, paintingHoles);
+            TrackInvertBrush(currentEvent);
             TrackZoom(currentEvent, sceneView);
             if (!paintingHoles) TrackLayerChange(currentEvent);
             if (paintingHoles) TrackHolesKeybinds(currentEvent);
@@ -161,6 +165,22 @@ namespace Repetitionless.Editor.Painter
 
             OnResizeHeld(_resizingProperty);
             currentEvent.Use();
+        }
+
+        private void TrackInvertBrush(Event currentEvent)
+        {
+            if (currentEvent.keyCode != KeyCode.LeftControl && currentEvent.keyCode != KeyCode.RightControl)
+                return;
+
+            if (currentEvent.type == EventType.KeyDown) {
+                OnInvertPressed?.Invoke();
+                currentEvent.Use();
+            }
+                
+            if (currentEvent.type == EventType.KeyUp) {
+                OnInvertReleased?.Invoke();
+                currentEvent.Use();
+            }
         }
 
         private void TrackZoom(Event currentEvent, SceneView sceneView)

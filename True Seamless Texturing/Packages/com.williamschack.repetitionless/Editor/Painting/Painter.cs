@@ -94,6 +94,8 @@ namespace Repetitionless.Editor.Painter
             _sceneInteraction.OnResizePressed           -= ResizePressed;
             _sceneInteraction.OnResizeHeld              -= ResizeHeld;
             _sceneInteraction.OnResizeReleased          -= ResizeReleased;
+            _sceneInteraction.OnInvertPressed           -= InvertPressed;
+            _sceneInteraction.OnInvertReleased          -= InvertReleased;
             _sceneInteraction.OnZoomPressed             -= ZoomPressed;
             _sceneInteraction.OnToggleEraseHolesPressed -= ToggleEraseHolesPressed;
             _sceneInteraction.OnLayerDecreased          -= LayerDecreased;
@@ -101,6 +103,8 @@ namespace Repetitionless.Editor.Painter
             _sceneInteraction.OnResizePressed           += ResizePressed;
             _sceneInteraction.OnResizeHeld              += ResizeHeld;
             _sceneInteraction.OnResizeReleased          += ResizeReleased;
+            _sceneInteraction.OnInvertPressed           += InvertPressed;
+            _sceneInteraction.OnInvertReleased          += InvertReleased;
             _sceneInteraction.OnZoomPressed             += ZoomPressed;
             _sceneInteraction.OnToggleEraseHolesPressed += ToggleEraseHolesPressed;
             _sceneInteraction.OnLayerDecreased          += LayerDecreased;
@@ -287,6 +291,18 @@ namespace Repetitionless.Editor.Painter
         private void ZoomPressed(SceneView sceneView, Vector3 pos)
         {
             sceneView.Frame(new Bounds(pos, Vector3.one), false);
+        }
+
+        private void InvertPressed()
+        {
+            InvertBrush = true;
+            OnPropertyChanged?.Invoke();
+        }
+
+        private void InvertReleased()
+        {
+            InvertBrush = false;
+            OnPropertyChanged?.Invoke();
         }
 
         private void ToggleEraseHolesPressed()

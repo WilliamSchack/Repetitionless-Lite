@@ -57,8 +57,8 @@ namespace Repetitionless.Editor.Painter
 
                 GameObject hitObject = mouseHit.collider.gameObject;
 
-                // If holding ctrl/shift and the object is selected, remove it
-                if ((currentEvent.shift || currentEvent.control) && _selectedPaintableObjects.Contains(hitObject)) {
+                // If holding shift and the object is selected, remove it
+                if (currentEvent.shift && _selectedPaintableObjects.Contains(hitObject)) {
                     Remove(hitObject);
                     currentEvent.Use();
                 }
