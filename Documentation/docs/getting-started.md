@@ -49,13 +49,19 @@ To view what each material property does:
 
 **View the [Material Properties Page](material-properties.md)**
 
+## Painting
+
+If you want details on how to paint layers onto objects:
+
+**View the [Painting Page](painting.md)**
+
 ## Integrations
 
 **If you want to use any of the asset integrations, details are in their respective pages:**
 
-**View the [MapMagic Page](Integrations/MapMagic2.md)**
+For instructions on using Repetitionless terrain materials on a MapMagic terrain:
 
-For instructions on using Repetitionless terrain materials on a MapMagic terrain
+**View the [MapMagic Page](Integrations/MapMagic2.md)**
 
 ## Creating Shaders
 

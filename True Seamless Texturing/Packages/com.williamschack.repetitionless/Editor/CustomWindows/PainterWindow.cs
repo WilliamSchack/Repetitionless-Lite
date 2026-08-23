@@ -82,7 +82,7 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUIUtilities.BeginBackgroundVertical();
 
-            EditorGUILayout.LabelField("Painting Settings", EditorStyles.boldLabel);  
+            EditorGUILayout.LabelField("Painting Settings", EditorStyles.boldLabel);
 
             if (!_painter.PaintingHoles)
                 _painter.PaintingLayer = EditorGUILayout.IntSlider(new GUIContent("Painting Layer", "Keybind: Shift + Scroll\nThe layer that will be painted. This is determined per material in its layer selection"), _painter.PaintingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
@@ -101,7 +101,7 @@ namespace Repetitionless.Editor.CustomWindows
 
             EditorGUI.BeginChangeCheck();
             _painter.BrushTexture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent("Brush Texture", "The texture used for painting, if not set it will be a circle filling the radius. The channel is what channel to read from in the texture"), _painter.BrushTexture, typeof(Texture2D), false);
-            if (EditorGUI.EndChangeCheck()) {
+            if (EditorGUI.EndChangeCheck() && PainterPrefs.Data.SaveSettings) {
                 // Save texture
                 PainterPrefs.UpdatePrefs((p) => {
                     p.BrushTextureGUID = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(_painter.BrushTexture));
@@ -119,7 +119,7 @@ namespace Repetitionless.Editor.CustomWindows
             if (_painter.PaintingHoles) {
                 _painter.BrushCutoff = EditorGUILayout.Slider(new GUIContent("Brush Cutoff", "Keybind: A\nThe cutoff of the value for the brush texture where holes will not be drawn"), _painter.BrushCutoff, 0, 1);
             } else {
-                _painter.BrushOpacity = EditorGUILayout.Slider(new GUIContent("Brush Opacity", "Keybind: A\nThe strength of the brush.The brush will accumulate so if you want opacity while dragging set this to <= 0.05"), _painter.BrushOpacity, 0, 1);
+                _painter.BrushOpacity = EditorGUILayout.Slider(new GUIContent("Brush Opacity", "Keybind: A\nThe strength of the brush. The brush will accumulate so if you want opacity while dragging, set this to <= 0.05"), _painter.BrushOpacity, 0, 1);
                 _painter.BrushSmoothness = EditorGUILayout.Slider(new GUIContent("Brush Smoothness", "Keybind: D\nWhat radius to start fading out the brush. This is visualised as the inner circle in the scene view"), _painter.BrushSmoothness, 0, 1);
             }
 

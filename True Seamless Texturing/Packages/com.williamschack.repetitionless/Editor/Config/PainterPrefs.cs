@@ -27,7 +27,7 @@ namespace Repetitionless.Editor.Config
             public float BrushCutoff = 0.01f;
 
             public int ControlResolution = 512;
-            public int HolesResolution = 1024;
+            public int HolesResolution = 512;
 
         }
 

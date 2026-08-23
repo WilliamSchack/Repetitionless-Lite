@@ -19,7 +19,7 @@ namespace Repetitionless.Editor.Painter
         private static readonly Color SELECTION_OUTLINE_COLOUR = Color.blue;
 
         public int TextureResolution = 512;
-        public int HolesTextureResolution = 1024;
+        public int HolesTextureResolution = 512;
 
         private List<GameObject> _selectedPaintableObjects = new List<GameObject>();
         private Dictionary<GameObject, PaintableObjectData> _paintableObjectData = new Dictionary<GameObject, PaintableObjectData>();
@@ -94,8 +94,6 @@ namespace Repetitionless.Editor.Painter
         {
             if (_selectedPaintableObjects.Contains(obj))
                 return;
-            
-            _selectedPaintableObjects.Add(obj);
 
             PaintableObjectData objectData = new PaintableObjectData {
                 MeshRenderer = obj.GetComponent<MeshRenderer>()
@@ -207,6 +205,7 @@ namespace Repetitionless.Editor.Painter
 
             // Finalise changes
             layeredDataSO.Save();
+            _selectedPaintableObjects.Add(obj);
             _paintableObjectData.Add(obj, objectData);
         }
 
@@ -261,12 +260,20 @@ namespace Repetitionless.Editor.Painter
 
         private bool ObjectCanBeSelected(Collider hitCollider)
         {
+            bool objectCanBeSelectedInner = ObjectCanBeSelectedInner(hitCollider.gameObject);
+            if (!objectCanBeSelectedInner) return false;
+
             // Must be mesh collider to have proper uvs
             // Need to add some sort of warning
-            if (hitCollider is not MeshCollider meshCollider || meshCollider.sharedMesh == null)
-                return false;
+            if (hitCollider is not MeshCollider meshCollider || meshCollider.sharedMesh == null) {
+                if (objectCanBeSelectedInner) {
+                    EditorUtility.DisplayDialog("Object Requires Changes To Paint", "This object has a valid material, but to paint it, it needs a mesh collider so it has proper UVs. Please change the collider to a mesh collider and if you need another collider change it back after painting.", "Ok");
+                }
 
-            return ObjectCanBeSelectedInner(hitCollider.gameObject);
+                return false;
+            }
+
+            return true;
         }
 
         private bool ObjectCanBeSelected(GameObject obj)
