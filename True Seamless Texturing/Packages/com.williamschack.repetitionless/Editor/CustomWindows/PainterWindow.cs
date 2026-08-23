@@ -55,12 +55,12 @@ namespace Repetitionless.Editor.CustomWindows
             GUILayout.BeginHorizontal();
 
             EditorGUI.BeginChangeCheck();
-            GUILayout.Toggle(_painter.PaintingHoles, "Paint Holes", "ButtonLeft");
+            GUILayout.Toggle(_painter.PaintingHoles, new GUIContent("Paint Holes", "Keybind: H"), "ButtonLeft");
             if (EditorGUI.EndChangeCheck()) _painter.TogglePaintingHoles();
             GUI.enabled = _painter.PaintingHoles;
 
             EditorGUI.BeginChangeCheck();
-            GUILayout.Toggle(_painter.ErasingHoles, "Erase Holes", "ButtonRight");
+            GUILayout.Toggle(_painter.ErasingHoles, new GUIContent("Erase Holes", "Keybind: D"), "ButtonRight");
             if (EditorGUI.EndChangeCheck()) _painter.ErasingHoles = !_painter.ErasingHoles;
             GUI.enabled = true;
 
@@ -85,11 +85,11 @@ namespace Repetitionless.Editor.CustomWindows
             EditorGUILayout.LabelField("Painting Settings", EditorStyles.boldLabel);  
 
             if (!_painter.PaintingHoles)
-                _painter.PaintingLayer = EditorGUILayout.IntSlider(new GUIContent("Painting Layer", "The layer that will be painted. This is determined per material in its layer selection"), _painter.PaintingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
+                _painter.PaintingLayer = EditorGUILayout.IntSlider(new GUIContent("Painting Layer", "Keybind: Shift + Scroll\nThe layer that will be painted. This is determined per material in its layer selection"), _painter.PaintingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
             
-            _painter.TextureResolution = Mathf.Max(1, EditorGUILayout.IntField(new GUIContent("Control Resolution", "The resolution of the control textures"), _painter.TextureResolution));
+            _painter.TextureResolution = Mathf.Max(1, EditorGUILayout.IntField(new GUIContent("Control Resolution", "The resolution of the control textures. Existing textures will be automatically resized to this resolution"), _painter.TextureResolution));
 
-            _painter.HolesTextureResolution = Mathf.Max(1, EditorGUILayout.IntField("Holes Resolution", _painter.HolesTextureResolution));
+            _painter.HolesTextureResolution = Mathf.Max(1, EditorGUILayout.IntField(new GUIContent("Holes Resolution", "The resolution of the holes texture. Existing textures will be automatically resized to this resolution"), _painter.HolesTextureResolution));
 
             GUILayout.Space(5);
 
@@ -110,17 +110,17 @@ namespace Repetitionless.Editor.CustomWindows
             
             _painter.BrushTextureChannel = DrawChannelPicker(textureLineRect, _painter.BrushTextureChannel);
             if (_painter.BrushTexture != null) {
-                _painter.BrushRotationDegrees = EditorGUILayout.Slider(new GUIContent("Brush Rotation", "The rotation of the brush texture relative to the uvs of the painted object. This does nothing with no texture set"), _painter.BrushRotationDegrees, 0, 360);
-                _painter.InvertBrush = EditorGUILayout.Toggle(new GUIContent("Invert Brush", "Inverts the brush texture, sampling it as (1 - value)"), _painter.InvertBrush);
+                _painter.BrushRotationDegrees = EditorGUILayout.Slider(new GUIContent("Brush Rotation", "Keybind: C\nThe rotation of the brush texture relative to the uvs of the painted object. This does nothing with no texture set"), _painter.BrushRotationDegrees, 0, 360);
+                _painter.InvertBrush = EditorGUILayout.Toggle(new GUIContent("Invert Brush", "Keybind: Control\nInverts the brush texture, sampling it as (1 - value)"), _painter.InvertBrush);
                 GUILayout.Space(10);
             }
 
-            _painter.BrushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField(new GUIContent("Brush Radius", "The size of the brush"), _painter.BrushRadiusReal));
+            _painter.BrushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField(new GUIContent("Brush Radius", "Keybind: S\nThe size of the brush"), _painter.BrushRadiusReal));
             if (_painter.PaintingHoles) {
-                _painter.BrushCutoff = EditorGUILayout.Slider(new GUIContent("Brush Cutoff", "The cutoff of the value for the brush texture where holes will not be drawn"), _painter.BrushCutoff, 0, 1);
+                _painter.BrushCutoff = EditorGUILayout.Slider(new GUIContent("Brush Cutoff", "Keybind: A\nThe cutoff of the value for the brush texture where holes will not be drawn"), _painter.BrushCutoff, 0, 1);
             } else {
-                _painter.BrushOpacity = EditorGUILayout.Slider(new GUIContent("Brush Opacity", "The strength of the brush.\nThe brush will accumulate so if you want opacity while dragging set this to <= 0.05"), _painter.BrushOpacity, 0, 1);
-                _painter.BrushSmoothness = EditorGUILayout.Slider(new GUIContent("Brush Smoothness", "What radius to start fading out the brush. This is visualised as the inner circle in the scene view"), _painter.BrushSmoothness, 0, 1);
+                _painter.BrushOpacity = EditorGUILayout.Slider(new GUIContent("Brush Opacity", "Keybind: A\nThe strength of the brush.The brush will accumulate so if you want opacity while dragging set this to <= 0.05"), _painter.BrushOpacity, 0, 1);
+                _painter.BrushSmoothness = EditorGUILayout.Slider(new GUIContent("Brush Smoothness", "Keybind: D\nWhat radius to start fading out the brush. This is visualised as the inner circle in the scene view"), _painter.BrushSmoothness, 0, 1);
             }
 
             GUIUtilities.EndBackgroundVertical();

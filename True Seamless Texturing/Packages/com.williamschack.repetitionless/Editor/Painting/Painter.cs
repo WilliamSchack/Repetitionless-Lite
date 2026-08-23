@@ -93,7 +93,6 @@ namespace Repetitionless.Editor.Painter
 
             _sceneInteraction.OnResizePressed           -= ResizePressed;
             _sceneInteraction.OnResizeHeld              -= ResizeHeld;
-            _sceneInteraction.OnResizeReleased          -= ResizeReleased;
             _sceneInteraction.OnInvertPressed           -= InvertPressed;
             _sceneInteraction.OnInvertReleased          -= InvertReleased;
             _sceneInteraction.OnZoomPressed             -= ZoomPressed;
@@ -102,7 +101,6 @@ namespace Repetitionless.Editor.Painter
             _sceneInteraction.OnLayerIncreased          -= LayerIncreased;
             _sceneInteraction.OnResizePressed           += ResizePressed;
             _sceneInteraction.OnResizeHeld              += ResizeHeld;
-            _sceneInteraction.OnResizeReleased          += ResizeReleased;
             _sceneInteraction.OnInvertPressed           += InvertPressed;
             _sceneInteraction.OnInvertReleased          += InvertReleased;
             _sceneInteraction.OnZoomPressed             += ZoomPressed;
@@ -281,11 +279,6 @@ namespace Repetitionless.Editor.Painter
             }
             
             OnPropertyChanged?.Invoke();
-        }
-
-        private void ResizeReleased()
-        {
-            //
         }
 
         private void ZoomPressed(SceneView sceneView, Vector3 pos)
