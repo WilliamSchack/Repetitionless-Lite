@@ -112,6 +112,7 @@ jobs:
         id: unity-setup
         with:
           unity-version: ${{ matrix.unity-version }}
+          hub-version: '3.14.3'
           cache-installation: true
       - name: Activate Unity
         uses: buildalon/activate-unity-license@v2
