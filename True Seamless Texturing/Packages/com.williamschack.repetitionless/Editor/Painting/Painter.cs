@@ -301,6 +301,8 @@ namespace Repetitionless.Editor.Painter
                 $"Erase Holes: {(ErasingHoles ? "Enabled" : "Disabled")}",
                 new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
             );
+
+            OnPropertyChanged?.Invoke();
         }
 
         private void UndoRedoPerformed()

@@ -49,16 +49,18 @@ namespace Repetitionless.Editor.CustomWindows
             if (EditorGUI.EndChangeCheck())
                 _painter.TogglePainting();
 
-            // NEED TO IMPLEMENT
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Control Textures")) {
-                if (!_painter.Painting)
-                    _painter.StartPainting();
-                else
-                    _painter.StopPaintingHoles();
-            }
-            if (GUILayout.Button("Holes Texture"))
-                _painter.TogglePaintingHoles();
+
+            EditorGUI.BeginChangeCheck();
+            GUILayout.Toggle(_painter.PaintingHoles, "Paint Holes", "ButtonLeft");
+            if (EditorGUI.EndChangeCheck()) _painter.TogglePaintingHoles();
+            GUI.enabled = _painter.PaintingHoles;
+
+            EditorGUI.BeginChangeCheck();
+            GUILayout.Toggle(_painter.ErasingHoles, "Erase Holes", "ButtonRight");
+            if (EditorGUI.EndChangeCheck()) _painter.ErasingHoles = !_painter.ErasingHoles;
+            GUI.enabled = true;
+
             GUILayout.EndHorizontal();
 
             GUI.enabled = _painter.LastPaintedObject != null;
@@ -74,7 +76,8 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUIUtilities.BeginBackgroundVertical();
 
-            EditorGUILayout.LabelField("Painting Settings", EditorStyles.boldLabel);   
+            EditorGUILayout.LabelField("Painting Settings", EditorStyles.boldLabel);  
+
             if (!_painter.PaintingHoles)
                 _painter.EditingLayer = EditorGUILayout.IntSlider(new GUIContent("Painting Layer", "The layer that will be painted. This is determined per material in its layer selection"), _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
             
@@ -92,9 +95,13 @@ namespace Repetitionless.Editor.CustomWindows
 
             _painter.BrushTexture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent("Brush Texture", "The texture used for painting, if not set it will be a circle filling the radius. The channel is what channel to read from in the texture"), _painter.BrushTexture, typeof(Texture2D), false);
             _painter.BrushTextureChannel = DrawChannelPicker(textureLineRect, _painter.BrushTextureChannel);
+            if (_painter.BrushTexture != null) {
+                _painter.BrushRotationDegrees = EditorGUILayout.Slider(new GUIContent("Brush Rotation", "The rotation of the brush texture relative to the uvs of the painted object. This does nothing with no texture set"), _painter.BrushRotationDegrees, 0, 360);
+                _painter.InvertBrush = EditorGUILayout.Toggle(new GUIContent("Invert Brush", "Inverts the brush texture, sampling it as (1 - value)"), _painter.InvertBrush);
+                GUILayout.Space(10);
+            }
 
             _painter.BrushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField(new GUIContent("Brush Radius", "The size of the brush"), _painter.BrushRadiusReal));
-            _painter.BrushRotationDegrees = EditorGUILayout.Slider(new GUIContent("Brush Rotation", "The rotation of the brush texture relative to the uvs of the painted object. This does nothing with no texture set"), _painter.BrushRotationDegrees, 0, 360);
             if (_painter.PaintingHoles) {
                 _painter.BrushCutoff = EditorGUILayout.Slider(new GUIContent("Brush Cutoff", "The cutoff of the value for the brush texture where holes will not be drawn"), _painter.BrushCutoff, 0, 1);
             } else {
