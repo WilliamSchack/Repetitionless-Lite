@@ -177,10 +177,10 @@ namespace Repetitionless.Editor.CustomWindows
             // Load texture if it exists
             if (PainterPrefs.Data.BrushTextureGUID != "") {
                 string path = AssetDatabase.GUIDToAssetPath(PainterPrefs.Data.BrushTextureGUID);
-                bool textureExists = path != "" ? AssetDatabase.AssetPathExists(path) : false;
+                Texture2D texture = path != "" ? AssetDatabase.LoadAssetAtPath<Texture2D>(path) : null;
 
-                if (textureExists) {
-                    _painter.BrushTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+                if (texture != null) {
+                    _painter.BrushTexture = texture;
                 } else {
                     // Brush texture has been removed, update the pref
                     PainterPrefs.UpdatePrefs((p) => {
