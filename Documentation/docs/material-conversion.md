@@ -3,7 +3,7 @@
 To convert a regular lit material to a repetitionless material:
 
 1. Select the materials you want to convert
-2. Open the windows tab in the toolbar
+2. Open the `Window` tab in the toolbar, or the `Create` menu in the project window 
 3. Navigate to `Repetitionless`
 4. Click `Convert Selected Materials`
 5. The materials will be created next to the original materials with the suffix "\_repetitionless"

@@ -15,7 +15,7 @@ When first importing the asset you will be greeted with a welcome screen with bu
 - Import samples
 
 To open this window again, you can find it in the toolbar at<br />
-`Windows > Repetitionless > Open Window`
+`Window > Repetitionless > Open Window`
 
 ![image](Images/GettingStarted/WelcomeScreen.png)
 

@@ -14,7 +14,7 @@ namespace Repetitionless.Editor.CustomWindows
     {
         protected const int CHANNEL_PICKER_WIDTH = 50;
 
-        private Painter _painter;
+        private Painter _painter = new Painter();
 
         [MenuItem("Window/Repetitionless/Open Painter", priority = 1)]
         public static void Open()
@@ -28,7 +28,6 @@ namespace Repetitionless.Editor.CustomWindows
             SceneView.duringSceneGui -= DuringSceneGUI;
             SceneView.duringSceneGui += DuringSceneGUI;
 
-            _painter = new Painter();
             _painter.OnPropertyChanged += OnPropertyChanged;
 
             LoadPrefs();
@@ -40,7 +39,8 @@ namespace Repetitionless.Editor.CustomWindows
         {
             SceneView.duringSceneGui -= DuringSceneGUI;
 
-            _painter.StopPainting();
+            if (_painter != null)
+                _painter.StopPainting();
         }
         
         private void OnGUI()
