@@ -411,6 +411,7 @@ namespace Repetitionless.Editor.Painter
                 _holesComputeShader.SetTexture(kernel, "HolesTexture", objectData.HolesRenderTexture);
                 _holesComputeShader.SetTexture(kernel, "BrushTexture", BrushTexture == null ? Texture2D.whiteTexture : BrushTexture);
                 _holesComputeShader.SetInt("BrushChannel", BrushTexture == null ? -1 : (int)BrushTextureChannel);
+                _holesComputeShader.SetBool("InvertBrush", InvertBrush);
                 _holesComputeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
                 _holesComputeShader.SetFloat("Radius", BrushRadius);
                 _holesComputeShader.SetFloat("RotationRadians", BrushRotationDegrees * Mathf.Deg2Rad);
@@ -431,6 +432,7 @@ namespace Repetitionless.Editor.Painter
                 _controlComputeShader.SetInt("TargetSlice", EditingLayer / 4);
                 _controlComputeShader.SetInt("TargetChannel", EditingLayer % 4);
                 _controlComputeShader.SetInt("BrushChannel", BrushTexture == null ? -1 : (int)BrushTextureChannel);
+                _controlComputeShader.SetBool("InvertBrush", InvertBrush);
                 _controlComputeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
                 _controlComputeShader.SetFloat("Radius", BrushRadius);
                 _controlComputeShader.SetFloat("Opacity", BrushOpacity);

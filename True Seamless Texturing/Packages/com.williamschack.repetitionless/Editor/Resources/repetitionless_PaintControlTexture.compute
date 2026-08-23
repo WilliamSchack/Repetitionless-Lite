@@ -18,6 +18,7 @@ int TargetSlice;
 int TargetChannel;
 
 int BrushChannel;
+bool InvertBrush;
 
 float4 HitUV;
 float Radius;
@@ -92,6 +93,7 @@ void CSMain(uint3 id : SV_DispatchThreadID)
         }
 
         brushSample = BrushTexture.SampleLevel(sampler_LinearClamp, brushUV, 0)[BrushChannel];
+        if (InvertBrush) brushSample = 1 - brushSample;
     }
 
     float brushValue = falloff * brushSample * Opacity;

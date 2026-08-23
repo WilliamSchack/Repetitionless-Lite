@@ -6,6 +6,7 @@ Texture2D<float4> BrushTexture;
 SamplerState sampler_LinearClamp;
 
 int BrushChannel;
+bool InvertBrush;
 
 float4 HitUV;
 float Radius;
@@ -47,6 +48,7 @@ void CSMain(uint3 id : SV_DispatchThreadID)
         }
 
         brushValue = BrushTexture.SampleLevel(sampler_LinearClamp, brushUV, 0)[BrushChannel];
+        if (InvertBrush) brushValue = 1 - brushValue;
     }
 
     if (brushValue <= Cutoff)
