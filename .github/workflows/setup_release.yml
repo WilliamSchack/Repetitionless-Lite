@@ -9,7 +9,7 @@ on:
         required: true
         type: boolean
       free_version_merged:
-        description: 'Have you merged changes to the free version?'
+        description: 'Have you merged changes again after the full version has pushed release changes?'
         default: false
         required: true
         type: boolean
