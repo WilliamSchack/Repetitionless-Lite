@@ -159,6 +159,12 @@ namespace Repetitionless.Editor.Painter
                 return;
             }
 
+            // Fixes tool settings popup on some machines
+            if (currentEvent.type == EventType.KeyDown && _resizingBrush) {
+                currentEvent.Use();
+                return;
+            }
+
             // Resizing
             if (currentEvent.type != EventType.MouseMove || !_resizingBrush)
                 return;
@@ -196,8 +202,10 @@ namespace Repetitionless.Editor.Painter
         {
             // If shift + mouse wheel, change layer
             if (currentEvent.shift && currentEvent.type == EventType.ScrollWheel) {
-                if (currentEvent.delta.y > 0) OnLayerDecreased?.Invoke();
-                else                          OnLayerIncreased?.Invoke();
+                float scrollDelta = Mathf.Abs(currentEvent.delta.x) > Mathf.Abs(currentEvent.delta.y) ? -currentEvent.delta.x : currentEvent.delta.y;
+
+                if (scrollDelta > 0) OnLayerDecreased?.Invoke();
+                else                 OnLayerIncreased?.Invoke();
 
                 currentEvent.Use();
             }
