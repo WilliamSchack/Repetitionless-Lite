@@ -124,7 +124,7 @@ namespace Repetitionless.Editor.CustomWindows
             }
 
             if (currentEvent.type == EventType.KeyDown && currentEvent.keyCode == KeyCode.H) {
-                _painter.TogglePaintingHoles();
+                _painter.TogglePaintingHoles(true);
                 Repaint();
             }
         }

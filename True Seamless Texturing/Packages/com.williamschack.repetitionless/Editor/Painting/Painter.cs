@@ -136,7 +136,7 @@ namespace Repetitionless.Editor.Painter
             else           StartPainting();
         }
 
-        public void StartPaintingHoles()
+        public void StartPaintingHoles(bool drawPopup = false)
         {
             if (!_painting)
                 StartPainting();
@@ -148,35 +148,39 @@ namespace Repetitionless.Editor.Painter
             }
 
             // Draw popup
-            _brushPreview.ClearFadingPopups();
-            _brushPreview.AddFadingPopup(
-                EditorApplication.timeSinceStartup + POPUP_HOLD_DURATION,
-                POPUP_FADE_DURATION,
-                $"Painting Holes",
-                new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
-            );
+            if (drawPopup) {
+                _brushPreview.ClearFadingPopups();
+                _brushPreview.AddFadingPopup(
+                    EditorApplication.timeSinceStartup + POPUP_HOLD_DURATION,
+                    POPUP_FADE_DURATION,
+                    $"Painting Holes",
+                    new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
+                );
+            }
 
             _paintingHoles = true;
         }
 
-        public void StopPaintingHoles()
+        public void StopPaintingHoles(bool drawPopup = false)
         {
             // Draw popup
-            _brushPreview.ClearFadingPopups();
-            _brushPreview.AddFadingPopup(
-                EditorApplication.timeSinceStartup + POPUP_HOLD_DURATION,
-                POPUP_FADE_DURATION,
-                $"Painting Control Textures",
-                new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
-            );
+            if (drawPopup) {
+                _brushPreview.ClearFadingPopups();
+                _brushPreview.AddFadingPopup(
+                    EditorApplication.timeSinceStartup + POPUP_HOLD_DURATION,
+                    POPUP_FADE_DURATION,
+                    $"Painting Control Textures",
+                    new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
+                );
+            }
 
             _paintingHoles = false;
         }
 
-        public void TogglePaintingHoles()
+        public void TogglePaintingHoles(bool drawPopup = false)
         {
-            if (_paintingHoles) StopPaintingHoles();
-            else                StartPaintingHoles();
+            if (_paintingHoles) StopPaintingHoles(drawPopup);
+            else                StartPaintingHoles(drawPopup);
         }
 
         private void DuringSceneGUI(SceneView sceneView)
