@@ -1,5 +1,5 @@
 **CHANGELOG**
 
-- Added a settings menu to the main window
-- Fixed an issue with uvs being incorrect on some machines
-- Fixed network related errors when there is no internet
+- Added a painting tool (Full Version)
+- Added material creation/conversion to the Create menu
+- Fixed various holes issues when a material is in the Control Textures layer mode
