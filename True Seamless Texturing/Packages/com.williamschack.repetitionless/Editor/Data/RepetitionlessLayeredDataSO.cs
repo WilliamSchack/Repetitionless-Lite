@@ -308,6 +308,15 @@ namespace Repetitionless.Editor.Data
             _dataManager.Material.SetTexture($"_Control{index}", PackedControlTextures[index]);
         }
 
+        public void AssignHolesTexture()
+        {
+            _dataManager.Material.SetTexture("_TerrainHolesTexture", HolesTexture.Texture);
+
+            // Holes require alpha test to work
+            if (HolesTexture.Texture != null)
+                RepetitionlessMaterialUtilities.SetBoolKeyword(_dataManager.Material, "_ALPHATEST_ON", true);
+        }
+
         /// <summary>
         /// Updates the layer count in the material based on the textures assigned
         /// </summary>

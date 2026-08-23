@@ -12,6 +12,7 @@ namespace Repetitionless.Editor.Painter
     public class Painter
     {
         private const string PAINT_TEXTURE_COMPUTE_RESOURCES_PATH = "repetitionless_PaintControlTexture";
+        private const string PAINT_HOLES_COMPUTE_RESOURCES_PATH = "repetitionless_PaintHolesTexture";
         private const int COMPUTE_THREADS_X = 8;
         private const int COMPUTE_THREADS_Y = 8;
 
@@ -130,6 +131,12 @@ namespace Repetitionless.Editor.Painter
         {
             if (!_painting)
                 StartPainting();
+
+            if (_holesComputeShader == null) {
+                _holesComputeShader = Resources.Load<ComputeShader>(PAINT_HOLES_COMPUTE_RESOURCES_PATH);
+                if (_holesComputeShader == null)
+                    Debug.LogError("No holes paint compute shader found...");
+            }
 
             _paintingHoles = true;
         }

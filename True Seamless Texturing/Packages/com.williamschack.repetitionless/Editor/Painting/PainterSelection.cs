@@ -186,6 +186,8 @@ namespace Repetitionless.Editor.Painter
                 }
             }
 
+            layeredDataSO.AssignHolesTexture();
+
             // Resize holes texture to target
             if (objectData.HolesTexture.width != HolesTextureResolution || objectData.HolesTexture.height != HolesTextureResolution) {
                 TextureUtilities.ResizeTexture(objectData.HolesTexture, HolesTextureResolution, HolesTextureResolution, modifyOriginal: true);
