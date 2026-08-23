@@ -19,5 +19,8 @@ namespace Repetitionless.Editor.Painter
 
         public List<RenderTexture> RenderTextures;
         public List<Texture2D> ControlTextures;
+
+        public RenderTexture HolesRenderTexture;
+        public Texture2D HolesTexture;
     }
 }

@@ -49,6 +49,12 @@ namespace Repetitionless.Editor.CustomWindows
             if (EditorGUI.EndChangeCheck())
                 _painter.TogglePainting();
 
+            // NEED TO IMPLEMENT
+            GUILayout.BeginHorizontal();
+            GUILayout.Button("Control Textures");
+            GUILayout.Button("Holes Texture");
+            GUILayout.EndHorizontal();
+
             GUI.enabled = _painter.LastPaintedObject != null;
             if (GUILayout.Button("Edit Last Painted Material")) {
                 // Get the material and select it
@@ -64,7 +70,9 @@ namespace Repetitionless.Editor.CustomWindows
 
             EditorGUILayout.LabelField("Painting Settings", EditorStyles.boldLabel);            
             _painter.EditingLayer = EditorGUILayout.IntSlider(new GUIContent("Painting Layer", "The layer that will be painted. This is determined per material in its layer selection"), _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
-            _painter.TextureResolution = EditorGUILayout.IntField(new GUIContent("Control Resolution", "The resolution of the control textures"), _painter.TextureResolution);
+            _painter.TextureResolution = Mathf.Max(1, EditorGUILayout.IntField(new GUIContent("Control Resolution", "The resolution of the control textures"), _painter.TextureResolution));
+
+            _painter.HolesTextureResolution = Mathf.Max(1, EditorGUILayout.IntField("Holes Resolution", _painter.HolesTextureResolution));
 
             GUILayout.Space(5);
 

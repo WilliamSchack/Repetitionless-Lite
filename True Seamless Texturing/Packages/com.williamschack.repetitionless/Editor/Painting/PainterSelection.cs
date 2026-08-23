@@ -14,9 +14,12 @@ namespace Repetitionless.Editor.Painter
 
     public class PainterSelection
     {
+        private const string HOLES_TEXTURE_FILE_NAME = "Holes.asset";
+
         private static readonly Color SELECTION_OUTLINE_COLOUR = Color.blue;
 
         public int TextureResolution = 512;
+        public int HolesTextureResolution = 1024;
 
         private List<GameObject> _selectedPaintableObjects = new List<GameObject>();
         private Dictionary<GameObject, PaintableObjectData> _paintableObjectData = new Dictionary<GameObject, PaintableObjectData>();
@@ -108,7 +111,6 @@ namespace Repetitionless.Editor.Painter
             materialPropertiesSO.OnExternalDataChanged += objectData.DataChangedAction;
 
             // Assign texture to layered data
-            // SHOULD BE CHECKED FREQUENTLY
             RepetitionlessLayeredDataSO layeredDataSO = objectData.DataManager.LoadAsset<RepetitionlessLayeredDataSO>(Constants.LAYERED_DATA_FILE_NAME);
 
             objectData.MaxLayers = layeredDataSO.MaxLayers;
@@ -117,6 +119,7 @@ namespace Repetitionless.Editor.Painter
             RepetitionlessLayeredMaterialUtilities.UpdateLayerModeShader(objectData.DataManager, ELayerMode.ControlTextures);
             layeredDataSO.LayerMode = ELayerMode.ControlTextures;
 
+            // Setup Control Textures
             objectData.ControlTextures = new List<Texture2D>();
             objectData.RenderTextures = new List<RenderTexture>();
 
@@ -156,9 +159,52 @@ namespace Repetitionless.Editor.Painter
 
                 objectData.RenderTextures.Add(renderTexture);
             }
-            
-            layeredDataSO.Save();
 
+            // Setup Holes Texture
+            if (layeredDataSO.HolesTexture.Texture != null) {
+                // Use set holes texture
+                objectData.HolesTexture = layeredDataSO.HolesTexture.Texture;
+            } else {
+                if (objectData.DataManager.AssetExists(HOLES_TEXTURE_FILE_NAME)) {
+                    // If holes asset exists use that
+                    objectData.HolesTexture = objectData.DataManager.LoadAsset<Texture2D>(HOLES_TEXTURE_FILE_NAME);
+
+                    layeredDataSO.HolesTexture.Texture = objectData.HolesTexture;
+                } else {
+                    // Create holes texture
+                    objectData.HolesTexture = new Texture2D(HolesTextureResolution, HolesTextureResolution, TextureFormat.R8, false);
+                    Color[] pixels = new Color[HolesTextureResolution * HolesTextureResolution];
+                    for (int i = 0; i < pixels.Length; i++)
+                        pixels[i] = Color.white;
+
+                    objectData.HolesTexture.SetPixels(pixels);
+                    objectData.HolesTexture.Apply();
+
+                    objectData.DataManager.CreateAsset(objectData.HolesTexture, HOLES_TEXTURE_FILE_NAME);
+
+                    layeredDataSO.HolesTexture.Texture = objectData.HolesTexture;
+                }
+            }
+
+            // Resize holes texture to target
+            if (objectData.HolesTexture.width != HolesTextureResolution || objectData.HolesTexture.height != HolesTextureResolution) {
+                TextureUtilities.ResizeTexture(objectData.HolesTexture, HolesTextureResolution, HolesTextureResolution, modifyOriginal: true);
+                EditorUtility.SetDirty(objectData.HolesTexture);
+                AssetDatabase.SaveAssetIfDirty(objectData.HolesTexture);
+            }
+
+            // Create render texture
+            objectData.HolesRenderTexture = new RenderTexture(HolesTextureResolution, HolesTextureResolution, 0, RenderTextureFormat.R8, RenderTextureReadWrite.Linear) {
+                enableRandomWrite = true,
+                filterMode = FilterMode.Point
+            };
+            objectData.HolesRenderTexture.Create();
+
+            // Copy holes texture to the rt
+            Graphics.Blit(objectData.HolesTexture, objectData.HolesRenderTexture);
+
+            // Finalise changes
+            layeredDataSO.Save();
             _paintableObjectData.Add(obj, objectData);
         }
 
@@ -188,6 +234,7 @@ namespace Repetitionless.Editor.Painter
             PaintableObjectData objectData = _paintableObjectData[obj];
             foreach (RenderTexture rt in objectData.RenderTextures)
                 rt.Release();
+            objectData.HolesRenderTexture.Release();
 
             RepetitionlessMaterialDataSO materialPropertiesSO = objectData.DataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
             materialPropertiesSO.OnExternalDataChanged -= objectData.DataChangedAction;

@@ -32,11 +32,18 @@ namespace Repetitionless.Editor.Painter
         private PainterBrushPreview _brushPreview = new PainterBrushPreview();
         private PainterSelection _selection = new PainterSelection();
 
-        private ComputeShader _computeShader = null;
+        private ComputeShader _controlComputeShader = null;
+        private ComputeShader _holesComputeShader = null;
+
 
         public int TextureResolution {
             get { return _selection.TextureResolution; }
             set { _selection.TextureResolution = value; }
+        }
+
+        public int HolesTextureResolution {
+            get { return _selection.HolesTextureResolution; }
+            set { _selection.HolesTextureResolution = value; }
         }
         
         public int EditingLayer = 1;
@@ -63,6 +70,9 @@ namespace Repetitionless.Editor.Painter
         private bool _painting = false;
         public bool Painting => _painting;
 
+        private bool _paintingHoles = false;
+        public bool PaintingHoles => _paintingHoles;
+
         public void StartPainting()
         {
             SceneView.duringSceneGui -= DuringSceneGUI;
@@ -84,9 +94,9 @@ namespace Repetitionless.Editor.Painter
             _sceneInteraction.OnLayerDecreased += LayerDecreased;
             _sceneInteraction.OnLayerIncreased += LayerIncreased;
 
-            if (_computeShader == null) {
-                _computeShader = Resources.Load<ComputeShader>(PAINT_TEXTURE_COMPUTE_RESOURCES_PATH);
-                if (_computeShader == null)
+            if (_controlComputeShader == null) {
+                _controlComputeShader = Resources.Load<ComputeShader>(PAINT_TEXTURE_COMPUTE_RESOURCES_PATH);
+                if (_controlComputeShader == null)
                     Debug.LogError("No texture paint compute shader found...");
             }
             
@@ -116,9 +126,28 @@ namespace Repetitionless.Editor.Painter
             else           StartPainting();
         }
 
+        public void StartPaintingHoles()
+        {
+            if (!_painting)
+                StartPainting();
+
+            _paintingHoles = true;
+        }
+
+        public void StopPaintingHoles()
+        {
+            _paintingHoles = false;
+        }
+
+        public void TogglePaintingHoles()
+        {
+            if (_paintingHoles) StopPaintingHoles();
+            else                StartPaintingHoles();
+        }
+
         private void DuringSceneGUI(SceneView sceneView)
         {
-            if (_computeShader == null)
+            if (_controlComputeShader == null)
                 return;
 
             // Dont do anything when moving cam
@@ -217,11 +246,15 @@ namespace Repetitionless.Editor.Painter
 
         private void UndoRedoPerformed()
         {
-            // Blit control textures back to painted objects as they may have changed
+            // Blit textures back to painted objects as they may have changed
             foreach (PaintableObjectData objectData in _selection.PaintableObjectData.Values) {
+                // Control
                 for (int i = 0; i < objectData.ControlTextures.Count; i++) {
                     Graphics.Blit(objectData.ControlTextures[i], objectData.RenderTextures[i]);
                 }
+
+                // Holes
+                Graphics.Blit(objectData.HolesTexture, objectData.HolesRenderTexture);
             }
         }
 
@@ -291,24 +324,43 @@ namespace Repetitionless.Editor.Painter
             _lastPaintedObject = gameObject;
 
             // Dispatch paint compute shader
-            int kernel = _computeShader.FindKernel("CSMain");
-            for (int i = 0; i < objectData.RenderTextures.Count; i++)
-                _computeShader.SetTexture(kernel, $"Control{i}", objectData.RenderTextures[i]);
-        
-            _computeShader.SetTexture(kernel, "BrushTexture", BrushTexture == null ? Texture2D.whiteTexture : BrushTexture);
-            _computeShader.SetInt("TargetSlice", EditingLayer / 4);
-            _computeShader.SetInt("TargetChannel", EditingLayer % 4);
-            _computeShader.SetInt("BrushChannel", (int)BrushTextureChannel);
-            _computeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
-            _computeShader.SetFloat("Radius", BrushRadius);
-            _computeShader.SetFloat("Opacity", BrushOpacity);
-            _computeShader.SetFloat("Smoothness", BrushSmoothness);
-            _computeShader.SetFloat("RotationRadians", BrushRotationDegrees * Mathf.Deg2Rad);
+            if (_paintingHoles) {
+                // Painting holes
+                int kernel = _holesComputeShader.FindKernel("CSMain");
+            
+                _holesComputeShader.SetTexture(kernel, "HolesTexture", objectData.HolesRenderTexture);
+                _holesComputeShader.SetTexture(kernel, "BrushTexture", BrushTexture == null ? Texture2D.whiteTexture : BrushTexture);
+                _holesComputeShader.SetInt("BrushChannel", (int)BrushTextureChannel);
+                _holesComputeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
+                _holesComputeShader.SetFloat("Radius", BrushRadius);
+                _holesComputeShader.SetFloat("RotationRadians", BrushRotationDegrees * Mathf.Deg2Rad);
+                _holesComputeShader.SetBool("EraseHoles", false);
 
-            int groupsX = Mathf.CeilToInt(objectData.ControlTextures[0].width  / (float)COMPUTE_THREADS_X);
-            int groupsY = Mathf.CeilToInt(objectData.ControlTextures[0].height / (float)COMPUTE_THREADS_Y);
+                int groupsX = Mathf.CeilToInt(objectData.HolesTexture.width  / (float)COMPUTE_THREADS_X);
+                int groupsY = Mathf.CeilToInt(objectData.HolesTexture.height / (float)COMPUTE_THREADS_Y);
 
-            _computeShader.Dispatch(kernel, groupsX, groupsY, 1);
+                _holesComputeShader.Dispatch(kernel, groupsX, groupsY, 1);
+            } else {
+                // Painting control
+                int kernel = _controlComputeShader.FindKernel("CSMain");
+                for (int i = 0; i < objectData.RenderTextures.Count; i++)
+                    _controlComputeShader.SetTexture(kernel, $"Control{i}", objectData.RenderTextures[i]);
+            
+                _controlComputeShader.SetTexture(kernel, "BrushTexture", BrushTexture == null ? Texture2D.whiteTexture : BrushTexture);
+                _controlComputeShader.SetInt("TargetSlice", EditingLayer / 4);
+                _controlComputeShader.SetInt("TargetChannel", EditingLayer % 4);
+                _controlComputeShader.SetInt("BrushChannel", (int)BrushTextureChannel);
+                _controlComputeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
+                _controlComputeShader.SetFloat("Radius", BrushRadius);
+                _controlComputeShader.SetFloat("Opacity", BrushOpacity);
+                _controlComputeShader.SetFloat("Smoothness", BrushSmoothness);
+                _controlComputeShader.SetFloat("RotationRadians", BrushRotationDegrees * Mathf.Deg2Rad);
+
+                int groupsX = Mathf.CeilToInt(objectData.ControlTextures[0].width  / (float)COMPUTE_THREADS_X);
+                int groupsY = Mathf.CeilToInt(objectData.ControlTextures[0].height / (float)COMPUTE_THREADS_Y);
+
+                _controlComputeShader.Dispatch(kernel, groupsX, groupsY, 1);
+            }
         }
 
         private void InitialisePainting(GameObject gameObject)
@@ -317,16 +369,32 @@ namespace Repetitionless.Editor.Painter
 
             PaintableObjectData objectData = _selection.PaintableObjectData[gameObject];
 
-            // Register control textures for undo
+            // Register textures for undo
             foreach (Texture2D controlTexture in objectData.ControlTextures)
                 Undo.RegisterCompleteObjectUndo(controlTexture, UNDO_STROKE_NAME);
+            Undo.RegisterCompleteObjectUndo(objectData.HolesTexture, UNDO_STROKE_NAME);
 
             Material repetitionlessMaterial = RepetitionlessLayeredMaterialUtilities.GetFirstLayeredMaterial(objectData.MeshRenderer);
 
+            // Apply to the object material
             for (int i = 0; i < objectData.ControlTextures.Count; i++) {
-                // Apply to the object material
                 repetitionlessMaterial.SetTexture($"_Control{i}", objectData.RenderTextures[i]);
             }
+            repetitionlessMaterial.SetTexture("_TerrainHolesTexture", objectData.HolesTexture);
+        }
+
+        private void CopyFromRT(RenderTexture renderTexture, Texture2D texture)
+        {
+            RenderTexture previousRT = RenderTexture.active;
+
+            RenderTexture.active = renderTexture;
+
+            texture.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
+            texture.Apply();
+
+            EditorUtility.SetDirty(texture);
+
+            RenderTexture.active = previousRT;
         }
 
         private void FinishPaintStroke()
@@ -337,19 +405,16 @@ namespace Repetitionless.Editor.Painter
 
                 RenderTexture previousRT = RenderTexture.active;
 
+                // Control
                 for (int i = 0; i < objectData.ControlTextures.Count; i++) {
-                    // Save rt to texture
-                    RenderTexture.active = objectData.RenderTextures[i];
-
-                    Texture2D controlTexture = objectData.ControlTextures[i];
-                    controlTexture.ReadPixels(new Rect(0, 0, controlTexture.width, controlTexture.height), 0, 0);
-                    controlTexture.Apply();
-
-                    EditorUtility.SetDirty(controlTexture);
-
-                    // Apply texture material
-                    repetitionlessMaterial.SetTexture($"_Control{i}", controlTexture);
+                    CopyFromRT(objectData.RenderTextures[i], objectData.ControlTextures[i]);
+                    repetitionlessMaterial.SetTexture($"_Control{i}", objectData.ControlTextures[i]);
                 }
+
+                // Holes
+                CopyFromRT(objectData.HolesRenderTexture, objectData.HolesTexture);
+                repetitionlessMaterial.SetTexture("_TerrainHolesTexture", objectData.HolesTexture);
+                
 
                 RenderTexture.active = previousRT;
             }
