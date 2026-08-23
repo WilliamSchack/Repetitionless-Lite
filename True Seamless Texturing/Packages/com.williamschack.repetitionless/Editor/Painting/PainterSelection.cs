@@ -44,7 +44,21 @@ namespace Repetitionless.Editor.Painter
             Event currentEvent = Event.current;
 
             // Draw outline to fake selection
+#if UNITY_2022_1_OR_NEWER
             Handles.DrawOutline(_selectedPaintableObjects, SELECTION_OUTLINE_COLOUR, 0);
+#else
+            // Cannot draw object outlines below 2022.1, draw a box around the object bounds instead
+            Color prevHandlesColour = Handles.color;
+            Handles.color = SELECTION_OUTLINE_COLOUR;
+            foreach (GameObject gameObject in _selectedPaintableObjects) {
+                Renderer renderer = gameObject.GetComponent<Renderer>();
+                if (renderer == null) return;
+
+                Handles.DrawWireCube(renderer.bounds.center, renderer.bounds.size);
+            }
+
+            Handles.color = prevHandlesColour;
+#endif
 
             // On click decide if it will be selected
             if (currentEvent.button == 0 && currentEvent.type == EventType.MouseDown) {

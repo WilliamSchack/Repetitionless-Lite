@@ -92,6 +92,12 @@ Note that:
 
 ## Caveats
 
+### Pre Unity 2022
+
+Below Unity 2022 there is no cheap built in way to draw outlines around the selected objects. In these versions a wire cube is drawn around the bounds of selected objects instead.
+
+![image](Images/Painting/WireSelection.png)
+
 ### UVs
 
 The UVs on a mesh should have uniform texel density otherwise painting may be distorted and not fit within the brush preview. Basically, the better unwrapped the UVs, the better the painting will be
