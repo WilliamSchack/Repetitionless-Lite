@@ -23,6 +23,7 @@ namespace Repetitionless.Editor.Painter
         private const float BRUSH_OPACITY_SENSITIVITY = 0.008f;
         private const float BRUSH_SMOOTHNESS_SENSITIVITY = 0.008f;
         private const float BRUSH_ROTATION_SENSITIVITY = 2.0f;
+        private const float BRUSH_CUTOFF_SENSITIVITY = 0.008f;
         private const float BRUSH_SENSITIVITY_SHIFT_MULTIPLIER = 0.1f;
 
         private const string UNDO_STROKE_NAME = "Repetitionless Paint Brush Stroke";
@@ -48,13 +49,22 @@ namespace Repetitionless.Editor.Painter
         }
         
         public int EditingLayer = 1;
+
+        // Global Brush Settings
         public Texture2D BrushTexture = null;
         public TexturePacker.TextureChannel BrushTextureChannel = TexturePacker.TextureChannel.R;
         public float BrushRadiusReal = 15;
         public float BrushRadius => BrushRadiusReal * 0.01f;
+        public float BrushRotationDegrees = 0.0f;
+        public bool InvertBrush = false;
+
+        // Control Brush Settings
         public float BrushOpacity = 1.0f;
         public float BrushSmoothness = 0.5f;
-        public float BrushRotationDegrees = 0.0f;
+
+        // Holes Brush Settings
+        public float BrushCutoff = 0.01f;
+        public bool ErasingHoles = false;
 
         private float _brushResizeLastMousePosX;
 
@@ -81,7 +91,6 @@ namespace Repetitionless.Editor.Painter
             Undo.undoRedoPerformed -= UndoRedoPerformed;
             Undo.undoRedoPerformed += UndoRedoPerformed;
 
-            _sceneInteraction.Listen();
             _sceneInteraction.OnResizePressed  -= ResizePressed;
             _sceneInteraction.OnResizeHeld     -= ResizeHeld;
             _sceneInteraction.OnResizeReleased -= ResizeReleased;
@@ -112,8 +121,6 @@ namespace Repetitionless.Editor.Painter
         {
             SceneView.duringSceneGui -= DuringSceneGUI;
             Undo.undoRedoPerformed -= UndoRedoPerformed;
-
-            _sceneInteraction.StopListening();
 
             _selection.Cleanup();
 
@@ -157,6 +164,8 @@ namespace Repetitionless.Editor.Painter
             if (_controlComputeShader == null)
                 return;
 
+            _sceneInteraction.DuringSceneGUI(sceneView, PaintingHoles);
+
             // Dont do anything when moving cam
             if (_sceneInteraction.AltHeld) return;
 
@@ -167,7 +176,7 @@ namespace Repetitionless.Editor.Painter
                 _selection.DuringSceneGUI(_sceneInteraction.LastMouseHit, sceneView);
 
             if (_sceneInteraction.LastMouseHit.collider != null) {
-                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, BrushRadius, BrushSmoothness);
+                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, BrushRadius, BrushSmoothness, PaintingHoles);
 
                 if (!_sceneInteraction.ResizingBrush)
                     Paint(_sceneInteraction.LastMouseHit);
@@ -236,6 +245,9 @@ namespace Repetitionless.Editor.Painter
                 case EResizingProperty.Rotation:
                     BrushRotationDegrees = Mathf.Clamp(BrushRotationDegrees + delta * (BRUSH_ROTATION_SENSITIVITY * sensitivityMultiplier), 0, 360);
                     break;
+                case EResizingProperty.Cutoff:
+                    BrushCutoff = Mathf.Clamp01(BrushCutoff + delta * (BRUSH_CUTOFF_SENSITIVITY * sensitivityMultiplier));
+                    break;
             }
             
             OnPropertyChanged?.Invoke();
@@ -284,6 +296,9 @@ namespace Repetitionless.Editor.Painter
                 case EResizingProperty.Rotation:
                     text = $"Rotation: {BrushRotationDegrees.ToString(_sceneInteraction.ShiftHeld ? "0.0" : "0")}\u00B0";
                     break;
+                case EResizingProperty.Cutoff:
+                    text = $"Cutoff: {BrushCutoff.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
+                    break;
             }
             
             _brushPreview.DrawMousePopup(text, new Color(0.1f, 0.1f, 0.1f, 1.0f), true, new Vector2(0, -25));
@@ -298,7 +313,7 @@ namespace Repetitionless.Editor.Painter
                 return;
 
             // Cannot paint if selected layer exceeds available layers, show on hover
-            if (gameObject != null && EditingLayer >= (int)_selection.PaintableObjectData[gameObject].MaxLayers) {
+            if (gameObject != null && EditingLayer >= (int)_selection.PaintableObjectData[gameObject].MaxLayers && !PaintingHoles) {
                 _brushPreview.DrawMousePopup(
                     $"You are painting on an invalid Layer ({EditingLayer + 1})\nUpdate the Max Layers property on this material",
                     new Color(0.25f, 0, 0, 1)
@@ -337,11 +352,12 @@ namespace Repetitionless.Editor.Painter
             
                 _holesComputeShader.SetTexture(kernel, "HolesTexture", objectData.HolesRenderTexture);
                 _holesComputeShader.SetTexture(kernel, "BrushTexture", BrushTexture == null ? Texture2D.whiteTexture : BrushTexture);
-                _holesComputeShader.SetInt("BrushChannel", (int)BrushTextureChannel);
+                _holesComputeShader.SetInt("BrushChannel", BrushTexture == null ? -1 : (int)BrushTextureChannel);
                 _holesComputeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
                 _holesComputeShader.SetFloat("Radius", BrushRadius);
                 _holesComputeShader.SetFloat("RotationRadians", BrushRotationDegrees * Mathf.Deg2Rad);
-                _holesComputeShader.SetBool("EraseHoles", false);
+                _holesComputeShader.SetFloat("Cutoff", BrushCutoff);
+                _holesComputeShader.SetBool("EraseHoles", ErasingHoles);
 
                 int groupsX = Mathf.CeilToInt(objectData.HolesTexture.width  / (float)COMPUTE_THREADS_X);
                 int groupsY = Mathf.CeilToInt(objectData.HolesTexture.height / (float)COMPUTE_THREADS_Y);
@@ -356,7 +372,7 @@ namespace Repetitionless.Editor.Painter
                 _controlComputeShader.SetTexture(kernel, "BrushTexture", BrushTexture == null ? Texture2D.whiteTexture : BrushTexture);
                 _controlComputeShader.SetInt("TargetSlice", EditingLayer / 4);
                 _controlComputeShader.SetInt("TargetChannel", EditingLayer % 4);
-                _controlComputeShader.SetInt("BrushChannel", (int)BrushTextureChannel);
+                _controlComputeShader.SetInt("BrushChannel", BrushTexture == null ? -1 : (int)BrushTextureChannel);
                 _controlComputeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
                 _controlComputeShader.SetFloat("Radius", BrushRadius);
                 _controlComputeShader.SetFloat("Opacity", BrushOpacity);
@@ -384,10 +400,9 @@ namespace Repetitionless.Editor.Painter
             Material repetitionlessMaterial = RepetitionlessLayeredMaterialUtilities.GetFirstLayeredMaterial(objectData.MeshRenderer);
 
             // Apply to the object material
-            for (int i = 0; i < objectData.ControlTextures.Count; i++) {
+            for (int i = 0; i < objectData.ControlTextures.Count; i++)
                 repetitionlessMaterial.SetTexture($"_Control{i}", objectData.RenderTextures[i]);
-            }
-            repetitionlessMaterial.SetTexture("_TerrainHolesTexture", objectData.HolesTexture);
+            repetitionlessMaterial.SetTexture("_TerrainHolesTexture", objectData.HolesRenderTexture);
         }
 
         private void CopyFromRT(RenderTexture renderTexture, Texture2D texture)

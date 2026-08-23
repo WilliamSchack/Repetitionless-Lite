@@ -34,18 +34,8 @@ namespace Repetitionless.Editor.Painter
         private RaycastHit _lastMouseHit;
         public RaycastHit LastMouseHit => _lastMouseHit;
 
-        public void Listen()
-        {
-            SceneView.duringSceneGui -= DuringSceneGUI;
-            SceneView.duringSceneGui += DuringSceneGUI;
-        }
-
-        public void StopListening()
-        {
-            SceneView.duringSceneGui -= DuringSceneGUI;
-        }
-
-        private void DuringSceneGUI(SceneView sceneView)
+        // Must be called in DuringSceneGUI
+        public void DuringSceneGUI(SceneView sceneView, bool paintingHoles)
         {
             Event currentEvent = Event.current;
 
@@ -55,9 +45,9 @@ namespace Repetitionless.Editor.Painter
             UpdateMouseHit();
 
             TrackHeldKeys(currentEvent);
-            TrackResize(currentEvent);
+            TrackResize(currentEvent, paintingHoles);
             TrackZoom(currentEvent, sceneView);
-            TrackLayerChange(currentEvent);
+            if (!paintingHoles) TrackLayerChange(currentEvent);
         }
 
         // Mouse Hit
@@ -91,7 +81,7 @@ namespace Repetitionless.Editor.Painter
             if (currentEvent.type == EventType.KeyUp && (currentEvent.keyCode == KeyCode.LeftShift || currentEvent.keyCode == KeyCode.RightShift)) _shiftHeld = false;
         }
 
-        private void TrackResize(Event currentEvent)
+        private void TrackResize(Event currentEvent, bool paintingHoles)
         {
             // If starting to move during resize, cancel resize
             if (_resizingBrush && _rightClickHeld) {
@@ -107,10 +97,22 @@ namespace Repetitionless.Editor.Painter
             EResizingProperty prevEResizingProperty = _resizingProperty;
             bool isResizeKey = true;
             switch (currentEvent.keyCode) {
-                case KeyCode.S: _resizingProperty = EResizingProperty.Radius;     break;
-                case KeyCode.A: _resizingProperty = EResizingProperty.Opacity;    break;
-                case KeyCode.D: _resizingProperty = EResizingProperty.Smoothness; break;
-                case KeyCode.C: _resizingProperty = EResizingProperty.Rotation;   break;
+                case KeyCode.S:
+                    _resizingProperty = EResizingProperty.Radius;
+                    break;
+                case KeyCode.A:
+                    if (paintingHoles)
+                        _resizingProperty = EResizingProperty.Cutoff;
+                    else
+                        _resizingProperty = EResizingProperty.Opacity;
+                    break;
+                case KeyCode.D: 
+                    if (!paintingHoles)
+                        _resizingProperty = EResizingProperty.Smoothness;
+                    break;
+                case KeyCode.C: 
+                    _resizingProperty = EResizingProperty.Rotation;
+                    break;
                 default: isResizeKey = false; break;
             }
 

@@ -38,7 +38,7 @@ namespace Repetitionless.Editor.Painter
             ObjectChangeEvents.changesPublished -= ChangesPublished;
         }
 
-        // Must be called in OnSceneGUI
+        // Must be called in DuringSceneGUI
         public void DuringSceneGUI(RaycastHit mouseHit, SceneView sceneView)
         {
             Event currentEvent = Event.current;

@@ -51,8 +51,14 @@ namespace Repetitionless.Editor.CustomWindows
 
             // NEED TO IMPLEMENT
             GUILayout.BeginHorizontal();
-            GUILayout.Button("Control Textures");
-            GUILayout.Button("Holes Texture");
+            if (GUILayout.Button("Control Textures")) {
+                if (!_painter.Painting)
+                    _painter.StartPainting();
+                else
+                    _painter.StopPaintingHoles();
+            }
+            if (GUILayout.Button("Holes Texture"))
+                _painter.TogglePaintingHoles();
             GUILayout.EndHorizontal();
 
             GUI.enabled = _painter.LastPaintedObject != null;
@@ -68,8 +74,10 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUIUtilities.BeginBackgroundVertical();
 
-            EditorGUILayout.LabelField("Painting Settings", EditorStyles.boldLabel);            
-            _painter.EditingLayer = EditorGUILayout.IntSlider(new GUIContent("Painting Layer", "The layer that will be painted. This is determined per material in its layer selection"), _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
+            EditorGUILayout.LabelField("Painting Settings", EditorStyles.boldLabel);   
+            if (!_painter.PaintingHoles)
+                _painter.EditingLayer = EditorGUILayout.IntSlider(new GUIContent("Painting Layer", "The layer that will be painted. This is determined per material in its layer selection"), _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
+            
             _painter.TextureResolution = Mathf.Max(1, EditorGUILayout.IntField(new GUIContent("Control Resolution", "The resolution of the control textures"), _painter.TextureResolution));
 
             _painter.HolesTextureResolution = Mathf.Max(1, EditorGUILayout.IntField("Holes Resolution", _painter.HolesTextureResolution));
@@ -86,9 +94,13 @@ namespace Repetitionless.Editor.CustomWindows
             _painter.BrushTextureChannel = DrawChannelPicker(textureLineRect, _painter.BrushTextureChannel);
 
             _painter.BrushRadiusReal = Mathf.Max(0.01f, EditorGUILayout.FloatField(new GUIContent("Brush Radius", "The size of the brush"), _painter.BrushRadiusReal));
-            _painter.BrushOpacity = EditorGUILayout.Slider(new GUIContent("Brush Opacity", "The strength of the brush.\nThe brush will accumulate so if you want opacity while dragging set this to <= 0.05"), _painter.BrushOpacity, 0, 1);
-            _painter.BrushSmoothness = EditorGUILayout.Slider(new GUIContent("Brush Smoothness", "What radius to start fading out the brush. This is visualised as the inner circle in the scene view"), _painter.BrushSmoothness, 0, 1);
             _painter.BrushRotationDegrees = EditorGUILayout.Slider(new GUIContent("Brush Rotation", "The rotation of the brush texture relative to the uvs of the painted object. This does nothing with no texture set"), _painter.BrushRotationDegrees, 0, 360);
+            if (_painter.PaintingHoles) {
+                _painter.BrushCutoff = EditorGUILayout.Slider(new GUIContent("Brush Cutoff", "The cutoff of the value for the brush texture where holes will not be drawn"), _painter.BrushCutoff, 0, 1);
+            } else {
+                _painter.BrushOpacity = EditorGUILayout.Slider(new GUIContent("Brush Opacity", "The strength of the brush.\nThe brush will accumulate so if you want opacity while dragging set this to <= 0.05"), _painter.BrushOpacity, 0, 1);
+                _painter.BrushSmoothness = EditorGUILayout.Slider(new GUIContent("Brush Smoothness", "What radius to start fading out the brush. This is visualised as the inner circle in the scene view"), _painter.BrushSmoothness, 0, 1);
+            }
 
             GUIUtilities.EndBackgroundVertical();
         }
@@ -105,8 +117,14 @@ namespace Repetitionless.Editor.CustomWindows
         private void DuringSceneGUI(SceneView sceneView)
         {
             Event currentEvent = Event.current;
+
             if (currentEvent.type == EventType.KeyDown && currentEvent.keyCode == KeyCode.G) {
                 _painter.TogglePainting();
+                Repaint();
+            }
+
+            if (currentEvent.type == EventType.KeyDown && currentEvent.keyCode == KeyCode.H) {
+                _painter.TogglePaintingHoles();
                 Repaint();
             }
         }

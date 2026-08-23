@@ -6,6 +6,7 @@ namespace Repetitionless.Editor.Painter
         Radius,
         Opacity,
         Smoothness,
-        Rotation
+        Rotation,
+        Cutoff
     }
 }
