@@ -17,19 +17,19 @@ namespace Repetitionless.Editor.Utilities.Texture
             /// <summary>
             /// Red channel
             /// </summary>
-            R,
+            R = 0,
             /// <summary>
             /// Green channel
             /// </summary>
-            G,
+            G = 1,
             /// <summary>
             /// Blue channel
             /// </summary>
-            B,
+            B = 2,
             /// <summary>
             /// Alpha channel
             /// </summary>
-            A
+            A = 3
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace Repetitionless.Editor.Utilities.Texture
 
             // Create render texture
             bool generateMipMaps = inputTextures.Count > 0;
-            RenderTextureDescriptor desc =  new RenderTextureDescriptor(resolution.x, resolution.y) {
+            RenderTextureDescriptor desc = new RenderTextureDescriptor(resolution.x, resolution.y) {
                 enableRandomWrite = true,
                 useMipMap = true,
                 autoGenerateMips = generateMipMaps,

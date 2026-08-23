@@ -1,7 +1,5 @@
 #if UNITY_EDITOR
 using System;
-using System.IO;
-using UnityEngine;
 
 namespace Repetitionless.Editor.Config
 {
@@ -30,60 +28,11 @@ namespace Repetitionless.Editor.Config
             public long LastSessionId = 0;
         }
 
-        private static Prefs _prefsCache;
-        public static Prefs Data => _prefsCache ??= LoadPrefs();
+        private static readonly PrefsStorage<Prefs> _storage = new PrefsStorage<Prefs>(PREFS_FILE_PATH);
 
-        private static FileInfo GetPrefsFileInfo()
-        {
-            FileInfo prefsFileInfo = new FileInfo(PREFS_FILE_PATH);
-            if (!prefsFileInfo.Exists)
-                CreatePrefs();
+        public static Prefs Data => _storage.Data;
 
-            return prefsFileInfo;
-        }
-
-        private static void CreatePrefs()
-        {
-            FileInfo prefsFileInfo = new FileInfo(PREFS_FILE_PATH);
-            if (prefsFileInfo.Exists) return;
-
-            string parentDir = prefsFileInfo.DirectoryName;
-            if (!Directory.Exists(parentDir))
-                Directory.CreateDirectory(parentDir);
-
-            Prefs prefs = new Prefs();
-            string prefsJson = JsonUtility.ToJson(prefs);
-
-            File.WriteAllText(prefsFileInfo.FullName, prefsJson);
-        }
-
-        private static Prefs LoadPrefs()
-        {
-            FileInfo prefsFileInfo = GetPrefsFileInfo();
-
-            string prefsJson = File.ReadAllText(prefsFileInfo.FullName);
-            return JsonUtility.FromJson<Prefs>(prefsJson);
-        }
-
-        private static void WritePrefs(Prefs prefs)
-        {
-            FileInfo prefsFileInfo = GetPrefsFileInfo();
-            
-            string prefsJson = JsonUtility.ToJson(prefs);
-            File.WriteAllText(prefsFileInfo.FullName, prefsJson);
-        }
-
-        /// <summary>
-        /// Writes the prefs after calling the updater action
-        /// </summary>
-        /// <param name="updater">
-        /// The action used to modify the prefs before writing them
-        /// </param>
-        public static void UpdatePrefs(Action<Prefs> updater)
-        {
-            updater(Data);
-            WritePrefs(Data);
-        }
+        public static void UpdatePrefs(Action<Prefs> updater) => _storage.UpdatePrefs(updater);
     }
 }
 #endif

@@ -309,6 +309,20 @@ namespace Repetitionless.Editor.Data
         }
 
         /// <summary>
+        /// Assigns the holes texture to the material
+        /// </summary>
+        public void AssignHolesTexture()
+        {
+            _dataManager.Material.SetTexture("_TerrainHolesTexture", HolesTexture.Texture);
+
+            // Holes require _ALPHATEST_ON to work, no need for it otherwise
+            if (HolesTexture.Texture != null)
+                RepetitionlessMaterialUtilities.SetBoolKeyword(_dataManager.Material, "_ALPHATEST_ON", true);
+            else
+                RepetitionlessMaterialUtilities.SetBoolKeyword(_dataManager.Material, "_ALPHATEST_ON", false);
+        }
+
+        /// <summary>
         /// Updates the layer count in the material based on the textures assigned
         /// </summary>
         public void UpdateLayersCount()

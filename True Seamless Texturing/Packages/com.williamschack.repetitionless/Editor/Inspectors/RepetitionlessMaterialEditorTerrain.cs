@@ -12,6 +12,7 @@ namespace Repetitionless.Editor.Inspectors
     using Materials;
     using Utilities.GUI;
     using Utilities.Texture;
+    using Editor.CustomDialog;
 
     /// <summary>
     /// The editor for the terrain repetitionless material

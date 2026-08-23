@@ -32,7 +32,7 @@ namespace Repetitionless.Editor.Materials
 #endif
         }
 
-        public static void UpdateLayerMode(MaterialDataManager dataManager, ELayerMode layerMode)
+        public static void UpdateLayerModeShader(MaterialDataManager dataManager, ELayerMode layerMode)
         {
             string newShader = "";
             switch (layerMode) {
@@ -79,7 +79,7 @@ namespace Repetitionless.Editor.Materials
                 data.LayerMode = ELayerMode.TerrainLayers;
             }
 
-            UpdateLayerMode(dataManager, data.LayerMode);
+            UpdateLayerModeShader(dataManager, data.LayerMode);
 
             data.Save();
             AssetDatabase.SaveAssetIfDirty(data);
@@ -106,6 +106,18 @@ namespace Repetitionless.Editor.Materials
             AssetDatabase.SaveAssetIfDirty(data);
 
             return data;
+        }
+
+        public static Material GetFirstLayeredMaterial(MeshRenderer renderer)
+        {
+            foreach (Material mat in renderer.sharedMaterials) {
+                if (!mat.shader.name.Contains(Constants.SHADER_MATERIAL_NAME_LAYERED))
+                    continue;
+
+                return mat; // Assume only one material is on the object
+            }
+
+            return null;
         }
     }
 }

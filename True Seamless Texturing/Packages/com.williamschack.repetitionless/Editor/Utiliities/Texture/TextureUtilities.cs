@@ -58,7 +58,8 @@ namespace Repetitionless.Editor.Utilities.Texture
 
         /// <summary>
         /// Scales the input texture to the desired resolution<br />
-        /// Does not modify the original texture, returns a new resized one
+        /// Does not modify the original texture unless set, returns a new resized one<br />
+        /// If the texture is the same resolution as the target, it will do nothing and return the input texture
         /// </summary>
         /// <param name="texture">
         /// The texture that will be resized
@@ -72,11 +73,20 @@ namespace Repetitionless.Editor.Utilities.Texture
         /// <param name="filterMode">
         /// The filter mode used when resizing the texture
         /// </param>
+        /// <param name="modifyOriginal">
+        /// If the function modifies the original texture<br />
+        /// When this is set, no need to use the returned texture
+        /// </param>
         /// <returns>
         /// The texture resized to the input resolution
         /// </returns>
-        public static Texture2D ResizeTexture(Texture2D texture, int newWidth, int newHeight, FilterMode filterMode = FilterMode.Bilinear)
+        public static Texture2D ResizeTexture(Texture2D texture, int newWidth, int newHeight, FilterMode filterMode = FilterMode.Bilinear, bool modifyOriginal = false)
         {
+            // Dont resize if not required/possible 
+            if (texture == null) return texture;
+            if (newWidth == 0 || newHeight == 0) return texture;
+            if (texture.width == newWidth && texture.height == newHeight) return texture;
+
             RenderTexture rt = RenderTexture.GetTemporary(newWidth, newHeight);
             rt.filterMode = filterMode;
 
@@ -84,7 +94,13 @@ namespace Repetitionless.Editor.Utilities.Texture
             RenderTexture.active = rt;
 
             Graphics.Blit(texture, rt);
-            Texture2D result = new Texture2D(newWidth, newHeight);
+
+            Texture2D result = texture;
+            if (modifyOriginal) {
+                texture.Reinitialize(newWidth, newHeight);
+            } else {
+                result = new Texture2D(newWidth, newHeight);
+            }
 
             result.ReadPixels(new Rect(0, 0, newWidth, newHeight), 0, 0);
             result.Apply();
