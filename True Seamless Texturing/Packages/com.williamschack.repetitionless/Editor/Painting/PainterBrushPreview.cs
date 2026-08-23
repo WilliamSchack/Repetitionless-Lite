@@ -18,9 +18,9 @@ namespace Repetitionless.Editor.Painter
             public double FadeDuration;
         }
 
-        private static readonly Vector2 MOUSE_POPUP_OFFSET = new Vector2(20, 0); 
+        private static readonly Vector2 POPUP_MOUSE_OFFSET = new Vector2(20, 0); 
+        private static readonly Vector2 POPUP_PADDING = new Vector2(5, 3);
 
-        private GUIStyle _popupBoxStyle;
         private GUIStyle _popupLabelStyle;
         private bool _popupStylesSetup = false;
 
@@ -43,16 +43,6 @@ namespace Repetitionless.Editor.Painter
         private void SetupNotificationGUIStyles()
         {
             _popupStylesSetup = true;
-
-            // Notification box
-            Texture2D backgroundTexture = new Texture2D(1, 1);
-            backgroundTexture.SetPixel(0, 0, Color.white);
-            backgroundTexture.Apply();
-
-            _popupBoxStyle = new GUIStyle(GUI.skin.box) {
-                normal = { background = backgroundTexture },
-                padding = { right = 5 }
-            };
 
             // Notification label
             _popupLabelStyle = new GUIStyle(GUI.skin.label);
@@ -77,18 +67,18 @@ namespace Repetitionless.Editor.Painter
 
         public void DrawMousePopup(string label, Color backgroundColor, bool alphaToColour, Vector2 positionOffset)
         {
-            if (!_popupStylesSetup || _popupBoxStyle?.normal.background == null)
+            if (!_popupStylesSetup)
                 SetupNotificationGUIStyles();
 
             Handles.BeginGUI();
 
             // Calculate size based on contents
             Vector2 size = _popupLabelStyle.CalcSize(new GUIContent(label));
-            size.x += _popupBoxStyle.padding.left + _popupBoxStyle.padding.right;
-            size.y += _popupBoxStyle.padding.top + _popupBoxStyle.padding.bottom;
+            size.x += POPUP_PADDING.x * 2;
+            size.y += POPUP_PADDING.y * 2;
 
             Vector2 mousePos = Event.current.mousePosition;
-            Rect rect = new Rect(mousePos.x + MOUSE_POPUP_OFFSET.x + positionOffset.x, mousePos.y + MOUSE_POPUP_OFFSET.y + positionOffset.y, size.x, size.y);
+            Rect rect = new Rect(mousePos.x + POPUP_MOUSE_OFFSET.x + positionOffset.x, mousePos.y + POPUP_MOUSE_OFFSET.y + positionOffset.y, size.x, size.y);
 
             Color prevColour = GUI.color;
             if (alphaToColour) {
@@ -97,12 +87,14 @@ namespace Repetitionless.Editor.Painter
                 GUI.color = newColour;
             }
 
-            Color prevBackgroundColour = GUI.backgroundColor;
-            GUI.backgroundColor = backgroundColor;
-            GUI.Box(rect, GUIContent.none, _popupBoxStyle);
-            GUI.backgroundColor = prevBackgroundColour;
+            EditorGUI.DrawRect(rect, backgroundColor);
 
-            Rect contentRect = _popupBoxStyle.padding.Remove(rect);
+            Rect contentRect = rect;
+            contentRect.x += POPUP_PADDING.x;
+            contentRect.y += POPUP_PADDING.y;
+            contentRect.width -= POPUP_PADDING.x * 2;
+            contentRect.height -= POPUP_PADDING.y * 2;
+
             GUI.Label(contentRect, label, _popupLabelStyle);
 
             if (alphaToColour)
