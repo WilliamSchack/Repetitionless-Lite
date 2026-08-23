@@ -27,16 +27,14 @@ namespace Repetitionless.Editor.Painter
         private List<FadingPopupData> _fadingPopups = new List<FadingPopupData>();
 
         // Brush
-        public void DrawBrush(RaycastHit mouseHit, SceneView sceneView, float radius, float smoothness, bool paintingHoles)
+        public void DrawBrush(RaycastHit mouseHit, SceneView sceneView, float radius, float innerRadius)
         {
             // Outer circle
             Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, radius, 3);
 
             // Smoothness circle
-            if (!paintingHoles) {
-                float innerRadius = radius * (1 - smoothness);
-                Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, innerRadius, 1);
-            }
+            innerRadius *= radius;
+            Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, innerRadius, 1);
 
             sceneView.Repaint();
         }

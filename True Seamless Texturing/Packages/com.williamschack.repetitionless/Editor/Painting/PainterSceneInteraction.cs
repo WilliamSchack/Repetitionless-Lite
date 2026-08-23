@@ -14,6 +14,8 @@ namespace Repetitionless.Editor.Painter
 
         public Action<SceneView, Vector3> OnZoomPressed;
 
+        public Action OnToggleEraseHolesPressed;
+
         public Action OnLayerDecreased;
         public Action OnLayerIncreased;
 
@@ -48,6 +50,7 @@ namespace Repetitionless.Editor.Painter
             TrackResize(currentEvent, paintingHoles);
             TrackZoom(currentEvent, sceneView);
             if (!paintingHoles) TrackLayerChange(currentEvent);
+            if (paintingHoles) TrackHolesKeybinds(currentEvent);
         }
 
         // Mouse Hit
@@ -170,6 +173,15 @@ namespace Repetitionless.Editor.Painter
                 if (currentEvent.delta.y > 0) OnLayerDecreased?.Invoke();
                 else                          OnLayerIncreased?.Invoke();
 
+                currentEvent.Use();
+            }
+        }
+
+        private void TrackHolesKeybinds(Event currentEvent)
+        {
+            // Toggle erase holes
+            if (currentEvent.type == EventType.KeyDown && currentEvent.keyCode == KeyCode.D) {
+                OnToggleEraseHolesPressed?.Invoke();
                 currentEvent.Use();
             }
         }

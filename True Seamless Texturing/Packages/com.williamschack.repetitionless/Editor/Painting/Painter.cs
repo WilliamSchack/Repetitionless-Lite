@@ -16,8 +16,8 @@ namespace Repetitionless.Editor.Painter
         private const int COMPUTE_THREADS_X = 8;
         private const int COMPUTE_THREADS_Y = 8;
 
-        private const double LAYER_CHANGE_POPUP_HOLD_DURATION = 1.0f;
-        private const double LAYER_CHANGE_POPUP_FADE_DURATION = 0.4f;
+        private const double POPUP_HOLD_DURATION = 1.0f;
+        private const double POPUP_FADE_DURATION = 0.4f;
 
         private const float BRUSH_RADIUS_SENSITIVITY = 0.2f;
         private const float BRUSH_OPACITY_SENSITIVITY = 0.008f;
@@ -91,18 +91,20 @@ namespace Repetitionless.Editor.Painter
             Undo.undoRedoPerformed -= UndoRedoPerformed;
             Undo.undoRedoPerformed += UndoRedoPerformed;
 
-            _sceneInteraction.OnResizePressed  -= ResizePressed;
-            _sceneInteraction.OnResizeHeld     -= ResizeHeld;
-            _sceneInteraction.OnResizeReleased -= ResizeReleased;
-            _sceneInteraction.OnZoomPressed    -= ZoomPressed;
-            _sceneInteraction.OnLayerDecreased -= LayerDecreased;
-            _sceneInteraction.OnLayerIncreased -= LayerIncreased;
-            _sceneInteraction.OnResizePressed  += ResizePressed;
-            _sceneInteraction.OnResizeHeld     += ResizeHeld;
-            _sceneInteraction.OnResizeReleased += ResizeReleased;
-            _sceneInteraction.OnZoomPressed    += ZoomPressed;
-            _sceneInteraction.OnLayerDecreased += LayerDecreased;
-            _sceneInteraction.OnLayerIncreased += LayerIncreased;
+            _sceneInteraction.OnResizePressed           -= ResizePressed;
+            _sceneInteraction.OnResizeHeld              -= ResizeHeld;
+            _sceneInteraction.OnResizeReleased          -= ResizeReleased;
+            _sceneInteraction.OnZoomPressed             -= ZoomPressed;
+            _sceneInteraction.OnToggleEraseHolesPressed -= ToggleEraseHolesPressed;
+            _sceneInteraction.OnLayerDecreased          -= LayerDecreased;
+            _sceneInteraction.OnLayerIncreased          -= LayerIncreased;
+            _sceneInteraction.OnResizePressed           += ResizePressed;
+            _sceneInteraction.OnResizeHeld              += ResizeHeld;
+            _sceneInteraction.OnResizeReleased          += ResizeReleased;
+            _sceneInteraction.OnZoomPressed             += ZoomPressed;
+            _sceneInteraction.OnToggleEraseHolesPressed += ToggleEraseHolesPressed;
+            _sceneInteraction.OnLayerDecreased          += LayerDecreased;
+            _sceneInteraction.OnLayerIncreased          += LayerIncreased;
 
             if (_controlComputeShader == null) {
                 _controlComputeShader = Resources.Load<ComputeShader>(PAINT_TEXTURE_COMPUTE_RESOURCES_PATH);
@@ -145,11 +147,29 @@ namespace Repetitionless.Editor.Painter
                     Debug.LogError("No holes paint compute shader found...");
             }
 
+            // Draw popup
+            _brushPreview.ClearFadingPopups();
+            _brushPreview.AddFadingPopup(
+                EditorApplication.timeSinceStartup + POPUP_HOLD_DURATION,
+                POPUP_FADE_DURATION,
+                $"Painting Holes",
+                new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
+            );
+
             _paintingHoles = true;
         }
 
         public void StopPaintingHoles()
         {
+            // Draw popup
+            _brushPreview.ClearFadingPopups();
+            _brushPreview.AddFadingPopup(
+                EditorApplication.timeSinceStartup + POPUP_HOLD_DURATION,
+                POPUP_FADE_DURATION,
+                $"Painting Control Textures",
+                new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
+            );
+
             _paintingHoles = false;
         }
 
@@ -176,7 +196,8 @@ namespace Repetitionless.Editor.Painter
                 _selection.DuringSceneGUI(_sceneInteraction.LastMouseHit, sceneView);
 
             if (_sceneInteraction.LastMouseHit.collider != null) {
-                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, BrushRadius, BrushSmoothness, PaintingHoles);
+                float innerRadius = PaintingHoles ? (ErasingHoles ? 0.9f : 0.0f) : (1 - BrushSmoothness);
+                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, BrushRadius, innerRadius);
 
                 if (!_sceneInteraction.ResizingBrush)
                     Paint(_sceneInteraction.LastMouseHit);
@@ -213,9 +234,10 @@ namespace Repetitionless.Editor.Painter
             // Draw popup
             _brushPreview.ClearFadingPopups();
             _brushPreview.AddFadingPopup(
-                EditorApplication.timeSinceStartup + LAYER_CHANGE_POPUP_HOLD_DURATION,
-                LAYER_CHANGE_POPUP_FADE_DURATION,
-                    $"Layer {EditingLayer + 1}", new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
+                EditorApplication.timeSinceStartup + POPUP_HOLD_DURATION,
+                POPUP_FADE_DURATION,
+                $"Layer {EditingLayer + 1}",
+                new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
             );
         }
 
@@ -261,6 +283,20 @@ namespace Repetitionless.Editor.Painter
         private void ZoomPressed(SceneView sceneView, Vector3 pos)
         {
             sceneView.Frame(new Bounds(pos, Vector3.one), false);
+        }
+
+        private void ToggleEraseHolesPressed()
+        {
+            ErasingHoles = !ErasingHoles;
+
+            // Draw popup
+            _brushPreview.ClearFadingPopups();
+            _brushPreview.AddFadingPopup(
+                EditorApplication.timeSinceStartup + POPUP_HOLD_DURATION,
+                POPUP_FADE_DURATION,
+                $"Erase Holes: {(ErasingHoles ? "Enabled" : "Disabled")}",
+                new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
+            );
         }
 
         private void UndoRedoPerformed()
