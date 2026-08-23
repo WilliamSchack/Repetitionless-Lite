@@ -48,7 +48,7 @@ namespace Repetitionless.Editor.Painter
             set { _selection.HolesTextureResolution = value; }
         }
         
-        public int EditingLayer = 1;
+        public int PaintingLayer = 1;
 
         // Global Brush Settings
         public Texture2D BrushTexture = null;
@@ -222,7 +222,7 @@ namespace Repetitionless.Editor.Painter
             if (_sceneInteraction.ResizingBrush)
                 return;
 
-            UpdateLayer(Mathf.Max(0, EditingLayer - 1));
+            UpdateLayer(Mathf.Max(0, PaintingLayer - 1));
         }
 
         private void LayerIncreased()
@@ -230,13 +230,13 @@ namespace Repetitionless.Editor.Painter
             if (_sceneInteraction.ResizingBrush)
                 return;
 
-            UpdateLayer(Mathf.Min(EditingLayer + 1, Constants.MAX_LAYERS_TERRAIN - 1));
+            UpdateLayer(Mathf.Min(PaintingLayer + 1, Constants.MAX_LAYERS_TERRAIN - 1));
         }
 
         private void UpdateLayer(int newLayer)
         {
             // Update layer
-            EditingLayer = newLayer;
+            PaintingLayer = newLayer;
             OnPropertyChanged?.Invoke();
 
             // Draw popup
@@ -244,7 +244,7 @@ namespace Repetitionless.Editor.Painter
             _brushPreview.AddFadingPopup(
                 EditorApplication.timeSinceStartup + POPUP_HOLD_DURATION,
                 POPUP_FADE_DURATION,
-                $"Layer {EditingLayer + 1}",
+                $"Layer {PaintingLayer + 1}",
                 new Color(0.1f, 0.1f, 0.1f), true, new Vector2(0, -25)
             );
         }
@@ -371,9 +371,9 @@ namespace Repetitionless.Editor.Painter
                 return;
 
             // Cannot paint if selected layer exceeds available layers, show on hover
-            if (gameObject != null && EditingLayer >= (int)_selection.PaintableObjectData[gameObject].MaxLayers && !PaintingHoles) {
+            if (gameObject != null && PaintingLayer >= (int)_selection.PaintableObjectData[gameObject].MaxLayers && !PaintingHoles) {
                 _brushPreview.DrawMousePopup(
-                    $"You are painting on an invalid Layer ({EditingLayer + 1})\nUpdate the Max Layers property on this material",
+                    $"You are painting on an invalid Layer ({PaintingLayer + 1})\nUpdate the Max Layers property on this material",
                     new Color(0.25f, 0, 0, 1)
                 );
 
@@ -429,8 +429,8 @@ namespace Repetitionless.Editor.Painter
                     _controlComputeShader.SetTexture(kernel, $"Control{i}", objectData.RenderTextures[i]);
             
                 _controlComputeShader.SetTexture(kernel, "BrushTexture", BrushTexture == null ? Texture2D.whiteTexture : BrushTexture);
-                _controlComputeShader.SetInt("TargetSlice", EditingLayer / 4);
-                _controlComputeShader.SetInt("TargetChannel", EditingLayer % 4);
+                _controlComputeShader.SetInt("TargetSlice", PaintingLayer / 4);
+                _controlComputeShader.SetInt("TargetChannel", PaintingLayer % 4);
                 _controlComputeShader.SetInt("BrushChannel", BrushTexture == null ? -1 : (int)BrushTextureChannel);
                 _controlComputeShader.SetBool("InvertBrush", InvertBrush);
                 _controlComputeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));

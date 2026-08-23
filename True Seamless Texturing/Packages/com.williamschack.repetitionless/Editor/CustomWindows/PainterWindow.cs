@@ -8,6 +8,7 @@ namespace Repetitionless.Editor.CustomWindows
     using Materials;
     using Utilities.GUI;
     using Utilities.Texture;
+    using Repetitionless.Editor.Config;
 
     public class PainterWindow : EditorWindow
     {
@@ -28,7 +29,9 @@ namespace Repetitionless.Editor.CustomWindows
             SceneView.duringSceneGui += DuringSceneGUI;
 
             _painter = new Painter();
-            _painter.OnPropertyChanged += Repaint;
+            _painter.OnPropertyChanged += OnPropertyChanged;
+
+            LoadPrefs();
 
             _painter.StartPainting();
         }
@@ -74,12 +77,15 @@ namespace Repetitionless.Editor.CustomWindows
 
             GUIUtilities.EndBackgroundVertical();
 
+            // Prefs
+            EditorGUI.BeginChangeCheck();
+
             GUIUtilities.BeginBackgroundVertical();
 
             EditorGUILayout.LabelField("Painting Settings", EditorStyles.boldLabel);  
 
             if (!_painter.PaintingHoles)
-                _painter.EditingLayer = EditorGUILayout.IntSlider(new GUIContent("Painting Layer", "The layer that will be painted. This is determined per material in its layer selection"), _painter.EditingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
+                _painter.PaintingLayer = EditorGUILayout.IntSlider(new GUIContent("Painting Layer", "The layer that will be painted. This is determined per material in its layer selection"), _painter.PaintingLayer + 1, 1, Constants.MAX_LAYERS_TERRAIN) - 1;
             
             _painter.TextureResolution = Mathf.Max(1, EditorGUILayout.IntField(new GUIContent("Control Resolution", "The resolution of the control textures"), _painter.TextureResolution));
 
@@ -93,7 +99,15 @@ namespace Repetitionless.Editor.CustomWindows
             Rect textureRect = textureLineRect;
             textureRect.width -= CHANNEL_PICKER_WIDTH + 5;
 
+            EditorGUI.BeginChangeCheck();
             _painter.BrushTexture = (Texture2D)EditorGUI.ObjectField(textureRect, new GUIContent("Brush Texture", "The texture used for painting, if not set it will be a circle filling the radius. The channel is what channel to read from in the texture"), _painter.BrushTexture, typeof(Texture2D), false);
+            if (EditorGUI.EndChangeCheck()) {
+                // Save texture
+                PainterPrefs.UpdatePrefs((p) => {
+                    p.BrushTextureGUID = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(_painter.BrushTexture));
+                });
+            }
+            
             _painter.BrushTextureChannel = DrawChannelPicker(textureLineRect, _painter.BrushTextureChannel);
             if (_painter.BrushTexture != null) {
                 _painter.BrushRotationDegrees = EditorGUILayout.Slider(new GUIContent("Brush Rotation", "The rotation of the brush texture relative to the uvs of the painted object. This does nothing with no texture set"), _painter.BrushRotationDegrees, 0, 360);
@@ -110,6 +124,9 @@ namespace Repetitionless.Editor.CustomWindows
             }
 
             GUIUtilities.EndBackgroundVertical();
+
+            if (EditorGUI.EndChangeCheck())
+                SavePrefs();
         }
 
         private protected TexturePacker.TextureChannel DrawChannelPicker(Rect lineRect, TexturePacker.TextureChannel channel)
@@ -134,6 +151,61 @@ namespace Repetitionless.Editor.CustomWindows
                 _painter.TogglePaintingHoles(true);
                 Repaint();
             }
+        }
+
+        private void OnPropertyChanged()
+        {
+            Repaint();
+            SavePrefs();
+        }
+
+        private void LoadPrefs()
+        {
+            if (!PainterPrefs.Data.SaveSettings)
+                return;
+
+            _painter.PaintingLayer = PainterPrefs.Data.PaintingLayer;
+            _painter.BrushTextureChannel = (TexturePacker.TextureChannel)PainterPrefs.Data.BrushTextureChannel;
+            _painter.BrushRadiusReal = PainterPrefs.Data.BrushRadiusReal;
+            _painter.BrushRotationDegrees = PainterPrefs.Data.BrushRotationDegrees;
+            _painter.BrushOpacity = PainterPrefs.Data.BrushOpacity;
+            _painter.BrushSmoothness = PainterPrefs.Data.BrushSmoothness;
+            _painter.BrushCutoff = PainterPrefs.Data.BrushCutoff;
+            _painter.TextureResolution = PainterPrefs.Data.ControlResolution;
+            _painter.HolesTextureResolution = PainterPrefs.Data.HolesResolution;
+
+            // Load texture if it exists
+            if (PainterPrefs.Data.BrushTextureGUID != "") {
+                string path = AssetDatabase.GUIDToAssetPath(PainterPrefs.Data.BrushTextureGUID);
+                bool textureExists = path != "" ? AssetDatabase.AssetPathExists(path) : false;
+
+                if (textureExists) {
+                    _painter.BrushTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+                } else {
+                    // Brush texture has been removed, update the pref
+                    PainterPrefs.UpdatePrefs((p) => {
+                        p.BrushTextureGUID = "";
+                    });
+                }
+            }
+        }
+
+        private void SavePrefs()
+        {
+            if (!PainterPrefs.Data.SaveSettings)
+                return;
+            
+            PainterPrefs.UpdatePrefs((p) => {
+                p.PaintingLayer = _painter.PaintingLayer;
+                p.BrushTextureChannel = (int)_painter.BrushTextureChannel;
+                p.BrushRadiusReal = _painter.BrushRadiusReal;
+                p.BrushRotationDegrees = _painter.BrushRotationDegrees;
+                p.BrushOpacity = _painter.BrushOpacity;
+                p.BrushSmoothness = _painter.BrushSmoothness;
+                p.BrushCutoff = _painter.BrushCutoff;
+                p.ControlResolution = _painter.TextureResolution;
+                p.HolesResolution = _painter.HolesTextureResolution;
+            });
         }
     }
 }
