@@ -343,7 +343,7 @@ namespace Repetitionless.Editor.Painter
             string text = "";
             switch (_sceneInteraction.ResizingProperty) {
                 case EResizingProperty.Radius:
-                    text = $"Radus: {BrushRadiusReal.ToString(_sceneInteraction.ShiftHeld ? "0.00" : "0.0")}";
+                    text = $"Radius: {BrushRadiusReal.ToString(_sceneInteraction.ShiftHeld ? "0.00" : "0.0")}";
                     break;
                 case EResizingProperty.Opacity:
                     text = $"Opacity: {BrushOpacity.ToString(_sceneInteraction.ShiftHeld ? "0.000" : "0.00")}";
