@@ -239,6 +239,14 @@ namespace Repetitionless.Editor.CustomWindows
                 });
             }
 
+            EditorGUI.BeginChangeCheck();
+            bool savePaintingSettings = GUILayout.Toggle(PainterPrefs.Data.SaveSettings, "Save painting settings");
+            if (EditorGUI.EndChangeCheck()) {
+                PainterPrefs.UpdatePrefs((p) => {
+                    p.SaveSettings = savePaintingSettings;
+                });
+            }
+
             GUIUtilities.EndBackgroundVertical();
 
             GUILayout.Space(10);
