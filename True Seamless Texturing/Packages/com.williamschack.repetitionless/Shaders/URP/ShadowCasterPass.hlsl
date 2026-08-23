@@ -25,6 +25,7 @@ struct Attributes
 struct Varyings
 {
     float4 positionCS   : SV_POSITION;
+    float2 texcoord : TEXCOORD0;
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
@@ -61,6 +62,7 @@ Varyings ShadowPassVertex(Attributes input)
     UNITY_TRANSFER_INSTANCE_ID(input, output);
 
     output.positionCS = GetShadowPositionHClip(input);
+    output.texcoord = input.texcoord;
     return output;
 }
 
@@ -68,9 +70,14 @@ half4 ShadowPassFragment(Varyings input) : SV_TARGET
 {
     UNITY_SETUP_INSTANCE_ID(input);
 
-    #if defined(LOD_FADE_CROSSFADE)
-        LODFadeCrossFade(input.positionCS);
-    #endif
+#if defined(LOD_FADE_CROSSFADE)
+    LODFadeCrossFade(input.positionCS);
+#endif
+
+#ifdef _ALPHATEST_ON
+    float hole = SAMPLE_TEXTURE2D(_TerrainHolesTexture, sampler_TerrainHolesTexture, input.texcoord).r;
+    clip(hole < 0.0005f ? -1 : 1);
+#endif
 
     return 0;
 }

@@ -308,13 +308,18 @@ namespace Repetitionless.Editor.Data
             _dataManager.Material.SetTexture($"_Control{index}", PackedControlTextures[index]);
         }
 
+        /// <summary>
+        /// Assigns the holes texture to the material
+        /// </summary>
         public void AssignHolesTexture()
         {
             _dataManager.Material.SetTexture("_TerrainHolesTexture", HolesTexture.Texture);
 
-            // Holes require alpha test to work
+            // Holes require _ALPHATEST_ON to work, no need for it otherwise
             if (HolesTexture.Texture != null)
                 RepetitionlessMaterialUtilities.SetBoolKeyword(_dataManager.Material, "_ALPHATEST_ON", true);
+            else
+                RepetitionlessMaterialUtilities.SetBoolKeyword(_dataManager.Material, "_ALPHATEST_ON", false);
         }
 
         /// <summary>

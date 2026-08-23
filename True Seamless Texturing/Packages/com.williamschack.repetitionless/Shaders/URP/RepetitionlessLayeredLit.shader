@@ -80,6 +80,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
             #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
+            #pragma shader_feature_local _ALPHATEST_ON
 
             // URP Keywords 
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
@@ -168,10 +169,12 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
 
             #pragma vertex ShadowPassVertex
             #pragma fragment ShadowPassFragment
-            
+
             #pragma multi_compile_instancing
 
             #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
+
+            #pragma shader_feature_local _ALPHATEST_ON
 
 #if UNITY_VERSION >= 202220
             #pragma multi_compile _ LOD_FADE_CROSSFADE
@@ -206,6 +209,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
             #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
+            #pragma shader_feature_local _ALPHATEST_ON
 
             // URP Keywords
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
@@ -314,6 +318,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
             #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
+            #pragma shader_feature_local _ALPHATEST_ON
 
 #if UNITY_VERSION >= 202220
             #pragma multi_compile _ LOD_FADE_CROSSFADE
@@ -359,6 +364,7 @@ Shader "Repetitionless/URP/RepetitionlessLayeredLit"
             #pragma shader_feature_local_fragment _ _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature_local_fragment _ _ENVIRONMENTREFLECTIONS_OFF
             #pragma shader_feature_local _MAX_LAYERS_4 _MAX_LAYERS_8 _MAX_LAYERS_12 _MAX_LAYERS_16 _MAX_LAYERS_20 _MAX_LAYERS_24 _MAX_LAYERS_28 _MAX_LAYERS_32
+            #pragma shader_feature_local _ALPHATEST_ON
 
             // Unity defined
             #pragma shader_feature EDITOR_VISUALIZATION

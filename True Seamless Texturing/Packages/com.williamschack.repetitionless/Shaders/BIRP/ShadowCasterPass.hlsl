@@ -31,13 +31,18 @@ half4 ShadowPassFragment(v2f input) : SV_TARGET
 {
     UNITY_SETUP_INSTANCE_ID(input);
 
-    #ifdef LOD_FADE_CROSSFADE
-        #ifdef _LOD_FADE_ON_ALPHA
-            #undef _LOD_FADE_ON_ALPHA
-        #else
-            UnityApplyDitherCrossFade(input.pos.xy);
-        #endif
+#ifdef LOD_FADE_CROSSFADE
+    #ifdef _LOD_FADE_ON_ALPHA
+        #undef _LOD_FADE_ON_ALPHA
+    #else
+        UnityApplyDitherCrossFade(input.pos.xy);
     #endif
+#endif
+
+#ifdef _ALPHATEST_ON
+    float hole = SAMPLE_TEXTURE2D(_TerrainHolesTexture, sampler_TerrainHolesTexture, input.texcoord).r;
+    clip(hole < 0.0005f ? -1 : 1);
+#endif
 
     SHADOW_CASTER_FRAGMENT(input);
 }
