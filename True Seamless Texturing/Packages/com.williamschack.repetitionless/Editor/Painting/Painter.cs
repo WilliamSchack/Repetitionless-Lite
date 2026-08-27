@@ -401,10 +401,12 @@ namespace Repetitionless.Editor.Painter
                 int kernel = _holesComputeShader.FindKernel("CSMain");
             
                 _holesComputeShader.SetTexture(kernel, "HolesTexture", objectData.HolesRenderTexture);
+                _holesComputeShader.SetTexture(kernel, "PositionMap", objectData.PositionMap);
                 _holesComputeShader.SetTexture(kernel, "BrushTexture", BrushTexture == null ? Texture2D.whiteTexture : BrushTexture);
                 _holesComputeShader.SetInt("BrushChannel", BrushTexture == null ? -1 : (int)BrushTextureChannel);
                 _holesComputeShader.SetBool("InvertBrush", InvertBrush);
-                _holesComputeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
+                _holesComputeShader.SetMatrix("ObjectToWorld", gameObject.transform.localToWorldMatrix);
+                _holesComputeShader.SetVector("HitWorldPos", mouseHit.point);
                 _holesComputeShader.SetFloat("Radius", BrushRadius);
                 _holesComputeShader.SetFloat("RotationRadians", BrushRotationDegrees * Mathf.Deg2Rad);
                 _holesComputeShader.SetFloat("Cutoff", BrushCutoff);
@@ -428,7 +430,6 @@ namespace Repetitionless.Editor.Painter
                 _controlComputeShader.SetBool("InvertBrush", InvertBrush);
                 _controlComputeShader.SetMatrix("ObjectToWorld", gameObject.transform.localToWorldMatrix);
                 _controlComputeShader.SetVector("HitWorldPos", mouseHit.point);
-                //_controlComputeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
                 _controlComputeShader.SetFloat("Radius", BrushRadius);
                 _controlComputeShader.SetFloat("Opacity", BrushOpacity);
                 _controlComputeShader.SetFloat("Smoothness", BrushSmoothness);

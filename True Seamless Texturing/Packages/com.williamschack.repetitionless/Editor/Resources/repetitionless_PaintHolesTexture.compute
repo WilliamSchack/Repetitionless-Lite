@@ -2,13 +2,16 @@
 
 RWTexture2D<float4> HolesTexture;
 Texture2D<float4> BrushTexture;
+Texture2D<float4> PositionMap;
 
 SamplerState sampler_LinearClamp;
+
+float4x4 ObjectToWorld;
+float3 HitWorldPos;
 
 int BrushChannel;
 bool InvertBrush;
 
-float4 HitUV;
 float Radius;
 float RotationRadians;
 float Cutoff;
@@ -18,22 +21,19 @@ bool EraseHoles;
 [numthreads(8, 8, 1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-    uint width, height;
-    HolesTexture.GetDimensions(width, height);
+    float4 localPos = PositionMap[id.xy];
+    if (localPos.a < 0.5) return;
 
-    float2 uv = id.xy / float2(width, height);
+    float3 worldPos = mul(ObjectToWorld, localPos).xyz;
 
-    // Get the distance from the current uv to the hit uv
-    // If its within the radius add the target colour
-    
-    float dist = distance(uv, HitUV.xy);
+    float dist = distance(worldPos, HitWorldPos);
     if (dist >= Radius)
         return;
 
     float brushValue = 1.0;
     if (BrushChannel >= 0) {
         // Sample texture
-        float2 brushUV = (uv - HitUV.xy) / (Radius * 2) + 0.5;
+        float2 brushUV = (worldPos.xy - HitWorldPos.xy) / (Radius * 2) + 0.5;
 
         // Rotate texture if required
         if (RotationRadians != 0) {
