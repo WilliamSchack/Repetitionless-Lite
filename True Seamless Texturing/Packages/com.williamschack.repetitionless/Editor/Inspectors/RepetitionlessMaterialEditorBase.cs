@@ -695,19 +695,6 @@ namespace Repetitionless.Editor.Inspectors
                             break;
                     }
                 }
-
-                // Disable Button
-                Rect disableButtonRect = saleButtonRect;
-                disableButtonRect.x += saleButtonRect.width + dismissButtonPadding;
-                disableButtonRect.width = dismissButtonWidth;
-
-                if (GUI.Button(disableButtonRect, new GUIContent("X", "Disables sale checking. Can be toggled in the Main Window > Settings"))) {
-                    RepetitionlessPrefs.UpdatePrefs((p) => {
-                        p.CheckForSales = false;
-                    });
-
-                    _activeSale = new SaleChecker.SaleInfo();
-                }
             }
         }
         #endregion
