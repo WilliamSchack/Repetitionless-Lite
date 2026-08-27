@@ -79,7 +79,6 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     if (BrushChannel >= 0) {
         // Sample texture
         float2 brushUV = (worldPos.xy - HitWorldPos.xy) / (Radius * 2) + 0.5;
-        //float2 brushUV = (uv - HitUV.xy) / (Radius * 2) + 0.5;
 
         // Rotate texture if required
         if (RotationRadians != 0) {
