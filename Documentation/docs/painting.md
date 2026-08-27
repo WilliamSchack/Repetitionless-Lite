@@ -100,21 +100,8 @@ Below Unity 2022 there is no cheap built in way to draw outlines around the sele
 
 ### UVs
 
-The UVs on a mesh should have uniform texel density otherwise painting may be distorted and not fit within the brush preview. Basically, the better unwrapped the UVs, the better the painting will be
+A mesh must have no overlapping or mirrored UVs for painting to properly work everywhere. If there is any overlapping or mirrored UVs, painting will only work on one of the islands, and for any other islands nothing will be painted.
 
-The painter will not paint across different UV tiles. If you paint on one and the radius overlaps another, it will only paint on the hovered tile and show a visible seam
-
-*Below is an example of the default unity sphere showing the above issues:*
-
-![image](Images/Painting/NonUniformUVExample.png)
-
-### Scaling
-
-Objects with a non-uniform scale will have their paint stretched, similar to the above UV stretching issue.
-
-When an object is smaller or larger than 1x1x1, the brush radius will correspond to that size as the UVs will change with it. To combat this the brush preview radius will change with the object but if the scale is non-uniform it may show incorrect.
-
-*Below is an example with the same radius on two different scaled objects*
-
-![image](Images/Painting/DifferentScale.png)
-
+Note that:
+- Painting on the island that works will reflect to all other overlapping islands
+- The island that is paintable is unknown as it is the last one that was baked
