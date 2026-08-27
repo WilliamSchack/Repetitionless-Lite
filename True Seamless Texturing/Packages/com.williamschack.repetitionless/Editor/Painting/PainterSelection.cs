@@ -8,6 +8,7 @@ using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Painter
 {
+    using System.ComponentModel;
     using Data;
     using Materials;
     using Utilities.Texture;
@@ -16,12 +17,17 @@ namespace Repetitionless.Editor.Painter
     {
         private const string HOLES_TEXTURE_FILE_NAME = "Holes.asset";
 
+        private const string FILL_POSITION_SEAMS_COMPUTE_RESOURCES_PATH = "repetitionless_FillPositionMapSeams";
+        private const int COMPUTE_THREADS_X = 8;
+        private const int COMPUTE_THREADS_Y = 8;
+
         private static readonly Color SELECTION_OUTLINE_COLOUR = Color.blue;
 
         public int TextureResolution = 512;
         public int HolesTextureResolution = 512;
 
         private Shader _bakePositionShader = null;
+        private ComputeShader _fillPositionSeamsComputeShader = null;
 
         private List<GameObject> _selectedPaintableObjects = new List<GameObject>();
         private Dictionary<GameObject, PaintableObjectData> _paintableObjectData = new Dictionary<GameObject, PaintableObjectData>();
@@ -238,6 +244,8 @@ namespace Repetitionless.Editor.Painter
             Material material = new Material (_bakePositionShader);
             
             RenderTexture rt = new RenderTexture(TextureResolution, TextureResolution, 0, RenderTextureFormat.ARGBFloat) {
+                enableRandomWrite = true,
+                filterMode = FilterMode.Point,
                 wrapMode = TextureWrapMode.Clamp
             };
             rt.Create();
@@ -251,9 +259,63 @@ namespace Repetitionless.Editor.Painter
             Graphics.DrawMeshNow(mesh, Matrix4x4.identity);
 
             RenderTexture.active = previousRT;
-            UnityEngine.Object.DestroyImmediate(material);
+            Object.DestroyImmediate(material);
+
+            // Fill seams
+            rt = FillPositionMapSeams(rt, 1);
 
             return rt;
+        }
+
+        /// <param name="iterations">
+        /// Basically the amount of pixels to fill<br />
+        /// So if a seam is 3 pixels wide, an iterations of 1 will fill either side but not the middle
+        /// </param>
+        private RenderTexture FillPositionMapSeams(RenderTexture positionMap, int iterations)
+        {
+            if (_fillPositionSeamsComputeShader == null) {
+                _fillPositionSeamsComputeShader = Resources.Load<ComputeShader>(FILL_POSITION_SEAMS_COMPUTE_RESOURCES_PATH);
+                if (_fillPositionSeamsComputeShader == null) {
+                    Debug.LogError("No fill position seams compute shader found...");
+                    return positionMap;
+                }
+            }
+
+            RenderTexture tempRT = new RenderTexture(positionMap.width, positionMap.height, 0, positionMap.format) {
+                enableRandomWrite = true,
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
+            tempRT.Create();
+
+            RenderTexture source = positionMap;
+            RenderTexture destination = tempRT;
+
+            int kernel = _fillPositionSeamsComputeShader.FindKernel("CSMain");
+            int groupsX = Mathf.CeilToInt(positionMap.width  / (float)COMPUTE_THREADS_X);
+            int groupsY = Mathf.CeilToInt(positionMap.height / (float)COMPUTE_THREADS_Y);
+
+            for (int i = 0; i < iterations; i++) {
+                _fillPositionSeamsComputeShader.SetTexture(kernel, "PositionMap", source);
+                _fillPositionSeamsComputeShader.SetTexture(kernel, "Output", destination);
+                _fillPositionSeamsComputeShader.Dispatch(kernel, groupsX, groupsY, 1);
+
+                // Use output as the next source
+                (source, destination) = (destination, source);
+            }
+
+            // Release and destroy the unused render texture
+            if (source == positionMap) {
+                tempRT.Release();
+                Object.DestroyImmediate(tempRT);
+
+                return positionMap;
+            }
+            
+            positionMap.Release();
+            Object.DestroyImmediate(positionMap);
+
+            return source;
         }
 
         // Check all selected objects and add paintable ones

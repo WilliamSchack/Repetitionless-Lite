@@ -71,6 +71,8 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     //// If its within the radius add the target colour
     
     float4 localPos = PositionMap[id.xy];
+    if (localPos.a < 0.5) return;
+
     float3 worldPos = mul(ObjectToWorld, localPos).xyz;
 
     //float dist = distance(uv, HitUV.xy);
