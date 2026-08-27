@@ -21,6 +21,8 @@ namespace Repetitionless.Editor.Painter
         public int TextureResolution = 512;
         public int HolesTextureResolution = 512;
 
+        private Shader _bakePositionShader = null;
+
         private List<GameObject> _selectedPaintableObjects = new List<GameObject>();
         private Dictionary<GameObject, PaintableObjectData> _paintableObjectData = new Dictionary<GameObject, PaintableObjectData>();
         
@@ -104,13 +106,13 @@ namespace Repetitionless.Editor.Painter
             }
         }
 
-        public void Add(GameObject obj)
+        public void Add(GameObject gameObject)
         {
-            if (_selectedPaintableObjects.Contains(obj))
+            if (_selectedPaintableObjects.Contains(gameObject))
                 return;
 
             PaintableObjectData objectData = new PaintableObjectData {
-                MeshRenderer = obj.GetComponent<MeshRenderer>()
+                MeshRenderer = gameObject.GetComponent<MeshRenderer>()
             };
 
             // Need to test if:
@@ -119,7 +121,7 @@ namespace Repetitionless.Editor.Painter
             objectData.DataManager = new MaterialDataManager(repetitionlessMaterial);
 
             RepetitionlessMaterialDataSO materialPropertiesSO = objectData.DataManager.LoadAsset<RepetitionlessMaterialDataSO>(Constants.PROPERTIES_FILE_NAME);
-            objectData.DataChangedAction = () => { MaterialExternalDataChanged(obj); };
+            objectData.DataChangedAction = () => { MaterialExternalDataChanged(gameObject); };
             materialPropertiesSO.OnExternalDataChanged += objectData.DataChangedAction;
 
             // Assign texture to layered data
@@ -200,6 +202,10 @@ namespace Repetitionless.Editor.Painter
 
             layeredDataSO.AssignHolesTexture();
 
+            // Setup position map
+            MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
+            objectData.PositionMap = BakePositionMap(meshFilter.sharedMesh);
+
             // Resize holes texture to target
             if (objectData.HolesTexture.width != HolesTextureResolution || objectData.HolesTexture.height != HolesTextureResolution) {
                 TextureUtilities.ResizeTexture(objectData.HolesTexture, HolesTextureResolution, HolesTextureResolution, modifyOriginal: true);
@@ -219,8 +225,35 @@ namespace Repetitionless.Editor.Painter
 
             // Finalise changes
             layeredDataSO.Save();
-            _selectedPaintableObjects.Add(obj);
-            _paintableObjectData.Add(obj, objectData);
+            _selectedPaintableObjects.Add(gameObject);
+            _paintableObjectData.Add(gameObject, objectData);
+        }
+
+        // Creates and returns a map from uv to local position
+        private RenderTexture BakePositionMap(Mesh mesh)
+        {
+            if (_bakePositionShader == null)
+                _bakePositionShader = Shader.Find("Hidden/Repetitionless/PaintingPositionMap");
+
+            Material material = new Material (_bakePositionShader);
+            
+            RenderTexture rt = new RenderTexture(TextureResolution, TextureResolution, 0, RenderTextureFormat.ARGBFloat) {
+                wrapMode = TextureWrapMode.Clamp
+            };
+            rt.Create();
+
+            RenderTexture previousRT = RenderTexture.active;
+            RenderTexture.active = rt;
+
+            GL.Clear(true, true, Color.clear);
+
+            material.SetPass(0);
+            Graphics.DrawMeshNow(mesh, Matrix4x4.identity);
+
+            RenderTexture.active = previousRT;
+            UnityEngine.Object.DestroyImmediate(material);
+
+            return rt;
         }
 
         // Check all selected objects and add paintable ones

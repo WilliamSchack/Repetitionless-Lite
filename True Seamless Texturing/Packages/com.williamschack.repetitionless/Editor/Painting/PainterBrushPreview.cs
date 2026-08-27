@@ -31,10 +31,10 @@ namespace Repetitionless.Editor.Painter
         {
             // Scale the brush to the object size as it will paint smaller/larger
             // Not the best solution but better than none
-            Vector3 objectScale = mouseHit.collider.transform.lossyScale;
-            float scaleAverage = (Mathf.Abs(objectScale.x) + Mathf.Abs(objectScale.y) + Mathf.Abs(objectScale.z)) / 3;
-
-            radius *= scaleAverage;
+            //Vector3 objectScale = mouseHit.collider.transform.lossyScale;
+            //float scaleAverage = (Mathf.Abs(objectScale.x) + Mathf.Abs(objectScale.y) + Mathf.Abs(objectScale.z)) / 3;
+//
+            //radius *= scaleAverage;
             //innerRadius *= scaleAverage;
 
             // Outer circle

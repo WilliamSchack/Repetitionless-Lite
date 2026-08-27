@@ -37,7 +37,6 @@ namespace Repetitionless.Editor.Painter
         private ComputeShader _controlComputeShader = null;
         private ComputeShader _holesComputeShader = null;
 
-
         public int TextureResolution {
             get { return _selection.TextureResolution; }
             set { _selection.TextureResolution = value; }
@@ -421,12 +420,15 @@ namespace Repetitionless.Editor.Painter
                 for (int i = 0; i < objectData.RenderTextures.Count; i++)
                     _controlComputeShader.SetTexture(kernel, $"Control{i}", objectData.RenderTextures[i]);
             
+                _controlComputeShader.SetTexture(kernel, "PositionMap", objectData.PositionMap);
                 _controlComputeShader.SetTexture(kernel, "BrushTexture", BrushTexture == null ? Texture2D.whiteTexture : BrushTexture);
                 _controlComputeShader.SetInt("TargetSlice", PaintingLayer / 4);
                 _controlComputeShader.SetInt("TargetChannel", PaintingLayer % 4);
                 _controlComputeShader.SetInt("BrushChannel", BrushTexture == null ? -1 : (int)BrushTextureChannel);
                 _controlComputeShader.SetBool("InvertBrush", InvertBrush);
-                _controlComputeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
+                _controlComputeShader.SetMatrix("ObjectToWorld", gameObject.transform.localToWorldMatrix);
+                _controlComputeShader.SetVector("HitWorldPos", mouseHit.point);
+                //_controlComputeShader.SetVector("HitUV", new Vector4(mouseHit.textureCoord.x, mouseHit.textureCoord.y, 0, 0));
                 _controlComputeShader.SetFloat("Radius", BrushRadius);
                 _controlComputeShader.SetFloat("Opacity", BrushOpacity);
                 _controlComputeShader.SetFloat("Smoothness", BrushSmoothness);
@@ -461,7 +463,6 @@ namespace Repetitionless.Editor.Painter
         private void CopyFromRT(RenderTexture renderTexture, Texture2D texture)
         {
             RenderTexture previousRT = RenderTexture.active;
-
             RenderTexture.active = renderTexture;
 
             texture.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);

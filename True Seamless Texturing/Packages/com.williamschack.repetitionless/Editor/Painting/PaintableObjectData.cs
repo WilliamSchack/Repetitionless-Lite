@@ -22,5 +22,7 @@ namespace Repetitionless.Editor.Painter
 
         public RenderTexture HolesRenderTexture;
         public Texture2D HolesTexture;
+
+        public RenderTexture PositionMap;
     }
 }
