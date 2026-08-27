@@ -1,5 +1,4 @@
 **CHANGELOG**
 
-- Added a painting tool (Full Version)
-- Added material creation/conversion to the Create menu
-- Fixed various holes issues when a material is in the Control Textures layer mode
+- Painting now uses world space rather than uv space
+  - This fixes brush scaling and position issues
