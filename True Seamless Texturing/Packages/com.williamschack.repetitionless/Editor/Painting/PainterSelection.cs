@@ -269,7 +269,8 @@ namespace Repetitionless.Editor.Painter
 
         /// <param name="iterations">
         /// Basically the amount of pixels to fill<br />
-        /// So if a seam is 3 pixels wide, an iterations of 1 will fill either side but not the middle
+        /// So if a seam is 3 pixels wide, an iterations of 1 will fill either side but not the middle<br />
+        /// 1 is usually fine though
         /// </param>
         private RenderTexture FillPositionMapSeams(RenderTexture positionMap, int iterations)
         {

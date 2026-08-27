@@ -29,14 +29,6 @@ namespace Repetitionless.Editor.Painter
         // Brush
         public void DrawBrush(RaycastHit mouseHit, SceneView sceneView, float radius, float innerRadius)
         {
-            // Scale the brush to the object size as it will paint smaller/larger
-            // Not the best solution but better than none
-            //Vector3 objectScale = mouseHit.collider.transform.lossyScale;
-            //float scaleAverage = (Mathf.Abs(objectScale.x) + Mathf.Abs(objectScale.y) + Mathf.Abs(objectScale.z)) / 3;
-//
-            //radius *= scaleAverage;
-            //innerRadius *= scaleAverage;
-
             // Outer circle
             Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, radius, 3);
 
