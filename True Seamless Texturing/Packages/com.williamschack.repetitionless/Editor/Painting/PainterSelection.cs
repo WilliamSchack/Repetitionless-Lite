@@ -8,7 +8,6 @@ using Repetitionless.Runtime.Variables;
 
 namespace Repetitionless.Editor.Painter
 {
-    using System.ComponentModel;
     using Data;
     using Materials;
     using Utilities.Texture;
@@ -242,7 +241,8 @@ namespace Repetitionless.Editor.Painter
                 _bakePositionShader = Shader.Find("Hidden/Repetitionless/PaintingPositionMap");
 
             Material material = new Material (_bakePositionShader);
-            
+            material.SetInteger("_FlipY", SystemInfo.graphicsUVStartsAtTop ? 1 : 0);
+
             RenderTexture rt = new RenderTexture(TextureResolution, TextureResolution, 0, RenderTextureFormat.ARGBFloat) {
                 enableRandomWrite = true,
                 filterMode = FilterMode.Point,

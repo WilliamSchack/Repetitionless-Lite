@@ -12,6 +12,8 @@ Shader "Hidden/Repetitionless/PaintingPositionMap"
             #pragma vertex Vert
             #pragma fragment Frag
 
+            int _FlipY;
+
             struct Attributes
             {
                 float4 positionOS : POSITION;
@@ -29,7 +31,8 @@ Shader "Hidden/Repetitionless/PaintingPositionMap"
                 Varyings output = (Varyings)0;
 
                 float2 uv = input.uv;
-                uv.y = 1 - uv.y;
+                if (_FlipY == 1)
+                    uv.y = 1 - uv.y;
                 uv = uv * 2 - 1;
 
                 output.position = float4(uv, 0, 1);
