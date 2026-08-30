@@ -195,7 +195,7 @@ namespace Repetitionless.Editor.Painter
             if (_sceneInteraction.AltHeld) return;
 
             if (Event.current.button == 0 && Event.current.type == EventType.MouseUp)
-                FinishPaintStroke();
+                FinishBrushStroke();
 
             if (!_sceneInteraction.ResizingBrush)
                 _selection.DuringSceneGUI(_sceneInteraction.LastMouseHit, sceneView);
@@ -380,6 +380,10 @@ namespace Repetitionless.Editor.Painter
 
             PaintableObjectData objectData = _selection.PaintableObjectData[gameObject];
 
+            // If starting to paint initialise stroke
+            if (_paintingObjects.Count == 0)
+                StartBrushStroke();
+
             // If stroke just passed over object, initialise painting
             if (!_paintingObjects.Contains(gameObject)) {
                 // If starting stroke, register undo
@@ -474,7 +478,13 @@ namespace Repetitionless.Editor.Painter
             RenderTexture.active = previousRT;
         }
 
-        private void FinishPaintStroke()
+        private void StartBrushStroke()
+        {
+            // Copy list to avoid referencing
+            _sceneInteraction.AllowedRaycastObjects = new List<GameObject>(_selection.SelectedPaintableObjects);
+        }
+
+        private void FinishBrushStroke()
         {
             foreach (GameObject gameObject in _paintingObjects) {
                 PaintableObjectData objectData = _selection.PaintableObjectData[gameObject];
@@ -501,6 +511,8 @@ namespace Repetitionless.Editor.Painter
                 Undo.CollapseUndoOperations(_strokeUndoGroup);
                 _strokeUndoGroup = -1;
             }
+
+            _sceneInteraction.AllowedRaycastObjects.Clear();
 
             _currentlyPaintingObject = null;
             _paintingObjects.Clear();

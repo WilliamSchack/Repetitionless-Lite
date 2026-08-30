@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using System;
+using System.Collections.Generic;
 
 namespace Repetitionless.Editor.Painter
 {
@@ -41,6 +42,8 @@ namespace Repetitionless.Editor.Painter
         private RaycastHit _lastMouseHit;
         public RaycastHit LastMouseHit => _lastMouseHit;
 
+        public List<GameObject> AllowedRaycastObjects = new List<GameObject>();
+
         // Must be called in DuringSceneGUI
         public void DuringSceneGUI(SceneView sceneView, bool paintingHoles)
         {
@@ -66,7 +69,16 @@ namespace Repetitionless.Editor.Painter
                 return;
 
             Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit)) {
+            
+            // Get all objects, use first hit unless its not allowed
+            RaycastHit[] hits = Physics.RaycastAll(ray);
+            Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance)); // Sort from closest to furthest
+
+            foreach (RaycastHit hit in hits) {
+                // Avoid if masking hits
+                if (AllowedRaycastObjects.Count != 0 && !AllowedRaycastObjects.Contains(hit.collider.gameObject))
+                    continue;
+
                 _lastMouseHit = hit;
                 return;
             }

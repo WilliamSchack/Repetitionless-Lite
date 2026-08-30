@@ -230,7 +230,12 @@ namespace Repetitionless.Editor.Painter
 
             // Finalise changes
             layeredDataSO.Save();
-            _selectedPaintableObjects.Add(gameObject);
+
+            if (!_selectedPaintableObjects.Contains(gameObject))
+                _selectedPaintableObjects.Add(gameObject);
+            
+            if (_paintableObjectData.ContainsKey(gameObject))
+                _paintableObjectData.Remove(gameObject);
             _paintableObjectData.Add(gameObject, objectData);
         }
 
