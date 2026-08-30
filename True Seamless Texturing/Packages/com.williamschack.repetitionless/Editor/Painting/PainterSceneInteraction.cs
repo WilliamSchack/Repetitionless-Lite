@@ -70,15 +70,23 @@ namespace Repetitionless.Editor.Painter
 
             Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
             
-            // Get all objects, use first hit unless its not allowed
-            RaycastHit[] hits = Physics.RaycastAll(ray);
-            Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance)); // Sort from closest to furthest
+            // If an object mask is set, get all objects in raycast
+            if (AllowedRaycastObjects.Count != 0) {
+                // Get all objects, use first hit unless its not allowed
+                RaycastHit[] hits = Physics.RaycastAll(ray);
+                Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance)); // Sort from closest to furthest
 
-            foreach (RaycastHit hit in hits) {
-                // Avoid if masking hits
-                if (AllowedRaycastObjects.Count != 0 && !AllowedRaycastObjects.Contains(hit.collider.gameObject))
-                    continue;
+                foreach (RaycastHit hit in hits) {
+                    // Avoid if masking hits
+                    if (AllowedRaycastObjects.Count != 0 && !AllowedRaycastObjects.Contains(hit.collider.gameObject))
+                        continue;
 
+                    _lastMouseHit = hit;
+                    return;
+                }
+            }
+            // Otherwise just to a simple raycast
+            else if (Physics.Raycast(ray, out RaycastHit hit)) {
                 _lastMouseHit = hit;
                 return;
             }
