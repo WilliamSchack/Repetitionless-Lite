@@ -257,7 +257,7 @@ namespace Repetitionless.Editor.Painter
             float delta = currentEvent.mousePosition.x - _brushResizeLastMousePosX;
             _brushResizeLastMousePosX = currentEvent.mousePosition.x;
 
-            float sensitivityMultiplier = _sceneInteraction.ShiftHeld ? BRUSH_SENSITIVITY_SHIFT_MULTIPLIER : 1.0f;
+            float sensitivityMultiplier = currentEvent.shift ? BRUSH_SENSITIVITY_SHIFT_MULTIPLIER : 1.0f;
 
             switch (resizingProperty) {
                 case EResizingProperty.Radius:
