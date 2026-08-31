@@ -20,13 +20,18 @@ void AddRepetitionlessNoise_float(
 
     out float4 OutputColor
 ){
+    float2 DdxUV = ddx(UV);
+    float2 DdyUV = ddy(UV);
+    
     float VoronoiCells = 1;
     float EdgeMask = 0;
     float2 EdgeUV = UV;
+    float2 EdgeDdxUV = DdxUV;
+    float2 EdgeDdyUV = DdyUV;
     float2 TransformedUV = UV;
-    GetRepetitionlessNoiseUVs(UV, NoiseAngleOffset, NoiseScale, RandomiseNoiseScaling, NoiseScalingMinMax, RandomiseRotation, RandomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, TransformedUV);
+    GetRepetitionlessNoiseUVs(UV, DdxUV, DdyUV, NoiseAngleOffset, NoiseScale, RandomiseNoiseScaling, NoiseScalingMinMax, RandomiseRotation, RandomiseRotationMinMax, VoronoiCells, EdgeMask, EdgeUV, EdgeDdxUV, EdgeDdyUV, TransformedUV);
     
-    OutputColor = SampleRepetitionlessTexture(InputTexture.tex, SS, EdgeMask, EdgeUV, TransformedUV, true);
+    OutputColor = SampleRepetitionlessTexture(InputTexture.tex, SS, DdxUV, DdyUV, EdgeDdxUV, EdgeDdyUV, EdgeMask, EdgeUV, TransformedUV, true);
 }
 
 #endif
