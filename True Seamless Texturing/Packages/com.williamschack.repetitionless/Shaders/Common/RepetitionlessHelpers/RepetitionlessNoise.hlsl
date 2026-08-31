@@ -76,8 +76,8 @@ void GetRepetitionlessNoiseUVs(
     out float2 TransformedUV
 ){
     // Load data from the noise texture
-    float2 textureUV = abs(UV * NoiseScale);
-    float2 noiseTextureData = NoiseTexture.Load(int3(textureUV.x % TextureResolution, textureUV.y % TextureResolution, 0)).rg;
+    float2 textureUV = frac(UV * NoiseScale / TextureResolution) * TextureResolution;
+    float2 noiseTextureData = NoiseTexture.Load(int3(textureUV, 0)).rg;
     VoronoiCells = noiseTextureData.x;
     EdgeMask = noiseTextureData.y;
 
