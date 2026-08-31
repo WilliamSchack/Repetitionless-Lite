@@ -7,7 +7,7 @@
 
 // Gets UVs based on voronoi noise
 void GetRepetitionlessNoiseUVs(
-    float2 UV,
+    float2 UV, float2 DdxUV, float2 DdyUV,
 
     float NoiseAngleOffset,
     float NoiseScale,
@@ -19,7 +19,7 @@ void GetRepetitionlessNoiseUVs(
 
     out float VoronoiCells,
     out float EdgeMask,
-    out float2 EdgeUV,
+    out float2 EdgeUV, out float2 EdgeDdxUV, out float2 EdgeDdyUV,
     out float2 TransformedUV
 ){
     // Generate Noise
@@ -29,9 +29,13 @@ void GetRepetitionlessNoiseUVs(
     
     // Scale Edge UVs
     EdgeUV = UV;
+    EdgeDdxUV = DdxUV;
+    EdgeDdyUV = DdyUV;
     if (RandomiseNoiseScaling) {
         float minMaxAverage = (NoiseScalingMinMax.x + NoiseScalingMinMax.y) / 2;
         EdgeUV *= minMaxAverage;
+        EdgeDdxUV *= minMaxAverage;
+        EdgeDdyUV *= minMaxAverage;
     }
     
     // Generate Edge Mask, replicating a Sample Gradient Node
@@ -54,7 +58,7 @@ void GetRepetitionlessNoiseUVs(
 
 // Gets UVs based on a voronoi texture
 void GetRepetitionlessNoiseUVs(
-    float2 UV,
+    float2 UV, float2 DdxUV, float2 DdyUV,
 
     float NoiseScale,
     bool RandomiseNoiseScaling,
@@ -68,20 +72,24 @@ void GetRepetitionlessNoiseUVs(
 
     out float VoronoiCells,
     out float EdgeMask,
-    out float2 EdgeUV,
+    out float2 EdgeUV, out float2 EdgeDdxUV, out float2 EdgeDdyUV,
     out float2 TransformedUV
 ){
     // Load data from the noise texture
-    float2 textureUV = abs(UV * NoiseScale);
-    float2 noiseTextureData = NoiseTexture.Load(int3(textureUV.x % TextureResolution, textureUV.y % TextureResolution, 0)).rg;
+    float2 textureUV = frac(UV * NoiseScale / TextureResolution) * TextureResolution;
+    float2 noiseTextureData = NoiseTexture.Load(int3(textureUV, 0)).rg;
     VoronoiCells = noiseTextureData.x;
     EdgeMask = noiseTextureData.y;
 
     // Scale Edge UVs
     EdgeUV = UV;
+    EdgeDdxUV = DdxUV;
+    EdgeDdyUV = DdyUV;
     if (RandomiseNoiseScaling) {
         float minMaxAverage = (NoiseScalingMinMax.x + NoiseScalingMinMax.y) / 2;
         EdgeUV *= minMaxAverage;
+        EdgeDdxUV *= minMaxAverage;
+        EdgeDdyUV *= minMaxAverage;
     }
 
     // Randomise UV Scaling

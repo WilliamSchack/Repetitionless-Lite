@@ -7,12 +7,15 @@ struct Attributes
 {
     float4 vertex   : POSITION;
     float3 normal   : NORMAL;
+    float2 texcoord : TEXCOORD0;
 
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
 struct v2f
 {
+    float2 texcoord : TEXCOORD0;
+
     V2F_SHADOW_CASTER;
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
@@ -24,6 +27,8 @@ v2f ShadowPassVertex(Attributes v)
     UNITY_TRANSFER_INSTANCE_ID(v, output);
 
     TRANSFER_SHADOW_CASTER_NORMALOFFSET(output)
+
+    output.texcoord = v.texcoord;
     return output;
 }
 
