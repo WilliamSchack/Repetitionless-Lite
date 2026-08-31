@@ -411,6 +411,7 @@ namespace Repetitionless.Editor.Painter
                 _holesComputeShader.SetBool("InvertBrush", InvertBrush);
                 _holesComputeShader.SetMatrix("ObjectToWorld", gameObject.transform.localToWorldMatrix);
                 _holesComputeShader.SetVector("HitWorldPos", mouseHit.point);
+                _holesComputeShader.SetVector("HitNormal", mouseHit.normal);
                 _holesComputeShader.SetFloat("Radius", BrushRadius);
                 _holesComputeShader.SetFloat("RotationRadians", BrushRotationDegrees * Mathf.Deg2Rad);
                 _holesComputeShader.SetFloat("Cutoff", BrushCutoff);
@@ -434,6 +435,7 @@ namespace Repetitionless.Editor.Painter
                 _controlComputeShader.SetBool("InvertBrush", InvertBrush);
                 _controlComputeShader.SetMatrix("ObjectToWorld", gameObject.transform.localToWorldMatrix);
                 _controlComputeShader.SetVector("HitWorldPos", mouseHit.point);
+                _controlComputeShader.SetVector("HitNormal", mouseHit.normal);
                 _controlComputeShader.SetFloat("Radius", BrushRadius);
                 _controlComputeShader.SetFloat("Opacity", BrushOpacity);
                 _controlComputeShader.SetFloat("Smoothness", BrushSmoothness);
