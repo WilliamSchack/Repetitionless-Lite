@@ -18,7 +18,7 @@ Trying to paint any other object will do nothing
 
 When painting is enabled, clicking an object will automatically select it and start painting if the object can be painted
 
-Objects that are selected for painting will have a dark blue outline around them. Trying to paint outside of any selected objects in one stroke will do nothing even if the unselected hovered object can be painted. It basically works as a mask
+Objects that are selected for painting will have a dark blue outline around them. Trying to paint outside of any selected objects in one stroke will do nothing even if the unselected hovered object can be painted. While painting, any unselected objects will be passed through and selected objects can still be painted behind them. It basically works as a mask
 
 Regular object selection while painting is partially disabled. When selecting objects in the scene view it will use the painter selection, but you can select objects normally in the Hierarchy window
 
@@ -86,7 +86,7 @@ Note that:
 | G              | Toggles painting                                                                                                                                                                                      |
 | H              | Toggles painting holes                                                                                                                                                                                |
 | Shift + Resize | **Compatible with Opacity, Cutoff, Radius, Smoothness, & Rotation controls**<br>Slows down the modification of a slideable property to x0.1 the default. Also shows an extra digit in the mouse popup |
-| Shift + Click  | Deselects the hovered object                                                                                                                                                                          |
+| Shift + Click  | **Hovered Selected:** Deselects the hovered object<br>**Hovered Unselected:** Selects the hovered object without painting                                                                             |
 | Shift + Scroll | Changes the painting layer                                                                                                                                                                            |
 | Control (Hold) | Inverts the brush                                                                                                                                                                                     |
 
