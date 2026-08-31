@@ -88,6 +88,9 @@ void SampleRepetitionlessLayer(
         UV = WorldPosition.xz / 1000;
     }
 
+    float2 ddxUV = ddx(UV);
+    float2 ddyUV = ddy(UV);
+
 #ifdef _REPETITIONLESS_MATERIAL_BLEND
     if (layerData.MaterialBlendEnabled) {
         // Get mask of blended material
@@ -156,7 +159,7 @@ void SampleRepetitionlessLayer(
     samplingBase = farDistance != 1 && materialMask != 1;
 
     // ----------------------- UVs / Triplanar ------------------------- // 
-
+    
 #ifdef _REPETITIONLESS_TRIPLANAR
     float3 triplanarWeights = pow(abs(WorldNormalVector), 8);
     triplanarWeights /= dot(triplanarWeights, 1.0);
@@ -165,6 +168,18 @@ void SampleRepetitionlessLayer(
         WorldPosition.yz / 1000,
         WorldPosition.xz / 1000,
         WorldPosition.xy / 1000
+    };
+
+    float2 triplanarDdx[3] = {
+        ddx(triplanarUVs[0]),
+        ddx(triplanarUVs[1]),
+        ddx(triplanarUVs[2])
+    };
+    
+    float2 triplanarDdy[3] = {
+        ddy(triplanarUVs[0]),
+        ddy(triplanarUVs[1]),
+        ddy(triplanarUVs[2])
     };
 
     float triplanarWeightsArray[3] = {
@@ -181,15 +196,17 @@ void SampleRepetitionlessLayer(
         if (triplanarWeightsArray[i] < 0.01)
             continue;
 
+            
         UV = triplanarUVs[i];
-
+        ddxUV = triplanarDdx[i];
+        ddyUV = triplanarDdy[i];
 #endif
 
     // ----------------------- Base Material ------------------------- //
     [branch]
     if (samplingBase) {
         SampleRepetitionlessMaterial(
-            SS, UV, WorldNormalVector, SurfaceType, DebuggingIndex,
+            SS, UV, ddxUV, ddyUV, WorldNormalVector, SurfaceType, DebuggingIndex,
             baseLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
             NoiseTexture,
             baseMaterialData,
@@ -217,7 +234,7 @@ void SampleRepetitionlessLayer(
                 baseMaterialData.TilingOffset = farMaterialData.TilingOffset;
                 
                 SampleRepetitionlessMaterial(
-                    SS, UV, WorldNormalVector, SurfaceType, DebuggingIndex,
+                    SS, UV, ddxUV, ddyUV, WorldNormalVector, SurfaceType, DebuggingIndex,
                     baseLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
                     NoiseTexture,
                     baseMaterialData,
@@ -227,7 +244,7 @@ void SampleRepetitionlessLayer(
             case 1: // Material
                 // Sample Far Material
                 SampleRepetitionlessMaterial(
-                    SS, UV, WorldNormalVector, SurfaceType, DebuggingIndex,
+                    SS, UV, ddxUV, ddyUV, WorldNormalVector, SurfaceType, DebuggingIndex,
                     farLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
                     NoiseTexture,
                     farMaterialData,
@@ -258,7 +275,7 @@ void SampleRepetitionlessLayer(
         float3 blendEmissionColor = 0;
 
         SampleRepetitionlessMaterial(
-            SS, UV, WorldNormalVector, SurfaceType, DebuggingIndex,
+            SS, UV, ddxUV, ddyUV, WorldNormalVector, SurfaceType, DebuggingIndex,
             blendLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
             NoiseTexture,
             blendMaterialData,
@@ -294,7 +311,7 @@ void SampleRepetitionlessLayer(
         blendMaterialData.TilingOffset = tilingOffset;
         
         SampleRepetitionlessMaterial(
-            SS, UV, WorldNormalVector, SurfaceType, DebuggingIndex,
+            SS, UV, ddxUV, ddyUV, WorldNormalVector, SurfaceType, DebuggingIndex,
             blendLayerIndex, AVTextures, NSOTextures, EMTextures, assignedAVTexturesArray, assignedNSOTexturesArray, assignedEMTexturesArray,
             NoiseTexture,
             blendMaterialData,

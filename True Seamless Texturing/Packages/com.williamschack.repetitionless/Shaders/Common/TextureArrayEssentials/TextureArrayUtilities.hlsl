@@ -51,6 +51,24 @@ float4 SampleArrayAtConstantIndex(
     return SAMPLE_TEXTURE2D_ARRAY(TextureArray, SS, UV, arrayIndex);
 }
 
+float4 SampleArrayAtConstantIndexGrad(
+    Texture2DArray TextureArray,
+    int TexturesAssignedCompressed[BOOLEAN_COMPRESSION_MAX_CHUNKS],
+    int Index,
+    float2 UV, float2 DdxUV, float2 DdyUV,
+    float4 UnassignedColor,
+    SamplerState SS
+){
+    // Get the index of the texture in the array
+    int arrayIndex = GetIndexInArray(TexturesAssignedCompressed, Index);
+
+    if (arrayIndex == -1)
+        return UnassignedColor;
+
+    // Sample the array at the index found previously
+    return TextureArray.SampleGrad(SS, float3(UV, arrayIndex), DdxUV, DdyUV);
+}
+
 void SampleArrayAtConstantIndex_float(
     Texture2DArray TextureArray,
     int TexturesAssignedCompressed,

@@ -15,7 +15,7 @@
 
 void SampleRepetitionlessMaterial(
     // General Settings
-    SamplerState SS, float2 UV, float3 WorldNormalVector,
+    SamplerState SS, float2 UV, float2 DdxUV, float2 DdyUV, float3 WorldNormalVector,
     int SurfaceType, int DebuggingIndex,
 
     // Textures
@@ -54,11 +54,16 @@ void SampleRepetitionlessMaterial(
     
     float2 oriUV = UV;
     UV = UV * tiling + offset;
+
+    DdxUV *= tiling;
+    DdyUV *= tiling;
     
     // Change UVs & Get Edge Mask
     float voronoiCells = 1;
     float edgeMask = 0;
     float2 edgeUV = UV;
+    float2 edgeDdxUV = DdxUV;
+    float2 edgeDdyUV = DdyUV;
     float2 transformedUV = UV;
     if (MaterialData.NoiseEnabled) {
 #ifdef _REPETITIONLESS_NOISE_TEXTURE
@@ -68,9 +73,9 @@ void SampleRepetitionlessMaterial(
         int textureNoiseScale = MaterialData.NoiseScale * (noiseTextureResolution / 1000);
         textureNoiseScale *= 16;
 
-        GetRepetitionlessNoiseUVs(UV, textureNoiseScale, MaterialData.RandomiseNoiseScaling, MaterialData.NoiseScalingMinMax, MaterialData.RandomiseRotation, MaterialData.NoiseRandomiseRotationMinMax, NoiseTexture, noiseTextureResolution, voronoiCells, edgeMask, edgeUV, transformedUV);
+        GetRepetitionlessNoiseUVs(UV, DdxUV, DdyUV, textureNoiseScale, MaterialData.RandomiseNoiseScaling, MaterialData.NoiseScalingMinMax, MaterialData.RandomiseRotation, MaterialData.NoiseRandomiseRotationMinMax, NoiseTexture, noiseTextureResolution, voronoiCells, edgeMask, edgeUV, edgeDdxUV, edgeDdyUV, transformedUV);
 #else
-        GetRepetitionlessNoiseUVs(UV, MaterialData.NoiseAngleOffset, MaterialData.NoiseScale, MaterialData.RandomiseNoiseScaling, MaterialData.NoiseScalingMinMax, MaterialData.RandomiseRotation, MaterialData.NoiseRandomiseRotationMinMax, voronoiCells, edgeMask, edgeUV, transformedUV);
+        GetRepetitionlessNoiseUVs(UV, DdxUV, DdyUV, MaterialData.NoiseAngleOffset, MaterialData.NoiseScale, MaterialData.RandomiseNoiseScaling, MaterialData.NoiseScalingMinMax, MaterialData.RandomiseRotation, MaterialData.NoiseRandomiseRotationMinMax, voronoiCells, edgeMask, edgeUV, edgeDdxUV, edgeDdyUV, transformedUV);
 #endif
     }
     
@@ -125,17 +130,18 @@ void SampleRepetitionlessMaterial(
     float4 avTexture = 0;
     float4 nsoTexture = 0;
     float4 emTexture = 0;
+
     [branch]
     if (samplingAV) 
-        avTexture  = SampleRepetitionlessArrayTexture(AVTextures,  AssignedAVTextures,  ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+        avTexture  = SampleRepetitionlessArrayTexture(AVTextures,  AssignedAVTextures,  ArrayLayerIndex, SS, DdxUV, DdyUV, edgeDdxUV, edgeDdyUV, edgeMask, edgeUV, transformedUV, sampleEdges);
 
     [branch]
     if (samplingNSO)
-        nsoTexture = SampleRepetitionlessArrayTexture(NSOTextures, AssignedNSOTextures, ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+        nsoTexture = SampleRepetitionlessArrayTexture(NSOTextures, AssignedNSOTextures, ArrayLayerIndex, SS, DdxUV, DdyUV, edgeDdxUV, edgeDdyUV, edgeMask, edgeUV, transformedUV, sampleEdges);
 
     [branch]
     if (samplingEM)
-        emTexture  = SampleRepetitionlessArrayTexture(EMTextures,  AssignedEMTextures,  ArrayLayerIndex, SS, edgeMask, edgeUV, transformedUV, sampleEdges);
+        emTexture  = SampleRepetitionlessArrayTexture(EMTextures,  AssignedEMTextures,  ArrayLayerIndex, SS, DdxUV, DdyUV, edgeDdxUV, edgeDdyUV, edgeMask, edgeUV, transformedUV, sampleEdges);
 
     // Albedo
     AlbedoColorOut = samplingAV ? float4(avTexture.rgb, 1) : 1;

@@ -42,6 +42,8 @@ float4 SampleRepetitionlessArrayTexture(
     int AssignedTextures[3],
     int ConstantIndex,
     SamplerState SS,
+    float2 DdxUV, float2 DdyUV,
+    float2 EdgeDdxUV, float2 EdgeDdyUV,
 
     float EdgeMask,
     float2 EdgeUV,
@@ -59,10 +61,12 @@ float4 SampleRepetitionlessArrayTexture(
 
     // Only sample base material if visible
     if (!SampleEdge || (SampleEdge && EdgeMask != 1))
-        baseTextureColor = SampleArrayAtConstantIndex(TextureArray, assignedTexturesPadded, ConstantIndex, TransformedUV, 1, SS);
+        baseTextureColor = SampleArrayAtConstantIndexGrad(TextureArray, assignedTexturesPadded, ConstantIndex, TransformedUV, DdxUV, DdyUV, 1, SS);
+        //baseTextureColor = SampleArrayAtConstantIndex(TextureArray, assignedTexturesPadded, ConstantIndex, TransformedUV, 1, SS);
 
     if (SampleEdge) {
-        float4 edgeTextureColor = SampleArrayAtConstantIndex(TextureArray, assignedTexturesPadded, ConstantIndex, EdgeUV, 1, SS);
+        float4 edgeTextureColor = SampleArrayAtConstantIndexGrad(TextureArray, assignedTexturesPadded, ConstantIndex, EdgeUV, EdgeDdxUV, EdgeDdyUV, 1, SS);
+        //float4 edgeTextureColor = SampleArrayAtConstantIndex(TextureArray, assignedTexturesPadded, ConstantIndex, EdgeUV, 1, SS);
         baseTextureColor = lerp(baseTextureColor, edgeTextureColor, EdgeMask);
     }
 

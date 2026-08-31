@@ -46,6 +46,7 @@ void VoronoiNoise(float2 UV, float AngleOffset, float CellDensity, out float Dis
         [unroll]
         for(int x2 = -1; x2 <= 1; x2++) {
             float2 cellToCheck = float2(x2, y2);
+
             float2 cellOffset = cellToCheck - posInCell + hash22(cell + cellToCheck + AngleOffset);
             
             float2 diff = cellOffset - closestOffset;
