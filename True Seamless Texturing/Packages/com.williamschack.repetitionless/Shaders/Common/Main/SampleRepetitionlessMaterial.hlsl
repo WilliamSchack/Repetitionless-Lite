@@ -193,4 +193,43 @@ void SampleRepetitionlessMaterial(
     }
 }
 
+void SampleRepetitionlessMaterial(
+    // General Settings
+    SamplerState SS, float2 UV, float3 WorldNormalVector,
+    int SurfaceType, int DebuggingIndex,
+
+    // Textures
+    int ArrayLayerIndex,
+    Texture2DArray AVTextures,
+    Texture2DArray NSOTextures,
+    Texture2DArray EMTextures,
+    int AssignedAVTextures[3],
+    int AssignedNSOTextures[3],
+    int AssignedEMTextures[3],
+
+    Texture2D NoiseTexture,
+
+    // Material Data
+    in RepetitionlessMaterialData MaterialData,
+
+    // Outputs
+    out float4 AlbedoColorOut,
+    out float3 NormalVectorOut,
+    out float  MetallicOut,
+    out float  SmoothnessOut,
+    out float  OcclussionOut,
+    out float3 EmissionColorOut
+){
+    float2 ddxUV = ddx(UV);
+    float2 ddyUV = ddy(UV);
+
+    SampleRepetitionlessMaterial(
+        SS, UV, ddxUV, ddyUV, WorldNormalVector, SurfaceType, DebuggingIndex,
+        ArrayLayerIndex, AVTextures, NSOTextures, EMTextures, AssignedAVTextures, AssignedNSOTextures, AssignedEMTextures,
+        NoiseTexture,
+        MaterialData,
+        AlbedoColorOut, NormalVectorOut, MetallicOut, SmoothnessOut, OcclussionOut, EmissionColorOut
+    );
+}
+
 #endif
