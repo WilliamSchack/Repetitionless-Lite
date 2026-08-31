@@ -37,6 +37,41 @@ float4 SampleRepetitionlessTexture(
 
 // Samples the base and edge colour if required and lerps them together
 // Uses a texture array
+
+// Regular overload
+float4 SampleRepetitionlessArrayTexture(
+    Texture2DArray TextureArray,
+    int AssignedTextures[3],
+    int ConstantIndex,
+    SamplerState SS,
+
+    float EdgeMask,
+    float2 EdgeUV,
+    float2 TransformedUV,
+    bool SampleEdge
+){
+    float4 baseTextureColor = 1;
+    
+    int assignedTexturesPadded[BOOLEAN_COMPRESSION_MAX_CHUNKS] = {
+        AssignedTextures[0],
+        AssignedTextures[1],
+        AssignedTextures[2],
+        0
+    };
+
+    // Only sample base material if visible
+    if (!SampleEdge || (SampleEdge && EdgeMask != 1))
+        baseTextureColor = SampleArrayAtConstantIndex(TextureArray, assignedTexturesPadded, ConstantIndex, TransformedUV, 1, SS);
+
+    if (SampleEdge) {
+        float4 edgeTextureColor = SampleArrayAtConstantIndex(TextureArray, assignedTexturesPadded, ConstantIndex, EdgeUV, 1, SS);
+        baseTextureColor = lerp(baseTextureColor, edgeTextureColor, EdgeMask);
+    }
+
+    return baseTextureColor;
+}
+
+// SampleGrad overload
 float4 SampleRepetitionlessArrayTexture(
     Texture2DArray TextureArray,
     int AssignedTextures[3],
@@ -62,11 +97,9 @@ float4 SampleRepetitionlessArrayTexture(
     // Only sample base material if visible
     if (!SampleEdge || (SampleEdge && EdgeMask != 1))
         baseTextureColor = SampleArrayAtConstantIndexGrad(TextureArray, assignedTexturesPadded, ConstantIndex, TransformedUV, DdxUV, DdyUV, 1, SS);
-        //baseTextureColor = SampleArrayAtConstantIndex(TextureArray, assignedTexturesPadded, ConstantIndex, TransformedUV, 1, SS);
 
     if (SampleEdge) {
         float4 edgeTextureColor = SampleArrayAtConstantIndexGrad(TextureArray, assignedTexturesPadded, ConstantIndex, EdgeUV, EdgeDdxUV, EdgeDdyUV, 1, SS);
-        //float4 edgeTextureColor = SampleArrayAtConstantIndex(TextureArray, assignedTexturesPadded, ConstantIndex, EdgeUV, 1, SS);
         baseTextureColor = lerp(baseTextureColor, edgeTextureColor, EdgeMask);
     }
 
