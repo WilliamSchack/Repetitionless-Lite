@@ -21,13 +21,15 @@ namespace Repetitionless.Editor.Painter
         private static readonly Vector2 POPUP_MOUSE_OFFSET = new Vector2(20, 0); 
         private static readonly Vector2 POPUP_PADDING = new Vector2(5, 3);
 
+        private static readonly Color ROTATION_LINE_COLOUR = Color.red;
+
         private GUIStyle _popupLabelStyle;
         private bool _popupStylesSetup = false;
 
         private List<FadingPopupData> _fadingPopups = new List<FadingPopupData>();
 
         // Brush
-        public void DrawBrush(RaycastHit mouseHit, SceneView sceneView, float radius, float innerRadius)
+        public void DrawBrush(RaycastHit mouseHit, SceneView sceneView, float radius, float innerRadius, float rotationDegrees)
         {
             // Outer circle
             Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, radius, 3);
@@ -35,6 +37,22 @@ namespace Repetitionless.Editor.Painter
             // Smoothness circle
             innerRadius *= radius;
             Handles.DrawWireDisc(mouseHit.point, mouseHit.normal, innerRadius, 1);
+
+            if (rotationDegrees >= 0) {
+                // Same calculations as shader when sampling brush
+                Vector3 normal = mouseHit.normal.normalized;
+                Vector3 up = Mathf.Abs(normal.y) < 0.999f ? Vector3.up : Vector3.right;
+                Vector3 tangent = Vector3.Cross(up, normal).normalized;
+                Vector3 bitangent = Vector3.Cross(normal, tangent);
+
+                float rotationRadians = rotationDegrees * Mathf.Deg2Rad;
+                Vector3 lineDir = Mathf.Sin(rotationRadians) * tangent + Mathf.Cos(rotationRadians) * bitangent;
+
+                Color prevColour = Handles.color;
+                Handles.color = ROTATION_LINE_COLOUR;
+                Handles.DrawLine(mouseHit.point, mouseHit.point + lineDir * radius);
+                Handles.color = prevColour;
+            }
 
             sceneView.Repaint();
         }

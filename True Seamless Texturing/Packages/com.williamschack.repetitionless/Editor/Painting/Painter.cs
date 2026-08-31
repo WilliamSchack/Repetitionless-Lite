@@ -202,7 +202,7 @@ namespace Repetitionless.Editor.Painter
 
             if (_sceneInteraction.LastMouseHit.collider != null) {
                 float innerRadius = PaintingHoles ? (ErasingHoles ? 0.9f : 0.0f) : (1 - BrushSmoothness);
-                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, BrushRadius, innerRadius);
+                _brushPreview.DrawBrush(_sceneInteraction.LastMouseHit, sceneView, BrushRadius, innerRadius, BrushTexture == null ? -1 : BrushRotationDegrees);
 
                 if (!_sceneInteraction.ResizingBrush && (_paintingObjects.Count != 0 || !Event.current.shift))
                     Paint(_sceneInteraction.LastMouseHit);

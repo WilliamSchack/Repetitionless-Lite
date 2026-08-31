@@ -86,7 +86,6 @@ void CSMain(uint3 id : SV_DispatchThreadID)
 
         float3 offset = worldPos - HitWorldPos;
         float2 brushUV = float2(dot(offset, tangent), dot(offset, bitanged)) / (Radius * 2) + 0.5;
-        //float2 brushUV = (worldPos.xy - HitWorldPos.xy) / (Radius * 2) + 0.5;
 
         // Rotate texture if required
         if (RotationRadians != 0) {
