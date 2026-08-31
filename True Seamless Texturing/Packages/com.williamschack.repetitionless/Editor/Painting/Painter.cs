@@ -413,7 +413,7 @@ namespace Repetitionless.Editor.Painter
                 _holesComputeShader.SetVector("HitWorldPos", mouseHit.point);
                 _holesComputeShader.SetVector("HitNormal", mouseHit.normal);
                 _holesComputeShader.SetFloat("Radius", BrushRadius);
-                _holesComputeShader.SetFloat("RotationRadians", BrushRotationDegrees * Mathf.Deg2Rad);
+                _holesComputeShader.SetFloat("RotationRadians", -BrushRotationDegrees * Mathf.Deg2Rad);
                 _holesComputeShader.SetFloat("Cutoff", BrushCutoff);
                 _holesComputeShader.SetBool("EraseHoles", ErasingHoles);
 
@@ -439,7 +439,7 @@ namespace Repetitionless.Editor.Painter
                 _controlComputeShader.SetFloat("Radius", BrushRadius);
                 _controlComputeShader.SetFloat("Opacity", BrushOpacity);
                 _controlComputeShader.SetFloat("Smoothness", BrushSmoothness);
-                _controlComputeShader.SetFloat("RotationRadians", BrushRotationDegrees * Mathf.Deg2Rad);
+                _controlComputeShader.SetFloat("RotationRadians", -BrushRotationDegrees * Mathf.Deg2Rad);
 
                 int groupsX = Mathf.CeilToInt(objectData.ControlTextures[0].width  / (float)COMPUTE_THREADS_X);
                 int groupsY = Mathf.CeilToInt(objectData.ControlTextures[0].height / (float)COMPUTE_THREADS_Y);

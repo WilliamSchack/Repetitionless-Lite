@@ -45,7 +45,7 @@ namespace Repetitionless.Editor.Painter
                 Vector3 tangent = Vector3.Cross(up, normal).normalized;
                 Vector3 bitangent = Vector3.Cross(normal, tangent);
 
-                float rotationRadians = rotationDegrees * Mathf.Deg2Rad;
+                float rotationRadians = -rotationDegrees * Mathf.Deg2Rad;
                 Vector3 lineDir = Mathf.Sin(rotationRadians) * tangent + Mathf.Cos(rotationRadians) * bitangent;
 
                 Color prevColour = Handles.color;
