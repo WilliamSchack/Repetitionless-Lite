@@ -2306,7 +2306,7 @@
 <h2 id="selection">Selection</h2>
 <p><img alt="image" src="../Images/Painting/SelectionMask.png"/></p>
 <p>When painting is enabled, clicking an object will automatically select it and start painting if the object can be painted</p>
-<p>Objects that are selected for painting will have a dark blue outline around them. Trying to paint outside of any selected objects in one stroke will do nothing even if the unselected hovered object can be painted. It basically works as a mask</p>
+<p>Objects that are selected for painting will have a dark blue outline around them. Trying to paint outside of any selected objects in one stroke will do nothing even if the unselected hovered object can be painted. While painting, any unselected objects will be passed through and selected objects can still be painted behind them. It basically works as a mask</p>
 <p>Regular object selection while painting is partially disabled. When selecting objects in the scene view it will use the painter selection, but you can select objects normally in the Hierarchy window</p>
 <p>When an object is first selected, all the control textures will be created/resized, and the holes texture will be created/resized. This can take some time depending on your control/holes resolution settings</p>
 <h2 id="layers">Layers</h2>
@@ -2426,7 +2426,7 @@
 </tr>
 <tr>
 <td>Shift + Click</td>
-<td>Deselects the hovered object</td>
+<td><strong>Hovered Selected:</strong> Deselects the hovered object<br/><strong>Hovered Unselected:</strong> Selects the hovered object without painting</td>
 </tr>
 <tr>
 <td>Shift + Scroll</td>
