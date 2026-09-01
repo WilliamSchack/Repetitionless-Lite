@@ -1,3 +1,10 @@
+## Tutorial Video
+
+[https://youtu.be/kIj2tto107A](https://youtu.be/kIj2tto107A)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kIj2tto107A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
 ## Setting Up
 
 You can open the painter window in the toolbar:<br />
