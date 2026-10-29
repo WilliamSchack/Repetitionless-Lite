@@ -72,7 +72,7 @@ inline half4 VertexGIForwardCustom(Attributes v, float3 posWorld, half3 normalWo
 FragmentCommonData ConstructFragData(v2f input, float4 albedo, float3 normalTS, float metallic, float smoothness)
 {
     // Convert normal from tangent space to world space
-    half3x3 tangentToWorld = half3x3(-input.tangentWS.xyz, input.bitangent.xyz, input.normalWS.xyz);
+    half3x3 tangentToWorld = half3x3(input.tangentWS.xyz, input.bitangent.xyz, input.normalWS.xyz);
     half3 normalWS = mul(normalTS, tangentToWorld);
     normalWS = normalize(normalWS);
 
