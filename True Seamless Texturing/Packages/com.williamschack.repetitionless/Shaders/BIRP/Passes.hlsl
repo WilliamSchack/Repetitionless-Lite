@@ -150,6 +150,8 @@ v2f Vert(Attributes v)
     UNITY_TRANSFER_FOG_COMBINED_WITH_EYE_VEC(output, output.pos);
 #endif
 
+    o.colour = input.colour;
+
     return output;
 }
 

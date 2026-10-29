@@ -218,6 +218,7 @@ Varyings Vert(Attributes input)
 #endif
 
     output.positionCS = vertexInput.positionCS;
+    output.colour = input.colour;
 
     return output;
 }
