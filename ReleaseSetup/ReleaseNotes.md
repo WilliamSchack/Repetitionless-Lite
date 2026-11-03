@@ -1,5 +1,7 @@
 **CHANGELOG**
 
-- Fixed/Added support for Unity 6.4 - 6.7, & 7.0
-- Invalid layer popup now shows while holding shift
-- Fixed painting related warnings
+- Fixed random terrain neighbour material assigning
+- Fixed terrain neighbours randomly assigning between scenes in scenes
+- Fixed lightmap issues on urp terrains
+- Fixed vertex colours not working in BIRP & URP lit materials
+- Fixed normals on BIRP terrain
