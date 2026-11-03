@@ -10,7 +10,12 @@ struct Attributes
     float4 vertex     : POSITION;
     float3 normalOS   : NORMAL;
     half4 colour      : COLOR;
+
     float2 texcoord   : TEXCOORD0;
+    float2 uv1        : TEXCOORD1;
+#if defined(DYNAMICLIGHTMAP_ON)
+    float2 uv2      : TEXCOORD2;
+#endif
 
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
@@ -67,7 +72,7 @@ inline half4 VertexGIForwardCustom(Attributes v, float3 posWorld, half3 normalWo
 FragmentCommonData ConstructFragData(v2f input, float4 albedo, float3 normalTS, float metallic, float smoothness)
 {
     // Convert normal from tangent space to world space
-    half3x3 tangentToWorld = half3x3(-input.tangentWS.xyz, input.bitangent.xyz, input.normalWS.xyz);
+    half3x3 tangentToWorld = half3x3(input.tangentWS.xyz, input.bitangent.xyz, input.normalWS.xyz);
     half3 normalWS = mul(normalTS, tangentToWorld);
     normalWS = normalize(normalWS);
 
@@ -142,6 +147,8 @@ v2f Vert(Attributes v)
 #ifndef DEFERRED_PASS
     UNITY_TRANSFER_FOG_COMBINED_WITH_EYE_VEC(output, output.pos);
 #endif
+
+    output.colour = v.colour;
 
     return output;
 }

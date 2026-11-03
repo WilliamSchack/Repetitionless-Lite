@@ -1,5 +1,5 @@
-#ifndef REPETITIONLESSTERRAINPASSES_INCLUDED
-#define REPETITIONLESSTERRAINPASSES_INCLUDED
+#ifndef REPETITIONLESSPASSES_INCLUDED
+#define REPETITIONLESSPASSES_INCLUDED
 
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
@@ -193,12 +193,14 @@ Varyings Vert(Attributes input)
     output.dynamicLightmapUV = input.dynamicLightmapUV.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
 #endif
 
-#if UNITY_VERSION >= 600000
-    OUTPUT_SH4(vertexInput.positionWS, output.normalWS.xyz, GetWorldSpaceNormalizeViewDir(vertexInput.positionWS), output.vertexSH, output.probeOcclusion);
-#elif UNITY_VERSION >= 202310
-    OUTPUT_SH4(vertexInput.positionWS, output.normalWS.xyz, GetWorldSpaceNormalizeViewDir(vertexInput.positionWS), output.vertexSH);
-#else
-    OUTPUT_SH(output.normalWS.xyz, output.vertexSH);
+#if !defined(LIGHTMAP_ON)
+    #if UNITY_VERSION >= 600000
+        OUTPUT_SH4(vertexInput.positionWS, output.normalWS.xyz, GetWorldSpaceNormalizeViewDir(vertexInput.positionWS), output.vertexSH, output.probeOcclusion);
+    #elif UNITY_VERSION >= 202310
+        OUTPUT_SH4(vertexInput.positionWS, output.normalWS.xyz, GetWorldSpaceNormalizeViewDir(vertexInput.positionWS), output.vertexSH);
+    #else
+        OUTPUT_SH(output.normalWS.xyz, output.vertexSH);
+    #endif
 #endif
 
 #ifdef _ADDITIONAL_LIGHTS_VERTEX
@@ -216,6 +218,7 @@ Varyings Vert(Attributes input)
 #endif
 
     output.positionCS = vertexInput.positionCS;
+    output.colour = input.colour;
 
     return output;
 }

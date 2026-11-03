@@ -154,7 +154,8 @@ namespace Repetitionless.Runtime
             }
 
             // Switch to default terrain material
-            _terrain.materialTemplate = _defaultTerrainMaterial;
+            if (Terrain != null && _defaultTerrainMaterial != null)
+                _terrain.materialTemplate = _defaultTerrainMaterial;
     #endif
         }
 
@@ -259,9 +260,11 @@ namespace Repetitionless.Runtime
         /// </param>
         public void UpdateParentCallback(RepetitionlessTerrain newParent)
         {
-            ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
-            ParentTerrain.OnMaterialAssigned        -= ParentMaterialChanged;
-            ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
+            if (ParentTerrain != null) {
+                ParentTerrain.OnTerrainLayersChanged    -= ParentTerrainLayersChanged;
+                ParentTerrain.OnMaterialAssigned        -= ParentMaterialChanged;
+                ParentTerrain.OnMaterialTexturesUpdated -= ParentMaterialTexturesUpdated;
+            }
 
             if (newParent != null) {
                 newParent.OnTerrainLayersChanged    += ParentTerrainLayersChanged;
@@ -306,11 +309,14 @@ namespace Repetitionless.Runtime
         /// </param>
         public void SetupNewTerrainNeighbour(Terrain newNeighbour)
         {
+            if (newNeighbour == null || newNeighbour.gameObject.scene != gameObject.scene)
+                return;
+
             RepetitionlessTerrain repetitionlessTerrain;
             newNeighbour.TryGetComponent<RepetitionlessTerrain>(out repetitionlessTerrain);
 
-            // Already setup
-            if (repetitionlessTerrain != null && repetitionlessTerrain.ParentTerrain == this)
+            // Already setup with its own parent or material
+            if (repetitionlessTerrain != null && (repetitionlessTerrain.ParentTerrain != null || repetitionlessTerrain.MainMaterial != null))
                 return;
 
             // Create terrain component

@@ -39,11 +39,16 @@ struct Varyings
 #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
     float4 shadowCoord : TEXCOORD6;
 #endif
+
+#if !defined(LIGHTMAP_ON)
+    half3 vertexSH : TEXCOORD7;
+#endif
+
 #if defined(DYNAMICLIGHTMAP_ON)
-    float2 dynamicLightmapUV : TEXCOORD7;
+    float2 dynamicLightmapUV : TEXCOORD8;
 #endif
 #ifdef USE_APV_PROBE_OCCLUSION
-    float4 probeOcclusion : TEXCOORD8;
+    float4 probeOcclusion : TEXCOORD9;
 #endif
 
     half4 colour  : COLOR;
@@ -90,7 +95,7 @@ void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData
     #if defined(LIGHTMAP_ON)
         inputData.staticLightmapUV = input.uvMainAndLM.zw;
     #else
-        inputData.vertexSH = 0;
+        inputData.vertexSH = input.vertexSH;
     #endif
     #if defined(USE_APV_PROBE_OCCLUSION)
         inputData.probeOcclusion = input.probeOcclusion;
@@ -100,13 +105,13 @@ void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData
 
 void InitializeBakedGIData(Varyings input, inout InputData inputData)
 {
-    half3 SH = 0;
-
-#if defined(DYNAMICLIGHTMAP_ON)
-    inputData.bakedGI = SAMPLE_GI(input.uvMainAndLM.zw, input.dynamicLightmapUV, SH, inputData.normalWS);
+#ifdef _SCREEN_SPACE_IRRADIANCE
+    inputData.bakedGI = SAMPLE_GI(_ScreenSpaceIrradiance, input.clipPos.xy, inputData.normalWS);
+#elif defined(DYNAMICLIGHTMAP_ON)
+    inputData.bakedGI = SAMPLE_GI(input.uvMainAndLM.zw, input.dynamicLightmapUV, input.vertexSH, inputData.normalWS);
     inputData.shadowMask = SAMPLE_SHADOWMASK(input.uvMainAndLM.zw);
 #elif !defined(LIGHTMAP_ON) && (defined(PROBE_VOLUMES_L1) || defined(PROBE_VOLUMES_L2))
-    inputData.bakedGI = SAMPLE_GI(SH,
+    inputData.bakedGI = SAMPLE_GI(input.vertexSH,
         GetAbsolutePositionWS(inputData.positionWS),
         inputData.normalWS,
         inputData.viewDirectionWS,
@@ -114,7 +119,7 @@ void InitializeBakedGIData(Varyings input, inout InputData inputData)
         input.probeOcclusion,
         inputData.shadowMask);
 #else
-    inputData.bakedGI = SAMPLE_GI(input.uvMainAndLM.zw, SH, inputData.normalWS);
+    inputData.bakedGI = SAMPLE_GI(input.uvMainAndLM.zw, input.vertexSH, inputData.normalWS);
     inputData.shadowMask = SAMPLE_SHADOWMASK(input.uvMainAndLM.zw);
 #endif
 }
@@ -154,6 +159,16 @@ Varyings Vert(Attributes input)
     o.fogFactorAndVertexLight.yzw = VertexLighting(vertexInput.positionWS, o.normal.xyz);
 #else
     o.fogFactor = fogFactor;
+#endif
+
+#if !defined(LIGHTMAP_ON)
+    #if UNITY_VERSION >= 600000
+        OUTPUT_SH4(vertexInput.positionWS, o.normal.xyz, viewDirWS, o.vertexSH, o.probeOcclusion);
+    #elif UNITY_VERSION >= 202310
+        OUTPUT_SH4(vertexInput.positionWS, o.normal.xyz, viewDirWS, o.vertexSH);
+    #else
+        OUTPUT_SH(o.normal.xyz, o.vertexSH);
+    #endif
 #endif
 
     o.positionWS = vertexInput.positionWS;
